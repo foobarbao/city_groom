@@ -22,8 +22,8 @@ class CompartmentInline(admin.TabularInline[Compartment, Locker]):
 class LockerAdmin(GISModelAdmin):
     """Locker administration with a map widget for the location."""
 
-    list_display = ["name", "code", "status", "is_simulated", "fill_rate_display"]
-    list_filter = ["status", "is_simulated"]
+    list_display = ["name", "code", "site_category", "status", "is_simulated", "fill_rate_display"]
+    list_filter = ["status", "site_category", "is_simulated"]
     search_fields = ["name", "code", "address"]
     readonly_fields = ["created_at", "updated_at"]
     inlines = [CompartmentInline]

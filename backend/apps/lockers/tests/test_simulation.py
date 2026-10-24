@@ -3,15 +3,20 @@ import random
 import pytest
 
 from apps.lockers.models import Compartment, Locker
-from apps.lockers.osm import fetch_overpass, parse_tram_stops
+from apps.lockers.osm import fetch_overpass, parse_strategic_sites, parse_tram_stops
 from apps.lockers.simulation import (
     COLUMN_TEMPLATES,
     LOCKER_MODELS,
     create_simulated_locker,
     simulate_occupancy,
+    spread_by_category,
     spread_sites,
 )
-from apps.lockers.tests.factories import FAKE_SITES, fake_overpass_payload
+from apps.lockers.tests.factories import (
+    FAKE_SITES,
+    fake_overpass_payload,
+    fake_strategic_payload,
+)
 
 
 @pytest.mark.django_db
@@ -78,3 +83,24 @@ def test_parse_tram_stops_merges_nodes_by_name_and_skips_unnamed() -> None:
 def test_fetch_overpass_rejects_non_https_urls() -> None:
     with pytest.raises(ValueError, match="HTTPS"):
         fetch_overpass("query", url="file:///etc/passwd")
+
+
+def test_parse_strategic_sites_keeps_named_places_with_a_category() -> None:
+    pairs = parse_strategic_sites(fake_strategic_payload())
+
+    assert [(category, site.name) for category, site in pairs] == [
+        ("campus", "Fake Campus"),
+        ("tourism", "Fake Museum"),
+        ("transport", "Fake Station"),
+    ]
+    # Ways are placed at their centre.
+    assert pairs[0][1].latitude == 45.21
+
+
+def test_spread_by_category_takes_categories_in_turn() -> None:
+    candidates = [("a", site) for site in FAKE_SITES[:3]] + [("b", FAKE_SITES[3])]
+
+    chosen = spread_by_category(candidates, 2)
+
+    assert sorted(category for category, _ in chosen) == ["a", "b"]
+    assert len(spread_by_category(candidates, 10)) == 4

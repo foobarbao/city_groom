@@ -67,7 +67,16 @@ class LockerFeatureSerializer(GeoFeatureModelSerializer):  # type: ignore[misc]
     class Meta:
         model = Locker
         geo_field = "location"
-        fields = ["id", "code", "name", "address", "status", "access_methods", "free_by_size"]
+        fields = [
+            "id",
+            "code",
+            "name",
+            "address",
+            "status",
+            "site_category",
+            "access_methods",
+            "free_by_size",
+        ]
 
     def get_free_by_size(self, locker: Locker) -> dict[str, int]:
         """Return the number of free compartments per size code."""
@@ -133,6 +142,7 @@ class LockerLayoutSerializer(serializers.ModelSerializer[Locker]):
             "name",
             "address",
             "status",
+            "site_category",
             "access_methods",
             "is_simulated",
             "longitude",

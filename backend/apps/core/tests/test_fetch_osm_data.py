@@ -6,7 +6,7 @@ import pytest
 from django.core.management import CommandError, call_command
 
 
-def test_fetch_osm_data_saves_both_datasets(tmp_path: Any) -> None:
+def test_fetch_osm_data_saves_every_dataset(tmp_path: Any) -> None:
     payload = {"elements": [{"type": "node", "id": 1}]}
 
     with mock.patch(
@@ -15,8 +15,8 @@ def test_fetch_osm_data_saves_both_datasets(tmp_path: Any) -> None:
     ) as fetch:
         call_command("fetch_osm_data", "--output-dir", str(tmp_path))
 
-    assert fetch.call_count == 2
-    for name in ("tram_stops", "merchants"):
+    assert fetch.call_count == 3
+    for name in ("tram_stops", "strategic_sites", "merchants"):
         assert json.loads((tmp_path / f"{name}.json").read_text()) == payload
 
 

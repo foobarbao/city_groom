@@ -1,4 +1,4 @@
-# Downloads OpenStreetMap data (tram stops, merchants) with the backend's
+# Downloads OpenStreetMap data (tram stops, strategic places, merchants) with the backend's
 # fetch_osm_data command and commits it to data/osm/ on the same branch.
 # GitHub runners have open internet access, unlike some development
 # environments (docs/DATA_SOURCES.md). Triggered by editing data/osm/REFRESH.
@@ -41,7 +41,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/osm/tram_stops.json data/osm/merchants.json
+          git add data/osm/tram_stops.json data/osm/strategic_sites.json data/osm/merchants.json
           if git diff --cached --quiet; then
             echo "No change in OpenStreetMap data."
           else

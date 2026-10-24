@@ -35,6 +35,25 @@ class Connectivity(models.TextChoices):
     BLUETOOTH_OFFLINE = "bluetooth_offline", "Hors ligne (Bluetooth)"
 
 
+class SiteCategory(models.TextChoices):
+    """Kind of place where a locker stands, shown to customers to find one.
+
+    Tram stops host service lockers; the other categories are strategic places
+    for the consigne (docs/PRODUCT.md §4).
+    """
+
+    TRAM_STOP = "tram_stop", "Arrêt de tram"
+    TOURISM = "tourism", "Site touristique"
+    TRANSPORT = "transport", "Gare"
+    CAMPUS = "campus", "Campus"
+    SHOPPING = "shopping", "Centre commercial ou marché"
+    HEALTH = "health", "Hôpital"
+    BUSINESS = "business", "Pôle d'activité"
+    SQUARE = "square", "Place (restaurants, cafés)"
+    LEISURE = "leisure", "Parc ou équipement sportif"
+    OTHER = "other", "Autre"
+
+
 class Locker(models.Model):
     """A connected locker unit installed at one location in the city."""
 
@@ -79,6 +98,13 @@ class Locker(models.Model):
         verbose_name="modes d'ouverture",
         default=list,
         help_text="Modes d'ouverture proposés par ce casier (selon le fabricant).",
+    )
+    site_category = models.CharField(
+        "type de lieu",
+        max_length=20,
+        choices=SiteCategory.choices,
+        default=SiteCategory.OTHER,
+        help_text="Type de lieu où se trouve le casier (arrêt de tram, site touristique…).",
     )
     connectivity = models.CharField(
         "connectivité",

@@ -8,7 +8,11 @@ from rest_framework.test import APIClient
 
 from apps.lockers.models import Compartment, Locker
 from apps.lockers.simulation import create_simulated_locker, simulate_occupancy
-from apps.lockers.tests.factories import FAKE_SITES, fake_overpass_payload
+from apps.lockers.tests.factories import (
+    FAKE_SITES,
+    fake_overpass_payload,
+    fake_strategic_payload,
+)
 
 
 @pytest.fixture
@@ -116,3 +120,32 @@ def test_seed_command_creates_spread_lockers_from_a_saved_response(tmp_path: Any
 
     assert Locker.objects.filter(is_simulated=True).count() == 2
     assert Locker.objects.get(code="fake-stop").placement_source.startswith("OpenStreetMap")
+
+
+@pytest.mark.django_db
+def test_seed_command_adds_consigne_lockers_at_strategic_places(tmp_path: Any) -> None:
+    import json
+
+    sites_file = tmp_path / "stops.json"
+    sites_file.write_text(json.dumps(fake_overpass_payload()))
+    strategic_file = tmp_path / "strategic.json"
+    strategic_file.write_text(json.dumps(fake_strategic_payload()))
+
+    call_command(
+        "seed_simulated_lockers",
+        "--sites-file",
+        str(sites_file),
+        "--strategic-file",
+        str(strategic_file),
+        "--strategic-count",
+        "2",
+    )
+
+    categories = dict(Locker.objects.values_list("code", "site_category"))
+    assert categories["fake-stop"] == "tram_stop"
+    consigne = [code for code, category in categories.items() if category != "tram_stop"]
+    assert len(consigne) == 2
+    # Consigne lockers have no hanging compartment.
+    assert not Compartment.objects.filter(locker__code__in=consigne, size="XL").exists()
+    response = APIClient().get(f"/api/v1/lockers/{consigne[0]}/")
+    assert response.json()["site_category"] in {"tourism", "transport", "campus"}

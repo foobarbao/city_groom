@@ -17,7 +17,7 @@ from django.contrib.gis.geos import Point
 from django.db import transaction
 from django.utils import timezone
 
-from apps.lockers.models import AccessMethod, Compartment, Connectivity, Locker
+from apps.lockers.models import AccessMethod, Compartment, Connectivity, Locker, SiteCategory
 from apps.lockers.sizes import (
     COLUMN_GRID_UNITS,
     CONTROL_PANEL_GRID_UNITS,
@@ -40,6 +40,8 @@ COLUMN_TEMPLATES: dict[str, tuple[CompartmentSize, ...]] = {
     "large": (M, M, L, L, L, L),
     "laundry": (L, L, L, L, L),
     "garment": (XL,),
+    # Consigne: helmets, jackets and bags (L), small bags (M), phone and keys (S).
+    "storage": (S, S, M, M, M, L, L, L),
 }
 
 # Locker models, as sequences of column templates, left to right. City Groom
@@ -49,6 +51,10 @@ LOCKER_MODELS: dict[str, tuple[str, ...]] = {
     "compact": ("mixed", "control", "garment"),
     "standard": ("garment", "mixed", "control", "laundry", "garment"),
     "large": ("garment", "mixed", "large", "control", "laundry", "large", "garment"),
+    # Consigne lockers at strategic places: smaller, more numerous, no hanging
+    # compartment (docs/PRODUCT.md §4).
+    "consigne_compact": ("storage", "control"),
+    "consigne": ("storage", "control", "large"),
 }
 
 # Demo fill rates are kept modest on purpose: the service is new, and the
@@ -114,6 +120,7 @@ def create_simulated_locker(
     model: str = "standard",
     access_methods: Sequence[str] = (AccessMethod.QR_CODE, AccessMethod.NFC),
     connectivity: str = Connectivity.CELLULAR,
+    site_category: str = SiteCategory.OTHER,
 ) -> Locker:
     """Create a simulated locker and all its compartments, all free.
 
@@ -123,6 +130,7 @@ def create_simulated_locker(
         model: Key of ``LOCKER_MODELS``.
         access_methods: Opening methods offered by the locker.
         connectivity: How the locker communicates with the platform.
+        site_category: Kind of place (``SiteCategory`` value).
 
     Returns:
         The created locker.
@@ -137,6 +145,7 @@ def create_simulated_locker(
         location=Point(site.longitude, site.latitude, srid=4326),
         access_methods=list(access_methods),
         connectivity=connectivity,
+        site_category=site_category,
         last_seen_at=timezone.now(),
         control_panel_column=columns.index("control"),
         is_simulated=True,
@@ -229,3 +238,44 @@ def spread_sites(sites: Sequence[SimulatedSite], count: int) -> list[SimulatedSi
         chosen.append(farthest)
         remaining.remove(farthest)
     return chosen
+
+
+def spread_by_category(
+    candidates: Sequence[tuple[str, SimulatedSite]],
+    count: int,
+    taken: Sequence[SimulatedSite] = (),
+) -> list[tuple[str, SimulatedSite]]:
+    """Pick ``count`` sites, taking categories in turn and spreading them out.
+
+    Categories are visited round-robin so that every kind of place is
+    represented; within the current category, the site farthest from all
+    sites already chosen (including ``taken``) is added. Deterministic.
+
+    Args:
+        candidates: (category, site) pairs.
+        count: Number of sites to keep.
+        taken: Sites already used (e.g. tram stop lockers), to stay away from.
+
+    Returns:
+        The selected (category, site) pairs, at most ``len(candidates)``.
+    """
+    by_category: dict[str, list[SimulatedSite]] = {}
+    for category, site in candidates:
+        by_category.setdefault(category, []).append(site)
+    chosen: list[SimulatedSite] = list(taken)
+    result: list[tuple[str, SimulatedSite]] = []
+    categories = sorted(by_category)
+    while len(result) < count and any(by_category.values()):
+        for category in categories:
+            remaining = by_category[category]
+            if not remaining or len(result) >= count:
+                continue
+            site = (
+                max(remaining, key=lambda s: min(_distance_m(s, c) for c in chosen))
+                if chosen
+                else remaining[0]
+            )
+            remaining.remove(site)
+            chosen.append(site)
+            result.append((category, site))
+    return result
