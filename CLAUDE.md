@@ -38,6 +38,12 @@ the reference documents prevail in case of doubt.
 8. **No secrets** in the repository (keys, keystore, `.env`).
 9. Before pushing: lint, format, type check and tests must pass.
 
+## Reminders
+
+`docs/PRODUCT.md` has a **Reminders** section listing topics the project owner
+asked to be reminded of. Bring them up when relevant (e.g. when working on the
+related feature) and at the start of a new work session.
+
 ## Project owner context
 
 The project owner is an expert in Django REST and Vue.js and new to mobile

@@ -30,6 +30,10 @@ funding and grants:
 
 The service starts in **Grenoble**.
 
+The product name "City Groom" is **not final**. Whatever the name, the brand
+must convey a strong **eco-social** message centred on the idea of
+**reconnecting** people with their city and its local businesses.
+
 ## 2. Scope
 
 ### In scope: services
@@ -38,8 +42,27 @@ Services performed by local businesses on items left by the customer, for
 example:
 
 - laundry, dry cleaning, ironing (first offers);
-- shoe repair;
-- more generally, any **repair-type service**.
+- shoe repair and shoe cleaning;
+- more generally, **any service on an item that fits in a locker** and can be
+  sold at a **standard price** or after a **short evaluation** (quote).
+
+Locker dimensions will be defined later; until then, eligibility is judged on
+the item category.
+
+### Kinds of offers
+
+1. **Standard services** — fixed price per item, ordered directly (e.g. ironing
+   a shirt, cleaning a pair of shoes).
+2. **Packs** — bundles of standard services at a pack price, offered with
+   partner merchants (e.g. 5 shirts + 2 trousers). Details to be specified by
+   the project owner (see [Reminders](#reminders)).
+3. **Special services (on quote)** — the customer opens a **direct chat** with
+   the merchant, can upload **photos and videos**, the merchant sends a
+   **quote**, and the customer accepts or declines it. Accepted quotes then
+   follow the main flow.
+
+The guiding principle on both sides is **maximum simplicity**: as few steps as
+possible for the customer and for the merchant.
 
 ### Out of scope: red lines
 
@@ -62,16 +85,21 @@ Flow as currently understood — steps marked *(to confirm)* depend on open
 questions.
 
 1. The customer browses services and merchants on a map of Grenoble.
-2. The customer orders a service from a merchant and chooses a **drop-off
-   locker**.
-3. The customer drops the item into a locker compartment (opened with a code
-   or QR code *(to confirm)*).
-4. A courier collects the item during a scheduled round and delivers it to the
-   merchant.
-5. The merchant performs the service.
-6. A courier brings the item back to a **pickup locker**, which may be
-   different from the drop-off locker.
-7. The customer is notified and collects the item.
+2. The customer orders a standard service or a pack, or accepts a quote for a
+   special service. Ordering is possible **as a guest** (see Accounts).
+3. The customer chooses a **drop-off locker**, and a **pickup locker** with a
+   **pickup slot** *(slot rules to confirm, see open questions)*. The pickup
+   locker may differ from the drop-off locker.
+4. The customer drops the item into a locker compartment. The opening method
+   depends on the locker vendor: **Bluetooth**, **NFC** *(to confirm)* or
+   **QR code**.
+5. A courier collects the item during a scheduled round and delivers it to the
+   merchant. Demo assumption: **2 collection rounds per day**.
+6. The merchant performs the service.
+7. A courier brings the item back to the pickup locker.
+8. The customer is notified and collects the item.
+
+Payment is **simulated** in the demo.
 
 ## 5. Merchant experience
 
@@ -86,22 +114,41 @@ the value the platform brings:
 - How their commission rate can decrease over time (see business model), to
   encourage them to promote the platform.
 
+The merchant also answers chat requests and sends quotes for special services,
+with a deliberately minimal interface.
+
 In the demo, the merchant's data (orders, forecasts) is **simulated**.
 
-## 6. Business model
+## 6. Customer accounts
+
+- **Guest checkout** is allowed: no account is required to order.
+- Customers are **strongly encouraged to sign in**, in order to unlock
+  **status levels** and **premium** benefits (details to be defined).
+
+## 7. Business model
 
 - The **customer pays the same price** as they would pay in the shop.
 - City Groom takes a **commission on the merchant's share**.
+- **Initial rate: 10 %. Long-term target: 1 %.**
 - The commission is **degressive**: it decreases as the number of partner
   merchants grows and as the number of customers grows, which encourages
-  merchants to talk about the platform around them.
+  merchants to talk about the platform around them. The thresholds between
+  10 % and 1 % are not defined yet; the rate is therefore stored as
+  configurable data, not hard-coded.
+- Reaching such a low rate relies on **public funding**: the project is
+  expected to be eligible for grants supporting the ecological transition and
+  the digital transition.
 - **Bundles** and special partnerships (notably with laundries) are planned;
   the strategy will be defined later.
 
-## 7. Demo goals and data
+## 8. Demo goals and data
 
-- Use **as much real data as possible**: real map of Grenoble, real businesses
-  (not yet contacted — see open questions on how they are presented).
+- Use **as much real data as possible**: real map of Grenoble, real businesses.
+- **Real businesses** (not yet contacted) are shown using **public data only**
+  (name, address, category, from open sources such as OpenStreetMap), no
+  logos, with a notice that no partnership is established yet.
+- **Selection**: every business offering a service on items that fit in a
+  locker, **excluding food businesses and large chains**.
 - **Simulated**: lockers, orders, courier rounds, merchant activity.
 - Locker locations will be defined later; lockers must not be too far from the
   customers they serve.
@@ -115,30 +162,36 @@ In the demo, the merchant's data (orders, forecasts) is **simulated**.
 | Locker | A connected locker unit at one location | Casier / consigne *(to confirm)* |
 | Compartment | One lockable box inside a locker | Compartiment / casier *(to confirm)* |
 | Merchant | Business performing a service | Commerçant |
-| Service offer | A service sold by a merchant, with a price | Prestation |
+| Service offer | A standard service sold by a merchant at a fixed price | Prestation |
+| Pack | A bundle of service offers sold at a pack price | Pack / formule *(to confirm)* |
+| Quote | A merchant's price proposal for a special service | Devis |
+| Conversation | Chat between a customer and a merchant about a special service | Discussion |
+| Pickup slot | Time window during which the customer collects the item | Créneau de retrait |
 | Order | A customer's request for a service offer | Commande |
 | Round | A courier trip collecting and returning items | Tournée |
 | Commission | Platform fee charged to the merchant | Commission |
+
+## Reminders
+
+Topics the project owner asked to be reminded of:
+
+- **Packs with partners** (e.g. 5 shirts + 2 trousers): the project owner will
+  detail the pack offers and partnerships. *(Requested on 2026-10-24.)*
 
 ## Open questions
 
 Questions to the project owner. Answers are moved into the sections above.
 
-1. **Payment**: real in-app payment, or simulated for the demo? When is the
-   customer charged?
-2. **Price of repairs**: for services whose price depends on a diagnosis (e.g.
-   shoe repair), how is the final price set and accepted by the customer?
-3. **Commission**: initial rate and degressive formula (thresholds by number of
-   merchants / customers) to use in the demo?
-4. **Real businesses not yet contacted**: may their real names be displayed?
-   Proposal: public data only (name, address, category, from OpenStreetMap),
-   no logos, with a "demo — no partnership established" notice.
-5. **Locker opening**: code, QR code scanned by the app, or both?
-6. **Customer accounts**: mandatory sign-up before ordering?
-7. **Pickup locker**: chosen at order time, or later? Default to the drop-off
-   locker?
-8. **Turnaround and rounds**: expected delays and round frequency to simulate?
-9. **Service categories** for the demo beyond laundry / ironing and shoe repair
-   (tailoring, small appliance repair, bicycle repair…)?
-10. **Product name and wording**: is "City Groom" the final name? Preferred
-    French term for the lockers in the UI?
+1. **Pickup slot**: the owner wrote "pickup slot 12h". Does it mean the
+   customer has a **12-hour window** to collect the item, or a pickup **at
+   noon**?
+2. **Locker opening**: "NFT" was written alongside Bluetooth and QR code; is
+   **NFC** (contactless) meant?
+3. **Commission thresholds**: how the rate decreases from 10 % to 1 %
+   (by number of merchants, customers, merchant volume…). For the demo, a
+   flat 10 % is used until this is defined.
+4. **Status levels and premium** for signed-in customers: what do they unlock?
+5. **Service catalogue and prices**: the demo uses simulated standard prices;
+   should they reflect typical Grenoble prices (researched from public
+   sources) or placeholder values?
+6. **Locker dimensions** and compartment sizes (to be defined later).

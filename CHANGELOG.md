@@ -18,4 +18,7 @@ Versioning: [SemVer](https://semver.org/).
 - ADR-0001 (adopt ADRs), ADR-0002 (technical stack: Vue 3 + Ionic + Capacitor,
   MapLibre, Django REST + GeoDjango + PostGIS), ADR-0003 (monorepo layout,
   Django admin, integration boundaries), ADR-0004 (hosting, proposed).
+- Product requirements clarified: offer types (standard, packs, quotes with
+  chat), guest checkout, simulated payment, 10 % initial commission, two
+  collection rounds per day, business selection rules.
 - Pull request template, `.editorconfig`, `.gitignore`.
