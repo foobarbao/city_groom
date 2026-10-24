@@ -17,11 +17,15 @@ from typing import Any
 
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
+from django.test import override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient
 
 from apps.demo.activity import LockerSite, generate_activity
 from apps.lockers.models import Locker
+
+#: Host name of the in-process API requests (never resolved on the network).
+EXPORT_HOST = "localhost"
 
 
 class Command(BaseCommand):
@@ -47,28 +51,11 @@ class Command(BaseCommand):
         output: Path = options["output_dir"]
         output.mkdir(parents=True, exist_ok=True)
 
-        public = APIClient(SERVER_NAME="localhost")
-        public_data = {
-            "lockers": self._get(public, "/api/v1/lockers/"),
-            "details": {
-                locker.code: self._get(public, f"/api/v1/lockers/{locker.code}/")
-                for locker in lockers
-            },
-            "sizes": self._get(public, "/api/v1/lockers/sizes/"),
-            "merchants": self._get(public, "/api/v1/merchants/"),
-        }
-
-        operator = APIClient(SERVER_NAME="localhost")
-        # In-memory staff user, never saved: only used to read operator views.
-        operator.force_authenticate(User(username="demo-export", is_staff=True))
-        operator_data = {
-            "lockers": self._get(operator, "/api/v1/operator/lockers/"),
-            "details": {
-                locker.code: self._get(operator, f"/api/v1/operator/lockers/{locker.code}/")
-                for locker in lockers
-            },
-            "stats": self._get(operator, "/api/v1/operator/lockers/stats/"),
-        }
+        # The API is read in-process, never over the network: the host and HTTPS
+        # settings of the environment (ALLOWED_HOSTS, SECURE_SSL_REDIRECT) must
+        # not reject these requests, whatever the local `.env` contains.
+        with override_settings(ALLOWED_HOSTS=[EXPORT_HOST], SECURE_SSL_REDIRECT=False):
+            public_data, operator_data = self._snapshot_api(lockers)
 
         now = options["now"] or timezone.now()
         if now.tzinfo is None:
@@ -96,6 +83,32 @@ class Command(BaseCommand):
                 f"{len(activity['orders'])} commandes fictives -> {output}"
             )
         )
+
+    def _snapshot_api(self, lockers: list[Locker]) -> tuple[dict[str, Any], dict[str, Any]]:
+        """Read the public and operator API responses that the demo apps replay."""
+        public = APIClient(SERVER_NAME=EXPORT_HOST)
+        public_data = {
+            "lockers": self._get(public, "/api/v1/lockers/"),
+            "details": {
+                locker.code: self._get(public, f"/api/v1/lockers/{locker.code}/")
+                for locker in lockers
+            },
+            "sizes": self._get(public, "/api/v1/lockers/sizes/"),
+            "merchants": self._get(public, "/api/v1/merchants/"),
+        }
+
+        operator = APIClient(SERVER_NAME=EXPORT_HOST)
+        # In-memory staff user, never saved: only used to read operator views.
+        operator.force_authenticate(User(username="demo-export", is_staff=True))
+        operator_data = {
+            "lockers": self._get(operator, "/api/v1/operator/lockers/"),
+            "details": {
+                locker.code: self._get(operator, f"/api/v1/operator/lockers/{locker.code}/")
+                for locker in lockers
+            },
+            "stats": self._get(operator, "/api/v1/operator/lockers/stats/"),
+        }
+        return public_data, operator_data
 
     @staticmethod
     def _get(client: APIClient, path: str) -> Any:
