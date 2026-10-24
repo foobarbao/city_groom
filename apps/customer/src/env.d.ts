@@ -4,6 +4,8 @@
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string
   readonly VITE_MAP_STYLE_URL: string
+  /** "true" in the standalone demo build: bundled fictitious data, no backend. */
+  readonly VITE_DEMO?: string
 }
 
 interface ImportMeta {

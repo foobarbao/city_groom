@@ -11,6 +11,8 @@
  *
  * Emits:
  * - `select(code)`: when the user taps a locker.
+ * - `unavailable`: when the map style or tiles cannot be loaded (offline,
+ *   blocked network), so the page can fall back to the list of lockers.
  */
 import type { LockerFeatureCollection } from '@city-groom/api-client'
 import type { FeatureCollection, Point } from 'geojson'
@@ -34,6 +36,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   /** A locker was tapped; payload is its code. */
   select: [code: string]
+  /** The base map could not be loaded. */
+  unavailable: []
 }>()
 
 const SOURCE_ID = 'lockers'
@@ -63,6 +67,11 @@ onMounted(() => {
     center: GRENOBLE_CENTER,
     zoom: DEFAULT_MAP_ZOOM,
   })
+  let loaded = false
+  map.on('error', () => {
+    // Before the first load, an error means the style itself is unreachable.
+    if (!loaded) emit('unavailable')
+  })
   map.addControl(new NavigationControl({ showCompass: false }), 'top-right')
   map.addControl(
     new GeolocateControl({ positionOptions: { enableHighAccuracy: true } }),
@@ -70,6 +79,7 @@ onMounted(() => {
   )
 
   map.on('load', () => {
+    loaded = true
     if (!map) return
     map.addSource(SOURCE_ID, { type: 'geojson', data: withTotals(props.lockers) })
     map.addLayer({
@@ -77,11 +87,12 @@ onMounted(() => {
       type: 'circle',
       source: SOURCE_ID,
       paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 6, 16, 14],
-        // Green when compartments are free, grey when the locker is full.
-        'circle-color': ['case', ['>', ['get', 'free_total'], 0], '#2a9d8f', '#9aa7b0'],
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 7, 16, 15],
+        // Leaf green when compartments are free, soft grey when the locker is full.
+        'circle-color': ['case', ['>', ['get', 'free_total'], 0], '#3f9a73', '#a9b8b1'],
         'circle-stroke-color': '#ffffff',
-        'circle-stroke-width': 2,
+        'circle-stroke-width': 3,
+        'circle-blur': 0.05,
       },
     })
     map.addLayer({
@@ -95,7 +106,7 @@ onMounted(() => {
         'text-offset': [0, 1.4],
         'text-anchor': 'top',
       },
-      paint: { 'text-color': '#264653', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 },
+      paint: { 'text-color': '#203a33', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 },
     })
     map.on('click', 'lockers-circle', (event: MapLayerMouseEvent) => {
       const code = event.features?.[0]?.properties?.code

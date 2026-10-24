@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /**
  * Drawing of a locker front: columns, doors of several sizes and the control
- * panel, with one door highlighted (the one that will open).
+ * panel, with one door highlighted and gently swinging open (the one the
+ * customer will use).
  *
  * Used on the locker page of the customer app; designed to be reused by the
  * operator view, which will colour doors by status.
@@ -30,47 +31,57 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+
+/** Space kept between doors, in grid units, so they read as separate soft tiles. */
+const DOOR_INSET = 0.09
 </script>
 
 <template>
   <svg
     class="locker-front"
-    :viewBox="`0 0 ${drawing.width} ${drawing.height}`"
+    :viewBox="`-0.4 -0.4 ${drawing.width + 0.8} ${drawing.height + 1.4}`"
     role="img"
     :aria-label="
       highlightedLabel ? t('locker.previewDoor', { label: highlightedLabel }) : undefined
     "
   >
-    <rect class="frame" x="0" y="0" :width="drawing.width" :height="drawing.height" rx="0.3" />
+    <!-- Soft ground shadow under the locker -->
+    <ellipse
+      class="ground"
+      :cx="drawing.width / 2"
+      :cy="drawing.height + 0.45"
+      :rx="drawing.width / 2"
+      ry="0.35"
+    />
+    <rect class="body" x="0" y="0" :width="drawing.width" :height="drawing.height" rx="0.7" />
 
     <g class="panel">
       <rect
-        :x="drawing.panel.x"
-        :y="drawing.panel.y"
-        :width="drawing.panel.width"
-        :height="drawing.panel.height"
-        rx="0.15"
-      />
-      <rect
-        class="screen"
-        :x="drawing.panel.x + 0.6"
-        :y="drawing.panel.y + 0.6"
-        :width="drawing.panel.width - 1.2"
-        :height="drawing.panel.height * 0.45"
-        rx="0.1"
+        class="panel-screen"
+        :x="drawing.panel.x + 0.5"
+        :y="drawing.panel.y + 0.5"
+        :width="drawing.panel.width - 1"
+        :height="drawing.panel.height * 0.42"
+        rx="0.45"
       />
       <text
-        class="screen-label"
+        class="panel-label"
         :x="drawing.panel.x + drawing.panel.width / 2"
-        :y="drawing.panel.y + 0.6 + drawing.panel.height * 0.27"
+        :y="drawing.panel.y + 0.5 + drawing.panel.height * 0.21"
       >
         {{ t('locker.panel') }}
       </text>
       <circle
-        class="reader"
+        class="panel-reader"
         :cx="drawing.panel.x + drawing.panel.width / 2"
-        :cy="drawing.panel.y + drawing.panel.height * 0.78"
-        r="0.6"
+        :cy="drawing.panel.y + drawing.panel.height * 0.76"
+        r="0.75"
+      />
+      <circle
+        class="panel-reader-dot"
+        :cx="drawing.panel.x + drawing.panel.width / 2"
+        :cy="drawing.panel.y + drawing.panel.height * 0.76"
+        r="0.22"
       />
     </g>
 
@@ -78,31 +89,47 @@ const { t } = useI18n()
       v-for="door in drawing.doors"
       :key="door.id"
       class="door"
-      :class="[`size-${door.size}`, { highlighted: door.label === highlightedLabel }]"
+      :class="{ highlighted: door.label === highlightedLabel }"
+      role="button"
+      tabindex="0"
+      :aria-label="door.label"
       @click="emit('select', door.label)"
+      @keydown.enter.prevent="emit('select', door.label)"
     >
+      <!-- Inside of the compartment, visible when the door swings open -->
       <rect
-        :x="door.x + 0.05"
-        :y="door.y + 0.05"
-        :width="door.width - 0.1"
-        :height="door.height - 0.1"
-        rx="0.12"
+        class="door-inside"
+        :x="door.x + DOOR_INSET"
+        :y="door.y + DOOR_INSET"
+        :width="door.width - 2 * DOOR_INSET"
+        :height="door.height - 2 * DOOR_INSET"
+        rx="0.32"
       />
+      <g class="door-leaf">
+        <rect
+          class="door-panel"
+          :x="door.x + DOOR_INSET"
+          :y="door.y + DOOR_INSET"
+          :width="door.width - 2 * DOOR_INSET"
+          :height="door.height - 2 * DOOR_INSET"
+          rx="0.32"
+        />
+        <rect
+          class="door-handle"
+          :x="door.x + door.width - 0.55"
+          :y="door.y + door.height / 2 - Math.min(0.32, door.height / 4)"
+          width="0.16"
+          :height="Math.min(0.64, door.height / 2)"
+          rx="0.08"
+        />
+      </g>
       <text
         class="door-label"
-        :x="door.x + 0.35"
-        :y="door.y + Math.min(door.height / 2, 1.3) + 0.25"
+        :x="door.x + 0.4"
+        :y="door.y + Math.min(door.height / 2, 1.1) + 0.25"
       >
         {{ door.label }}
       </text>
-      <rect
-        class="handle"
-        :x="door.x + door.width - 0.55"
-        :y="door.y + door.height / 2 - Math.min(0.35, door.height / 4)"
-        width="0.15"
-        :height="Math.min(0.7, door.height / 2)"
-        rx="0.07"
-      />
     </g>
   </svg>
 </template>
@@ -110,61 +137,98 @@ const { t } = useI18n()
 <style scoped>
 .locker-front {
   width: 100%;
-  max-height: 60vh;
+  max-height: 58vh;
   display: block;
+  overflow: visible;
 }
-.frame {
-  fill: var(--locker-frame, #2f3b45);
+.ground {
+  fill: var(--cg-ink);
+  opacity: 0.08;
 }
-.panel > rect:first-child {
-  fill: var(--locker-panel, #3d4b57);
+.body {
+  fill: var(--cg-locker-body);
 }
-.screen {
-  fill: #9fd3c7;
+.panel-screen {
+  fill: var(--cg-leaf-soft);
 }
-.screen-label {
-  font-size: 0.7px;
+.panel-label {
+  font-size: 0.75px;
+  font-weight: 700;
   text-anchor: middle;
   dominant-baseline: middle;
-  fill: #1d3b34;
+  fill: var(--cg-pine);
 }
-.reader {
+.panel-reader {
   fill: none;
-  stroke: #9fd3c7;
-  stroke-width: 0.12;
+  stroke: var(--cg-leaf);
+  stroke-width: 0.14;
 }
-.door rect:first-child {
-  fill: var(--locker-door, #e9eef1);
-  stroke: #b8c3ca;
-  stroke-width: 0.06;
+.panel-reader-dot {
+  fill: var(--cg-leaf);
+}
+.door {
   cursor: pointer;
-  transition: fill 0.2s;
+  outline: none;
+}
+.door-inside {
+  fill: var(--cg-pine);
+  opacity: 0.85;
+}
+.door-panel {
+  fill: var(--cg-locker-door);
+  stroke: var(--cg-locker-door-edge);
+  stroke-width: 0.05;
+  transition: fill 0.25s ease;
+}
+.door:hover .door-panel,
+.door:focus-visible .door-panel {
+  fill: var(--cg-leaf-soft);
+}
+.door-handle {
+  fill: var(--cg-locker-door-edge);
 }
 .door-label {
-  font-size: 0.75px;
-  fill: #51606b;
+  font-size: 0.62px;
+  font-weight: 700;
+  fill: var(--cg-ink-soft);
   pointer-events: none;
 }
-.handle {
-  fill: #9aa7b0;
-  pointer-events: none;
+
+/* The highlighted door glows and slowly swings open, hinged on its left edge. */
+.door-leaf {
+  transform-box: fill-box;
+  transform-origin: left center;
 }
-.door.highlighted rect:first-child {
-  fill: var(--ion-color-success, #2dd36f);
-  stroke: var(--ion-color-success-shade, #28ba62);
-  animation: pulse 1.6s ease-in-out infinite;
+.door.highlighted .door-panel {
+  fill: var(--cg-leaf);
+  stroke: none;
+}
+.door.highlighted .door-handle {
+  fill: var(--cg-surface);
 }
 .door.highlighted .door-label {
-  fill: #fff;
-  font-weight: 700;
+  fill: var(--cg-surface);
 }
-@keyframes pulse {
-  50% {
-    opacity: 0.7;
+.door.highlighted .door-leaf {
+  animation: swing 3.2s ease-in-out infinite;
+}
+.door.highlighted .door-inside {
+  fill: var(--cg-sun);
+  opacity: 0.55;
+}
+@keyframes swing {
+  0%,
+  25%,
+  100% {
+    transform: perspective(40px) rotateY(0deg);
+  }
+  50%,
+  75% {
+    transform: perspective(40px) rotateY(-55deg);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .door.highlighted rect:first-child {
+  .door.highlighted .door-leaf {
     animation: none;
   }
 }

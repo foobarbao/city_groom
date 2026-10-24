@@ -1,26 +1,21 @@
 <script setup lang="ts">
 /**
- * Locker page: drawing of the locker front, size picker and drop-off steps.
+ * Locker page: size picker, drawing of the locker front and drop-off steps.
  *
  * The customer picks the size that fits their item; the drawing highlights a
- * door of that size and the steps explain how it opens. Until orders exist,
- * the highlighted door is an example (see `exampleDoorLabel`).
+ * door of that size, which gently swings open, and the steps explain how to
+ * use it. Until orders exist, the highlighted door is an example (see
+ * `exampleDoorLabel`); tapping a door highlights that one instead.
  */
 import type { CompartmentSize, LockerLayout, SizeSpec } from '@city-groom/api-client'
 import {
   IonBackButton,
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
   IonContent,
   IonHeader,
   IonPage,
-  IonSegment,
-  IonSegmentButton,
   IonSpinner,
-  IonText,
-  IonTitle,
   IonToolbar,
 } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
@@ -28,6 +23,7 @@ import { useI18n } from 'vue-i18n'
 
 import { fetchLocker, fetchSizes } from '../api/lockers'
 import LockerFront from '../components/LockerFront.vue'
+import SizePicker from '../components/SizePicker.vue'
 import { useErrorMessage } from '../composables/useErrorMessage'
 import { computeLockerDrawing, exampleDoorLabel } from '../utils/lockerDrawing'
 
@@ -60,10 +56,6 @@ const accessMethods = computed(() =>
   (locker.value?.access_methods ?? []).map((m) => t(`locker.accessMethods.${m}`)).join(', '),
 )
 
-function freeCount(size: string): number {
-  return locker.value?.free_by_size[size] ?? 0
-}
-
 /** Tapping a door highlights it and selects its size, keeping the picker in sync. */
 function onDoorSelected(label: string): void {
   const door = drawing.value?.doors.find((d) => d.label === label)
@@ -86,70 +78,69 @@ onMounted(load)
 
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar color="primary">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
         <ion-buttons slot="start">
           <ion-back-button default-href="/carte" :text="t('locker.back')" />
         </ion-buttons>
-        <ion-title>{{ locker?.name ?? '' }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class="ion-padding">
+    <ion-content>
       <div v-if="error" class="state">
-        <ion-text color="danger">
-          <p>{{ error }}</p>
-        </ion-text>
-        <ion-button @click="load">{{ t('errors.retry') }}</ion-button>
+        <p>{{ error }}</p>
+        <ion-button shape="round" @click="load">{{ t('errors.retry') }}</ion-button>
       </div>
       <div v-else-if="!locker || !drawing" class="state">
-        <ion-spinner />
+        <ion-spinner name="dots" />
       </div>
-      <template v-else>
+      <main v-else class="page">
+        <header class="intro">
+          <p class="eyebrow">{{ t('locker.eyebrow') }}</p>
+          <h1>{{ locker.name }}</h1>
+          <p class="methods">{{ t('locker.opensWith', { methods: accessMethods }) }}</p>
+        </header>
+
+        <section class="card">
+          <h2>{{ t('locker.chooseSize') }}</h2>
+          <size-picker v-model="selectedSize" :sizes="sizes" :free-by-size="locker.free_by_size" />
+          <p v-if="selectedSpec" class="fits">
+            {{ t('locker.fits', { examples: selectedSpec.examples.join(', ') }) }}
+            <span class="dims">
+              {{
+                t('locker.dimensions', {
+                  height: selectedSpec.height_cm,
+                  width: selectedSpec.width_cm,
+                  depth: selectedSpec.depth_cm,
+                })
+              }}
+            </span>
+          </p>
+        </section>
+
+        <section class="locker-stage">
+          <locker-front
+            :drawing="drawing"
+            :highlighted-label="highlightedLabel"
+            @select="onDoorSelected"
+          />
+          <p v-if="highlightedLabel" class="door-callout">
+            {{ t('locker.previewDoor', { label: highlightedLabel }) }}
+          </p>
+          <p v-else class="door-callout muted">{{ t('locker.noDoorOfSize') }}</p>
+        </section>
+
+        <section v-if="highlightedLabel" class="card">
+          <h2>{{ t('locker.previewTitle') }}</h2>
+          <ol class="steps">
+            <li>{{ t('locker.steps.identify', { methods: accessMethods }) }}</li>
+            <li>{{ t('locker.steps.open', { label: highlightedLabel }) }}</li>
+            <li>{{ t('locker.steps.drop') }}</li>
+          </ol>
+        </section>
+
         <p v-if="locker.is_simulated" class="notice">{{ t('app.simulatedNotice') }}</p>
-
-        <h2 class="question">{{ t('locker.chooseSize') }}</h2>
-        <ion-segment v-model="selectedSize" :scrollable="true">
-          <ion-segment-button v-for="spec in sizes" :key="spec.code" :value="spec.code">
-            <span class="size-name">{{ t(`locker.sizes.${spec.code}`) }}</span>
-            <span class="size-free">{{ t('locker.free', freeCount(spec.code)) }}</span>
-          </ion-segment-button>
-        </ion-segment>
-
-        <p v-if="selectedSpec" class="size-details">
-          {{ t('locker.fits', { examples: selectedSpec.examples.join(', ') }) }}
-          <br />
-          <small>
-            {{
-              t('locker.dimensions', {
-                height: selectedSpec.height_cm,
-                width: selectedSpec.width_cm,
-                depth: selectedSpec.depth_cm,
-              })
-            }}
-          </small>
-        </p>
-
-        <locker-front
-          :drawing="drawing"
-          :highlighted-label="highlightedLabel"
-          @select="onDoorSelected"
-        />
-
-        <ion-card>
-          <ion-card-content>
-            <template v-if="highlightedLabel">
-              <h3>{{ t('locker.previewTitle') }}</h3>
-              <ol>
-                <li>{{ t('locker.steps.identify', { methods: accessMethods }) }}</li>
-                <li>{{ t('locker.steps.open', { label: highlightedLabel }) }}</li>
-                <li>{{ t('locker.steps.drop') }}</li>
-              </ol>
-            </template>
-            <p v-else>{{ t('locker.noDoorOfSize') }}</p>
-          </ion-card-content>
-        </ion-card>
-      </template>
+      </main>
     </ion-content>
   </ion-page>
 </template>
@@ -159,32 +150,120 @@ onMounted(load)
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30vh;
+  gap: 12px;
+  padding: 30vh 24px 0;
   text-align: center;
 }
-.notice {
-  margin: 0 0 8px;
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 18px 32px;
+}
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eyebrow {
+  margin: 0;
   font-size: 12px;
-  color: var(--ion-color-medium);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cg-leaf);
 }
-.question {
-  font-size: 1.1rem;
-  margin: 8px 0 12px;
+h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--cg-ink);
 }
-ion-segment-button {
-  min-width: 80px;
+.methods {
+  margin: 0;
+  color: var(--cg-ink-soft);
 }
-.size-name {
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-surface);
+  box-shadow: var(--cg-shadow);
+}
+h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+.fits {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--cg-ink);
+}
+.dims {
+  font-size: 13px;
+  color: var(--cg-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.locker-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 18px 18px;
+  border-radius: var(--cg-radius-l);
+  background: linear-gradient(180deg, var(--cg-leaf-soft), var(--cg-ground));
+}
+.door-callout {
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface);
+  box-shadow: var(--cg-shadow);
+  font-weight: 800;
+  color: var(--cg-pine);
+}
+.door-callout.muted {
   font-weight: 600;
+  color: var(--cg-ink-soft);
 }
-.size-free {
-  font-size: 11px;
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.size-details {
-  margin: 12px 0;
-  font-size: 14px;
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  gap: 12px;
 }
-ion-card ol {
-  padding-left: 20px;
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-leaf-soft);
+  color: var(--cg-pine);
+  font-weight: 800;
+}
+.notice {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--cg-ink-soft);
 }
 </style>

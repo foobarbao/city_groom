@@ -1,24 +1,24 @@
 /**
  * @file Routes of the customer app. Paths are user-visible, hence in French.
  */
-import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { createMemoryHistory, createRouter, createWebHistory } from '@ionic/vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
+import LockerPage from '../views/LockerPage.vue'
 import MapPage from '../views/MapPage.vue'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/carte' },
   { path: '/carte', name: 'map', component: MapPage },
-  // Loaded on demand to keep the initial bundle smaller.
-  {
-    path: '/casiers/:code',
-    name: 'locker',
-    component: () => import('../views/LockerPage.vue'),
-    props: true,
-  },
+  { path: '/casiers/:code', name: 'locker', component: LockerPage, props: true },
 ]
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // The standalone demo runs as a single embedded page, where path-based URLs
+  // are not available: navigation is kept in memory instead.
+  history:
+    import.meta.env.VITE_DEMO === 'true'
+      ? createMemoryHistory()
+      : createWebHistory(import.meta.env.BASE_URL),
   routes,
 })

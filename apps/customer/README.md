@@ -6,10 +6,12 @@ User interface in French.
 
 ## Current screens
 
-| Route            | Screen                                                                                                                        |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `/carte`         | Map of Grenoble (MapLibre, OpenStreetMap tiles) with the lockers, green when compartments are free                            |
-| `/casiers/:code` | Locker page: size picker with free compartments, drawing of the locker front highlighting the door that opens, drop-off steps |
+| Route            | Screen                                                                                                                                    |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `/carte`         | Map of Grenoble (MapLibre, OpenStreetMap tiles) with the lockers, plus a sheet listing them; the list takes over when the map cannot load |
+| `/casiers/:code` | Locker page: size cards with free compartments, drawing of the locker front where the door to use glows and swings open, drop-off steps   |
+
+Visual direction and tokens: [`docs/DESIGN.md`](../../docs/DESIGN.md).
 
 Until orders exist, the highlighted door is an **example** of the chosen size
 (the public API does not reveal which doors are free, see
@@ -20,7 +22,8 @@ Until orders exist, the highlighted door is an **example** of the chosen size
 ```
 src/
 ├── api/          HTTP client and API calls (types from @city-groom/api-client)
-├── components/   LockerMap (MapLibre), LockerFront (SVG drawing)
+├── components/   LockerMap (MapLibre), LockerFront (SVG drawing), LockerCard, SizePicker
+├── demo/         Fictitious data for the standalone demo build
 ├── composables/  Reusable logic (error messages…)
 ├── i18n/         French strings — no user-facing text in components
 ├── router/       Routes (French paths, user-visible)
@@ -51,6 +54,12 @@ npm run format:check -w apps/customer
 npm run typecheck -w apps/customer
 npm test -w apps/customer
 ```
+
+## Standalone demo
+
+`npm run build:demo -w apps/customer` builds a self-contained HTML page in
+`dist-demo/` with bundled **fictitious** lockers (`src/demo/`), no backend and
+no base map. It is used to show the app without a server.
 
 ## Not done yet
 

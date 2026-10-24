@@ -54,4 +54,14 @@ Versioning: [SemVer](https://semver.org/).
   `/api/` paths), integration API keys with scopes, rate limits, locker event
   feed, ReDoc, OpenAPI validation in CI, integration guide
   (`docs/api/README.md`), ADR-0007.
+- Soft redesign of the customer app (`docs/DESIGN.md`): rounded type and
+  shapes, green palette with dark theme, size cards with pictograms, locker
+  drawing whose door swings open, locker cards in a bottom sheet with a list
+  fallback when the map cannot load.
+- Standalone demo build with fictitious data (`npm run build:demo`).
+
+### Fixed
+
+- Backend tests no longer depend on a local `.env` (HTTPS redirect disabled in
+  tests), so CI passes.
 - Pull request template, `.editorconfig`, `.gitignore`.

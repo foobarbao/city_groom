@@ -47,6 +47,7 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md) | Coding and documentation rules (**read first**) |
 | [`docs/PRODUCT.md`](docs/PRODUCT.md) | Vision, actors, flows, business model, open questions |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Iterations: done, in progress, next |
+| [`docs/DESIGN.md`](docs/DESIGN.md) | Visual direction of the customer app (soft, green) and design tokens |
 | [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes, layouts, events |
 | [`docs/api/README.md`](docs/api/README.md) | API integration guide (authentication, scopes, errors, rate limits, versioning) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Branches, commits, pull requests, versioning |

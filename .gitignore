@@ -10,6 +10,7 @@ __pycache__/
 
 # Build output
 dist/
+dist-demo/
 dev-dist/
 coverage/
 backend/staticfiles/

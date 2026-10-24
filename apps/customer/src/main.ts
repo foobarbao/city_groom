@@ -12,6 +12,7 @@ import '@ionic/vue/css/structure.css'
 import '@ionic/vue/css/typography.css'
 import '@ionic/vue/css/padding.css'
 import '@ionic/vue/css/display.css'
+import '@fontsource-variable/nunito'
 import './theme.css'
 
 import App from './App.vue'
@@ -19,6 +20,9 @@ import { i18n } from './i18n'
 import { router } from './router'
 
 const app = createApp(App).use(IonicVue).use(createPinia()).use(i18n).use(router)
+
+// The memory history of the demo build starts nowhere: open the map.
+if (import.meta.env.VITE_DEMO === 'true') void router.push('/carte')
 
 router
   .isReady()

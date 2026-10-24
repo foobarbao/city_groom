@@ -1,14 +1,106 @@
 /*
- * App theme. Colours convey the eco-social identity of the project
- * (docs/PRODUCT.md); the brand is not final, so they are placeholders.
+ * Visual identity of the customer app: soft, calm and green (docs/DESIGN.md).
+ *
+ * Layout concept: content floats on rounded, cushioned surfaces over a pale
+ * leaf-tinted ground; one leaf-green accent marks what to act on.
+ *
+ * Every colour is a token; dark values are redefined below. Ionic colours are
+ * mapped onto these tokens so its components follow the same palette.
  */
 :root {
-  --ion-color-primary: #264653;
-  --ion-color-primary-rgb: 38, 70, 83;
+  /* Palette */
+  --cg-ground: #f2f6f1; /* pale leaf-tinted background */
+  --cg-surface: #ffffff; /* cards, sheets */
+  --cg-surface-soft: #e6efe7; /* chips, inactive controls */
+  --cg-ink: #203a33; /* main text, deep pine */
+  --cg-ink-soft: #5d746c; /* secondary text */
+  --cg-leaf: #3f9a73; /* accent: what to act on */
+  --cg-leaf-soft: #cfe9db; /* accent background */
+  --cg-pine: #24574a; /* headers, strong surfaces */
+  --cg-sun: #f2c66d; /* small highlights (free door glow) */
+  --cg-locker-body: #dfe7e1; /* locker frame */
+  --cg-locker-door: #f8faf8; /* locker doors */
+  --cg-locker-door-edge: #c9d6cd;
+  --cg-shadow: 0 10px 30px rgb(36 87 74 / 10%);
+  --cg-shadow-strong: 0 16px 40px rgb(36 87 74 / 16%);
+
+  /* Shape */
+  --cg-radius-l: 28px;
+  --cg-radius-m: 20px;
+  --cg-radius-s: 14px;
+  --cg-radius-pill: 999px;
+
+  /* Type */
+  --cg-font: 'Nunito Variable', 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+
+  /* Ionic mapping */
+  --ion-font-family: var(--cg-font);
+  --ion-background-color: var(--cg-ground);
+  --ion-text-color: var(--cg-ink);
+  --ion-color-primary: #3f9a73;
+  --ion-color-primary-rgb: 63, 154, 115;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #213e49;
-  --ion-color-primary-tint: #3c5964;
-  --ion-color-success: #2a9d8f;
-  --ion-color-success-shade: #25897e;
+  --ion-color-primary-shade: #378865;
+  --ion-color-primary-tint: #52a481;
+  --ion-color-success: #3f9a73;
+  --ion-color-medium: #5d746c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cg-ground: #13201c;
+    --cg-surface: #1b2c27;
+    --cg-surface-soft: #243a33;
+    --cg-ink: #e4efe9;
+    --cg-ink-soft: #a3b8b0;
+    --cg-leaf: #6cc79c;
+    --cg-leaf-soft: #23493c;
+    --cg-pine: #9fd8bd;
+    --cg-sun: #e8bd62;
+    --cg-locker-body: #2a3f38;
+    --cg-locker-door: #344c44;
+    --cg-locker-door-edge: #456158;
+    --cg-shadow: 0 10px 30px rgb(0 0 0 / 30%);
+    --cg-shadow-strong: 0 16px 40px rgb(0 0 0 / 40%);
+    --ion-color-primary: #6cc79c;
+    --ion-color-primary-rgb: 108, 199, 156;
+    --ion-color-primary-contrast: #10201a;
+    --ion-color-primary-contrast-rgb: 16, 32, 26;
+    --ion-color-primary-shade: #5fae89;
+    --ion-color-primary-tint: #7bcda6;
+    --ion-color-success: #6cc79c;
+    --ion-color-medium: #a3b8b0;
+    color-scheme: dark;
+  }
+}
+
+body {
+  background: var(--cg-ground);
+  color: var(--cg-ink);
+  font-family: var(--cg-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headers float as soft bars instead of hard toolbars. */
+ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  --color: var(--cg-ink);
+}
+ion-header.ion-no-border::after,
+ion-header::after {
+  display: none;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cg-leaf);
+  outline-offset: 3px;
 }
