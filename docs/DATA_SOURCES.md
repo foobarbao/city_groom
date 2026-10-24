@@ -47,10 +47,15 @@ Wherever OpenStreetMap data is shown (map, lists of businesses), display
 "© les contributeurs OpenStreetMap" with a link to
 <https://www.openstreetmap.org/copyright>.
 
-## Network access needed
+## Getting the data
 
-The AI assistant's development environment currently blocks
-`overpass-api.de` and `tiles.openfreemap.org`. To import the real data and
-embed a real map in the published demo, either allow these domains in the
-environment's network settings, or run the two import commands from a machine
-with internet access.
+The raw OpenStreetMap responses are stored in [`data/osm/`](../data/osm/)
+and loaded from there. They are refreshed by the **OSM data** GitHub Actions
+workflow (`.github/workflows/osm-data.yml`), which runs
+`python manage.py fetch_osm_data` on a GitHub runner and commits the result:
+edit `data/osm/REFRESH` to trigger it. This is needed because the AI
+assistant's development environment cannot reach `overpass-api.de` (the
+connection is reset), while GitHub runners have open internet access.
+
+The same command can be run on any machine with internet access, from
+`backend/`: `python manage.py fetch_osm_data --output-dir ../data/osm`.
