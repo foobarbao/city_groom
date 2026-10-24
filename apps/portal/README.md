@@ -14,6 +14,7 @@ operator API endpoints do not exist yet (roadmap item 7).
 | Route                         | Screen                                                                                                    |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `/`                           | Demo home: one card per space, including the customer app                                                 |
+| `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                               |
 | `/commerce/:code?`            | Merchant space: incoming items per round, items being processed, revenue and commission, forecast         |
 | `/coursier`                   | Courier space: rounds per day, items and km per round, monthly projection, next rounds, map of next round |
 | `/exploitation`               | Operator space: volumes, fill rate per size and per locker, live map, daily orders and forecast           |
@@ -26,6 +27,7 @@ with invented orders or revenue.
 
 ```
 src/
+├── assets/     Mission page photos (free licences, credited on the page, see data/missionPhotos.ts)
 ├── components/   PortalPage (frame + fictitious notice), StatTile, BarChart, PortalMap
 ├── data/         Data source (demo dataset), figures (summaries.ts) and French formats, unit-tested
 ├── i18n/         French strings — no user-facing text in components

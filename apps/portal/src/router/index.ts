@@ -10,6 +10,7 @@ import HomePage from '../views/HomePage.vue'
 // dataset are only downloaded when a space is opened).
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'home', component: HomePage },
+  { path: '/mission', name: 'mission', component: () => import('../views/MissionPage.vue') },
   {
     path: '/commerce/:code?',
     name: 'merchant',

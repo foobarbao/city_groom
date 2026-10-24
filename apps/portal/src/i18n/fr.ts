@@ -33,8 +33,90 @@ export default {
       text: 'Volumes, remplissage des casiers, carte du réseau.',
     },
     open: 'Ouvrir',
+    read: 'Lire',
     dataNote:
       'Carte, arrêts de tram, lieux et commerces : données réelles OpenStreetMap. Casiers, commandes et tournées : simulés. Les commerces de l’espace commerçant sont fictifs (« Démo · »).',
+  },
+  mission: {
+    title: 'Notre mission',
+    back: 'Accueil',
+    link: {
+      title: 'Notre mission',
+      text: 'Simplifier le quotidien en ville, tout en la rendant plus verte.',
+    },
+    // ASSUMPTION: wording drafted from the three pillars of docs/PRODUCT.md, to
+    // be reviewed by the project owner. "Intérêt général" is a mission
+    // statement, not the legal status "reconnue d'utilité publique".
+    hero: {
+      eyebrow: 'Notre mission',
+      title: 'Simplifier la vie en ville. Et la rendre plus verte.',
+      text: 'CityPal réconcilie deux envies que l’on croyait opposées : gagner du temps au quotidien et prendre soin de sa ville. Sans compromis, ni sur l’un, ni sur l’autre.',
+      scroll: 'Faites défiler',
+    },
+    chapters: {
+      double: {
+        eyebrow: 'Une double mission',
+        title: 'Le plus simple et le plus vert, enfin réunis',
+        text: 'Trop souvent, le geste écologique demande un effort, et la solution pratique coûte à la planète. Nous avons fait un autre pari : que le chemin le plus simple soit aussi le plus responsable. Déposer sa chemise au pied de chez soi doit être plus facile que de prendre la voiture, et meilleur pour tout le monde.',
+      },
+      time: {
+        eyebrow: 'Votre temps, rendu',
+        title: 'Le centre-ville vient à vous',
+        text: 'Un casier connecté près de chez vous, y compris en périphérie. Vous y déposez vos vêtements, vos chaussures, vos objets à réparer, quand vous voulez. Pas de trajet, pas de file d’attente, pas d’horaires d’ouverture à respecter : vous récupérez votre article dans le casier de votre choix, jusqu’à la tournée suivante. Et pour un casque, une veste ou un sac, la consigne garde vos affaires quelques heures, le temps de profiter de la ville.',
+        points: [
+          'Commande en quelques gestes, même sans compte',
+          'Trois tournées par jour, à heures fixes : 7 h, 14 h et 20 h',
+          'Une consigne pour vos affaires, jusqu’à 24 heures',
+          'Le casier de retour peut être différent du casier de dépôt',
+        ],
+      },
+      green: {
+        eyebrow: 'Une ville qui respire',
+        title: 'Moins de voitures, plus de vélos cargo',
+        text: 'Vos articles voyagent à vélo cargo, avec des entreprises de livraison locales. Les tournées regroupent les articles de tout un quartier au lieu d’autant d’allers-retours en voiture. Et en confiant ce qui est abîmé à un artisan plutôt qu’en le remplaçant, chacun prolonge la vie de ses affaires : le déchet le plus écologique est celui que l’on ne produit pas.',
+        points: [
+          'Livraison à vélo cargo par des entreprises locales',
+          'Des tournées mutualisées plutôt que des trajets individuels',
+          'Réparer et entretenir plutôt que jeter',
+        ],
+      },
+      local: {
+        eyebrow: 'Le cœur de ville, vivant',
+        title: 'Des commerces et des savoir-faire à préserver',
+        text: 'Pressings, cordonniers, retoucheurs, réparateurs : ces commerces font l’âme d’une ville, et beaucoup souffrent de la baisse de fréquentation du centre. CityPal leur amène de nouveaux clients et une charge de travail prévisible. Le client paie le prix de la boutique ; la commission est transparente et dégressive, de 10 % aujourd’hui vers 1 % à terme.',
+        points: [
+          'Le même prix qu’en boutique',
+          'Une commission claire, qui baisse quand le réseau grandit',
+          'Une activité prévisible pour les artisans',
+        ],
+      },
+      tech: {
+        eyebrow: 'À la pointe, au service du lien',
+        title: 'La technologie, discrète et utile',
+        text: 'Derrière la simplicité, une plateforme pensée pour demain : des casiers connectés qui s’ouvrent depuis le téléphone, des tournées planifiées et suivies sur la carte, des prévisions qui disent à chaque commerçant ce qui arrive et quand. La technologie n’est pas une fin : elle sert à recréer du lien entre les habitants et leur ville.',
+        points: [
+          'Casiers connectés : Bluetooth, NFC ou QR code selon le modèle',
+          'Carte du réseau et suivi des tournées',
+          'Prévisions des flux pour les commerçants et les coursiers',
+          'Une API pour connecter les partenaires',
+        ],
+      },
+      public: {
+        eyebrow: 'Une mission d’intérêt général',
+        title: 'Presque un service public de proximité',
+        text: 'Revitaliser les centres-villes, réduire la place de la voiture, soutenir l’emploi local, rendre du temps aux habitants : ces objectifs dépassent un simple service. C’est pourquoi CityPal se conçoit comme un projet d’intérêt général, aux côtés des collectivités et des acteurs de la transition écologique et numérique. Ce soutien permet de viser une commission de 1 %, pour que le modèle profite d’abord aux commerces et aux habitants.',
+      },
+    },
+    closing: {
+      title: 'Reconnecter les habitants à leur ville',
+      text: 'Cela commence à Grenoble.',
+      customer: 'Découvrir l’application',
+      home: 'Retour à la démonstration',
+    },
+    credits: {
+      title: 'Crédits photos',
+      intro: 'Photos de Grenoble sous licence libre, Wikimedia Commons.',
+    },
   },
   charts: {
     table: 'Voir les données',

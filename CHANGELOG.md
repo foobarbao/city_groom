@@ -106,6 +106,12 @@ Versioning: [SemVer](https://semver.org/).
   quotes, consigne booking flow and booking page with the door, chat with
   photos and quotes, demo sign-in, subscription plans, orders and reviews;
   business rules unit-tested in `src/domain/`.
+- "Notre mission" page in the partner portal (`/mission`, linked from the demo
+  home): the double mission (everyday convenience and ecology, served by
+  technology) told in full-screen chapters over photos of green Grenoble
+  streets that cross-fade on scroll and loop; photos from Wikimedia Commons
+  under free licences, credited on the page. Wording to be reviewed (open
+  question 10 in `docs/PRODUCT.md`).
 
 ### Fixed
 

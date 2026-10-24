@@ -45,6 +45,28 @@ id is `fr.citypal.app` (see open questions). Whatever the name, the brand
 must convey a strong **eco-social** message centred on the idea of
 **reconnecting** people with their city and its local businesses.
 
+### Mission statement
+
+Requested on 2026-10-24: a "Notre mission" page (partner portal, `/mission`)
+presenting the **double mission**: making everyday life simpler while being
+green, with technology at the service of both, in an ambitious tone that
+presents the project as close to a public-interest service.
+
+The page only uses facts recorded in this document (lockers, cargo bikes,
+grouped rounds, same price as in the shop, commission from 10 % to 1 %, public
+funding). ASSUMPTION: the wording is a draft for the project owner to review.
+Two points are worded with care until the open questions below are answered:
+
+- "Public interest": the page says *intérêt général* and "presque un service
+  public de proximité", never *reconnue d'utilité publique*, which in France
+  is a legal status granted by decree to associations and foundations.
+- "Organic" (*bio*): the page does not claim organic or eco-labelled
+  products, since partner merchants' products are not known.
+
+Background photos: real photos of Grenoble under free licences (Wikimedia
+Commons), credited on the page. No image generation tool was available; the
+photos can be replaced (`apps/portal/src/data/missionPhotos.ts`).
+
 ## 2. Scope
 
 ### In scope: services
@@ -345,3 +367,8 @@ Questions to the project owner. Answers are moved into the sections above.
    after 24 hours (late fee as for services, item moved to a depot…)?
    Forbidden items (valuables, dangerous goods)? Maximum number of bookings
    per customer?
+10. **Mission page wording** (see [Mission statement](#mission-statement)):
+    should the page mention organic or eco-labelled products (e.g. eco-friendly
+    laundry), which would require committing partner merchants to them? Is the
+    project meant to seek a formal public-interest recognition, or is
+    "intérêt général" only a mission statement?
