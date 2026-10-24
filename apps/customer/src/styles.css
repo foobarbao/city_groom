@@ -1,0 +1,130 @@
+/*
+ * Layout helpers shared by the customer screens (soft cards, page column,
+ * section titles, chips). Colours, radii and shadows come from the shared
+ * tokens (docs/DESIGN.md).
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8px 16px 32px;
+}
+.page-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--cg-ink);
+}
+.page-intro {
+  margin: 0;
+  color: var(--cg-ink-soft);
+}
+.section-title {
+  margin: 4px 0 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--cg-ink);
+}
+.soft-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-surface);
+  box-shadow: var(--cg-shadow);
+  color: inherit;
+  text-decoration: none;
+}
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 6px;
+  scrollbar-width: none;
+}
+.chip {
+  flex: none;
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface-soft);
+  color: var(--cg-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.chip.active {
+  background: var(--cg-leaf);
+  color: var(--cg-surface);
+}
+.muted {
+  color: var(--cg-ink-soft);
+}
+.small {
+  font-size: 13px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pill {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-leaf-soft);
+  color: var(--cg-pine);
+  font-size: 12px;
+  font-weight: 800;
+}
+.pill.warn {
+  background: color-mix(in srgb, var(--cg-sun) 45%, transparent);
+  color: var(--cg-ink);
+}
+.pill.off {
+  background: var(--cg-surface-soft);
+  color: var(--cg-ink-soft);
+}
+.search {
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface);
+  box-shadow: var(--cg-shadow);
+  color: var(--cg-ink);
+  font: inherit;
+  font-size: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+}
+.field input,
+.field textarea,
+.field select {
+  padding: 12px 16px;
+  border: 1px solid var(--cg-locker-door-edge);
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-surface);
+  color: var(--cg-ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+/* Soft look: buttons in sentence case, not Material capitals. */
+ion-button,
+ion-back-button {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 800;
+}

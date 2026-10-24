@@ -83,6 +83,8 @@ async function resolveStyle(): Promise<string | StyleSpecification | null> {
   return loadOfflineStyle()
 }
 
+let resizeObserver: ResizeObserver | null = null
+
 onMounted(async () => {
   const style = await resolveStyle()
   if (!container.value) return
@@ -98,6 +100,10 @@ onMounted(async () => {
     // Re-added below in a corner the bottom sheet does not cover.
     attributionControl: false,
   })
+  // Inside the tab bar, the page may be laid out after the map is created:
+  // follow the container's size so the map always fills it.
+  resizeObserver = new ResizeObserver(() => map?.resize())
+  resizeObserver.observe(container.value)
   let loaded = false
   map.on('error', () => {
     // Before the first load, an error means the style itself is unreachable.
@@ -108,9 +114,10 @@ onMounted(async () => {
     new GeolocateControl({ positionOptions: { enableHighAccuracy: true } }),
     'top-right',
   )
-  // Mandatory OpenStreetMap credit (ODbL), compact, under the zoom buttons so
-  // neither the welcome card nor the bottom sheet hides it.
-  map.addControl(new AttributionControl({ compact: true }), 'top-right')
+  // Mandatory OpenStreetMap credit (ODbL), always visible on one line, placed
+  // under the welcome card (see `.locker-map` styles) so that neither the card
+  // nor the bottom sheet hides it.
+  map.addControl(new AttributionControl({ compact: false }), 'top-left')
 
   map.on('load', () => {
     loaded = true
@@ -186,6 +193,7 @@ watch(
 )
 
 onBeforeUnmount(() => {
+  resizeObserver?.disconnect()
   map?.remove()
   map = null
 })
@@ -199,5 +207,15 @@ onBeforeUnmount(() => {
 .locker-map {
   position: absolute;
   inset: 0;
+}
+/* The credit sits under the welcome card of the map screen (about 130 px). */
+.locker-map :deep(.maplibregl-ctrl-top-left) {
+  top: calc(132px + env(safe-area-inset-top, 0px));
+  right: 64px;
+}
+.locker-map :deep(.maplibregl-ctrl-attrib) {
+  margin: 0 0 0 14px;
+  border-radius: var(--cg-radius-pill);
+  font-size: 10px;
 }
 </style>

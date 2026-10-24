@@ -1,34 +1,57 @@
-# City Groom — Customer app
+# CityPal — Customer app
 
-Ionic + Vue 3 + TypeScript app for residents (ADR-0002), delivered as an
+Ionic + Vue 3 + TypeScript app for city dwellers (ADR-0002), delivered as an
 installable web app (PWA) and, later, an Android app through Capacitor.
 User interface in French.
 
-## Current screens
+## Screens
 
-| Route            | Screen                                                                                                                                    |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `/carte`         | Map of Grenoble (MapLibre, OpenStreetMap tiles) with the lockers, plus a sheet listing them; the list takes over when the map cannot load |
-| `/casiers/:code` | Locker page: size cards with free compartments, drawing of the locker front where the door to use glows and swings open, drop-off steps   |
+Navigation is a bottom **tab bar** with five areas; each tab keeps its own
+history, as in native apps.
+
+| Tab | Route | Screen |
+| --- | --- | --- |
+| Accueil | `/accueil` | Choose a mode (have something serviced / store belongings), what is in progress, shop categories, link to the map |
+| | `/carte`, `/casiers/:code` | Map of the lockers and businesses; locker page with the door that opens |
+| Boutiques | `/boutiques` | Shop catalogue: search (name, service, category, street), category filters, partners only; grouped by category, partners first, best rated first |
+| | `/boutiques/:code` | Shop page: rating out of 5 and verified reviews, services with prices, order, quote and chat buttons (partners); public information only (other businesses) |
+| | `/commander` | Order a service or an accepted quote: quantity, drop-off and pickup lockers, next round, simulated payment |
+| Consigne | `/consigne` | How it works, current bookings, history |
+| | `/consigne/reserver` | Booking in 4 steps: locker (filter by kind of place), when (now, or a slot at least 4 h ahead), size, summary and simulated payment |
+| | `/consigne/:id` | Booking: slot, deadline (24 h after drop-off), locker front with the door, drop-off / collect / cancel |
+| Messages | `/messages`, `/messages/:shop` | Quotes and conversations; chat with photos, quotes to accept or decline |
+| Compte | `/compte`, `/compte/abonnement`, `/compte/commandes`, `/compte/avis/:order` | Demo sign-in, subscription plans, orders, review after a collected order |
 
 Visual direction and tokens: [`docs/DESIGN.md`](../../docs/DESIGN.md).
 
-Until orders exist, the highlighted door is an **example** of the chosen size
-(the public API does not reveal which doors are free, see
-`docs/LOCKERS.md` §5). Tapping a door highlights it.
+### Demo data and state
+
+- Lockers, sizes and real businesses come from `@city-groom/demo-data`;
+  partner shops, reviews, services, plans and consigne rules from its
+  `catalogue.json` (fictitious, placeholder prices).
+- There is no customer API yet: bookings, orders, conversations, quotes and
+  reviews live on the device (`src/stores/account.ts`, `localStorage` when
+  available), start from a few fictitious items and merchant replies are
+  simulated. "Réinitialiser la démo" in the account tab resets them.
+  PROD: customer endpoints of the API.
+- Business rules are pure, unit-tested functions in `src/domain/`: slots and
+  booking notice (`slots.ts`), Grenoble time (`time.ts`), prices
+  (`pricing.ts`), shop search (`shops.ts`), verified reviews (`reviews.ts`).
+  The backend will enforce them; the app previews them.
 
 ## Layout
 
 ```
 src/
-├── api/          HTTP client and API calls (types from @city-groom/api-client)
-├── components/   LockerMap (MapLibre), LockerCard, MerchantCard, SizePicker
-│                 (theme and locker drawing come from @city-groom/ui)
-├── demo/         Fictitious data for the standalone demo build
-├── composables/  Reusable logic (error messages…)
+├── api/          HTTP client and locker / merchant API calls
+├── components/   LockerMap, LockerPicker, ShopCard, RatingStars, SizePicker, DemoNotice…
+├── demo/         Demo API answers and offline map for the single-page demo
+├── domain/       Business rules (slots, prices, search, reviews), unit-tested
 ├── i18n/         French strings — no user-facing text in components
-├── router/       Routes (French paths, user-visible)
-├── utils/        Pure functions, unit-tested (locker drawing geometry)
+├── router/       Routes (French paths, user-visible), tab bar
+├── services/     Customer catalogue (shops, services, plans, lockers)
+├── stores/       Customer state (Pinia), demo persistence
+├── utils/        Formats (prices, Grenoble dates), photo downscaling
 └── views/        Screens
 ```
 

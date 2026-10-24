@@ -12,9 +12,12 @@ uses bundled data.
 |---|---|---|
 | Map of Grenoble | Real | OpenStreetMap (OpenFreeMap tiles) |
 | Businesses | **Real** (public data, "Partenariat non établi") | OpenStreetMap (`data/osm/merchants.json`) |
-| Locker locations | Real tram stops, lockers **simulated** | OpenStreetMap (`data/osm/tram_stops.json`) + simulation |
+| Locker locations | Real tram stops and strategic places (tourist sites, stations, campuses…), lockers **simulated** | OpenStreetMap (`data/osm/`) + simulation |
 | Lockers, compartments, occupancy | **Fictitious** | Backend simulation |
 | Orders, rounds, revenue, forecasts | **Fictitious** | `apps.demo.activity` → `packages/demo-data` |
+| Partner shops of the customer app, their reviews | **Fictitious** ("Démo · …") | `apps.demo.customer` → `catalogue.json` |
+| Subscription plans, consigne and service prices | **Placeholders** ("à définir") | `apps.demo.catalogue` |
+| The visitor's bookings, orders, messages, reviews | Created in the app, kept **on the device**; merchant replies simulated | `apps/customer/src/stores/account.ts` |
 | Merchants in the merchant space | **Fictitious** ("Démo · …") | So that no real business is shown with invented orders or revenue |
 
 Fictitious data is always labelled as such in the apps.
@@ -26,7 +29,7 @@ Fictitious data is always labelled as such in the apps.
 | Part | Audience | Path | Status |
 |---|---|---|---|
 | Demo home page linking every space | Everyone | `/pro/` (`/` redirects there) | Done |
-| Customer app (map, lockers, businesses, locker view) | Residents | `/client/` | Done |
+| Customer app: home with the two modes, shop catalogue with search, ratings and reviews, ordering, consigne booking, messages and quotes, account and plans, map and locker view | Residents | `/client/` | Done (demo state on the device) |
 | Merchant space (incoming items, items being processed, revenue, commission, forecast) | Businesses | `/pro/commerce` | Done |
 | Courier space (rounds per day, items and km per round, monthly projection, next rounds, route map) | Cargo-bike partners | `/pro/coursier` | Done; indicators to confirm (open question 5) |
 | Operator space (volumes, fill rate per size and per locker, live map, orders and forecast, door statuses) | City Groom team | `/pro/exploitation` | Done |

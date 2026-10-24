@@ -18,7 +18,7 @@ export default {
       'Des casiers près de chez soi, des commerces du centre-ville et des coursiers à vélo cargo. Choisissez un espace à découvrir.',
     customer: {
       title: 'Application client',
-      text: 'La carte des casiers et des commerces, et l’ouverture d’un casier.',
+      text: 'Services des boutiques de quartier, consigne, avis, messages et devis.',
     },
     merchant: {
       title: 'Espace commerçant',
@@ -34,7 +34,7 @@ export default {
     },
     open: 'Ouvrir',
     dataNote:
-      'Carte, arrêts de tram et commerces : données réelles OpenStreetMap. Casiers, commandes et tournées : simulés. Les commerces de l’espace commerçant sont fictifs (« Démo · »).',
+      'Carte, arrêts de tram, lieux et commerces : données réelles OpenStreetMap. Casiers, commandes et tournées : simulés. Les commerces de l’espace commerçant sont fictifs (« Démo · »).',
   },
   charts: {
     table: 'Voir les données',
@@ -70,7 +70,7 @@ export default {
   courier: {
     title: 'Espace coursier',
     intro:
-      'Deux tournées par jour à heures fixes : une charge de travail prévisible, à vélo cargo.',
+      'Trois tournées par jour à heures fixes : une charge de travail prévisible, à vélo cargo.',
     roundsPerDay: 'Tournées par jour',
     roundTimes: 'à {times}',
     itemsPerRound: 'Articles par tournée',

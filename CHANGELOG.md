@@ -88,6 +88,24 @@ Versioning: [SemVer](https://semver.org/).
   (`/pro/`): `npm run build:demo-site` at the repository root,
   `scripts/assemble-demo-site.mjs`, Netlify configuration; portal and demo
   site jobs in the frontend CI.
+- The app is named **CityPal** (provisional Android id `fr.citypal.app`).
+- Consigne requirements (docs/PRODUCT.md §4b): storage up to 24 h, slots
+  between three rounds (07:00, 14:00, 20:00) booked at least 4 h ahead or
+  immediate drop-off, subscription-based prices; ADR-0008 (verified reviews,
+  internal first).
+- Lockers at strategic places for the consigne: `site_category` on lockers
+  (API, admin), strategic places from OpenStreetMap with selection rules
+  (`docs/DATA_SOURCES.md`), smaller consigne locker models; demo network of
+  70 lockers.
+- Demo dataset: three rounds with pickup until the next round; customer
+  catalogue (`catalogue.json`) with fictitious partner shops, services and
+  reviews, placeholder subscription plans and consigne prices.
+- Customer app, complete UX: tab bar (home, shops, consigne, messages,
+  account), choice of mode, shop catalogue grouped by category with search
+  and filters, shop pages with ratings and reviews, ordering of services and
+  quotes, consigne booking flow and booking page with the door, chat with
+  photos and quotes, demo sign-in, subscription plans, orders and reviews;
+  business rules unit-tested in `src/domain/`.
 
 ### Fixed
 

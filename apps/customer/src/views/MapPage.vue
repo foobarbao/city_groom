@@ -164,8 +164,7 @@ onMounted(load)
   gap: 2px;
   padding: 14px 18px;
   border-radius: var(--cg-radius-l);
-  background: color-mix(in srgb, var(--cg-surface) 92%, transparent);
-  backdrop-filter: blur(10px);
+  background: var(--cg-surface);
   box-shadow: var(--cg-shadow);
 }
 .brand {

@@ -14,6 +14,7 @@ import '@ionic/vue/css/padding.css'
 import '@ionic/vue/css/display.css'
 import '@fontsource-variable/nunito'
 import '@city-groom/ui/src/theme.css'
+import './styles.css'
 
 import App from './App.vue'
 import { i18n } from './i18n'
@@ -21,8 +22,8 @@ import { router } from './router'
 
 const app = createApp(App).use(IonicVue).use(createPinia()).use(i18n).use(router)
 
-// The memory history of the single-page demo starts nowhere: open the map.
-if (import.meta.env.VITE_OFFLINE_MAP === 'true') void router.push('/carte')
+// The memory history of the single-page demo starts nowhere: open the home page.
+if (import.meta.env.VITE_OFFLINE_MAP === 'true') void router.push('/accueil')
 
 router
   .isReady()

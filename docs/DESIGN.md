@@ -24,6 +24,16 @@ Principles:
   motion disabled when the user prefers reduced motion, text contrast kept on
   both light and dark themes.
 
+## Customer app navigation
+
+- A bottom **tab bar** with five areas (Accueil, Boutiques, Consigne,
+  Messages, Compte), badges for active bookings and quotes to answer.
+- Buttons in sentence case (not Material capitals), rounded; choices as
+  soft cards with a green border when selected; multi-step flows show a
+  numbered stepper.
+- Partner shops get a green initial mark and a "Partenaire" pill; other
+  businesses stay neutral and never show stars.
+
 ## Tokens
 
 Defined once in `packages/ui/src/theme.css` (shared by every frontend) (light and dark values) and
