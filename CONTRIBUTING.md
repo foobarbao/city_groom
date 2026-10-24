@@ -1,91 +1,95 @@
-# Contribuer à City Groom
+# Contributing to City Groom
 
-Ce document décrit le workflow Git, les conventions de commit et le processus
-de revue. Les règles de codage sont dans
+This document describes the Git workflow, commit conventions and review
+process. Coding rules are in
 [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md).
 
 ## 1. Branches
 
-Modèle inspiré de Git Flow, simplifié :
+A simplified Git Flow model:
 
-| Branche | Rôle | Protégée | Merge depuis |
+| Branch | Role | Protected | Merged from |
 |---|---|---|---|
-| `main` | Code en production / version distribuée. Chaque merge = une release taguée. | Oui | `release/*`, `hotfix/*` |
-| `develop` | Intégration continue des fonctionnalités terminées. Toujours fonctionnelle. | Oui | `feature/*`, `fix/*`, `docs/*`, `chore/*` |
-| `feature/<sujet>` | Nouvelle fonctionnalité. | Non | — |
-| `fix/<sujet>` | Correction de bug non urgente. | Non | — |
-| `docs/<sujet>` | Documentation seule. | Non | — |
-| `chore/<sujet>` | Outillage, dépendances, CI. | Non | — |
-| `release/vX.Y.Z` | Préparation d'une version (gel fonctionnel, numéro de version, changelog). | Non | `develop` |
-| `hotfix/<sujet>` | Correction urgente sur la production. | Non | `main` |
+| `main` | Released / distributed code. Every merge is a tagged release. | Yes | `release/*`, `hotfix/*` |
+| `develop` | Integration of finished features. Always working. Default branch. | Yes | `feature/*`, `fix/*`, `docs/*`, `chore/*` |
+| `feature/<topic>` | New feature. | No | — |
+| `fix/<topic>` | Non-urgent bug fix. | No | — |
+| `docs/<topic>` | Documentation only. | No | — |
+| `chore/<topic>` | Tooling, dependencies, CI. | No | — |
+| `release/vX.Y.Z` | Release preparation (feature freeze, version number, changelog). | No | `develop` |
+| `hotfix/<topic>` | Urgent fix on production. | No | `main` |
 
-Les branches créées par l'assistant IA suivent le préfixe `claude/<sujet>` et
-sont soumises aux mêmes règles de PR et de revue.
+Branches created by the AI assistant use the `claude/<topic>` prefix and follow
+the same pull request and review rules.
 
-Règles :
+Rules:
 
-- **Personne ne pousse directement sur `main` ni sur `develop`** : tout passe par
-  une Pull Request.
-- Une branche = un sujet. Les branches sont courtes (quelques jours au plus)
-  et supprimées après merge.
-- Les noms sont en `kebab-case` et en anglais : `feature/user-login`,
+- **Nobody pushes directly to `main` or `develop`**: everything goes through a
+  pull request.
+- One branch = one topic. Branches are short-lived (a few days at most) and
+  deleted after merge.
+- Names are in English and `kebab-case`: `feature/locker-map`,
   `fix/gps-permission-crash`.
-- Une `release/*` ou une `hotfix/*` mergée dans `main` est aussi mergée dans
+- A `release/*` or `hotfix/*` branch merged into `main` is also merged into
   `develop`.
 
 ## 2. Commits — Conventional Commits
 
-Format :
+Format:
 
 ```
-<type>(<portée optionnelle>): <résumé à l'impératif, en anglais, ≤ 72 caractères>
+<type>(<optional scope>): <imperative summary, ≤ 72 characters>
 
-<corps optionnel : le pourquoi du changement, en anglais>
+<optional body: why the change was made>
 
-<pied optionnel : Refs #12, BREAKING CHANGE: ...>
+<optional footer: Refs #12, BREAKING CHANGE: ...>
 ```
 
-Types autorisés :
+Allowed types:
 
-| Type | Usage |
+| Type | Use |
 |---|---|
-| `feat` | Nouvelle fonctionnalité |
-| `fix` | Correction de bug |
-| `docs` | Documentation uniquement |
-| `style` | Formatage, sans changement de logique |
-| `refactor` | Restructuration sans changement de comportement |
-| `perf` | Amélioration de performance |
-| `test` | Ajout / correction de tests |
-| `build` | Build, dépendances, configuration Capacitor / Android |
-| `ci` | Intégration continue |
-| `chore` | Maintenance diverse |
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation only |
+| `style` | Formatting, no logic change |
+| `refactor` | Restructuring without behaviour change |
+| `perf` | Performance improvement |
+| `test` | Adding / fixing tests |
+| `build` | Build, dependencies, Capacitor / Android configuration |
+| `ci` | Continuous integration |
+| `chore` | Miscellaneous maintenance |
 
-Exemples :
+Suggested scopes: `backend`, `customer`, `merchant`, `admin`, `api-client`,
+`docs`, `adr`, `infra`.
+
+Examples:
 
 ```
-feat(booking): add service booking form
-fix(geoloc): handle denied permission on Android 14
-docs(adr): record mobile stack decision
+feat(customer): display nearby lockers on the map
+fix(backend): reject orders on a full locker
+docs(adr): record hosting decision
 ```
 
-Des commits petits et cohérents : chaque commit compile et a un sens seul.
+Small, coherent commits: each commit builds and makes sense on its own.
 
-## 3. Pull Requests
+## 3. Pull requests
 
-1. Créer la branche depuis `develop` à jour.
-2. Développer en respectant la [définition de « terminé »](docs/CODING_STANDARDS.md#11-définition-de--terminé-).
-3. Ouvrir une PR vers `develop` en remplissant le modèle (description,
-   documentation mise à jour, tests, captures d'écran pour l'interface).
-4. La CI doit être verte (lint, typecheck, tests, build).
-5. Au moins une relecture approuvée avant le merge.
-6. Merge en **squash** pour les branches de travail (historique de `develop`
-   lisible : une PR = un commit), en **merge commit** pour `release/*` et
-   `hotfix/*` vers `main`.
+1. Create the branch from an up-to-date `develop`.
+2. Develop according to the
+   [definition of done](docs/CODING_STANDARDS.md#11-definition-of-done).
+3. Open a pull request to `develop`, filling in the template (description,
+   updated documentation, tests, screenshots for UI changes).
+4. CI must be green (lint, type check, tests, build).
+5. At least one approving review before merge.
+6. **Squash merge** for work branches (readable `develop` history: one pull
+   request = one commit); **merge commit** for `release/*` and `hotfix/*` into
+   `main`.
 
-## 4. Versions
+## 4. Versioning
 
-- Numérotation **SemVer** : `MAJEUR.MINEUR.CORRECTIF`. Tant que l'app est en
-  démo, on reste en `0.x.y`.
-- Chaque release est taguée sur `main` (`v0.1.0`) et décrite dans
-  `CHANGELOG.md` (format [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/)).
-- Le `versionCode` Android est incrémenté à chaque APK distribué.
+- **SemVer**: `MAJOR.MINOR.PATCH`. While the project is a demo, versions stay
+  at `0.x.y`.
+- Each release is tagged on `main` (`v0.1.0`) and described in `CHANGELOG.md`
+  ([Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format).
+- The Android `versionCode` is incremented for every distributed APK.

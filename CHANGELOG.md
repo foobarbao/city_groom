@@ -1,18 +1,21 @@
 # Changelog
 
-Toutes les évolutions notables du projet sont consignées ici.
+All notable changes to this project are documented here.
 
-Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) ·
-Versions : [SemVer](https://semver.org/lang/fr/).
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) ·
+Versioning: [SemVer](https://semver.org/).
 
-## [Non publié]
+## [Unreleased]
 
-### Ajouté
+### Added
 
-- Règles de codage et de documentation (`docs/CODING_STANDARDS.md`).
-- Règle « ne rien inventer, demander en cas de doute » (`docs/CODING_STANDARDS.md` §2).
-- Workflow Git, conventions de commit et de PR (`CONTRIBUTING.md`).
-- Consignes pour l'assistant IA (`CLAUDE.md`).
-- ADR-0001 (adoption des ADR) et ADR-0002 (stack technique, acceptée : Vue 3 +
-  Ionic + Capacitor, MapLibre, Django REST + GeoDjango + PostGIS).
-- Modèle de Pull Request, `.editorconfig`, `.gitignore`.
+- Coding and documentation standards (`docs/CODING_STANDARDS.md`), including
+  the "never invent, ask when in doubt" rule.
+- Product document: vision, actors, main flow, business model, red lines and
+  open questions (`docs/PRODUCT.md`).
+- Git workflow, commit and pull request conventions (`CONTRIBUTING.md`).
+- Instructions for the AI assistant (`CLAUDE.md`).
+- ADR-0001 (adopt ADRs), ADR-0002 (technical stack: Vue 3 + Ionic + Capacitor,
+  MapLibre, Django REST + GeoDjango + PostGIS), ADR-0003 (monorepo layout,
+  Django admin, integration boundaries), ADR-0004 (hosting, proposed).
+- Pull request template, `.editorconfig`, `.gitignore`.

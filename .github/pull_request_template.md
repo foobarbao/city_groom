@@ -1,30 +1,31 @@
 ## Description
 
-<!-- Quoi et surtout pourquoi. Lien vers l'issue : Closes #XX -->
+<!-- What and, above all, why. Link to the issue: Closes #XX -->
 
-## Type de changement
+## Type of change
 
-- [ ] Fonctionnalité (`feat`)
-- [ ] Correction (`fix`)
+- [ ] Feature (`feat`)
+- [ ] Fix (`fix`)
 - [ ] Documentation (`docs`)
-- [ ] Refactoring / outillage (`refactor`, `build`, `ci`, `chore`)
+- [ ] Refactoring / tooling (`refactor`, `build`, `ci`, `chore`)
 
-## Définition de « terminé »
+## Definition of done
 
-- [ ] Lint, format et typecheck passent
-- [ ] Tests écrits / mis à jour et verts
-- [ ] Code exporté documenté (TSDoc), commentaires sur le *pourquoi*
-- [ ] README / docs mis à jour
-- [ ] ADR rédigé si décision structurante
-- [ ] `CHANGELOG.md` mis à jour
-- [ ] Raccourcis de démo marqués `PROD:`
-- [ ] Aucune hypothèse non validée (chaque `ASSUMPTION:` confirmée ou listée ci-dessous)
-- [ ] Vérifié sur web **et** Android (si interface ou natif)
+- [ ] Lint, format and type checks pass
+- [ ] Tests written / updated and green
+- [ ] Public code documented (docstrings / TSDoc), comments explain the *why*
+- [ ] README / docs updated
+- [ ] ADR written if a structural decision was made
+- [ ] `CHANGELOG.md` updated
+- [ ] Demo shortcuts marked `PROD:`
+- [ ] No unvalidated assumption (each `ASSUMPTION:` confirmed or listed below)
+- [ ] User-facing text in French, through i18n
+- [ ] Checked on web **and** Android (if mobile UI or native features changed)
 
-## Captures d'écran / vidéo
+## Screenshots / video
 
-<!-- Obligatoire pour tout changement d'interface. -->
+<!-- Required for any UI change. -->
 
-## Points d'attention pour la revue
+## Review notes
 
-<!-- Choix discutables, risques, dette introduite, hypothèses à confirmer. -->
+<!-- Debatable choices, risks, debt introduced, assumptions to confirm. -->

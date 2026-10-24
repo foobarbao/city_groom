@@ -1,23 +1,23 @@
-# ADR-NNNN — Titre de la décision
+# ADR-NNNN — Decision title
 
-- **Statut** : Proposé | Accepté | Rejeté | Remplacé par ADR-XXXX | Obsolète
-- **Date** : AAAA-MM-JJ
+- **Status**: Proposed | Accepted | Rejected | Superseded by ADR-XXXX | Deprecated
+- **Date**: YYYY-MM-DD
 
-## Contexte
+## Context
 
-Quel problème doit-on résoudre ? Quelles contraintes (techniques, délais,
-budget, compétences de l'équipe) s'appliquent ?
+Which problem must be solved? Which constraints (technical, time, budget, team
+skills) apply?
 
-## Options envisagées
+## Options considered
 
-1. **Option A** — avantages / inconvénients.
-2. **Option B** — avantages / inconvénients.
+1. **Option A** — pros / cons.
+2. **Option B** — pros / cons.
 
-## Décision
+## Decision
 
-L'option retenue et la raison principale de ce choix.
+The chosen option and the main reason for choosing it.
 
-## Conséquences
+## Consequences
 
-Ce que la décision implique : ce qui devient plus simple, ce qui devient plus
-difficile, les risques acceptés, le travail induit.
+What the decision implies: what becomes easier, what becomes harder, accepted
+risks, induced work.

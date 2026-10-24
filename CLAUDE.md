@@ -1,41 +1,45 @@
-# Consignes pour Claude
+# Instructions for Claude
 
-Ce fichier est lu automatiquement par Claude Code. Il résume les règles du
-projet ; les documents de référence font foi en cas de doute.
+This file is read automatically by Claude Code. It summarises the project rules;
+the reference documents prevail in case of doubt.
 
-## Références obligatoires
+## Mandatory references
 
-- Règles de codage : `docs/CODING_STANDARDS.md`
-- Workflow Git : `CONTRIBUTING.md`
-- Décisions d'architecture : `docs/adr/`
+- Coding standards: `docs/CODING_STANDARDS.md`
+- Product requirements and open questions: `docs/PRODUCT.md`
+- Git workflow: `CONTRIBUTING.md`
+- Architecture decisions: `docs/adr/`
 
-## Règles essentielles
+## Essential rules
 
-1. **Documenter systématiquement, dans la même PR que le code** : TSDoc sur
-   tout ce qui est exporté, en-tête de fichier, commentaires sur le *pourquoi*,
-   mise à jour du README / des docs / du `CHANGELOG.md`. Un travail non
-   documenté n'est pas terminé.
-2. **Ne rien inventer. Au moindre doute, demander avant d'agir.** Aucune API,
-   option, version, endpoint, règle métier ou résultat n'est affirmé sans
-   vérification à la source (doc officielle, code du dépôt, exécution réelle).
-   Les besoins fonctionnels ne se devinent pas : poser la question. Signaler
-   explicitement toute hypothèse (`// ASSUMPTION:`) et rapporter fidèlement
-   ce qui a échoué ou n'a pas été vérifié. Voir `CODING_STANDARDS.md` §2.
-3. **Toute décision structurante → un ADR** dans `docs/adr/` (modèle :
-   `docs/adr/TEMPLATE.md`). Ne pas trancher seul une décision structurante
-   qui n'est pas déjà couverte par un ADR accepté : la proposer.
-4. **Langues** : code, commentaires et commits en anglais ; documentation du
-   dépôt, PR et échanges en français.
-5. **Git** : ne jamais pousser sur `main` ou `develop` ; travailler sur une
-   branche dédiée, commits au format Conventional Commits, PR vers `develop`.
-6. **Raccourcis de démo** : autorisés seulement s'ils sont marqués
-   `// PROD: <action requise>`.
-7. **Aucun secret** dans le dépôt (clés, keystore, `.env`).
-8. Avant de pousser : lint, format, typecheck et tests doivent passer.
+1. **Document systematically, in the same pull request as the code**:
+   docstrings / TSDoc on everything public, file headers, comments on the
+   *why*, updates to the README, docs and `CHANGELOG.md`. Undocumented work is
+   not done.
+2. **Never invent. At the slightest doubt, ask before acting.** No API, option,
+   version, endpoint, business rule or result is asserted without checking the
+   source (official documentation, repository code, actual execution).
+   Functional requirements are never guessed: ask, and record the answer in
+   `docs/PRODUCT.md`. Flag every assumption explicitly (`ASSUMPTION:`) and
+   report faithfully what failed or was not verified. See
+   `CODING_STANDARDS.md` §2.
+3. **Every structural decision → an ADR** in `docs/adr/` (template:
+   `docs/adr/TEMPLATE.md`). Do not settle alone a structural decision that is
+   not covered by an accepted ADR: propose it.
+4. **Languages**: code, comments, commits, pull requests and **all repository
+   documentation strictly in English**. **User interfaces in French**, always
+   through i18n. Conversations with the project owner are in French.
+5. **Product red lines**: no e-commerce parcels, no perishable goods / meal
+   delivery. Services only (laundry, ironing, repairs…).
+6. **Git**: never push to `main` or `develop`; work on a dedicated branch,
+   Conventional Commits, pull request to `develop`.
+7. **Demo shortcuts**: allowed only when marked `PROD: <required action>`.
+   Simulated data and integrations are clearly labelled and isolated.
+8. **No secrets** in the repository (keys, keystore, `.env`).
+9. Before pushing: lint, format, type check and tests must pass.
 
-## Contexte développeur
+## Project owner context
 
-Le développeur est expert Django REST et Vue.js, débutant en développement
-mobile : expliquer les notions propres au mobile (cycle de vie Android,
-permissions, Capacitor, signature d'APK…) en faisant le parallèle avec le web
-quand c'est utile.
+The project owner is an expert in Django REST and Vue.js and new to mobile
+development: explain mobile-specific notions (Android lifecycle, permissions,
+Capacitor, APK signing…) by drawing parallels with web development when useful.

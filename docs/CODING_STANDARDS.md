@@ -1,279 +1,345 @@
-# Règles de codage — City Groom
+# Coding Standards — City Groom
 
-> **Statut** : en vigueur · **Dernière mise à jour** : 2026-10-24
+> **Status**: in force · **Last updated**: 2026-10-24
 >
-> Ce document est la référence pour tout code écrit sur ce projet, qu'il soit
-> écrit par un humain ou par un assistant IA. Toute dérogation doit être
-> justifiée dans la PR concernée, et toute évolution de ces règles passe par une
-> PR dédiée.
+> This document is the reference for all code written on this project, whether
+> written by a human or by an AI assistant. Any deviation must be justified in
+> the pull request concerned, and any change to these rules goes through a
+> dedicated pull request.
 
-## Sommaire
+## Table of contents
 
-1. [Principe fondateur : la documentation n'est pas optionnelle](#1-principe-fondateur--la-documentation-nest-pas-optionnelle)
-2. [Ne rien inventer : en cas de doute, demander](#2-ne-rien-inventer--en-cas-de-doute-demander)
-3. [Ce qu'il faut documenter, et où](#3-ce-quil-faut-documenter-et-où)
-4. [Documentation dans le code](#4-documentation-dans-le-code)
-5. [Langues](#5-langues)
-6. [Style et qualité du code](#6-style-et-qualité-du-code)
-7. [Architecture et organisation](#7-architecture-et-organisation)
-8. [Tests](#8-tests)
-9. [Sécurité et données](#9-sécurité-et-données)
-10. [Démo aujourd'hui, production demain](#10-démo-aujourdhui-production-demain)
-11. [Définition de « terminé »](#11-définition-de--terminé-)
+1. [Founding principle: documentation is not optional](#1-founding-principle-documentation-is-not-optional)
+2. [Never invent: when in doubt, ask](#2-never-invent-when-in-doubt-ask)
+3. [What to document, and where](#3-what-to-document-and-where)
+4. [Documentation in the code](#4-documentation-in-the-code)
+5. [Languages](#5-languages)
+6. [Code style and quality](#6-code-style-and-quality)
+7. [Architecture and organisation](#7-architecture-and-organisation)
+8. [Testing](#8-testing)
+9. [Security and data](#9-security-and-data)
+10. [Demo today, production tomorrow](#10-demo-today-production-tomorrow)
+11. [Definition of done](#11-definition-of-done)
 
 ---
 
-## 1. Principe fondateur : la documentation n'est pas optionnelle
+## 1. Founding principle: documentation is not optional
 
-Ce projet démarre comme une démonstration mais **doit pouvoir servir de base à la
-production**. Le code sera relu, repris et maintenu par des personnes (et des
-outils) qui n'auront pas le contexte de son écriture. On documente donc
-**en même temps** qu'on code, jamais « plus tard ».
+This project starts as a demo but **must be able to serve as the foundation for
+production**. The code will be read, picked up and maintained by people (and
+tools) who will not have the context in which it was written. We therefore
+document **at the same time** as we code, never "later".
 
-Règles non négociables :
+Non-negotiable rules:
 
-- **Aucune PR n'est mergée si la documentation n'est pas à jour.** Une
-  fonctionnalité non documentée est une fonctionnalité non terminée.
-- **On documente le *pourquoi*, pas seulement le *quoi*.** Le code dit ce qu'il
-  fait ; la documentation dit pourquoi il le fait ainsi, quelles alternatives
-  ont été écartées et quelles contraintes s'appliquent.
-- **Toute décision structurante fait l'objet d'un ADR** (Architecture Decision
-  Record, voir [`docs/adr/`](adr/)). Choix de framework, de stockage, de mode
-  d'authentification, de stratégie hors-ligne… : si on peut se demander dans six
-  mois « pourquoi a-t-on fait ça ? », c'est un ADR.
-- **Le `CHANGELOG.md` est mis à jour à chaque PR** qui modifie un comportement
-  visible (utilisateur, API, configuration, build).
-- **La documentation obsolète est un bug.** Si on modifie un comportement, on
-  corrige la doc qui le décrit dans la même PR.
+- **No pull request is merged unless the documentation is up to date.** An
+  undocumented feature is an unfinished feature.
+- **Document the *why*, not just the *what*.** The code says what it does; the
+  documentation says why it does it that way, which alternatives were rejected
+  and which constraints apply.
+- **Every structural decision gets an ADR** (Architecture Decision Record, see
+  [`docs/adr/`](adr/)). Framework, storage, authentication, offline strategy,
+  hosting…: if someone might ask in six months "why did we do this?", it is an
+  ADR.
+- **`CHANGELOG.md` is updated in every pull request** that changes visible
+  behaviour (user-facing, API, configuration, build).
+- **Outdated documentation is a bug.** If a behaviour changes, the
+  documentation describing it is fixed in the same pull request.
 
-## 2. Ne rien inventer : en cas de doute, demander
+## 2. Never invent: when in doubt, ask
 
-Cette règle a la **même priorité que la documentation**. Elle s'applique à tout
-contributeur, et **en particulier à l'assistant IA**, dont le principal risque
-est de produire avec assurance quelque chose de plausible mais faux.
+This rule has the **same priority as documentation**. It applies to every
+contributor, and **especially to the AI assistant**, whose main risk is to
+confidently produce something plausible but wrong.
 
-Règles non négociables :
+Non-negotiable rules:
 
-- **Ne jamais inventer** une API, une option de configuration, un nom de
-  paquet, une version, un endpoint backend, un comportement de plateforme, une
-  règle métier, une donnée ou un résultat de commande. Ce qui n'est pas
-  vérifié n'est pas affirmé.
-- **Au moindre doute, demander avant d'agir.** Une question coûte quelques
-  minutes ; une supposition erronée intégrée au code coûte bien plus cher à
-  détecter et à corriger.
-- **Vérifier à la source** : documentation officielle (dans la version utilisée
-  par le projet), code existant du dépôt, exécution réelle de la commande ou du
-  test. Pas de réponse « de mémoire » sur un point vérifiable.
-- **Les besoins fonctionnels ne se devinent pas.** Une règle métier, un texte
-  affiché, un parcours utilisateur ou un choix de design non spécifié est une
-  question à poser, pas un trou à combler.
-- **Distinguer clairement le vérifié du supposé.** Si une hypothèse est
-  inévitable pour avancer, elle est formulée explicitement (dans la PR, et dans
-  le code avec `// ASSUMPTION: <hypothèse> — à confirmer`) puis soumise à
-  validation.
-- **Rapporter fidèlement** : un test qui échoue, une étape non faite, une
-  commande non exécutée, une vérification impossible sont signalés tels quels.
-  On ne présente jamais comme fait ou validé ce qui ne l'est pas.
-- **Les données factices sont identifiées comme telles** (dossier dédié,
-  nommage explicite) et ne sont jamais présentées comme réelles.
+- **Never invent** an API, a configuration option, a package name, a version, a
+  backend endpoint, a platform behaviour, a business rule, a piece of data or a
+  command result. What has not been verified is not asserted.
+- **At the slightest doubt, ask before acting.** A question costs a few
+  minutes; a wrong assumption baked into the code costs far more to detect and
+  fix.
+- **Verify at the source**: official documentation (for the version used by the
+  project), existing code in the repository, actually running the command or
+  test. No answering "from memory" on a verifiable point.
+- **Functional requirements are never guessed.** An unspecified business rule,
+  displayed text, user journey or design choice is a question to ask, not a gap
+  to fill.
+- **Clearly separate what is verified from what is assumed.** If an assumption
+  is unavoidable to move forward, it is stated explicitly (in the pull request,
+  and in the code with `// ASSUMPTION: <assumption> — to be confirmed`) and then
+  submitted for validation.
+- **Report faithfully**: a failing test, a skipped step, a command not run, a
+  check that could not be done are reported as such. Nothing is presented as
+  done or validated when it is not.
+- **Fake data is labelled as such** (dedicated folder, explicit naming) and is
+  never presented as real.
 
-## 3. Ce qu'il faut documenter, et où
+## 3. What to document, and where
 
-| Quoi | Où | Quand |
+| What | Where | When |
 |---|---|---|
-| Présentation, installation, lancement | `README.md` | Dès qu'une étape change |
-| Workflow Git, commits, PR, revue | `CONTRIBUTING.md` | Quand le process évolue |
-| Règles de codage | `docs/CODING_STANDARDS.md` (ce fichier) | Par PR dédiée |
-| Décisions d'architecture | `docs/adr/NNNN-titre.md` | Avant ou pendant l'implémentation |
-| Architecture d'ensemble (schémas, modules, flux) | `docs/ARCHITECTURE.md` | Dès que la structure existe, puis à chaque évolution |
-| Historique des changements | `CHANGELOG.md` | À chaque PR |
-| Contrat d'API consommé (endpoints, payloads, erreurs) | `docs/api/` | Dès qu'un endpoint est consommé |
-| Build, signature APK, déploiement web | `docs/BUILD_AND_RELEASE.md` | Dès le premier build distribué |
-| Variables d'environnement | `.env.example` (commenté) + README | Dès qu'une variable est ajoutée |
-| API publique d'un module, composant, fonction | Docstrings / JSDoc / TSDoc dans le code | Toujours |
-| Logique non évidente, contournements, dette | Commentaires dans le code | Toujours |
-| Instructions pour l'assistant IA | `CLAUDE.md` | Quand une convention change |
+| Overview, setup, running the project | `README.md` | Whenever a step changes |
+| Product vision, actors, flows, business rules | `docs/PRODUCT.md` | Whenever a requirement is clarified |
+| Git workflow, commits, pull requests, review | `CONTRIBUTING.md` | When the process changes |
+| Coding standards | `docs/CODING_STANDARDS.md` (this file) | Through a dedicated pull request |
+| Architecture decisions | `docs/adr/NNNN-title.md` | Before or during implementation |
+| Overall architecture (diagrams, modules, flows) | `docs/ARCHITECTURE.md` | As soon as the structure exists, then on every change |
+| Change history | `CHANGELOG.md` | Every pull request |
+| API contract (endpoints, payloads, errors) | OpenAPI schema generated by the backend + `docs/api/` | As soon as an endpoint exists |
+| Data sources and licences | `docs/DATA_SOURCES.md` | As soon as a source is used |
+| Build, APK signing, deployment | `docs/BUILD_AND_RELEASE.md` | From the first distributed build |
+| Environment variables | `.env.example` (commented) + README | As soon as a variable is added |
+| Public API of a module, component, function, class | Docstrings / TSDoc in the code | Always |
+| Non-obvious logic, workarounds, debt | Comments in the code | Always |
+| Instructions for the AI assistant | `CLAUDE.md` | When a convention changes |
 
-## 4. Documentation dans le code
+## 4. Documentation in the code
 
-### 3.1 En-tête de fichier
+### 4.1 File header
 
-Chaque fichier source non trivial commence par un bloc qui explique son rôle
-dans l'application et ses dépendances principales.
+Every non-trivial source file starts with a block explaining its role in the
+application and its main dependencies.
 
 ```ts
 /**
- * @file Store Pinia gérant la session utilisateur (connexion, jetons, profil).
+ * @file Pinia store managing the user session (login, tokens, profile).
  *
- * Les jetons sont persistés via le stockage sécurisé natif sur Android
- * (Android Keystore, via un plugin Capacitor dédié) et via sessionStorage sur
- * la version web.
- * Voir ADR-0004 pour le choix de cette stratégie.
+ * Tokens are persisted in native secure storage on Android (Android Keystore,
+ * through a dedicated Capacitor plugin) and in sessionStorage on the web build.
+ * See ADR-000X for the rationale behind this strategy.
  */
 ```
 
-### 3.2 Fonctions, composables, services
+```python
+"""Locker hardware abstraction.
 
-Toute fonction **exportée** est documentée (TSDoc) : rôle, paramètres, valeur de
-retour, erreurs levées, effets de bord, et un exemple si l'usage n'est pas
-évident.
+Defines the ``LockerDriver`` interface that every locker integration (simulated
+or vendor-specific) must implement, so that the rest of the backend never
+depends on a particular hardware vendor. See ADR-0003.
+"""
+```
+
+### 4.2 Functions, composables, services, classes
+
+Every **exported / public** function or class is documented: purpose,
+parameters, return value, raised errors, side effects, and an example when usage
+is not obvious.
+
+TypeScript (TSDoc):
 
 ```ts
 /**
- * Récupère les prestations disponibles autour d'une position.
+ * Fetches the lockers located within a given radius of a position.
  *
- * @param position - Coordonnées GPS de l'utilisateur.
- * @param radiusKm - Rayon de recherche en kilomètres (défaut : 5, max : 50).
- * @returns Liste des prestations triées par distance croissante.
- * @throws {ApiError} Si l'API répond avec un statut >= 400.
- * @throws {NetworkError} Si l'appareil est hors-ligne.
+ * @param position - GPS coordinates of the user.
+ * @param radiusKm - Search radius in kilometres (default: 2, max: 20).
+ * @returns Lockers sorted by increasing distance.
+ * @throws {ApiError} If the API responds with a status >= 400.
+ * @throws {NetworkError} If the device is offline.
  *
  * @example
- * const services = await fetchNearbyServices({ lat: 48.85, lng: 2.35 }, 10)
+ * const lockers = await fetchNearbyLockers({ lat: 45.188, lng: 5.724 }, 3)
  */
-export async function fetchNearbyServices(position: GeoPoint, radiusKm = 5): Promise<Service[]> {
+export async function fetchNearbyLockers(position: GeoPoint, radiusKm = 2): Promise<Locker[]> {
   // ...
 }
 ```
 
-### 3.3 Composants Vue
+Python (Google-style docstrings, type hints mandatory):
 
-Chaque composant documente en tête de `<script setup>` :
+```python
+def compute_commission(order: Order) -> Decimal:
+    """Return the platform commission charged to the merchant for an order.
 
-- son rôle et l'écran / le contexte où il est utilisé ;
-- ses `props` (chaque prop a un commentaire TSDoc) ;
-- ses `emits` (quand et avec quelle charge utile) ;
-- ses `slots` le cas échéant ;
-- les dépendances natives (caméra, géolocalisation…) et leur comportement sur web.
+    The rate depends on the merchant's current tier (see docs/PRODUCT.md,
+    "Business model").
 
-### 3.4 Commentaires en ligne
+    Args:
+        order: A confirmed order with a final price.
 
-- Un commentaire explique **pourquoi**, jamais une paraphrase du code.
-- Les contournements de bugs (plateforme, librairie) citent la source (issue,
-  doc) et la condition de suppression.
-- Marqueurs normalisés, toujours avec contexte :
-  - `TODO(#issue):` travail prévu, lié à une issue GitHub ;
-  - `FIXME(#issue):` comportement incorrect connu ;
-  - `HACK:` contournement assumé, avec la raison ;
-  - `PROD:` point à traiter **impérativement** avant une mise en production
-    (voir §10).
+    Returns:
+        The commission amount, rounded to the cent.
+
+    Raises:
+        ValueError: If the order has no final price yet.
+    """
+```
+
+### 4.3 Vue components
+
+Each component documents, at the top of `<script setup>`:
+
+- its role and the screen / context where it is used;
+- its `props` (each prop has a TSDoc comment);
+- its `emits` (when, and with which payload);
+- its `slots`, if any;
+- native dependencies (camera, geolocation…) and their behaviour on the web.
+
+### 4.4 Django models and API
+
+- Every model has a docstring describing the business concept it represents.
+- Every field has a `help_text` (it also feeds the admin and the OpenAPI
+  schema) and a `verbose_name` translated for the admin.
+- Every API view / viewset documents its permissions and is annotated so that
+  the generated OpenAPI schema is complete and accurate.
+
+### 4.5 Inline comments
+
+- A comment explains **why**, never paraphrases the code.
+- Workarounds for platform or library bugs cite the source (issue,
+  documentation) and the condition under which they can be removed.
+- Standard markers, always with context:
+  - `TODO(#issue):` planned work, linked to a GitHub issue;
+  - `FIXME(#issue):` known incorrect behaviour;
+  - `HACK:` deliberate workaround, with the reason;
+  - `ASSUMPTION:` unvalidated assumption, to be confirmed (see §2);
+  - `PROD:` item that **must** be addressed before going to production (see
+    §10).
 
 ```ts
-// ❌ Incrémente le compteur
+// ❌ Increment the counter
 retryCount++
 
-// ✅ Android met parfois l'app en veille pendant la requête : on retente une fois
-//    avant d'afficher l'erreur. Voir https://github.com/ionic-team/capacitor/issues/XXXX
+// ✅ Android sometimes suspends the app during the request: retry once before
+//    showing the error. See <link to the issue>.
 retryCount++
 ```
 
-## 5. Langues
+## 5. Languages
 
-| Élément | Langue |
+| Item | Language |
 |---|---|
-| Identifiants (variables, fonctions, classes, fichiers) | Anglais |
-| Commentaires et docstrings dans le code | Anglais |
-| Messages de commit | Anglais (Conventional Commits) |
-| Documentation du dépôt (`README`, `docs/`, ADR) | Français |
-| Titres et descriptions de PR / issues | Français |
-| Textes affichés à l'utilisateur | Jamais en dur : passés par l'i18n (FR par défaut) |
+| Identifiers (variables, functions, classes, files, branches) | English |
+| Comments and docstrings | English |
+| Commit messages | English (Conventional Commits) |
+| Repository documentation (`README`, `docs/`, ADRs, changelog) | **English only** |
+| Pull request and issue titles and descriptions | English |
+| User interface (mobile app, merchant portal, admin) | **French**, never hard-coded: all strings go through i18n (`fr` is the default and, for now, only locale) |
+| Discussions with the project owner | French |
 
-> Les exemples de commentaires en français dans ce document sont là pour la
-> lisibilité ; dans le code, ils sont rédigés en anglais.
+## 6. Code style and quality
 
-## 6. Style et qualité du code
+### Common rules
 
-- **TypeScript en mode `strict`**. `any` interdit sauf justification en
-  commentaire (`// eslint-disable-next-line` + raison).
-- **Formatage automatique** (Prettier) et **lint** (ESLint + règles Vue) :
-  aucun débat de style en revue, l'outil tranche. Le code poussé passe le lint
-  sans avertissement.
-- **Vue 3 Composition API** avec `<script setup lang="ts">` exclusivement.
-- **Nommage** :
-  - composants : `PascalCase`, nom composé d'au moins deux mots (`ServiceCard.vue`) ;
-  - composables : `useXxx` (`useGeolocation.ts`) ;
-  - stores Pinia : `useXxxStore` ;
-  - constantes : `UPPER_SNAKE_CASE` ;
-  - booléens : préfixe `is`, `has`, `can`, `should`.
-- **Fonctions courtes et à responsabilité unique.** Au-delà d'environ 40 lignes
-  ou 3 niveaux d'imbrication, on découpe.
-- **Pas de nombres ni de chaînes magiques** : constantes nommées et documentées.
-- **Pas de code mort ni de code commenté** dans les PR : Git garde l'historique.
-- **Gestion d'erreurs explicite** : aucune promesse non gérée, aucun `catch`
-  vide. Toute erreur est soit traitée, soit remontée avec du contexte, et
-  l'utilisateur reçoit un message compréhensible.
+- **Short, single-responsibility functions.** Beyond roughly 40 lines or 3
+  levels of nesting, split.
+- **No magic numbers or strings**: named, documented constants.
+- **No dead code or commented-out code** in pull requests: Git keeps the
+  history.
+- **Explicit error handling**: no unhandled promise, no empty `catch` /
+  `except`. Every error is either handled or re-raised with context, and the
+  user gets an understandable message (in French).
 
-## 7. Architecture et organisation
+### TypeScript / Vue
 
-La stack précise est arrêtée dans
-[ADR-0002](adr/0002-choix-stack-mobile.md). Principes indépendants de la stack :
+- **TypeScript in `strict` mode.** `any` is forbidden unless justified in a
+  comment (`// eslint-disable-next-line` + reason).
+- **Automatic formatting** (Prettier) and **linting** (ESLint + Vue rules): no
+  style debates in review, the tool decides. Pushed code passes linting with no
+  warnings.
+- **Vue 3 Composition API** with `<script setup lang="ts">` exclusively.
+- **Naming**:
+  - components: `PascalCase`, at least two words (`LockerCard.vue`);
+  - composables: `useXxx` (`useGeolocation.ts`);
+  - Pinia stores: `useXxxStore`;
+  - constants: `UPPER_SNAKE_CASE`;
+  - booleans: `is`, `has`, `can`, `should` prefix.
 
-- **Séparation des couches** : écrans (`views/`) → composants (`components/`)
-  → logique (`composables/`, `stores/`) → accès aux données (`services/api/`).
-  Un composant ne fait jamais d'appel HTTP directement.
-- **Abstraction des fonctionnalités natives** : tout accès au matériel
-  (caméra, GPS, notifications, stockage sécurisé) passe par un service dédié
-  qui gère la différence Android / navigateur. Le reste de l'app ignore sur
-  quelle plateforme elle tourne.
-- **Configuration par environnement** : aucune URL, clé ou option en dur ;
-  tout passe par des variables d'environnement documentées dans `.env.example`.
-- **Le contrat d'API est typé** : les types des payloads échangés avec le backend
-  (Django REST) sont définis à un seul endroit et, à terme, générés depuis le
-  schéma OpenAPI du backend.
+### Python / Django
 
-## 8. Tests
+- **Type hints everywhere**, checked by a type checker in CI.
+- **Formatting and linting with Ruff**; no warnings in pushed code.
+- PEP 8 naming: `snake_case` for functions and variables, `PascalCase` for
+  classes, `UPPER_SNAKE_CASE` for constants.
+- **Business logic lives in a service layer** (`services.py`), not in views,
+  serializers or model `save()` methods. Views stay thin.
+- **Every schema change goes through a migration**, committed with the model
+  change and reviewed.
+- Money is stored as `Decimal` (never `float`), with an explicit currency.
+- Datetimes are timezone-aware, stored in UTC, displayed in `Europe/Paris`.
 
-- **Tests unitaires** (Vitest) pour la logique : composables, stores, services,
-  utilitaires. Tout correctif de bug s'accompagne d'un test qui le reproduit.
-- **Tests de composants** (Vue Test Utils) pour les composants à logique.
-- **Tests de bout en bout** (Playwright sur la version web) pour les parcours
-  critiques, à mettre en place dès que l'app a un premier parcours complet.
-- Les tests sont lancés en CI sur chaque PR ; une PR rouge n'est pas mergée.
-- Pas d'objectif de couverture chiffré au stade démo, mais **toute logique
-  métier est testée**.
+## 7. Architecture and organisation
 
-## 9. Sécurité et données
+The stack is set out in [ADR-0002](adr/0002-technical-stack.md) and the
+repository layout in [ADR-0003](adr/0003-monorepo-and-applications.md).
+Stack-independent principles:
 
-- **Aucun secret dans le dépôt** (clés API, keystore Android, mots de passe).
-  Le keystore de signature APK est conservé hors dépôt et sauvegardé : le perdre
-  empêche toute mise à jour de l'app publiée.
-- Rien ne doit être considéré comme secret côté client : une app mobile ou web
-  se décompile. Les vraies clés restent côté backend.
-- Jetons d'authentification : stockage sécurisé natif sur Android, jamais en
-  `localStorage` en clair pour la production.
-- Communications exclusivement en HTTPS.
-- Données personnelles (localisation, identité) : on documente pour chacune
-  pourquoi elle est collectée, où elle est stockée et combien de temps
-  (préparation RGPD).
-- Les dépendances sont auditées (`npm audit`) avant chaque release.
+- **Layer separation (frontend)**: screens (`views/`) → components
+  (`components/`) → logic (`composables/`, `stores/`) → data access
+  (`services/api/`). A component never makes an HTTP call directly.
+- **Layer separation (backend)**: API (views, serializers) → services
+  (business logic) → models. Integrations with the outside world (locker
+  hardware, couriers, payment, maps) sit behind interfaces with a simulated
+  implementation, so a real one can replace it without touching business code.
+- **Native feature abstraction**: all hardware access (camera, GPS,
+  notifications, secure storage) goes through a dedicated service that handles
+  the Android / browser difference. The rest of the app does not know which
+  platform it runs on.
+- **Configuration per environment**: no URL, key or option hard-coded;
+  everything goes through environment variables documented in `.env.example`.
+- **The API contract is typed**: the backend publishes an OpenAPI schema, and
+  frontend types are generated from it rather than written by hand.
 
-## 10. Démo aujourd'hui, production demain
+## 8. Testing
 
-Pour avancer vite sur la démo sans compromettre la future production :
+- **Backend**: pytest for models, services and API endpoints. Business rules
+  (pricing, commission, order state machine, locker allocation) are fully
+  tested.
+- **Frontend unit tests** (Vitest) for composables, stores, services and
+  utilities; **component tests** (Vue Test Utils) for components with logic.
+- **End-to-end tests** (Playwright on the web build) for critical journeys,
+  added as soon as the first complete journey exists.
+- Every bug fix comes with a test that reproduces the bug.
+- Tests run in CI on every pull request; a red pull request is not merged.
+- No coverage target at the demo stage, but **all business logic is tested**.
 
-- Les raccourcis sont **autorisés s'ils sont visibles** : chaque raccourci est
-  marqué `// PROD: <ce qu'il faut faire>` dans le code.
-- `grep -rn "PROD:" src/` doit donner la liste exhaustive de ce qui reste à
-  faire avant la mise en production. Cette liste est revue à chaque release.
-- Les données factices (mocks, fixtures) sont isolées dans un dossier dédié et
-  activées par une variable d'environnement, jamais mélangées au code réel.
-- On ne prend **jamais** de raccourci sur : la structure du projet, le typage,
-  la gestion des secrets, la documentation.
+## 9. Security and data
 
-## 11. Définition de « terminé »
+- **No secrets in the repository** (API keys, Android keystore, passwords,
+  `.env`). The APK signing keystore is kept outside the repository and backed
+  up: losing it prevents any update of the published app.
+- Nothing on the client is secret: a mobile or web app can be decompiled. Real
+  keys stay on the backend.
+- Authentication tokens: native secure storage on Android, never plain
+  `localStorage` in production.
+- HTTPS only.
+- Every API endpoint declares its permissions explicitly; access is denied by
+  default. A merchant only ever sees their own data.
+- Personal data (location, identity, order history): for each item we document
+  why it is collected, where it is stored and for how long (GDPR preparation).
+- Dependencies are audited (`npm audit`, `pip-audit`) before each release.
 
-Une tâche est terminée quand **toutes** ces cases sont cochées :
+## 10. Demo today, production tomorrow
 
-- [ ] Le code respecte ce document et passe lint, format et typecheck.
-- [ ] Les tests pertinents sont écrits et passent.
-- [ ] Les fonctions / composants exportés sont documentés (TSDoc).
-- [ ] Le `README` et les docs concernées sont à jour.
-- [ ] Un ADR est rédigé si une décision structurante a été prise.
-- [ ] Le `CHANGELOG.md` est mis à jour.
-- [ ] Les raccourcis de démo sont marqués `PROD:`.
-- [ ] Aucune hypothèse non validée : chaque `ASSUMPTION:` a été confirmée ou
-      signalée dans la PR.
-- [ ] Le comportement a été vérifié sur la version web **et** sur Android
-      (émulateur ou appareil) lorsque le changement touche à l'interface ou au
-      natif.
-- [ ] La PR est relue et approuvée.
+To move fast on the demo without compromising future production:
+
+- Shortcuts are **allowed if they are visible**: each shortcut is marked
+  `PROD: <what needs to be done>` in the code.
+- `grep -rn "PROD:"` must return the exhaustive list of what remains to be done
+  before production. This list is reviewed at every release.
+- Fake data (mocks, fixtures, simulated lockers and orders) is isolated in a
+  dedicated location, clearly labelled, and enabled through configuration;
+  never mixed into real code paths.
+- **Never** take shortcuts on: project structure, typing, secrets management,
+  permissions, documentation.
+
+## 11. Definition of done
+
+A task is done when **all** of these boxes are ticked:
+
+- [ ] The code follows this document and passes lint, format and type checks.
+- [ ] Relevant tests are written and pass.
+- [ ] Exported / public functions, classes and components are documented.
+- [ ] `README` and relevant documentation are up to date.
+- [ ] An ADR is written if a structural decision was made.
+- [ ] `CHANGELOG.md` is updated.
+- [ ] Demo shortcuts are marked `PROD:`.
+- [ ] No unvalidated assumption: each `ASSUMPTION:` has been confirmed or is
+      listed in the pull request.
+- [ ] All user-facing text is in French and goes through i18n.
+- [ ] The behaviour has been checked on the web build **and** on Android
+      (emulator or device) when the change affects the mobile UI or native
+      features.
+- [ ] The pull request has been reviewed and approved.
