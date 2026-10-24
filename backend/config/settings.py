@@ -8,7 +8,14 @@ variable is documented in ``backend/.env.example``.
 
 from pathlib import Path
 
+import django_stubs_ext
 import environ
+
+# Make Django generic classes subscriptable at runtime (e.g.
+# ``admin.TabularInline[Compartment, Locker]``), as required by strict typing.
+# DRF classes are patched in ``apps.core.apps`` instead: importing DRF here,
+# while settings are loading, would break its own settings.
+django_stubs_ext.monkeypatch()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
+    "django.contrib.postgres",
     # Third-party
     "corsheaders",
     "rest_framework",
@@ -38,6 +46,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Project
     "apps.core",
+    "apps.lockers",
 ]
 
 MIDDLEWARE = [
