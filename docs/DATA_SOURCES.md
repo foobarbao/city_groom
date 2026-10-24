@@ -9,8 +9,8 @@ imported. Real data is preferred everywhere; simulated data is labelled
 | Data | Source | Licence | How | Status |
 |---|---|---|---|---|
 | Map background | OpenStreetMap-based vector tiles (OpenFreeMap for the demo) | ODbL (data), attribution required | Loaded by MapLibre at runtime (`VITE_MAP_STYLE_URL`) | Works in the app (live); embedded as an offline extract in the published demo (`apps/customer/scripts/fetch_offline_map.py`) |
-| Candidate locker sites | OpenStreetMap tram stops of Grenoble-Alpes Métropole (Overpass API) | ODbL | `python manage.py seed_simulated_lockers` | Code ready; not yet run against real data (see below) |
-| Merchants | OpenStreetMap businesses (Overpass API) | ODbL | `python manage.py import_osm_merchants` | Code ready; not yet run against real data (see below) |
+| Candidate locker sites | OpenStreetMap tram stops of Grenoble-Alpes Métropole (Overpass API) | ODbL | `python manage.py seed_simulated_lockers` | Imported (`data/osm/`) |
+| Merchants | OpenStreetMap businesses (Overpass API) | ODbL | `python manage.py import_osm_merchants` | Imported (`data/osm/`) |
 | Locker sizes and layouts | Public documentation of locker networks and manufacturers | — | Encoded in `backend/apps/lockers/sizes.py` | Done, sources in `docs/LOCKERS.md` |
 
 ## Area
@@ -43,9 +43,11 @@ Implemented in `backend/apps/merchants/osm.py` and `categories.py`
 - shown with public data only (name, address, opening hours, website), no
   logo, with "Partenariat non établi" until a partnership is signed.
 
-This tag list is a first selection: review it against the real Grenoble data
-at the first import (missing categories, false positives such as self-service
-laundromats under `shop=laundry`).
+First import (2026-10-24): 180 OpenStreetMap objects, 159 businesses kept
+(chains and unnamed objects excluded): 62 laundries, 34 tailoring, 19
+electronics repair, 16 shoe repair, 15 dry cleaning, 9 keys, 3 jewellery, 1
+watchmaker. To review with the project owner: `shop=laundry` includes
+self-service laundromats, which may not offer a service a merchant performs.
 
 ## Attribution
 

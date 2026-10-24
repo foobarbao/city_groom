@@ -65,6 +65,10 @@ Versioning: [SemVer](https://semver.org/).
 - Standalone demo: embedded offline map of Grenoble (OpenFreeMap extract
   served through a custom MapLibre protocol), since the published demo page
   blocks external requests.
+- Real OpenStreetMap data fetched by the `OSM data` GitHub Actions workflow
+  (`fetch_osm_data`, bounding box, retries and mirror): 81 tram stops and 159
+  businesses after filtering, in `data/osm/`; demo fixtures regenerated with
+  lockers at real tram stops and real businesses.
 - Android project (Capacitor) with the provisional application id
   `fr.reliance.app`; working name "Reliance" in the app; build guide
   (`docs/BUILD_AND_RELEASE.md`).
