@@ -2,7 +2,7 @@
 
 Ionic + Vue 3 + TypeScript web app for merchants, courier partners and the
 operator team (ADR-0005), to be packaged later as the merchants' Android "pro"
-app (ADR-0006). User interface in French, working name "Reliance Pro".
+app (ADR-0006). User interface in French, working name "CityPal Pro".
 
 For now the portal runs **only on the demo dataset** of
 `@city-groom/demo-data` (real lockers snapshot and businesses, fictitious

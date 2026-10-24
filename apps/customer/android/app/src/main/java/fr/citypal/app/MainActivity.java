@@ -1,4 +1,4 @@
-package fr.reliance.app;
+package fr.citypal.app;
 
 import com.getcapacitor.BridgeActivity;
 

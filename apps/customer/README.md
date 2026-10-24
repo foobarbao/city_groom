@@ -59,7 +59,7 @@ npm test -w apps/customer
 ## Android
 
 The Android project lives in `android/` (Capacitor, provisional application id
-`fr.reliance.app`). Build steps: [`docs/BUILD_AND_RELEASE.md`](../../docs/BUILD_AND_RELEASE.md).
+`fr.citypal.app`). Build steps: [`docs/BUILD_AND_RELEASE.md`](../../docs/BUILD_AND_RELEASE.md).
 
 ## Standalone demo
 

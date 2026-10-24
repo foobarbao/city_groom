@@ -3,9 +3,9 @@
  */
 export default {
   app: {
-    // Working name, chosen "for now" by the project owner (docs/PRODUCT.md).
-    // PROD: confirm the product name (trademark and domain checks).
-    name: 'Reliance',
+    // Product name decided by the project owner on 2026-10-24 (docs/PRODUCT.md).
+    // PROD: trademark (INPI) and domain checks before publication.
+    name: 'CityPal',
     tagline: 'Vos commerces de quartier, sans voiture ni détour',
     simulatedNotice: 'Démonstration : casiers et disponibilités simulés.',
   },

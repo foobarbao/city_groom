@@ -26,12 +26,12 @@ of the app, edited with Android Studio when needed (icons, permissions…).
 
 Set in `apps/customer/capacitor.config.ts`:
 
-- `appId`: **`fr.reliance.app` (provisional)**. A unique, permanent
+- `appId`: **`fr.citypal.app` (provisional)**. A unique, permanent
   identifier written like a reversed domain name. It can change freely until
   the first Play Store publication; after that it can never change. The
-  project owner chose "Reliance" for now; the domain is not bought yet
+  project owner named the app "CityPal" (2026-10-24); the domain is not bought yet
   (docs/PRODUCT.md).
-- `appName`: "Reliance", the name shown under the app icon.
+- `appName`: "CityPal", the name shown under the app icon.
 
 ## 3. Build a test APK
 

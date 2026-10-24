@@ -28,7 +28,7 @@ import urllib.request
 from pathlib import Path
 
 STYLE_URL = "https://tiles.openfreemap.org/styles/liberty"
-USER_AGENT = "Reliance-demo/0.1 (offline map extract for a demo)"
+USER_AGENT = "CityPal-demo/0.1 (offline map extract for a demo)"
 OUTPUT = Path(__file__).resolve().parent.parent / "src" / "demo" / "offline-map.json"
 
 # (min_lon, min_lat, max_lon, max_lat) per zoom range. The detailed zoom covers

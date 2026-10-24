@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Reliance</string>
-    <string name="title_activity_main">Reliance</string>
-    <string name="package_name">fr.reliance.app</string>
-    <string name="custom_url_scheme">fr.reliance.app</string>
+    <string name="app_name">CityPal</string>
+    <string name="title_activity_main">CityPal</string>
+    <string name="package_name">fr.citypal.app</string>
+    <string name="custom_url_scheme">fr.citypal.app</string>
 </resources>

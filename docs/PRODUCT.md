@@ -1,4 +1,4 @@
-# Product — City Groom
+# Product — CityPal
 
 > **Status**: living document · **Last updated**: 2026-10-24
 >
@@ -10,7 +10,7 @@
 ## 1. Vision
 
 City centres are losing visitors, and many local businesses suffer from it,
-under pressure from high rents. City Groom **reconnects residents with
+under pressure from high rents. CityPal **reconnects residents with
 city-centre businesses, craftspeople and local know-how**, without requiring
 them to travel there.
 
@@ -28,12 +28,20 @@ funding and grants:
 3. **Sustainable development**: fewer cars in the city centre, deliveries by
    local cargo-bike companies.
 
+CityPal is **a helper for city dwellers**, with two modes in the customer
+app (2026-10-24):
+
+1. **Services** — have an item serviced by a local business (laundry,
+   repairs…), through the lockers and cargo-bike rounds (sections 2 and 4).
+2. **Consigne** — store personal belongings in a locker for a few hours
+   (helmet, jacket, bag…), see [section 4b](#4b-consigne-storage).
+
 The service starts in **Grenoble**.
 
-The product name "City Groom" is **not final**. Working name chosen "for
-now" by the project owner (2026-10-24): **Reliance**, used in the apps and as
-the provisional Android application id `fr.reliance.app`; to be confirmed
-after trademark and domain checks (see open questions). Whatever the name, the brand
+The app is called **CityPal** (decided by the project owner on 2026-10-24,
+replacing the working names "City Groom" and "Reliance"; the repository
+keeps the technical name `city_groom`). The provisional Android application
+id is `fr.citypal.app` (see open questions). Whatever the name, the brand
 must convey a strong **eco-social** message centred on the idea of
 **reconnecting** people with their city and its local businesses.
 
@@ -79,7 +87,7 @@ possible for the customer and for the merchant.
 | Customer | Resident who orders a service and uses the lockers. | Customer app (Android + PWA), French UI |
 | Merchant | Local business performing the service. | Partner portal, merchant space: web + Android "pro" app (ADR-0006), French UI |
 | Courier partner | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | Partner portal, courier space (web), French UI |
-| Operator (administrator) | The City Groom team: manages lockers, merchants, courier partners, offers, orders, commission settings. | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
+| Operator (administrator) | The CityPal team: manages lockers, merchants, courier partners, offers, orders, commission settings. | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
 | Locker | Connected locker with compartments, placed around the city. | Simulated in the demo, real hardware later |
 
 **Platforms**: customers use the **mobile app**; merchants, courier partners
@@ -92,7 +100,7 @@ and operators use **web interfaces** (ADR-0005). Merchants also get a
 2. The customer orders a standard service or a pack, or accepts a quote for a
    special service. Ordering is possible **as a guest** (see Accounts).
 3. The customer chooses a **drop-off locker**, and a **pickup locker** with a
-   **12-hour pickup slot**. The pickup locker may differ from the drop-off
+   **pickup slot** (until the next round). The pickup locker may differ from the drop-off
    locker.
 4. The app shows the customer a **visual of the locker front**, highlighting
    the door that will open and its size, then the customer drops the item in.
@@ -108,19 +116,33 @@ Payment is **simulated** in the demo.
 
 ### Rounds and pickup slots
 
-- **Two rounds per day** at fixed times, for example **08:00 and 20:00** (the
-  exact times are configurable). Fixed times make the workload predictable for
-  courier partners.
-- Pickup slots are **12 hours** long and follow the rounds: an item returned
-  by the 08:00 round can be collected until 20:00, and so on.
+- **Three rounds per day** at fixed times: **07:00, 14:00 and 20:00**
+  (decided 2026-10-24, replacing two rounds at 08:00 and 20:00; times stay
+  configurable). Fixed times make the workload predictable for courier
+  partners.
+- The day is split into three **slots** between rounds: **morning
+  07:00–14:00**, **afternoon 14:00–20:00**, **evening 20:00–07:00**.
+- Pickup slots follow the rounds: an item returned by a round can be collected
+  until the next round (e.g. returned at 14:00, collected by 20:00). This
+  replaces the former 12-hour slot.
 
 ### Overdue pickups
 
-- If the customer does not collect the item within the 12-hour slot, **the
+- If the customer does not collect the item within the pickup slot, **the
   item stays in the locker** and the customer pays a **small late fee**.
 - **The first forgotten pickup is free** (once per customer).
 - Fee amount, how it accrues and the maximum time an item may stay are not
   defined yet (see open questions).
+
+### Locker locations
+
+Many more lockers than the first draft, at **strategic places** (decided
+2026-10-24): tram stops, and for the consigne **tourist sites, stations,
+campuses, shopping centres, hospitals, business areas, squares lined with
+restaurants and cafés, parks and sports venues**. Consigne lockers are
+**smaller but more numerous**. A locker standing near restaurants is only a
+location: the red lines (no meal delivery) still apply. In the demo, places
+come from OpenStreetMap (`docs/DATA_SOURCES.md`).
 
 ### Locker visualisation
 
@@ -129,6 +151,47 @@ the locker front with its compartments of several sizes, the door that will
 open is highlighted, with its label (e.g. "B3") and the kind of items it
 fits. The same view, with the status of every door, serves operators. See
 `docs/LOCKERS.md`.
+
+## 4b. Consigne (storage)
+
+Decided by the project owner on 2026-10-24:
+
+- The customer **drops an item** in a locker compartment and **collects it at
+  most 24 hours after drop-off**. Typical items: helmets, jackets, bags,
+  personal belongings. The red lines apply (no perishable goods).
+- **Booking a slot**: the customer books the **morning, afternoon or evening**
+  slot (between two rounds) of a given day, **at least 4 hours before the
+  slot starts**. Booking ahead lets the team coordinate with the rounds
+  (e.g. free compartments). Booking earlier, e.g. the day before, is allowed.
+- **Immediate drop-off** without booking is also possible when a compartment
+  of the right size is free.
+- **Price** depends on the customer's **subscription**: subscribers pay less.
+  Plans and prices are not defined yet; the demo shows placeholder plans
+  labelled as such (open question 8).
+- The customer chooses the compartment size; the app shows the locker front
+  and the door to open, as for services.
+
+## 4c. Customer app experience
+
+Requested on 2026-10-24: a **complete customer UX**, with menus to:
+
+- **choose the mode** (Services or Consigne);
+- **browse partner shops**, with a **clear classification**: shops grouped
+  by category (not "all in bulk"), indexed and easy to **search** (name,
+  category, service, street);
+- see each shop's **rating out of 5** and reviews;
+- **chat with a merchant**, send photos, and follow **quotes** (quote space);
+- follow orders and consigne bookings, manage the account and subscription.
+
+### Ratings and reviews
+
+- Customers rate a shop **out of 5**, **only if they ordered from it**:
+  one rating per completed order (verified reviews), with an optional
+  comment.
+- Internal system for now; a certified third-party review provider may be
+  connected later (ADR-0008).
+- Real businesses that are not partners show **no rating**: no review is ever
+  invented for a real business.
 
 ## 5. Merchant experience
 
@@ -156,7 +219,7 @@ the owner **present the expected activity and volume** in a convincing way.
 
 Content stated by the project owner:
 
-- the **activity and volume** City Groom expects to generate for them.
+- the **activity and volume** CityPal expects to generate for them.
 
 Content proposed, to be confirmed (see open questions):
 
@@ -213,7 +276,9 @@ with the project owner.
 - **Selection**: every business offering a service on items that fit in a
   locker, **excluding food businesses, large chains and self-service
   laundromats** (no merchant handles the items there; decided 2026-10-24).
-- **Simulated**: lockers, orders, courier rounds, merchant activity.
+- **Simulated**: lockers, orders, courier rounds, merchant activity, consigne
+  bookings, reviews and conversations (fictitious "Démo · …" partner shops
+  only).
 - Locker locations will be defined later; lockers must not be too far from the
   customers they serve.
 - Prepare a structure able to host the production version, including
@@ -233,6 +298,10 @@ with the project owner.
 | Pickup slot | Time window during which the customer collects the item | Créneau de retrait |
 | Order | A customer's request for a service offer | Commande |
 | Round | A courier trip collecting and returning items | Tournée |
+| Slot | Period between two rounds (morning, afternoon, evening) | Créneau (matinée, après-midi, soirée) |
+| Storage booking | A customer's booking of a compartment to store personal belongings (up to 24 h) | Consigne |
+| Subscription | Customer plan lowering consigne prices | Abonnement |
+| Review | A customer's rating (out of 5) and comment on a shop after an order | Avis |
 | Commission | Platform fee charged to the merchant | Commission |
 
 ## Reminders
@@ -241,6 +310,9 @@ Topics the project owner asked to be reminded of:
 
 - **Packs with partners** (e.g. 5 shirts + 2 trousers): the project owner will
   detail the pack offers and partnerships. *(Requested on 2026-10-24.)*
+- **Other interfaces** (merchant, courier, operator) will be reworked after
+  the customer app, including the consigne and three rounds.
+  *(Stated on 2026-10-24.)*
 
 ## Open questions
 
@@ -261,10 +333,15 @@ Questions to the project owner. Answers are moved into the sections above.
 6. **Late fee**: amount, flat or per additional slot / day, and what happens
    after a maximum delay (item returned to the merchant, kept at a depot…)?
    How is the free first occurrence tracked for guest customers (no account)?
-7. **Domain and Android application id**: the domain will be based on
-   "city reconnect". Which exact domain (e.g. `cityreconnect.fr` or `.com`)?
-   The Android ids would then be e.g. `fr.cityreconnect.app` (customers) and
-   `fr.cityreconnect.pro` (merchants); they cannot be changed after
-   publication on the Play Store. The preferred product name is now "Reliance": should the domain
-   follow it, and is the name confirmed once trademark (INPI) and domain
-   checks are done?
+7. **Domain and Android application id**: the app is now called CityPal.
+   Which domain (e.g. `citypal.fr`)? The provisional Android ids are
+   `fr.citypal.app` (customers) and `fr.citypal.pro` (merchants); they cannot
+   be changed after publication on the Play Store. Have trademark (INPI) and
+   domain checks been done for "CityPal"?
+8. **Subscriptions**: plans, prices, what they include (consigne discounts,
+   service benefits, status levels of section 8?). The demo shows
+   placeholder plans.
+9. **Consigne details**: price per use without subscription; what happens
+   after 24 hours (late fee as for services, item moved to a depot…)?
+   Forbidden items (valuables, dangerous goods)? Maximum number of bookings
+   per customer?

@@ -4,16 +4,16 @@
  */
 export default {
   app: {
-    // Working name, chosen "for now" by the project owner (docs/PRODUCT.md).
-    // PROD: confirm the product name (trademark and domain checks).
-    name: 'Reliance Pro',
+    // Product name decided by the project owner on 2026-10-24 (docs/PRODUCT.md).
+    // PROD: trademark (INPI) and domain checks before publication.
+    name: 'CityPal Pro',
     tagline: 'L’espace des commerces, des coursiers à vélo et de l’équipe',
     fictitious: 'Démonstration : activité, commandes et chiffres fictifs.',
     asOf: 'Situation au {date} à {time}',
     home: 'Accueil',
   },
   home: {
-    title: 'Démonstration Reliance',
+    title: 'Démonstration CityPal',
     intro:
       'Des casiers près de chez soi, des commerces du centre-ville et des coursiers à vélo cargo. Choisissez un espace à découvrir.',
     customer: {
@@ -110,7 +110,7 @@ export default {
     lockerBack: 'Exploitation',
     lockerFillRate: 'Remplissage',
     // Text on the drawn control panel screen.
-    panel: 'Reliance',
+    panel: 'CityPal',
     doorsTitle: 'État des portes',
     statuses: {
       free: 'Libre',
