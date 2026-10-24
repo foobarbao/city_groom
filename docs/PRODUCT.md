@@ -192,6 +192,17 @@ Decided by the project owner on 2026-10-24:
   labelled as such (open question 8).
 - The customer chooses the compartment size; the app shows the locker front
   and the door to open, as for services.
+- **Transfer** (decided 2026-10-24): the customer can have the stored items
+  **moved to another locker** to collect them there later. The transfer can
+  be requested **at any time** (when booking or after drop-off); a courier
+  moves the items at a **round** (07:00, 14:00 or 20:00) after the request,
+  and the items must reach the new locker **within the 24 hours** after
+  drop-off. The customer then collects them at the new locker, after that
+  round and before the 24-hour deadline.
+- **Transfer price**: each subscription **includes a number of transfers per
+  month**; beyond it, or without a subscription, a **supplement** applies,
+  reduced according to the plan. Amounts are not defined yet: placeholders
+  in the demo (open question 11).
 
 ## 4c. Customer app experience
 
@@ -321,6 +332,7 @@ with the project owner.
 | Order | A customer's request for a service offer | Commande |
 | Round | A courier trip collecting and returning items | Tournée |
 | Slot | Period between two rounds (morning, afternoon, evening) | Créneau (matinée, après-midi, soirée) |
+| Transfer | Moving stored items to another locker at a round | Transfert / déplacement |
 | Storage booking | A customer's booking of a compartment to store personal belongings (up to 24 h) | Consigne |
 | Subscription | Customer plan lowering consigne prices | Abonnement |
 | Review | A customer's rating (out of 5) and comment on a shop after an order | Avis |
@@ -372,3 +384,6 @@ Questions to the project owner. Answers are moved into the sections above.
     laundry), which would require committing partner merchants to them? Is the
     project meant to seek a formal public-interest recognition, or is
     "intérêt général" only a mission statement?
+11. **Transfer amounts**: supplement without subscription, number of
+    transfers included per plan, reduction beyond the included ones. Can a
+    stored item be transferred more than once?

@@ -42,7 +42,8 @@ const { t } = useI18n()
   gap: 14px;
   padding: 14px 16px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: inherit;
   text-decoration: none;

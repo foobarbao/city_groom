@@ -19,6 +19,7 @@ from apps.demo.catalogue import (
     CONSIGNE_MAX_HOURS,
     CONSIGNE_MIN_NOTICE_HOURS,
     CONSIGNE_PRICES,
+    CONSIGNE_TRANSFER_PRICE,
     DEMO_MERCHANTS,
     REVIEW_COMMENTS,
     SERVICES_BY_CATEGORY,
@@ -102,6 +103,7 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
                 "name": p.name,
                 "monthly_price": str(p.monthly_price),
                 "consigne_discount": str(p.consigne_discount),
+                "transfers_included": p.transfers_included,
                 "perks": list(p.perks),
             }
             for p in SUBSCRIPTION_PLANS
@@ -110,6 +112,7 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
             "max_hours": CONSIGNE_MAX_HOURS,
             "min_notice_hours": CONSIGNE_MIN_NOTICE_HOURS,
             "prices": {size.value: str(price) for size, price in CONSIGNE_PRICES.items()},
+            "transfer_price": str(CONSIGNE_TRANSFER_PRICE),
         },
         "round_times": [t.strftime("%H:%M") for t in ROUND_TIMES],
         "slots": [

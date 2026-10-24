@@ -348,7 +348,8 @@ function pay(): void {
   padding: 10px 8px;
   border: 2px solid transparent;
   border-radius: var(--cg-radius-m);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
   font: inherit;

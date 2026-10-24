@@ -37,3 +37,10 @@ def test_slots_follow_the_three_rounds() -> None:
     ]
     assert catalogue["consigne"]["min_notice_hours"] == 4
     assert catalogue["consigne"]["max_hours"] == 24
+
+
+def test_plans_include_transfers() -> None:
+    catalogue = build_customer_catalogue(NOW)
+
+    assert [p["transfers_included"] for p in catalogue["plans"]] == [0, 2, 6]
+    assert catalogue["consigne"]["transfer_price"] == "2.00"

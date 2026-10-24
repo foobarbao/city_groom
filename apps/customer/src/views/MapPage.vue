@@ -164,7 +164,8 @@ onMounted(load)
   gap: 2px;
   padding: 14px 18px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
 }
 .brand {
@@ -227,7 +228,8 @@ onMounted(load)
   cursor: pointer;
 }
 .tabs button.active {
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   color: var(--cg-ink);
   box-shadow: var(--cg-shadow);
 }
@@ -235,7 +237,8 @@ onMounted(load)
   margin: 0;
   padding: 18px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   color: var(--cg-ink-soft);
 }
 .cards {

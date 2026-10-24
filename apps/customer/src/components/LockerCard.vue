@@ -61,7 +61,8 @@ const total = computed(() => Object.values(free.value).reduce((a, b) => a + b, 0
   padding: 16px 18px;
   border: 0;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   color: var(--cg-ink);
   font: inherit;
   text-align: left;

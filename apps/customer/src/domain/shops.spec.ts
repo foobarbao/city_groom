@@ -76,6 +76,7 @@ describe('consigne prices', () => {
     name: 'P',
     monthly_price: '0',
     consigne_discount: discount,
+    transfers_included: 0,
     perks: [],
   })
   const prices = { S: '2.00', L: '4.00' }

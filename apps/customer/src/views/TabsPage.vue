@@ -66,14 +66,24 @@ const account = useAccountStore()
 </template>
 
 <style scoped>
+/* Floating glass bar, rounded, above the bottom edge. */
 .tab-bar {
-  --background: var(--cg-surface);
+  --background: var(--cg-glass-strong);
   --color: var(--cg-ink-soft);
   --color-selected: var(--cg-leaf);
   height: 64px;
-  border-top: none;
-  box-shadow: 0 -8px 24px rgb(36 87 74 / 8%);
-  font-weight: 700;
+  margin: 0 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: 0;
+  border: none;
+  border-radius: var(--cg-radius-l);
+  box-shadow: var(--cg-shadow-strong);
+  backdrop-filter: var(--cg-glass-filter);
+  font-weight: 800;
+}
+ion-tab-button.tab-selected ion-icon {
+  padding: 2px 14px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-leaf-soft);
 }
 ion-badge {
   --background: var(--cg-sun);

@@ -250,7 +250,9 @@ class SubscriptionPlan:
         code: Stable identifier.
         name: Display name (French).
         monthly_price: Price per month in euros (0 for no subscription).
-        consigne_discount: Share taken off consigne prices (0 to 1).
+        consigne_discount: Share taken off consigne prices and transfer
+            supplements (0 to 1).
+        transfers_included: Consigne transfers included per month.
         perks: Benefits shown to customers (French).
     """
 
@@ -258,6 +260,7 @@ class SubscriptionPlan:
     name: str
     monthly_price: Decimal
     consigne_discount: Decimal
+    transfers_included: int
     perks: tuple[str, ...]
 
 
@@ -270,6 +273,7 @@ SUBSCRIPTION_PLANS: tuple[SubscriptionPlan, ...] = (
         "Sans abonnement",
         Decimal("0.00"),
         Decimal("0"),
+        0,
         ("Consigne au prix normal", "Commande de services"),
     ),
     SubscriptionPlan(
@@ -277,14 +281,21 @@ SUBSCRIPTION_PLANS: tuple[SubscriptionPlan, ...] = (
         "CityPal Plus",
         Decimal("4.90"),
         Decimal("0.5"),
-        ("Consigne à -50 %", "Réservation prioritaire"),
+        2,
+        ("Consigne à -50 %", "2 transferts de consigne inclus par mois", "Réservation prioritaire"),
     ),
     SubscriptionPlan(
         "premium",
         "CityPal Premium",
         Decimal("9.90"),
         Decimal("0.8"),
-        ("Consigne à -80 %", "Réservation prioritaire", "Premier retard offert chaque mois"),
+        6,
+        (
+            "Consigne à -80 %",
+            "6 transferts de consigne inclus par mois",
+            "Réservation prioritaire",
+            "Premier retard offert chaque mois",
+        ),
     ),
 )
 
@@ -296,6 +307,11 @@ CONSIGNE_PRICES: dict[CompartmentSize, Decimal] = {
     M: Decimal("3.00"),
     L: Decimal("4.00"),
 }
+
+# ASSUMPTION: supplement for moving stored items to another locker, without
+# subscription; subscribers get transfers included, then the plan's discount
+# (placeholders, open question 11).
+CONSIGNE_TRANSFER_PRICE = Decimal("2.00")
 
 # Maximum storage time after drop-off (docs/PRODUCT.md §4b).
 CONSIGNE_MAX_HOURS = 24

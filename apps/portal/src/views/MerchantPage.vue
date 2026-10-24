@@ -195,7 +195,8 @@ function select(code: string): void {
   padding: 10px 16px;
   border: none;
   border-radius: var(--cg-radius-pill);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   font: inherit;
   font-size: 15px;
@@ -237,7 +238,8 @@ function select(code: string): void {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   border: 4px solid var(--cg-chart-2);
 }
 </style>

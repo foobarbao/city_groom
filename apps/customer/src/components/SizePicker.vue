@@ -75,7 +75,8 @@ const ICONS: Record<string, string> = {
   padding: 14px 6px 12px;
   border: 0;
   border-radius: var(--cg-radius-m);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   color: var(--cg-ink);
   font: inherit;
   box-shadow: var(--cg-shadow);

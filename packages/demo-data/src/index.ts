@@ -133,8 +133,10 @@ export interface SubscriptionPlan {
   code: string
   name: string
   monthly_price: string
-  /** Share taken off consigne prices, "0" to "1". */
+  /** Share taken off consigne prices and transfer supplements, "0" to "1". */
   consigne_discount: string
+  /** Consigne transfers included per month. */
+  transfers_included: number
   perks: string[]
 }
 
@@ -158,6 +160,8 @@ export interface CatalogueData {
     min_notice_hours: number
     /** Price per booking without subscription, by compartment size. */
     prices: Record<string, string>
+    /** Supplement to move stored items to another locker, without subscription. */
+    transfer_price: string
   }
   round_times: string[]
   slots: Slot[]

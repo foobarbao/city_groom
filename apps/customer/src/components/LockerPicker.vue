@@ -119,7 +119,8 @@ const shown = computed(() => {
   padding: 12px 16px;
   border: 2px solid transparent;
   border-radius: var(--cg-radius-m);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
   font: inherit;

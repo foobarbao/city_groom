@@ -194,7 +194,8 @@ h1 {
   gap: 14px;
   padding: 18px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
 }
 h2 {
@@ -227,7 +228,8 @@ h2 {
   margin: 0;
   padding: 8px 16px;
   border-radius: var(--cg-radius-pill);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   font-weight: 800;
   color: var(--cg-pine);

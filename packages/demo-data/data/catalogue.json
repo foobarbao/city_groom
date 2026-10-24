@@ -848,6 +848,7 @@
    "name": "Sans abonnement",
    "monthly_price": "0.00",
    "consigne_discount": "0",
+   "transfers_included": 0,
    "perks": [
     "Consigne au prix normal",
     "Commande de services"
@@ -858,8 +859,10 @@
    "name": "CityPal Plus",
    "monthly_price": "4.90",
    "consigne_discount": "0.5",
+   "transfers_included": 2,
    "perks": [
     "Consigne à -50 %",
+    "2 transferts de consigne inclus par mois",
     "Réservation prioritaire"
    ]
   },
@@ -868,8 +871,10 @@
    "name": "CityPal Premium",
    "monthly_price": "9.90",
    "consigne_discount": "0.8",
+   "transfers_included": 6,
    "perks": [
     "Consigne à -80 %",
+    "6 transferts de consigne inclus par mois",
     "Réservation prioritaire",
     "Premier retard offert chaque mois"
    ]
@@ -882,7 +887,8 @@
    "S": "2.00",
    "M": "3.00",
    "L": "4.00"
-  }
+  },
+  "transfer_price": "2.00"
  },
  "round_times": [
   "07:00",

@@ -12,7 +12,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
-import { addHours } from '../domain/time'
+import { addHours, serviceDay } from '../domain/time'
 
 /** Status of a service order, as in the demo activity. */
 export type OrderStatus =
@@ -48,6 +48,20 @@ export interface ConsigneBooking {
   bookedAt: string
   droppedAt: string | null
   status: 'booked' | 'stored' | 'collected' | 'cancelled'
+  /** Move to another locker at a round (absent on bookings saved before transfers existed). */
+  transfer?: ConsigneTransfer | null
+}
+
+/** Stored items moved to another locker by a courier at a round. */
+export interface ConsigneTransfer {
+  toLocker: string
+  /** Round at which the items are moved; collectable at the new locker after it. */
+  roundAt: string
+  door: string
+  priceCents: number
+  /** True when covered by the plan's monthly allowance. */
+  included: boolean
+  requestedAt: string
 }
 
 /** A quote sent by a merchant for a special service. */
@@ -211,6 +225,13 @@ export const useAccountStore = defineStore('account', () => {
     state.value.bookings.filter((b) => b.status === 'booked' || b.status === 'stored'),
   )
   const pendingQuotes = computed(() => state.value.quotes.filter((q) => q.status === 'pending'))
+  /** Included transfers already used this calendar month (Grenoble time). */
+  const transfersUsedThisMonth = computed(() => {
+    const month = serviceDay(new Date()).slice(0, 7)
+    return state.value.bookings.filter(
+      (b) => b.transfer?.included && serviceDay(new Date(b.transfer.requestedAt)).startsWith(month),
+    ).length
+  })
 
   /** Demo sign-in: no password, the name is only shown in the app. */
   function signIn(name: string): void {
@@ -251,6 +272,18 @@ export const useAccountStore = defineStore('account', () => {
   function markCollected(id: string): void {
     const booking = state.value.bookings.find((b) => b.id === id)
     if (booking?.status === 'stored') booking.status = 'collected'
+  }
+
+  /** Asks a courier to move the items to another locker (one transfer per booking in the demo). */
+  function requestTransfer(id: string, transfer: Omit<ConsigneTransfer, 'requestedAt'>): void {
+    const booking = state.value.bookings.find((b) => b.id === id)
+    if (
+      !booking ||
+      booking.transfer ||
+      (booking.status !== 'booked' && booking.status !== 'stored')
+    )
+      return
+    booking.transfer = { ...transfer, requestedAt: new Date().toISOString() }
   }
 
   function cancelBooking(id: string): void {
@@ -339,6 +372,7 @@ export const useAccountStore = defineStore('account', () => {
     reviewedOrderIds,
     activeBookings,
     pendingQuotes,
+    transfersUsedThisMonth,
     signIn,
     signOut,
     choosePlan,
@@ -346,6 +380,7 @@ export const useAccountStore = defineStore('account', () => {
     markDropped,
     markCollected,
     cancelBooking,
+    requestTransfer,
     addOrder,
     markOrderDropped,
     addReview,

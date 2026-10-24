@@ -31,11 +31,28 @@ const account = useAccountStore()
 const labels = computed(() => ({ today: t('common.today'), tomorrow: t('common.tomorrow') }))
 
 const booking = computed(() => account.state.bookings.find((b) => b.id === props.id))
+const lockerName = (code: string | undefined): string =>
+  lockers.find((l) => l.code === code)?.name ?? code ?? ''
 const locker = computed(() => lockers.find((l) => l.code === booking.value?.lockerCode))
+const transfer = computed(() => booking.value?.transfer ?? null)
+/** After the transfer round, the items wait at the new locker, behind another door. */
+const moved = computed(
+  () => transfer.value !== null && new Date(transfer.value.roundAt) <= new Date(),
+)
+const shownLocker = computed(() =>
+  moved.value ? (transfer.value?.toLocker ?? '') : (booking.value?.lockerCode ?? ''),
+)
+const shownDoor = computed(() => (moved.value ? transfer.value?.door : booking.value?.door) ?? '')
 const drawing = computed(() => {
-  const layout = booking.value ? lockerLayout(booking.value.lockerCode) : undefined
+  const layout = shownLocker.value ? lockerLayout(shownLocker.value) : undefined
   return layout ? computeLockerDrawing(layout, sizes) : null
 })
+const canTransfer = computed(
+  () =>
+    booking.value !== undefined &&
+    !transfer.value &&
+    (booking.value.status === 'booked' || booking.value.status === 'stored'),
+)
 const slotLabel = computed(
   () => catalogue.slots.find((s) => s.code === booking.value?.slotCode)?.label ?? t('consigne.now'),
 )
@@ -85,14 +102,46 @@ const deadline = computed(() =>
           <p>{{ t(`locker.sizes.${booking.size}`) }} · {{ euros(booking.priceCents) }}</p>
         </section>
 
+        <section v-if="transfer" class="soft-card transfer">
+          <template v-if="moved">
+            <strong>{{
+              t('consigne.transfer.ready', { locker: lockerName(transfer.toLocker) })
+            }}</strong>
+          </template>
+          <template v-else>
+            <strong>{{
+              t('consigne.transfer.planned', { locker: lockerName(transfer.toLocker) })
+            }}</strong>
+            <span class="muted small">
+              {{
+                t('consigne.transfer.plannedAt', {
+                  time: clock(transfer.roundAt),
+                  day: dayLabel(transfer.roundAt, labels),
+                })
+              }}
+            </span>
+          </template>
+          <span class="muted small">
+            {{
+              t('consigne.transfer.from', {
+                time: clock(transfer.roundAt),
+                day: dayLabel(transfer.roundAt, labels),
+              })
+            }}
+            · {{ transfer.included ? t('common.free') : euros(transfer.priceCents) }}
+          </span>
+        </section>
+
         <section v-if="drawing" class="stage">
           <locker-front
             :drawing="drawing"
-            :highlighted-label="booking.door"
+            :highlighted-label="shownDoor"
             :panel-label="t('locker.panel')"
-            :aria-label="t('consigne.door', { label: booking.door })"
+            :aria-label="t('consigne.door', { label: shownDoor })"
           />
-          <p class="door">{{ t('consigne.door', { label: booking.door }) }}</p>
+          <p class="door">
+            {{ lockerName(shownLocker) }} · {{ t('consigne.door', { label: shownDoor }) }}
+          </p>
           <p class="muted small">{{ t('consigne.doorNote') }}</p>
         </section>
 
@@ -113,7 +162,16 @@ const deadline = computed(() =>
             size="large"
             @click="account.markCollected(booking.id)"
           >
-            {{ t('consigne.open', { label: booking.door }) }} · {{ t('consigne.collect') }}
+            {{ t('consigne.open', { label: shownDoor }) }} · {{ t('consigne.collect') }}
+          </ion-button>
+          <ion-button
+            v-if="canTransfer"
+            expand="block"
+            shape="round"
+            fill="outline"
+            :router-link="`/consigne/${booking.id}/transfert`"
+          >
+            {{ t('consigne.transfer.button') }}
           </ion-button>
           <ion-button
             v-if="booking.status === 'booked'"
@@ -148,10 +206,15 @@ const deadline = computed(() =>
 .door {
   padding: 8px 16px;
   border-radius: var(--cg-radius-pill);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   font-weight: 800;
   color: var(--cg-pine);
+}
+.transfer {
+  gap: 4px;
+  border: 2px solid var(--cg-leaf-soft);
 }
 .actions {
   display: flex;

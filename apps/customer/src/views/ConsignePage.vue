@@ -27,7 +27,13 @@ const past = computed(() =>
       <main class="page">
         <h1 class="page-title">{{ t('consigne.title') }}</h1>
         <p class="page-intro">{{ t('consigne.intro') }}</p>
-        <ion-button expand="block" shape="round" size="large" router-link="/consigne/reserver">
+        <ion-button
+          expand="block"
+          shape="round"
+          size="large"
+          color="secondary"
+          router-link="/consigne/reserver"
+        >
           {{ t('consigne.book') }}
         </ion-button>
 

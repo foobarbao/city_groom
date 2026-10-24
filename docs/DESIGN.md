@@ -12,9 +12,16 @@ Principles:
 
 - **Soft shapes**: generous corner radii (14 / 20 / 28 px), cushioned cards
   with diffuse shadows, no hard toolbars, pill-shaped chips.
-- **Calm, green palette**: pale leaf-tinted ground, deep pine for text, one
-  leaf-green accent for what to act on; a warm sun tone only for the inside
-  of the door that opens.
+- **Green, warm lemon and cream** (revised 2026-10-24, the first palette
+  was found too bland): cream ground with soft mint and lemon halos, deep
+  green text, a vivid green for actions (white text, 5.3:1) and a warm
+  lemon accent (dark text) for the consigne and highlights. Pastel but
+  assertive.
+- **Transparency** for a tech touch: cards, sheets and the floating tab bar
+  are frosted glass (`--cg-glass`, `backdrop-filter`) over the halos, with a
+  thin light edge built into `--cg-shadow`.
+- **Friendly, not grotesque**: rounded Nunito kept, headings in black weight
+  (900).
 - **Rounded type**: Nunito (variable, bundled with the app so it works offline
   and in the Android app).
 - **Show, don't explain**: the locker is drawn; the door the customer will use
@@ -46,7 +53,9 @@ mapped onto Ionic's colour variables. Components only use these tokens.
 | `--cg-ink`, `--cg-ink-soft` | Main and secondary text |
 | `--cg-leaf`, `--cg-leaf-soft` | Accent (actions, selected, available) and its background |
 | `--cg-pine` | Strong text on soft backgrounds |
-| `--cg-sun` | Inside of the opening door |
+| `--cg-sun`, `--cg-sun-soft` | Warm lemon accent (consigne, badges, opening door) and its pastel |
+| `--cg-glass`, `--cg-glass-strong`, `--cg-glass-filter` | Frosted glass cards and bars |
+| `--cg-backdrop` | Cream ground with colour halos, behind every page |
 | `--cg-locker-*` | Locker drawing |
 | `--cg-radius-*`, `--cg-shadow*` | Shapes and depth |
 | `--cg-chart-1`, `--cg-chart-2`, `--cg-chart-grid` | Chart series and grid (never text) |

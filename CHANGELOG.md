@@ -112,6 +112,12 @@ Versioning: [SemVer](https://semver.org/).
   streets that cross-fade on scroll and loop; photos from Wikimedia Commons
   under free licences, credited on the page. Wording to be reviewed (open
   question 10 in `docs/PRODUCT.md`).
+- Consigne transfer: stored items can be moved to another locker at a round
+  within the 24 hours (docs/PRODUCT.md §4b); plans include transfers per
+  month, then a supplement reduced by the plan (placeholder amounts); new
+  transfer screen and booking page states.
+- New visual theme: green, warm lemon and cream, frosted glass cards, floating
+  tab bar, vivid mode cards (docs/DESIGN.md); applies to both apps.
 
 ### Fixed
 

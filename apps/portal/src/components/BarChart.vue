@@ -277,7 +277,8 @@ svg {
   gap: 2px;
   padding: 8px 12px;
   border-radius: var(--cg-radius-s);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow-strong);
   font-size: 12px;
   color: var(--cg-ink);

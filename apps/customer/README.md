@@ -18,7 +18,8 @@ history, as in native apps.
 |           | `/commander`                                                                | Order a service or an accepted quote: quantity, drop-off and pickup lockers, next round, simulated payment                                                  |
 | Consigne  | `/consigne`                                                                 | How it works, current bookings, history                                                                                                                     |
 |           | `/consigne/reserver`                                                        | Booking in 4 steps: locker (filter by kind of place), when (now, or a slot at least 4 h ahead), size, summary and simulated payment                         |
-|           | `/consigne/:id`                                                             | Booking: slot, deadline (24 h after drop-off), locker front with the door, drop-off / collect / cancel                                                      |
+|           | `/consigne/:id`                                                             | Booking: slot, deadline (24 h after drop-off), locker front with the door, drop-off / collect / cancel / transfer                                           |
+|           | `/consigne/:id/transfert`                                                   | Transfer to another locker at a round within the 24 hours, price by plan                                                                                    |
 | Messages  | `/messages`, `/messages/:shop`                                              | Quotes and conversations; chat with photos, quotes to accept or decline                                                                                     |
 | Compte    | `/compte`, `/compte/abonnement`, `/compte/commandes`, `/compte/avis/:order` | Demo sign-in, subscription plans, orders, review after a collected order                                                                                    |
 
@@ -35,7 +36,7 @@ Visual direction and tokens: [`docs/DESIGN.md`](../../docs/DESIGN.md).
   simulated. "Réinitialiser la démo" in the account tab resets them.
   PROD: customer endpoints of the API.
 - Business rules are pure, unit-tested functions in `src/domain/`: slots and
-  booking notice (`slots.ts`), Grenoble time (`time.ts`), prices
+  booking notice (`slots.ts`), transfers (`transfer.ts`), Grenoble time (`time.ts`), prices
   (`pricing.ts`), shop search (`shops.ts`), verified reviews (`reviews.ts`).
   The backend will enforce them; the app previews them.
 

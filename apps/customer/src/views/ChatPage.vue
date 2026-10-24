@@ -159,7 +159,8 @@ function accept(id: string): void {
 .bubble.merchant {
   align-self: flex-start;
   border-bottom-left-radius: 6px;
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
 }
 .photo {
@@ -203,7 +204,8 @@ function accept(id: string): void {
   padding: 12px 16px;
   border: none;
   border-radius: var(--cg-radius-pill);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
   font: inherit;
@@ -214,7 +216,8 @@ function accept(id: string): void {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   font-size: 20px;
   cursor: pointer;

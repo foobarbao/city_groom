@@ -39,7 +39,8 @@ const { t } = useI18n()
   gap: 4px;
   padding: 16px 18px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
 }
 .category {

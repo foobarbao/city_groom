@@ -151,19 +151,40 @@ const CATEGORY_ICONS: Record<string, string> = {
   color: inherit;
   text-decoration: none;
   box-shadow: var(--cg-shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .mode.services {
-  background: linear-gradient(160deg, var(--cg-leaf-soft), var(--cg-surface));
+  /* Both ends keep white text above 4.5:1. */
+  background: linear-gradient(150deg, #0f6b47, #158556);
 }
 .mode.consigne {
-  background: linear-gradient(
-    160deg,
-    color-mix(in srgb, var(--cg-sun) 40%, var(--cg-surface)),
-    var(--cg-surface)
-  );
+  background: linear-gradient(150deg, #f7d44c, #ffeea0);
+}
+/* Fixed text colours: both cards keep their colours in dark mode. */
+.mode.services .mode-title,
+.mode.services .mode-text {
+  color: #ffffff;
+}
+.mode.consigne .mode-title,
+.mode.consigne .mode-text {
+  color: #12352a;
+}
+.mode:hover,
+.mode:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--cg-shadow-strong);
 }
 .mode-icon {
-  font-size: 30px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--cg-radius-m);
+  background: rgb(255 255 255 / 35%);
+  backdrop-filter: blur(6px);
+  font-size: 26px;
 }
 .mode-title {
   font-size: 18px;
@@ -194,7 +215,8 @@ const CATEGORY_ICONS: Record<string, string> = {
   gap: 6px;
   padding: 12px 4px;
   border-radius: var(--cg-radius-m);
-  background: var(--cg-surface);
+  background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
   font-size: 12px;

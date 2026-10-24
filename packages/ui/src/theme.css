@@ -1,28 +1,41 @@
 /*
- * Visual identity of the customer app: soft, calm and green (docs/DESIGN.md).
- *
- * Layout concept: content floats on rounded, cushioned surfaces over a pale
- * leaf-tinted ground; one leaf-green accent marks what to act on.
+ * Visual identity of CityPal: green for the ecological side, warm lemon,
+ * cream; pastel but assertive, with a tech touch through transparency
+ * (frosted glass cards over soft colour halos). Rounded and friendly
+ * (docs/DESIGN.md).
  *
  * Every colour is a token; dark values are redefined below. Ionic colours are
  * mapped onto these tokens so its components follow the same palette.
  */
 :root {
   /* Palette */
-  --cg-ground: #f2f6f1; /* pale leaf-tinted background */
-  --cg-surface: #ffffff; /* cards, sheets */
-  --cg-surface-soft: #e6efe7; /* chips, inactive controls */
-  --cg-ink: #203a33; /* main text, deep pine */
-  --cg-ink-soft: #5d746c; /* secondary text */
-  --cg-leaf: #3f9a73; /* accent: what to act on */
-  --cg-leaf-soft: #cfe9db; /* accent background */
-  --cg-pine: #24574a; /* headers, strong surfaces */
-  --cg-sun: #f2c66d; /* small highlights (free door glow) */
-  --cg-locker-body: #dfe7e1; /* locker frame */
-  --cg-locker-door: #f8faf8; /* locker doors */
-  --cg-locker-door-edge: #c9d6cd;
-  --cg-shadow: 0 10px 30px rgb(36 87 74 / 10%);
-  --cg-shadow-strong: 0 16px 40px rgb(36 87 74 / 16%);
+  --cg-ground: #fbf6e9; /* cream background */
+  --cg-surface: #fffdf6; /* opaque surfaces, text on green */
+  --cg-surface-soft: #eef2df; /* chips, inactive controls (pastel sage) */
+  --cg-ink: #12352a; /* main text, deep green */
+  --cg-ink-soft: #566e66; /* secondary text */
+  --cg-leaf: #127a51; /* action green; white text on it passes AA (5.3:1) */
+  --cg-leaf-soft: #d3efdc; /* pastel mint, accent background */
+  --cg-pine: #0e4d37; /* strong text on pastel backgrounds */
+  --cg-sun: #f7d44c; /* warm lemon accent; dark text on it */
+  --cg-sun-soft: #fff1b8; /* pastel lemon background */
+  --cg-locker-body: #e4e9d9; /* locker frame */
+  --cg-locker-door: #fffdf6; /* locker doors */
+  --cg-locker-door-edge: #cdd6c2;
+
+  /* Glass: translucent cards over the colour halos of the background */
+  --cg-glass: rgb(255 255 255 / 58%);
+  --cg-glass-strong: rgb(255 255 255 / 78%);
+  --cg-glass-filter: blur(18px) saturate(160%);
+  --cg-shadow:
+    0 12px 32px rgb(18 53 42 / 9%), inset 0 0 0 1px rgb(255 255 255 / 75%);
+  --cg-shadow-strong:
+    0 18px 44px rgb(18 53 42 / 15%), inset 0 0 0 1px rgb(255 255 255 / 85%);
+  --cg-backdrop:
+    radial-gradient(60% 45% at 0% 0%, #cdeed8 0%, transparent 70%),
+    radial-gradient(50% 40% at 100% 12%, #fff0a8 0%, transparent 70%),
+    radial-gradient(70% 45% at 85% 100%, #d9f2c9 0%, transparent 70%),
+    var(--cg-ground);
 
   /* Charts (validated with the dataviz palette validator: CVD separation and
      lightness band, light surface). Text never uses these colours. */
@@ -36,7 +49,7 @@
   --cg-radius-s: 14px;
   --cg-radius-pill: 999px;
 
-  /* Type */
+  /* Type: Nunito, rounded and friendly */
   --cg-font:
     "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui,
     sans-serif;
@@ -45,52 +58,74 @@
   --ion-font-family: var(--cg-font);
   --ion-background-color: var(--cg-ground);
   --ion-text-color: var(--cg-ink);
-  --ion-color-primary: #3f9a73;
-  --ion-color-primary-rgb: 63, 154, 115;
+  --ion-color-primary: #127a51;
+  --ion-color-primary-rgb: 18, 122, 81;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #378865;
-  --ion-color-primary-tint: #52a481;
-  --ion-color-success: #3f9a73;
-  --ion-color-medium: #5d746c;
+  --ion-color-primary-shade: #106b47;
+  --ion-color-primary-tint: #2a8762;
+  --ion-color-secondary: #f7d44c;
+  --ion-color-secondary-rgb: 247, 212, 76;
+  --ion-color-secondary-contrast: #12352a;
+  --ion-color-secondary-contrast-rgb: 18, 53, 42;
+  --ion-color-secondary-shade: #d9bb43;
+  --ion-color-secondary-tint: #f8d85e;
+  --ion-color-success: #127a51;
+  --ion-color-medium: #566e66;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --cg-ground: #13201c;
-    --cg-surface: #1b2c27;
-    --cg-surface-soft: #243a33;
-    --cg-ink: #e4efe9;
-    --cg-ink-soft: #a3b8b0;
-    --cg-leaf: #6cc79c;
-    --cg-leaf-soft: #23493c;
-    --cg-pine: #9fd8bd;
-    --cg-sun: #e8bd62;
-    --cg-locker-body: #2a3f38;
-    --cg-locker-door: #344c44;
-    --cg-locker-door-edge: #456158;
+    --cg-ground: #0d2219;
+    --cg-surface: #132c23;
+    --cg-surface-soft: #1d3a2f;
+    --cg-ink: #eaf4ee;
+    --cg-ink-soft: #a6bdb3;
+    --cg-leaf: #5bd394; /* dark text on it */
+    --cg-leaf-soft: #1c4a37;
+    --cg-pine: #a7e8c5;
+    --cg-sun: #f2cf4a;
+    --cg-sun-soft: #4a4119;
+    --cg-locker-body: #22392f;
+    --cg-locker-door: #2b463a;
+    --cg-locker-door-edge: #3f5d50;
+    --cg-glass: rgb(255 255 255 / 7%);
+    --cg-glass-strong: rgb(255 255 255 / 12%);
+    --cg-shadow:
+      0 12px 32px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 10%);
+    --cg-shadow-strong:
+      0 18px 44px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 14%);
+    --cg-backdrop:
+      radial-gradient(60% 45% at 0% 0%, #164a34 0%, transparent 70%),
+      radial-gradient(50% 40% at 100% 12%, #3d3913 0%, transparent 70%),
+      radial-gradient(70% 45% at 85% 100%, #17402c 0%, transparent 70%),
+      var(--cg-ground);
     --cg-chart-1: #43a678; /* validated against the dark surface */
     --cg-chart-2: #cc7a38;
     --cg-chart-grid: #2c423a;
-    --cg-shadow: 0 10px 30px rgb(0 0 0 / 30%);
-    --cg-shadow-strong: 0 16px 40px rgb(0 0 0 / 40%);
-    --ion-color-primary: #6cc79c;
-    --ion-color-primary-rgb: 108, 199, 156;
-    --ion-color-primary-contrast: #10201a;
-    --ion-color-primary-contrast-rgb: 16, 32, 26;
-    --ion-color-primary-shade: #5fae89;
-    --ion-color-primary-tint: #7bcda6;
-    --ion-color-success: #6cc79c;
-    --ion-color-medium: #a3b8b0;
+    --ion-color-primary: #5bd394;
+    --ion-color-primary-rgb: 91, 211, 148;
+    --ion-color-primary-contrast: #0d2219;
+    --ion-color-primary-contrast-rgb: 13, 34, 25;
+    --ion-color-primary-shade: #50ba82;
+    --ion-color-primary-tint: #6bd79f;
+    --ion-color-success: #5bd394;
+    --ion-color-medium: #a6bdb3;
     color-scheme: dark;
   }
 }
 
 body {
-  background: var(--cg-ground);
+  background: var(--cg-backdrop);
+  background-attachment: fixed;
   color: var(--cg-ink);
   font-family: var(--cg-font);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Pages sit on the cream ground with its colour halos, so glass shows. */
+ion-content {
+  --background: var(--cg-backdrop);
 }
 
 /* Headers float as soft bars instead of hard toolbars. */
@@ -108,7 +143,10 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+}
+h1 {
+  font-weight: 900;
 }
 
 :focus-visible {

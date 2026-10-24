@@ -38,6 +38,26 @@ describe('account store', () => {
     expect(store.activeBookings).toHaveLength(0)
   })
 
+  it('records one transfer per booking and counts the included ones', () => {
+    const store = useAccountStore()
+    const id = store.addBooking({
+      lockerCode: 'a',
+      size: 'L',
+      mode: 'now',
+      slotCode: null,
+      slotStart: '',
+      slotEnd: '',
+      door: 'A1',
+      priceCents: 400,
+      droppedAt: null,
+    })
+    const transfer = { toLocker: 'b', roundAt: '', door: 'B1', priceCents: 0, included: true }
+    store.requestTransfer(id, transfer)
+    store.requestTransfer(id, { ...transfer, toLocker: 'c' })
+    expect(store.state.bookings[0]?.transfer?.toLocker).toBe('b')
+    expect(store.transfersUsedThisMonth).toBe(1)
+  })
+
   it('accepts one review per order', () => {
     const store = useAccountStore()
     store.addReview({ orderId: 'C-1001', shopCode: 'demo-pressing', rating: 5, comment: '' })
