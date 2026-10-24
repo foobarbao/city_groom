@@ -1,8 +1,11 @@
-# Hosting of the fictitious demo site on Netlify (ADR-0004, docs/BUILD_AND_RELEASE.md).
+# Hosting of the fictitious demo site on Netlify (ADR-0004, docs/DEMO.md).
 # Netlify reads this file automatically when the repository is connected.
+# The site combines the customer app (/client/) and the partner portal
+# (/pro/, demo home); redirect rules are written by
+# scripts/assemble-demo-site.mjs.
 [build]
-  command = "npm ci && npm run build:demo-site -w apps/customer"
-  publish = "apps/customer/dist-demo-site"
+  command = "npm ci && npm run build:demo-site"
+  publish = "dist-demo-site"
 
 [build.environment]
   NODE_VERSION = "22"

@@ -77,8 +77,24 @@ Versioning: [SemVer](https://semver.org/).
 - Android project (Capacitor) with the provisional application id
   `fr.reliance.app`; working name "Reliance" in the app; build guide
   (`docs/BUILD_AND_RELEASE.md`).
+- Partner portal (`apps/portal/`), demo version on the bundled dataset: demo
+  home page, merchant space (incoming items per round, items being
+  processed, revenue and commission, forecast, degressive commission from
+  10 % towards 1 %), courier space (rounds, averages, monthly projection,
+  next rounds, indicative route map), operator space (volumes, fill rate per
+  size and per locker, live map, daily orders and forecast, locker detail
+  with door statuses). Chart rules in `docs/DESIGN.md`.
+- Hosted demo site combining the customer app (`/client/`) and the portal
+  (`/pro/`): `npm run build:demo-site` at the repository root,
+  `scripts/assemble-demo-site.mjs`, Netlify configuration; portal and demo
+  site jobs in the frontend CI.
 
 ### Fixed
+
+- MapLibre could not start its worker in built apps (the worker file was not
+  emitted by Vite): the live map now loads in the hosted demo.
+- `export_demo_data` failed when `ALLOWED_HOSTS` did not include `localhost`
+  (CI without a local `.env`).
 
 - Backend tests no longer depend on a local `.env` (HTTPS redirect disabled in
   tests), so CI passes.

@@ -9,9 +9,11 @@ The project is **at the demo stage** (real map and real businesses, simulated
 lockers and orders) and is designed to serve as the foundation for a future
 production version.
 
-> ⚠️ Early stage: lockers (backend, simulation, API) and the first customer app
-> screens (map, locker view) exist; the partner portal is not initialised yet.
-> See [`docs/ROADMAP.md`](docs/ROADMAP.md).
+> ⚠️ Demo stage: lockers (backend, simulation, API), the customer app (map,
+> businesses, locker view) and the partner portal (merchant, courier and
+> operator spaces on fictitious data) exist. Hosted demo:
+> <https://citygroom.netlify.app> ([`docs/DEMO.md`](docs/DEMO.md)). See
+> [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Applications
 
@@ -65,7 +67,7 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | Backend (API + admin) | [`backend/README.md`](backend/README.md) |
 | Customer app | [`apps/customer/README.md`](apps/customer/README.md) |
 | Shared API types | [`packages/api-client/README.md`](packages/api-client/README.md) |
-| Partner portal | _not initialised yet_ |
+| Partner portal | [`apps/portal/README.md`](apps/portal/README.md) |
 
 Local services (PostgreSQL + PostGIS, backend) are defined in
 [`docker-compose.yml`](docker-compose.yml).

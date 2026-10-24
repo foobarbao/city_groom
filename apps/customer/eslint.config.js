@@ -7,7 +7,7 @@ import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescri
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
 export default defineConfigWithVueTs(
-  { ignores: ['dist/**', 'android/**'] },
+  { ignores: ['dist/**', 'dist-demo/**', 'dist-demo-site/**', 'android/**'] },
   pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
   skipFormatting,
