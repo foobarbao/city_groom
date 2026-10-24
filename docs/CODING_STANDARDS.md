@@ -216,7 +216,7 @@ retryCount++
 | Commit messages | English (Conventional Commits) |
 | Repository documentation (`README`, `docs/`, ADRs, changelog) | **English only** |
 | Pull request and issue titles and descriptions | English |
-| User interface (mobile app, merchant portal, admin) | **French**, never hard-coded: all strings go through i18n (`fr` is the default and, for now, only locale) |
+| User interface (mobile app, partner portal, admin) | **French**, never hard-coded: all strings go through i18n (`fr` is the default and, for now, only locale) |
 | Discussions with the project owner | French |
 
 ## 6. Code style and quality

@@ -1,6 +1,6 @@
 # City Groom — Backend
 
-Django project providing the REST API (customer app, merchant portal), the
+Django project providing the REST API (customer app, partner web portal), the
 administration interface for operators, and, later, the simulators for
 lockers, couriers and payment (ADR-0003).
 

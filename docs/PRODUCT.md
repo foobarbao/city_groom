@@ -74,10 +74,13 @@ possible for the customer and for the merchant.
 | Actor | Description | Interface |
 |---|---|---|
 | Customer | Resident who orders a service and uses the lockers. | Customer app (Android + PWA), French UI |
-| Merchant | Local business performing the service. | Merchant portal (web), French UI |
-| Courier partner | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | None in the demo (simulated) |
-| Operator (administrator) | The City Groom team: manages lockers, merchants, offers, orders, commission settings. | Administration (Django admin, web) |
+| Merchant | Local business performing the service. | Partner portal, merchant space (web), French UI |
+| Courier partner | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | Partner portal, courier space (web), French UI |
+| Operator (administrator) | The City Groom team: manages lockers, merchants, courier partners, offers, orders, commission settings. | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
 | Locker | Connected locker with compartments, placed around the city. | Simulated in the demo, real hardware later |
+
+**Platforms**: customers use the **mobile app**; merchants, courier partners
+and operators use **web interfaces** (see ADR-0005).
 
 ## 4. Main flow
 
@@ -103,7 +106,7 @@ Payment is **simulated** in the demo.
 
 ## 5. Merchant experience
 
-The merchant portal must be **attractive** and give merchants a clear view of
+The merchant space of the partner portal must be **attractive** and give merchants a clear view of
 the value the platform brings:
 
 - **Predictability**: upcoming items and when they will arrive ("you will
@@ -119,13 +122,39 @@ with a deliberately minimal interface.
 
 In the demo, the merchant's data (orders, forecasts) is **simulated**.
 
-## 6. Customer accounts
+## 6. Courier partner experience
+
+The project owner will **approach courier partners** (local cargo-bike
+delivery companies) before any partnership exists. Their web space must let
+the owner **present the expected activity and volume** in a convincing way.
+
+Content stated by the project owner:
+
+- the **activity and volume** City Groom expects to generate for them.
+
+Content proposed, to be confirmed (see open questions):
+
+- projected number of items per round and per day, with the two daily
+  collection rounds;
+- map of the lockers and merchants to serve, and the resulting rounds;
+- upcoming rounds once the service runs.
+
+In the demo, all courier data is **simulated** and labelled as such.
+
+## 7. Operator experience
+
+- **Data management** (lockers, merchants, courier partners, offers,
+  commission settings, orders) through the Django admin.
+- **Dashboards** in the operator space of the partner portal: overall activity
+  and forecasts.
+
+## 8. Customer accounts
 
 - **Guest checkout** is allowed: no account is required to order.
 - Customers are **strongly encouraged to sign in**, in order to unlock
   **status levels** and **premium** benefits (details to be defined).
 
-## 7. Business model
+## 9. Business model
 
 - The **customer pays the same price** as they would pay in the shop.
 - City Groom takes a **commission on the merchant's share**.
@@ -141,7 +170,7 @@ In the demo, the merchant's data (orders, forecasts) is **simulated**.
 - **Bundles** and special partnerships (notably with laundries) are planned;
   the strategy will be defined later.
 
-## 8. Demo goals and data
+## 10. Demo goals and data
 
 - Use **as much real data as possible**: real map of Grenoble, real businesses.
 - **Real businesses** (not yet contacted) are shown using **public data only**
@@ -195,3 +224,8 @@ Questions to the project owner. Answers are moved into the sections above.
    should they reflect typical Grenoble prices (researched from public
    sources) or placeholder values?
 6. **Locker dimensions** and compartment sizes (to be defined later).
+7. **Courier space**: which indicators matter most to convince courier
+   partners (items per round, distance per round, revenue estimate, car trips
+   avoided / CO₂ saved…)? Should the projection be adjustable live during a
+   presentation (e.g. number of lockers, number of customers)?
+8. **Operator dashboards**: which indicators do you want to follow first?

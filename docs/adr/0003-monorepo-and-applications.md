@@ -1,6 +1,8 @@
 # ADR-0003 — Monorepo layout, applications and integration boundaries
 
-- **Status**: Accepted
+- **Status**: Accepted — partially superseded by
+  [ADR-0005](0005-partner-web-portal.md) (`apps/merchant/` replaced by the
+  partner portal `apps/portal/`)
 - **Date**: 2026-10-24
 
 ## Context

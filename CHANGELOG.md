@@ -26,4 +26,7 @@ Versioning: [SemVer](https://semver.org/).
   health check endpoint, tests, Ruff and strict mypy configuration.
 - Docker setup: backend `Dockerfile` and `docker-compose.yml` (PostGIS).
 - Backend CI workflow (lint, format, type check, migrations, tests).
+- ADR-0005: single partner web portal (`apps/portal/`) with merchant, courier
+  and operator spaces; courier partner and operator experiences added to
+  `docs/PRODUCT.md`.
 - Pull request template, `.editorconfig`, `.gitignore`.

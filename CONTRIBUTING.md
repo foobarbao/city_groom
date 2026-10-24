@@ -60,7 +60,7 @@ Allowed types:
 | `ci` | Continuous integration |
 | `chore` | Miscellaneous maintenance |
 
-Suggested scopes: `backend`, `customer`, `merchant`, `admin`, `api-client`,
+Suggested scopes: `backend`, `customer`, `portal`, `admin`, `api-client`,
 `docs`, `adr`, `infra`.
 
 Examples:
