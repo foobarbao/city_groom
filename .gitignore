@@ -19,6 +19,8 @@ backend/staticfiles/
 .env
 .env.*
 !.env.example
+# Public build settings of the standalone demo (no secrets)
+!.env.demo
 
 # Android / Capacitor
 android/.gradle/
