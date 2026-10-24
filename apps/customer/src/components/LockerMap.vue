@@ -30,7 +30,7 @@ import {
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, IS_DEMO, MAP_STYLE_URL } from '../config'
+import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, MAP_STYLE_URL } from '../config'
 
 const props = defineProps<{
   /** Lockers to display. */
@@ -69,8 +69,9 @@ function withTotals(collection: LockerFeatureCollection): FeatureCollection {
 
 /** Style to draw: the configured URL, or the embedded offline map in the demo build. */
 async function resolveStyle(): Promise<string | StyleSpecification | null> {
-  if (!IS_DEMO) return MAP_STYLE_URL
-  // Loaded on demand so the offline map is only bundled in the demo build.
+  // Tested inline (not through config.IS_DEMO) so the bundler can drop the
+  // offline map, about 10 MB, from regular builds.
+  if (import.meta.env.VITE_DEMO !== 'true') return MAP_STYLE_URL
   const { loadOfflineStyle } = await import('../demo/offlineMap')
   return loadOfflineStyle()
 }
