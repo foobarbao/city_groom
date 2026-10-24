@@ -25,6 +25,7 @@ import {
   Map as MapLibreMap,
   type MapLayerMouseEvent,
   NavigationControl,
+  setWorkerUrl,
   type StyleSpecification,
 } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
@@ -71,7 +72,13 @@ function withTotals(collection: LockerFeatureCollection): FeatureCollection {
 async function resolveStyle(): Promise<string | StyleSpecification | null> {
   // Tested inline (not through config) so the bundler can drop the offline
   // map, about 10 MB, from every build that does not embed it.
-  if (import.meta.env.VITE_OFFLINE_MAP !== 'true') return MAP_STYLE_URL
+  if (import.meta.env.VITE_OFFLINE_MAP !== 'true') {
+    // MapLibre looks for its worker script next to its own module, where the
+    // bundler does not put it: hand it the URL of the file Vite emits.
+    const { default: workerUrl } = await import('maplibre-gl/dist/maplibre-gl-worker.mjs?url')
+    setWorkerUrl(workerUrl)
+    return MAP_STYLE_URL
+  }
   const { loadOfflineStyle } = await import('../demo/offlineMap')
   return loadOfflineStyle()
 }
