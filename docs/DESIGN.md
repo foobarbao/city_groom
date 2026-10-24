@@ -39,6 +39,26 @@ mapped onto Ionic's colour variables. Components only use these tokens.
 | `--cg-sun` | Inside of the opening door |
 | `--cg-locker-*` | Locker drawing |
 | `--cg-radius-*`, `--cg-shadow*` | Shapes and depth |
+| `--cg-chart-1`, `--cg-chart-2`, `--cg-chart-grid` | Chart series and grid (never text) |
+
+## Charts (partner portal)
+
+The portal dashboards follow one set of rules (`apps/portal/src/components/BarChart.vue`):
+
+- Column charts: columns at most 24 px wide, 4 px rounded tops, square
+  baseline, 2 px gap between stacked segments, one recessive grid, clean
+  ticks.
+- Series colours: `--cg-chart-1` (green, main series, e.g. what the merchant
+  receives) and `--cg-chart-2` (orange, second series, e.g. commission),
+  checked with a colour-vision-deficiency validator in light and dark mode.
+  The orange is below the text contrast threshold against the surface, so
+  values are never conveyed by colour alone: legend, tooltip and a data
+  table ("Voir les données") accompany every chart.
+- Forecast columns use the main colour, lighter, and are named in the legend.
+- Fill rate on maps uses one hue from light to dark: a darker locker is
+  fuller.
+- Text inside charts keeps its size at any width (the chart measures its
+  container).
 
 ## Brand
 

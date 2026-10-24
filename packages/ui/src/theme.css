@@ -24,6 +24,12 @@
   --cg-shadow: 0 10px 30px rgb(36 87 74 / 10%);
   --cg-shadow-strong: 0 16px 40px rgb(36 87 74 / 16%);
 
+  /* Charts (validated with the dataviz palette validator: CVD separation and
+     lightness band, light surface). Text never uses these colours. */
+  --cg-chart-1: #3f9a73; /* main series, e.g. merchant net revenue */
+  --cg-chart-2: #d9822b; /* second series, e.g. platform commission */
+  --cg-chart-grid: #e3ebe5;
+
   /* Shape */
   --cg-radius-l: 28px;
   --cg-radius-m: 20px;
@@ -63,6 +69,9 @@
     --cg-locker-body: #2a3f38;
     --cg-locker-door: #344c44;
     --cg-locker-door-edge: #456158;
+    --cg-chart-1: #43a678; /* validated against the dark surface */
+    --cg-chart-2: #cc7a38;
+    --cg-chart-grid: #2c423a;
     --cg-shadow: 0 10px 30px rgb(0 0 0 / 30%);
     --cg-shadow-strong: 0 16px 40px rgb(0 0 0 / 40%);
     --ion-color-primary: #6cc79c;

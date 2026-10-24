@@ -1,0 +1,60 @@
+/*
+ * Layout helpers shared by the portal views (cards, grids, section titles).
+ * Colours, radii and shadows come from the shared tokens (docs/DESIGN.md).
+ */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-surface);
+  box-shadow: var(--cg-shadow);
+  min-width: 0;
+}
+.card h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--cg-ink);
+}
+.card .note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cg-ink-soft);
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.plain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.plain-list > li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-ground);
+}
+.plain-list strong {
+  font-weight: 800;
+  color: var(--cg-ink);
+}
+.plain-list .muted {
+  font-size: 13px;
+  color: var(--cg-ink-soft);
+}
