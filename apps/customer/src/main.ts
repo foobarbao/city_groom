@@ -21,8 +21,8 @@ import { router } from './router'
 
 const app = createApp(App).use(IonicVue).use(createPinia()).use(i18n).use(router)
 
-// The memory history of the demo build starts nowhere: open the map.
-if (import.meta.env.VITE_DEMO === 'true') void router.push('/carte')
+// The memory history of the single-page demo starts nowhere: open the map.
+if (import.meta.env.VITE_OFFLINE_MAP === 'true') void router.push('/carte')
 
 router
   .isReady()

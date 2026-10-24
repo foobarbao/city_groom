@@ -6,6 +6,8 @@ interface ImportMetaEnv {
   readonly VITE_MAP_STYLE_URL: string
   /** "true" in the standalone demo build: bundled fictitious data, no backend. */
   readonly VITE_DEMO?: string
+  /** "true" in the single-page demo: embedded offline map, in-memory navigation. */
+  readonly VITE_OFFLINE_MAP?: string
 }
 
 interface ImportMeta {

@@ -14,10 +14,10 @@ const routes: RouteRecordRaw[] = [
 ]
 
 export const router = createRouter({
-  // The standalone demo runs as a single embedded page, where path-based URLs
-  // are not available: navigation is kept in memory instead.
+  // The single-page demo runs embedded, where path-based URLs are not
+  // available: navigation is kept in memory instead.
   history:
-    import.meta.env.VITE_DEMO === 'true'
+    import.meta.env.VITE_OFFLINE_MAP === 'true'
       ? createMemoryHistory()
       : createWebHistory(import.meta.env.BASE_URL),
   routes,

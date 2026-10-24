@@ -69,9 +69,9 @@ function withTotals(collection: LockerFeatureCollection): FeatureCollection {
 
 /** Style to draw: the configured URL, or the embedded offline map in the demo build. */
 async function resolveStyle(): Promise<string | StyleSpecification | null> {
-  // Tested inline (not through config.IS_DEMO) so the bundler can drop the
-  // offline map, about 10 MB, from regular builds.
-  if (import.meta.env.VITE_DEMO !== 'true') return MAP_STYLE_URL
+  // Tested inline (not through config) so the bundler can drop the offline
+  // map, about 10 MB, from every build that does not embed it.
+  if (import.meta.env.VITE_OFFLINE_MAP !== 'true') return MAP_STYLE_URL
   const { loadOfflineStyle } = await import('../demo/offlineMap')
   return loadOfflineStyle()
 }

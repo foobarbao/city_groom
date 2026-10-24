@@ -15,7 +15,8 @@
     "test": "vitest run",
     "build:demo": "vite build --mode demo",
     "android:sync": "vite build && cap sync android",
-    "android:open": "cap open android"
+    "android:open": "cap open android",
+    "build:demo-site": "vite build --mode demo-site"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.3",

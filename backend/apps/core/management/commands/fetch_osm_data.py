@@ -17,7 +17,7 @@ from typing import Any
 
 from django.core.management.base import BaseCommand
 
-from apps.core.osm import fetch_overpass
+from apps.core.osm import fetch_overpass_with_retries
 from apps.lockers.osm import TRAM_STOPS_QUERY
 from apps.merchants.osm import build_query
 
@@ -36,7 +36,7 @@ class Command(BaseCommand):
         output: Path = options["output_dir"]
         output.mkdir(parents=True, exist_ok=True)
         for name, query in (("tram_stops", TRAM_STOPS_QUERY), ("merchants", build_query())):
-            payload = fetch_overpass(query)
+            payload = fetch_overpass_with_retries(query)
             path = output / f"{name}.json"
             path.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
             count = len(payload.get("elements", []))

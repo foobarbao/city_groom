@@ -2,3 +2,4 @@ dist/
 android/
 dist-demo/
 src/demo/fixtures.json
+dist-demo-site/

@@ -16,8 +16,14 @@ export const MAP_STYLE_URL: string =
 /** True in the standalone demo build (bundled data, embedded offline map). */
 export const IS_DEMO = import.meta.env.VITE_DEMO === 'true'
 
-/** Whether a base map can be shown: a style URL, or the demo's embedded map. */
-export const HAS_MAP = MAP_STYLE_URL !== '' || IS_DEMO
+/**
+ * True in the single-page demo published as an artifact: map embedded (no
+ * external requests allowed) and in-memory navigation (no URL paths).
+ */
+export const IS_SINGLE_PAGE_DEMO = import.meta.env.VITE_OFFLINE_MAP === 'true'
+
+/** Whether a base map can be shown: a style URL, or the embedded offline map. */
+export const HAS_MAP = MAP_STYLE_URL !== '' || IS_SINGLE_PAGE_DEMO
 
 /** Initial map view: centre of Grenoble. */
 export const GRENOBLE_CENTER: [lng: number, lat: number] = [5.7245, 45.1885]
