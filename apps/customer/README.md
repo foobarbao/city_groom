@@ -9,18 +9,18 @@ User interface in French.
 Navigation is a bottom **tab bar** with five areas; each tab keeps its own
 history, as in native apps.
 
-| Tab | Route | Screen |
-| --- | --- | --- |
-| Accueil | `/accueil` | Choose a mode (have something serviced / store belongings), what is in progress, shop categories, link to the map |
-| | `/carte`, `/casiers/:code` | Map of the lockers and businesses; locker page with the door that opens |
-| Boutiques | `/boutiques` | Shop catalogue: search (name, service, category, street), category filters, partners only; grouped by category, partners first, best rated first |
-| | `/boutiques/:code` | Shop page: rating out of 5 and verified reviews, services with prices, order, quote and chat buttons (partners); public information only (other businesses) |
-| | `/commander` | Order a service or an accepted quote: quantity, drop-off and pickup lockers, next round, simulated payment |
-| Consigne | `/consigne` | How it works, current bookings, history |
-| | `/consigne/reserver` | Booking in 4 steps: locker (filter by kind of place), when (now, or a slot at least 4 h ahead), size, summary and simulated payment |
-| | `/consigne/:id` | Booking: slot, deadline (24 h after drop-off), locker front with the door, drop-off / collect / cancel |
-| Messages | `/messages`, `/messages/:shop` | Quotes and conversations; chat with photos, quotes to accept or decline |
-| Compte | `/compte`, `/compte/abonnement`, `/compte/commandes`, `/compte/avis/:order` | Demo sign-in, subscription plans, orders, review after a collected order |
+| Tab       | Route                                                                       | Screen                                                                                                                                                      |
+| --------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Accueil   | `/accueil`                                                                  | Choose a mode (have something serviced / store belongings), what is in progress, shop categories, link to the map                                           |
+|           | `/carte`, `/casiers/:code`                                                  | Map of the lockers and businesses; locker page with the door that opens                                                                                     |
+| Boutiques | `/boutiques`                                                                | Shop catalogue: search (name, service, category, street), category filters, partners only; grouped by category, partners first, best rated first            |
+|           | `/boutiques/:code`                                                          | Shop page: rating out of 5 and verified reviews, services with prices, order, quote and chat buttons (partners); public information only (other businesses) |
+|           | `/commander`                                                                | Order a service or an accepted quote: quantity, drop-off and pickup lockers, next round, simulated payment                                                  |
+| Consigne  | `/consigne`                                                                 | How it works, current bookings, history                                                                                                                     |
+|           | `/consigne/reserver`                                                        | Booking in 4 steps: locker (filter by kind of place), when (now, or a slot at least 4 h ahead), size, summary and simulated payment                         |
+|           | `/consigne/:id`                                                             | Booking: slot, deadline (24 h after drop-off), locker front with the door, drop-off / collect / cancel                                                      |
+| Messages  | `/messages`, `/messages/:shop`                                              | Quotes and conversations; chat with photos, quotes to accept or decline                                                                                     |
+| Compte    | `/compte`, `/compte/abonnement`, `/compte/commandes`, `/compte/avis/:order` | Demo sign-in, subscription plans, orders, review after a collected order                                                                                    |
 
 Visual direction and tokens: [`docs/DESIGN.md`](../../docs/DESIGN.md).
 
