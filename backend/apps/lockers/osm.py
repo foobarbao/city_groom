@@ -10,16 +10,15 @@ Overpass client (``apps.core.osm``).
 
 from typing import Any
 
-from apps.core.osm import METRO_AREA, fetch_overpass
+from apps.core.osm import METRO_BBOX, fetch_overpass
 from apps.lockers.simulation import SimulatedSite
 
 __all__ = ["TRAM_STOPS_QUERY", "fetch_overpass", "parse_tram_stops"]
 
-# Tram stops inside the metropolitan area boundary.
+# Tram stops around Grenoble (metropolitan area bounding box).
 TRAM_STOPS_QUERY = f"""
 [out:json][timeout:60];
-{METRO_AREA}
-node(area.metro)["railway"="tram_stop"];
+node["railway"="tram_stop"]({METRO_BBOX});
 out body;
 """
 

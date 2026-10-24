@@ -21,9 +21,11 @@ RETRY_BASE_DELAY_S = 10.0
 USER_AGENT = "CityGroom-demo/0.1 (open data import)"
 REQUEST_TIMEOUT_S = 90
 
-# Area filter selecting the Grenoble-Alpes Métropole administrative boundary,
-# to prefix queries with; results are then filtered with ``(area.metro)``.
-METRO_AREA = 'area["name"="Grenoble-Alpes Métropole"]["boundary"="administrative"]->.metro;'
+# Bounding box (south, west, north, east) around Grenoble-Alpes Métropole.
+# A box is used rather than the administrative area: a query on the area name
+# returned no element (first workflow run), and a box is predictable. It
+# slightly exceeds the metropolitan area, which is fine for the demo.
+METRO_BBOX = "45.02,5.55,45.33,5.93"
 
 
 def fetch_overpass(query: str, url: str = OVERPASS_URL) -> dict[str, Any]:

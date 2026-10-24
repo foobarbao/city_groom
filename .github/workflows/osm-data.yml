@@ -46,5 +46,7 @@ jobs:
             echo "No change in OpenStreetMap data."
           else
             git commit -m "chore(data): refresh OpenStreetMap data"
-            git push
+            # The branch may have moved while the job ran.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi

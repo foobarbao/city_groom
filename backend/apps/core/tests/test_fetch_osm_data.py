@@ -2,7 +2,8 @@ import json
 from typing import Any
 from unittest import mock
 
-from django.core.management import call_command
+import pytest
+from django.core.management import CommandError, call_command
 
 
 def test_fetch_osm_data_saves_both_datasets(tmp_path: Any) -> None:
@@ -39,3 +40,16 @@ def test_retries_then_falls_back_to_the_next_endpoint() -> None:
 
     assert result == {"elements": []}
     assert calls == ["https://main"] * osm.ATTEMPTS_PER_ENDPOINT + ["https://mirror"]
+
+
+def test_empty_answer_is_an_error_and_writes_nothing(tmp_path: Any) -> None:
+    with (
+        mock.patch(
+            "apps.core.management.commands.fetch_osm_data.fetch_overpass_with_retries",
+            return_value={"elements": []},
+        ),
+        pytest.raises(CommandError, match="aucun objet"),
+    ):
+        call_command("fetch_osm_data", "--output-dir", str(tmp_path))
+
+    assert list(tmp_path.iterdir()) == []

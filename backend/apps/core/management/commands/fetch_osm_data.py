@@ -15,7 +15,7 @@ from argparse import ArgumentParser
 from pathlib import Path
 from typing import Any
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from apps.core.osm import fetch_overpass_with_retries
 from apps.lockers.osm import TRAM_STOPS_QUERY
@@ -37,6 +37,10 @@ class Command(BaseCommand):
         output.mkdir(parents=True, exist_ok=True)
         for name, query in (("tram_stops", TRAM_STOPS_QUERY), ("merchants", build_query())):
             payload = fetch_overpass_with_retries(query)
+            if not payload.get("elements"):
+                # An empty answer means a broken query, not an empty city: never
+                # overwrite good data with it.
+                raise CommandError(f"{name}: aucun objet renvoyé par Overpass, rien n'est écrit.")
             path = output / f"{name}.json"
             path.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
             count = len(payload.get("elements", []))

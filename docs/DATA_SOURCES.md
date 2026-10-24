@@ -13,6 +13,12 @@ imported. Real data is preferred everywhere; simulated data is labelled
 | Merchants | OpenStreetMap businesses (Overpass API) | ODbL | `python manage.py import_osm_merchants` | Code ready; not yet run against real data (see below) |
 | Locker sizes and layouts | Public documentation of locker networks and manufacturers | — | Encoded in `backend/apps/lockers/sizes.py` | Done, sources in `docs/LOCKERS.md` |
 
+## Area
+
+Queries cover a bounding box around Grenoble-Alpes Métropole (south 45.02,
+west 5.55, north 45.33, east 5.93; `METRO_BBOX` in `backend/apps/core/osm.py`),
+slightly larger than the metropolitan area.
+
 ## Merchant selection rules
 
 Implemented in `backend/apps/merchants/osm.py` and `categories.py`

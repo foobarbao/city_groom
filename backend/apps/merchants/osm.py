@@ -15,7 +15,7 @@ Data © OpenStreetMap contributors, ODbL.
 from dataclasses import dataclass
 from typing import Any
 
-from apps.core.osm import METRO_AREA
+from apps.core.osm import METRO_BBOX
 from apps.merchants.categories import OSM_TAG_CATEGORIES, ServiceCategory
 
 # Tags whose presence marks a chain store.
@@ -29,9 +29,9 @@ def build_query() -> str:
     point for buildings mapped as areas.
     """
     selectors = "\n".join(
-        f'  nwr(area.metro)["{key}"="{value}"];' for key, value, _ in OSM_TAG_CATEGORIES
+        f'  nwr["{key}"="{value}"]({METRO_BBOX});' for key, value, _ in OSM_TAG_CATEGORIES
     )
-    return f"[out:json][timeout:90];\n{METRO_AREA}\n(\n{selectors}\n);\nout center tags;\n"
+    return f"[out:json][timeout:90];\n(\n{selectors}\n);\nout center tags;\n"
 
 
 @dataclass(frozen=True)
