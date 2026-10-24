@@ -26,6 +26,7 @@ Fictitious data is always labelled as such in the apps.
 | Part | Audience | Path | Status |
 |---|---|---|---|
 | Demo home page linking every space | Everyone | `/pro/` (`/` redirects there) | Done |
+| "Notre mission" page: the double mission (convenience and ecology, served by technology) over photos of green Grenoble streets | Everyone, funders | `/pro/mission` | Done; wording to review |
 | Customer app (map, lockers, businesses, locker view) | Residents | `/client/` | Done |
 | Merchant space (incoming items, items being processed, revenue, commission, forecast) | Businesses | `/pro/commerce` | Done |
 | Courier space (rounds per day, items and km per round, monthly projection, next rounds, route map) | Cargo-bike partners | `/pro/coursier` | Done; indicators to confirm (open question 5) |

@@ -88,6 +88,12 @@ Versioning: [SemVer](https://semver.org/).
   (`/pro/`): `npm run build:demo-site` at the repository root,
   `scripts/assemble-demo-site.mjs`, Netlify configuration; portal and demo
   site jobs in the frontend CI.
+- "Notre mission" page in the partner portal (`/mission`, linked from the demo
+  home): the double mission (everyday convenience and ecology, served by
+  technology) told in full-screen chapters over photos of green Grenoble
+  streets that cross-fade on scroll and loop; photos from Wikimedia Commons
+  under free licences, credited on the page. Wording to be reviewed (open
+  question 8 in `docs/PRODUCT.md`).
 
 ### Fixed
 
