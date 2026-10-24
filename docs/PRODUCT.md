@@ -30,7 +30,9 @@ funding and grants:
 
 The service starts in **Grenoble**.
 
-The product name "City Groom" is **not final**. Whatever the name, the brand
+The product name "City Groom" is **not final**. Preferred candidate
+(2026-10-24): **Reliance**, to be confirmed after trademark and domain
+checks (see open questions). Whatever the name, the brand
 must convey a strong **eco-social** message centred on the idea of
 **reconnecting** people with their city and its local businesses.
 
@@ -261,5 +263,6 @@ Questions to the project owner. Answers are moved into the sections above.
    "city reconnect". Which exact domain (e.g. `cityreconnect.fr` or `.com`)?
    The Android ids would then be e.g. `fr.cityreconnect.app` (customers) and
    `fr.cityreconnect.pro` (merchants); they cannot be changed after
-   publication on the Play Store. Is "City Reconnect" also the new product
-   name?
+   publication on the Play Store. The preferred product name is now "Reliance": should the domain
+   follow it, and is the name confirmed once trademark (INPI) and domain
+   checks are done?
