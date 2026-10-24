@@ -27,4 +27,11 @@ export type CompartmentSize = Schemas['SizeEnum']
 /** Opening methods of a locker. */
 export type AccessMethod = Schemas['AccessMethodEnum']
 
+/** GeoJSON collection of merchants, from `GET /api/v1/merchants/`. */
+export type MerchantFeatureCollection = Schemas['MerchantFeatureList']
+/** One merchant (public data). */
+export type MerchantFeature = Schemas['MerchantFeature']
+/** Service category of a merchant. */
+export type ServiceCategory = NonNullable<NonNullable<MerchantFeature['properties']>['category']>
+
 export type { components, paths } from './schema'

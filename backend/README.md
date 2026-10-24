@@ -12,6 +12,7 @@ backend/
 ├── apps/
 │   ├── core/          Technical features (health check)
 │   ├── lockers/       Lockers, compartments, events, drivers, simulation
+│   ├── merchants/     Local businesses imported from OpenStreetMap
 │   └── integrations/  API keys and scopes for third-party integrations
 ├── manage.py
 ├── pyproject.toml   Dependencies and tool configuration (Ruff, mypy, pytest)

@@ -17,6 +17,7 @@ from drf_spectacular.views import (
 api_v1: list[URLPattern | URLResolver] = [
     path("", include("apps.core.urls")),
     path("", include("apps.lockers.urls")),
+    path("", include("apps.merchants.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="api-docs"),
     path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="api-redoc"),

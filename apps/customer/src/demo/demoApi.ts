@@ -4,7 +4,12 @@
  *
  * Data comes from `fixtures.json` (see `src/demo/README.md`).
  */
-import type { LockerFeatureCollection, LockerLayout, SizeSpec } from '@city-groom/api-client'
+import type {
+  LockerFeatureCollection,
+  LockerLayout,
+  MerchantFeatureCollection,
+  SizeSpec,
+} from '@city-groom/api-client'
 
 import { ApiError } from '../api/http'
 import fixtures from './fixtures.json'
@@ -35,4 +40,14 @@ export function fetchLocker(code: string): Promise<LockerLayout> {
 /** See `fetchSizes` in `api/lockers.ts`. */
 export function fetchSizes(): Promise<SizeSpec[]> {
   return later(fixtures.sizes as SizeSpec[])
+}
+
+/**
+ * See `fetchMerchants` in `api/merchants.ts`. Merchants must be real
+ * businesses, so the demo only contains those imported from OpenStreetMap; the
+ * list is empty until that import has been run (no invented businesses).
+ */
+export function fetchMerchants(): Promise<MerchantFeatureCollection> {
+  const merchants = (fixtures as { merchants?: MerchantFeatureCollection }).merchants
+  return later(merchants ?? { type: 'FeatureCollection', features: [] })
 }

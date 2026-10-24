@@ -84,6 +84,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/merchants/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List merchants
+         * @description Local businesses offering services on items that fit in a locker, as a GeoJSON FeatureCollection. Public data from OpenStreetMap (© OpenStreetMap contributors, ODbL); `is_partner` is false until a partnership is signed. Optionally filtered by category and around a point.
+         */
+        get: operations["merchants_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/operator/locker-events/": {
         parameters: {
             query?: never;
@@ -376,6 +396,69 @@ export interface components {
          * @enum {string}
          */
         LockerStatusEnum: "active" | "maintenance" | "offline";
+        /** @description Merchant as a GeoJSON feature for the map and the list of businesses. */
+        MerchantFeature: {
+            type?: components["schemas"]["GisFeatureEnum"];
+            readonly id?: number;
+            geometry?: {
+                /** @enum {string} */
+                type?: "Point";
+                /**
+                 * @example [
+                 *       12.9721,
+                 *       77.5933
+                 *     ]
+                 */
+                coordinates?: number[];
+            };
+            properties?: {
+                /**
+                 * Nom
+                 * @description Nom public du commerce.
+                 */
+                readonly name?: string;
+                /**
+                 * Catégorie
+                 * @description Type de service proposé.
+                 *
+                 *     * `laundry` - Blanchisserie / laverie
+                 *     * `dry_cleaning` - Pressing
+                 *     * `shoe_repair` - Cordonnerie
+                 *     * `tailoring` - Retouches / couture
+                 *     * `watch_repair` - Horlogerie
+                 *     * `jewellery_repair` - Bijouterie (réparation)
+                 *     * `electronics_repair` - Réparation électronique
+                 *     * `key_cutting` - Clés / serrurerie
+                 * @enum {string}
+                 */
+                readonly category?: "laundry" | "dry_cleaning" | "shoe_repair" | "tailoring" | "watch_repair" | "jewellery_repair" | "electronics_repair" | "key_cutting";
+                /**
+                 * Adresse
+                 * @description Adresse postale, si connue.
+                 */
+                readonly address?: string;
+                /**
+                 * Horaires
+                 * @description Horaires au format OpenStreetMap (opening_hours), si connus.
+                 */
+                readonly opening_hours?: string;
+                /**
+                 * Site web
+                 * Format: uri
+                 * @description Site web public, si connu.
+                 */
+                readonly website?: string;
+                /**
+                 * Partenaire
+                 * @description Vrai seulement si un partenariat a été signé avec ce commerce.
+                 */
+                readonly is_partner?: boolean;
+            };
+        };
+        MerchantFeatureList: {
+            type?: components["schemas"]["GisFeatureCollectionEnum"];
+            features?: components["schemas"]["MerchantFeature"][];
+        };
         /** @description Occupancy of the whole locker network, for operator dashboards. */
         NetworkStats: {
             /** @description Nombre de casiers. */
@@ -711,6 +794,34 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SizeSpec"][];
+                };
+            };
+        };
+    };
+    merchants_list: {
+        parameters: {
+            query?: {
+                /** @description Catégorie de service. */
+                category?: "dry_cleaning" | "electronics_repair" | "jewellery_repair" | "key_cutting" | "laundry" | "shoe_repair" | "tailoring" | "watch_repair";
+                /** @description Latitude du point de recherche. */
+                lat?: number;
+                /** @description Longitude du point de recherche. */
+                lng?: number;
+                /** @description Rayon de recherche en km (défaut 2, max 20). */
+                radius_km?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MerchantFeatureList"];
                 };
             };
         };

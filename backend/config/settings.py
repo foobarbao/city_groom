@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Project
     "apps.core",
     "apps.lockers",
+    "apps.merchants",
     "apps.integrations",
 ]
 
@@ -176,6 +177,7 @@ SPECTACULAR_SETTINGS = {
     },
     "TAGS": [
         {"name": "lockers", "description": "Public locker data (map, locker fronts, sizes)."},
+        {"name": "merchants", "description": "Local businesses (public data)."},
         {"name": "operations", "description": "Operator data: occupancy, statistics, events."},
         {"name": "system", "description": "Technical endpoints."},
     ],

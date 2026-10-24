@@ -102,6 +102,56 @@ paths:
                 items:
                   $ref: '#/components/schemas/SizeSpec'
           description: ''
+  /api/v1/merchants/:
+    get:
+      operationId: merchants_list
+      description: Local businesses offering services on items that fit in a locker,
+        as a GeoJSON FeatureCollection. Public data from OpenStreetMap (© OpenStreetMap
+        contributors, ODbL); `is_partner` is false until a partnership is signed.
+        Optionally filtered by category and around a point.
+      summary: List merchants
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          enum:
+          - dry_cleaning
+          - electronics_repair
+          - jewellery_repair
+          - key_cutting
+          - laundry
+          - shoe_repair
+          - tailoring
+          - watch_repair
+        description: Catégorie de service.
+      - in: query
+        name: lat
+        schema:
+          type: number
+          format: double
+        description: Latitude du point de recherche.
+      - in: query
+        name: lng
+        schema:
+          type: number
+          format: double
+        description: Longitude du point de recherche.
+      - in: query
+        name: radius_km
+        schema:
+          type: number
+          format: double
+        description: Rayon de recherche en km (défaut 2, max 20).
+      tags:
+      - merchants
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantFeatureList'
+          description: ''
   /api/v1/operator/locker-events/:
     get:
       operationId: operator_locker_events_list
@@ -575,6 +625,94 @@ components:
         * `active` - En service
         * `maintenance` - En maintenance
         * `offline` - Hors ligne
+    MerchantFeature:
+      type: object
+      description: Merchant as a GeoJSON feature for the map and the list of businesses.
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: integer
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: float
+              example:
+              - 12.9721
+              - 77.5933
+              minItems: 2
+              maxItems: 3
+        properties:
+          type: object
+          properties:
+            name:
+              type: string
+              readOnly: true
+              title: Nom
+              description: Nom public du commerce.
+            category:
+              enum:
+              - laundry
+              - dry_cleaning
+              - shoe_repair
+              - tailoring
+              - watch_repair
+              - jewellery_repair
+              - electronics_repair
+              - key_cutting
+              type: string
+              readOnly: true
+              title: Catégorie
+              description: |-
+                Type de service proposé.
+
+                * `laundry` - Blanchisserie / laverie
+                * `dry_cleaning` - Pressing
+                * `shoe_repair` - Cordonnerie
+                * `tailoring` - Retouches / couture
+                * `watch_repair` - Horlogerie
+                * `jewellery_repair` - Bijouterie (réparation)
+                * `electronics_repair` - Réparation électronique
+                * `key_cutting` - Clés / serrurerie
+            address:
+              type: string
+              readOnly: true
+              title: Adresse
+              description: Adresse postale, si connue.
+            opening_hours:
+              type: string
+              readOnly: true
+              title: Horaires
+              description: Horaires au format OpenStreetMap (opening_hours), si connus.
+            website:
+              type: string
+              format: uri
+              readOnly: true
+              title: Site web
+              description: Site web public, si connu.
+            is_partner:
+              type: boolean
+              readOnly: true
+              title: Partenaire
+              description: Vrai seulement si un partenariat a été signé avec ce commerce.
+    MerchantFeatureList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantFeature'
     NetworkStats:
       type: object
       description: Occupancy of the whole locker network, for operator dashboards.
@@ -982,6 +1120,8 @@ components:
 tags:
 - name: lockers
   description: Public locker data (map, locker fronts, sizes).
+- name: merchants
+  description: Local businesses (public data).
 - name: operations
   description: 'Operator data: occupancy, statistics, events.'
 - name: system

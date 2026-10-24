@@ -1,20 +1,22 @@
 <script setup lang="ts">
 /**
- * Map of Grenoble showing lockers, coloured by availability.
+ * Map of Grenoble showing lockers, coloured by availability, and local
+ * businesses as smaller markers.
  *
  * Rendered with MapLibre GL JS and OpenStreetMap-based vector tiles
  * (ADR-0002); the style's attribution control keeps the mandatory
  * OpenStreetMap credit visible.
  *
  * Props:
- * - `lockers`: GeoJSON collection from `GET /api/lockers/`.
+ * - `lockers`: GeoJSON collection from `GET /api/v1/lockers/`.
+ * - `merchants`: GeoJSON collection from `GET /api/v1/merchants/` (optional).
  *
  * Emits:
  * - `select(code)`: when the user taps a locker.
  * - `unavailable`: when the map style or tiles cannot be loaded (offline,
  *   blocked network), so the page can fall back to the list of lockers.
  */
-import type { LockerFeatureCollection } from '@city-groom/api-client'
+import type { LockerFeatureCollection, MerchantFeatureCollection } from '@city-groom/api-client'
 import type { FeatureCollection, Point } from 'geojson'
 import {
   GeolocateControl,
@@ -31,6 +33,8 @@ import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, MAP_STYLE_URL } from '../config'
 const props = defineProps<{
   /** Lockers to display. */
   lockers: LockerFeatureCollection
+  /** Local businesses to display. */
+  merchants?: MerchantFeatureCollection
 }>()
 
 const emit = defineEmits<{
@@ -41,6 +45,8 @@ const emit = defineEmits<{
 }>()
 
 const SOURCE_ID = 'lockers'
+const MERCHANTS_SOURCE_ID = 'merchants'
+const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] }
 const container = ref<HTMLDivElement | null>(null)
 let map: MapLibreMap | null = null
 
@@ -81,6 +87,22 @@ onMounted(() => {
   map.on('load', () => {
     loaded = true
     if (!map) return
+    // Businesses are drawn first so lockers stay on top.
+    map.addSource(MERCHANTS_SOURCE_ID, {
+      type: 'geojson',
+      data: (props.merchants as FeatureCollection | undefined) ?? EMPTY,
+    })
+    map.addLayer({
+      id: 'merchants-circle',
+      type: 'circle',
+      source: MERCHANTS_SOURCE_ID,
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 3, 16, 7],
+        'circle-color': '#e0a43c',
+        'circle-stroke-color': '#ffffff',
+        'circle-stroke-width': 1.5,
+      },
+    })
     map.addSource(SOURCE_ID, { type: 'geojson', data: withTotals(props.lockers) })
     map.addLayer({
       id: 'lockers-circle',
@@ -124,6 +146,14 @@ watch(
   (lockers) => {
     const source = map?.getSource(SOURCE_ID) as GeoJSONSource | undefined
     source?.setData(withTotals(lockers))
+  },
+)
+
+watch(
+  () => props.merchants,
+  (merchants) => {
+    const source = map?.getSource(MERCHANTS_SOURCE_ID) as GeoJSONSource | undefined
+    source?.setData((merchants as FeatureCollection | undefined) ?? EMPTY)
   },
 )
 

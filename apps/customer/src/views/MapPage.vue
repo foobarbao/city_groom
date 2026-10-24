@@ -1,20 +1,23 @@
 <script setup lang="ts">
 /**
- * Home screen: map of Grenoble with the lockers, a floating welcome card and a
- * bottom sheet listing the lockers. Tapping a locker opens its page.
+ * Home screen: map of Grenoble with the lockers and local businesses, a
+ * floating welcome card and a bottom sheet with two tabs (lockers,
+ * businesses). Tapping a locker opens its page.
  *
  * If the base map cannot load (offline, blocked network), the list takes the
  * whole screen so the app stays usable.
  */
-import type { LockerFeatureCollection } from '@city-groom/api-client'
+import type { LockerFeatureCollection, MerchantFeatureCollection } from '@city-groom/api-client'
 import { IonButton, IonContent, IonPage, IonSpinner, useIonRouter } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { fetchLockers } from '../api/lockers'
+import { fetchMerchants } from '../api/merchants'
 import { MAP_STYLE_URL } from '../config'
 import LockerCard from '../components/LockerCard.vue'
 import LockerMap from '../components/LockerMap.vue'
+import MerchantCard from '../components/MerchantCard.vue'
 import { useErrorMessage } from '../composables/useErrorMessage'
 
 const { t } = useI18n()
@@ -22,6 +25,9 @@ const router = useIonRouter()
 const toMessage = useErrorMessage()
 
 const lockers = ref<LockerFeatureCollection | null>(null)
+const merchants = ref<MerchantFeatureCollection | null>(null)
+/** Tab shown in the bottom sheet. */
+const tab = ref<'lockers' | 'merchants'>('lockers')
 const error = ref<string | null>(null)
 /** True when no base map is configured or it failed to load: the list takes over. */
 const mapUnavailable = ref(MAP_STYLE_URL === '')
@@ -43,7 +49,7 @@ function open(code: string): void {
 async function load(): Promise<void> {
   error.value = null
   try {
-    lockers.value = await fetchLockers()
+    ;[lockers.value, merchants.value] = await Promise.all([fetchLockers(), fetchMerchants()])
   } catch (e) {
     error.value = toMessage(e)
   }
@@ -67,6 +73,7 @@ onMounted(load)
         <locker-map
           v-if="!mapUnavailable"
           :lockers="lockers"
+          :merchants="merchants ?? undefined"
           @select="open"
           @unavailable="mapUnavailable = true"
         />
@@ -79,17 +86,52 @@ onMounted(load)
 
         <section class="sheet" :aria-label="t('map.listTitle')">
           <span class="grabber" aria-hidden="true" />
-          <h2>{{ t('map.listTitle') }}</h2>
-          <p v-if="mapUnavailable" class="map-note">{{ t('map.unavailable') }}</p>
-          <div class="cards">
-            <locker-card
-              v-for="locker in sortedLockers"
-              :key="locker.properties?.code"
-              :locker="locker"
-              @open="open"
-            />
+          <div class="tabs" role="tablist">
+            <button
+              id="tab-lockers"
+              type="button"
+              role="tab"
+              :aria-selected="tab === 'lockers'"
+              :class="{ active: tab === 'lockers' }"
+              @click="tab = 'lockers'"
+            >
+              {{ t('map.lockersTab') }} · {{ sortedLockers.length }}
+            </button>
+            <button
+              id="tab-merchants"
+              type="button"
+              role="tab"
+              :aria-selected="tab === 'merchants'"
+              :class="{ active: tab === 'merchants' }"
+              @click="tab = 'merchants'"
+            >
+              {{ t('merchants.tab') }} · {{ merchants?.features?.length ?? 0 }}
+            </button>
           </div>
-          <p class="notice">{{ t('app.simulatedNotice') }}</p>
+          <p v-if="mapUnavailable" class="map-note">{{ t('map.unavailable') }}</p>
+
+          <template v-if="tab === 'lockers'">
+            <div class="cards">
+              <locker-card
+                v-for="locker in sortedLockers"
+                :key="locker.properties?.code"
+                :locker="locker"
+                @open="open"
+              />
+            </div>
+            <p class="notice">{{ t('app.simulatedNotice') }}</p>
+          </template>
+          <template v-else>
+            <div v-if="merchants?.features?.length" class="cards">
+              <merchant-card
+                v-for="merchant in merchants.features"
+                :key="merchant.id"
+                :merchant="merchant"
+              />
+            </div>
+            <p v-else class="empty">{{ t('merchants.empty') }}</p>
+            <p class="notice">{{ t('merchants.source') }}</p>
+          </template>
         </section>
       </div>
     </ion-content>
@@ -167,10 +209,35 @@ onMounted(load)
   border-radius: var(--cg-radius-pill);
   background: var(--cg-surface-soft);
 }
-.sheet h2 {
-  margin: 0;
-  font-size: 18px;
+.tabs {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface-soft);
+}
+.tabs button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--cg-radius-pill);
+  background: transparent;
+  color: var(--cg-ink-soft);
+  font: inherit;
   font-weight: 800;
+  cursor: pointer;
+}
+.tabs button.active {
+  background: var(--cg-surface);
+  color: var(--cg-ink);
+  box-shadow: var(--cg-shadow);
+}
+.empty {
+  margin: 0;
+  padding: 18px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-surface);
+  color: var(--cg-ink-soft);
 }
 .cards {
   display: grid;

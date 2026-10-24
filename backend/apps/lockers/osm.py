@@ -4,56 +4,24 @@ Locker locations are not decided yet (docs/PRODUCT.md). For the demo, lockers
 are placed at **real tram stops** of Grenoble-Alpes Métropole, which are
 public, well-known and spread over the city centre and the outskirts.
 
-Data © OpenStreetMap contributors, ODbL. Queries go through the public
-Overpass API, which is meant for low-volume use: this module is called by a
-management command run occasionally, never by user requests.
+Data © OpenStreetMap contributors, ODbL. Queries go through the shared
+Overpass client (``apps.core.osm``).
 """
 
-import json
-import urllib.parse
-import urllib.request
 from typing import Any
 
+from apps.core.osm import METRO_AREA, fetch_overpass
 from apps.lockers.simulation import SimulatedSite
 
-OVERPASS_URL = "https://overpass-api.de/api/interpreter"
-USER_AGENT = "CityGroom-demo/0.1 (locker site import)"
-REQUEST_TIMEOUT_S = 90
+__all__ = ["TRAM_STOPS_QUERY", "fetch_overpass", "parse_tram_stops"]
 
 # Tram stops inside the metropolitan area boundary.
-TRAM_STOPS_QUERY = """
+TRAM_STOPS_QUERY = f"""
 [out:json][timeout:60];
-area["name"="Grenoble-Alpes Métropole"]["boundary"="administrative"]->.metro;
+{METRO_AREA}
 node(area.metro)["railway"="tram_stop"];
 out body;
 """
-
-
-def fetch_overpass(query: str, url: str = OVERPASS_URL) -> dict[str, Any]:
-    """Run an Overpass QL query and return the decoded JSON response.
-
-    Args:
-        query: Overpass QL query.
-        url: Overpass endpoint.
-
-    Returns:
-        The JSON response.
-
-    Raises:
-        ValueError: If ``url`` does not use HTTPS.
-        urllib.error.URLError: On network failure or HTTP error.
-    """
-    # Only HTTPS is allowed, so a misconfigured URL cannot read local files
-    # (``file:``) or other unexpected schemes.
-    if not url.startswith("https://"):
-        raise ValueError(f"Overpass URL must use HTTPS: {url!r}")
-    data = urllib.parse.urlencode({"data": query}).encode()
-    request = urllib.request.Request(  # noqa: S310 - scheme checked above
-        url, data=data, headers={"User-Agent": USER_AGENT}
-    )
-    with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT_S) as response:  # noqa: S310
-        result: dict[str, Any] = json.load(response)
-    return result
 
 
 def parse_tram_stops(payload: dict[str, Any]) -> list[SimulatedSite]:

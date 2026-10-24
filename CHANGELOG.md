@@ -59,6 +59,9 @@ Versioning: [SemVer](https://semver.org/).
   drawing whose door swings open, locker cards in a bottom sheet with a list
   fallback when the map cannot load.
 - Standalone demo build with fictitious data (`npm run build:demo`).
+- Merchants: model, `import_osm_merchants` command (OpenStreetMap, services
+  only, no food, no chains), `GET /api/v1/merchants/`, admin, map markers and
+  "Commerces" tab in the customer app (`docs/DATA_SOURCES.md`).
 
 ### Fixed
 

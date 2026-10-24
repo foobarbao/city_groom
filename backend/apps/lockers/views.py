@@ -12,7 +12,7 @@ from collections import Counter
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
-from django.db.models import Prefetch, QuerySet
+from django.db.models import Model, Prefetch, QuerySet
 from django.utils.dateparse import parse_datetime
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema, extend_schema_view
@@ -61,8 +61,10 @@ def _lockers_with_compartments() -> QuerySet[Locker]:
     )
 
 
-def _filter_near(queryset: QuerySet[Locker], request: Request) -> QuerySet[Locker]:
-    """Keep lockers within ``radius_km`` of ``lng``/``lat`` if given, nearest first.
+def filter_near[T: Model](queryset: QuerySet[T], request: Request) -> QuerySet[T]:
+    """Keep objects within ``radius_km`` of ``lng``/``lat`` if given, nearest first.
+
+    Works on any model with a ``location`` point field (lockers, merchants).
 
     Raises:
         ValidationError: If coordinates or radius are not valid numbers.
@@ -77,11 +79,12 @@ def _filter_near(queryset: QuerySet[Locker], request: Request) -> QuerySet[Locke
         raise ValidationError("lng, lat et radius_km doivent être des nombres.") from error
     # On geographic (WGS 84) fields, PostGIS computes these distances in metres
     # on the sphere, which is accurate enough at city scale.
-    return (
+    nearby: QuerySet[T] = (
         queryset.filter(location__distance_lte=(point, D(km=radius_km)))
         .annotate(distance=Distance("location", point))
         .order_by("distance")
     )
+    return nearby
 
 
 @extend_schema_view(
@@ -105,7 +108,7 @@ class LockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
     def get_queryset(self) -> QuerySet[Locker]:
         """Return in-service lockers, optionally filtered by distance."""
         queryset = _lockers_with_compartments().filter(status=Locker.Status.ACTIVE)
-        return _filter_near(queryset, self.request)
+        return filter_near(queryset, self.request)
 
     def get_serializer_class(self) -> type[BaseSerializer[Locker]]:
         """Use GeoJSON features for the list and the full layout for one locker."""
@@ -161,7 +164,7 @@ class OperatorLockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
 
     def get_queryset(self) -> QuerySet[Locker]:
         """Return all lockers, whatever their status, optionally filtered by distance."""
-        return _filter_near(_lockers_with_compartments(), self.request)
+        return filter_near(_lockers_with_compartments(), self.request)
 
     def get_serializer_class(self) -> type[BaseSerializer[Locker]]:
         """Use GeoJSON features for the list and the detailed layout for one locker."""

@@ -94,6 +94,12 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 | `GET /api/v1/lockers/{code}/` | Locker front: columns, doors (label, size, position), control panel, free compartments per size. **No per-door status.** |
 | `GET /api/v1/lockers/sizes/` | Compartment size catalogue: dimensions (cm), layout height, examples of items. |
 
+### Merchants (`merchants` tag, public)
+
+| Method & path | Description |
+|---|---|
+| `GET /api/v1/merchants/` | Local businesses offering locker-compatible services, as GeoJSON. Public data from OpenStreetMap (attribution required); `is_partner` is false until a partnership is signed. Filters: `category`, and `lng`, `lat`, `radius_km`. |
+
 ### Operations (`operations` tag, scope `operations:read`)
 
 | Method & path | Description |
@@ -128,6 +134,7 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 | Compartment `status` | `free`, `reserved`, `occupied`, `out_of_service` |
 | Locker `status` | `active`, `maintenance`, `offline` |
 | `access_methods` / `access_method` | `bluetooth`, `nfc`, `qr_code` |
+| Merchant `category` | `laundry`, `dry_cleaning`, `shoe_repair`, `tailoring`, `watch_repair`, `jewellery_repair`, `electronics_repair`, `key_cutting` |
 | Event `kind` | `door_opened`, `door_closed`, `door_left_open`, `fault`, `connection_lost`, `connection_restored` |
 
 - **Fill rate**: share of in-service compartments that are reserved or
@@ -213,4 +220,5 @@ Not available yet; listed so integrators can plan:
 
 | Date | Change |
 |---|---|
+| 2026-10-24 | Added `GET /api/v1/merchants/`. |
 | 2026-10-24 | `v1` published: lockers (public), operations (occupancy, statistics, events), health check; integration API keys with scopes; rate limits. |
