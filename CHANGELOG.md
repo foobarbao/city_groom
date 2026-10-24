@@ -29,4 +29,13 @@ Versioning: [SemVer](https://semver.org/).
 - ADR-0005: single partner web portal (`apps/portal/`) with merchant, courier
   and operator spaces; courier partner and operator experiences added to
   `docs/PRODUCT.md`.
+- ADR-0006: partner portal built with Ionic + Capacitor, also shipped as an
+  Android "pro" app for merchants.
+- Product: 12-hour pickup slots aligned with two daily rounds, NFC confirmed,
+  locker visualisation, operator dashboards (volume, fill rate), real-time
+  tracking and flow forecasts.
+- Lockers backend: models, simulated sizes and layouts, simulated occupancy,
+  `seed_simulated_lockers` command (real tram stops from OpenStreetMap),
+  public and operator APIs, admin (`docs/LOCKERS.md`).
+- Roadmap (`docs/ROADMAP.md`).
 - Pull request template, `.editorconfig`, `.gitignore`.

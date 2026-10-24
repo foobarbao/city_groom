@@ -1,0 +1,47 @@
+# Roadmap
+
+> **Status**: living document · **Last updated**: 2026-10-24
+>
+> Iterations are deliberately small: each one produces something that can be
+> shown, then refined with the project owner. All activity data is simulated
+> until real partners join.
+
+## Done
+
+1. **Foundations** — coding standards, workflow, product document, ADRs
+   0001–0006, backend skeleton (Django + PostGIS, Docker, CI).
+2. **Lockers (backend)** — models, simulated sizes and layouts, simulated
+   occupancy, import of candidate sites from OpenStreetMap, public and
+   operator APIs, admin. See `docs/LOCKERS.md`.
+
+## Next
+
+3. **Customer app (first screens)** — initialise `apps/customer/` (Ionic +
+   Capacitor); map of Grenoble with the lockers and their free compartments;
+   user-friendly **locker view** highlighting the door to open.
+4. **Operator space (first dashboards)** — initialise `apps/portal/`; network
+   map; **volume** and **fill rate** indicators; locker view with the status
+   of every door.
+5. **Activity simulator** — orders, drop-offs, two rounds per day (e.g. 08:00
+   and 20:00), 12-hour pickup slots, modest volumes; runs as a scheduled job.
+6. **Real-time tracking** — live updates of lockers and rounds on the map;
+   simulated cargo-bike rounds following real streets. Requires decisions on
+   the live update mechanism and on the routing engine (new ADRs).
+7. **Flow forecasts** — expected items per locker, round and merchant, for the
+   operator, courier and merchant spaces.
+8. **Merchants and catalogue** — import of real Grenoble businesses (public
+   data, no food, no large chains), standard services, packs, quotes with
+   chat.
+9. **Courier space** — projected activity and volume to present to courier
+   partners (demo mode).
+10. **Merchant space and "pro" app** — incoming items, forecasts, revenue and
+    commission.
+
+## Blockers and dependencies
+
+- **Network access of the development environment**: the AI assistant's cloud
+  environment currently cannot reach OpenStreetMap services (Overpass API) or
+  open data portals. Real data must be imported from a machine with internet
+  access (`seed_simulated_lockers`), or the environment's allowed domains must
+  be extended.
+- Reminders and open questions: see `docs/PRODUCT.md`.

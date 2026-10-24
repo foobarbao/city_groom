@@ -30,7 +30,8 @@ the reference documents prevail in case of doubt.
    documentation strictly in English**. **User interfaces in French**, always
    through i18n. Conversations with the project owner are in French.
 5. **Platforms**: customers use the mobile app; merchants, courier partners
-   and operators use web interfaces (partner portal + Django admin).
+   and operators use web interfaces (partner portal + Django admin);
+   merchants also get the portal as an Android "pro" app (ADR-0006).
 6. **Product red lines**: no e-commerce parcels, no perishable goods / meal
    delivery. Services only (laundry, ironing, repairs…).
 7. **Git**: never push to `main` or `develop`; work on a dedicated branch,

@@ -74,35 +74,50 @@ possible for the customer and for the merchant.
 | Actor | Description | Interface |
 |---|---|---|
 | Customer | Resident who orders a service and uses the lockers. | Customer app (Android + PWA), French UI |
-| Merchant | Local business performing the service. | Partner portal, merchant space (web), French UI |
+| Merchant | Local business performing the service. | Partner portal, merchant space: web + Android "pro" app (ADR-0006), French UI |
 | Courier partner | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | Partner portal, courier space (web), French UI |
 | Operator (administrator) | The City Groom team: manages lockers, merchants, courier partners, offers, orders, commission settings. | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
 | Locker | Connected locker with compartments, placed around the city. | Simulated in the demo, real hardware later |
 
 **Platforms**: customers use the **mobile app**; merchants, courier partners
-and operators use **web interfaces** (see ADR-0005).
+and operators use **web interfaces** (ADR-0005). Merchants also get a
+**mobile app** (ADR-0006).
 
 ## 4. Main flow
-
-Flow as currently understood — steps marked *(to confirm)* depend on open
-questions.
 
 1. The customer browses services and merchants on a map of Grenoble.
 2. The customer orders a standard service or a pack, or accepts a quote for a
    special service. Ordering is possible **as a guest** (see Accounts).
 3. The customer chooses a **drop-off locker**, and a **pickup locker** with a
-   **pickup slot** *(slot rules to confirm, see open questions)*. The pickup
-   locker may differ from the drop-off locker.
-4. The customer drops the item into a locker compartment. The opening method
-   depends on the locker vendor: **Bluetooth**, **NFC** *(to confirm)* or
+   **12-hour pickup slot**. The pickup locker may differ from the drop-off
+   locker.
+4. The app shows the customer a **visual of the locker front**, highlighting
+   the door that will open and its size, then the customer drops the item in.
+   The opening method depends on the locker vendor: **Bluetooth**, **NFC** or
    **QR code**.
 5. A courier collects the item during a scheduled round and delivers it to the
-   merchant. Demo assumption: **2 collection rounds per day**.
+   merchant.
 6. The merchant performs the service.
 7. A courier brings the item back to the pickup locker.
 8. The customer is notified and collects the item.
 
 Payment is **simulated** in the demo.
+
+### Rounds and pickup slots
+
+- **Two rounds per day** at fixed times, for example **08:00 and 20:00** (the
+  exact times are configurable). Fixed times make the workload predictable for
+  courier partners.
+- Pickup slots are **12 hours** long and follow the rounds: an item returned
+  by the 08:00 round can be collected until 20:00, and so on.
+
+### Locker visualisation
+
+The locker view must be **very user-friendly**: the customer sees a drawing of
+the locker front with its compartments of several sizes, the door that will
+open is highlighted, with its label (e.g. "B3") and the kind of items it
+fits. The same view, with the status of every door, serves operators. See
+`docs/LOCKERS.md`.
 
 ## 5. Merchant experience
 
@@ -145,8 +160,16 @@ In the demo, all courier data is **simulated** and labelled as such.
 
 - **Data management** (lockers, merchants, courier partners, offers,
   commission settings, orders) through the Django admin.
-- **Dashboards** in the operator space of the partner portal: overall activity
-  and forecasts.
+- **Dashboards** in the operator space of the partner portal, with first:
+  - **volume** indicators (items, orders, rounds);
+  - **fill rate** of the lockers (network, per locker, per size);
+  - a user-friendly **view of each locker** with the status of every door.
+- **Real-time tracking** on the map of Grenoble (lockers, rounds in progress),
+  using real map data.
+- **Flow forecasts** (expected items per locker, per round, per merchant).
+
+In the demo, all activity is **simulated** with modest figures, refined later
+with the project owner.
 
 ## 8. Customer accounts
 
@@ -211,21 +234,17 @@ Topics the project owner asked to be reminded of:
 
 Questions to the project owner. Answers are moved into the sections above.
 
-1. **Pickup slot**: the owner wrote "pickup slot 12h". Does it mean the
-   customer has a **12-hour window** to collect the item, or a pickup **at
-   noon**?
-2. **Locker opening**: "NFT" was written alongside Bluetooth and QR code; is
-   **NFC** (contactless) meant?
-3. **Commission thresholds**: how the rate decreases from 10 % to 1 %
+1. **Commission thresholds**: how the rate decreases from 10 % to 1 %
    (by number of merchants, customers, merchant volume…). For the demo, a
    flat 10 % is used until this is defined.
-4. **Status levels and premium** for signed-in customers: what do they unlock?
-5. **Service catalogue and prices**: the demo uses simulated standard prices;
+2. **Status levels and premium** for signed-in customers: what do they unlock?
+3. **Service catalogue and prices**: the demo uses simulated standard prices;
    should they reflect typical Grenoble prices (researched from public
    sources) or placeholder values?
-6. **Locker dimensions** and compartment sizes (to be defined later).
-7. **Courier space**: which indicators matter most to convince courier
+4. **Locker dimensions** and compartment sizes (to be defined later).
+5. **Courier space**: which indicators matter most to convince courier
    partners (items per round, distance per round, revenue estimate, car trips
    avoided / CO₂ saved…)? Should the projection be adjustable live during a
    presentation (e.g. number of lockers, number of customers)?
-8. **Operator dashboards**: which indicators do you want to follow first?
+6. **Overdue pickups**: what happens when an item is not collected within
+   its 12-hour slot?

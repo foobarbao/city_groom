@@ -1,6 +1,7 @@
 # ADR-0005 — Partner web portal for merchants, courier partners and operators
 
-- **Status**: Accepted
+- **Status**: Accepted — stack amended by
+  [ADR-0006](0006-mobile-app-for-merchants.md) (Ionic + Capacitor, Android "pro" app)
 - **Date**: 2026-10-24
 - **Supersedes**: the `apps/merchant/` part of
   [ADR-0003](0003-monorepo-and-applications.md)
