@@ -133,6 +133,7 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 | Compartment `size` | `S`, `M`, `L`, `XL` |
 | Compartment `status` | `free`, `reserved`, `occupied`, `out_of_service` |
 | Locker `status` | `active`, `maintenance`, `offline` |
+| Locker `site_category` | `tram_stop`, `tourism`, `transport`, `campus`, `shopping`, `health`, `business`, `square`, `leisure`, `other` |
 | `access_methods` / `access_method` | `bluetooth`, `nfc`, `qr_code` |
 | Merchant `category` | `laundry`, `dry_cleaning`, `shoe_repair`, `tailoring`, `watch_repair`, `jewellery_repair`, `electronics_repair`, `key_cutting` |
 | Event `kind` | `door_opened`, `door_closed`, `door_left_open`, `fault`, `connection_lost`, `connection_restored` |

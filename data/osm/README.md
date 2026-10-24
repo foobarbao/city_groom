@@ -5,6 +5,7 @@ Raw Overpass API responses used to build the demo with real data:
 | File | Content | Loaded with |
 |---|---|---|
 | `tram_stops.json` | Tram stops of Grenoble-Alpes Métropole (candidate locker sites) | `python manage.py seed_simulated_lockers --sites-file ../data/osm/tram_stops.json` |
+| `strategic_sites.json` | Strategic places for consigne lockers (tourist sites, stations, campuses…; selection rules in `docs/DATA_SOURCES.md`) | `python manage.py seed_simulated_lockers --strategic-file ../data/osm/strategic_sites.json --strategic-count 45` |
 | `merchants.json` | Businesses offering locker-compatible services (selection rules in `docs/DATA_SOURCES.md`) | `python manage.py import_osm_merchants --from-file ../data/osm/merchants.json` |
 
 Data © OpenStreetMap contributors, available under the

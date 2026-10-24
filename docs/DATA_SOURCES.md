@@ -10,6 +10,7 @@ imported. Real data is preferred everywhere; simulated data is labelled
 |---|---|---|---|---|
 | Map background | OpenStreetMap-based vector tiles (OpenFreeMap for the demo) | ODbL (data), attribution required | Loaded by MapLibre at runtime (`VITE_MAP_STYLE_URL`) | Works in the app (live); embedded as an offline extract in the published demo (`apps/customer/scripts/fetch_offline_map.py`) |
 | Candidate locker sites | OpenStreetMap tram stops of Grenoble-Alpes Métropole (Overpass API) | ODbL | `python manage.py seed_simulated_lockers` | Imported (`data/osm/`) |
+| Strategic places (consigne lockers) | OpenStreetMap tourist sites, stations, campuses, shopping centres and markets, hospitals, business areas, squares, parks and stadiums (Overpass API) | ODbL | `python manage.py seed_simulated_lockers --strategic-file` | Imported (`data/osm/`) |
 | Merchants | OpenStreetMap businesses (Overpass API) | ODbL | `python manage.py import_osm_merchants` | Imported (`data/osm/`) |
 | Locker sizes and layouts | Public documentation of locker networks and manufacturers | — | Encoded in `backend/apps/lockers/sizes.py` | Done, sources in `docs/LOCKERS.md` |
 
@@ -18,6 +19,38 @@ imported. Real data is preferred everywhere; simulated data is labelled
 Queries cover a bounding box around Grenoble-Alpes Métropole (south 45.02,
 west 5.55, north 45.33, east 5.93; `METRO_BBOX` in `backend/apps/core/osm.py`),
 slightly larger than the metropolitan area.
+
+## Strategic places selection rules
+
+Implemented in `backend/apps/lockers/osm.py` (`STRATEGIC_CATEGORIES`,
+`is_strategic_candidate`) and `simulation.py` (`spread_by_category`), for
+the consigne lockers (docs/PRODUCT.md §4):
+
+| Category | OSM tags | Kept when |
+|---|---|---|
+| Tourist site | `tourism` = attraction, museum, viewpoint, zoo, theme_park | notable¹ |
+| Station | `railway=station`, `amenity=bus_station` | always (shown as "Gare …") |
+| Campus | `amenity` = university, college | notable¹ |
+| Shopping | `shop=mall`, `amenity=marketplace` | notable¹, or a market |
+| Hospital | `amenity=hospital` | notable¹, or name with "CHU" / "hospitalier" |
+| Business area | named `landuse` = commercial, retail | notable¹, or name starting with "Zone", "ZA", "ZAC", "ZI", "Parc", "Secteur", "Espace" |
+| Square (restaurants, cafés) | `place=square`, named pedestrian areas | notable¹ |
+| Park or stadium | named `leisure` = park, stadium | notable¹ |
+
+¹ Notable: the object has a `wikidata` or `wikipedia` tag. This removes
+private clubs, small rooms and minor squares.
+
+Always excluded: places more than 7 km from the centre of Grenoble (outside
+the area served by cargo bikes), objects with a `brand` or a `shop` tag
+other than `mall` (businesses), unnamed objects and generic names
+("Gymnase", "Kiosque"…). Squares stand for restaurant areas: a locker is
+never named after a real restaurant or business.
+
+Placement: categories are taken in turn so that every kind of place is
+represented; within a category, the place closest to the city centre is
+chosen, at least 250 m from every other locker. ASSUMPTION: thresholds
+chosen for the demo (70 lockers: 25 at tram stops, 45 at strategic places),
+to review when real locations are decided.
 
 ## Merchant selection rules
 

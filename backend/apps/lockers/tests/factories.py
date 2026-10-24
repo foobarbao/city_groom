@@ -35,7 +35,7 @@ def fake_strategic_payload() -> dict[str, Any]:
                 "id": 10,
                 "lat": 45.19,
                 "lon": 5.73,
-                "tags": {"name": "Fake Museum", "tourism": "museum"},
+                "tags": {"name": "Fake Museum", "tourism": "museum", "wikidata": "Q0"},
             },
             {
                 "type": "way",
@@ -47,9 +47,30 @@ def fake_strategic_payload() -> dict[str, Any]:
                 "type": "way",
                 "id": 12,
                 "center": {"lat": 45.21, "lon": 5.76},
-                "tags": {"name": "Fake Campus", "amenity": "university"},
+                "tags": {"name": "Fake Campus", "amenity": "university", "wikidata": "Q1"},
             },
-            # Ignored: no name, then an unrelated tag.
+            # Ignored: not notable, too far, a brand, no name, an unrelated tag.
+            {
+                "type": "node",
+                "id": 15,
+                "lat": 45.19,
+                "lon": 5.73,
+                "tags": {"name": "Fake Club", "leisure": "sports_centre"},
+            },
+            {
+                "type": "node",
+                "id": 16,
+                "lat": 45.30,
+                "lon": 5.90,
+                "tags": {"name": "Fake Summit", "tourism": "viewpoint", "wikidata": "Q2"},
+            },
+            {
+                "type": "node",
+                "id": 17,
+                "lat": 45.19,
+                "lon": 5.73,
+                "tags": {"name": "Fake Mall", "shop": "mall", "brand": "Fake", "wikidata": "Q3"},
+            },
             {"type": "node", "id": 13, "lat": 45.2, "lon": 5.7, "tags": {"tourism": "museum"}},
             {"type": "node", "id": 14, "lat": 45.2, "lon": 5.7, "tags": {"name": "Fake Bench"}},
         ]

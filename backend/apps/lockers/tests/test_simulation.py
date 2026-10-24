@@ -91,7 +91,7 @@ def test_parse_strategic_sites_keeps_named_places_with_a_category() -> None:
     assert [(category, site.name) for category, site in pairs] == [
         ("campus", "Fake Campus"),
         ("tourism", "Fake Museum"),
-        ("transport", "Fake Station"),
+        ("transport", "Gare Fake Station"),
     ]
     # Ways are placed at their centre.
     assert pairs[0][1].latitude == 45.21
@@ -103,4 +103,15 @@ def test_spread_by_category_takes_categories_in_turn() -> None:
     chosen = spread_by_category(candidates, 2)
 
     assert sorted(category for category, _ in chosen) == ["a", "b"]
-    assert len(spread_by_category(candidates, 10)) == 4
+    # Central place first within a category.
+    assert chosen[0][1].name == "Fake Centre"
+
+
+def test_spread_by_category_keeps_lockers_apart() -> None:
+    # "Fake Centre Bis" is about 70 m from "Fake Centre": never both.
+    candidates = [("a", site) for site in FAKE_SITES]
+
+    names = {site.name for _, site in spread_by_category(candidates, 10)}
+
+    assert len(names) == 4
+    assert not {"Fake Centre", "Fake Centre Bis"} <= names

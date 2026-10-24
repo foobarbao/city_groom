@@ -488,6 +488,33 @@ components:
                 * `active` - En service
                 * `maintenance` - En maintenance
                 * `offline` - Hors ligne
+            site_category:
+              enum:
+              - tram_stop
+              - tourism
+              - transport
+              - campus
+              - shopping
+              - health
+              - business
+              - square
+              - leisure
+              - other
+              type: string
+              title: Type de lieu
+              description: |-
+                Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+                * `tram_stop` - Arrêt de tram
+                * `tourism` - Site touristique
+                * `transport` - Gare
+                * `campus` - Campus
+                * `shopping` - Centre commercial ou marché
+                * `health` - Hôpital
+                * `business` - Pôle d'activité
+                * `square` - Place (restaurants, cafés)
+                * `leisure` - Parc ou équipement sportif
+                * `other` - Autre
             access_methods:
               type: array
               items:
@@ -552,6 +579,24 @@ components:
             * `active` - En service
             * `maintenance` - En maintenance
             * `offline` - Hors ligne
+        site_category:
+          allOf:
+          - $ref: '#/components/schemas/SiteCategoryEnum'
+          readOnly: true
+          title: Type de lieu
+          description: |-
+            Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+            * `tram_stop` - Arrêt de tram
+            * `tourism` - Site touristique
+            * `transport` - Gare
+            * `campus` - Campus
+            * `shopping` - Centre commercial ou marché
+            * `health` - Hôpital
+            * `business` - Pôle d'activité
+            * `square` - Place (restaurants, cafés)
+            * `leisure` - Parc ou équipement sportif
+            * `other` - Autre
         access_methods:
           type: array
           items:
@@ -614,6 +659,7 @@ components:
       - latitude
       - longitude
       - name
+      - site_category
       - status
     LockerStatusEnum:
       enum:
@@ -858,6 +904,33 @@ components:
                 * `active` - En service
                 * `maintenance` - En maintenance
                 * `offline` - Hors ligne
+            site_category:
+              enum:
+              - tram_stop
+              - tourism
+              - transport
+              - campus
+              - shopping
+              - health
+              - business
+              - square
+              - leisure
+              - other
+              type: string
+              title: Type de lieu
+              description: |-
+                Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+                * `tram_stop` - Arrêt de tram
+                * `tourism` - Site touristique
+                * `transport` - Gare
+                * `campus` - Campus
+                * `shopping` - Centre commercial ou marché
+                * `health` - Hôpital
+                * `business` - Pôle d'activité
+                * `square` - Place (restaurants, cafés)
+                * `leisure` - Parc ou équipement sportif
+                * `other` - Autre
             access_methods:
               type: array
               items:
@@ -935,6 +1008,24 @@ components:
             * `active` - En service
             * `maintenance` - En maintenance
             * `offline` - Hors ligne
+        site_category:
+          allOf:
+          - $ref: '#/components/schemas/SiteCategoryEnum'
+          readOnly: true
+          title: Type de lieu
+          description: |-
+            Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+            * `tram_stop` - Arrêt de tram
+            * `tourism` - Site touristique
+            * `transport` - Gare
+            * `campus` - Campus
+            * `shopping` - Centre commercial ou marché
+            * `health` - Hôpital
+            * `business` - Pôle d'activité
+            * `square` - Place (restaurants, cafés)
+            * `leisure` - Parc ou équipement sportif
+            * `other` - Autre
         access_methods:
           type: array
           items:
@@ -1003,6 +1094,7 @@ components:
       - latitude
       - longitude
       - name
+      - site_category
       - status
     PaginatedLockerEventList:
       type: object
@@ -1063,6 +1155,30 @@ components:
       - label
       - position
       - size
+    SiteCategoryEnum:
+      enum:
+      - tram_stop
+      - tourism
+      - transport
+      - campus
+      - shopping
+      - health
+      - business
+      - square
+      - leisure
+      - other
+      type: string
+      description: |-
+        * `tram_stop` - Arrêt de tram
+        * `tourism` - Site touristique
+        * `transport` - Gare
+        * `campus` - Campus
+        * `shopping` - Centre commercial ou marché
+        * `health` - Hôpital
+        * `business` - Pôle d'activité
+        * `square` - Place (restaurants, cafés)
+        * `leisure` - Parc ou équipement sportif
+        * `other` - Autre
     SizeEnum:
       enum:
       - S

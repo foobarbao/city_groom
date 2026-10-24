@@ -104,6 +104,7 @@ so far.
 | large | 2 × M + 4 × L |
 | laundry | 5 × L |
 | garment | 1 × XL |
+| storage | 2 × S + 3 × M + 3 × L (consigne: phone and keys, small bags, helmets and jackets) |
 
 - Locker models (columns left to right). City Groom favours large and hanging
   compartments, since laundry and ironed shirts are the first services:
@@ -113,6 +114,11 @@ so far.
 | compact | mixed, control, garment | 19 |
 | standard | garment, mixed, control, laundry, garment | 25 |
 | large | garment, mixed, large, control, laundry, large, garment | 37 |
+| consigne_compact | storage, control | 16 |
+| consigne | storage, control, large | 22 |
+
+- Consigne lockers, at strategic places, are smaller and have no hanging
+  compartment (docs/PRODUCT.md §4).
 
 - Each door has a **label**: column letter + position from the top (e.g.
   `B3`), so the app can say "open door B3" and highlight it on the drawing.
@@ -141,11 +147,16 @@ Simulated lockers get one of these profiles, reflecting §1:
 
 ## 4. Simulated placement and occupancy
 
-- **Placement**: locker locations are not decided yet. For the demo, lockers
-  are placed at **real tram stops** of Grenoble-Alpes Métropole, retrieved
-  from OpenStreetMap (© OpenStreetMap contributors, ODbL) and spread across the
-  area by farthest-point sampling (`seed_simulated_lockers` command). The
-  origin of every location is stored in `Locker.placement_source`.
+- **Placement**: locker locations are not decided yet. For the demo,
+  service lockers are placed at **real tram stops** of Grenoble-Alpes
+  Métropole, spread across the area by farthest-point sampling, and consigne
+  lockers at **strategic places** (tourist sites, stations, campuses…),
+  central places first (`seed_simulated_lockers` command, rules in
+  `docs/DATA_SOURCES.md`). Places come from OpenStreetMap (© OpenStreetMap
+  contributors, ODbL). Each locker has a `site_category` (`tram_stop`,
+  `tourism`, `transport`, `campus`, `shopping`, `health`, `business`,
+  `square`, `leisure`, `other`); the origin of every location is stored in
+  `Locker.placement_source`.
 - **Occupancy**: each simulated locker gets a random target fill rate between
   **15 % and 45 %** (kept modest on purpose); about 30 % of used compartments
   are *reserved* (order placed, item not yet dropped) and the rest *occupied*;

@@ -9,7 +9,7 @@ from apps.lockers.tests.factories import FAKE_SITES
 
 
 @pytest.mark.django_db
-def test_export_writes_the_three_datasets(tmp_path: Any) -> None:
+def test_export_writes_every_dataset(tmp_path: Any) -> None:
     create_simulated_locker(FAKE_SITES[0], code="fake-centre", model="compact")
 
     call_command(
@@ -22,6 +22,8 @@ def test_export_writes_the_three_datasets(tmp_path: Any) -> None:
     assert list(public["details"]) == ["fake-centre"]
     assert "status" in operator["details"]["fake-centre"]["compartments"][0]
     assert activity["fictitious"] is True
+    catalogue = json.loads((tmp_path / "catalogue.json").read_text())
+    assert catalogue["round_times"] == ["07:00", "14:00", "20:00"]
 
 
 @pytest.mark.django_db

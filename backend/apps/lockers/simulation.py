@@ -244,38 +244,50 @@ def spread_by_category(
     candidates: Sequence[tuple[str, SimulatedSite]],
     count: int,
     taken: Sequence[SimulatedSite] = (),
+    centre: tuple[float, float] = (5.7245, 45.1885),
+    min_spacing_m: float = 250,
 ) -> list[tuple[str, SimulatedSite]]:
-    """Pick ``count`` sites, taking categories in turn and spreading them out.
+    """Pick ``count`` sites, taking categories in turn, central places first.
 
-    Categories are visited round-robin so that every kind of place is
-    represented; within the current category, the site farthest from all
-    sites already chosen (including ``taken``) is added. Deterministic.
+    Consigne lockers serve people where they are, so central places win:
+    categories are visited round-robin (every kind of place is represented)
+    and, within the current category, the site closest to ``centre`` that is
+    at least ``min_spacing_m`` from every site already chosen (including
+    ``taken``) is added. Deterministic.
 
     Args:
         candidates: (category, site) pairs.
         count: Number of sites to keep.
-        taken: Sites already used (e.g. tram stop lockers), to stay away from.
+        taken: Sites already used (e.g. tram stop lockers), to keep apart from.
+        centre: (longitude, latitude) of the city centre.
+        min_spacing_m: Minimum distance between two lockers, in metres.
 
     Returns:
         The selected (category, site) pairs, at most ``len(candidates)``.
     """
+    origin = SimulatedSite("centre", centre[0], centre[1], "")
     by_category: dict[str, list[SimulatedSite]] = {}
     for category, site in candidates:
         by_category.setdefault(category, []).append(site)
+    for sites in by_category.values():
+        sites.sort(key=lambda s: _distance_m(s, origin))
     chosen: list[SimulatedSite] = list(taken)
     result: list[tuple[str, SimulatedSite]] = []
-    categories = sorted(by_category)
-    while len(result) < count and any(by_category.values()):
-        for category in categories:
+    progress = True
+    while len(result) < count and progress:
+        progress = False
+        for category in sorted(by_category):
+            if len(result) >= count:
+                break
             remaining = by_category[category]
-            if not remaining or len(result) >= count:
-                continue
-            site = (
-                max(remaining, key=lambda s: min(_distance_m(s, c) for c in chosen))
-                if chosen
-                else remaining[0]
+            pick = next(
+                (s for s in remaining if all(_distance_m(s, c) >= min_spacing_m for c in chosen)),
+                None,
             )
-            remaining.remove(site)
-            chosen.append(site)
-            result.append((category, site))
+            if pick is None:
+                continue
+            remaining.remove(pick)
+            chosen.append(pick)
+            result.append((category, pick))
+            progress = True
     return result

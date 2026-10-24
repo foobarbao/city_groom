@@ -316,6 +316,23 @@ export interface components {
                  */
                 status?: "active" | "maintenance" | "offline";
                 /**
+                 * Type de lieu
+                 * @description Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+                 *
+                 *     * `tram_stop` - Arrêt de tram
+                 *     * `tourism` - Site touristique
+                 *     * `transport` - Gare
+                 *     * `campus` - Campus
+                 *     * `shopping` - Centre commercial ou marché
+                 *     * `health` - Hôpital
+                 *     * `business` - Pôle d'activité
+                 *     * `square` - Place (restaurants, cafés)
+                 *     * `leisure` - Parc ou équipement sportif
+                 *     * `other` - Autre
+                 * @enum {string}
+                 */
+                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
+                /**
                  * Modes d'ouverture
                  * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
                  */
@@ -354,6 +371,22 @@ export interface components {
              *     * `offline` - Hors ligne
              */
             readonly status: components["schemas"]["LockerStatusEnum"];
+            /**
+             * Type de lieu
+             * @description Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+             *
+             *     * `tram_stop` - Arrêt de tram
+             *     * `tourism` - Site touristique
+             *     * `transport` - Gare
+             *     * `campus` - Campus
+             *     * `shopping` - Centre commercial ou marché
+             *     * `health` - Hôpital
+             *     * `business` - Pôle d'activité
+             *     * `square` - Place (restaurants, cafés)
+             *     * `leisure` - Parc ou équipement sportif
+             *     * `other` - Autre
+             */
+            readonly site_category: components["schemas"]["SiteCategoryEnum"];
             /**
              * Modes d'ouverture
              * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
@@ -551,6 +584,23 @@ export interface components {
                  */
                 status?: "active" | "maintenance" | "offline";
                 /**
+                 * Type de lieu
+                 * @description Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+                 *
+                 *     * `tram_stop` - Arrêt de tram
+                 *     * `tourism` - Site touristique
+                 *     * `transport` - Gare
+                 *     * `campus` - Campus
+                 *     * `shopping` - Centre commercial ou marché
+                 *     * `health` - Hôpital
+                 *     * `business` - Pôle d'activité
+                 *     * `square` - Place (restaurants, cafés)
+                 *     * `leisure` - Parc ou équipement sportif
+                 *     * `other` - Autre
+                 * @enum {string}
+                 */
+                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
+                /**
                  * Modes d'ouverture
                  * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
                  */
@@ -598,6 +648,22 @@ export interface components {
              *     * `offline` - Hors ligne
              */
             readonly status: components["schemas"]["LockerStatusEnum"];
+            /**
+             * Type de lieu
+             * @description Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+             *
+             *     * `tram_stop` - Arrêt de tram
+             *     * `tourism` - Site touristique
+             *     * `transport` - Gare
+             *     * `campus` - Campus
+             *     * `shopping` - Centre commercial ou marché
+             *     * `health` - Hôpital
+             *     * `business` - Pôle d'activité
+             *     * `square` - Place (restaurants, cafés)
+             *     * `leisure` - Parc ou équipement sportif
+             *     * `other` - Autre
+             */
+            readonly site_category: components["schemas"]["SiteCategoryEnum"];
             /**
              * Modes d'ouverture
              * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
@@ -677,6 +743,20 @@ export interface components {
             /** @description Index dans la colonne, à partir de 0, de haut en bas. */
             readonly position: number;
         };
+        /**
+         * @description * `tram_stop` - Arrêt de tram
+         *     * `tourism` - Site touristique
+         *     * `transport` - Gare
+         *     * `campus` - Campus
+         *     * `shopping` - Centre commercial ou marché
+         *     * `health` - Hôpital
+         *     * `business` - Pôle d'activité
+         *     * `square` - Place (restaurants, cafés)
+         *     * `leisure` - Parc ou équipement sportif
+         *     * `other` - Autre
+         * @enum {string}
+         */
+        SiteCategoryEnum: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
         /**
          * @description * `S` - Petit
          *     * `M` - Moyen

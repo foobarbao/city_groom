@@ -7,11 +7,12 @@ is labelled as such in the apps (CODING_STANDARDS.md §10).
 
 Model, following docs/PRODUCT.md:
 
-- two rounds per day at 08:00 and 20:00 (Europe/Paris); an item dropped in a
-  locker is collected at the next round and brought to the merchant;
+- three rounds per day at 07:00, 14:00 and 20:00 (Europe/Paris); an item
+  dropped in a locker is collected at the next round and brought to the
+  merchant;
 - after the service's turnaround (a number of rounds), the item is returned to
-  the pickup locker at a round, then collected by the customer within the
-  12-hour pickup slot (a few customers are late and pay a small fee);
+  the pickup locker at a round, then collected by the customer before the
+  next round (a few customers are late and pay a small fee);
 - ASSUMPTION: volumes are deliberately modest (about 25 orders a day at the
   start of the window, +1.5 % a day, lower at weekends), as requested by the
   project owner; to be refined together.
@@ -37,8 +38,7 @@ from apps.demo.catalogue import (
 )
 
 TIMEZONE = ZoneInfo("Europe/Paris")
-ROUND_TIMES = (time(8, 0), time(20, 0))
-PICKUP_SLOT = timedelta(hours=12)
+ROUND_TIMES = (time(7, 0), time(14, 0), time(20, 0))
 
 # Centre of Grenoble, origin of the fictitious merchant positions and depot.
 CENTRE = (45.1885, 5.7245)
@@ -151,7 +151,8 @@ def generate_activity(
     today = now.date()
     start = today - timedelta(days=past_days)
     slots = round_slots(start, past_days + future_days + 2)
-    merchants = list(DEMO_MERCHANTS)
+    # Shops with no order weight only appear in the customer catalogue.
+    merchants = [m for m in DEMO_MERCHANTS if m.weight > 0]
     weights = [m.weight for m in merchants]
 
     orders: list[dict[str, Any]] = []
@@ -226,11 +227,14 @@ def _order(
         returned = slots[index] if index < len(slots) else None
     late = rng.random() < LATE_PICKUP_PROBABILITY
     picked_up = None
-    if returned is not None:
+    deadline = _next_round(returned, slots) if returned is not None else None
+    if returned is not None and deadline is not None:
+        # The pickup slot runs until the next round (docs/PRODUCT.md §4).
+        slot_minutes = int((deadline - returned).total_seconds() // 60)
         delay = (
-            PICKUP_SLOT + timedelta(hours=rng.randint(1, 10))
+            deadline - returned + timedelta(hours=rng.randint(1, 10))
             if late
-            else timedelta(minutes=rng.randint(30, 690))
+            else timedelta(minutes=rng.randint(30, max(31, slot_minutes - 15)))
         )
         picked_up = returned + delay
     total = service.price * items

@@ -61,7 +61,11 @@ const bars: Bar[] = [
       <stat-tile
         :label="t('courier.roundsPerDay')"
         :value="number(summary.roundsPerDay)"
-        :hint="t('courier.roundTimes', { times: activity.round_times.join(' et ') })"
+        :hint="
+          t('courier.roundTimes', {
+            times: new Intl.ListFormat('fr', { type: 'conjunction' }).format(activity.round_times),
+          })
+        "
       />
       <stat-tile
         :label="t('courier.itemsPerRound')"

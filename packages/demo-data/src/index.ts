@@ -15,6 +15,7 @@ import type {
 } from '@city-groom/api-client'
 
 import activityJson from '../data/activity.json'
+import catalogueJson from '../data/catalogue.json'
 import operatorJson from '../data/operator.json'
 import publicJson from '../data/public.json'
 
@@ -88,7 +89,82 @@ export interface ActivityData {
   forecast: { date: string; orders: number; items: number }[]
 }
 
+/** A fictitious review of a partner shop (ADR-0008). */
+export interface DemoReview {
+  author: string
+  rating: number
+  comment: string
+  /** ISO date. */
+  date: string
+  verified_order: boolean
+}
+
+/** A fictitious partner shop ("Démo · …") with its services and reviews. */
+export interface DemoPartner {
+  code: string
+  name: string
+  category: string
+  latitude: number
+  longitude: number
+  /** Service codes, see `CatalogueData.services`. */
+  services: string[]
+  reviews: {
+    average: number
+    count: number
+    /** Number of ratings per star, keys "5" to "1". */
+    distribution: Record<string, number>
+    recent: DemoReview[]
+  }
+}
+
+/** A standard service sold at a fixed price per item (placeholder prices). */
+export interface DemoService {
+  code: string
+  name: string
+  category: string
+  price: string
+  size: string
+  /** Rounds between collection and return (3 rounds = 1 day). */
+  turnaround_rounds: number
+}
+
+/** A customer subscription plan (placeholder, docs/PRODUCT.md open question 8). */
+export interface SubscriptionPlan {
+  code: string
+  name: string
+  monthly_price: string
+  /** Share taken off consigne prices, "0" to "1". */
+  consigne_discount: string
+  perks: string[]
+}
+
+/** A slot between two rounds (docs/PRODUCT.md §4). */
+export interface Slot {
+  code: 'morning' | 'afternoon' | 'evening'
+  label: string
+  /** "HH:MM", local time in Grenoble. */
+  starts: string
+  ends: string
+}
+
+/** Customer catalogue of the demo (fictitious partners, placeholder plans, rules). */
+export interface CatalogueData {
+  fictitious: true
+  partners: DemoPartner[]
+  services: DemoService[]
+  plans: SubscriptionPlan[]
+  consigne: {
+    max_hours: number
+    min_notice_hours: number
+    /** Price per booking without subscription, by compartment size. */
+    prices: Record<string, string>
+  }
+  round_times: string[]
+  slots: Slot[]
+}
+
 export const publicData = publicJson as unknown as PublicData
+export const catalogueData = catalogueJson as unknown as CatalogueData
 export const operatorData = operatorJson as unknown as OperatorData
 
 const DAY_MS = 24 * 60 * 60 * 1000

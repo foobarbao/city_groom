@@ -1,0 +1,912 @@
+{
+ "fictitious": true,
+ "partners": [
+  {
+   "code": "demo-pressing",
+   "name": "Démo · Pressing du centre",
+   "category": "dry_cleaning",
+   "latitude": 45.1905,
+   "longitude": 5.7205,
+   "services": [
+    "shirt_ironing",
+    "suit_cleaning"
+   ],
+   "reviews": {
+    "average": 4.4,
+    "count": 46,
+    "distribution": {
+     "5": 28,
+     "4": 12,
+     "3": 5,
+     "2": 0,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Inès L.",
+      "rating": 3,
+      "comment": "Correct, mais j'aurais aimé être prévenu plus tôt.",
+      "date": "2026-10-06",
+      "verified_order": true
+     },
+     {
+      "author": "Hugo V.",
+      "rating": 3,
+      "comment": "Correct, mais j'aurais aimé être prévenu plus tôt.",
+      "date": "2026-09-29",
+      "verified_order": true
+     },
+     {
+      "author": "Léo T.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-24",
+      "verified_order": true
+     },
+     {
+      "author": "Théo X.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-09-13",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-blanchisserie",
+   "name": "Démo · Blanchisserie",
+   "category": "laundry",
+   "latitude": 45.1825,
+   "longitude": 5.7325,
+   "services": [
+    "laundry_bag",
+    "duvet_cleaning"
+   ],
+   "reviews": {
+    "average": 4.2,
+    "count": 21,
+    "distribution": {
+     "5": 11,
+     "4": 6,
+     "3": 3,
+     "2": 0,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Lucie N.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-10-08",
+      "verified_order": true
+     },
+     {
+      "author": "Yanis H.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-19",
+      "verified_order": true
+     },
+     {
+      "author": "Théo P.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-09-18",
+      "verified_order": true
+     },
+     {
+      "author": "Camille D.",
+      "rating": 5,
+      "comment": "Très pratique, je n'ai plus besoin de traverser la ville.",
+      "date": "2026-09-06",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-cordonnerie",
+   "name": "Démo · Cordonnerie",
+   "category": "shoe_repair",
+   "latitude": 45.192499999999995,
+   "longitude": 5.7305,
+   "services": [
+    "shoe_cleaning",
+    "heel_repair"
+   ],
+   "reviews": {
+    "average": 4.1,
+    "count": 15,
+    "distribution": {
+     "5": 7,
+     "4": 5,
+     "3": 1,
+     "2": 1,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Camille X.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-10-16",
+      "verified_order": true
+     },
+     {
+      "author": "Théo Y.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-10-13",
+      "verified_order": true
+     },
+     {
+      "author": "Théo D.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-10-05",
+      "verified_order": true
+     },
+     {
+      "author": "Théo T.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-26",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-retouches",
+   "name": "Démo · Atelier de retouches",
+   "category": "tailoring",
+   "latitude": 45.1855,
+   "longitude": 5.7155,
+   "services": [
+    "hem_alteration",
+    "zip_repair"
+   ],
+   "reviews": {
+    "average": 4.4,
+    "count": 18,
+    "distribution": {
+     "5": 11,
+     "4": 3,
+     "3": 4,
+     "2": 0,
+     "1": 0
+    },
+    "recent": [
+     {
+      "author": "Nora R.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-10-15",
+      "verified_order": true
+     },
+     {
+      "author": "Manon Q.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-09-19",
+      "verified_order": true
+     },
+     {
+      "author": "Hugo R.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-05",
+      "verified_order": true
+     },
+     {
+      "author": "Manon M.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-09-04",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-horlogerie",
+   "name": "Démo · Horlogerie",
+   "category": "watch_repair",
+   "latitude": 45.189499999999995,
+   "longitude": 5.7265,
+   "services": [
+    "watch_battery",
+    "watch_strap"
+   ],
+   "reviews": {
+    "average": 4.4,
+    "count": 48,
+    "distribution": {
+     "5": 30,
+     "4": 10,
+     "3": 6,
+     "2": 0,
+     "1": 2
+    },
+    "recent": [
+     {
+      "author": "Inès N.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-10-23",
+      "verified_order": true
+     },
+     {
+      "author": "Nora G.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-10-18",
+      "verified_order": true
+     },
+     {
+      "author": "Camille F.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-05",
+      "verified_order": true
+     },
+     {
+      "author": "Camille M.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-08-31",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-reparation",
+   "name": "Démo · Réparation mobile",
+   "category": "electronics_repair",
+   "latitude": 45.180499999999995,
+   "longitude": 5.7225,
+   "services": [
+    "phone_screen",
+    "laptop_cleaning"
+   ],
+   "reviews": {
+    "average": 4.5,
+    "count": 22,
+    "distribution": {
+     "5": 13,
+     "4": 6,
+     "3": 3,
+     "2": 0,
+     "1": 0
+    },
+    "recent": [
+     {
+      "author": "Léo S.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-10-19",
+      "verified_order": true
+     },
+     {
+      "author": "Lucie T.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-10-08",
+      "verified_order": true
+     },
+     {
+      "author": "Lucie C.",
+      "rating": 5,
+      "comment": "Travail impeccable, récupéré le lendemain au casier.",
+      "date": "2026-09-10",
+      "verified_order": true
+     },
+     {
+      "author": "Lucie S.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-08-29",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-pressing-gare",
+   "name": "Démo · Pressing de la gare",
+   "category": "dry_cleaning",
+   "latitude": 45.1915,
+   "longitude": 5.7125,
+   "services": [
+    "shirt_ironing",
+    "suit_cleaning"
+   ],
+   "reviews": {
+    "average": 4.4,
+    "count": 39,
+    "distribution": {
+     "5": 25,
+     "4": 8,
+     "3": 5,
+     "2": 0,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Manon B.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-10-07",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé I.",
+      "rating": 5,
+      "comment": "Très pratique, je n'ai plus besoin de traverser la ville.",
+      "date": "2026-09-13",
+      "verified_order": true
+     },
+     {
+      "author": "Camille K.",
+      "rating": 5,
+      "comment": "Travail impeccable, récupéré le lendemain au casier.",
+      "date": "2026-09-10",
+      "verified_order": true
+     },
+     {
+      "author": "Manon F.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-08-30",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-pressing-ile-verte",
+   "name": "Démo · Pressing Île Verte",
+   "category": "dry_cleaning",
+   "latitude": 45.195499999999996,
+   "longitude": 5.7364999999999995,
+   "services": [
+    "shirt_ironing",
+    "suit_cleaning"
+   ],
+   "reviews": {
+    "average": 4.1,
+    "count": 34,
+    "distribution": {
+     "5": 14,
+     "4": 9,
+     "3": 10,
+     "2": 1,
+     "1": 0
+    },
+    "recent": [
+     {
+      "author": "Inès Z.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-10-08",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé B.",
+      "rating": 5,
+      "comment": "Très pratique, je n'ai plus besoin de traverser la ville.",
+      "date": "2026-09-06",
+      "verified_order": true
+     },
+     {
+      "author": "Hugo G.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-09-02",
+      "verified_order": true
+     },
+     {
+      "author": "Yanis J.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-08-29",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-linge-express",
+   "name": "Démo · Linge express",
+   "category": "laundry",
+   "latitude": 45.1785,
+   "longitude": 5.7275,
+   "services": [
+    "laundry_bag",
+    "duvet_cleaning"
+   ],
+   "reviews": {
+    "average": 4.3,
+    "count": 20,
+    "distribution": {
+     "5": 11,
+     "4": 7,
+     "3": 1,
+     "2": 0,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Lucie G.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-10-16",
+      "verified_order": true
+     },
+     {
+      "author": "Camille W.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-26",
+      "verified_order": true
+     },
+     {
+      "author": "Camille Q.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-21",
+      "verified_order": true
+     },
+     {
+      "author": "Yanis N.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-09-15",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-cordonnier-halles",
+   "name": "Démo · Cordonnier des halles",
+   "category": "shoe_repair",
+   "latitude": 45.1885,
+   "longitude": 5.7185,
+   "services": [
+    "shoe_cleaning",
+    "heel_repair"
+   ],
+   "reviews": {
+    "average": 4.0,
+    "count": 10,
+    "distribution": {
+     "5": 3,
+     "4": 4,
+     "3": 3,
+     "2": 0,
+     "1": 0
+    },
+    "recent": [
+     {
+      "author": "Inès T.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-10-15",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé R.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-10-11",
+      "verified_order": true
+     },
+     {
+      "author": "Manon J.",
+      "rating": 5,
+      "comment": "Travail impeccable, récupéré le lendemain au casier.",
+      "date": "2026-09-27",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé Z.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-09-18",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-couture-atelier",
+   "name": "Démo · Couture & ajustements",
+   "category": "tailoring",
+   "latitude": 45.1935,
+   "longitude": 5.7245,
+   "services": [
+    "hem_alteration",
+    "zip_repair"
+   ],
+   "reviews": {
+    "average": 4.1,
+    "count": 43,
+    "distribution": {
+     "5": 18,
+     "4": 17,
+     "3": 5,
+     "2": 2,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Lucie X.",
+      "rating": 5,
+      "comment": "Parfait du début à la fin.",
+      "date": "2026-10-03",
+      "verified_order": true
+     },
+     {
+      "author": "Théo O.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-20",
+      "verified_order": true
+     },
+     {
+      "author": "Nora O.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-09-18",
+      "verified_order": true
+     },
+     {
+      "author": "Hugo U.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-15",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-bijoux",
+   "name": "Démo · Atelier bijoux",
+   "category": "jewellery_repair",
+   "latitude": 45.1905,
+   "longitude": 5.7284999999999995,
+   "services": [
+    "chain_repair"
+   ],
+   "reviews": {
+    "average": 4.6,
+    "count": 23,
+    "distribution": {
+     "5": 15,
+     "4": 6,
+     "3": 2,
+     "2": 0,
+     "1": 0
+    },
+    "recent": [
+     {
+      "author": "Yanis J.",
+      "rating": 5,
+      "comment": "Travail impeccable, récupéré le lendemain au casier.",
+      "date": "2026-09-29",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé R.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-23",
+      "verified_order": true
+     },
+     {
+      "author": "Nora H.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-09-17",
+      "verified_order": true
+     },
+     {
+      "author": "Chloé P.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-05",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-cles",
+   "name": "Démo · Clés minute",
+   "category": "key_cutting",
+   "latitude": 45.1845,
+   "longitude": 5.7265,
+   "services": [
+    "key_copy"
+   ],
+   "reviews": {
+    "average": 3.6,
+    "count": 7,
+    "distribution": {
+     "5": 1,
+     "4": 4,
+     "3": 1,
+     "2": 0,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Léo U.",
+      "rating": 5,
+      "comment": "Travail impeccable, récupéré le lendemain au casier.",
+      "date": "2026-10-22",
+      "verified_order": true
+     },
+     {
+      "author": "Inès O.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-09-28",
+      "verified_order": true
+     },
+     {
+      "author": "Camille I.",
+      "rating": 4,
+      "comment": "Bon résultat, délai respecté.",
+      "date": "2026-09-19",
+      "verified_order": true
+     },
+     {
+      "author": "Yanis G.",
+      "rating": 4,
+      "comment": "Rien à redire, je recommande.",
+      "date": "2026-08-26",
+      "verified_order": true
+     }
+    ]
+   }
+  },
+  {
+   "code": "demo-repar-info",
+   "name": "Démo · Répar'info",
+   "category": "electronics_repair",
+   "latitude": 45.186499999999995,
+   "longitude": 5.7355,
+   "services": [
+    "phone_screen",
+    "laptop_cleaning"
+   ],
+   "reviews": {
+    "average": 4.3,
+    "count": 35,
+    "distribution": {
+     "5": 17,
+     "4": 15,
+     "3": 1,
+     "2": 1,
+     "1": 1
+    },
+    "recent": [
+     {
+      "author": "Lucie W.",
+      "rating": 5,
+      "comment": "Très pratique, je n'ai plus besoin de traverser la ville.",
+      "date": "2026-10-11",
+      "verified_order": true
+     },
+     {
+      "author": "Léo W.",
+      "rating": 4,
+      "comment": "Service soigné, un peu plus long que prévu.",
+      "date": "2026-09-29",
+      "verified_order": true
+     },
+     {
+      "author": "Lucie Z.",
+      "rating": 5,
+      "comment": "Accueil sympathique par messagerie, devis rapide.",
+      "date": "2026-09-28",
+      "verified_order": true
+     },
+     {
+      "author": "Lucie Z.",
+      "rating": 5,
+      "comment": "Très pratique, je n'ai plus besoin de traverser la ville.",
+      "date": "2026-09-08",
+      "verified_order": true
+     }
+    ]
+   }
+  }
+ ],
+ "services": [
+  {
+   "code": "shirt_ironing",
+   "name": "Repassage chemise",
+   "category": "dry_cleaning",
+   "price": "3.50",
+   "size": "XL",
+   "turnaround_rounds": 3
+  },
+  {
+   "code": "suit_cleaning",
+   "name": "Nettoyage costume",
+   "category": "dry_cleaning",
+   "price": "16.00",
+   "size": "XL",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "laundry_bag",
+   "name": "Sac de linge lavé-plié",
+   "category": "laundry",
+   "price": "18.00",
+   "size": "L",
+   "turnaround_rounds": 3
+  },
+  {
+   "code": "duvet_cleaning",
+   "name": "Nettoyage couette",
+   "category": "laundry",
+   "price": "22.00",
+   "size": "L",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "shoe_cleaning",
+   "name": "Nettoyage chaussures",
+   "category": "shoe_repair",
+   "price": "12.00",
+   "size": "M",
+   "turnaround_rounds": 3
+  },
+  {
+   "code": "heel_repair",
+   "name": "Talons refaits",
+   "category": "shoe_repair",
+   "price": "15.00",
+   "size": "M",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "hem_alteration",
+   "name": "Ourlet pantalon",
+   "category": "tailoring",
+   "price": "11.00",
+   "size": "M",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "zip_repair",
+   "name": "Fermeture éclair",
+   "category": "tailoring",
+   "price": "14.00",
+   "size": "M",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "watch_battery",
+   "name": "Pile de montre",
+   "category": "watch_repair",
+   "price": "9.00",
+   "size": "S",
+   "turnaround_rounds": 3
+  },
+  {
+   "code": "watch_strap",
+   "name": "Bracelet de montre",
+   "category": "watch_repair",
+   "price": "25.00",
+   "size": "S",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "phone_screen",
+   "name": "Écran de téléphone",
+   "category": "electronics_repair",
+   "price": "79.00",
+   "size": "S",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "laptop_cleaning",
+   "name": "Nettoyage ordinateur portable",
+   "category": "electronics_repair",
+   "price": "39.00",
+   "size": "L",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "chain_repair",
+   "name": "Réparation de chaîne",
+   "category": "jewellery_repair",
+   "price": "20.00",
+   "size": "S",
+   "turnaround_rounds": 6
+  },
+  {
+   "code": "key_copy",
+   "name": "Double de clé",
+   "category": "key_cutting",
+   "price": "6.00",
+   "size": "S",
+   "turnaround_rounds": 3
+  }
+ ],
+ "plans": [
+  {
+   "code": "free",
+   "name": "Sans abonnement",
+   "monthly_price": "0.00",
+   "consigne_discount": "0",
+   "perks": [
+    "Consigne au prix normal",
+    "Commande de services"
+   ]
+  },
+  {
+   "code": "plus",
+   "name": "CityPal Plus",
+   "monthly_price": "4.90",
+   "consigne_discount": "0.5",
+   "perks": [
+    "Consigne à -50 %",
+    "Réservation prioritaire"
+   ]
+  },
+  {
+   "code": "premium",
+   "name": "CityPal Premium",
+   "monthly_price": "9.90",
+   "consigne_discount": "0.8",
+   "perks": [
+    "Consigne à -80 %",
+    "Réservation prioritaire",
+    "Premier retard offert chaque mois"
+   ]
+  }
+ ],
+ "consigne": {
+  "max_hours": 24,
+  "min_notice_hours": 4,
+  "prices": {
+   "S": "2.00",
+   "M": "3.00",
+   "L": "4.00"
+  }
+ },
+ "round_times": [
+  "07:00",
+  "14:00",
+  "20:00"
+ ],
+ "slots": [
+  {
+   "code": "morning",
+   "label": "Matinée",
+   "starts": "07:00",
+   "ends": "14:00"
+  },
+  {
+   "code": "afternoon",
+   "label": "Après-midi",
+   "starts": "14:00",
+   "ends": "20:00"
+  },
+  {
+   "code": "evening",
+   "label": "Soirée",
+   "starts": "20:00",
+   "ends": "07:00"
+  }
+ ]
+}

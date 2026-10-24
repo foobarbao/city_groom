@@ -14,6 +14,7 @@ Data © OpenStreetMap contributors, ODbL. Queries go through the shared
 Overpass client (``apps.core.osm``).
 """
 
+import math
 from typing import Any
 
 from apps.core.osm import METRO_BBOX, fetch_overpass
@@ -83,7 +84,7 @@ STRATEGIC_CATEGORIES: tuple[tuple[str, str], ...] = (
     ("business", '["landuse"~"^(commercial|retail)$"]["name"]'),
     ("square", '["place"="square"]'),
     ("square", '["highway"="pedestrian"]["area"="yes"]["name"]'),
-    ("leisure", '["leisure"~"^(stadium|sports_centre|park)$"]["name"]'),
+    ("leisure", '["leisure"~"^(stadium|park)$"]["name"]'),
 )
 
 STRATEGIC_SITES_QUERY = (
@@ -104,7 +105,7 @@ _CATEGORY_MATCHERS: tuple[tuple[str, str, frozenset[str]], ...] = (
     ("business", "landuse", frozenset({"commercial", "retail"})),
     ("square", "place", frozenset({"square"})),
     ("square", "highway", frozenset({"pedestrian"})),
-    ("leisure", "leisure", frozenset({"stadium", "sports_centre", "park"})),
+    ("leisure", "leisure", frozenset({"stadium", "park"})),
 )
 
 
@@ -116,12 +117,62 @@ def strategic_category(tags: dict[str, str]) -> str | None:
     return None
 
 
+# Selection rules for strategic places (docs/DATA_SOURCES.md). The raw query
+# is broad; these rules keep places that are urban, public and well known.
+# ASSUMPTION: thresholds and name patterns chosen for the demo, to review with
+# the project owner when locker locations are decided.
+CENTRE_LAT_LON = (45.1885, 5.7245)  # Grenoble city centre
+MAX_DISTANCE_KM = 7.0  # urban area served by the cargo-bike rounds
+# Categories whose places must be notable (a Wikidata or Wikipedia entry),
+# which removes private clubs, small rooms and minor squares.
+NOTABLE_ONLY = frozenset({"tourism", "campus", "leisure", "square"})
+BUSINESS_AREA_PREFIXES = ("Zone ", "ZA ", "ZAC ", "ZI ", "Parc ", "Secteur ", "Espace ")
+# Hospitals proper (not day units or consultation rooms).
+HOSPITAL_WORDS = ("CHU", "hospitalier")
+# Names too generic to help a customer find the locker.
+GENERIC_NAMES = frozenset({"Gymnase", "Kiosque", "Belvédère", "Bois", "Parc", "Square"})
+
+
+def _distance_km(lat: float, lon: float) -> float:
+    """Distance from the centre of Grenoble (equirectangular, fine at city scale)."""
+    mean_lat = math.radians((lat + CENTRE_LAT_LON[0]) / 2)
+    dx = math.radians(lon - CENTRE_LAT_LON[1]) * math.cos(mean_lat)
+    dy = math.radians(lat - CENTRE_LAT_LON[0])
+    return 6371 * math.hypot(dx, dy)
+
+
+def is_strategic_candidate(category: str, tags: dict[str, str], lat: float, lon: float) -> bool:
+    """Whether a place passes the selection rules for consigne lockers."""
+    name = tags.get("name", "")
+    notable = bool(tags.get("wikidata") or tags.get("wikipedia"))
+    if _distance_km(lat, lon) > MAX_DISTANCE_KM or name in GENERIC_NAMES:
+        return False
+    if tags.get("brand") or tags.get("shop") not in (None, "mall"):
+        return False  # a business, not a place
+    if category in NOTABLE_ONLY:
+        return notable
+    if category == "shopping":
+        return notable or tags.get("amenity") == "marketplace"
+    if category == "business":
+        return notable or name.startswith(BUSINESS_AREA_PREFIXES)
+    if category == "health":
+        return notable or any(word in name for word in HOSPITAL_WORDS)
+    return True
+
+
+def _display_name(category: str, name: str) -> str:
+    """Name shown to customers; stations get "Gare" when OSM names the town only."""
+    if category == "transport" and not name.lower().startswith(("gare", "pôle", "station")):
+        return f"Gare {name}"
+    return name
+
+
 def parse_strategic_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
     """Turn an Overpass response into named strategic sites with their category.
 
     Ways and relations are placed at the centre given by ``out center``.
-    Unnamed objects are ignored; objects sharing a name are merged (first one
-    kept).
+    Places failing ``is_strategic_candidate`` and unnamed objects are ignored;
+    objects sharing a name are merged (first one kept).
 
     Args:
         payload: Overpass JSON response (nodes, ways, relations).
@@ -135,7 +186,12 @@ def parse_strategic_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedS
         name = tags.get("name")
         category = strategic_category(tags)
         position = element.get("center") or element
-        if not name or not category or "lon" not in position or name in by_name:
+        if not name or not category or "lon" not in position:
+            continue
+        if not is_strategic_candidate(category, tags, position["lat"], position["lon"]):
+            continue
+        name = _display_name(category, name)
+        if name in by_name:
             continue
         by_name[name] = (
             category,

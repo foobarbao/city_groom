@@ -3,8 +3,8 @@
 Reads the lockers and merchants currently in the database (after
 ``import_osm_merchants`` and ``seed_simulated_lockers``), snapshots the API
 responses the apps use, and adds the fictitious activity of
-``apps.demo.activity``. Files are written to ``packages/demo-data/data/``
-(docs/DEMO.md)::
+``apps.demo.activity`` and the customer catalogue of ``apps.demo.customer``.
+Files are written to ``packages/demo-data/data/`` (docs/DEMO.md)::
 
     python manage.py export_demo_data --output-dir ../packages/demo-data/data
 """
@@ -22,6 +22,7 @@ from django.utils import timezone
 from rest_framework.test import APIClient
 
 from apps.demo.activity import LockerSite, generate_activity
+from apps.demo.customer import build_customer_catalogue
 from apps.lockers.models import Locker
 
 #: Host name of the in-process API requests (never resolved on the network).
@@ -73,6 +74,7 @@ class Command(BaseCommand):
             ("public", public_data),
             ("operator", operator_data),
             ("activity", activity),
+            ("catalogue", build_customer_catalogue(now, seed=options["seed"])),
         ):
             (output / f"{name}.json").write_text(
                 json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8"
