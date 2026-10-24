@@ -13,7 +13,7 @@ import '@ionic/vue/css/typography.css'
 import '@ionic/vue/css/padding.css'
 import '@ionic/vue/css/display.css'
 import '@fontsource-variable/nunito'
-import './theme.css'
+import '@city-groom/ui/src/theme.css'
 
 import App from './App.vue'
 import { i18n } from './i18n'

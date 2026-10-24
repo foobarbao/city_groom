@@ -42,5 +42,8 @@ jobs:
         run: npm run typecheck
       - name: Tests
         run: npm test
+      - name: Shared packages tests
+        working-directory: .
+        run: npm test -w packages/ui -w packages/demo-data
       - name: Build
         run: npx vite build

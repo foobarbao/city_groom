@@ -22,10 +22,9 @@ import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { fetchLocker, fetchSizes } from '../api/lockers'
-import LockerFront from '../components/LockerFront.vue'
 import SizePicker from '../components/SizePicker.vue'
 import { useErrorMessage } from '../composables/useErrorMessage'
-import { computeLockerDrawing, exampleDoorLabel } from '../utils/lockerDrawing'
+import { LockerFront, computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 
 const props = defineProps<{
   /** Locker code, from the route. */
@@ -122,6 +121,10 @@ onMounted(load)
           <locker-front
             :drawing="drawing"
             :highlighted-label="highlightedLabel"
+            :panel-label="t('locker.panel')"
+            :aria-label="
+              highlightedLabel ? t('locker.previewDoor', { label: highlightedLabel }) : undefined
+            "
             @select="onDoorSelected"
           />
           <p v-if="highlightedLabel" class="door-callout">

@@ -22,7 +22,8 @@ Until orders exist, the highlighted door is an **example** of the chosen size
 ```
 src/
 ├── api/          HTTP client and API calls (types from @city-groom/api-client)
-├── components/   LockerMap (MapLibre), LockerFront (SVG drawing), LockerCard, SizePicker
+├── components/   LockerMap (MapLibre), LockerCard, MerchantCard, SizePicker
+│                 (theme and locker drawing come from @city-groom/ui)
 ├── demo/         Fictitious data for the standalone demo build
 ├── composables/  Reusable logic (error messages…)
 ├── i18n/         French strings — no user-facing text in components

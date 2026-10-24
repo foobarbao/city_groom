@@ -1,39 +1,50 @@
 <script setup lang="ts">
 /**
  * Drawing of a locker front: columns, doors of several sizes and the control
- * panel, with one door highlighted and gently swinging open (the one the
- * customer will use).
+ * panel.
  *
- * Used on the locker page of the customer app; designed to be reused by the
- * operator view, which will colour doors by status.
+ * Two uses:
+ * - customer app: one door highlighted and gently swinging open (the one the
+ *   customer will use);
+ * - operator view: every door coloured by its status (`statuses`).
+ *
+ * Texts come from props so each app keeps its own i18n.
  *
  * Props:
  * - `drawing`: geometry computed by `computeLockerDrawing`.
  * - `highlightedLabel`: label of the door to highlight, or `null`.
+ * - `statuses`: door status by label (free, reserved, occupied, out_of_service).
+ * - `panelLabel`: text on the control panel screen.
+ * - `ariaLabel`: accessible description of the drawing.
  *
  * Emits:
  * - `select(label)`: when the user taps a door.
  */
-import { useI18n } from 'vue-i18n'
+import type { LockerDrawing } from "./lockerDrawing";
 
-import type { LockerDrawing } from '../utils/lockerDrawing'
-
-defineProps<{
-  /** Geometry of the locker front, in grid units. */
-  drawing: LockerDrawing
-  /** Label of the door to highlight (e.g. "B3"), or null for none. */
-  highlightedLabel: string | null
-}>()
+withDefaults(
+  defineProps<{
+    /** Geometry of the locker front, in grid units. */
+    drawing: LockerDrawing;
+    /** Label of the door to highlight (e.g. "B3"), or null for none. */
+    highlightedLabel?: string | null;
+    /** Door status by label, to colour every door (operator view). */
+    statuses?: Record<string, string> | null;
+    /** Text shown on the control panel screen. */
+    panelLabel: string;
+    /** Accessible description of the drawing. */
+    ariaLabel?: string;
+  }>(),
+  { highlightedLabel: null, statuses: null, ariaLabel: undefined },
+);
 
 const emit = defineEmits<{
   /** A door was tapped; payload is its label. */
-  select: [label: string]
-}>()
-
-const { t } = useI18n()
+  select: [label: string];
+}>();
 
 /** Space kept between doors, in grid units, so they read as separate soft tiles. */
-const DOOR_INSET = 0.09
+const DOOR_INSET = 0.09;
 </script>
 
 <template>
@@ -41,9 +52,7 @@ const DOOR_INSET = 0.09
     class="locker-front"
     :viewBox="`-0.4 -0.4 ${drawing.width + 0.8} ${drawing.height + 1.4}`"
     role="img"
-    :aria-label="
-      highlightedLabel ? t('locker.previewDoor', { label: highlightedLabel }) : undefined
-    "
+    :aria-label="ariaLabel"
   >
     <!-- Soft ground shadow under the locker -->
     <ellipse
@@ -53,7 +62,14 @@ const DOOR_INSET = 0.09
       :rx="drawing.width / 2"
       ry="0.35"
     />
-    <rect class="body" x="0" y="0" :width="drawing.width" :height="drawing.height" rx="0.7" />
+    <rect
+      class="body"
+      x="0"
+      y="0"
+      :width="drawing.width"
+      :height="drawing.height"
+      rx="0.7"
+    />
 
     <g class="panel">
       <rect
@@ -69,7 +85,7 @@ const DOOR_INSET = 0.09
         :x="drawing.panel.x + drawing.panel.width / 2"
         :y="drawing.panel.y + 0.5 + drawing.panel.height * 0.21"
       >
-        {{ t('locker.panel') }}
+        {{ panelLabel }}
       </text>
       <circle
         class="panel-reader"
@@ -89,7 +105,10 @@ const DOOR_INSET = 0.09
       v-for="door in drawing.doors"
       :key="door.id"
       class="door"
-      :class="{ highlighted: door.label === highlightedLabel }"
+      :class="[
+        statuses ? `status-${statuses[door.label] ?? 'free'}` : '',
+        { highlighted: door.label === highlightedLabel },
+      ]"
       role="button"
       tabindex="0"
       :aria-label="door.label"
@@ -192,6 +211,22 @@ const DOOR_INSET = 0.09
   font-weight: 700;
   fill: var(--cg-ink-soft);
   pointer-events: none;
+}
+
+/* Operator view: doors coloured by status. */
+.door.status-reserved .door-panel {
+  fill: var(--cg-sun);
+}
+.door.status-occupied .door-panel {
+  fill: var(--cg-leaf);
+}
+.door.status-occupied .door-label,
+.door.status-occupied .door-handle {
+  fill: var(--cg-surface);
+}
+.door.status-out_of_service .door-panel {
+  fill: var(--cg-surface-soft);
+  stroke-dasharray: 0.15 0.1;
 }
 
 /* The highlighted door glows and slowly swings open, hinged on its left edge. */

@@ -5,38 +5,42 @@
  * "grid units": a column is `columnGridUnits` high and `COLUMN_WIDTH_UNITS`
  * wide; doors are stacked from the top in the order given by `position`.
  */
-import type { CompartmentSize, LockerLayout, SizeSpec } from '@city-groom/api-client'
+import type {
+  CompartmentSize,
+  LockerLayout,
+  SizeSpec,
+} from "@city-groom/api-client";
 
 /** Width of a column, in grid units (a door is about as wide as 4.75 S heights). */
-export const COLUMN_WIDTH_UNITS = 4.75
+export const COLUMN_WIDTH_UNITS = 4.75;
 /** Space between columns and around the locker, in grid units. */
-export const GAP_UNITS = 0.25
+export const GAP_UNITS = 0.25;
 
 /** A door rectangle ready to draw. */
 export interface DoorRect {
-  id: number
-  label: string
-  size: CompartmentSize
-  x: number
-  y: number
-  width: number
-  height: number
+  id: number;
+  label: string;
+  size: CompartmentSize;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 /** The control panel rectangle (screen and readers). */
 export interface PanelRect {
-  x: number
-  y: number
-  width: number
-  height: number
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 /** Everything needed to draw a locker front. */
 export interface LockerDrawing {
-  width: number
-  height: number
-  doors: DoorRect[]
-  panel: PanelRect
+  width: number;
+  height: number;
+  doors: DoorRect[];
+  panel: PanelRect;
 }
 
 /**
@@ -47,27 +51,35 @@ export interface LockerDrawing {
  * @returns The drawing geometry, in grid units.
  * @throws {Error} If a compartment uses a size missing from the catalogue.
  */
-export function computeLockerDrawing(layout: LockerLayout, sizes: SizeSpec[]): LockerDrawing {
-  const unitsBySize = new Map(sizes.map((spec) => [spec.code, spec.grid_units]))
+export function computeLockerDrawing(
+  layout: LockerLayout,
+  sizes: SizeSpec[],
+): LockerDrawing {
+  const unitsBySize = new Map(
+    sizes.map((spec) => [spec.code, spec.grid_units]),
+  );
   const columnCount = Math.max(
     layout.control_panel_column + 1,
     ...layout.compartments.map((c) => c.column + 1),
-  )
-  const columnX = (column: number): number => GAP_UNITS + column * (COLUMN_WIDTH_UNITS + GAP_UNITS)
+  );
+  const columnX = (column: number): number =>
+    GAP_UNITS + column * (COLUMN_WIDTH_UNITS + GAP_UNITS);
 
   const sorted = [...layout.compartments].sort(
     (a, b) => a.column - b.column || a.position - b.position,
-  )
-  const nextY = new Map<number, number>()
+  );
+  const nextY = new Map<number, number>();
   const doors: DoorRect[] = sorted.map((compartment) => {
-    const units = unitsBySize.get(compartment.size)
+    const units = unitsBySize.get(compartment.size);
     if (units === undefined) {
-      throw new Error(`Unknown compartment size ${compartment.size}`)
+      throw new Error(`Unknown compartment size ${compartment.size}`);
     }
     const panelOffset =
-      compartment.column === layout.control_panel_column ? layout.control_panel_grid_units : 0
-    const y = nextY.get(compartment.column) ?? GAP_UNITS + panelOffset
-    nextY.set(compartment.column, y + units)
+      compartment.column === layout.control_panel_column
+        ? layout.control_panel_grid_units
+        : 0;
+    const y = nextY.get(compartment.column) ?? GAP_UNITS + panelOffset;
+    nextY.set(compartment.column, y + units);
     return {
       id: compartment.id,
       label: compartment.label,
@@ -76,8 +88,8 @@ export function computeLockerDrawing(layout: LockerLayout, sizes: SizeSpec[]): L
       y,
       width: COLUMN_WIDTH_UNITS,
       height: units,
-    }
-  })
+    };
+  });
 
   return {
     width: GAP_UNITS + columnCount * (COLUMN_WIDTH_UNITS + GAP_UNITS),
@@ -89,7 +101,7 @@ export function computeLockerDrawing(layout: LockerLayout, sizes: SizeSpec[]): L
       width: COLUMN_WIDTH_UNITS,
       height: layout.control_panel_grid_units,
     },
-  }
+  };
 }
 
 /**
@@ -101,6 +113,9 @@ export function computeLockerDrawing(layout: LockerLayout, sizes: SizeSpec[]): L
  *
  * @returns The label of the example door, or `null` if the locker has none of that size.
  */
-export function exampleDoorLabel(drawing: LockerDrawing, size: CompartmentSize): string | null {
-  return drawing.doors.find((door) => door.size === size)?.label ?? null
+export function exampleDoorLabel(
+  drawing: LockerDrawing,
+  size: CompartmentSize,
+): string | null {
+  return drawing.doors.find((door) => door.size === size)?.label ?? null;
 }

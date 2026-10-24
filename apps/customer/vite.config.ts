@@ -24,5 +24,7 @@ export default defineConfig(({ mode }) => ({
   },
   test: {
     environment: 'jsdom',
+    // Shared logic is tested in packages/ui and packages/demo-data.
+    passWithNoTests: true,
   },
 }))

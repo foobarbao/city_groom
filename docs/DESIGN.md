@@ -26,7 +26,7 @@ Principles:
 
 ## Tokens
 
-Defined once in `apps/customer/src/theme.css` (light and dark values) and
+Defined once in `packages/ui/src/theme.css` (shared by every frontend) (light and dark values) and
 mapped onto Ionic's colour variables. Components only use these tokens.
 
 | Token | Role |

@@ -31,7 +31,9 @@
   --cg-radius-pill: 999px;
 
   /* Type */
-  --cg-font: 'Nunito Variable', 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  --cg-font:
+    "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui,
+    sans-serif;
 
   /* Ionic mapping */
   --ion-font-family: var(--cg-font);
