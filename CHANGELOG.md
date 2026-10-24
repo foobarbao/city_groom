@@ -121,6 +121,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Fixed
 
+- Customer app: after choosing a locker, a size or a round, the page scrolls
+  to the next part of the form, so the "Continuer" button is no longer hidden
+  below the list on phones.
 - MapLibre could not start its worker in built apps (the worker file was not
   emitted by Vite): the live map now loads in the hosted demo.
 - `export_demo_data` failed when `ALLOWED_HOSTS` did not include `localhost`

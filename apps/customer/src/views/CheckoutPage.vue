@@ -18,7 +18,7 @@ import {
   IonPage,
   IonToolbar,
 } from '@ionic/vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
@@ -36,6 +36,7 @@ import {
 } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, euros } from '../utils/format'
+import { reveal } from '../utils/scroll'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -70,6 +71,12 @@ const door = computed(() => {
     : null
 })
 const ready = computed(() => Boolean(shop.value && label.value && dropLocker.value && pickup.value))
+
+// After choosing a locker, bring the rest of the form into view.
+const afterDrop = ref<HTMLElement | null>(null)
+const summary = ref<HTMLElement | null>(null)
+watch(dropLocker, () => reveal(afterDrop.value))
+watch(pickupLocker, () => reveal(summary.value))
 
 function pay(): void {
   if (!shop.value || !dropLocker.value || !pickup.value) return
@@ -130,7 +137,7 @@ function pay(): void {
         <h2 class="section-title">{{ t('checkout.dropLocker') }}</h2>
         <locker-picker v-model="dropLocker" :size="size" />
 
-        <label class="same">
+        <label ref="afterDrop" class="same">
           <input v-model="sameLocker" type="checkbox" />
           {{ t('checkout.sameLocker') }}
         </label>
@@ -139,7 +146,7 @@ function pay(): void {
           <locker-picker v-model="pickupLocker" :size="size" />
         </template>
 
-        <section class="soft-card">
+        <section ref="summary" class="soft-card">
           <p v-if="nextRound">
             <strong>{{ t('checkout.when') }}</strong> ·
             {{ t('checkout.whenText', { time: clock(nextRound) }) }}

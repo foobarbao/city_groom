@@ -17,7 +17,7 @@ import {
   IonToolbar,
   useIonRouter,
 } from '@ionic/vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import DemoNotice from '../components/DemoNotice.vue'
@@ -26,6 +26,7 @@ import { transferPrice, transferRounds } from '../domain/transfer'
 import { catalogue, lockerLayout, planByCode, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dayLabel, euros } from '../utils/format'
+import { reveal } from '../utils/scroll'
 
 const props = defineProps<{ id: string }>()
 const { t } = useI18n()
@@ -59,6 +60,12 @@ const ready = computed(
   () => toLocker.value !== null && roundAt.value !== null && door.value !== null,
 )
 
+// After each choice, bring the next part of the form into view.
+const roundTitle = ref<HTMLElement | null>(null)
+const confirmButton = ref<InstanceType<typeof IonButton> | null>(null)
+watch(toLocker, () => reveal(roundTitle.value))
+watch(roundAt, () => reveal(confirmButton.value))
+
 function confirm(): void {
   if (!booking.value || !toLocker.value || !roundAt.value || !door.value) return
   account.requestTransfer(booking.value.id, {
@@ -91,7 +98,7 @@ function confirm(): void {
           <h2 class="section-title">{{ t('consigne.transfer.chooseLocker') }}</h2>
           <locker-picker v-model="toLocker" :size="booking.size" />
 
-          <h2 class="section-title">{{ t('consigne.transfer.chooseRound') }}</h2>
+          <h2 ref="roundTitle" class="section-title">{{ t('consigne.transfer.chooseRound') }}</h2>
           <div class="chips wrap" role="radiogroup">
             <button
               v-for="r in rounds"
@@ -127,7 +134,14 @@ function confirm(): void {
               {{ t('demo.placeholderPrices') }} · {{ t('consigne.transfer.oneOnly') }}
             </p>
           </section>
-          <ion-button expand="block" shape="round" size="large" :disabled="!ready" @click="confirm">
+          <ion-button
+            ref="confirmButton"
+            expand="block"
+            shape="round"
+            size="large"
+            :disabled="!ready"
+            @click="confirm"
+          >
             {{
               t('consigne.transfer.confirm', {
                 price: price.included ? t('common.free') : euros(price.cents),

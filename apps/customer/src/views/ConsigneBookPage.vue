@@ -16,7 +16,7 @@ import {
   IonToolbar,
   useIonRouter,
 } from '@ionic/vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import DemoNotice from '../components/DemoNotice.vue'
@@ -26,6 +26,7 @@ import { type SlotWindow, currentSlot, pickupDeadline, upcomingWindows } from '.
 import { catalogue, lockerLayout, lockers, planByCode, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
+import { reveal } from '../utils/scroll'
 
 const { t } = useI18n()
 const router = useIonRouter()
@@ -70,6 +71,10 @@ const door = computed(() => {
 const canContinue = computed(
   () => [lockerCode.value !== null, whenChosen.value, size.value !== null, true][step.value],
 )
+
+// After choosing a locker or a size, bring the "Continuer" button into view.
+const continueButton = ref<InstanceType<typeof IonButton> | null>(null)
+watch([lockerCode, size], () => reveal(continueButton.value))
 
 function chooseNow(): void {
   window.value = null
@@ -251,6 +256,7 @@ function pay(): void {
 
         <ion-button
           v-if="step === 0 || step === 2"
+          ref="continueButton"
           expand="block"
           shape="round"
           :disabled="!canContinue"
