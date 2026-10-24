@@ -19,16 +19,18 @@
 import type { LockerFeatureCollection, MerchantFeatureCollection } from '@city-groom/api-client'
 import type { FeatureCollection, Point } from 'geojson'
 import {
+  AttributionControl,
   GeolocateControl,
   type GeoJSONSource,
   Map as MapLibreMap,
   type MapLayerMouseEvent,
   NavigationControl,
+  type StyleSpecification,
 } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, MAP_STYLE_URL } from '../config'
+import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, IS_DEMO, MAP_STYLE_URL } from '../config'
 
 const props = defineProps<{
   /** Lockers to display. */
@@ -65,13 +67,28 @@ function withTotals(collection: LockerFeatureCollection): FeatureCollection {
   }
 }
 
-onMounted(() => {
+/** Style to draw: the configured URL, or the embedded offline map in the demo build. */
+async function resolveStyle(): Promise<string | StyleSpecification | null> {
+  if (!IS_DEMO) return MAP_STYLE_URL
+  // Loaded on demand so the offline map is only bundled in the demo build.
+  const { loadOfflineStyle } = await import('../demo/offlineMap')
+  return loadOfflineStyle()
+}
+
+onMounted(async () => {
+  const style = await resolveStyle()
   if (!container.value) return
+  if (!style) {
+    emit('unavailable')
+    return
+  }
   map = new MapLibreMap({
     container: container.value,
-    style: MAP_STYLE_URL,
+    style,
     center: GRENOBLE_CENTER,
     zoom: DEFAULT_MAP_ZOOM,
+    // Re-added below in a corner the bottom sheet does not cover.
+    attributionControl: false,
   })
   let loaded = false
   map.on('error', () => {
@@ -83,6 +100,9 @@ onMounted(() => {
     new GeolocateControl({ positionOptions: { enableHighAccuracy: true } }),
     'top-right',
   )
+  // Mandatory OpenStreetMap credit (ODbL), compact, under the zoom buttons so
+  // neither the welcome card nor the bottom sheet hides it.
+  map.addControl(new AttributionControl({ compact: true }), 'top-right')
 
   map.on('load', () => {
     loaded = true

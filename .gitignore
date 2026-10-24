@@ -51,3 +51,6 @@ playwright-report/
 .DS_Store
 Thumbs.db
 *.log
+
+# Offline map extract for the standalone demo (generated, ~10 MB)
+apps/customer/src/demo/offline-map.json

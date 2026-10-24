@@ -62,6 +62,9 @@ Versioning: [SemVer](https://semver.org/).
 - Merchants: model, `import_osm_merchants` command (OpenStreetMap, services
   only, no food, no chains), `GET /api/v1/merchants/`, admin, map markers and
   "Commerces" tab in the customer app (`docs/DATA_SOURCES.md`).
+- Standalone demo: embedded offline map of Grenoble (OpenFreeMap extract
+  served through a custom MapLibre protocol), since the published demo page
+  blocks external requests.
 - Android project (Capacitor) with the provisional application id
   `fr.reliance.app`; working name "Reliance" in the app; build guide
   (`docs/BUILD_AND_RELEASE.md`).

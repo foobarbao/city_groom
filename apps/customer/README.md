@@ -62,9 +62,18 @@ The Android project lives in `android/` (Capacitor, provisional application id
 
 ## Standalone demo
 
-`npm run build:demo -w apps/customer` builds a self-contained HTML page in
-`dist-demo/` with bundled **fictitious** lockers (`src/demo/`), no backend and
-no base map. It is used to show the app without a server.
+A self-contained HTML page with bundled **fictitious** lockers (`src/demo/`)
+and an **embedded map of Grenoble**, used to show the app without a server.
+The page it is published on blocks external requests, so the map extract is
+embedded instead of loaded live (the real app loads the map live).
+
+```bash
+cd apps/customer
+python3 scripts/fetch_offline_map.py   # download the Grenoble map extract (~10 MB, git-ignored)
+npm run build:demo                     # -> dist-demo/index.html
+```
+
+Without the extract, the demo shows the list of lockers instead of the map.
 
 ## Not done yet
 

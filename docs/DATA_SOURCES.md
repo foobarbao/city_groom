@@ -8,7 +8,7 @@ imported. Real data is preferred everywhere; simulated data is labelled
 
 | Data | Source | Licence | How | Status |
 |---|---|---|---|---|
-| Map background | OpenStreetMap-based vector tiles (OpenFreeMap for the demo) | ODbL (data), attribution required | Loaded by MapLibre at runtime (`VITE_MAP_STYLE_URL`) | Works in the app; blocked inside the published demo page |
+| Map background | OpenStreetMap-based vector tiles (OpenFreeMap for the demo) | ODbL (data), attribution required | Loaded by MapLibre at runtime (`VITE_MAP_STYLE_URL`) | Works in the app (live); embedded as an offline extract in the published demo (`apps/customer/scripts/fetch_offline_map.py`) |
 | Candidate locker sites | OpenStreetMap tram stops of Grenoble-Alpes Métropole (Overpass API) | ODbL | `python manage.py seed_simulated_lockers` | Code ready; not yet run against real data (see below) |
 | Merchants | OpenStreetMap businesses (Overpass API) | ODbL | `python manage.py import_osm_merchants` | Code ready; not yet run against real data (see below) |
 | Locker sizes and layouts | Public documentation of locker networks and manufacturers | — | Encoded in `backend/apps/lockers/sizes.py` | Done, sources in `docs/LOCKERS.md` |

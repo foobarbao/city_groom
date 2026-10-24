@@ -14,7 +14,7 @@ import { useI18n } from 'vue-i18n'
 
 import { fetchLockers } from '../api/lockers'
 import { fetchMerchants } from '../api/merchants'
-import { MAP_STYLE_URL } from '../config'
+import { HAS_MAP } from '../config'
 import LockerCard from '../components/LockerCard.vue'
 import LockerMap from '../components/LockerMap.vue'
 import MerchantCard from '../components/MerchantCard.vue'
@@ -30,7 +30,7 @@ const merchants = ref<MerchantFeatureCollection | null>(null)
 const tab = ref<'lockers' | 'merchants'>('lockers')
 const error = ref<string | null>(null)
 /** True when no base map is configured or it failed to load: the list takes over. */
-const mapUnavailable = ref(MAP_STYLE_URL === '')
+const mapUnavailable = ref(!HAS_MAP)
 
 /** Lockers with free compartments first, then by name. */
 const sortedLockers = computed(() =>
@@ -192,7 +192,7 @@ onMounted(load)
   left: 0;
   right: 0;
   bottom: 0;
-  max-height: 46%;
+  max-height: 42%;
   display: flex;
   flex-direction: column;
   gap: 12px;
