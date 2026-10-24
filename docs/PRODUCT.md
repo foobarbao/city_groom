@@ -30,9 +30,10 @@ funding and grants:
 
 The service starts in **Grenoble**.
 
-The product name "City Groom" is **not final**. Preferred candidate
-(2026-10-24): **Reliance**, to be confirmed after trademark and domain
-checks (see open questions). Whatever the name, the brand
+The product name "City Groom" is **not final**. Working name chosen "for
+now" by the project owner (2026-10-24): **Reliance**, used in the apps and as
+the provisional Android application id `fr.reliance.app`; to be confirmed
+after trademark and domain checks (see open questions). Whatever the name, the brand
 must convey a strong **eco-social** message centred on the idea of
 **reconnecting** people with their city and its local businesses.
 

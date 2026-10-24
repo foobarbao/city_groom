@@ -13,9 +13,13 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "build:demo": "vite build --mode demo"
+    "build:demo": "vite build --mode demo",
+    "android:sync": "vite build && cap sync android",
+    "android:open": "cap open android"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
     "@city-groom/api-client": "*",
     "@fontsource-variable/nunito": "^5.3.0",
     "@ionic/vue": "^9.0.9",
@@ -28,6 +32,7 @@
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.3",
     "@types/geojson": "^7946.0.16",
     "@vitejs/plugin-vue": "^6.0.10",
     "@vue/eslint-config-prettier": "^10.2.0",

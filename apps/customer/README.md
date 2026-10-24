@@ -55,6 +55,11 @@ npm run typecheck -w apps/customer
 npm test -w apps/customer
 ```
 
+## Android
+
+The Android project lives in `android/` (Capacitor, provisional application id
+`fr.reliance.app`). Build steps: [`docs/BUILD_AND_RELEASE.md`](../../docs/BUILD_AND_RELEASE.md).
+
 ## Standalone demo
 
 `npm run build:demo -w apps/customer` builds a self-contained HTML page in
@@ -63,7 +68,4 @@ no base map. It is used to show the app without a server.
 
 ## Not done yet
 
-- Capacitor / Android project: it needs the Android **application id**
-  (e.g. `fr.example.citygroom`), which depends on the final product name and
-  domain (open question in `docs/PRODUCT.md`).
 - PWA manifest and offline support.

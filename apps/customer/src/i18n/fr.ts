@@ -3,8 +3,9 @@
  */
 export default {
   app: {
-    // PROD: final product name not chosen yet (docs/PRODUCT.md, open questions).
-    name: 'City Groom',
+    // Working name, chosen "for now" by the project owner (docs/PRODUCT.md).
+    // PROD: confirm the product name (trademark and domain checks).
+    name: 'Reliance',
     tagline: 'Vos commerces de quartier, sans voiture ni détour',
     simulatedNotice: 'Démonstration : casiers et disponibilités simulés.',
   },

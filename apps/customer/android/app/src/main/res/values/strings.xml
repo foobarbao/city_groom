@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Reliance</string>
+    <string name="title_activity_main">Reliance</string>
+    <string name="package_name">fr.reliance.app</string>
+    <string name="custom_url_scheme">fr.reliance.app</string>
+</resources>
