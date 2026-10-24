@@ -1,0 +1,50 @@
+# Backend CI: lint, format, type check, migrations and tests on every pull
+# request touching the backend (CODING_STANDARDS.md §8).
+name: Backend
+
+on:
+  pull_request:
+    paths: ["backend/**", ".github/workflows/backend.yml"]
+  push:
+    branches: [main, develop]
+    paths: ["backend/**", ".github/workflows/backend.yml"]
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    services:
+      db:
+        image: postgis/postgis:17-3.5
+        env:
+          POSTGRES_DB: city_groom
+          POSTGRES_USER: city_groom
+          POSTGRES_PASSWORD: city_groom
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U city_groom -d city_groom"
+          --health-interval 5s --health-retries 10
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-secret
+      DATABASE_URL: postgis://city_groom:city_groom@localhost:5432/city_groom
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install GDAL (required by GeoDjango)
+        run: sudo apt-get update && sudo apt-get install -y gdal-bin
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+      - run: uv sync --frozen
+      - name: Lint
+        run: uv run ruff check .
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Type check
+        run: uv run mypy .
+      - name: Missing migrations
+        run: uv run python manage.py makemigrations --check --dry-run
+      - name: Tests
+        run: uv run pytest

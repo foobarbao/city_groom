@@ -9,9 +9,8 @@ The project is **at the demo stage** (real map and real businesses, simulated
 lockers and orders) and is designed to serve as the foundation for a future
 production version.
 
-> ⚠️ The application code has not been initialised yet. The repository
-> currently contains the coding standards, the workflow, the product document
-> and the first architecture decisions.
+> ⚠️ Early stage: the backend skeleton exists (no business features yet); the
+> customer app and merchant portal are not initialised yet.
 
 ## Applications
 
@@ -50,5 +49,11 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 
 ## Getting started
 
-_To be written when the project is initialised (prerequisites, installation,
-running the backend and the frontends, Android build)._
+| Part | Guide |
+|---|---|
+| Backend (API + admin) | [`backend/README.md`](backend/README.md) |
+| Customer app | _not initialised yet_ |
+| Merchant portal | _not initialised yet_ |
+
+Local services (PostgreSQL + PostGIS, backend) are defined in
+[`docker-compose.yml`](docker-compose.yml).

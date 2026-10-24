@@ -21,4 +21,9 @@ Versioning: [SemVer](https://semver.org/).
 - Product requirements clarified: offer types (standard, packs, quotes with
   chat), guest checkout, simulated payment, 10 % initial commission, two
   collection rounds per day, business selection rules.
+- Backend skeleton: Django 5.2 LTS + DRF + GeoDjango project with
+  environment-based settings, French admin, OpenAPI schema and docs, public
+  health check endpoint, tests, Ruff and strict mypy configuration.
+- Docker setup: backend `Dockerfile` and `docker-compose.yml` (PostGIS).
+- Backend CI workflow (lint, format, type check, migrations, tests).
 - Pull request template, `.editorconfig`, `.gitignore`.
