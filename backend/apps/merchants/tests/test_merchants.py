@@ -43,6 +43,14 @@ def fake_payload() -> dict[str, Any]:
                 "lon": 5.7,
                 "tags": {"shop": "dry_cleaning", "name": "Fake Chain", "brand": "Fake Chain"},
             },
+            # Self-service laundromat: excluded
+            {
+                "type": "node",
+                "id": 6,
+                "lat": 45.2,
+                "lon": 5.7,
+                "tags": {"shop": "laundry", "name": "Fake Laverie", "self_service": "yes"},
+            },
             # Unnamed: excluded
             {"type": "node", "id": 4, "lat": 45.2, "lon": 5.7, "tags": {"shop": "laundry"}},
             # Not a service category: excluded
@@ -77,11 +85,20 @@ def test_parse_merchants_applies_selection_rules() -> None:
 
 @pytest.mark.django_db
 def test_import_is_idempotent_and_keeps_partner_flag() -> None:
-    assert import_candidates(parse_merchants(fake_payload())) == (2, 0)
+    assert import_candidates(parse_merchants(fake_payload())) == (2, 0, 0)
     Merchant.objects.filter(name="Fake Pressing").update(is_partner=True)
 
-    assert import_candidates(parse_merchants(fake_payload())) == (0, 2)
+    assert import_candidates(parse_merchants(fake_payload())) == (0, 2, 0)
     assert Merchant.objects.get(name="Fake Pressing").is_partner
+
+
+@pytest.mark.django_db
+def test_import_prunes_merchants_no_longer_selected_except_partners() -> None:
+    import_candidates(parse_merchants(fake_payload()))
+    Merchant.objects.filter(name="Fake Pressing").update(is_partner=True)
+
+    assert import_candidates([]) == (0, 0, 1)
+    assert list(Merchant.objects.values_list("name", flat=True)) == ["Fake Pressing"]
 
 
 @pytest.mark.django_db

@@ -5075,25 +5075,6 @@
     }
    },
    {
-    "id": 9,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7282143,
-      45.166838
-     ]
-    },
-    "properties": {
-     "name": "Auclair laverie",
-     "category": "laundry",
-     "address": "8bis Avenue Marie Reynoard, 38000 Grenoble",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 10,
     "type": "Feature",
     "geometry": {
@@ -5151,25 +5132,6 @@
     }
    },
    {
-    "id": 13,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.664511,
-      45.2553092
-     ]
-    },
-    "properties": {
-     "name": "Bubble",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su,PH 07:00-21:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 14,
     "type": "Feature",
     "geometry": {
@@ -5182,63 +5144,6 @@
     "properties": {
      "name": "Caméléon",
      "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 15,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7169397,
-      45.1864463
-     ]
-    },
-    "properties": {
-     "name": "City Laverie",
-     "category": "laundry",
-     "address": "45 Rue Gabriel Péri, 38000 Grenoble",
-     "opening_hours": "Mo-Su 08:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 16,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7338614,
-      45.1886063
-     ]
-    },
-    "properties": {
-     "name": "City laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "06:30-21:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 17,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7208048,
-      45.1881433
-     ]
-    },
-    "properties": {
-     "name": "City laverie",
-     "category": "laundry",
      "address": "",
      "opening_hours": "",
      "website": "",
@@ -5512,25 +5417,6 @@
     }
    },
    {
-    "id": 32,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7278484,
-      45.1892793
-     ]
-    },
-    "properties": {
-     "name": "Eco laverie des dauphins",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 33,
     "type": "Feature",
     "geometry": {
@@ -5683,101 +5569,6 @@
     }
    },
    {
-    "id": 41,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7637384,
-      45.2031056
-     ]
-    },
-    "properties": {
-     "name": "Hello",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 42,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7583202,
-      45.1856217
-     ]
-    },
-    "properties": {
-     "name": "Hello Laundry",
-     "category": "laundry",
-     "address": "76 Avenue Gabriel Péri, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo-Su 07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 43,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.702261,
-      45.1393081
-     ]
-    },
-    "properties": {
-     "name": "Hello Laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "06:30-21:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 44,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7281129,
-      45.1583101
-     ]
-    },
-    "properties": {
-     "name": "Hello Laverie",
-     "category": "laundry",
-     "address": "voie 24 Villeneuve Grand'Place",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 45,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7140863,
-      45.1723301
-     ]
-    },
-    "properties": {
-     "name": "Hello laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "06:30-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 46,
     "type": "Feature",
     "geometry": {
@@ -5812,25 +5603,6 @@
      "address": "3 Avenue Malherbe, 38100 Grenoble",
      "opening_hours": "Mo-Fr 09:00-12:00, Mo-Fr 14:30-19:00",
      "website": "https://katioucha-boutique.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 48,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7288109,
-      45.1772156
-     ]
-    },
-    "properties": {
-     "name": "Kiswash",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Sa 08:15-19:30; Su 09:00-12:30",
-     "website": "",
      "is_partner": false
     }
    },
@@ -5892,44 +5664,6 @@
     }
    },
    {
-    "id": 52,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7270088,
-      45.1815082
-     ]
-    },
-    "properties": {
-     "name": "L'écoLaverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 08:00-20:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 53,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7637562,
-      45.0839187
-     ]
-    },
-    "properties": {
-     "name": "LAVERIE D'CORNAGE",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 54,
     "type": "Feature",
     "geometry": {
@@ -5963,44 +5697,6 @@
      "category": "electronics_repair",
      "address": "14, 38450 Vif",
      "opening_hours": "Tu-Sa 10:00-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 56,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6952657,
-      45.1794757
-     ]
-    },
-    "properties": {
-     "name": "La Laverie",
-     "category": "laundry",
-     "address": "18 Rue Lamartine, 38170 Seyssinet-Pariset",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 57,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7224956,
-      45.1810367
-     ]
-    },
-    "properties": {
-     "name": "La Laverie",
-     "category": "laundry",
-     "address": "36 Boulevard Maréchal Foch, 38000 Grenoble",
-     "opening_hours": "Mo-Su 06:00-21:00",
      "website": "",
      "is_partner": false
     }
@@ -6063,386 +5759,6 @@
     }
    },
    {
-    "id": 61,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7019995,
-      45.1483681
-     ]
-    },
-    "properties": {
-     "name": "Laverie Automatique",
-     "category": "laundry",
-     "address": "27 Rue Anatole France",
-     "opening_hours": "06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 62,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.707633,
-      45.1888002
-     ]
-    },
-    "properties": {
-     "name": "Laverie Automatique 2000",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 63,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7603411,
-      45.1897811
-     ]
-    },
-    "properties": {
-     "name": "Laverie Berlioz",
-     "category": "laundry",
-     "address": "361 Allée Berlioz",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "https://www.crous-grenoble.fr/logement/residence-berlioz/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 64,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7172073,
-      45.1882409
-     ]
-    },
-    "properties": {
-     "name": "Laverie Berriat",
-     "category": "laundry",
-     "address": "58 Cours Berriat, 38000 Grenoble",
-     "opening_hours": "Mo-Su 07:00-21:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-berriat",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 65,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7280108,
-      45.1946282
-     ]
-    },
-    "properties": {
-     "name": "Laverie Bleu Claire",
-     "category": "laundry",
-     "address": "10 Quai Perrière, 38000 Grenoble",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 66,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7467448,
-      45.1856967
-     ]
-    },
-    "properties": {
-     "name": "Laverie By Kis Wash",
-     "category": "laundry",
-     "address": "1 Chemin de la Blanchisserie, 38100 Grenoble",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 67,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7737521,
-      45.1886863
-     ]
-    },
-    "properties": {
-     "name": "Laverie Condillac",
-     "category": "laundry",
-     "address": "1220 Rue des Résidences, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "https://www.crous-grenoble.fr/logement/residence-condillac-b/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 68,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7094005,
-      45.1758835
-     ]
-    },
-    "properties": {
-     "name": "Laverie Eaux Claires",
-     "category": "laundry",
-     "address": "47 Rue des Eaux Claires, 38100 Grenoble",
-     "opening_hours": "07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 69,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7132601,
-      45.1807828
-     ]
-    },
-    "properties": {
-     "name": "Laverie Irvoy",
-     "category": "laundry",
-     "address": "38000",
-     "opening_hours": "Mo-Fr 08:30-12:00, 13:30-18:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-irvoy",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 70,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7190952,
-      45.1872374
-     ]
-    },
-    "properties": {
-     "name": "Laverie Jaurès",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 71,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7350443,
-      45.1808004
-     ]
-    },
-    "properties": {
-     "name": "Laverie Jean Perrot",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-jean-perrot",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 72,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7126374,
-      45.1858626
-     ]
-    },
-    "properties": {
-     "name": "Laverie Nicolas Chorier",
-     "category": "laundry",
-     "address": "30 Rue Nicolas Chorier, 38000 Grenoble",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-nicolas-chorier",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 73,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.755189,
-      45.1919816
-     ]
-    },
-    "properties": {
-     "name": "Laverie Ouest",
-     "category": "laundry",
-     "address": "68 Rue de la Houille Blanche",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 74,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7182805,
-      45.1952164
-     ]
-    },
-    "properties": {
-     "name": "Laverie Révolution",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su,PH 00:00-24:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 75,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7675976,
-      45.1847926
-     ]
-    },
-    "properties": {
-     "name": "Laverie Révolution",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "24/7",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 76,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7125577,
-      45.1870871
-     ]
-    },
-    "properties": {
-     "name": "Laverie Saint-Bruno",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-st-bruno",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 77,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7263251,
-      45.1771491
-     ]
-    },
-    "properties": {
-     "name": "Laverie Stalingrad",
-     "category": "laundry",
-     "address": "59 Rue de Stalingrad, 38100 Grenoble",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-stalingrad",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 78,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7213055,
-      45.187582
-     ]
-    },
-    "properties": {
-     "name": "Laverie Thiers",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-22:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-thiers-1",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 79,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7077755,
-      45.1803109
-     ]
-    },
-    "properties": {
-     "name": "Laverie Vallier",
-     "category": "laundry",
-     "address": "48 Boulevard Joseph Vallier, 38000 Grenoble",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "https://www.laverie-grenoble.fr/laverie-vallier/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 80,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.553601,
-      45.0730326
-     ]
-    },
-    "properties": {
-     "name": "Laverie automatique",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 81,
     "type": "Feature",
     "geometry": {
@@ -6462,177 +5778,6 @@
     }
    },
    {
-    "id": 82,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7282097,
-      45.1583119
-     ]
-    },
-    "properties": {
-     "name": "Laverie automatique",
-     "category": "laundry",
-     "address": "voie 24 Villeneuve Grand'Place",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 83,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7445779,
-      45.1817088
-     ]
-    },
-    "properties": {
-     "name": "Laverie automatique Jeanne d'Arc",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 06:30-21:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 84,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6988342,
-      45.1924841
-     ]
-    },
-    "properties": {
-     "name": "Laverie de Fontaine",
-     "category": "laundry",
-     "address": "16 Avenue du Vercors, 38600 Fontaine",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-de-fontaine",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 85,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7377042,
-      45.1981216
-     ]
-    },
-    "properties": {
-     "name": "Laverie de l'Île Verte",
-     "category": "laundry",
-     "address": "16bis Avenue Maréchal Randon, 38000 Grenoble",
-     "opening_hours": "Mo-Su 07:30-21:30",
-     "website": "https://www.washndry-concept.com/laverie/laverie-lile-verte-grenoble/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 86,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7156525,
-      45.1800764
-     ]
-    },
-    "properties": {
-     "name": "Laverie des boulevards",
-     "category": "laundry",
-     "address": "1 Boulevard Joseph Vallier",
-     "opening_hours": "Mo-Su,PH 07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 87,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7711556,
-      45.1927165
-     ]
-    },
-    "properties": {
-     "name": "Laverie du Campus",
-     "category": "laundry",
-     "address": "411 Avenue de la Bibliothèque, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "https://www.laverie-grenoble.fr/laverie-thiers",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 88,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7311139,
-      45.193389
-     ]
-    },
-    "properties": {
-     "name": "Laverie notre dame",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 07:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 89,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8931508,
-      45.2713831
-     ]
-    },
-    "properties": {
-     "name": "Laverie révolution",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 90,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7165888,
-      45.1454621
-     ]
-    },
-    "properties": {
-     "name": "Laverie Échirolles",
-     "category": "laundry",
-     "address": "24 Avenue du 8 Mai 1945, 38130",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "http://www.laverie-grenoble.fr/laverie-d-echirolles",
-     "is_partner": false
-    }
-   },
-   {
     "id": 91,
     "type": "Feature",
     "geometry": {
@@ -6648,25 +5793,6 @@
      "address": "28 Rue Barnave, 38400 Saint-Martin-d'Hères",
      "opening_hours": "Mo 13:00-17:00, Tu-Th 13:00-17:30, Fr 13:00-18:30",
      "website": "https://www.lechaussemontagne.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 92,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6928371,
-      45.1476799
-     ]
-    },
-    "properties": {
-     "name": "Le Clair Du Linge",
-     "category": "laundry",
-     "address": "8 Place de la grande Moucherolle",
-     "opening_hours": "Mo-Su,PH 07:00-21:00",
-     "website": "",
      "is_partner": false
     }
    },
@@ -6709,101 +5835,6 @@
     }
    },
    {
-    "id": 95,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7360409,
-      45.2033383
-     ]
-    },
-    "properties": {
-     "name": "Liberté",
-     "category": "laundry",
-     "address": "102 Grande Rue, 38700 La Tronche",
-     "opening_hours": "Mo-Su 06:30-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 96,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.717206,
-      45.181324
-     ]
-    },
-    "properties": {
-     "name": "Lux Laverie",
-     "category": "laundry",
-     "address": "3 Rue Général Janssen, 38000 Grenoble",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 97,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7055636,
-      45.1856142
-     ]
-    },
-    "properties": {
-     "name": "Lux Laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 98,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6653135,
-      45.2393957
-     ]
-    },
-    "properties": {
-     "name": "Lux Laverie",
-     "category": "laundry",
-     "address": "1 Rue des Abattoirs, 38120 Saint-Égrève",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 99,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.705247,
-      45.2020658
-     ]
-    },
-    "properties": {
-     "name": "Lux laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 100,
     "type": "Feature",
     "geometry": {
@@ -6818,25 +5849,6 @@
      "category": "tailoring",
      "address": "",
      "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 101,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6684354,
-      45.0558309
-     ]
-    },
-    "properties": {
-     "name": "Mango Laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 06:00-20:00",
      "website": "",
      "is_partner": false
     }
@@ -6918,25 +5930,6 @@
     }
    },
    {
-    "id": 106,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7231516,
-      45.1854107
-     ]
-    },
-    "properties": {
-     "name": "Multiservices",
-     "category": "laundry",
-     "address": "49 Rue Lesdiguières, 38000 Grenoble",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 107,
     "type": "Feature",
     "geometry": {
@@ -7009,44 +6002,6 @@
      "address": "40 Rue des Grives, 38920 Crolles",
      "opening_hours": "Mo-Fr 15:00-19:00, Tu-Fr 09:00-19:00; Sa 09:00-17:00",
      "website": "https://www.natura-pressing.fr",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 111,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6997935,
-      45.1236559
-     ]
-    },
-    "properties": {
-     "name": "Nickel",
-     "category": "laundry",
-     "address": "22 Rue de Stalingrad, 38800 Le Pont-de-Claix",
-     "opening_hours": "Mo-Su 06:00-21:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 112,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7583069,
-      45.1826339
-     ]
-    },
-    "properties": {
-     "name": "Nickel'",
-     "category": "laundry",
-     "address": "160 Avenue Ambroise Croizat, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo-Su 07:00-20:00",
-     "website": "",
      "is_partner": false
     }
    },
@@ -7640,25 +6595,6 @@
     }
    },
    {
-    "id": 144,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7123867,
-      45.1672628
-     ]
-    },
-    "properties": {
-     "name": "Simplifiez-vous laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 06:30-23:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 145,
     "type": "Feature",
     "geometry": {
@@ -7811,44 +6747,6 @@
     }
    },
    {
-    "id": 153,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6934681,
-      45.2174986
-     ]
-    },
-    "properties": {
-     "name": "Une Autre Laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "06:00-21:00",
-     "website": "https://auclair-laverie.com/saint-martin-le-vinoux/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 154,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7014516,
-      45.134284
-     ]
-    },
-    "properties": {
-     "name": "Wash.me",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "24/7",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
     "id": 155,
     "type": "Feature",
     "geometry": {
@@ -7883,25 +6781,6 @@
      "address": "",
      "opening_hours": "Tu-Sa 09:00-19:00",
      "website": "https://zaga-couture.shop/atelier-de-couture-a-grenoble",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 157,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.730483,
-      45.1919037
-     ]
-    },
-    "properties": {
-     "name": "lave ton linge",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "Mo-Su 06:00-22:00",
-     "website": "",
      "is_partner": false
     }
    },

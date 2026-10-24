@@ -39,15 +39,19 @@ Implemented in `backend/apps/merchants/osm.py` and `categories.py`
 
 - **no food businesses** (none of the tags above is a food tag);
 - **no chains**: objects with a `brand` or `brand:wikidata` tag are excluded;
+- **no self-service laundromats**: `shop=laundry` with `self_service=yes` is
+  excluded (project owner's decision, 2026-10-24);
 - named businesses only;
 - shown with public data only (name, address, opening hours, website), no
   logo, with "Partenariat non établi" until a partnership is signed.
 
-First import (2026-10-24): 180 OpenStreetMap objects, 159 businesses kept
-(chains and unnamed objects excluded): 62 laundries, 34 tailoring, 19
-electronics repair, 16 shoe repair, 15 dry cleaning, 9 keys, 3 jewellery, 1
-watchmaker. To review with the project owner: `shop=laundry` includes
-self-service laundromats, which may not offer a service a merchant performs.
+Import of 2026-10-24: 180 OpenStreetMap objects, **100 businesses kept**
+(chains, unnamed objects and 59 self-service laundromats excluded): 34
+tailoring, 19 electronics repair, 16 shoe repair, 15 dry cleaning, 9 keys, 3
+laundries, 3 jewellery, 1 watchmaker. Two of the remaining laundries are named
+"Laverie" and "Laverie automatique" without a `self_service` tag in
+OpenStreetMap: probably self-service too, to confirm with the project owner.
+Re-running the import deletes businesses no longer selected (except partners).
 
 ## Attribution
 

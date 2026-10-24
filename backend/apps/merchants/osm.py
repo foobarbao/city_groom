@@ -7,6 +7,8 @@ Selection rules (docs/PRODUCT.md, "Demo goals and data"):
 - no food businesses: none of those tags is a food tag;
 - no large chains: objects carrying a ``brand`` or ``brand:wikidata`` tag are
   excluded, as OpenStreetMap uses these tags for chain stores;
+- no self-service laundromats (``shop=laundry`` with ``self_service=yes``):
+  no merchant handles the items there (project owner's decision, 2026-10-24);
 - named businesses only.
 
 Data © OpenStreetMap contributors, ODbL.
@@ -57,6 +59,11 @@ def _category(tags: dict[str, str]) -> ServiceCategory | None:
     return None
 
 
+def _is_self_service_laundromat(tags: dict[str, str]) -> bool:
+    """Return whether the object is a self-service laundromat (excluded)."""
+    return tags.get("shop") == "laundry" and tags.get("self_service") == "yes"
+
+
 def _address(tags: dict[str, str]) -> str:
     """Build a French-style postal address from ``addr:*`` tags (may be empty)."""
     street = " ".join(p for p in (tags.get("addr:housenumber"), tags.get("addr:street")) if p)
@@ -79,6 +86,8 @@ def parse_merchants(payload: dict[str, Any]) -> list[MerchantCandidate]:
         name = tags.get("name", "").strip()
         category = _category(tags)
         if not name or category is None or any(tag in tags for tag in CHAIN_TAGS):
+            continue
+        if _is_self_service_laundromat(tags):
             continue
         point = element if "lat" in element else element.get("center")
         if not point:

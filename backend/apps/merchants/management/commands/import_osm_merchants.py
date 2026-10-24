@@ -48,5 +48,9 @@ class Command(BaseCommand):
                 ) from error
         if options["save_response"]:
             options["save_response"].write_text(json.dumps(payload), encoding="utf-8")
-        created, updated = import_candidates(parse_merchants(payload))
-        self.stdout.write(self.style.SUCCESS(f"{created} commerces créés, {updated} mis à jour."))
+        created, updated, deleted = import_candidates(parse_merchants(payload))
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"{created} commerces créés, {updated} mis à jour, {deleted} supprimés."
+            )
+        )

@@ -66,9 +66,10 @@ Versioning: [SemVer](https://semver.org/).
   served through a custom MapLibre protocol), since the published demo page
   blocks external requests.
 - Real OpenStreetMap data fetched by the `OSM data` GitHub Actions workflow
-  (`fetch_osm_data`, bounding box, retries and mirror): 81 tram stops and 159
-  businesses after filtering, in `data/osm/`; demo fixtures regenerated with
-  lockers at real tram stops and real businesses.
+  (`fetch_osm_data`, bounding box, retries and mirror): 81 tram stops and 100
+  businesses after filtering (self-service laundromats excluded), in
+  `data/osm/`; demo fixtures regenerated with lockers at real tram stops and
+  real businesses. Merchant import now prunes businesses no longer selected.
 - Android project (Capacitor) with the provisional application id
   `fr.reliance.app`; working name "Reliance" in the app; build guide
   (`docs/BUILD_AND_RELEASE.md`).

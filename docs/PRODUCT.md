@@ -211,7 +211,8 @@ with the project owner.
   (name, address, category, from open sources such as OpenStreetMap), no
   logos, with a notice that no partnership is established yet.
 - **Selection**: every business offering a service on items that fit in a
-  locker, **excluding food businesses and large chains**.
+  locker, **excluding food businesses, large chains and self-service
+  laundromats** (no merchant handles the items there; decided 2026-10-24).
 - **Simulated**: lockers, orders, courier rounds, merchant activity.
 - Locker locations will be defined later; lockers must not be too far from the
   customers they serve.
