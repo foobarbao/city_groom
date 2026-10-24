@@ -133,6 +133,9 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "REST API consumed by the customer app and the merchant portal.",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    # Separate request and response components, so response fields that are
+    # always present are marked required in generated frontend types.
+    "COMPONENT_SPLIT_REQUEST": True,
 }
 
 # Origins of the customer app and merchant portal allowed to call the API.

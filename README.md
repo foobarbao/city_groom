@@ -9,8 +9,9 @@ The project is **at the demo stage** (real map and real businesses, simulated
 lockers and orders) and is designed to serve as the foundation for a future
 production version.
 
-> ⚠️ Early stage: the backend skeleton exists (no business features yet); the
-> customer app and partner portal are not initialised yet.
+> ⚠️ Early stage: lockers (backend, simulation, API) and the first customer app
+> screens (map, locker view) exist; the partner portal is not initialised yet.
+> See [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Applications
 
@@ -56,7 +57,8 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | Part | Guide |
 |---|---|
 | Backend (API + admin) | [`backend/README.md`](backend/README.md) |
-| Customer app | _not initialised yet_ |
+| Customer app | [`apps/customer/README.md`](apps/customer/README.md) |
+| Shared API types | [`packages/api-client/README.md`](packages/api-client/README.md) |
 | Partner portal | _not initialised yet_ |
 
 Local services (PostgreSQL + PostGIS, backend) are defined in

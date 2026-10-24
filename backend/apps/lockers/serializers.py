@@ -103,6 +103,7 @@ class PublicCompartmentSerializer(serializers.ModelSerializer[Compartment]):
     class Meta:
         model = Compartment
         fields = ["id", "label", "size", "column", "position"]
+        read_only_fields = fields
 
 
 class OperatorCompartmentSerializer(serializers.ModelSerializer[Compartment]):
@@ -111,6 +112,7 @@ class OperatorCompartmentSerializer(serializers.ModelSerializer[Compartment]):
     class Meta:
         model = Compartment
         fields = ["id", "label", "size", "column", "position", "status"]
+        read_only_fields = fields
 
 
 class LockerLayoutSerializer(serializers.ModelSerializer[Locker]):
@@ -141,6 +143,9 @@ class LockerLayoutSerializer(serializers.ModelSerializer[Locker]):
             "free_by_size",
             "compartments",
         ]
+        # Read-only API: marking every field read-only also makes them required
+        # in the OpenAPI schema, hence non-optional in frontend types.
+        read_only_fields = fields
 
     def get_longitude(self, locker: Locker) -> float:
         """Return the WGS 84 longitude."""
@@ -171,6 +176,7 @@ class OperatorLockerLayoutSerializer(LockerLayoutSerializer):
 
     class Meta(LockerLayoutSerializer.Meta):
         fields = [*LockerLayoutSerializer.Meta.fields, "fill_rate"]
+        read_only_fields = fields
 
     def get_fill_rate(self, locker: Locker) -> float:
         """Return the share of in-service compartments in use."""

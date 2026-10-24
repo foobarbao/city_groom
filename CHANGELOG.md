@@ -38,4 +38,10 @@ Versioning: [SemVer](https://semver.org/).
   `seed_simulated_lockers` command (real tram stops from OpenStreetMap),
   public and operator APIs, admin (`docs/LOCKERS.md`).
 - Roadmap (`docs/ROADMAP.md`).
+- Customer app (`apps/customer/`): Ionic + Vue 3 + TypeScript, map of the
+  lockers (MapLibre, OpenStreetMap tiles), locker page with size picker and
+  drawing of the locker front highlighting the door that opens, French i18n,
+  ESLint, Prettier, Vitest.
+- `packages/api-client`: TypeScript types generated from the OpenAPI schema.
+- Frontend CI workflow.
 - Pull request template, `.editorconfig`, `.gitignore`.

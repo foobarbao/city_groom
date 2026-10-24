@@ -248,3 +248,6 @@ Questions to the project owner. Answers are moved into the sections above.
    presentation (e.g. number of lockers, number of customers)?
 6. **Overdue pickups**: what happens when an item is not collected within
    its 12-hour slot?
+7. **Android application id**: Android apps need a permanent reverse-domain
+   identifier (e.g. `fr.<domain>.<app>`). Which domain name will the project
+   use? (It cannot be changed after publication on the Play Store.)

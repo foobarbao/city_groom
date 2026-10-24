@@ -14,11 +14,14 @@
    occupancy, import of candidate sites from OpenStreetMap, public and
    operator APIs, admin. See `docs/LOCKERS.md`.
 
+3. **Customer app (first screens)** — `apps/customer/` (Ionic + Vue): map of
+   Grenoble with the lockers and their free compartments; user-friendly
+   **locker view** highlighting the door to open; API types generated from
+   the OpenAPI schema (`packages/api-client`). Capacitor / Android packaging
+   is pending the application id.
+
 ## Next
 
-3. **Customer app (first screens)** — initialise `apps/customer/` (Ionic +
-   Capacitor); map of Grenoble with the lockers and their free compartments;
-   user-friendly **locker view** highlighting the door to open.
 4. **Operator space (first dashboards)** — initialise `apps/portal/`; network
    map; **volume** and **fill rate** indicators; locker view with the status
    of every door.
@@ -44,4 +47,6 @@
   open data portals. Real data must be imported from a machine with internet
   access (`seed_simulated_lockers`), or the environment's allowed domains must
   be extended.
+- **Android application ids** (customer app, pro app) depend on the final
+  product name and domain.
 - Reminders and open questions: see `docs/PRODUCT.md`.

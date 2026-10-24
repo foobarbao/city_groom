@@ -1,0 +1,14 @@
+/*
+ * App theme. Colours convey the eco-social identity of the project
+ * (docs/PRODUCT.md); the brand is not final, so they are placeholders.
+ */
+:root {
+  --ion-color-primary: #264653;
+  --ion-color-primary-rgb: 38, 70, 83;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #213e49;
+  --ion-color-primary-tint: #3c5964;
+  --ion-color-success: #2a9d8f;
+  --ion-color-success-shade: #25897e;
+}
