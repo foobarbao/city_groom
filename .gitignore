@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dev-dist/
+coverage/
+
+# Environment files: secrets never go in the repo (.env.example is committed)
+.env
+.env.*
+!.env.example
+
+# Android / Capacitor
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/release/
+*.apk
+*.aab
+# Signing keys: keep them out of the repo and back them up safely
+*.keystore
+*.jks
+keystore.properties
+
+# iOS (if added later)
+ios/App/Pods/
+ios/App/build/
+
+# Tests
+test-results/
+playwright-report/
+
+# Editors / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+*.log
