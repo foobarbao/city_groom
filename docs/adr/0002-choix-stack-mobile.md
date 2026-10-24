@@ -51,7 +51,7 @@ Distribution :
 
 - Courbe d'apprentissage minimale : l'essentiel du code est du Vue standard.
 - Il faut abstraire les fonctionnalités natives derrière des services
-  (voir `CODING_STANDARDS.md` §6) pour que la PWA fonctionne sans elles ou
+  (voir `CODING_STANDARDS.md` §7) pour que la PWA fonctionne sans elles ou
   avec un repli.
 - Le build Android nécessite Android Studio / le SDK Android et un JDK ; la
   procédure sera décrite dans `docs/BUILD_AND_RELEASE.md`.

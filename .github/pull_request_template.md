@@ -18,6 +18,7 @@
 - [ ] ADR rédigé si décision structurante
 - [ ] `CHANGELOG.md` mis à jour
 - [ ] Raccourcis de démo marqués `PROD:`
+- [ ] Aucune hypothèse non validée (chaque `ASSUMPTION:` confirmée ou listée ci-dessous)
 - [ ] Vérifié sur web **et** Android (si interface ou natif)
 
 ## Captures d'écran / vidéo
@@ -26,4 +27,4 @@
 
 ## Points d'attention pour la revue
 
-<!-- Choix discutables, risques, dette introduite. -->
+<!-- Choix discutables, risques, dette introduite, hypothèses à confirmer. -->

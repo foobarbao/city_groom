@@ -10,15 +10,16 @@
 ## Sommaire
 
 1. [Principe fondateur : la documentation n'est pas optionnelle](#1-principe-fondateur--la-documentation-nest-pas-optionnelle)
-2. [Ce qu'il faut documenter, et où](#2-ce-quil-faut-documenter-et-où)
-3. [Documentation dans le code](#3-documentation-dans-le-code)
-4. [Langues](#4-langues)
-5. [Style et qualité du code](#5-style-et-qualité-du-code)
-6. [Architecture et organisation](#6-architecture-et-organisation)
-7. [Tests](#7-tests)
-8. [Sécurité et données](#8-sécurité-et-données)
-9. [Démo aujourd'hui, production demain](#9-démo-aujourdhui-production-demain)
-10. [Définition de « terminé »](#10-définition-de--terminé-)
+2. [Ne rien inventer : en cas de doute, demander](#2-ne-rien-inventer--en-cas-de-doute-demander)
+3. [Ce qu'il faut documenter, et où](#3-ce-quil-faut-documenter-et-où)
+4. [Documentation dans le code](#4-documentation-dans-le-code)
+5. [Langues](#5-langues)
+6. [Style et qualité du code](#6-style-et-qualité-du-code)
+7. [Architecture et organisation](#7-architecture-et-organisation)
+8. [Tests](#8-tests)
+9. [Sécurité et données](#9-sécurité-et-données)
+10. [Démo aujourd'hui, production demain](#10-démo-aujourdhui-production-demain)
+11. [Définition de « terminé »](#11-définition-de--terminé-)
 
 ---
 
@@ -45,7 +46,38 @@ Règles non négociables :
 - **La documentation obsolète est un bug.** Si on modifie un comportement, on
   corrige la doc qui le décrit dans la même PR.
 
-## 2. Ce qu'il faut documenter, et où
+## 2. Ne rien inventer : en cas de doute, demander
+
+Cette règle a la **même priorité que la documentation**. Elle s'applique à tout
+contributeur, et **en particulier à l'assistant IA**, dont le principal risque
+est de produire avec assurance quelque chose de plausible mais faux.
+
+Règles non négociables :
+
+- **Ne jamais inventer** une API, une option de configuration, un nom de
+  paquet, une version, un endpoint backend, un comportement de plateforme, une
+  règle métier, une donnée ou un résultat de commande. Ce qui n'est pas
+  vérifié n'est pas affirmé.
+- **Au moindre doute, demander avant d'agir.** Une question coûte quelques
+  minutes ; une supposition erronée intégrée au code coûte bien plus cher à
+  détecter et à corriger.
+- **Vérifier à la source** : documentation officielle (dans la version utilisée
+  par le projet), code existant du dépôt, exécution réelle de la commande ou du
+  test. Pas de réponse « de mémoire » sur un point vérifiable.
+- **Les besoins fonctionnels ne se devinent pas.** Une règle métier, un texte
+  affiché, un parcours utilisateur ou un choix de design non spécifié est une
+  question à poser, pas un trou à combler.
+- **Distinguer clairement le vérifié du supposé.** Si une hypothèse est
+  inévitable pour avancer, elle est formulée explicitement (dans la PR, et dans
+  le code avec `// ASSUMPTION: <hypothèse> — à confirmer`) puis soumise à
+  validation.
+- **Rapporter fidèlement** : un test qui échoue, une étape non faite, une
+  commande non exécutée, une vérification impossible sont signalés tels quels.
+  On ne présente jamais comme fait ou validé ce qui ne l'est pas.
+- **Les données factices sont identifiées comme telles** (dossier dédié,
+  nommage explicite) et ne sont jamais présentées comme réelles.
+
+## 3. Ce qu'il faut documenter, et où
 
 | Quoi | Où | Quand |
 |---|---|---|
@@ -62,7 +94,7 @@ Règles non négociables :
 | Logique non évidente, contournements, dette | Commentaires dans le code | Toujours |
 | Instructions pour l'assistant IA | `CLAUDE.md` | Quand une convention change |
 
-## 3. Documentation dans le code
+## 4. Documentation dans le code
 
 ### 3.1 En-tête de fichier
 
@@ -124,7 +156,7 @@ Chaque composant documente en tête de `<script setup>` :
   - `FIXME(#issue):` comportement incorrect connu ;
   - `HACK:` contournement assumé, avec la raison ;
   - `PROD:` point à traiter **impérativement** avant une mise en production
-    (voir §9).
+    (voir §10).
 
 ```ts
 // ❌ Incrémente le compteur
@@ -135,7 +167,7 @@ retryCount++
 retryCount++
 ```
 
-## 4. Langues
+## 5. Langues
 
 | Élément | Langue |
 |---|---|
@@ -149,7 +181,7 @@ retryCount++
 > Les exemples de commentaires en français dans ce document sont là pour la
 > lisibilité ; dans le code, ils sont rédigés en anglais.
 
-## 5. Style et qualité du code
+## 6. Style et qualité du code
 
 - **TypeScript en mode `strict`**. `any` interdit sauf justification en
   commentaire (`// eslint-disable-next-line` + raison).
@@ -171,7 +203,7 @@ retryCount++
   vide. Toute erreur est soit traitée, soit remontée avec du contexte, et
   l'utilisateur reçoit un message compréhensible.
 
-## 6. Architecture et organisation
+## 7. Architecture et organisation
 
 La stack précise est arrêtée dans
 [ADR-0002](adr/0002-choix-stack-mobile.md). Principes indépendants de la stack :
@@ -189,7 +221,7 @@ La stack précise est arrêtée dans
   (Django REST) sont définis à un seul endroit et, à terme, générés depuis le
   schéma OpenAPI du backend.
 
-## 7. Tests
+## 8. Tests
 
 - **Tests unitaires** (Vitest) pour la logique : composables, stores, services,
   utilitaires. Tout correctif de bug s'accompagne d'un test qui le reproduit.
@@ -200,7 +232,7 @@ La stack précise est arrêtée dans
 - Pas d'objectif de couverture chiffré au stade démo, mais **toute logique
   métier est testée**.
 
-## 8. Sécurité et données
+## 9. Sécurité et données
 
 - **Aucun secret dans le dépôt** (clés API, keystore Android, mots de passe).
   Le keystore de signature APK est conservé hors dépôt et sauvegardé : le perdre
@@ -215,7 +247,7 @@ La stack précise est arrêtée dans
   (préparation RGPD).
 - Les dépendances sont auditées (`npm audit`) avant chaque release.
 
-## 9. Démo aujourd'hui, production demain
+## 10. Démo aujourd'hui, production demain
 
 Pour avancer vite sur la démo sans compromettre la future production :
 
@@ -228,7 +260,7 @@ Pour avancer vite sur la démo sans compromettre la future production :
 - On ne prend **jamais** de raccourci sur : la structure du projet, le typage,
   la gestion des secrets, la documentation.
 
-## 10. Définition de « terminé »
+## 11. Définition de « terminé »
 
 Une tâche est terminée quand **toutes** ces cases sont cochées :
 
@@ -239,6 +271,8 @@ Une tâche est terminée quand **toutes** ces cases sont cochées :
 - [ ] Un ADR est rédigé si une décision structurante a été prise.
 - [ ] Le `CHANGELOG.md` est mis à jour.
 - [ ] Les raccourcis de démo sont marqués `PROD:`.
+- [ ] Aucune hypothèse non validée : chaque `ASSUMPTION:` a été confirmée ou
+      signalée dans la PR.
 - [ ] Le comportement a été vérifié sur la version web **et** sur Android
       (émulateur ou appareil) lorsque le changement touche à l'interface ou au
       natif.

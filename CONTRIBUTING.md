@@ -73,7 +73,7 @@ Des commits petits et cohérents : chaque commit compile et a un sens seul.
 ## 3. Pull Requests
 
 1. Créer la branche depuis `develop` à jour.
-2. Développer en respectant la [définition de « terminé »](docs/CODING_STANDARDS.md#10-définition-de--terminé-).
+2. Développer en respectant la [définition de « terminé »](docs/CODING_STANDARDS.md#11-définition-de--terminé-).
 3. Ouvrir une PR vers `develop` en remplissant le modèle (description,
    documentation mise à jour, tests, captures d'écran pour l'interface).
 4. La CI doit être verte (lint, typecheck, tests, build).

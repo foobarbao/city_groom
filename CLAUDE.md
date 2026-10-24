@@ -15,17 +15,23 @@ projet ; les documents de référence font foi en cas de doute.
    tout ce qui est exporté, en-tête de fichier, commentaires sur le *pourquoi*,
    mise à jour du README / des docs / du `CHANGELOG.md`. Un travail non
    documenté n'est pas terminé.
-2. **Toute décision structurante → un ADR** dans `docs/adr/` (modèle :
+2. **Ne rien inventer. Au moindre doute, demander avant d'agir.** Aucune API,
+   option, version, endpoint, règle métier ou résultat n'est affirmé sans
+   vérification à la source (doc officielle, code du dépôt, exécution réelle).
+   Les besoins fonctionnels ne se devinent pas : poser la question. Signaler
+   explicitement toute hypothèse (`// ASSUMPTION:`) et rapporter fidèlement
+   ce qui a échoué ou n'a pas été vérifié. Voir `CODING_STANDARDS.md` §2.
+3. **Toute décision structurante → un ADR** dans `docs/adr/` (modèle :
    `docs/adr/TEMPLATE.md`). Ne pas trancher seul une décision structurante
    qui n'est pas déjà couverte par un ADR accepté : la proposer.
-3. **Langues** : code, commentaires et commits en anglais ; documentation du
+4. **Langues** : code, commentaires et commits en anglais ; documentation du
    dépôt, PR et échanges en français.
-4. **Git** : ne jamais pousser sur `main` ou `develop` ; travailler sur une
+5. **Git** : ne jamais pousser sur `main` ou `develop` ; travailler sur une
    branche dédiée, commits au format Conventional Commits, PR vers `develop`.
-5. **Raccourcis de démo** : autorisés seulement s'ils sont marqués
+6. **Raccourcis de démo** : autorisés seulement s'ils sont marqués
    `// PROD: <action requise>`.
-6. **Aucun secret** dans le dépôt (clés, keystore, `.env`).
-7. Avant de pousser : lint, format, typecheck et tests doivent passer.
+7. **Aucun secret** dans le dépôt (clés, keystore, `.env`).
+8. Avant de pousser : lint, format, typecheck et tests doivent passer.
 
 ## Contexte développeur
 
