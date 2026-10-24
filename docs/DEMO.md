@@ -14,7 +14,8 @@ uses bundled data.
 | Businesses | **Real** (public data, "Partenariat non établi") | OpenStreetMap (`data/osm/merchants.json`) |
 | Locker locations | Real tram stops, lockers **simulated** | OpenStreetMap (`data/osm/tram_stops.json`) + simulation |
 | Lockers, compartments, occupancy | **Fictitious** | Backend simulation |
-| Orders, rounds, revenue, forecasts | **Fictitious** | Demo activity generator (to build) |
+| Orders, rounds, revenue, forecasts | **Fictitious** | `apps.demo.activity` → `packages/demo-data` |
+| Merchants in the merchant space | **Fictitious** ("Démo · …") | So that no real business is shown with invented orders or revenue |
 
 Fictitious data is always labelled as such in the apps.
 

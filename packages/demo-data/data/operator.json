@@ -1,5 +1,4 @@
 {
- "_comment": "Demo data generated from the backend API. Lockers and their occupancy are FICTITIOUS (simulation), placed at real tram stops; merchants are REAL businesses from OpenStreetMap (public data, ODbL, no partnership established). See src/demo/README.md.",
  "lockers": {
   "type": "FeatureCollection",
   "features": [
@@ -26,7 +25,10 @@
       "M": 1,
       "L": 3,
       "XL": 0
-     }
+     },
+     "fill_rate": 0.526,
+     "in_service": 19,
+     "in_use": 10
     }
    },
    {
@@ -53,7 +55,10 @@
       "M": 3,
       "L": 5,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.36,
+     "in_service": 25,
+     "in_use": 9
     }
    },
    {
@@ -80,7 +85,10 @@
       "M": 7,
       "L": 10,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.314,
+     "in_service": 35,
+     "in_use": 11
     }
    },
    {
@@ -107,7 +115,10 @@
       "M": 7,
       "L": 7,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.24,
+     "in_service": 25,
+     "in_use": 6
     }
    },
    {
@@ -134,7 +145,10 @@
       "M": 5,
       "L": 5,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.417,
+     "in_service": 24,
+     "in_use": 10
     }
    },
    {
@@ -161,7 +175,10 @@
       "M": 4,
       "L": 1,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.333,
+     "in_service": 18,
+     "in_use": 6
     }
    },
    {
@@ -188,7 +205,10 @@
       "M": 6,
       "L": 6,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.2,
+     "in_service": 25,
+     "in_use": 5
     }
    },
    {
@@ -214,7 +234,10 @@
       "M": 4,
       "L": 3,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.6,
+     "in_service": 25,
+     "in_use": 15
     }
    },
    {
@@ -241,7 +264,10 @@
       "M": 6,
       "L": 5,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.28,
+     "in_service": 25,
+     "in_use": 7
     }
    },
    {
@@ -267,7 +293,10 @@
       "M": 10,
       "L": 12,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.114,
+     "in_service": 35,
+     "in_use": 4
     }
    },
    {
@@ -294,7 +323,10 @@
       "M": 6,
       "L": 3,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.263,
+     "in_service": 19,
+     "in_use": 5
     }
    },
    {
@@ -320,7 +352,10 @@
       "M": 6,
       "L": 7,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.167,
+     "in_service": 24,
+     "in_use": 4
     }
    },
    {
@@ -346,7 +381,10 @@
       "M": 11,
       "L": 13,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.139,
+     "in_service": 36,
+     "in_use": 5
     }
    },
    {
@@ -372,7 +410,10 @@
       "M": 10,
       "L": 10,
       "XL": 0
-     }
+     },
+     "fill_rate": 0.351,
+     "in_service": 37,
+     "in_use": 13
     }
    },
    {
@@ -398,7 +439,10 @@
       "M": 3,
       "L": 2,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.444,
+     "in_service": 18,
+     "in_use": 8
     }
    },
    {
@@ -425,7 +469,10 @@
       "M": 3,
       "L": 4,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.44,
+     "in_service": 25,
+     "in_use": 11
     }
    },
    {
@@ -451,7 +498,10 @@
       "M": 6,
       "L": 4,
       "XL": 2
-     }
+     },
+     "fill_rate": 0.2,
+     "in_service": 25,
+     "in_use": 5
     }
    },
    {
@@ -477,7 +527,10 @@
       "M": 3,
       "L": 4,
       "XL": 0
-     }
+     },
+     "fill_rate": 0.5,
+     "in_service": 24,
+     "in_use": 12
     }
    },
    {
@@ -504,7 +557,10 @@
       "M": 4,
       "L": 8,
       "XL": 1
-     }
+     },
+     "fill_rate": 0.486,
+     "in_service": 37,
+     "in_use": 18
     }
    },
    {
@@ -530,7 +586,10 @@
       "M": 8,
       "L": 11,
       "XL": 0
-     }
+     },
+     "fill_rate": 0.306,
+     "in_service": 36,
+     "in_use": 11
     }
    }
   ]
@@ -563,135 +622,155 @@
      "label": "A1",
      "size": "S",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 392,
      "label": "A2",
      "size": "S",
      "column": 0,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 393,
      "label": "A3",
      "size": "S",
      "column": 0,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 394,
      "label": "A4",
      "size": "S",
      "column": 0,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 395,
      "label": "A5",
      "size": "M",
      "column": 0,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 396,
      "label": "A6",
      "size": "M",
      "column": 0,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 397,
      "label": "A7",
      "size": "M",
      "column": 0,
-     "position": 6
+     "position": 6,
+     "status": "occupied"
     },
     {
      "id": 398,
      "label": "A8",
      "size": "M",
      "column": 0,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 399,
      "label": "A9",
      "size": "L",
      "column": 0,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 400,
      "label": "A10",
      "size": "L",
      "column": 0,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 401,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 402,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 403,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 404,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 405,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 406,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 407,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 408,
      "label": "B8",
      "size": "L",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 409,
      "label": "C1",
      "size": "XL",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     }
-   ]
+   ],
+   "fill_rate": 0.526
   },
   "estacade-condorcet": {
    "id": 13,
@@ -721,177 +800,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 342,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 343,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 344,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 345,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 346,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 347,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 348,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 349,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 350,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 351,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 352,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 353,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 354,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 355,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 356,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 357,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 358,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "reserved"
     },
     {
      "id": 359,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 360,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 361,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 362,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 363,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 364,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 365,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.36
   },
   "fiancey-predieu": {
    "id": 17,
@@ -921,261 +1026,299 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 436,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 437,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 438,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 439,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 440,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 441,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 442,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "reserved"
     },
     {
      "id": 443,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 444,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 445,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 446,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 447,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 448,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "out_of_service"
     },
     {
      "id": 449,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 450,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 451,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 452,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 453,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 454,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 455,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 456,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 457,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 458,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "occupied"
     },
     {
      "id": 459,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 460,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "out_of_service"
     },
     {
      "id": 461,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 462,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 463,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 464,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 465,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 466,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 467,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "reserved"
     },
     {
      "id": 468,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 469,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 470,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 471,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.314
   },
   "gieres-gare-universites": {
    "id": 16,
@@ -1205,177 +1348,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 411,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 412,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 413,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 414,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 415,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 416,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 417,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 418,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 419,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 420,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 421,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 422,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 423,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 424,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 425,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 426,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 427,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 428,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 429,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 430,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 431,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 432,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 433,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 434,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     }
-   ]
+   ],
+   "fill_rate": 0.24
   },
   "grand-sablon": {
    "id": 21,
@@ -1405,177 +1574,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 554,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 555,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 556,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 557,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 558,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "out_of_service"
     },
     {
      "id": 559,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 560,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 561,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 562,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 563,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "reserved"
     },
     {
      "id": 564,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 565,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 566,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 567,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 568,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 569,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 570,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 571,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 572,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 573,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 574,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 575,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 576,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 577,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     }
-   ]
+   ],
+   "fill_rate": 0.417
   },
   "grandplace": {
    "id": 19,
@@ -1605,135 +1800,155 @@
      "label": "A1",
      "size": "S",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 510,
      "label": "A2",
      "size": "S",
      "column": 0,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 511,
      "label": "A3",
      "size": "S",
      "column": 0,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 512,
      "label": "A4",
      "size": "S",
      "column": 0,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 513,
      "label": "A5",
      "size": "M",
      "column": 0,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 514,
      "label": "A6",
      "size": "M",
      "column": 0,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 515,
      "label": "A7",
      "size": "M",
      "column": 0,
-     "position": 6
+     "position": 6,
+     "status": "occupied"
     },
     {
      "id": 516,
      "label": "A8",
      "size": "M",
      "column": 0,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 517,
      "label": "A9",
      "size": "L",
      "column": 0,
-     "position": 8
+     "position": 8,
+     "status": "occupied"
     },
     {
      "id": 518,
      "label": "A10",
      "size": "L",
      "column": 0,
-     "position": 9
+     "position": 9,
+     "status": "out_of_service"
     },
     {
      "id": 519,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 520,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 521,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 522,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 523,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 524,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 525,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 526,
      "label": "B8",
      "size": "L",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 527,
      "label": "C1",
      "size": "XL",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.333
   },
   "grenoble-hotel-de-ville": {
    "id": 27,
@@ -1763,177 +1978,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 740,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 741,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 742,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "reserved"
     },
     {
      "id": 743,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 744,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 745,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 746,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 747,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 748,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 749,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 750,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 751,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 752,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 753,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 754,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 755,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 756,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 757,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 758,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 759,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 760,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 761,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 762,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 763,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.2
   },
   "horloge": {
    "id": 32,
@@ -1962,177 +2203,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 865,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 866,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 867,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 868,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 869,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 870,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 871,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "occupied"
     },
     {
      "id": 872,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 873,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 874,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "occupied"
     },
     {
      "id": 875,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 876,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 877,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 878,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 879,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 880,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 881,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 882,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 883,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 884,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 885,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 886,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 887,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 888,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.6
   },
   "la-pinea-saint-robert": {
    "id": 25,
@@ -2162,177 +2429,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 678,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 679,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 680,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 681,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 682,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 683,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 684,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 685,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 686,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "occupied"
     },
     {
      "id": 687,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "occupied"
     },
     {
      "id": 688,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 689,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 690,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 691,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 692,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 693,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 694,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 695,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 696,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 697,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 698,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 699,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 700,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 701,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     }
-   ]
+   ],
+   "fill_rate": 0.28
   },
   "la-poya": {
    "id": 18,
@@ -2361,261 +2654,299 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 473,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 474,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 475,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 476,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 477,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 478,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 479,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 480,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "reserved"
     },
     {
      "id": 481,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 482,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 483,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 484,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 485,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 486,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 487,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 488,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 489,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 490,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 491,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 492,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "out_of_service"
     },
     {
      "id": 493,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 494,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 495,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 496,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 497,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 498,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 499,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 500,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 501,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 502,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 503,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 504,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 505,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "out_of_service"
     },
     {
      "id": 506,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 507,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 508,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.114
   },
   "la-rampe-centre-ville": {
    "id": 29,
@@ -2645,135 +2976,155 @@
      "label": "A1",
      "size": "S",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 784,
      "label": "A2",
      "size": "S",
      "column": 0,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 785,
      "label": "A3",
      "size": "S",
      "column": 0,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 786,
      "label": "A4",
      "size": "S",
      "column": 0,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 787,
      "label": "A5",
      "size": "M",
      "column": 0,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 788,
      "label": "A6",
      "size": "M",
      "column": 0,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 789,
      "label": "A7",
      "size": "M",
      "column": 0,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 790,
      "label": "A8",
      "size": "M",
      "column": 0,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 791,
      "label": "A9",
      "size": "L",
      "column": 0,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 792,
      "label": "A10",
      "size": "L",
      "column": 0,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 793,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 794,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 795,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 796,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 797,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 798,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 799,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "occupied"
     },
     {
      "id": 800,
      "label": "B8",
      "size": "L",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 801,
      "label": "C1",
      "size": "XL",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.263
   },
   "le-prisme": {
    "id": 20,
@@ -2802,177 +3153,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 529,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 530,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 531,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 532,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 533,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 534,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 535,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 536,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 537,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 538,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 539,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 540,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 541,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 542,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "out_of_service"
     },
     {
      "id": 543,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 544,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 545,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 546,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 547,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 548,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 549,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 550,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 551,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 552,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.167
   },
   "louis-maisonnat": {
    "id": 26,
@@ -3001,261 +3378,299 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 703,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 704,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "out_of_service"
     },
     {
      "id": 705,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 706,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 707,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 708,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 709,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 710,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 711,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 712,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 713,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 714,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 715,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 716,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 717,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 718,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 719,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 720,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 721,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 722,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 723,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 724,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 725,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 726,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 727,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 728,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 729,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 730,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 731,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 732,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 733,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 734,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 735,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 736,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 737,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 738,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.139
   },
   "louise-michel": {
    "id": 24,
@@ -3284,418 +3699,299 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 641,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 642,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 643,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 644,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 645,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 646,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 647,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 648,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 649,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "occupied"
     },
     {
      "id": 650,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 651,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 652,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 653,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 654,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 655,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 656,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 657,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 658,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 659,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 660,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 661,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 662,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 663,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 664,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 665,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 666,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 667,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 668,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 669,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 670,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 671,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 672,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 673,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 674,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 675,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 676,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     }
-   ]
-  },
-  "mc2-maison-de-la-culture": {
-   "id": 28,
-   "code": "mc2-maison-de-la-culture",
-   "name": "MC2 - Maison de la Culture",
-   "address": "",
-   "status": "active",
-   "access_methods": [
-    "bluetooth"
    ],
-   "is_simulated": true,
-   "longitude": 5.7320055,
-   "latitude": 45.17349205,
-   "control_panel_column": 1,
-   "column_grid_units": 20,
-   "control_panel_grid_units": 6,
-   "free_by_size": {
-    "S": 4,
-    "M": 3,
-    "L": 2,
-    "XL": 1
-   },
-   "compartments": [
-    {
-     "id": 764,
-     "label": "A1",
-     "size": "S",
-     "column": 0,
-     "position": 0
-    },
-    {
-     "id": 765,
-     "label": "A2",
-     "size": "S",
-     "column": 0,
-     "position": 1
-    },
-    {
-     "id": 766,
-     "label": "A3",
-     "size": "S",
-     "column": 0,
-     "position": 2
-    },
-    {
-     "id": 767,
-     "label": "A4",
-     "size": "S",
-     "column": 0,
-     "position": 3
-    },
-    {
-     "id": 768,
-     "label": "A5",
-     "size": "M",
-     "column": 0,
-     "position": 4
-    },
-    {
-     "id": 769,
-     "label": "A6",
-     "size": "M",
-     "column": 0,
-     "position": 5
-    },
-    {
-     "id": 770,
-     "label": "A7",
-     "size": "M",
-     "column": 0,
-     "position": 6
-    },
-    {
-     "id": 771,
-     "label": "A8",
-     "size": "M",
-     "column": 0,
-     "position": 7
-    },
-    {
-     "id": 772,
-     "label": "A9",
-     "size": "L",
-     "column": 0,
-     "position": 8
-    },
-    {
-     "id": 773,
-     "label": "A10",
-     "size": "L",
-     "column": 0,
-     "position": 9
-    },
-    {
-     "id": 774,
-     "label": "B1",
-     "size": "S",
-     "column": 1,
-     "position": 0
-    },
-    {
-     "id": 775,
-     "label": "B2",
-     "size": "S",
-     "column": 1,
-     "position": 1
-    },
-    {
-     "id": 776,
-     "label": "B3",
-     "size": "S",
-     "column": 1,
-     "position": 2
-    },
-    {
-     "id": 777,
-     "label": "B4",
-     "size": "S",
-     "column": 1,
-     "position": 3
-    },
-    {
-     "id": 778,
-     "label": "B5",
-     "size": "M",
-     "column": 1,
-     "position": 4
-    },
-    {
-     "id": 779,
-     "label": "B6",
-     "size": "M",
-     "column": 1,
-     "position": 5
-    },
-    {
-     "id": 780,
-     "label": "B7",
-     "size": "M",
-     "column": 1,
-     "position": 6
-    },
-    {
-     "id": 781,
-     "label": "B8",
-     "size": "L",
-     "column": 1,
-     "position": 7
-    },
-    {
-     "id": 782,
-     "label": "C1",
-     "size": "XL",
-     "column": 2,
-     "position": 0
-    }
-   ]
+   "fill_rate": 0.351
   },
   "marie-louise-paris-cea": {
    "id": 23,
@@ -3725,177 +4021,380 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 616,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 617,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 618,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 619,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 620,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 621,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 622,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "reserved"
     },
     {
      "id": 623,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 624,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 625,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 626,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 627,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 628,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 629,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 630,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 631,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 632,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 633,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "reserved"
     },
     {
      "id": 634,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 635,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 636,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "reserved"
     },
     {
      "id": 637,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 638,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 639,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.44
+  },
+  "mc2-maison-de-la-culture": {
+   "id": 28,
+   "code": "mc2-maison-de-la-culture",
+   "name": "MC2 - Maison de la Culture",
+   "address": "",
+   "status": "active",
+   "access_methods": [
+    "bluetooth"
+   ],
+   "is_simulated": true,
+   "longitude": 5.7320055,
+   "latitude": 45.17349205,
+   "control_panel_column": 1,
+   "column_grid_units": 20,
+   "control_panel_grid_units": 6,
+   "free_by_size": {
+    "S": 4,
+    "M": 3,
+    "L": 2,
+    "XL": 1
+   },
+   "compartments": [
+    {
+     "id": 764,
+     "label": "A1",
+     "size": "S",
+     "column": 0,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 765,
+     "label": "A2",
+     "size": "S",
+     "column": 0,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 766,
+     "label": "A3",
+     "size": "S",
+     "column": 0,
+     "position": 2,
+     "status": "occupied"
+    },
+    {
+     "id": 767,
+     "label": "A4",
+     "size": "S",
+     "column": 0,
+     "position": 3,
+     "status": "occupied"
+    },
+    {
+     "id": 768,
+     "label": "A5",
+     "size": "M",
+     "column": 0,
+     "position": 4,
+     "status": "out_of_service"
+    },
+    {
+     "id": 769,
+     "label": "A6",
+     "size": "M",
+     "column": 0,
+     "position": 5,
+     "status": "reserved"
+    },
+    {
+     "id": 770,
+     "label": "A7",
+     "size": "M",
+     "column": 0,
+     "position": 6,
+     "status": "occupied"
+    },
+    {
+     "id": 771,
+     "label": "A8",
+     "size": "M",
+     "column": 0,
+     "position": 7,
+     "status": "occupied"
+    },
+    {
+     "id": 772,
+     "label": "A9",
+     "size": "L",
+     "column": 0,
+     "position": 8,
+     "status": "free"
+    },
+    {
+     "id": 773,
+     "label": "A10",
+     "size": "L",
+     "column": 0,
+     "position": 9,
+     "status": "occupied"
+    },
+    {
+     "id": 774,
+     "label": "B1",
+     "size": "S",
+     "column": 1,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 775,
+     "label": "B2",
+     "size": "S",
+     "column": 1,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 776,
+     "label": "B3",
+     "size": "S",
+     "column": 1,
+     "position": 2,
+     "status": "occupied"
+    },
+    {
+     "id": 777,
+     "label": "B4",
+     "size": "S",
+     "column": 1,
+     "position": 3,
+     "status": "occupied"
+    },
+    {
+     "id": 778,
+     "label": "B5",
+     "size": "M",
+     "column": 1,
+     "position": 4,
+     "status": "free"
+    },
+    {
+     "id": 779,
+     "label": "B6",
+     "size": "M",
+     "column": 1,
+     "position": 5,
+     "status": "free"
+    },
+    {
+     "id": 780,
+     "label": "B7",
+     "size": "M",
+     "column": 1,
+     "position": 6,
+     "status": "free"
+    },
+    {
+     "id": 781,
+     "label": "B8",
+     "size": "L",
+     "column": 1,
+     "position": 7,
+     "status": "free"
+    },
+    {
+     "id": 782,
+     "label": "C1",
+     "size": "XL",
+     "column": 2,
+     "position": 0,
+     "status": "free"
+    }
+   ],
+   "fill_rate": 0.444
   },
   "neyrpic-belledonne": {
    "id": 31,
@@ -3924,177 +4423,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 840,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 841,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 842,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 843,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 844,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "occupied"
     },
     {
      "id": 845,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 846,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 847,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 848,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 849,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 850,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 851,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 852,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 853,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 854,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 855,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 856,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 857,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "occupied"
     },
     {
      "id": 858,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 859,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 860,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 861,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 862,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 863,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     }
-   ]
+   ],
+   "fill_rate": 0.2
   },
   "palluel": {
    "id": 14,
@@ -4123,177 +4648,203 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 367,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 368,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 369,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 370,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 371,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 372,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 373,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "reserved"
     },
     {
      "id": 374,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 375,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 376,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "free"
     },
     {
      "id": 377,
      "label": "C1",
      "size": "S",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 378,
      "label": "C2",
      "size": "S",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 379,
      "label": "C3",
      "size": "S",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 380,
      "label": "C4",
      "size": "S",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "out_of_service"
     },
     {
      "id": 381,
      "label": "C5",
      "size": "M",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 382,
      "label": "C6",
      "size": "M",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 383,
      "label": "C7",
      "size": "M",
      "column": 2,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 384,
      "label": "C8",
      "size": "L",
      "column": 2,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 385,
      "label": "D1",
      "size": "L",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 386,
      "label": "D2",
      "size": "L",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 387,
      "label": "D3",
      "size": "L",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "occupied"
     },
     {
      "id": 388,
      "label": "D4",
      "size": "L",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 389,
      "label": "D5",
      "size": "L",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 390,
      "label": "E1",
      "size": "XL",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     }
-   ]
+   ],
+   "fill_rate": 0.5
   },
   "parc-jo-blanchon": {
    "id": 22,
@@ -4323,261 +4874,299 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 579,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 580,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 581,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 582,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 583,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 584,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 585,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 586,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "reserved"
     },
     {
      "id": 587,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "reserved"
     },
     {
      "id": 588,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "occupied"
     },
     {
      "id": 589,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 590,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 591,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 592,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 593,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 594,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 595,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 596,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 597,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 598,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 599,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "reserved"
     },
     {
      "id": 600,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 601,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "reserved"
     },
     {
      "id": 602,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 603,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 604,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "reserved"
     },
     {
      "id": 605,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "reserved"
     },
     {
      "id": 606,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 607,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 608,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 609,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 610,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 611,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "reserved"
     },
     {
      "id": 612,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 613,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "reserved"
     },
     {
      "id": 614,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     }
-   ]
+   ],
+   "fill_rate": 0.486
   },
   "universite-bibliotheques": {
    "id": 30,
@@ -4606,2222 +5195,318 @@
      "label": "A1",
      "size": "XL",
      "column": 0,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 803,
      "label": "B1",
      "size": "S",
      "column": 1,
-     "position": 0
+     "position": 0,
+     "status": "occupied"
     },
     {
      "id": 804,
      "label": "B2",
      "size": "S",
      "column": 1,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 805,
      "label": "B3",
      "size": "S",
      "column": 1,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 806,
      "label": "B4",
      "size": "S",
      "column": 1,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 807,
      "label": "B5",
      "size": "M",
      "column": 1,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 808,
      "label": "B6",
      "size": "M",
      "column": 1,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 809,
      "label": "B7",
      "size": "M",
      "column": 1,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 810,
      "label": "B8",
      "size": "M",
      "column": 1,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 811,
      "label": "B9",
      "size": "L",
      "column": 1,
-     "position": 8
+     "position": 8,
+     "status": "free"
     },
     {
      "id": 812,
      "label": "B10",
      "size": "L",
      "column": 1,
-     "position": 9
+     "position": 9,
+     "status": "out_of_service"
     },
     {
      "id": 813,
      "label": "C1",
      "size": "M",
      "column": 2,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 814,
      "label": "C2",
      "size": "M",
      "column": 2,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 815,
      "label": "C3",
      "size": "L",
      "column": 2,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 816,
      "label": "C4",
      "size": "L",
      "column": 2,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 817,
      "label": "C5",
      "size": "L",
      "column": 2,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 818,
      "label": "C6",
      "size": "L",
      "column": 2,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 819,
      "label": "D1",
      "size": "S",
      "column": 3,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     },
     {
      "id": 820,
      "label": "D2",
      "size": "S",
      "column": 3,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 821,
      "label": "D3",
      "size": "S",
      "column": 3,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 822,
      "label": "D4",
      "size": "S",
      "column": 3,
-     "position": 3
+     "position": 3,
+     "status": "free"
     },
     {
      "id": 823,
      "label": "D5",
      "size": "M",
      "column": 3,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 824,
      "label": "D6",
      "size": "M",
      "column": 3,
-     "position": 5
+     "position": 5,
+     "status": "occupied"
     },
     {
      "id": 825,
      "label": "D7",
      "size": "M",
      "column": 3,
-     "position": 6
+     "position": 6,
+     "status": "free"
     },
     {
      "id": 826,
      "label": "D8",
      "size": "L",
      "column": 3,
-     "position": 7
+     "position": 7,
+     "status": "free"
     },
     {
      "id": 827,
      "label": "E1",
      "size": "L",
      "column": 4,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 828,
      "label": "E2",
      "size": "L",
      "column": 4,
-     "position": 1
+     "position": 1,
+     "status": "occupied"
     },
     {
      "id": 829,
      "label": "E3",
      "size": "L",
      "column": 4,
-     "position": 2
+     "position": 2,
+     "status": "reserved"
     },
     {
      "id": 830,
      "label": "E4",
      "size": "L",
      "column": 4,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 831,
      "label": "E5",
      "size": "L",
      "column": 4,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 832,
      "label": "F1",
      "size": "M",
      "column": 5,
-     "position": 0
+     "position": 0,
+     "status": "free"
     },
     {
      "id": 833,
      "label": "F2",
      "size": "M",
      "column": 5,
-     "position": 1
+     "position": 1,
+     "status": "free"
     },
     {
      "id": 834,
      "label": "F3",
      "size": "L",
      "column": 5,
-     "position": 2
+     "position": 2,
+     "status": "free"
     },
     {
      "id": 835,
      "label": "F4",
      "size": "L",
      "column": 5,
-     "position": 3
+     "position": 3,
+     "status": "occupied"
     },
     {
      "id": 836,
      "label": "F5",
      "size": "L",
      "column": 5,
-     "position": 4
+     "position": 4,
+     "status": "free"
     },
     {
      "id": 837,
      "label": "F6",
      "size": "L",
      "column": 5,
-     "position": 5
+     "position": 5,
+     "status": "free"
     },
     {
      "id": 838,
      "label": "G1",
      "size": "XL",
      "column": 6,
-     "position": 0
+     "position": 0,
+     "status": "reserved"
     }
-   ]
+   ],
+   "fill_rate": 0.306
   }
  },
- "sizes": [
-  {
-   "code": "S",
-   "name": "Petit",
-   "height_cm": 8,
-   "width_cm": 38,
-   "depth_cm": 64,
-   "grid_units": 1,
-   "examples": [
-    "Montre",
-    "Bijou",
-    "Téléphone",
-    "Lunettes"
-   ]
+ "stats": {
+  "lockers": 20,
+  "compartments": 548,
+  "in_service": 537,
+  "in_use": 175,
+  "fill_rate": 0.326,
+  "free_by_size": {
+   "S": 102,
+   "M": 113,
+   "L": 123,
+   "XL": 24
   },
-  {
-   "code": "M",
-   "name": "Moyen",
-   "height_cm": 19,
-   "width_cm": 38,
-   "depth_cm": 64,
-   "grid_units": 2,
-   "examples": [
-    "Paire de chaussures",
-    "Chemises pliées",
-    "Sac à main"
-   ]
-  },
-  {
-   "code": "L",
-   "name": "Grand",
-   "height_cm": 38,
-   "width_cm": 39,
-   "depth_cm": 64,
-   "grid_units": 4,
-   "examples": [
-    "Sac de linge",
-    "Couette pliée",
-    "Petit appareil"
-   ]
-  },
-  {
-   "code": "XL",
-   "name": "Penderie",
-   "height_cm": 183,
-   "width_cm": 38,
-   "depth_cm": 64,
-   "grid_units": 20,
-   "examples": [
-    "Chemises sur cintre",
-    "Costume",
-    "Robe",
-    "Manteau"
-   ]
+  "capacity_by_size": {
+   "S": 160,
+   "M": 164,
+   "L": 188,
+   "XL": 36
   }
- ],
- "merchants": {
-  "type": "FeatureCollection",
-  "features": [
-   {
-    "id": 1,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7287044,
-      45.1814178
-     ]
-    },
-    "properties": {
-     "name": "A2i Fermetures",
-     "category": "key_cutting",
-     "address": "",
-     "opening_hours": "Mo-Th 07:30-17:00; Fr 07:30-12:30",
-     "website": "https://www.a2i-fermetures.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 2,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7229497,
-      45.1817677
-     ]
-    },
-    "properties": {
-     "name": "AVS",
-     "category": "key_cutting",
-     "address": "",
-     "opening_hours": "Mo-Fr 09:00-12:00,14:00-17:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 3,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7294598,
-      45.181709
-     ]
-    },
-    "properties": {
-     "name": "Aldo",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 4,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7261773,
-      45.1798364
-     ]
-    },
-    "properties": {
-     "name": "Amine PC Phone",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 5,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7227652,
-      45.1859941
-     ]
-    },
-    "properties": {
-     "name": "Ar-typik",
-     "category": "jewellery_repair",
-     "address": "",
-     "opening_hours": "Tu-Sa 10:00-12:30,14:00-19:00",
-     "website": "https://artypik.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 6,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7574342,
-      45.1560545
-     ]
-    },
-    "properties": {
-     "name": "Assistance Grenoble",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 7,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7195929,
-      45.1846156
-     ]
-    },
-    "properties": {
-     "name": "Assog'Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-18:00",
-     "website": "https://assog-couture.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 8,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7192944,
-      45.140024
-     ]
-    },
-    "properties": {
-     "name": "Au fil d'Or",
-     "category": "tailoring",
-     "address": "63 Rue de Stalingrad",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 10,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7053067,
-      45.1895618
-     ]
-    },
-    "properties": {
-     "name": "Audace Couture & Amani Makeup Artist",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 11,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7102138,
-      45.1886648
-     ]
-    },
-    "properties": {
-     "name": "BMT Atelier De Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 12,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7928439,
-      45.1393852
-     ]
-    },
-    "properties": {
-     "name": "Belledonne Piquage",
-     "category": "tailoring",
-     "address": "65 Route d'Uriage",
-     "opening_hours": "Tu-Fr 15:00-19:00; Sa 15:00-18:00",
-     "website": "https://www.belledonne-piquage.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 14,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.730026,
-      45.1908286
-     ]
-    },
-    "properties": {
-     "name": "Caméléon",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 18,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7211589,
-      45.188027
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie Bonaventure",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-Sa 09:00-12:30, 13:30-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 19,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7590811,
-      45.1850394
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie Fanny",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Mo-Sa 09:30-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 20,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6470993,
-      45.2787377
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie Mindo Nobas",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-Fr 15:00-19:00, Tu-Sa 09:30-12:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 21,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.73106,
-      45.1867883
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie Strasbourg",
-     "category": "shoe_repair",
-     "address": "16 Rue de Strasbourg, 38000",
-     "opening_hours": "Tu-Fr 09:00-18:00; Sa 09:00-13:00",
-     "website": "https://cordonneriestrasbourg.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 22,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.5536722,
-      45.0730838
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie clés minute",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-We,Fr 07:30-12:00,14:00-19:00; Th,Sa 07:30-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 23,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7736942,
-      45.2063609
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie des Buclos",
-     "category": "shoe_repair",
-     "address": "27 Avenue du Vercors, 38240",
-     "opening_hours": "Tu-Fr 09:30-12:30,14:30-17:30; Sa 09:00-12:00,14:00-17:00",
-     "website": "https://cordonneriedesbuclos.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 24,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7132698,
-      45.1476793
-     ]
-    },
-    "properties": {
-     "name": "Cordonnerie des Écureuils",
-     "category": "shoe_repair",
-     "address": "29 Rue Paul Héroult, 38130 Échirolles",
-     "opening_hours": "Tu 07:30-16:00; We,Fr 07:30-12:15,15:00-18:30; Sa 07:30-12:15",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 25,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7301207,
-      45.1908266
-     ]
-    },
-    "properties": {
-     "name": "Cordonnier Antoine de Guibert",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-Sa 09:00-12:30,14:00-18:30",
-     "website": "https://cordonnerie-grenoble-deguibert.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 26,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6766743,
-      45.2351915
-     ]
-    },
-    "properties": {
-     "name": "Couture Compagnie & Création",
-     "category": "tailoring",
-     "address": "38 ter Avenue du Général de Gaulle",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 27,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7219843,
-      45.1919482
-     ]
-    },
-    "properties": {
-     "name": "Cymbeline",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "https://www.cymbelinegrenoble.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 28,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7129554,
-      45.1859379
-     ]
-    },
-    "properties": {
-     "name": "Daff Multiservices",
-     "category": "key_cutting",
-     "address": "",
-     "opening_hours": "Tu-Sa 10:00-13:00,14:00-19:00",
-     "website": "https://www.daff-multiservices.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 29,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7187284,
-      45.1857411
-     ]
-    },
-    "properties": {
-     "name": "Dominique Services",
-     "category": "key_cutting",
-     "address": "33 Rue Condorcet",
-     "opening_hours": "Tu-Fr 09:00-12:15,14:00-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 30,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7177126,
-      45.1880203
-     ]
-    },
-    "properties": {
-     "name": "Dresse Enchantée",
-     "category": "tailoring",
-     "address": "43 Cours Berriat",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 31,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7110572,
-      45.1868123
-     ]
-    },
-    "properties": {
-     "name": "Eclipse",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 33,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7301179,
-      45.1877317
-     ]
-    },
-    "properties": {
-     "name": "Edelweiss",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Tu-Fr 08:00-13:00,14:00-18:30; Sa 08:00-12:30, 14:00-17:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 34,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7183397,
-      45.1869
-     ]
-    },
-    "properties": {
-     "name": "Eden Pressing",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Tu-Th 09:00-12:30, 14:00-18:30; Fr-Sa 09:00-12:30, 14:00-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 35,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7073159,
-      45.1886468
-     ]
-    },
-    "properties": {
-     "name": "Efata Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Sa 10:00-13:00,14:00-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 36,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7269021,
-      45.1808826
-     ]
-    },
-    "properties": {
-     "name": "Eriss Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 37,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7927222,
-      45.1820364
-     ]
-    },
-    "properties": {
-     "name": "Espace multiservice",
-     "category": "shoe_repair",
-     "address": "38610 Gières",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 38,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.72631,
-      45.1584316
-     ]
-    },
-    "properties": {
-     "name": "Florine",
-     "category": "key_cutting",
-     "address": "voie 24 Villeneuve Grand'Place",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 39,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7263625,
-      45.1896213
-     ]
-    },
-    "properties": {
-     "name": "Grenette Express",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-Sa 09:00-12:30,13:30-18:20",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 40,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7066601,
-      45.1872765
-     ]
-    },
-    "properties": {
-     "name": "Guillot",
-     "category": "key_cutting",
-     "address": "",
-     "opening_hours": "",
-     "website": "https://www.guillot-entreprise.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 46,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7475712,
-      45.1857695
-     ]
-    },
-    "properties": {
-     "name": "Illico pressing",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 47,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7394397,
-      45.1703796
-     ]
-    },
-    "properties": {
-     "name": "Katioucha Boutique",
-     "category": "tailoring",
-     "address": "3 Avenue Malherbe, 38100 Grenoble",
-     "opening_hours": "Mo-Fr 09:00-12:00, Mo-Fr 14:30-19:00",
-     "website": "https://katioucha-boutique.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 49,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7212578,
-      45.1868416
-     ]
-    },
-    "properties": {
-     "name": "L'Art du Bijou",
-     "category": "jewellery_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "https://www.art-du-bijou.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 50,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7191741,
-      45.1874251
-     ]
-    },
-    "properties": {
-     "name": "L'atelier du cordonnier 38",
-     "category": "shoe_repair",
-     "address": "31 Cours Jean Jaurès, 38000 Grenoble",
-     "opening_hours": "Mo-Fr 09:00-18:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 51,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7192026,
-      45.1874209
-     ]
-    },
-    "properties": {
-     "name": "L'atelier du cordonnier 38",
-     "category": "key_cutting",
-     "address": "31 Cours Jean Jaurès, 38000 Grenoble",
-     "opening_hours": "Mo-Fr 09:00-18:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 54,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7733369,
-      45.0787035
-     ]
-    },
-    "properties": {
-     "name": "La Coordonnerie du Château",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-12:30,14:30-18:30; Sa 09:00-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 55,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6690912,
-      45.0549727
-     ]
-    },
-    "properties": {
-     "name": "La Fabrique du Smartphone",
-     "category": "electronics_repair",
-     "address": "14, 38450 Vif",
-     "opening_hours": "Tu-Sa 10:00-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 58,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6774751,
-      45.2347416
-     ]
-    },
-    "properties": {
-     "name": "La Maison de Margot",
-     "category": "dry_cleaning",
-     "address": "20 Rue de Saint-Robert",
-     "opening_hours": "Tu-Fr 08:00-12:00,15:00-18:00; Sa 08:00-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 59,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7054192,
-      45.1889361
-     ]
-    },
-    "properties": {
-     "name": "La corbeille de Sophie",
-     "category": "tailoring",
-     "address": "166 Cours Berriat, 38000 Grenoble",
-     "opening_hours": "Mo-Fr 08:00-12:30, Mo,We,Fr 16:00-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 60,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8756673,
-      45.1231614
-     ]
-    },
-    "properties": {
-     "name": "Laverie",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 81,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.5807941,
-      45.1298664
-     ]
-    },
-    "properties": {
-     "name": "Laverie automatique",
-     "category": "laundry",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 91,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7601002,
-      45.1882007
-     ]
-    },
-    "properties": {
-     "name": "Le Chausse Montagne",
-     "category": "shoe_repair",
-     "address": "28 Rue Barnave, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo 13:00-17:00, Tu-Th 13:00-17:30, Fr 13:00-18:30",
-     "website": "https://www.lechaussemontagne.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 93,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7246671,
-      45.1809439
-     ]
-    },
-    "properties": {
-     "name": "Le Cordonnier",
-     "category": "key_cutting",
-     "address": "17 Boulevard Maréchal Foch, 38100 Grenoble",
-     "opening_hours": "Tu-Fr 08:30-12:00,14:30-19:00; Sa 09:30-12:30; Jul-Aug Tu-Fr 09:00-12:00,15:00-18:30; Jul-Aug Sa 09:30-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 94,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.773558,
-      45.2064001
-     ]
-    },
-    "properties": {
-     "name": "Le Pressing des Buclos",
-     "category": "dry_cleaning",
-     "address": "27 Avenue du Vercors, 38240 Meylan",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 100,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7277859,
-      45.1893016
-     ]
-    },
-    "properties": {
-     "name": "Magi Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 102,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7160969,
-      45.1814588
-     ]
-    },
-    "properties": {
-     "name": "Marianne De Windt",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "https://mariannedewindt.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 103,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7236647,
-      45.186466
-     ]
-    },
-    "properties": {
-     "name": "Maryse Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu,We,Fr 10:00-12:30,14:00-18:30; Th 10:00-12:30; Sa 10:00-12:30,14:00-17:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 104,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.724098,
-      45.1925474
-     ]
-    },
-    "properties": {
-     "name": "Microtech",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "https://microtech-reparation.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 105,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7321303,
-      45.1583862
-     ]
-    },
-    "properties": {
-     "name": "Montre Service",
-     "category": "watch_repair",
-     "address": "42 Avenue de la Chartreuse",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 107,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.780303,
-      45.2178135
-     ]
-    },
-    "properties": {
-     "name": "Muriel M",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 108,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7560151,
-      45.1844692
-     ]
-    },
-    "properties": {
-     "name": "NKD Tech Grenoble",
-     "category": "electronics_repair",
-     "address": "9 Avenue Benoît Frachon",
-     "opening_hours": "Mo-Sa 10:00-20:00; Su off",
-     "website": "https://www.nkdtech.fr",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 109,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7686909,
-      45.1833904
-     ]
-    },
-    "properties": {
-     "name": "Natura",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Mo 14:00-19:00; Tu-Fr 09:00-19:00; Sa 09:00-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 110,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8911636,
-      45.2724355
-     ]
-    },
-    "properties": {
-     "name": "Natura Pressing",
-     "category": "dry_cleaning",
-     "address": "40 Rue des Grives, 38920 Crolles",
-     "opening_hours": "Mo-Fr 15:00-19:00, Tu-Fr 09:00-19:00; Sa 09:00-17:00",
-     "website": "https://www.natura-pressing.fr",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 113,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7587033,
-      45.1827818
-     ]
-    },
-    "properties": {
-     "name": "One Phone",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "Tu-Fr 10:00-12:30,14:30-19:00; Sa 10:00-14:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 114,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7318451,
-      45.1832616
-     ]
-    },
-    "properties": {
-     "name": "PC Repare",
-     "category": "electronics_repair",
-     "address": "3 Avenue Général Champon, 38000 Grenoble",
-     "opening_hours": "",
-     "website": "https://pcreparegrenoble.wordpress.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 115,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7202756,
-      45.1892581
-     ]
-    },
-    "properties": {
-     "name": "Phone Express",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 116,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7451913,
-      45.181871
-     ]
-    },
-    "properties": {
-     "name": "Planet Phone",
-     "category": "electronics_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 117,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7055682,
-      45.1795488
-     ]
-    },
-    "properties": {
-     "name": "Point Retouche",
-     "category": "tailoring",
-     "address": "3 Avenue Rhin et Danube, 38000 Grenoble",
-     "opening_hours": "Mo-Fr 09:00-12:00,12:30-18:00; Sa 09:00-12:30",
-     "website": "https://www.servet.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 118,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7259686,
-      45.1894234
-     ]
-    },
-    "properties": {
-     "name": "Point retouche",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 119,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7259662,
-      45.1788675
-     ]
-    },
-    "properties": {
-     "name": "Pointe naïve",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 120,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7579924,
-      45.2061041
-     ]
-    },
-    "properties": {
-     "name": "Pressing Bulle d'O",
-     "category": "dry_cleaning",
-     "address": "21 Avenue de la Plaine Fleurie, 38240 Meylan",
-     "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 121,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7359602,
-      45.1419612
-     ]
-    },
-    "properties": {
-     "name": "Pressing Ecologique",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 122,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7132199,
-      45.1807511
-     ]
-    },
-    "properties": {
-     "name": "Pressing Irvoy",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Mo-Fr 08:30-12:00,13:30-18:00; Sa 09:00-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 123,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6972401,
-      45.1813055
-     ]
-    },
-    "properties": {
-     "name": "Pressing Vercors",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 124,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8288186,
-      45.1420169
-     ]
-    },
-    "properties": {
-     "name": "Pressing du Rocher",
-     "category": "dry_cleaning",
-     "address": "238 Avenue des Thermes, 38410 Saint-Martin-d'Uriage",
-     "opening_hours": "Tu-Fr 08:30-12:30,14:30-19:30; Sa 08:30-12:30,14:30-18:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 125,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7146925,
-      45.1527163
-     ]
-    },
-    "properties": {
-     "name": "Pro Électro Pièces",
-     "category": "electronics_repair",
-     "address": "12 Rue Fernand Pelloutier, 38130 Échirolles",
-     "opening_hours": "Mo-Fr 08:30-12:00,14:00-19:00; Sa 08:30-12:00",
-     "website": "http://www.pro-electro.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 126,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7182758,
-      45.1879745
-     ]
-    },
-    "properties": {
-     "name": "Quick Pressing",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-19:00; Sa 09:30-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 127,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7223875,
-      45.1885001
-     ]
-    },
-    "properties": {
-     "name": "Rapid Service",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "Mo-Fr 09:00-18:00; Sa 10:00-18:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 128,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8944872,
-      45.2720299
-     ]
-    },
-    "properties": {
-     "name": "Repair Café Crolles-Grésivaudan",
-     "category": "electronics_repair",
-     "address": "47 Rue des Frères Montgolfier, 38920",
-     "opening_hours": "Th 15:00-20:00",
-     "website": "https://www.repaircafe-crolles-gresivaudan.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 129,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7195314,
-      45.1911308
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Grenoble Pinal",
-     "category": "electronics_repair",
-     "address": "2 Chemin Pinal, 38000 Grenoble",
-     "opening_hours": "Tu 09:30-12:00,14:00-17:30",
-     "website": "http://repaircafegrenoblepinal.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 130,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7852338,
-      45.2106624
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Meylan",
-     "category": "electronics_repair",
-     "address": "Rue des Tisserands, 38240 Meylan",
-     "opening_hours": "Tu \"Un mardi sur deux, sauf vacances scolaires d'été.\"; Jul-Aug off",
-     "website": "http://repaircafemeylan.fr",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 131,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8028707,
-      45.2274973
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Montbonnot-Saint-Martin",
-     "category": "electronics_repair",
-     "address": "292 Chemin de Savardin, 38330 Monbonnot-Saint-Martin",
-     "opening_hours": "Tu 14:00-18:45 \"2 mardi par mois\"",
-     "website": "https://www.repaircafemontbonnot.fr/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 132,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7706091,
-      45.180841
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Saint-Martin-d'Hères",
-     "category": "electronics_repair",
-     "address": "7 Rue Elsa Triolet, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "Mo[1] 14:00-17:30; We[2] 14:00-17:30",
-     "website": "https://fr-fr.facebook.com/rcsmh38400/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 133,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6722619,
-      45.2348907
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Saint-Égrève",
-     "category": "electronics_repair",
-     "address": "38 Rue de la Gare, 38120 Saint-Egrève",
-     "opening_hours": "Fr 14:00-18:00",
-     "website": "http://www.repaircafesaint-egreve.fr",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 134,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6971957,
-      45.179146
-     ]
-    },
-    "properties": {
-     "name": "Repair Café de Seyssinet",
-     "category": "electronics_repair",
-     "address": "79 Avenue de la République, 38170 Seyssinet-Pariset",
-     "opening_hours": "We[1,3] 14:30-18:30; Sa 09:00-12:00",
-     "website": "https://seyssinetrepaircafe.wordpress.com/",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 135,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6651929,
-      45.2567863
-     ]
-    },
-    "properties": {
-     "name": "Repair Café du Fontanil",
-     "category": "electronics_repair",
-     "address": "Rue Fétola, 38120 Le Fontanil",
-     "opening_hours": "Mo,We 15:00-19:00",
-     "website": "https://www.mjc-fontanil.fr/page/570333-repair-cafe",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 136,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7247609,
-      45.1915947
-     ]
-    },
-    "properties": {
-     "name": "Retouche Discount",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Mo-Sa 11:00-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 137,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7154687,
-      45.1845067
-     ]
-    },
-    "properties": {
-     "name": "Retouches Express",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Mo,Tu,Th,Fr 09:30-12:00, 14:00-18:00, Sa 09:30-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 138,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6694025,
-      45.0549261
-     ]
-    },
-    "properties": {
-     "name": "Retouches Marie Goncalves",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu,Th 10:00-12:00,15:30-12:00; Fr 15:30-12:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 139,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.734551,
-      45.1811573
-     ]
-    },
-    "properties": {
-     "name": "Selena Haute Couture",
-     "category": "tailoring",
-     "address": "10 bis Avenue Jean Perrot, 38100 Grenoble",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 140,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7168402,
-      45.1901385
-     ]
-    },
-    "properties": {
-     "name": "Selff Makuin",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 141,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.6833768,
-      45.0567908
-     ]
-    },
-    "properties": {
-     "name": "Serrurerie Rota",
-     "category": "key_cutting",
-     "address": "7",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 142,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7204299,
-      45.1486438
-     ]
-    },
-    "properties": {
-     "name": "Services Couture",
-     "category": "tailoring",
-     "address": "30 Rue Normandie Niémen, Échirolles",
-     "opening_hours": "Tu-Sa 09:00-11:30,14:30-19:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 143,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7244266,
-      45.1925952
-     ]
-    },
-    "properties": {
-     "name": "Signé Edith Création",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Mo 09:30-16:00; Tu-Sa 09:30-17:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 145,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7199703,
-      45.185191
-     ]
-    },
-    "properties": {
-     "name": "Tailleur",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-12:00,14:00-17:00",
-     "website": "https://zaga-couture.shop/atelier-de-couture-a-grenoble",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 146,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7291555,
-      45.1891168
-     ]
-    },
-    "properties": {
-     "name": "Thomas H",
-     "category": "jewellery_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 147,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7219131,
-      45.1849161
-     ]
-    },
-    "properties": {
-     "name": "Thuy Phuong",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:00-12:30,13:30-18:30; Sa 09:00-13:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 148,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7463317,
-      45.1666025
-     ]
-    },
-    "properties": {
-     "name": "Topy",
-     "category": "shoe_repair",
-     "address": "",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 149,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7534672,
-      45.2022115
-     ]
-    },
-    "properties": {
-     "name": "Tout Clean",
-     "category": "dry_cleaning",
-     "address": "6 Rue Jean de la Fontaine, 38700 La Tronche",
-     "opening_hours": "Tu-Fr 08:00-12:00,14:00-19:00; Sa 08:00-12:00,14:00-17:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 150,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8843001,
-      45.2836534
-     ]
-    },
-    "properties": {
-     "name": "Tout Propre",
-     "category": "dry_cleaning",
-     "address": "",
-     "opening_hours": "Tu-Su 07:45-12:15,14:45-18:30; Sa 08:30-13:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 151,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.8843448,
-      45.2836894
-     ]
-    },
-    "properties": {
-     "name": "Tout Propre",
-     "category": "laundry",
-     "address": "110 Rue du 8 Mai 1945, 38920 Crolles",
-     "opening_hours": "Mo-Su 07:30-19:00",
-     "website": "https://pressing-isere.fr/sections/view.php/12/tout-propre",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 152,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.762711,
-      45.1813912
-     ]
-    },
-    "properties": {
-     "name": "Télé Vidéo Croizat E. Cigrarettes",
-     "category": "electronics_repair",
-     "address": "2 Rue Alfred Gueymard, 38400 Saint-Martin-d'Hères",
-     "opening_hours": "",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 155,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7065045,
-      45.1886975
-     ]
-    },
-    "properties": {
-     "name": "Yasmine Negafa",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Sa 14:30-19:30",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 156,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7224647,
-      45.1885766
-     ]
-    },
-    "properties": {
-     "name": "Zaga Couture",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Sa 09:00-19:00",
-     "website": "https://zaga-couture.shop/atelier-de-couture-a-grenoble",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 158,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7322528,
-      45.193235
-     ]
-    },
-    "properties": {
-     "name": "À vos mesures",
-     "category": "tailoring",
-     "address": "Rue du vieux temple",
-     "opening_hours": "Tu-Sa 09:00-14:00",
-     "website": "",
-     "is_partner": false
-    }
-   },
-   {
-    "id": 159,
-    "type": "Feature",
-    "geometry": {
-     "type": "Point",
-     "coordinates": [
-      5.7262827,
-      45.1799358
-     ]
-    },
-    "properties": {
-     "name": "Élégante Retouche",
-     "category": "tailoring",
-     "address": "",
-     "opening_hours": "Tu-Fr 09:30-11:30,14:30-18:30; Sa 09:30-11:30,14:30-17:00",
-     "website": "",
-     "is_partner": false
-    }
-   }
-  ]
  }
 }

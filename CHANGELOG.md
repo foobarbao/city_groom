@@ -70,6 +70,10 @@ Versioning: [SemVer](https://semver.org/).
   businesses after filtering (self-service laundromats excluded), in
   `data/osm/`; demo fixtures regenerated with lockers at real tram stops and
   real businesses. Merchant import now prunes businesses no longer selected.
+- Demo dataset: `apps.demo` generator of fictitious activity (orders, rounds
+  at 08:00 and 20:00, daily figures, forecast, fictitious demo merchants and
+  placeholder prices), `export_demo_data` command, shared package
+  `packages/demo-data` used by the customer app demo builds.
 - Android project (Capacitor) with the provisional application id
   `fr.reliance.app`; working name "Reliance" in the app; build guide
   (`docs/BUILD_AND_RELEASE.md`).

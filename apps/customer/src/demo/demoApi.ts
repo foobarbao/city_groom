@@ -1,8 +1,10 @@
 /**
- * @file Locker API answered from bundled fictitious data, for the standalone
- * demo build (`VITE_DEMO=true`). Same signatures as `api/lockers.ts`.
+ * @file Locker and merchant API answered from the bundled demo dataset, for
+ * the demo builds (`VITE_DEMO=true`). Same signatures as `api/lockers.ts` and
+ * `api/merchants.ts`.
  *
- * Data comes from `fixtures.json` (see `src/demo/README.md`).
+ * Data comes from `@city-groom/demo-data` (packages/demo-data/README.md):
+ * simulated lockers at real tram stops, real businesses from OpenStreetMap.
  */
 import type {
   LockerFeatureCollection,
@@ -12,7 +14,7 @@ import type {
 } from '@city-groom/api-client'
 
 import { ApiError } from '../api/http'
-import fixtures from './fixtures.json'
+import { publicData } from '@city-groom/demo-data'
 
 /** Short artificial delay so loading states are visible, as with a real network. */
 const DEMO_LATENCY_MS = 250
@@ -23,7 +25,7 @@ function later<T>(value: T): Promise<T> {
 
 /** See `fetchLockers` in `api/lockers.ts`. */
 export function fetchLockers(): Promise<LockerFeatureCollection> {
-  return later(fixtures.lockers as LockerFeatureCollection)
+  return later(publicData.lockers)
 }
 
 /**
@@ -32,22 +34,16 @@ export function fetchLockers(): Promise<LockerFeatureCollection> {
  * @throws {ApiError} With status 404 for an unknown code, like the real API.
  */
 export function fetchLocker(code: string): Promise<LockerLayout> {
-  const details = fixtures.details as Record<string, LockerLayout>
-  const locker = details[code]
+  const locker = publicData.details[code]
   return locker ? later(locker) : Promise.reject(new ApiError(404, `/lockers/${code}/`))
 }
 
 /** See `fetchSizes` in `api/lockers.ts`. */
 export function fetchSizes(): Promise<SizeSpec[]> {
-  return later(fixtures.sizes as SizeSpec[])
+  return later(publicData.sizes)
 }
 
-/**
- * See `fetchMerchants` in `api/merchants.ts`. Merchants must be real
- * businesses, so the demo only contains those imported from OpenStreetMap; the
- * list is empty until that import has been run (no invented businesses).
- */
+/** See `fetchMerchants` in `api/merchants.ts`. */
 export function fetchMerchants(): Promise<MerchantFeatureCollection> {
-  const merchants = (fixtures as { merchants?: MerchantFeatureCollection }).merchants
-  return later(merchants ?? { type: 'FeatureCollection', features: [] })
+  return later(publicData.merchants)
 }

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "apps.lockers",
     "apps.merchants",
     "apps.integrations",
+    "apps.demo",
 ]
 
 MIDDLEWARE = [
