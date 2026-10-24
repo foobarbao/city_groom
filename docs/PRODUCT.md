@@ -111,6 +111,14 @@ Payment is **simulated** in the demo.
 - Pickup slots are **12 hours** long and follow the rounds: an item returned
   by the 08:00 round can be collected until 20:00, and so on.
 
+### Overdue pickups
+
+- If the customer does not collect the item within the 12-hour slot, **the
+  item stays in the locker** and the customer pays a **small late fee**.
+- **The first forgotten pickup is free** (once per customer).
+- Fee amount, how it accrues and the maximum time an item may stay are not
+  defined yet (see open questions).
+
 ### Locker visualisation
 
 The locker view must be **very user-friendly**: the customer sees a drawing of
@@ -246,8 +254,12 @@ Questions to the project owner. Answers are moved into the sections above.
    partners (items per round, distance per round, revenue estimate, car trips
    avoided / CO₂ saved…)? Should the projection be adjustable live during a
    presentation (e.g. number of lockers, number of customers)?
-6. **Overdue pickups**: what happens when an item is not collected within
-   its 12-hour slot?
-7. **Android application id**: Android apps need a permanent reverse-domain
-   identifier (e.g. `fr.<domain>.<app>`). Which domain name will the project
-   use? (It cannot be changed after publication on the Play Store.)
+6. **Late fee**: amount, flat or per additional slot / day, and what happens
+   after a maximum delay (item returned to the merchant, kept at a depot…)?
+   How is the free first occurrence tracked for guest customers (no account)?
+7. **Domain and Android application id**: the domain will be based on
+   "city reconnect". Which exact domain (e.g. `cityreconnect.fr` or `.com`)?
+   The Android ids would then be e.g. `fr.cityreconnect.app` (customers) and
+   `fr.cityreconnect.pro` (merchants); they cannot be changed after
+   publication on the Play Store. Is "City Reconnect" also the new product
+   name?

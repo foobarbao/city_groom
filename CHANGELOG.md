@@ -37,6 +37,8 @@ Versioning: [SemVer](https://semver.org/).
 - Lockers backend: models, simulated sizes and layouts, simulated occupancy,
   `seed_simulated_lockers` command (real tram stops from OpenStreetMap),
   public and operator APIs, admin (`docs/LOCKERS.md`).
+- Product: overdue pickups (item stays, small late fee, first occurrence
+  free); domain based on "city reconnect".
 - Roadmap (`docs/ROADMAP.md`).
 - Customer app (`apps/customer/`): Ionic + Vue 3 + TypeScript, map of the
   lockers (MapLibre, OpenStreetMap tiles), locker page with size picker and
