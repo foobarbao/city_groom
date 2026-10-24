@@ -1,0 +1,8 @@
+# Hosting of the fictitious demo site on Netlify (ADR-0004, docs/BUILD_AND_RELEASE.md).
+# Netlify reads this file automatically when the repository is connected.
+[build]
+  command = "npm ci && npm run build:demo-site -w apps/customer"
+  publish = "apps/customer/dist-demo-site"
+
+[build.environment]
+  NODE_VERSION = "22"

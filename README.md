@@ -48,6 +48,7 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | [`docs/PRODUCT.md`](docs/PRODUCT.md) | Vision, actors, flows, business model, open questions |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Iterations: done, in progress, next |
 | [`docs/DESIGN.md`](docs/DESIGN.md) | Visual direction of the customer app (soft, green) and design tokens |
+| [`docs/DEMO.md`](docs/DEMO.md) | Hosted demo: contents, real vs fictitious data, Netlify hosting |
 | [`docs/BUILD_AND_RELEASE.md`](docs/BUILD_AND_RELEASE.md) | Building the Android app (APK), signing, publication |
 | [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) | External data (map, tram stops, businesses), licences, import commands |
 | [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes, layouts, events |
