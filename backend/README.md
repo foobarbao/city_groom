@@ -10,7 +10,9 @@ lockers, couriers and payment (ADR-0003).
 backend/
 ├── config/          Project settings, root URLs, WSGI entry point
 ├── apps/
-│   └── core/        Technical features (health check)
+│   ├── core/          Technical features (health check)
+│   ├── lockers/       Lockers, compartments, events, drivers, simulation
+│   └── integrations/  API keys and scopes for third-party integrations
 ├── manage.py
 ├── pyproject.toml   Dependencies and tool configuration (Ruff, mypy, pytest)
 ├── uv.lock          Locked dependency versions (committed)
@@ -48,8 +50,12 @@ uv run python manage.py runserver
 | URL | Content |
 |---|---|
 | http://localhost:8000/admin/ | Administration (French UI) |
-| http://localhost:8000/api/health/ | Health check |
-| http://localhost:8000/api/schema/docs/ | Interactive API documentation (OpenAPI) |
+| http://localhost:8000/api/v1/health/ | Health check |
+| http://localhost:8000/api/v1/docs/ | Interactive API documentation (Swagger UI) |
+| http://localhost:8000/api/v1/redoc/ | API reference (ReDoc) |
+
+Integration guide (authentication, scopes, rate limits, errors, versioning):
+[`docs/api/README.md`](../docs/api/README.md).
 
 Alternatively, `docker compose up --build` from the root runs both the database
 and the backend in containers.

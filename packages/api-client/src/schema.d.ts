@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/api/health/": {
+    "/api/v1/health/": {
         parameters: {
             query?: never;
             header?: never;
@@ -24,14 +24,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/lockers/": {
+    "/api/v1/lockers/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description List lockers as a GeoJSON FeatureCollection. */
+        /**
+         * List lockers
+         * @description In-service lockers as a GeoJSON FeatureCollection (coordinates in WGS 84, longitude first), with the number of free compartments per size. Optionally filtered around a point, nearest first.
+         */
         get: operations["lockers_list"];
         put?: never;
         post?: never;
@@ -41,14 +44,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/lockers/{code}/": {
+    "/api/v1/lockers/{code}/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Lockers visible to customers: map features and locker fronts. */
+        /**
+         * Locker front
+         * @description Layout of one in-service locker: columns, doors with their size and label, control panel position, and free compartments per size. Doors are listed without status.
+         */
         get: operations["lockers_retrieve"];
         put?: never;
         post?: never;
@@ -58,14 +64,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/lockers/sizes/": {
+    "/api/v1/lockers/sizes/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Return the compartment size catalogue (dimensions, examples of items). */
+        /**
+         * Compartment sizes
+         * @description Size catalogue: dimensions in cm, layout height, examples of items.
+         */
         get: operations["lockers_sizes_list"];
         put?: never;
         post?: never;
@@ -75,14 +84,37 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/operator/lockers/": {
+    "/api/v1/operator/locker-events/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description List lockers as a GeoJSON FeatureCollection with fill rates. */
+        /**
+         * Locker events
+         * @description Events reported by lockers (door opened or closed, faults, connection changes), newest first, with cursor pagination. Poll with `since` to receive only new events.
+         */
+        get: operations["operator_locker_events_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/operator/lockers/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List lockers with occupancy
+         * @description All lockers, whatever their status, with fill rates (GeoJSON).
+         */
         get: operations["operator_lockers_list"];
         put?: never;
         post?: never;
@@ -92,14 +124,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/operator/lockers/{code}/": {
+    "/api/v1/operator/lockers/{code}/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Lockers for operators: occupancy of every compartment and network statistics. */
+        /**
+         * Locker front with door status
+         * @description Layout of one locker with the status of every door and its fill rate.
+         */
         get: operations["operator_lockers_retrieve"];
         put?: never;
         post?: never;
@@ -109,14 +144,17 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/operator/lockers/stats/": {
+    "/api/v1/operator/lockers/stats/": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** @description Return occupancy statistics for the whole locker network. */
+        /**
+         * Network statistics
+         * @description Occupancy of the whole locker network: totals, fill rate, per-size figures.
+         */
         get: operations["operator_lockers_stats_retrieve"];
         put?: never;
         post?: never;
@@ -136,7 +174,15 @@ export interface components {
          *     * `qr_code` - QR code
          * @enum {string}
          */
-        AccessMethodsEnum: "bluetooth" | "nfc" | "qr_code";
+        AccessMethodEnum: "bluetooth" | "nfc" | "qr_code";
+        /**
+         * @description * `free` - Libre
+         *     * `reserved` - Réservé
+         *     * `occupied` - Occupé
+         *     * `out_of_service` - Hors service
+         * @enum {string}
+         */
+        CompartmentStatusEnum: "free" | "reserved" | "occupied" | "out_of_service";
         /** @enum {string} */
         GisFeatureCollectionEnum: "FeatureCollection";
         /** @enum {string} */
@@ -146,6 +192,70 @@ export interface components {
         };
         HealthError: {
             status: string;
+        };
+        /**
+         * @description * `door_opened` - Porte ouverte
+         *     * `door_closed` - Porte fermée
+         *     * `door_left_open` - Porte restée ouverte
+         *     * `fault` - Panne
+         *     * `connection_lost` - Connexion perdue
+         *     * `connection_restored` - Connexion rétablie
+         * @enum {string}
+         */
+        KindEnum: "door_opened" | "door_closed" | "door_left_open" | "fault" | "connection_lost" | "connection_restored";
+        /** @description An event reported by a locker, for operators and integrations. */
+        LockerEvent: {
+            readonly id: number;
+            /** @description Code du casier. */
+            readonly locker: string;
+            /**
+             * Étiquette
+             * @description Étiquette du compartiment, nulle pour un événement du casier entier.
+             */
+            readonly compartment: string | null;
+            /**
+             * Type
+             * @description Type d'événement.
+             *
+             *     * `door_opened` - Porte ouverte
+             *     * `door_closed` - Porte fermée
+             *     * `door_left_open` - Porte restée ouverte
+             *     * `fault` - Panne
+             *     * `connection_lost` - Connexion perdue
+             *     * `connection_restored` - Connexion rétablie
+             */
+            readonly kind: components["schemas"]["KindEnum"];
+            /**
+             * Mode d'ouverture
+             * @description Mode d'ouverture utilisé, pour une ouverture de porte.
+             *
+             *     * `bluetooth` - Bluetooth
+             *     * `nfc` - NFC
+             *     * `qr_code` - QR code
+             */
+            readonly access_method: components["schemas"]["AccessMethodEnum"];
+            /**
+             * Survenu le
+             * Format: date-time
+             * @description Horodatage fourni par le casier.
+             */
+            readonly occurred_at: string;
+            /**
+             * Reçu le
+             * Format: date-time
+             * @description Horodatage de réception par la plateforme (différé si le casier était hors ligne).
+             */
+            readonly received_at: string;
+            /**
+             * Simulé
+             * @description Vrai si l'événement a été produit par la simulation.
+             */
+            readonly is_simulated: boolean;
+            /**
+             * Détails
+             * @description Données complémentaires propres au fabricant ou au simulateur.
+             */
+            readonly details: unknown;
         };
         /** @description Locker as a GeoJSON feature for the map, with free compartments per size. */
         LockerFeature: {
@@ -223,12 +333,12 @@ export interface components {
              *     * `maintenance` - En maintenance
              *     * `offline` - Hors ligne
              */
-            readonly status: components["schemas"]["Status806Enum"];
+            readonly status: components["schemas"]["LockerStatusEnum"];
             /**
              * Modes d'ouverture
              * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
              */
-            readonly access_methods: components["schemas"]["AccessMethodsEnum"][];
+            readonly access_methods: components["schemas"]["AccessMethodEnum"][];
             /**
              * Simulé
              * @description Vrai pour un casier fictif de démonstration, faux pour un casier réel.
@@ -259,6 +369,13 @@ export interface components {
             };
             readonly compartments: components["schemas"]["PublicCompartment"][];
         };
+        /**
+         * @description * `active` - En service
+         *     * `maintenance` - En maintenance
+         *     * `offline` - Hors ligne
+         * @enum {string}
+         */
+        LockerStatusEnum: "active" | "maintenance" | "offline";
         /** @description Occupancy of the whole locker network, for operator dashboards. */
         NetworkStats: {
             /** @description Nombre de casiers. */
@@ -310,16 +427,8 @@ export interface components {
              *     * `occupied` - Occupé
              *     * `out_of_service` - Hors service
              */
-            readonly status: components["schemas"]["OperatorCompartmentStatusEnum"];
+            readonly status: components["schemas"]["CompartmentStatusEnum"];
         };
-        /**
-         * @description * `free` - Libre
-         *     * `reserved` - Réservé
-         *     * `occupied` - Occupé
-         *     * `out_of_service` - Hors service
-         * @enum {string}
-         */
-        OperatorCompartmentStatusEnum: "free" | "reserved" | "occupied" | "out_of_service";
         /** @description Map feature for operators, adding the fill rate. */
         OperatorLockerFeature: {
             type?: components["schemas"]["GisFeatureEnum"];
@@ -405,12 +514,12 @@ export interface components {
              *     * `maintenance` - En maintenance
              *     * `offline` - Hors ligne
              */
-            readonly status: components["schemas"]["Status806Enum"];
+            readonly status: components["schemas"]["LockerStatusEnum"];
             /**
              * Modes d'ouverture
              * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
              */
-            readonly access_methods: components["schemas"]["AccessMethodsEnum"][];
+            readonly access_methods: components["schemas"]["AccessMethodEnum"][];
             /**
              * Simulé
              * @description Vrai pour un casier fictif de démonstration, faux pour un casier réel.
@@ -445,6 +554,19 @@ export interface components {
              * @description Return the share of in-service compartments in use.
              */
             readonly fill_rate: number;
+        };
+        PaginatedLockerEventList: {
+            /**
+             * Format: uri
+             * @example http://api.example.org/accounts/?cursor=cD00ODY%3D"
+             */
+            next?: string | null;
+            /**
+             * Format: uri
+             * @example http://api.example.org/accounts/?cursor=cj0xJnA9NDg3
+             */
+            previous?: string | null;
+            results: components["schemas"]["LockerEvent"][];
         };
         /** @description Compartment position and size, without its status. */
         PublicCompartment: {
@@ -491,13 +613,6 @@ export interface components {
             grid_units: number;
             examples: string[];
         };
-        /**
-         * @description * `active` - En service
-         *     * `maintenance` - En maintenance
-         *     * `offline` - Hors ligne
-         * @enum {string}
-         */
-        Status806Enum: "active" | "maintenance" | "offline";
     };
     responses: never;
     parameters: never;
@@ -596,6 +711,36 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SizeSpec"][];
+                };
+            };
+        };
+    };
+    operator_locker_events_list: {
+        parameters: {
+            query?: {
+                /** @description La valeur du curseur de pagination. */
+                cursor?: string;
+                /** @description Type d'événement. */
+                kind?: "connection_lost" | "connection_restored" | "door_closed" | "door_left_open" | "door_opened" | "fault";
+                /** @description Code du casier. */
+                locker?: string;
+                /** @description Nombre de résultats à retourner par page. */
+                page_size?: number;
+                /** @description Seulement les événements survenus après cette date (ISO 8601). */
+                since?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedLockerEventList"];
                 };
             };
         };

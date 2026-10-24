@@ -6,9 +6,9 @@ User interface in French.
 
 ## Current screens
 
-| Route | Screen |
-|---|---|
-| `/carte` | Map of Grenoble (MapLibre, OpenStreetMap tiles) with the lockers, green when compartments are free |
+| Route            | Screen                                                                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `/carte`         | Map of Grenoble (MapLibre, OpenStreetMap tiles) with the lockers, green when compartments are free                            |
 | `/casiers/:code` | Locker page: size picker with free compartments, drawing of the locker front highlighting the door that opens, drop-off steps |
 
 Until orders exist, the highlighted door is an **example** of the chosen size

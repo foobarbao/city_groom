@@ -35,6 +35,7 @@ Details and rejected alternatives: [ADR-0002](docs/adr/0002-technical-stack.md),
 repository layout: [ADR-0003](docs/adr/0003-monorepo-and-applications.md),
 partner portal: [ADR-0005](docs/adr/0005-partner-web-portal.md) and
 [ADR-0006](docs/adr/0006-mobile-app-for-merchants.md),
+API for integrations: [ADR-0007](docs/adr/0007-api-for-integrations.md),
 hosting: [ADR-0004](docs/adr/0004-hosting.md).
 
 Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
@@ -46,7 +47,8 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md) | Coding and documentation rules (**read first**) |
 | [`docs/PRODUCT.md`](docs/PRODUCT.md) | Vision, actors, flows, business model, open questions |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Iterations: done, in progress, next |
-| [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes and layouts |
+| [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes, layouts, events |
+| [`docs/api/README.md`](docs/api/README.md) | API integration guide (authentication, scopes, errors, rate limits, versioning) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Branches, commits, pull requests, versioning |
 | [`docs/adr/`](docs/adr/) | Architecture decisions |
 | [`CHANGELOG.md`](CHANGELOG.md) | Change history |

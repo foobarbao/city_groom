@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_gis",
     "drf_spectacular",
+    "rest_framework_api_key",
     # Project
     "apps.core",
     "apps.lockers",
+    "apps.integrations",
 ]
 
 MIDDLEWARE = [
@@ -126,16 +128,57 @@ REST_FRAMEWORK = {
     # (CODING_STANDARDS.md §9).
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    # Rate limits protect the service from abusive or buggy clients; values
+    # are documented in docs/api/README.md.
+    # PROD: use a shared cache (e.g. Redis) so limits hold across processes.
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+        "apps.integrations.throttling.APIKeyRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": env.str("API_THROTTLE_ANON", default="120/min"),
+        "user": env.str("API_THROTTLE_USER", default="600/min"),
+        "api_key": env.str("API_THROTTLE_API_KEY", default="600/min"),
+    },
 }
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "City Groom API",
-    "DESCRIPTION": "REST API consumed by the customer app and the merchant portal.",
+    "DESCRIPTION": (
+        "REST API of City Groom, used by the City Groom apps and open to third-party "
+        "integrations. Authentication, scopes, rate limits, errors and versioning "
+        "are described in the integration guide (docs/api/README.md in the "
+        "repository). Data marked as simulated is fictitious demo data."
+    ),
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
     # Separate request and response components, so response fields that are
     # always present are marked required in generated frontend types.
     "COMPONENT_SPLIT_REQUEST": True,
+    "APPEND_COMPONENTS": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "description": "Integration API key, sent as `Authorization: Api-Key <key>`.",
+            },
+        },
+    },
+    "SECURITY": [{"ApiKeyAuth": []}],
+    # Stable, explicit names for shared choice sets in the generated schema
+    # and frontend types.
+    "ENUM_NAME_OVERRIDES": {
+        "LockerStatusEnum": "apps.lockers.models.Locker.Status",
+        "CompartmentStatusEnum": "apps.lockers.models.Compartment.Status",
+        "AccessMethodEnum": "apps.lockers.models.AccessMethod",
+    },
+    "TAGS": [
+        {"name": "lockers", "description": "Public locker data (map, locker fronts, sizes)."},
+        {"name": "operations", "description": "Operator data: occupancy, statistics, events."},
+        {"name": "system", "description": "Technical endpoints."},
+    ],
 }
 
 # Origins of the customer app and merchant portal allowed to call the API.

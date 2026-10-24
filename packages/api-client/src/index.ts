@@ -25,6 +25,6 @@ export type SizeSpec = Schemas['SizeSpec']
 /** Compartment size codes. */
 export type CompartmentSize = Schemas['SizeEnum']
 /** Opening methods of a locker. */
-export type AccessMethod = Schemas['AccessMethodsEnum']
+export type AccessMethod = Schemas['AccessMethodEnum']
 
 export type { components, paths } from './schema'

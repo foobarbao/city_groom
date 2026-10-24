@@ -6,7 +6,8 @@
  */
 
 /** Base URL of the backend API, without trailing slash. */
-export const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000/api'
+export const API_BASE_URL: string =
+  import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000/api/v1'
 
 /** MapLibre style URL used by every map. */
 export const MAP_STYLE_URL: string =

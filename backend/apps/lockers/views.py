@@ -1,8 +1,10 @@
 """API views for lockers.
 
 Public endpoints serve the customer app, guests included (docs/PRODUCT.md,
-"Customer accounts"); they expose no per-compartment status. Operator endpoints
-add occupancy details and network statistics for dashboards.
+"Customer accounts"), and integrations; they expose no per-compartment status.
+Operator endpoints add occupancy details, network statistics and locker
+events; they are open to staff users and to integration API keys holding the
+``operations:read`` scope (ADR-0007, docs/api/README.md).
 """
 
 from collections import Counter
@@ -11,18 +13,23 @@ from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 from django.db.models import Prefetch, QuerySet
+from django.utils.dateparse import parse_datetime
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import OpenApiParameter, extend_schema
-from rest_framework import viewsets
+from drf_spectacular.utils import OpenApiParameter, extend_schema, extend_schema_view
+from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
+from rest_framework.pagination import CursorPagination
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 
-from apps.lockers.models import Compartment, Locker
+from apps.integrations.permissions import HasScopedAPIKey
+from apps.integrations.scopes import Scope
+from apps.lockers.models import Compartment, Locker, LockerEvent
 from apps.lockers.serializers import (
+    LockerEventSerializer,
     LockerFeatureSerializer,
     LockerLayoutSerializer,
     NetworkStatsSerializer,
@@ -77,6 +84,18 @@ def _filter_near(queryset: QuerySet[Locker], request: Request) -> QuerySet[Locke
     )
 
 
+@extend_schema_view(
+    retrieve=extend_schema(
+        summary="Locker front",
+        description=(
+            "Layout of one in-service locker: columns, doors with their size and "
+            "label, control panel position, and free compartments per size. "
+            "Doors are listed without status."
+        ),
+        tags=["lockers"],
+        auth=[],
+    ),
+)
 class LockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
     """Lockers visible to customers: map features and locker fronts."""
 
@@ -92,24 +111,52 @@ class LockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
         """Use GeoJSON features for the list and the full layout for one locker."""
         return LockerLayoutSerializer if self.action == "retrieve" else LockerFeatureSerializer
 
-    @extend_schema(parameters=NEAR_PARAMETERS)
+    @extend_schema(
+        summary="List lockers",
+        description=(
+            "In-service lockers as a GeoJSON FeatureCollection (coordinates in "
+            "WGS 84, longitude first), with the number of free compartments per "
+            "size. Optionally filtered around a point, nearest first."
+        ),
+        parameters=NEAR_PARAMETERS,
+        tags=["lockers"],
+        auth=[],
+    )
     def list(self, request: Request, *args: object, **kwargs: object) -> Response:
         """List lockers as a GeoJSON FeatureCollection."""
         return super().list(request, *args, **kwargs)
 
-    @extend_schema(responses=SizeSpecSerializer(many=True))
+    @extend_schema(
+        summary="Compartment sizes",
+        description="Size catalogue: dimensions in cm, layout height, examples of items.",
+        responses=SizeSpecSerializer(many=True),
+        tags=["lockers"],
+        auth=[],
+    )
     @action(detail=False, pagination_class=None)
     def sizes(self, request: Request) -> Response:
         """Return the compartment size catalogue (dimensions, examples of items)."""
         return Response(SizeSpecSerializer(size_catalogue(), many=True).data)
 
 
+# Staff users (Django admin session) or integration keys with the scope.
+# PROD: replace staff status by the operator role once user roles exist
+# (ADR-0005).
+OPERATOR_PERMISSIONS = [IsAdminUser | HasScopedAPIKey]
+
+
+@extend_schema_view(
+    retrieve=extend_schema(
+        summary="Locker front with door status",
+        description="Layout of one locker with the status of every door and its fill rate.",
+        tags=["operations"],
+    ),
+)
 class OperatorLockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
     """Lockers for operators: occupancy of every compartment and network statistics."""
 
-    # PROD: replace staff status by the operator role once user roles exist
-    # (ADR-0005).
-    permission_classes = [IsAdminUser]
+    permission_classes = OPERATOR_PERMISSIONS
+    required_scope = Scope.OPERATIONS_READ
     lookup_field = "code"
 
     def get_queryset(self) -> QuerySet[Locker]:
@@ -122,12 +169,22 @@ class OperatorLockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
             return OperatorLockerLayoutSerializer
         return OperatorLockerFeatureSerializer
 
-    @extend_schema(parameters=NEAR_PARAMETERS)
+    @extend_schema(
+        summary="List lockers with occupancy",
+        description="All lockers, whatever their status, with fill rates (GeoJSON).",
+        parameters=NEAR_PARAMETERS,
+        tags=["operations"],
+    )
     def list(self, request: Request, *args: object, **kwargs: object) -> Response:
         """List lockers as a GeoJSON FeatureCollection with fill rates."""
         return super().list(request, *args, **kwargs)
 
-    @extend_schema(responses=NetworkStatsSerializer)
+    @extend_schema(
+        summary="Network statistics",
+        description="Occupancy of the whole locker network: totals, fill rate, per-size figures.",
+        responses=NetworkStatsSerializer,
+        tags=["operations"],
+    )
     @action(detail=False, pagination_class=None)
     def stats(self, request: Request) -> Response:
         """Return occupancy statistics for the whole locker network."""
@@ -144,3 +201,65 @@ class OperatorLockerViewSet(viewsets.ReadOnlyModelViewSet[Locker]):
             "capacity_by_size": {size.value: capacity[size.value] for size in CompartmentSize},
         }
         return Response(NetworkStatsSerializer(data).data)
+
+
+class EventCursorPagination(CursorPagination):
+    """Stable pagination over events, newest first, robust to concurrent inserts."""
+
+    ordering = ("-occurred_at", "-id")
+    page_size = 100
+    max_page_size = 500
+    page_size_query_param = "page_size"
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="Locker events",
+        description=(
+            "Events reported by lockers (door opened or closed, faults, connection "
+            "changes), newest first, with cursor pagination. Poll with `since` to "
+            "receive only new events."
+        ),
+        parameters=[
+            OpenApiParameter("locker", OpenApiTypes.STR, description="Code du casier."),
+            OpenApiParameter(
+                "kind",
+                OpenApiTypes.STR,
+                enum=LockerEvent.Kind.values,
+                description="Type d'événement.",
+            ),
+            OpenApiParameter(
+                "since",
+                OpenApiTypes.DATETIME,
+                description="Seulement les événements survenus après cette date (ISO 8601).",
+            ),
+        ],
+        tags=["operations"],
+    ),
+)
+class OperatorLockerEventViewSet(mixins.ListModelMixin, viewsets.GenericViewSet[LockerEvent]):
+    """Read-only feed of locker events for operators and integrations."""
+
+    permission_classes = OPERATOR_PERMISSIONS
+    required_scope = Scope.OPERATIONS_READ
+    serializer_class = LockerEventSerializer
+    pagination_class = EventCursorPagination
+
+    def get_queryset(self) -> QuerySet[LockerEvent]:
+        """Return events filtered by locker, kind and date.
+
+        Raises:
+            ValidationError: If ``since`` is not an ISO 8601 datetime.
+        """
+        queryset = LockerEvent.objects.select_related("locker", "compartment")
+        params = self.request.query_params
+        if code := params.get("locker"):
+            queryset = queryset.filter(locker__code=code)
+        if kind := params.get("kind"):
+            queryset = queryset.filter(kind=kind)
+        if since := params.get("since"):
+            moment = parse_datetime(since)
+            if moment is None:
+                raise ValidationError("since doit être une date ISO 8601.")
+            queryset = queryset.filter(occurred_at__gt=moment)
+        return queryset

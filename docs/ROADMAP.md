@@ -20,31 +20,39 @@
    the OpenAPI schema (`packages/api-client`). Capacitor / Android packaging
    is pending the application id.
 
+4. **Realistic lockers and integration API** — sizes and layouts aligned
+   with French parcel lockers and dry-cleaning lockers, hardware profiles
+   (QR / NFC / offline Bluetooth, 4G / Ethernet), locker events and driver
+   interface, versioned API `/api/v1/` with scoped integration API keys, rate
+   limits and an integration guide (`docs/api/README.md`).
+
 ## Next
 
-4. **Operator space (first dashboards)** — initialise `apps/portal/`; network
+5. **Operator space (first dashboards)** — initialise `apps/portal/`; network
    map; **volume** and **fill rate** indicators; locker view with the status
    of every door.
-5. **Activity simulator** — orders, drop-offs, two rounds per day (e.g. 08:00
+6. **Activity simulator** — orders, drop-offs, two rounds per day (e.g. 08:00
    and 20:00), 12-hour pickup slots, modest volumes; runs as a scheduled job.
-6. **Real-time tracking** — live updates of lockers and rounds on the map;
+7. **Real-time tracking** — live updates of lockers and rounds on the map;
    simulated cargo-bike rounds following real streets. Requires decisions on
    the live update mechanism and on the routing engine (new ADRs).
-7. **Flow forecasts** — expected items per locker, round and merchant, for the
+8. **Flow forecasts** — expected items per locker, round and merchant, for the
    operator, courier and merchant spaces.
-8. **Merchants and catalogue** — import of real Grenoble businesses (public
+9. **Merchants and catalogue** — import of real Grenoble businesses (public
    data, no food, no large chains), standard services, packs, quotes with
    chat.
-9. **Courier space** — projected activity and volume to present to courier
+10. **Courier space** — projected activity and volume to present to courier
    partners (demo mode).
-10. **Merchant space and "pro" app** — incoming items, forecasts, revenue and
+11. **Merchant space and "pro" app** — incoming items, forecasts, revenue and
     commission.
 
 ## Blockers and dependencies
 
 - **Network access of the development environment**: the AI assistant's cloud
-  environment currently cannot reach OpenStreetMap services (Overpass API) or
-  open data portals. Real data must be imported from a machine with internet
+  environment uses a restricted network access level (package registries
+  allowed, other hosts denied), so it cannot reach OpenStreetMap services
+  (`overpass-api.de`), map tiles (`tiles.openfreemap.org`) or open data portals
+  (`www.data.gouv.fr`, `data.mobilites-m.fr`). Real data must be imported from a machine with internet
   access (`seed_simulated_lockers`), or the environment's allowed domains must
   be extended.
 - **Android application ids** (customer app, pro app) depend on the final

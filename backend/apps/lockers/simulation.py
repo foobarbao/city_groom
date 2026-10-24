@@ -15,8 +15,9 @@ from dataclasses import dataclass
 
 from django.contrib.gis.geos import Point
 from django.db import transaction
+from django.utils import timezone
 
-from apps.lockers.models import AccessMethod, Compartment, Locker
+from apps.lockers.models import AccessMethod, Compartment, Connectivity, Locker
 from apps.lockers.sizes import (
     COLUMN_GRID_UNITS,
     CONTROL_PANEL_GRID_UNITS,
@@ -34,17 +35,20 @@ S, M, L, XL = (
 # Column templates, top to bottom. The control column reserves its top
 # CONTROL_PANEL_GRID_UNITS for the screen and readers.
 COLUMN_TEMPLATES: dict[str, tuple[CompartmentSize, ...]] = {
-    "control": (S, S, S, S, M, M, M, M, M),
-    "mixed": (S, S, S, S, M, M, M, L, L),
-    "large": (M, M, M, M, M, L, L),
+    "control": (S, S, S, S, M, M, M, L),
+    "mixed": (S, S, S, S, M, M, M, M, L, L),
+    "large": (M, M, L, L, L, L),
+    "laundry": (L, L, L, L, L),
     "garment": (XL,),
 }
 
-# Locker models, as sequences of column templates, left to right.
+# Locker models, as sequences of column templates, left to right. City Groom
+# lockers favour large and hanging compartments: laundry bags and ironed
+# shirts on hangers are the first services (docs/PRODUCT.md).
 LOCKER_MODELS: dict[str, tuple[str, ...]] = {
-    "compact": ("mixed", "control", "large"),
-    "standard": ("mixed", "control", "mixed", "large", "garment"),
-    "large": ("garment", "mixed", "large", "control", "mixed", "large", "garment"),
+    "compact": ("mixed", "control", "garment"),
+    "standard": ("garment", "mixed", "control", "laundry", "garment"),
+    "large": ("garment", "mixed", "large", "control", "laundry", "large", "garment"),
 }
 
 # Demo fill rates are kept modest on purpose: the service is new, and the
@@ -57,6 +61,15 @@ RESERVED_SHARE = 0.3
 
 # Probability that a simulated compartment is out of service.
 OUT_OF_SERVICE_PROBABILITY = 0.02
+
+
+# Hardware profiles seen on the market (docs/LOCKERS.md): access methods and
+# connectivity go together. Weights give their share among simulated lockers.
+HARDWARE_PROFILES: dict[str, tuple[tuple[str, ...], str, int]] = {
+    "connected_qr_nfc": ((AccessMethod.QR_CODE, AccessMethod.NFC), Connectivity.CELLULAR, 5),
+    "connected_qr": ((AccessMethod.QR_CODE,), Connectivity.ETHERNET, 2),
+    "offline_bluetooth": ((AccessMethod.BLUETOOTH,), Connectivity.BLUETOOTH_OFFLINE, 3),
+}
 
 
 def _check_templates() -> None:
@@ -100,6 +113,7 @@ def create_simulated_locker(
     code: str,
     model: str = "standard",
     access_methods: Sequence[str] = (AccessMethod.QR_CODE, AccessMethod.NFC),
+    connectivity: str = Connectivity.CELLULAR,
 ) -> Locker:
     """Create a simulated locker and all its compartments, all free.
 
@@ -108,6 +122,7 @@ def create_simulated_locker(
         code: Unique locker code.
         model: Key of ``LOCKER_MODELS``.
         access_methods: Opening methods offered by the locker.
+        connectivity: How the locker communicates with the platform.
 
     Returns:
         The created locker.
@@ -121,6 +136,8 @@ def create_simulated_locker(
         code=code,
         location=Point(site.longitude, site.latitude, srid=4326),
         access_methods=list(access_methods),
+        connectivity=connectivity,
+        last_seen_at=timezone.now(),
         control_panel_column=columns.index("control"),
         is_simulated=True,
         placement_source=site.source,

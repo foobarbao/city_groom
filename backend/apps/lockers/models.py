@@ -22,6 +22,19 @@ class AccessMethod(models.TextChoices):
     QR_CODE = "qr_code", "QR code"
 
 
+class Connectivity(models.TextChoices):
+    """How a locker communicates with the platform.
+
+    Lockers on the market use a wired network, a cellular modem, or work
+    offline with Bluetooth and sync through the user's phone (docs/LOCKERS.md).
+    """
+
+    ETHERNET = "ethernet", "Ethernet"
+    CELLULAR = "cellular", "4G / cellulaire"
+    WIFI = "wifi", "Wi-Fi"
+    BLUETOOTH_OFFLINE = "bluetooth_offline", "Hors ligne (Bluetooth)"
+
+
 class Locker(models.Model):
     """A connected locker unit installed at one location in the city."""
 
@@ -66,6 +79,19 @@ class Locker(models.Model):
         verbose_name="modes d'ouverture",
         default=list,
         help_text="Modes d'ouverture proposés par ce casier (selon le fabricant).",
+    )
+    connectivity = models.CharField(
+        "connectivité",
+        max_length=20,
+        choices=Connectivity.choices,
+        default=Connectivity.CELLULAR,
+        help_text="Mode de communication du casier avec la plateforme.",
+    )
+    last_seen_at = models.DateTimeField(
+        "dernier contact",
+        null=True,
+        blank=True,
+        help_text="Dernier message reçu du casier (vide si jamais connecté).",
     )
     control_panel_column = models.PositiveSmallIntegerField(
         "colonne du panneau de contrôle",
@@ -158,3 +184,82 @@ class Compartment(models.Model):
     def __str__(self) -> str:
         """Return ``<locker> – <label>``, used in the admin and logs."""
         return f"{self.locker} – {self.label}"
+
+
+class LockerEvent(models.Model):
+    """Something a locker reported: door movement, fault, connection change.
+
+    Events form an append-only audit trail. They are produced by the locker's
+    ``LockerDriver`` (simulated or real) and are exposed to operators and
+    integrations, e.g. for real-time tracking.
+    """
+
+    class Kind(models.TextChoices):
+        """Type of event reported by a locker."""
+
+        DOOR_OPENED = "door_opened", "Porte ouverte"
+        DOOR_CLOSED = "door_closed", "Porte fermée"
+        DOOR_LEFT_OPEN = "door_left_open", "Porte restée ouverte"
+        FAULT = "fault", "Panne"
+        CONNECTION_LOST = "connection_lost", "Connexion perdue"
+        CONNECTION_RESTORED = "connection_restored", "Connexion rétablie"
+
+    locker = models.ForeignKey(
+        Locker,
+        on_delete=models.CASCADE,
+        related_name="events",
+        verbose_name="casier",
+        help_text="Casier ayant émis l'événement.",
+    )
+    compartment = models.ForeignKey(
+        Compartment,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="events",
+        verbose_name="compartiment",
+        help_text="Compartiment concerné, vide pour un événement du casier entier.",
+    )
+    kind = models.CharField(
+        "type", max_length=30, choices=Kind.choices, help_text="Type d'événement."
+    )
+    access_method = models.CharField(
+        "mode d'ouverture",
+        max_length=20,
+        choices=AccessMethod.choices,
+        blank=True,
+        help_text="Mode d'ouverture utilisé, pour une ouverture de porte.",
+    )
+    occurred_at = models.DateTimeField(
+        "survenu le",
+        db_index=True,
+        help_text="Horodatage fourni par le casier.",
+    )
+    received_at = models.DateTimeField(
+        "reçu le",
+        auto_now_add=True,
+        help_text=(
+            "Horodatage de réception par la plateforme (différé si le casier était hors ligne)."
+        ),
+    )
+    is_simulated = models.BooleanField(
+        "simulé",
+        default=True,
+        help_text="Vrai si l'événement a été produit par la simulation.",
+    )
+    details = models.JSONField(
+        "détails",
+        default=dict,
+        blank=True,
+        help_text="Données complémentaires propres au fabricant ou au simulateur.",
+    )
+
+    class Meta:
+        verbose_name = "événement de casier"
+        verbose_name_plural = "événements de casier"
+        ordering = ["-occurred_at", "-id"]
+        indexes = [models.Index(fields=["locker", "-occurred_at"])]
+
+    def __str__(self) -> str:
+        """Return ``<kind> – <locker> – <time>``, used in the admin and logs."""
+        return f"{self.get_kind_display()} – {self.locker} – {self.occurred_at:%Y-%m-%d %H:%M}"

@@ -30,7 +30,7 @@ def staff_client(db: Any) -> APIClient:
 
 
 def test_public_list_is_geojson_without_compartment_status(lockers: list[Locker]) -> None:
-    response = APIClient().get("/api/lockers/")
+    response = APIClient().get("/api/v1/lockers/")
 
     assert response.status_code == 200
     data = response.json()
@@ -44,27 +44,27 @@ def test_public_list_is_geojson_without_compartment_status(lockers: list[Locker]
 def test_public_list_hides_lockers_not_in_service(lockers: list[Locker]) -> None:
     Locker.objects.filter(pk=lockers[0].pk).update(status=Locker.Status.MAINTENANCE)
 
-    response = APIClient().get("/api/lockers/")
+    response = APIClient().get("/api/v1/lockers/")
 
     assert len(response.json()["features"]) == 2
 
 
 def test_public_list_filters_by_distance_nearest_first(lockers: list[Locker]) -> None:
     # Fake North is ~2.4 km and Fake South ~3.2 km from the centre.
-    response = APIClient().get("/api/lockers/?lng=5.7245&lat=45.1885&radius_km=3")
+    response = APIClient().get("/api/v1/lockers/?lng=5.7245&lat=45.1885&radius_km=3")
 
     names = [f["properties"]["name"] for f in response.json()["features"]]
     assert names == ["Fake Centre", "Fake North"]
 
 
 def test_public_list_rejects_invalid_coordinates(lockers: list[Locker]) -> None:
-    response = APIClient().get("/api/lockers/?lng=abc&lat=45")
+    response = APIClient().get("/api/v1/lockers/?lng=abc&lat=45")
 
     assert response.status_code == 400
 
 
 def test_public_detail_gives_layout_without_status(lockers: list[Locker]) -> None:
-    response = APIClient().get("/api/lockers/fake-0/")
+    response = APIClient().get("/api/v1/lockers/fake-0/")
 
     assert response.status_code == 200
     data = response.json()
@@ -74,7 +74,7 @@ def test_public_detail_gives_layout_without_status(lockers: list[Locker]) -> Non
 
 
 def test_size_catalogue_is_public(db: Any) -> None:
-    response = APIClient().get("/api/lockers/sizes/")
+    response = APIClient().get("/api/v1/lockers/sizes/")
 
     assert response.status_code == 200
     assert [s["code"] for s in response.json()] == ["S", "M", "L", "XL"]
@@ -82,14 +82,14 @@ def test_size_catalogue_is_public(db: Any) -> None:
 
 def test_operator_endpoints_require_staff(lockers: list[Locker]) -> None:
     client = APIClient()
-    assert client.get("/api/operator/lockers/").status_code in (401, 403)
-    assert client.get("/api/operator/lockers/stats/").status_code in (401, 403)
+    assert client.get("/api/v1/operator/lockers/").status_code in (401, 403)
+    assert client.get("/api/v1/operator/lockers/stats/").status_code in (401, 403)
 
 
 def test_operator_detail_includes_compartment_status(
     lockers: list[Locker], staff_client: APIClient
 ) -> None:
-    response = staff_client.get("/api/operator/lockers/fake-0/")
+    response = staff_client.get("/api/v1/operator/lockers/fake-0/")
 
     assert response.status_code == 200
     assert "status" in response.json()["compartments"][0]
@@ -99,7 +99,7 @@ def test_operator_detail_includes_compartment_status(
 def test_operator_stats_aggregate_the_network(
     lockers: list[Locker], staff_client: APIClient
 ) -> None:
-    response = staff_client.get("/api/operator/lockers/stats/")
+    response = staff_client.get("/api/v1/operator/lockers/stats/")
 
     data = response.json()
     assert data["lockers"] == 3

@@ -1,4 +1,4 @@
-"""URL routes of the core application, mounted under ``/api/``."""
+"""URL routes of the core application, mounted under ``/api/v1/``."""
 
 from django.urls import path
 

@@ -13,7 +13,7 @@ from typing import Any
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from apps.lockers.models import Compartment, Locker
+from apps.lockers.models import Compartment, Locker, LockerEvent
 from apps.lockers.services import OccupancyStats, compute_occupancy
 from apps.lockers.sizes import (
     COLUMN_GRID_UNITS,
@@ -193,3 +193,32 @@ class NetworkStatsSerializer(serializers.Serializer[Any]):
     fill_rate = serializers.FloatField()
     free_by_size = serializers.DictField(child=serializers.IntegerField())
     capacity_by_size = serializers.DictField(child=serializers.IntegerField())
+
+
+class LockerEventSerializer(serializers.ModelSerializer[LockerEvent]):
+    """An event reported by a locker, for operators and integrations."""
+
+    locker: serializers.SlugRelatedField[Locker] = serializers.SlugRelatedField(
+        slug_field="code", read_only=True, help_text="Code du casier."
+    )
+    compartment: serializers.SlugRelatedField[Compartment] = serializers.SlugRelatedField(
+        slug_field="label",
+        read_only=True,
+        allow_null=True,
+        help_text="Étiquette du compartiment, nulle pour un événement du casier entier.",
+    )
+
+    class Meta:
+        model = LockerEvent
+        fields = [
+            "id",
+            "locker",
+            "compartment",
+            "kind",
+            "access_method",
+            "occurred_at",
+            "received_at",
+            "is_simulated",
+            "details",
+        ]
+        read_only_fields = fields

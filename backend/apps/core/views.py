@@ -21,6 +21,8 @@ class HealthView(APIView):
 
     @extend_schema(
         summary="Health check",
+        tags=["system"],
+        auth=[],
         responses={
             200: inline_serializer("Health", {"status": serializers.CharField()}),
             503: inline_serializer("HealthError", {"status": serializers.CharField()}),

@@ -44,4 +44,12 @@ Versioning: [SemVer](https://semver.org/).
   ESLint, Prettier, Vitest.
 - `packages/api-client`: TypeScript types generated from the OpenAPI schema.
 - Frontend CI workflow.
+- Realistic lockers: sizes aligned with Mondial Relay lockers (S/M/L) and
+  dry-cleaning lockers (183 cm hanging compartment), laundry-oriented column
+  templates, hardware profiles (access methods and connectivity), locker
+  events (`LockerEvent`), `LockerDriver` interface with a simulated driver.
+- Integration API: versioned under `/api/v1/` (breaking change for earlier
+  `/api/` paths), integration API keys with scopes, rate limits, locker event
+  feed, ReDoc, OpenAPI validation in CI, integration guide
+  (`docs/api/README.md`), ADR-0007.
 - Pull request template, `.editorconfig`, `.gitignore`.

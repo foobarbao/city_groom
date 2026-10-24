@@ -46,5 +46,7 @@ jobs:
         run: uv run mypy .
       - name: Missing migrations
         run: uv run python manage.py makemigrations --check --dry-run
+      - name: OpenAPI schema (valid, no warnings)
+        run: uv run python manage.py spectacular --validate --fail-on-warn --file /dev/null
       - name: Tests
         run: uv run pytest

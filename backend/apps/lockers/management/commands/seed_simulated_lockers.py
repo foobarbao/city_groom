@@ -25,6 +25,7 @@ from django.utils.text import slugify
 from apps.lockers.models import Locker
 from apps.lockers.osm import TRAM_STOPS_QUERY, fetch_overpass, parse_tram_stops
 from apps.lockers.simulation import (
+    HARDWARE_PROFILES,
     create_simulated_locker,
     simulate_occupancy,
     spread_sites,
@@ -79,6 +80,8 @@ class Command(BaseCommand):
         rng = random.Random(options["seed"])  # noqa: S311 - demo data, not security-related
         models = list(MODEL_WEIGHTS)
         weights = [MODEL_WEIGHTS[m] for m in models]
+        profiles = list(HARDWARE_PROFILES)
+        profile_weights = [HARDWARE_PROFILES[p][2] for p in profiles]
         created = 0
         for site in spread_sites(sites, options["count"]):
             code = slugify(site.name)[:40]
@@ -86,7 +89,16 @@ class Command(BaseCommand):
                 self.stdout.write(f"Ignoré (existe déjà) : {site.name}")
                 continue
             model = rng.choices(models, weights)[0]
-            locker = create_simulated_locker(site, code=code, model=model)
+            access_methods, connectivity, _ = HARDWARE_PROFILES[
+                rng.choices(profiles, profile_weights)[0]
+            ]
+            locker = create_simulated_locker(
+                site,
+                code=code,
+                model=model,
+                access_methods=access_methods,
+                connectivity=connectivity,
+            )
             simulate_occupancy(locker, rng)
             created += 1
         self.stdout.write(self.style.SUCCESS(f"{created} casiers simulés créés."))
