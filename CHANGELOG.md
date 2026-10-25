@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Coloured menu icons: each top-level entry has its own tone (emerald,
+  teal, blue, coral, plum), inherited by its children.
+- Checkout: a disabled "Payer" button now looks disabled and a line lists
+  what is left to choose (drop place, pickup place, pickup slot).
 - Neon agent skills (`neon`, `neon-postgres`) for Claude Code, installed
   with `npx neon@latest skills -s neon -s neon-postgres -y` into
   `.claude/skills/` (pinned in `skills-lock.json`); they guide the Neon
@@ -227,6 +231,9 @@ Versioning: [SemVer](https://semver.org/).
 - Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
 ### Changed
+
+- Yellows softened to honey (`--cg-sun`, welcome promotion card): the
+  lemon hurt the eyes.
 
 - Compartments are given on arrival at the locker, never at booking: orders,
   weekly pack, consigne and transfers reserve a size; the door appears when

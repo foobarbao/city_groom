@@ -19,7 +19,10 @@ not colourful in every direction; refined**. The current principles:
   selected menu item (a light translucent tint, never an opaque dark
   green), a teal touch (`--cg-teal`) for the "digital" side (the logo
   gradient, the consigne and location cues, every other category tile).
-  Warm yellow (`--cg-sun`) stays only for promotions and "to do" pills.
+  Warm yellow (`--cg-sun`, a soft honey since the lemon hurt the eyes)
+  stays only for promotions and "to do" pills. Menu icons carry one tone
+  per top-level entry (emerald, teal, blue, coral, plum), inherited by its
+  children; labels stay ink.
 - **Soft contrasts**: deep green ink rather than black, pale green-white
   ground (deep green-black in dark mode); no saturated band behind
   headings: the greeting is plain text.

@@ -101,6 +101,14 @@ const lockerName = (code: string | null): string => lockers.find((l) => l.code =
 const ready = computed(() =>
   Boolean(shop.value && label.value && dropLocker.value && pickup.value && pickupSlot.value),
 )
+/** Choices still missing, listed under the disabled pay button. */
+const missing = computed(() =>
+  [
+    dropLocker.value ? null : t('checkout.missingDrop'),
+    pickup.value ? null : t('checkout.missingPickup'),
+    pickupSlot.value ? null : t('checkout.missingSlot'),
+  ].filter((m): m is string => m !== null),
+)
 
 // After choosing a locker, bring the rest of the form into view.
 const afterDrop = ref<HTMLElement | null>(null)
@@ -278,6 +286,9 @@ function pay(): void {
         <ion-button expand="block" shape="round" size="large" :disabled="!ready" @click="pay">
           {{ t('checkout.pay', { price: euros(totalCents) }) }}
         </ion-button>
+        <p v-if="!ready && missing.length" class="missing" role="status">
+          {{ t('checkout.missing', { items: missing.join(', ') }) }}
+        </p>
         <demo-notice />
       </main>
     </ion-content>
@@ -367,5 +378,11 @@ function pay(): void {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
+}
+.missing {
+  margin: -4px 0 0;
+  font-size: 14px;
+  text-align: center;
+  color: var(--cg-ink-soft);
 }
 </style>

@@ -107,7 +107,7 @@ a.promo:active {
   z-index: 1;
 }
 .theme-sun {
-  background: linear-gradient(135deg, #f7d44c 0%, #ffe887 100%);
+  background: linear-gradient(135deg, #ecd08a 0%, #f6e7bf 100%);
 }
 .theme-leaf {
   background: linear-gradient(135deg, #0f6b47 0%, #1b9463 100%);
