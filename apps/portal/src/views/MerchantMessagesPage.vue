@@ -194,7 +194,7 @@ function send(): void {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-sun);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .preview {
   overflow: hidden;
@@ -253,7 +253,7 @@ function send(): void {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-sun-soft);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .status.accepted {
   background: var(--cg-leaf-soft);
@@ -307,7 +307,7 @@ function send(): void {
   background: var(--cg-leaf);
   color: #ffffff;
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .send:disabled {

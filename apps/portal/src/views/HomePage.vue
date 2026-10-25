@@ -3,6 +3,13 @@
  * Home page of the demo: a link to the mission page, one card per space
  * (customer app, merchant, courier, operator), and where the data comes from.
  */
+import { IonIcon } from '@ionic/vue'
+import {
+  bicycleOutline,
+  phonePortraitOutline,
+  speedometerOutline,
+  storefrontOutline,
+} from 'ionicons/icons'
 import { useI18n } from 'vue-i18n'
 
 import PortalPage from '../components/PortalPage.vue'
@@ -13,9 +20,9 @@ const { t } = useI18n()
 const customerUrl = import.meta.env.VITE_CUSTOMER_URL ?? 'http://localhost:5173/'
 
 const spaces = [
-  { key: 'merchant', to: '/commerce', icon: '🧺' },
-  { key: 'courier', to: '/coursier', icon: '🚲' },
-  { key: 'operator', to: '/exploitation', icon: '📊' },
+  { key: 'merchant', to: '/commerce', icon: storefrontOutline },
+  { key: 'courier', to: '/coursier', icon: bicycleOutline },
+  { key: 'operator', to: '/exploitation', icon: speedometerOutline },
 ] as const
 </script>
 
@@ -31,13 +38,13 @@ const spaces = [
     </router-link>
     <nav class="spaces">
       <a class="space card" :href="customerUrl">
-        <span class="icon" aria-hidden="true">📱</span>
+        <span class="icon" aria-hidden="true"><ion-icon :icon="phonePortraitOutline" /></span>
         <h2>{{ t('home.customer.title') }}</h2>
         <p>{{ t('home.customer.text') }}</p>
         <span class="open">{{ t('home.open') }} →</span>
       </a>
       <router-link v-for="space in spaces" :key="space.key" class="space card" :to="space.to">
-        <span class="icon" aria-hidden="true">{{ space.icon }}</span>
+        <span class="icon" aria-hidden="true"><ion-icon :icon="space.icon" /></span>
         <h2>{{ t(`home.${space.key}.title`) }}</h2>
         <p>{{ t(`home.${space.key}.text`) }}</p>
         <span class="open">{{ t('home.open') }} →</span>
@@ -75,7 +82,6 @@ const spaces = [
 }
 .mission:hover,
 .mission:focus-visible {
-  transform: translateY(-3px);
   box-shadow: var(--cg-shadow-strong);
 }
 .mission h2 {
@@ -99,17 +105,17 @@ const spaces = [
 }
 .space:hover,
 .space:focus-visible {
-  transform: translateY(-3px);
   box-shadow: var(--cg-shadow-strong);
 }
 .icon {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--cg-radius-m);
   background: var(--cg-leaf-soft);
-  font-size: 26px;
+  color: var(--cg-leaf);
+  font-size: 22px;
 }
 .space p {
   margin: 0;
@@ -117,7 +123,7 @@ const spaces = [
   color: var(--cg-ink-soft);
 }
 .open {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
 }
 .data-note {

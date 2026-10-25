@@ -5,18 +5,12 @@
  * contact and quote buttons. Other businesses:
  * public information only, never a rating.
  */
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/vue'
+import { storefrontOutline } from 'ionicons/icons'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import RatingStars from '../components/RatingStars.vue'
 import { withRatings } from '../domain/reviews'
@@ -52,13 +46,7 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/boutiques" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/boutiques" />
     <ion-content>
       <main v-if="shop" class="page">
         <header class="head">
@@ -90,7 +78,7 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
               <li v-for="o in offers" :key="o.id" class="offer">
                 <div class="thumb">
                   <img v-if="o.photo" :src="o.photo" :alt="o.title" />
-                  <span v-else aria-hidden="true">🧺</span>
+                  <ion-icon v-else :icon="storefrontOutline" aria-hidden="true" />
                 </div>
                 <span class="offer-body">
                   <strong>{{ o.title }}</strong>

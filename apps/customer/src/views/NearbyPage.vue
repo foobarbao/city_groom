@@ -7,20 +7,12 @@
  * Without a position (permission refused, no GPS), distances are measured
  * from the centre of Grenoble, and the screen says so.
  */
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonSpinner,
-  IonToolbar,
-  useIonRouter,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonIcon, IonPage, IonSpinner, useIonRouter } from '@ionic/vue'
+import { navigateOutline } from 'ionicons/icons'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerMap from '../components/LockerMap.vue'
 import { HAS_MAP } from '../config'
@@ -59,13 +51,7 @@ onMounted(() => {
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/accueil" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/accueil" />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('nearby.title') }}</h1>
@@ -73,7 +59,9 @@ onMounted(() => {
         <p v-if="status === 'locating'" class="banner">
           <ion-spinner name="dots" /> {{ t('nearby.locating') }}
         </p>
-        <p v-else-if="status === 'located'" class="banner ok">📍 {{ t('nearby.located') }}</p>
+        <p v-else-if="status === 'located'" class="banner ok">
+          <ion-icon :icon="navigateOutline" aria-hidden="true" /> {{ t('nearby.located') }}
+        </p>
         <div v-else-if="status === 'denied' || status === 'unavailable'" class="banner warn">
           <span>{{ status === 'denied' ? t('nearby.denied') : t('nearby.unavailable') }}</span>
           <ion-button size="small" shape="round" fill="outline" @click="locate">
@@ -146,7 +134,6 @@ onMounted(() => {
                 v-if="freeConsigne(l.freeBySize) > 0"
                 size="small"
                 shape="round"
-                color="secondary"
                 :router-link="{
                   path: '/consigne/reserver',
                   query: { casier: l.code, maintenant: '1' },
@@ -250,7 +237,7 @@ onMounted(() => {
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .size.none {
   background: var(--cg-surface-soft);

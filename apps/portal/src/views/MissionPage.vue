@@ -228,14 +228,14 @@ h1 {
   margin: 0;
   max-width: 820px;
   font-size: clamp(36px, 7vw, 68px);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.05;
   text-shadow: 0 4px 30px rgb(0 0 0 / 35%);
 }
 .eyebrow {
   margin: 0;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #b9f0d2;
@@ -275,7 +275,7 @@ h1 {
 .closing h2 {
   margin: 0;
   font-size: clamp(26px, 4vw, 38px);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.15;
 }
 .glass p {
@@ -318,7 +318,7 @@ h1 {
   border: 1px solid rgb(255 255 255 / 60%);
   border-radius: var(--cg-radius-pill);
   color: #fff;
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: none;
   backdrop-filter: blur(8px);
 }

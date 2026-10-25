@@ -121,7 +121,7 @@ const rows = computed(() =>
 
 <style scoped>
 a {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-pine);
   text-decoration: none;
 }

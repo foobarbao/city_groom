@@ -1,5 +1,5 @@
 /*
- * Layout helpers shared by the customer screens (soft cards, page column,
+ * Layout helpers shared by the customer screens (cards, page column,
  * section titles, chips). Colours, radii and shadows come from the shared
  * tokens (docs/DESIGN.md).
  */
@@ -14,7 +14,7 @@
 .page-title {
   margin: 0;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .page-intro {
@@ -24,7 +24,7 @@
 .section-title {
   margin: 4px 0 0;
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .soft-card {
@@ -83,7 +83,7 @@
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .pill.warn {
   background: color-mix(in srgb, var(--cg-sun) 45%, transparent);
@@ -95,9 +95,9 @@
 }
 .search {
   width: 100%;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border: none;
-  border-radius: var(--cg-radius-pill);
+  border-radius: var(--cg-radius-m);
   background: var(--cg-glass);
   backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
@@ -124,10 +124,20 @@
   font-weight: 400;
 }
 
-/* Soft look: buttons in sentence case, not Material capitals. */
+/* Buttons in sentence case (not Material capitals), with the moderate
+   radius of the design system rather than full pills, and no drop shadow. */
 ion-button,
 ion-back-button {
   text-transform: none;
   letter-spacing: 0;
-  font-weight: 800;
+  font-weight: 600;
+}
+ion-button {
+  --box-shadow: none;
+}
+ion-button.button-round {
+  --border-radius: var(--cg-radius-m);
+}
+ion-button.button-large {
+  font-size: 16px;
 }

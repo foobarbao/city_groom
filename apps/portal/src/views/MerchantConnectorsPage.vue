@@ -163,7 +163,7 @@ const example = computed(() => {
   padding: 2px 10px;
   border-radius: var(--cg-radius-pill);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .status.ready {
   background: var(--cg-leaf-soft);
@@ -180,7 +180,7 @@ const example = computed(() => {
 .action {
   align-self: flex-start;
   color: var(--cg-leaf);
-  font-weight: 800;
+  font-weight: 600;
 }
 .feed {
   display: flex;
@@ -207,7 +207,7 @@ button {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-leaf);
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 600;
 }
 .feed button:disabled {
   opacity: 0.5;
@@ -227,11 +227,11 @@ button {
   border: none;
   background: none;
   color: var(--cg-leaf);
-  font-weight: 800;
+  font-weight: 600;
 }
 summary {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
   cursor: pointer;
 }

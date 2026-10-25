@@ -3,18 +3,11 @@
  * The customer's orders with their status; collected orders can be rated
  * once (ADR-0008).
  */
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { canReview } from '../domain/reviews'
 import { lockers, shopByCode } from '../services/catalogue'
@@ -30,13 +23,7 @@ const lockerName = (code: string): string => lockers.find((l) => l.code === code
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/compte" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/compte" />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('orders.title') }}</h1>

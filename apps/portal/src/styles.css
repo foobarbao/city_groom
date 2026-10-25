@@ -16,7 +16,7 @@
 .card h2 {
   margin: 0;
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .card .note {
@@ -52,7 +52,7 @@
   background: var(--cg-ground);
 }
 .plain-list strong {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .plain-list .muted {

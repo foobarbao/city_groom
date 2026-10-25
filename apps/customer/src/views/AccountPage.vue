@@ -11,6 +11,7 @@ import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import { signInWithGoogle } from '../api/auth'
 import { ApiError } from '../api/http'
 import DemoNotice from '../components/DemoNotice.vue'
@@ -61,6 +62,7 @@ const toReview = computed(
 
 <template>
   <ion-page>
+    <app-header />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('account.title') }}</h1>
@@ -175,7 +177,7 @@ const toReview = computed(
   border-radius: 50%;
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
-  font-weight: 800;
+  font-weight: 600;
   object-fit: cover;
 }
 .item {

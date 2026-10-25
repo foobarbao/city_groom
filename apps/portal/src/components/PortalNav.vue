@@ -18,8 +18,9 @@ import { useRoute } from 'vue-router'
 import { operatorAlerts } from '../data/operator'
 import { awaitsAnswer, threadsOf } from '../data/partnerState'
 import { activity, lockers, partnerOrFirst } from '../data/source'
-import { NAVIGATION, type NavBadge, trail } from '../navigation'
-import PortalNavList from './PortalNavList.vue'
+import { NavTree } from '@city-groom/ui'
+
+import { NAVIGATION, trail } from '../navigation'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -33,7 +34,7 @@ const shop = computed(() => {
   return partnerOrFirst(code)?.code ?? ''
 })
 const alertCount = operatorAlerts(lockers, activity.orders).length
-const badges = computed<Record<NavBadge, number>>(() => ({
+const badges = computed<Record<string, number>>(() => ({
   messages: shop.value ? threadsOf(shop.value).filter(awaitsAnswer).length : 0,
   alerts: alertCount,
 }))
@@ -70,13 +71,14 @@ function navigated(): void {
           <span class="tag">{{ t('nav.demo') }}</span>
         </span>
       </router-link>
-      <portal-nav-list
+      <nav-tree
         :nodes="NAVIGATION"
         :depth="0"
         :route="routeName"
         :open="open"
-        :shop="shop"
+        :params="{ code: shop }"
         :badges="badges"
+        :translate="t"
         @toggle="toggle"
         @navigate="navigated"
       />
@@ -112,7 +114,7 @@ function navigated(): void {
 .brand strong {
   display: block;
   font-size: 16px;
-  font-weight: 900;
+  font-weight: 700;
 }
 .tag {
   font-size: 12px;
@@ -126,7 +128,7 @@ function navigated(): void {
   border-radius: 10px;
   background: var(--cg-leaf);
   color: #ffffff;
-  font-weight: 900;
+  font-weight: 700;
 }
 .external {
   display: flex;

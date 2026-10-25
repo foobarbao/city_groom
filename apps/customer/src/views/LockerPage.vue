@@ -17,6 +17,7 @@ import {
   IonPage,
   IonSpinner,
   IonToolbar,
+  IonMenuButton,
 } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -80,6 +81,7 @@ onMounted(load)
     <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons slot="start">
+          <ion-menu-button :aria-label="t('nav.menu')" />
           <ion-back-button default-href="/carte" :text="t('locker.back')" />
         </ion-buttons>
       </ion-toolbar>
@@ -181,7 +183,7 @@ onMounted(load)
 h1 {
   margin: 0;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .methods {
@@ -201,7 +203,7 @@ h1 {
 h2 {
   margin: 0;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .fits {
   margin: 0;
@@ -231,7 +233,7 @@ h2 {
   background: var(--cg-glass);
   backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-pine);
 }
 .door-callout.muted {
@@ -263,7 +265,7 @@ h2 {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
-  font-weight: 800;
+  font-weight: 600;
 }
 .notice {
   margin: 0;

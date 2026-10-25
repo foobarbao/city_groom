@@ -4,77 +4,83 @@
 
 ## Direction
 
-The project owner asked for an interface that is **very soft** ("très douce"),
-user-friendly, and that conveys the **eco-social** identity of the project
-together with **convenience and time saved**.
+History: the first brief asked for a **very soft** interface ("très douce");
+on 2026-10-24 the palette became green, warm lemon and cream, with frosted
+glass and colour halos. On **2026-10-25** the project owner found the result
+childish and asked for something **more professional and serious**. The
+current principles:
 
-Principles:
-
-- **Soft shapes**: generous corner radii (14 / 20 / 28 px), cushioned cards
-  with diffuse shadows, no hard toolbars, pill-shaped chips.
-- **Green, warm lemon and cream** (revised 2026-10-24, the first palette
-  was found too bland): cream ground with soft mint and lemon halos, deep
-  green text, a vivid green for actions (white text, 5.3:1) and a warm
-  lemon accent (dark text) for the consigne and highlights. Pastel but
-  assertive.
-- **Transparency** for a tech touch: cards, sheets and the floating tab bar
-  are frosted glass (`--cg-glass`, `backdrop-filter`) over the halos, with a
-  thin light edge built into `--cg-shadow`.
-- **Friendly, not grotesque**: rounded Nunito kept, headings in black weight
-  (900).
-- **Rounded type**: Nunito (variable, bundled with the app so it works offline
-  and in the Android app).
-- **Show, don't explain**: the locker is drawn; the door the customer will use
-  glows and gently swings open; sizes are shown with pictograms (watch, shoe,
-  laundry bag, hanger).
+- **Sober shapes**: moderate radii (8 / 10 / 14 px), opaque white cards with
+  a hairline border and a light shadow, plain cream ground (no halos, no
+  frosted glass). Pills only for chips (filters) and counters.
+- **Colour with restraint**: deep green text, green for actions (white text,
+  5.3:1), mint tints for selected states and icon tiles; the warm lemon is
+  an accent (counters, "to answer" states), no longer a large block colour.
+- **Neutral type**: Inter (variable, bundled with the apps so it works
+  offline and in the Android app); headings 700, emphasis 600, no black
+  weights.
+- **Icons, not emoji**: outline Ionicons in tinted squares; emoji are not
+  used in the interface (the typographic ✓ and rating stars ★ stay).
+- **Calm motion**: no lift-on-hover; shadows change on hover, the locker door
+  still swings open; motion off when the user prefers reduced motion.
+- **Show, don't explain**: the locker is drawn; the door the customer will
+  use is highlighted; sizes are shown with pictograms.
 - **Accessible**: visible keyboard focus, doors reachable with the keyboard,
-  motion disabled when the user prefers reduced motion, text contrast kept on
-  both light and dark themes.
+  text contrast kept on both light and dark themes.
 
-## Customer app navigation
+## Customer app details
 
-- A bottom **tab bar** with five areas (Accueil, Boutiques, Consigne,
-  Messages, Compte), badges for active bookings and quotes to answer.
-- Buttons in sentence case (not Material capitals), rounded; choices as
-  soft cards with a green border when selected; multi-step flows show a
-  numbered stepper.
+- Buttons in sentence case (not Material capitals), moderate radius, no drop
+  shadow; choices as cards with a green border when selected; multi-step
+  flows show a numbered stepper.
 - Partner shops get a green initial mark and a "Partenaire" pill; other
   businesses stay neutral and never show stars.
 
-## Partner portal navigation
+## Navigation (both apps)
 
 Decided on 2026-10-25 at the project owner's request: the rows of pill
 buttons used as section menus looked unprofessional ("vibecode"); the portal
-uses a **folding side menu with nested entries** instead.
+uses a **folding side menu with nested entries** instead, and the customer
+app adopted the same system the same day, replacing its bottom tab bar. One
+component renders both menus (`packages/ui/src/NavTree.vue`, tree types in
+`navTree.ts`); each app describes its tree in `src/navigation.ts`.
 
-- **Where**: one side menu for the whole portal (`App.vue`, Ionic split
-  pane). From 992 px wide it is a fixed column (272 px); below, it is a
-  drawer opened by the ☰ button of each page and closed after choosing a
-  page. Web parallel: a classic admin sidebar that becomes an off-canvas
+- **Where**: one side menu per app (`App.vue`, Ionic split pane). From
+  992 px wide it is a fixed column (264–272 px); below (phones, the Android
+  apps), it is a drawer opened by the ☰ button of each screen and closed
+  after choosing a page. Web parallel: a classic admin sidebar that becomes an off-canvas
   menu on mobile.
-- **Structure** (`apps/portal/src/navigation.ts`, the single source):
-  space → page or group → page, **three levels at most**. Groups gather
-  related pages (e.g. Commerce › Activité › Planning, Tournées) and are never
-  created for a single page.
+- **Structure** (`src/navigation.ts` of each app, the single source):
+  area → page or group → page, **three levels at most**. Groups gather
+  related pages and are never created for a single page. Portal: Commerce ›
+  Activité › Planning, Tournées… Customer app: Accueil; Services (Trouver un
+  service, Mes commandes, Messages et devis); Consigne (Casiers autour de
+  moi, Réserver, Mes consignes); Carte des casiers; Compte (Mon compte,
+  Abonnement).
 - **Behaviour**: groups fold and unfold (chevron, `aria-expanded`); the
   groups leading to the current page unfold on their own, the others keep
   the person's choice; a folded group containing the current page stays
   tinted. The current page is highlighted (mint background, `aria-current`).
 - **Look**: an outline icon (Ionicons) per entry, sentence-case labels,
   nested levels hanging from a thin guide line, counters as small lemon
-  badges on the entry (messages to answer, alerts).
-- **Page header**: breadcrumb of the groups (eyebrow, e.g. "Exploitation ›
-  Réseau") and the page name as title, both taken from the menu; a back
-  button only on detail pages (e.g. one locker).
+  badges on the entry (portal: messages to answer, alerts; customer app:
+  quotes to answer, active consigne bookings).
+- **Page header**: portal: breadcrumb of the groups (eyebrow, e.g.
+  "Exploitation › Réseau") and the page name as title, both taken from the
+  menu. Customer app: a top bar with the ☰ button and the way back on detail
+  screens (`AppHeader.vue`). A back button only on detail pages.
 - **Pills are for filtering, not for navigating**: chips stay for filters
   and choices inside a page (order status, day of the planning), never as a
   section menu.
 - **Roles**: the demo lists every space so it can be toured. PROD: each
   person sees only the spaces of their role.
-- **Exceptions**: the mission page is a full-screen story without menu. The
-  **customer mobile app keeps its bottom tab bar** (five areas): it is the
-  mobile convention for primary navigation on Android and iOS, reachable with
-  the thumb; nested navigation there happens inside screens (lists → detail).
+- **Exception**: the portal's mission page is a full-screen story without
+  menu.
+- **Trade-off accepted** (customer app): a bottom tab bar is the usual
+  mobile pattern (one tap, reachable with the thumb); the side menu costs one
+  more tap on phones but gives one consistent, structured navigation across
+  CityPal. The most frequent actions stay one tap away on the home screen
+  (modes, "Casiers autour de moi", current items).
 
 ## Tokens
 

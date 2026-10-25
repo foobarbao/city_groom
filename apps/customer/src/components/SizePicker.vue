@@ -105,7 +105,7 @@ const ICONS: Record<string, string> = {
   stroke-linejoin: round;
 }
 .name {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 14px;
 }
 .free {

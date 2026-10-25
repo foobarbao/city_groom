@@ -4,7 +4,8 @@
  *
  * Three levels at most: space (Commerce, Coursier, Exploitation) → item or
  * group → item. Groups fold and unfold; the groups leading to the current
- * page are unfolded automatically. Labels are i18n keys.
+ * page are unfolded automatically. Labels are i18n keys. Types and the
+ * renderer are shared with the customer app (`@city-groom/ui`, NavTree).
  *
  * DEMO: every space is listed so that the demo can be toured. PROD: each
  * person sees only the space(s) of their role (merchant, courier, operator).
@@ -33,62 +34,25 @@ import {
   trendingUpOutline,
 } from 'ionicons/icons'
 
-/** Counter shown next to an item. */
-export type NavBadge = 'messages' | 'alerts'
+import { type NavNode, navGroup, navItem, navLabels, navTrail } from '@city-groom/ui'
 
-/** A link to a page. */
-export interface NavItem {
-  kind: 'item'
-  id: string
-  label: string
-  icon: string
-  /** Route name. */
-  route: string
-  /** The route takes the current shop code (merchant space). */
-  shop?: boolean
-  /** Other route names highlighting this item (e.g. a detail page). */
-  also?: string[]
-  badge?: NavBadge
-}
-
-/** A folding group of items. */
-export interface NavGroup {
-  kind: 'group'
-  id: string
-  label: string
-  icon: string
-  children: NavNode[]
-}
-
-export type NavNode = NavItem | NavGroup
-
-const item = (
-  id: string,
-  label: string,
-  icon: string,
-  route: string,
-  extra: Partial<NavItem> = {},
-): NavItem => ({ kind: 'item', id, label, icon, route, ...extra })
-const group = (id: string, label: string, icon: string, children: NavNode[]): NavGroup => ({
-  kind: 'group',
-  id,
-  label,
-  icon,
-  children,
-})
+const item = navItem
+const group = navGroup
 
 /** The whole menu, in display order. */
 export const NAVIGATION: NavNode[] = [
   item('home', 'nav.home', homeOutline, 'home'),
   item('mission', 'nav.mission', leafOutline, 'mission'),
   group('merchant', 'nav.merchant', storefrontOutline, [
-    item('merchant-dashboard', 'merchant.nav.dashboard', gridOutline, 'merchant', { shop: true }),
+    item('merchant-dashboard', 'merchant.nav.dashboard', gridOutline, 'merchant', {
+      paramKeys: ['code'],
+    }),
     group('merchant-activity', 'nav.activity', layersOutline, [
       item('merchant-agenda', 'merchant.nav.agenda', calendarOutline, 'merchant-agenda', {
-        shop: true,
+        paramKeys: ['code'],
       }),
       item('merchant-rounds', 'merchant.nav.rounds', bicycleOutline, 'merchant-rounds', {
-        shop: true,
+        paramKeys: ['code'],
       }),
     ]),
     group('merchant-customers', 'nav.customers', chatbubblesOutline, [
@@ -97,18 +61,18 @@ export const NAVIGATION: NavNode[] = [
         'merchant.nav.messages',
         chatbubbleEllipsesOutline,
         'merchant-messages',
-        { shop: true, badge: 'messages' },
+        { paramKeys: ['code'], badge: 'messages' },
       ),
       item('merchant-reviews', 'merchant.nav.reviews', starOutline, 'merchant-reviews', {
-        shop: true,
+        paramKeys: ['code'],
       }),
     ]),
     group('merchant-tools', 'nav.offersTools', pricetagsOutline, [
       item('merchant-services', 'merchant.nav.services', pricetagsOutline, 'merchant-services', {
-        shop: true,
+        paramKeys: ['code'],
       }),
       item('merchant-connectors', 'nav.connectors', extensionPuzzleOutline, 'merchant-connectors', {
-        shop: true,
+        paramKeys: ['code'],
       }),
     ]),
   ]),
@@ -135,27 +99,10 @@ export const NAVIGATION: NavNode[] = [
   ]),
 ]
 
-/** Whether an item stands for the given route. */
-export const matches = (node: NavItem, route: string): boolean =>
-  node.route === route || (node.also ?? []).includes(route)
-
-/**
- * Path from the top of the menu to the item of a route (groups, then the
- * item), or an empty list when the route is not in the menu.
- */
-export function trail(route: string, nodes: NavNode[] = NAVIGATION): NavNode[] {
-  for (const node of nodes) {
-    if (node.kind === 'item') {
-      if (matches(node, route)) return [node]
-    } else {
-      const below = trail(route, node.children)
-      if (below.length) return [node, ...below]
-    }
-  }
-  return []
-}
+/** Path from the top of the menu to the item of a route (see `navTrail`). */
+export const trail = (route: string): NavNode[] => navTrail(NAVIGATION, route)
 
 /** Every label key of the menu (checked against the French messages in tests). */
-export function labels(nodes: NavNode[] = NAVIGATION): string[] {
-  return nodes.flatMap((n) => [n.label, ...(n.kind === 'group' ? labels(n.children) : [])])
-}
+export const labels = (): string[] => navLabels(NAVIGATION)
+
+export type { NavNode }

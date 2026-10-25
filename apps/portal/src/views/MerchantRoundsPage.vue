@@ -134,7 +134,7 @@ const ready = (id: string): boolean => partnerState.ready.includes(id)
 h3 {
   margin: 0;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-pine);
 }
 .ready {
@@ -173,7 +173,7 @@ h3 {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-sun);
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 700;
 }
 .count {
   font-size: 13px;

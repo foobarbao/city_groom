@@ -6,10 +6,12 @@ User interface in French.
 
 ## Screens
 
-Navigation is a bottom **tab bar** with five areas; each tab keeps its own
-history, as in native apps.
+Navigation is a folding **side menu** (`src/navigation.ts`, shared component
+`NavTree`): a fixed column on wide screens, a drawer behind the ☰ button on
+phones (docs/DESIGN.md "Navigation"). The table groups the screens by menu
+area.
 
-| Tab       | Route                                                                       | Screen                                                                                                                                                                                   |
+| Area      | Route                                                                       | Screen                                                                                                                                                                                   |
 | --------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Accueil   | `/accueil`                                                                  | Choose a mode (have something serviced / store belongings), what is in progress, shop categories, link to the map                                                                        |
 |           | `/carte`, `/casiers/:code`                                                  | Map of the lockers and businesses; locker page with the door that opens                                                                                                                  |
@@ -46,11 +48,12 @@ Visual direction and tokens: [`docs/DESIGN.md`](../../docs/DESIGN.md).
 ```
 src/
 ├── api/          HTTP client and locker / merchant API calls
-├── components/   LockerMap, LockerPicker, ShopCard, RatingStars, SizePicker, DemoNotice…
+├── components/   AppNav (side menu), AppHeader (top bar), LockerMap, LockerPicker, ShopCard…
 ├── demo/         Demo API answers and offline map for the single-page demo
 ├── domain/       Business rules (slots, prices, search, reviews), unit-tested
 ├── i18n/         French strings — no user-facing text in components
-├── router/       Routes (French paths, user-visible), tab bar
+├── router/       Routes (French paths, user-visible)
+├── navigation.ts Side menu tree, unit-tested
 ├── services/     Customer catalogue (shops, services, plans, lockers)
 ├── stores/       Customer state (Pinia), demo persistence
 ├── utils/        Formats (prices, Grenoble dates), photo downscaling

@@ -108,7 +108,7 @@ const sum = (key: 'items_collected' | 'items_returned' | 'transfers' | 'distance
 
 <style scoped>
 a {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
   text-decoration: none;
 }

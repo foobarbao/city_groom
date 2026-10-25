@@ -4,7 +4,9 @@ Visual identity and shared components of the customer app and the partner
 portal (docs/DESIGN.md):
 
 - `src/theme.css`: design tokens (light and dark) and Ionic colour mapping,
-  rounded Nunito font;
+  Inter font;
+- `NavTree` and `navTree.ts`: the folding side menu with nested entries used
+  by both apps (labels translated by the app through a `translate` prop);
 - `LockerFront`: drawing of a locker front, with the door to use highlighted
   and swinging open, or every door coloured by status (operator view);
 - `computeLockerDrawing`: geometry of that drawing from the API layout.

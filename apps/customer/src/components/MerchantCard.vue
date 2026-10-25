@@ -46,7 +46,7 @@ const { t } = useI18n()
 .category {
   margin: 0;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--cg-leaf);
@@ -54,7 +54,7 @@ const { t } = useI18n()
 h3 {
   margin: 0;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .line {
   margin: 0;

@@ -4,7 +4,9 @@
 import { describe, expect, it } from 'vitest'
 
 import fr from './i18n/fr'
-import { NAVIGATION, labels, trail } from './navigation'
+import { navDepth } from '@city-groom/ui'
+
+import { NAVIGATION, type NavNode, labels, trail } from './navigation'
 
 const has = (key: string): boolean =>
   key
@@ -34,15 +36,13 @@ describe('portal navigation', () => {
   })
 
   it('never nests deeper than three levels', () => {
-    const depth = (nodes: typeof NAVIGATION): number =>
-      Math.max(0, ...nodes.map((n) => 1 + (n.kind === 'group' ? depth(n.children) : 0)))
-    expect(depth(NAVIGATION)).toBeLessThanOrEqual(3)
+    expect(navDepth(NAVIGATION)).toBeLessThanOrEqual(3)
   })
 
   it('has a French label for every entry and unique ids', () => {
     expect(labels().filter((key) => !has(key))).toEqual([])
     const ids: string[] = []
-    const walk = (nodes: typeof NAVIGATION): void =>
+    const walk = (nodes: NavNode[]): void =>
       nodes.forEach((n) => {
         ids.push(n.id)
         if (n.kind === 'group') walk(n.children)

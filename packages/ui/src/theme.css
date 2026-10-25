@@ -1,15 +1,16 @@
 /*
- * Visual identity of CityPal: green for the ecological side, warm lemon,
- * cream; pastel but assertive, with a tech touch through transparency
- * (frosted glass cards over soft colour halos). Rounded and friendly
- * (docs/DESIGN.md).
+ * Visual identity of CityPal: green for the ecological side, warm lemon as a
+ * sparing accent, cream ground. Since 2026-10-25 the look is sober and
+ * professional (project owner's request: "less childish, more serious"):
+ * neutral type (Inter), moderate radii, opaque cards with a hairline border,
+ * a plain ground (docs/DESIGN.md).
  *
  * Every colour is a token; dark values are redefined below. Ionic colours are
  * mapped onto these tokens so its components follow the same palette.
  */
 :root {
   /* Palette */
-  --cg-ground: #fbf6e9; /* cream background */
+  --cg-ground: #f8f7f2; /* light cream background */
   --cg-surface: #fffdf6; /* opaque surfaces, text on green */
   --cg-surface-soft: #eef2df; /* chips, inactive controls (pastel sage) */
   --cg-ink: #12352a; /* main text, deep green */
@@ -23,19 +24,16 @@
   --cg-locker-door: #fffdf6; /* locker doors */
   --cg-locker-door-edge: #cdd6c2;
 
-  /* Glass: translucent cards over the colour halos of the background */
-  --cg-glass: rgb(255 255 255 / 58%);
-  --cg-glass-strong: rgb(255 255 255 / 78%);
-  --cg-glass-filter: blur(18px) saturate(160%);
+  /* Cards: opaque surfaces with a hairline border and a light shadow. The
+     "glass" token names are kept so components need no change. */
+  --cg-glass: #ffffff;
+  --cg-glass-strong: #ffffff;
+  --cg-glass-filter: none;
   --cg-shadow:
-    0 12px 32px rgb(18 53 42 / 9%), inset 0 0 0 1px rgb(255 255 255 / 75%);
+    0 1px 2px rgb(18 53 42 / 6%), inset 0 0 0 1px rgb(18 53 42 / 9%);
   --cg-shadow-strong:
-    0 18px 44px rgb(18 53 42 / 15%), inset 0 0 0 1px rgb(255 255 255 / 85%);
-  --cg-backdrop:
-    radial-gradient(60% 45% at 0% 0%, #cdeed8 0%, transparent 70%),
-    radial-gradient(50% 40% at 100% 12%, #fff0a8 0%, transparent 70%),
-    radial-gradient(70% 45% at 85% 100%, #d9f2c9 0%, transparent 70%),
-    var(--cg-ground);
+    0 6px 20px rgb(18 53 42 / 10%), inset 0 0 0 1px rgb(18 53 42 / 10%);
+  --cg-backdrop: var(--cg-ground);
 
   /* Charts (validated with the dataviz palette validator: CVD separation and
      lightness band, light surface). Text never uses these colours. */
@@ -43,15 +41,15 @@
   --cg-chart-2: #d9822b; /* second series, e.g. platform commission */
   --cg-chart-grid: #e3ebe5;
 
-  /* Shape */
-  --cg-radius-l: 28px;
-  --cg-radius-m: 20px;
-  --cg-radius-s: 14px;
+  /* Shape: moderate radii; pills only for chips and counters */
+  --cg-radius-l: 14px;
+  --cg-radius-m: 10px;
+  --cg-radius-s: 8px;
   --cg-radius-pill: 999px;
 
-  /* Type: Nunito, rounded and friendly */
+  /* Type: Inter, neutral and legible */
   --cg-font:
-    "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui,
+    "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
     sans-serif;
 
   /* Ionic mapping */
@@ -89,17 +87,13 @@
     --cg-locker-body: #22392f;
     --cg-locker-door: #2b463a;
     --cg-locker-door-edge: #3f5d50;
-    --cg-glass: rgb(255 255 255 / 7%);
-    --cg-glass-strong: rgb(255 255 255 / 12%);
+    --cg-glass: #132c23;
+    --cg-glass-strong: #17332a;
     --cg-shadow:
-      0 12px 32px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 10%);
+      0 1px 2px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 8%);
     --cg-shadow-strong:
-      0 18px 44px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 14%);
-    --cg-backdrop:
-      radial-gradient(60% 45% at 0% 0%, #164a34 0%, transparent 70%),
-      radial-gradient(50% 40% at 100% 12%, #3d3913 0%, transparent 70%),
-      radial-gradient(70% 45% at 85% 100%, #17402c 0%, transparent 70%),
-      var(--cg-ground);
+      0 6px 20px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 10%);
+    --cg-backdrop: var(--cg-ground);
     --cg-chart-1: #43a678; /* validated against the dark surface */
     --cg-chart-2: #cc7a38;
     --cg-chart-grid: #2c423a;
@@ -117,13 +111,12 @@
 
 body {
   background: var(--cg-backdrop);
-  background-attachment: fixed;
   color: var(--cg-ink);
   font-family: var(--cg-font);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pages sit on the cream ground with its colour halos, so glass shows. */
+/* Pages sit on the plain cream ground. */
 ion-content {
   --background: var(--cg-backdrop);
 }
@@ -143,10 +136,10 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.01em;
 }
 h1 {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 :focus-visible {
