@@ -49,6 +49,13 @@ not colourful in every direction; refined**. The current principles:
 - **Neutral type**: Inter (variable, bundled with the apps so it works
   offline and in the Android app); headings 700, emphasis 600, no black
   weights.
+- **List rows** (`components/ListRow.vue`, 2026-10-25): every item of a
+  list (orders, consigne bookings, quotes, Swap Sport exchanges) starts
+  with an icon in a tinted square (the shop's category pictogram, the lock
+  for a consigne, a document for a quote; `utils/icons.ts`), then a short
+  title, a discreet description line (shop, place, price) and the status
+  tag on the right, like the side menu. The whole card is clickable through
+  its title link, so action buttons are never nested in a link.
 - **Icons, not emoji**: outline Ionicons in tinted squares; emoji are not
   used in the interface (the typographic ✓ and rating stars ★ stay).
 - **Light motion** (revised 2026-10-25): the aurora drifts slowly

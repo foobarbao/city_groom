@@ -17,6 +17,7 @@ import type { DemoPack } from '@city-groom/demo-data'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
+import ListRow from '../components/ListRow.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import PromoCard from '../components/PromoCard.vue'
 import { packPrice } from '../domain/pack'
@@ -32,6 +33,7 @@ import {
 } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dayLabel, euros } from '../utils/format'
+import { orderIcon } from '../utils/icons'
 import { reveal } from '../utils/scroll'
 import { statusTone } from '../utils/tones'
 
@@ -141,28 +143,25 @@ function repeatNextWeek(): void {
         </section>
 
         <!-- Scheduled exchanges. -->
-        <section v-if="exchanges.length" class="soft-card">
+        <section v-if="exchanges.length" class="group">
           <h2 class="section-title">{{ t('exchange.mine') }}</h2>
-          <ul class="rows">
+          <ul class="list">
             <li v-for="o in exchanges" :key="o.id">
-              <router-link class="row" :to="`/compte/commandes/${o.id}`">
-                <span class="row-text">
-                  <strong>{{
-                    t('exchange.slotLine', {
-                      day: dayLabel(o.dropFrom ?? o.createdAt, inSentence),
-                      from: clock(o.dropFrom ?? o.createdAt),
-                      to: clock(o.dropBy ?? o.createdAt),
-                    })
-                  }}</strong>
-                  <span class="muted small">
-                    {{ lockerName(o.dropLocker) }} ·
-                    {{ o.collectsClean ? t('exchange.withClean') : t('exchange.firstDrop') }}
-                  </span>
-                </span>
-                <span class="pill" :class="statusTone(o.status)">{{
-                  t(`orders.status.${o.status}`)
-                }}</span>
-              </router-link>
+              <list-row
+                :icon="orderIcon(o)"
+                :title="
+                  t('exchange.slotLine', {
+                    day: dayLabel(o.dropFrom ?? o.createdAt, inSentence),
+                    from: clock(o.dropFrom ?? o.createdAt),
+                    to: clock(o.dropBy ?? o.createdAt),
+                  })
+                "
+                :description="`${lockerName(o.dropLocker)} · ${
+                  o.collectsClean ? t('exchange.withClean') : t('exchange.firstDrop')
+                }`"
+                :status="{ label: t(`orders.status.${o.status}`), tone: statusTone(o.status) }"
+                :to="`/compte/commandes/${o.id}`"
+              />
             </li>
           </ul>
           <ion-button v-if="price.available" fill="outline" shape="round" @click="repeatNextWeek">
@@ -276,30 +275,13 @@ function repeatNextWeek(): void {
   margin: 0;
   padding-left: 20px;
 }
-.rows {
+.group {
   display: flex;
   flex-direction: column;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 10px;
-  padding: 10px 0;
-  border-top: 1px solid var(--cg-surface-soft);
-  color: inherit;
-  text-decoration: none;
 }
-.rows li:first-child .row {
-  border-top: none;
-}
-.row-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.group ion-button {
+  align-self: flex-start;
 }
 .chips.wrap {
   flex-wrap: wrap;
