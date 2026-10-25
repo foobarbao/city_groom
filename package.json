@@ -1,0 +1,15 @@
+{
+  "name": "city-groom",
+  "private": true,
+  "description": "npm workspace for the City Groom frontends (ADR-0003).",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build:demo-site": "npm run build:demo-site -w apps/customer && npm run build:demo-site -w apps/portal && node scripts/assemble-demo-site.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

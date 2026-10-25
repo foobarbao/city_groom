@@ -1,0 +1,1244 @@
+openapi: 3.0.3
+info:
+  title: City Groom API
+  version: 0.1.0
+  description: REST API of City Groom, used by the City Groom apps and open to third-party
+    integrations. Authentication, scopes, rate limits, errors and versioning are described
+    in the integration guide (docs/api/README.md in the repository). Data marked as
+    simulated is fictitious demo data.
+paths:
+  /api/v1/health/:
+    get:
+      operationId: health_retrieve
+      description: 'Return ``{"status": "ok"}``, or HTTP 503 if the database is unreachable.'
+      summary: Health check
+      tags:
+      - system
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+          description: ''
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthError'
+          description: ''
+  /api/v1/lockers/:
+    get:
+      operationId: lockers_list
+      description: In-service lockers as a GeoJSON FeatureCollection (coordinates
+        in WGS 84, longitude first), with the number of free compartments per size.
+        Optionally filtered around a point, nearest first.
+      summary: List lockers
+      parameters:
+      - in: query
+        name: lat
+        schema:
+          type: number
+          format: double
+        description: Latitude du point de recherche.
+      - in: query
+        name: lng
+        schema:
+          type: number
+          format: double
+        description: Longitude du point de recherche.
+      - in: query
+        name: radius_km
+        schema:
+          type: number
+          format: double
+        description: Rayon de recherche en km (défaut 2, max 20).
+      tags:
+      - lockers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerFeatureList'
+          description: ''
+  /api/v1/lockers/{code}/:
+    get:
+      operationId: lockers_retrieve
+      description: 'Layout of one in-service locker: columns, doors with their size
+        and label, control panel position, and free compartments per size. Doors are
+        listed without status.'
+      summary: Locker front
+      parameters:
+      - in: path
+        name: code
+        schema:
+          type: string
+          description: Identifiant court et stable du casier, utilisé dans les URLs
+            et les échanges.
+        required: true
+      tags:
+      - lockers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LockerLayout'
+          description: ''
+  /api/v1/lockers/sizes/:
+    get:
+      operationId: lockers_sizes_list
+      description: 'Size catalogue: dimensions in cm, layout height, examples of items.'
+      summary: Compartment sizes
+      tags:
+      - lockers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SizeSpec'
+          description: ''
+  /api/v1/merchants/:
+    get:
+      operationId: merchants_list
+      description: Local businesses offering services on items that fit in a locker,
+        as a GeoJSON FeatureCollection. Public data from OpenStreetMap (© OpenStreetMap
+        contributors, ODbL); `is_partner` is false until a partnership is signed.
+        Optionally filtered by category and around a point.
+      summary: List merchants
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          enum:
+          - dry_cleaning
+          - electronics_repair
+          - jewellery_repair
+          - key_cutting
+          - laundry
+          - shoe_repair
+          - tailoring
+          - watch_repair
+        description: Catégorie de service.
+      - in: query
+        name: lat
+        schema:
+          type: number
+          format: double
+        description: Latitude du point de recherche.
+      - in: query
+        name: lng
+        schema:
+          type: number
+          format: double
+        description: Longitude du point de recherche.
+      - in: query
+        name: radius_km
+        schema:
+          type: number
+          format: double
+        description: Rayon de recherche en km (défaut 2, max 20).
+      tags:
+      - merchants
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantFeatureList'
+          description: ''
+  /api/v1/operator/locker-events/:
+    get:
+      operationId: operator_locker_events_list
+      description: Events reported by lockers (door opened or closed, faults, connection
+        changes), newest first, with cursor pagination. Poll with `since` to receive
+        only new events.
+      summary: Locker events
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        description: La valeur du curseur de pagination.
+        schema:
+          type: string
+      - in: query
+        name: kind
+        schema:
+          type: string
+          enum:
+          - connection_lost
+          - connection_restored
+          - door_closed
+          - door_left_open
+          - door_opened
+          - fault
+        description: Type d'événement.
+      - in: query
+        name: locker
+        schema:
+          type: string
+        description: Code du casier.
+      - name: page_size
+        required: false
+        in: query
+        description: Nombre de résultats à retourner par page.
+        schema:
+          type: integer
+      - in: query
+        name: since
+        schema:
+          type: string
+          format: date-time
+        description: Seulement les événements survenus après cette date (ISO 8601).
+      tags:
+      - operations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLockerEventList'
+          description: ''
+  /api/v1/operator/lockers/:
+    get:
+      operationId: operator_lockers_list
+      description: All lockers, whatever their status, with fill rates (GeoJSON).
+      summary: List lockers with occupancy
+      parameters:
+      - in: query
+        name: lat
+        schema:
+          type: number
+          format: double
+        description: Latitude du point de recherche.
+      - in: query
+        name: lng
+        schema:
+          type: number
+          format: double
+        description: Longitude du point de recherche.
+      - in: query
+        name: radius_km
+        schema:
+          type: number
+          format: double
+        description: Rayon de recherche en km (défaut 2, max 20).
+      tags:
+      - operations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorLockerFeatureList'
+          description: ''
+  /api/v1/operator/lockers/{code}/:
+    get:
+      operationId: operator_lockers_retrieve
+      description: Layout of one locker with the status of every door and its fill
+        rate.
+      summary: Locker front with door status
+      parameters:
+      - in: path
+        name: code
+        schema:
+          type: string
+          description: Identifiant court et stable du casier, utilisé dans les URLs
+            et les échanges.
+        required: true
+      tags:
+      - operations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OperatorLockerLayout'
+          description: ''
+  /api/v1/operator/lockers/stats/:
+    get:
+      operationId: operator_lockers_stats_retrieve
+      description: 'Occupancy of the whole locker network: totals, fill rate, per-size
+        figures.'
+      summary: Network statistics
+      tags:
+      - operations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NetworkStats'
+          description: ''
+components:
+  schemas:
+    AccessMethodEnum:
+      enum:
+      - bluetooth
+      - nfc
+      - qr_code
+      type: string
+      description: |-
+        * `bluetooth` - Bluetooth
+        * `nfc` - NFC
+        * `qr_code` - QR code
+    CompartmentStatusEnum:
+      enum:
+      - free
+      - reserved
+      - occupied
+      - out_of_service
+      type: string
+      description: |-
+        * `free` - Libre
+        * `reserved` - Réservé
+        * `occupied` - Occupé
+        * `out_of_service` - Hors service
+    GisFeatureCollectionEnum:
+      type: string
+      enum:
+      - FeatureCollection
+    GisFeatureEnum:
+      type: string
+      enum:
+      - Feature
+    Health:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    HealthError:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+      - status
+    KindEnum:
+      enum:
+      - door_opened
+      - door_closed
+      - door_left_open
+      - fault
+      - connection_lost
+      - connection_restored
+      type: string
+      description: |-
+        * `door_opened` - Porte ouverte
+        * `door_closed` - Porte fermée
+        * `door_left_open` - Porte restée ouverte
+        * `fault` - Panne
+        * `connection_lost` - Connexion perdue
+        * `connection_restored` - Connexion rétablie
+    LockerEvent:
+      type: object
+      description: An event reported by a locker, for operators and integrations.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        locker:
+          type: string
+          description: Code du casier.
+          readOnly: true
+        compartment:
+          type: string
+          title: Étiquette
+          description: Étiquette du compartiment, nulle pour un événement du casier
+            entier.
+          readOnly: true
+          nullable: true
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          readOnly: true
+          title: Type
+          description: |-
+            Type d'événement.
+
+            * `door_opened` - Porte ouverte
+            * `door_closed` - Porte fermée
+            * `door_left_open` - Porte restée ouverte
+            * `fault` - Panne
+            * `connection_lost` - Connexion perdue
+            * `connection_restored` - Connexion rétablie
+        access_method:
+          allOf:
+          - $ref: '#/components/schemas/AccessMethodEnum'
+          readOnly: true
+          title: Mode d'ouverture
+          description: |-
+            Mode d'ouverture utilisé, pour une ouverture de porte.
+
+            * `bluetooth` - Bluetooth
+            * `nfc` - NFC
+            * `qr_code` - QR code
+        occurred_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Survenu le
+          description: Horodatage fourni par le casier.
+        received_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Reçu le
+          description: Horodatage de réception par la plateforme (différé si le casier
+            était hors ligne).
+        is_simulated:
+          type: boolean
+          readOnly: true
+          title: Simulé
+          description: Vrai si l'événement a été produit par la simulation.
+        details:
+          readOnly: true
+          title: Détails
+          description: Données complémentaires propres au fabricant ou au simulateur.
+      required:
+      - access_method
+      - compartment
+      - details
+      - id
+      - is_simulated
+      - kind
+      - locker
+      - occurred_at
+      - received_at
+    LockerFeature:
+      type: object
+      description: Locker as a GeoJSON feature for the map, with free compartments
+        per size.
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: integer
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: float
+              example:
+              - 12.9721
+              - 77.5933
+              minItems: 2
+              maxItems: 3
+        properties:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Identifiant court et stable du casier, utilisé dans les
+                URLs et les échanges.
+              maxLength: 40
+              pattern: ^[-a-zA-Z0-9_]+$
+            name:
+              type: string
+              title: Nom
+              description: Nom affiché aux utilisateurs, généralement le lieu (ex.
+                arrêt de tram).
+              maxLength: 120
+            address:
+              type: string
+              title: Adresse
+              description: Adresse ou description du lieu, si connue.
+              maxLength: 255
+            status:
+              enum:
+              - active
+              - maintenance
+              - offline
+              type: string
+              title: Statut
+              description: |-
+                Statut opérationnel du casier.
+
+                * `active` - En service
+                * `maintenance` - En maintenance
+                * `offline` - Hors ligne
+            site_category:
+              enum:
+              - tram_stop
+              - tourism
+              - transport
+              - campus
+              - shopping
+              - health
+              - business
+              - square
+              - leisure
+              - other
+              type: string
+              title: Type de lieu
+              description: |-
+                Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+                * `tram_stop` - Arrêt de tram
+                * `tourism` - Site touristique
+                * `transport` - Gare
+                * `campus` - Campus
+                * `shopping` - Centre commercial ou marché
+                * `health` - Hôpital
+                * `business` - Pôle d'activité
+                * `square` - Place (restaurants, cafés)
+                * `leisure` - Parc ou équipement sportif
+                * `other` - Autre
+            access_methods:
+              type: array
+              items:
+                enum:
+                - bluetooth
+                - nfc
+                - qr_code
+                type: string
+                description: |-
+                  * `bluetooth` - Bluetooth
+                  * `nfc` - NFC
+                  * `qr_code` - QR code
+              title: Modes d'ouverture
+              description: Modes d'ouverture proposés par ce casier (selon le fabricant).
+            free_by_size:
+              type: object
+              additionalProperties:
+                type: integer
+              description: Nombre de compartiments libres par code de taille.
+              readOnly: true
+    LockerFeatureList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/LockerFeature'
+    LockerLayout:
+      type: object
+      description: Full description of a locker front, to draw it in the apps.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        code:
+          type: string
+          readOnly: true
+          description: Identifiant court et stable du casier, utilisé dans les URLs
+            et les échanges.
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          readOnly: true
+          title: Nom
+          description: Nom affiché aux utilisateurs, généralement le lieu (ex. arrêt
+            de tram).
+        address:
+          type: string
+          readOnly: true
+          title: Adresse
+          description: Adresse ou description du lieu, si connue.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/LockerStatusEnum'
+          readOnly: true
+          title: Statut
+          description: |-
+            Statut opérationnel du casier.
+
+            * `active` - En service
+            * `maintenance` - En maintenance
+            * `offline` - Hors ligne
+        site_category:
+          allOf:
+          - $ref: '#/components/schemas/SiteCategoryEnum'
+          readOnly: true
+          title: Type de lieu
+          description: |-
+            Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+            * `tram_stop` - Arrêt de tram
+            * `tourism` - Site touristique
+            * `transport` - Gare
+            * `campus` - Campus
+            * `shopping` - Centre commercial ou marché
+            * `health` - Hôpital
+            * `business` - Pôle d'activité
+            * `square` - Place (restaurants, cafés)
+            * `leisure` - Parc ou équipement sportif
+            * `other` - Autre
+        access_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessMethodEnum'
+          readOnly: true
+          title: Modes d'ouverture
+          description: Modes d'ouverture proposés par ce casier (selon le fabricant).
+        is_simulated:
+          type: boolean
+          readOnly: true
+          title: Simulé
+          description: Vrai pour un casier fictif de démonstration, faux pour un casier
+            réel.
+        longitude:
+          type: number
+          format: double
+          description: Return the WGS 84 longitude.
+          readOnly: true
+        latitude:
+          type: number
+          format: double
+          description: Return the WGS 84 latitude.
+          readOnly: true
+        control_panel_column:
+          type: integer
+          readOnly: true
+          title: Colonne du panneau de contrôle
+          description: Index (à partir de 0) de la colonne contenant l'écran et les
+            lecteurs.
+        column_grid_units:
+          type: integer
+          description: Return the height of a column in grid units.
+          readOnly: true
+        control_panel_grid_units:
+          type: integer
+          description: Return the height of the control panel in grid units.
+          readOnly: true
+        free_by_size:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Return the number of free compartments per size code.
+          readOnly: true
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublicCompartment'
+          readOnly: true
+      required:
+      - access_methods
+      - address
+      - code
+      - column_grid_units
+      - compartments
+      - control_panel_column
+      - control_panel_grid_units
+      - free_by_size
+      - id
+      - is_simulated
+      - latitude
+      - longitude
+      - name
+      - site_category
+      - status
+    LockerStatusEnum:
+      enum:
+      - active
+      - maintenance
+      - offline
+      type: string
+      description: |-
+        * `active` - En service
+        * `maintenance` - En maintenance
+        * `offline` - Hors ligne
+    MerchantFeature:
+      type: object
+      description: Merchant as a GeoJSON feature for the map and the list of businesses.
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: integer
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: float
+              example:
+              - 12.9721
+              - 77.5933
+              minItems: 2
+              maxItems: 3
+        properties:
+          type: object
+          properties:
+            name:
+              type: string
+              readOnly: true
+              title: Nom
+              description: Nom public du commerce.
+            category:
+              enum:
+              - laundry
+              - dry_cleaning
+              - shoe_repair
+              - tailoring
+              - watch_repair
+              - jewellery_repair
+              - electronics_repair
+              - key_cutting
+              type: string
+              readOnly: true
+              title: Catégorie
+              description: |-
+                Type de service proposé.
+
+                * `laundry` - Blanchisserie / laverie
+                * `dry_cleaning` - Pressing
+                * `shoe_repair` - Cordonnerie
+                * `tailoring` - Retouches / couture
+                * `watch_repair` - Horlogerie
+                * `jewellery_repair` - Bijouterie (réparation)
+                * `electronics_repair` - Réparation électronique
+                * `key_cutting` - Clés / serrurerie
+            address:
+              type: string
+              readOnly: true
+              title: Adresse
+              description: Adresse postale, si connue.
+            opening_hours:
+              type: string
+              readOnly: true
+              title: Horaires
+              description: Horaires au format OpenStreetMap (opening_hours), si connus.
+            website:
+              type: string
+              format: uri
+              readOnly: true
+              title: Site web
+              description: Site web public, si connu.
+            is_partner:
+              type: boolean
+              readOnly: true
+              title: Partenaire
+              description: Vrai seulement si un partenariat a été signé avec ce commerce.
+    MerchantFeatureList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantFeature'
+    NetworkStats:
+      type: object
+      description: Occupancy of the whole locker network, for operator dashboards.
+      properties:
+        lockers:
+          type: integer
+          description: Nombre de casiers.
+        compartments:
+          type: integer
+          description: Nombre total de compartiments.
+        in_service:
+          type: integer
+        in_use:
+          type: integer
+        fill_rate:
+          type: number
+          format: double
+        free_by_size:
+          type: object
+          additionalProperties:
+            type: integer
+        capacity_by_size:
+          type: object
+          additionalProperties:
+            type: integer
+      required:
+      - capacity_by_size
+      - compartments
+      - fill_rate
+      - free_by_size
+      - in_service
+      - in_use
+      - lockers
+    OperatorCompartment:
+      type: object
+      description: Compartment with its current status.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        label:
+          type: string
+          readOnly: true
+          title: Étiquette
+          description: 'Étiquette visible sur la porte (ex. « B3 » : colonne B, 3e
+            position).'
+        size:
+          allOf:
+          - $ref: '#/components/schemas/SizeEnum'
+          readOnly: true
+          title: Taille
+          description: |-
+            Catégorie de taille du compartiment.
+
+            * `S` - Petit
+            * `M` - Moyen
+            * `L` - Grand
+            * `XL` - Penderie
+        column:
+          type: integer
+          readOnly: true
+          title: Colonne
+          description: Index de la colonne, à partir de 0, de gauche à droite.
+        position:
+          type: integer
+          readOnly: true
+          description: Index dans la colonne, à partir de 0, de haut en bas.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/CompartmentStatusEnum'
+          readOnly: true
+          title: Statut
+          description: |-
+            Occupation actuelle du compartiment.
+
+            * `free` - Libre
+            * `reserved` - Réservé
+            * `occupied` - Occupé
+            * `out_of_service` - Hors service
+      required:
+      - column
+      - id
+      - label
+      - position
+      - size
+      - status
+    OperatorLockerFeature:
+      type: object
+      description: Map feature for operators, adding the fill rate.
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureEnum'
+        id:
+          type: integer
+          readOnly: true
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+                format: float
+              example:
+              - 12.9721
+              - 77.5933
+              minItems: 2
+              maxItems: 3
+        properties:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Identifiant court et stable du casier, utilisé dans les
+                URLs et les échanges.
+              maxLength: 40
+              pattern: ^[-a-zA-Z0-9_]+$
+            name:
+              type: string
+              title: Nom
+              description: Nom affiché aux utilisateurs, généralement le lieu (ex.
+                arrêt de tram).
+              maxLength: 120
+            address:
+              type: string
+              title: Adresse
+              description: Adresse ou description du lieu, si connue.
+              maxLength: 255
+            status:
+              enum:
+              - active
+              - maintenance
+              - offline
+              type: string
+              title: Statut
+              description: |-
+                Statut opérationnel du casier.
+
+                * `active` - En service
+                * `maintenance` - En maintenance
+                * `offline` - Hors ligne
+            site_category:
+              enum:
+              - tram_stop
+              - tourism
+              - transport
+              - campus
+              - shopping
+              - health
+              - business
+              - square
+              - leisure
+              - other
+              type: string
+              title: Type de lieu
+              description: |-
+                Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+                * `tram_stop` - Arrêt de tram
+                * `tourism` - Site touristique
+                * `transport` - Gare
+                * `campus` - Campus
+                * `shopping` - Centre commercial ou marché
+                * `health` - Hôpital
+                * `business` - Pôle d'activité
+                * `square` - Place (restaurants, cafés)
+                * `leisure` - Parc ou équipement sportif
+                * `other` - Autre
+            access_methods:
+              type: array
+              items:
+                enum:
+                - bluetooth
+                - nfc
+                - qr_code
+                type: string
+                description: |-
+                  * `bluetooth` - Bluetooth
+                  * `nfc` - NFC
+                  * `qr_code` - QR code
+              title: Modes d'ouverture
+              description: Modes d'ouverture proposés par ce casier (selon le fabricant).
+            free_by_size:
+              type: object
+              additionalProperties:
+                type: integer
+              description: Nombre de compartiments libres par code de taille.
+              readOnly: true
+            fill_rate:
+              type: number
+              format: double
+              description: Taux de remplissage, entre 0 et 1.
+              readOnly: true
+            in_service:
+              type: integer
+              description: Compartiments utilisables.
+              readOnly: true
+            in_use:
+              type: integer
+              description: Compartiments réservés ou occupés.
+              readOnly: true
+    OperatorLockerFeatureList:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/GisFeatureCollectionEnum'
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatorLockerFeature'
+    OperatorLockerLayout:
+      type: object
+      description: Locker front for operators, with the status of every compartment.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        code:
+          type: string
+          readOnly: true
+          description: Identifiant court et stable du casier, utilisé dans les URLs
+            et les échanges.
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          readOnly: true
+          title: Nom
+          description: Nom affiché aux utilisateurs, généralement le lieu (ex. arrêt
+            de tram).
+        address:
+          type: string
+          readOnly: true
+          title: Adresse
+          description: Adresse ou description du lieu, si connue.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/LockerStatusEnum'
+          readOnly: true
+          title: Statut
+          description: |-
+            Statut opérationnel du casier.
+
+            * `active` - En service
+            * `maintenance` - En maintenance
+            * `offline` - Hors ligne
+        site_category:
+          allOf:
+          - $ref: '#/components/schemas/SiteCategoryEnum'
+          readOnly: true
+          title: Type de lieu
+          description: |-
+            Type de lieu où se trouve le casier (arrêt de tram, site touristique…).
+
+            * `tram_stop` - Arrêt de tram
+            * `tourism` - Site touristique
+            * `transport` - Gare
+            * `campus` - Campus
+            * `shopping` - Centre commercial ou marché
+            * `health` - Hôpital
+            * `business` - Pôle d'activité
+            * `square` - Place (restaurants, cafés)
+            * `leisure` - Parc ou équipement sportif
+            * `other` - Autre
+        access_methods:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessMethodEnum'
+          readOnly: true
+          title: Modes d'ouverture
+          description: Modes d'ouverture proposés par ce casier (selon le fabricant).
+        is_simulated:
+          type: boolean
+          readOnly: true
+          title: Simulé
+          description: Vrai pour un casier fictif de démonstration, faux pour un casier
+            réel.
+        longitude:
+          type: number
+          format: double
+          description: Return the WGS 84 longitude.
+          readOnly: true
+        latitude:
+          type: number
+          format: double
+          description: Return the WGS 84 latitude.
+          readOnly: true
+        control_panel_column:
+          type: integer
+          readOnly: true
+          title: Colonne du panneau de contrôle
+          description: Index (à partir de 0) de la colonne contenant l'écran et les
+            lecteurs.
+        column_grid_units:
+          type: integer
+          description: Return the height of a column in grid units.
+          readOnly: true
+        control_panel_grid_units:
+          type: integer
+          description: Return the height of the control panel in grid units.
+          readOnly: true
+        free_by_size:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Return the number of free compartments per size code.
+          readOnly: true
+        compartments:
+          type: array
+          items:
+            $ref: '#/components/schemas/OperatorCompartment'
+          readOnly: true
+        fill_rate:
+          type: number
+          format: double
+          description: Return the share of in-service compartments in use.
+          readOnly: true
+      required:
+      - access_methods
+      - address
+      - code
+      - column_grid_units
+      - compartments
+      - control_panel_column
+      - control_panel_grid_units
+      - fill_rate
+      - free_by_size
+      - id
+      - is_simulated
+      - latitude
+      - longitude
+      - name
+      - site_category
+      - status
+    PaginatedLockerEventList:
+      type: object
+      required:
+      - results
+      properties:
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cD00ODY%3D"
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?cursor=cj0xJnA9NDg3
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LockerEvent'
+    PublicCompartment:
+      type: object
+      description: Compartment position and size, without its status.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        label:
+          type: string
+          readOnly: true
+          title: Étiquette
+          description: 'Étiquette visible sur la porte (ex. « B3 » : colonne B, 3e
+            position).'
+        size:
+          allOf:
+          - $ref: '#/components/schemas/SizeEnum'
+          readOnly: true
+          title: Taille
+          description: |-
+            Catégorie de taille du compartiment.
+
+            * `S` - Petit
+            * `M` - Moyen
+            * `L` - Grand
+            * `XL` - Penderie
+        column:
+          type: integer
+          readOnly: true
+          title: Colonne
+          description: Index de la colonne, à partir de 0, de gauche à droite.
+        position:
+          type: integer
+          readOnly: true
+          description: Index dans la colonne, à partir de 0, de haut en bas.
+      required:
+      - column
+      - id
+      - label
+      - position
+      - size
+    SiteCategoryEnum:
+      enum:
+      - tram_stop
+      - tourism
+      - transport
+      - campus
+      - shopping
+      - health
+      - business
+      - square
+      - leisure
+      - other
+      type: string
+      description: |-
+        * `tram_stop` - Arrêt de tram
+        * `tourism` - Site touristique
+        * `transport` - Gare
+        * `campus` - Campus
+        * `shopping` - Centre commercial ou marché
+        * `health` - Hôpital
+        * `business` - Pôle d'activité
+        * `square` - Place (restaurants, cafés)
+        * `leisure` - Parc ou équipement sportif
+        * `other` - Autre
+    SizeEnum:
+      enum:
+      - S
+      - M
+      - L
+      - XL
+      type: string
+      description: |-
+        * `S` - Petit
+        * `M` - Moyen
+        * `L` - Grand
+        * `XL` - Penderie
+    SizeSpec:
+      type: object
+      description: Characteristics of a compartment size, for display.
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+          description: Nom affiché de la taille (français).
+        height_cm:
+          type: integer
+        width_cm:
+          type: integer
+        depth_cm:
+          type: integer
+        grid_units:
+          type: integer
+        examples:
+          type: array
+          items:
+            type: string
+      required:
+      - code
+      - depth_cm
+      - examples
+      - grid_units
+      - height_cm
+      - name
+      - width_cm
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Integration API key, sent as `Authorization: Api-Key <key>`.'
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+tags:
+- name: lockers
+  description: Public locker data (map, locker fronts, sizes).
+- name: merchants
+  description: Local businesses (public data).
+- name: operations
+  description: 'Operator data: occupancy, statistics, events.'
+- name: system
+  description: Technical endpoints.

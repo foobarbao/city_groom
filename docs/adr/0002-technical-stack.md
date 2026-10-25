@@ -10,7 +10,8 @@
   **connected lockers**. The demo is built around a **real map of Grenoble**,
   **simulated lockers** and **real shops**, with as much real data as possible.
   See [`docs/PRODUCT.md`](../PRODUCT.md).
-- Three user interfaces are needed:
+- Three user interfaces are needed (a fourth audience, courier partners, was
+  added later, see ADR-0005):
   1. a **customer app** (mobile: Android APK + installable web app);
   2. a **merchant portal** (web, desktop-first): incoming orders, forecasts,
      revenue and commission;

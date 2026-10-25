@@ -1,0 +1,146 @@
+"""Download an offline extract of the map of Grenoble for the standalone demo.
+
+The standalone demo is published as a single web page whose security policy
+blocks external requests, including map tiles. This script downloads, once,
+everything MapLibre needs to draw the Grenoble area from OpenFreeMap
+(OpenStreetMap data, ODbL): the style, the vector tiles of a bounding box,
+the font glyphs and the icon sprite. It writes them to
+``src/demo/offline-map.json`` (git-ignored, regenerated on demand), which the
+demo build embeds and serves to MapLibre through a custom ``offline://``
+protocol (see ``src/demo/offlineMap.ts``).
+
+Usage, from ``apps/customer``::
+
+    python3 scripts/fetch_offline_map.py
+
+Only the Python standard library is used; it honours the HTTPS_PROXY variable.
+Requests are few (a few hundred tiles) and run sequentially, to stay well within
+OpenFreeMap's fair use.
+"""
+
+import base64
+import gzip
+import json
+import math
+import sys
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+STYLE_URL = "https://tiles.openfreemap.org/styles/liberty"
+USER_AGENT = "CityPal-demo/0.1 (offline map extract for a demo)"
+OUTPUT = Path(__file__).resolve().parent.parent / "src" / "demo" / "offline-map.json"
+
+# (min_lon, min_lat, max_lon, max_lat) per zoom range. The detailed zoom covers
+# the city of Grenoble; lower zooms cover the tram network area and its
+# surroundings.
+# OpenFreeMap vector tiles stop at zoom 14; MapLibre over-zooms them beyond.
+# Areas are kept small because the demo page must stay under 16 MB.
+AREAS: list[tuple[range, tuple[float, float, float, float]]] = [
+    (range(10, 13), (5.55, 45.08, 5.90, 45.28)),
+    (range(13, 14), (5.62, 45.12, 5.83, 45.24)),
+    (range(14, 15), (5.69, 45.16, 5.765, 45.205)),
+]
+MAX_ZOOM = 14
+
+# Glyph ranges: Basic Latin + Latin-1 (accented French letters) and Latin
+# Extended-A (e.g. "œ").
+GLYPH_RANGES = ["0-255", "256-511"]
+
+
+def get(url: str) -> bytes:
+    """Download ``url`` and return its body."""
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    # URLs are built from the OpenFreeMap style, all HTTPS.
+    with urllib.request.urlopen(request, timeout=60) as response:  # noqa: S310
+        data: bytes = response.read()
+    return data
+
+
+def pack(data: bytes) -> str:
+    """Gzip then base64-encode binary data; the demo un-gzips it in the browser."""
+    return base64.b64encode(gzip.compress(data, compresslevel=9, mtime=0)).decode()
+
+
+def tile_range(z: int, bbox: tuple[float, float, float, float]) -> tuple[range, range]:
+    """Return the x and y tile index ranges covering ``bbox`` at zoom ``z``."""
+    min_lon, min_lat, max_lon, max_lat = bbox
+    n = 2**z
+
+    def x(lon: float) -> int:
+        return int((lon + 180) / 360 * n)
+
+    def y(lat: float) -> int:
+        rad = math.radians(lat)
+        return int((1 - math.asinh(math.tan(rad)) / math.pi) / 2 * n)
+
+    return range(x(min_lon), x(max_lon) + 1), range(y(max_lat), y(min_lat) + 1)
+
+
+def main() -> None:
+    """Download the extract and write the JSON bundle."""
+    style = json.loads(get(STYLE_URL))
+    tilejson = json.loads(get(style["sources"]["openmaptiles"]["url"]))
+    tile_template: str = tilejson["tiles"][0]
+
+    tiles: dict[str, str] = {}
+    for zooms, bbox in AREAS:
+        for z in zooms:
+            xs, ys = tile_range(z, bbox)
+            for x in xs:
+                for y in ys:
+                    url = tile_template.format(z=z, x=x, y=y)
+                    tiles[f"{z}/{x}/{y}"] = pack(get(url))
+            print(f"zoom {z}: {len(xs) * len(ys)} tiles", file=sys.stderr)
+
+    fonts = {
+        font
+        for layer in style["layers"]
+        for font in layer.get("layout", {}).get("text-font", [])
+    }
+    glyphs: dict[str, str] = {}
+    for font in sorted(fonts):
+        for glyph_range in GLYPH_RANGES:
+            url = style["glyphs"].format(
+                fontstack=urllib.parse.quote(font), range=glyph_range
+            )
+            glyphs[f"{font}/{glyph_range}"] = pack(get(url))
+
+    sprite = {
+        "json": json.loads(get(style["sprite"] + "@2x.json")),
+        "png": base64.b64encode(get(style["sprite"] + "@2x.png")).decode(),
+    }
+
+    # Point the style at the offline protocol. The low-zoom shaded relief
+    # (raster, zooms 0-6) is dropped: the demo never zooms out that far.
+    style["sources"] = {
+        "openmaptiles": {
+            "type": "vector",
+            "tiles": ["offline://tiles/{z}/{x}/{y}"],
+            "minzoom": 0,
+            "maxzoom": MAX_ZOOM,
+            "attribution": tilejson["attribution"],
+        }
+    }
+    style["layers"] = [l for l in style["layers"] if l.get("source") != "ne2_shaded"]
+    style["glyphs"] = "offline://glyphs/{fontstack}/{range}"
+    style["sprite"] = "offline://sprite/sprite"
+
+    bundle = {
+        "_comment": (
+            "Offline map extract of Grenoble for the standalone demo, generated by "
+            "scripts/fetch_offline_map.py. Map data © OpenStreetMap contributors "
+            "(ODbL), tiles © OpenMapTiles, served by OpenFreeMap."
+        ),
+        "style": style,
+        "tiles": tiles,
+        "glyphs": glyphs,
+        "sprite": sprite,
+    }
+    OUTPUT.write_text(json.dumps(bundle), encoding="utf-8")
+    size_mb = OUTPUT.stat().st_size / 1e6
+    print(f"{len(tiles)} tiles, {len(glyphs)} glyph sets -> {OUTPUT} ({size_mb:.1f} MB)")
+
+
+if __name__ == "__main__":
+    main()

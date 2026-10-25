@@ -29,14 +29,28 @@ the reference documents prevail in case of doubt.
 4. **Languages**: code, comments, commits, pull requests and **all repository
    documentation strictly in English**. **User interfaces in French**, always
    through i18n. Conversations with the project owner are in French.
-5. **Product red lines**: no e-commerce parcels, no perishable goods / meal
+5. **Platforms**: customers use the mobile app; merchants, courier partners
+   and operators use web interfaces (partner portal + Django admin);
+   merchants also get the portal as an Android "pro" app (ADR-0006).
+6. **Product red lines**: no e-commerce parcels, no perishable goods / meal
    delivery. Services only (laundry, ironing, repairs…).
-6. **Git**: never push to `main` or `develop`; work on a dedicated branch,
+7. **Git**: never push to `main` or `develop`; work on a dedicated branch,
    Conventional Commits, pull request to `develop`.
-7. **Demo shortcuts**: allowed only when marked `PROD: <required action>`.
+8. **API**: one versioned API (`/api/v1/`) for apps and integrations
+   (ADR-0007). Every endpoint has a summary, description and tag in the
+   OpenAPI schema; protected ones declare a `required_scope`. Update
+   `docs/api/README.md` and regenerate `packages/api-client` in the same pull
+   request. No breaking change within `v1`.
+9. **Demo shortcuts**: allowed only when marked `PROD: <required action>`.
    Simulated data and integrations are clearly labelled and isolated.
-8. **No secrets** in the repository (keys, keystore, `.env`).
-9. Before pushing: lint, format, type check and tests must pass.
+10. **No secrets** in the repository (keys, keystore, `.env`).
+11. Before pushing: lint, format, type check and tests must pass.
+
+## Reminders
+
+`docs/PRODUCT.md` has a **Reminders** section listing topics the project owner
+asked to be reminded of. Bring them up when relevant (e.g. when working on the
+related feature) and at the start of a new work session.
 
 ## Project owner context
 

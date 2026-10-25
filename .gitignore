@@ -1,15 +1,28 @@
 # Dependencies
 node_modules/
+.venv/
+
+# Python caches
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
 # Build output
 dist/
+dist-demo/
+dist-demo-site/
 dev-dist/
 coverage/
+backend/staticfiles/
 
 # Environment files: secrets never go in the repo (.env.example is committed)
 .env
 .env.*
 !.env.example
+# Public build settings of the standalone demo (no secrets)
+!.env.demo
+!.env.demo-site
 
 # Android / Capacitor
 android/.gradle/
@@ -40,3 +53,6 @@ playwright-report/
 .DS_Store
 Thumbs.db
 *.log
+
+# Offline map extract for the standalone demo (generated, ~10 MB)
+apps/customer/src/demo/offline-map.json

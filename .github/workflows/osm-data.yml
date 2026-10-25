@@ -1,0 +1,52 @@
+# Downloads OpenStreetMap data (tram stops, strategic places, merchants) with the backend's
+# fetch_osm_data command and commits it to data/osm/ on the same branch.
+# GitHub runners have open internet access, unlike some development
+# environments (docs/DATA_SOURCES.md). Triggered by editing data/osm/REFRESH.
+name: OSM data
+
+on:
+  push:
+    paths: ["data/osm/REFRESH"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: osm-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      # django.setup() needs these settings; no database is used.
+      DJANGO_SECRET_KEY: osm-fetch-only
+      DATABASE_URL: postgis://unused@localhost/unused
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install GDAL (required by GeoDjango)
+        run: sudo apt-get update && sudo apt-get install -y gdal-bin
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+      - run: uv sync --frozen --no-dev
+      - name: Fetch OpenStreetMap data
+        run: uv run python manage.py fetch_osm_data --output-dir ../data/osm
+      - name: Commit the data
+        working-directory: .
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/osm/tram_stops.json data/osm/strategic_sites.json data/osm/merchants.json
+          if git diff --cached --quiet; then
+            echo "No change in OpenStreetMap data."
+          else
+            git commit -m "chore(data): refresh OpenStreetMap data"
+            # The branch may have moved while the job ran.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

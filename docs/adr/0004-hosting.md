@@ -7,7 +7,7 @@
 
 - No server is available yet; free options are preferred for the demo.
 - To host: a Django backend (API + admin), a PostgreSQL database **with
-  PostGIS**, two static frontends (customer PWA, merchant portal), and a
+  PostGIS**, two static frontends (customer PWA, partner web portal), and a
   periodic job for the locker / order simulator.
 - The demo will be shown to testers, potential partners and funders: response
   time and availability matter for the impression it gives.

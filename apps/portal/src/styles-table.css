@@ -1,0 +1,82 @@
+/*
+ * Data tables of the operator space: soft rows, sticky header, horizontal
+ * scroll on small screens.
+ */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--cg-radius-m);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.data-table th,
+.data-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--cg-chart-grid);
+  white-space: nowrap;
+}
+.data-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--cg-surface);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cg-ink-soft);
+}
+.data-table td.num,
+.data-table th.num {
+  text-align: right;
+}
+.data-table tbody tr:hover {
+  background: var(--cg-leaf-soft);
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.filters input[type='search'] {
+  flex: 1 1 240px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-glass-strong);
+  box-shadow: var(--cg-shadow);
+  color: var(--cg-ink);
+  font: inherit;
+}
+.chip-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-glass);
+  box-shadow: var(--cg-shadow);
+  color: var(--cg-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.chip-btn.active {
+  background: var(--cg-leaf);
+  color: #ffffff;
+}
+.status-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface-soft);
+  font-size: 12px;
+  font-weight: 800;
+}
+.status-pill.warn {
+  background: var(--cg-sun-soft);
+}
+.status-pill.ok {
+  background: var(--cg-leaf-soft);
+  color: var(--cg-pine);
+}

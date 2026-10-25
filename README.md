@@ -9,30 +9,35 @@ The project is **at the demo stage** (real map and real businesses, simulated
 lockers and orders) and is designed to serve as the foundation for a future
 production version.
 
-> ⚠️ The application code has not been initialised yet. The repository
-> currently contains the coding standards, the workflow, the product document
-> and the first architecture decisions.
+> ⚠️ Demo stage: lockers (backend, simulation, API), the customer app (map,
+> businesses, locker view) and the partner portal (merchant, courier and
+> operator spaces on fictitious data) exist. Hosted demo:
+> <https://citygroom.netlify.app> ([`docs/DEMO.md`](docs/DEMO.md)). See
+> [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Applications
 
 | Application | Users | Platform | UI language |
 |---|---|---|---|
 | Customer app | Residents | Android (APK) + installable web app (PWA) | French |
-| Merchant portal | Partner businesses | Web (desktop-first) | French |
-| Administration | City Groom operators | Web (Django admin) | French |
+| Partner portal | Merchants, courier partners, operators (dashboards) | Web + Android "pro" app for merchants | French |
+| Administration | City Groom operators (data management) | Web (Django admin) | French |
 
 ## Stack
 
 | Layer | Technologies |
 |---|---|
 | Customer app | Vue 3, TypeScript, Ionic, Capacitor, Vite, Pinia |
-| Merchant portal | Vue 3, TypeScript, Vite, Pinia |
+| Partner portal | Vue 3, TypeScript, Ionic, Capacitor, Vite, Pinia |
 | Map | MapLibre GL JS, OpenStreetMap-based vector tiles |
 | Backend & admin | Django, Django REST Framework, GeoDjango |
 | Database | PostgreSQL + PostGIS |
 
 Details and rejected alternatives: [ADR-0002](docs/adr/0002-technical-stack.md),
 repository layout: [ADR-0003](docs/adr/0003-monorepo-and-applications.md),
+partner portal: [ADR-0005](docs/adr/0005-partner-web-portal.md) and
+[ADR-0006](docs/adr/0006-mobile-app-for-merchants.md),
+API for integrations: [ADR-0007](docs/adr/0007-api-for-integrations.md),
 hosting: [ADR-0004](docs/adr/0004-hosting.md).
 
 Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
@@ -43,6 +48,13 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 |---|---|
 | [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md) | Coding and documentation rules (**read first**) |
 | [`docs/PRODUCT.md`](docs/PRODUCT.md) | Vision, actors, flows, business model, open questions |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Iterations: done, in progress, next |
+| [`docs/DESIGN.md`](docs/DESIGN.md) | Visual direction of the customer app (soft, green) and design tokens |
+| [`docs/DEMO.md`](docs/DEMO.md) | Hosted demo: contents, real vs fictitious data, Netlify hosting |
+| [`docs/BUILD_AND_RELEASE.md`](docs/BUILD_AND_RELEASE.md) | Building the Android app (APK), signing, publication |
+| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) | External data (map, tram stops, businesses), licences, import commands |
+| [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes, layouts, events |
+| [`docs/api/README.md`](docs/api/README.md) | API integration guide (authentication, scopes, errors, rate limits, versioning) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Branches, commits, pull requests, versioning |
 | [`docs/adr/`](docs/adr/) | Architecture decisions |
 | [`CHANGELOG.md`](CHANGELOG.md) | Change history |
@@ -50,5 +62,12 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 
 ## Getting started
 
-_To be written when the project is initialised (prerequisites, installation,
-running the backend and the frontends, Android build)._
+| Part | Guide |
+|---|---|
+| Backend (API + admin) | [`backend/README.md`](backend/README.md) |
+| Customer app | [`apps/customer/README.md`](apps/customer/README.md) |
+| Shared API types | [`packages/api-client/README.md`](packages/api-client/README.md) |
+| Partner portal | [`apps/portal/README.md`](apps/portal/README.md) |
+
+Local services (PostgreSQL + PostGIS, backend) are defined in
+[`docker-compose.yml`](docker-compose.yml).

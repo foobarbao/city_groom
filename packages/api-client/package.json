@@ -1,0 +1,15 @@
+{
+  "name": "@city-groom/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TypeScript types generated from the backend OpenAPI schema, shared by the frontends.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "generate": "cd ../../backend && uv run python manage.py spectacular --file ../packages/api-client/openapi.yaml && cd ../packages/api-client && openapi-typescript openapi.yaml -o src/schema.d.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0"
+  }
+}

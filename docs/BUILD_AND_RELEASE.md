@@ -1,0 +1,91 @@
+# Build and release
+
+> **Status**: living document · **Last updated**: 2026-10-24
+>
+> How the customer app becomes an Android app. Written for web developers new
+> to mobile: each step is compared with its web equivalent.
+
+## 1. How it works
+
+The customer app is a regular web app (Vue + Vite). **Capacitor** wraps the
+built web files (`apps/customer/dist/`) in a native Android project
+(`apps/customer/android/`), which shows them in a full-screen web view and
+gives access to native features (GPS, Bluetooth, NFC…) through plugins.
+
+| Web | Android with Capacitor |
+|---|---|
+| `vite build` produces `dist/` | Same, then `cap sync` copies `dist/` into the Android project |
+| The site is identified by its domain | The app is identified by its **application id** (`appId`) |
+| Deploy to a server | Build an **APK** (installable file) or an **AAB** (Play Store format) |
+| HTTPS certificate | **Signing key** (keystore) proving the app comes from you |
+
+The Android project in `android/` is committed: it is the native source code
+of the app, edited with Android Studio when needed (icons, permissions…).
+
+## 2. Application id and name
+
+Set in `apps/customer/capacitor.config.ts`:
+
+- `appId`: **`fr.citypal.app` (provisional)**. A unique, permanent
+  identifier written like a reversed domain name. It can change freely until
+  the first Play Store publication; after that it can never change. The
+  project owner named the app "CityPal" (2026-10-24); the domain is not bought yet
+  (docs/PRODUCT.md).
+- `appName`: "CityPal", the name shown under the app icon.
+
+## 3. Build a test APK
+
+Prerequisites, on your computer (not needed for web development):
+
+- [Android Studio](https://developer.android.com/studio), which installs the
+  Android SDK and a Java runtime;
+- an Android phone with *developer options* and *USB debugging* enabled, or an
+  emulator created in Android Studio (Device Manager).
+
+Steps, from the repository root:
+
+```bash
+npm install
+npm run android:sync -w apps/customer   # build the web app and copy it into android/
+npm run android:open -w apps/customer   # open the Android project in Android Studio
+```
+
+Then in Android Studio:
+
+- **Run ▶** to install and start the app on the connected phone or emulator;
+- or **Build → Build Bundle(s) / APK(s) → Build APK(s)** to get a debug APK
+  (`android/app/build/outputs/apk/debug/app-debug.apk`) that testers can
+  install by hand (Android asks them to allow installing from unknown
+  sources).
+
+Re-run `android:sync` after every change to the web app.
+
+### API address on a phone
+
+The app calls the API at `VITE_API_BASE_URL`. On a phone, `localhost` is the
+phone itself: use your computer's local network address (e.g.
+`http://192.168.1.20:8000/api/v1`) in `apps/customer/.env.local`, add it to
+`CORS_ALLOWED_ORIGINS` and `DJANGO_ALLOWED_HOSTS` in `backend/.env`, then
+re-sync. Android blocks plain HTTP by default outside development; a deployed
+HTTPS backend avoids the issue.
+
+## 4. Signing and publication (later)
+
+Not done yet; nothing is published on the Play Store for now.
+
+- A **release keystore** must be created once and **backed up outside the
+  repository**: losing it makes updates of the published app impossible.
+- The Play Store expects an **AAB** signed with that key, a developer account,
+  a privacy policy and store listing assets.
+- The Android `versionCode` is incremented for every distributed build
+  (CONTRIBUTING.md §4).
+
+## 5. Known limitations
+
+- The AI assistant's development environment cannot download the Android SDK
+  (`dl.google.com` is blocked), so APKs are built on a developer machine for
+  now.
+- `npm audit` reports 3 moderate advisories in `@capacitor/cli` dependencies
+  (`uuid` via `xcode`, used for iOS projects only). The CLI is a build tool,
+  not shipped in the app; the suggested fix downgrades the CLI and is not
+  applied.

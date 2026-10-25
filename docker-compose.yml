@@ -1,0 +1,42 @@
+# Local development environment (ADR-0002, ADR-0004).
+#
+#   docker compose up -d db        # database only, backend run on the host
+#   docker compose up --build      # database + backend in containers
+#
+# Credentials below are for local development only.
+
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_DB: city_groom
+      POSTGRES_USER: city_groom
+      POSTGRES_PASSWORD: city_groom
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U city_groom -d city_groom"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    environment:
+      # Inside Compose the database is reached through its service name.
+      DATABASE_URL: postgis://city_groom:city_groom@db:5432/city_groom
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:

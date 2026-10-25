@@ -1,0 +1,15 @@
+{
+  "name": "@city-groom/demo-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demo dataset shared by the demo builds: real lockers sites and businesses, fictitious activity.",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@city-groom/api-client": "*"
+  }
+}

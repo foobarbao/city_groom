@@ -1,0 +1,3097 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.11 87bfad18",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-24T20:04:36Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 297430029,
+   "lat": 45.1809898,
+   "lon": 5.7248973,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "15",
+    "addr:postcode": "38100",
+    "addr:street": "Boulevard Maréchal Foch",
+    "brand": "5àsec",
+    "brand:wikidata": "Q2817899",
+    "brand:wikipedia": "fr:5àsec",
+    "check_date": "2026-09-24",
+    "level": "0",
+    "name": "5àsec",
+    "opening_hours": "Mo-Fr 09:00-19:00",
+    "panoramax": "9ef41426-46f6-4f6b-bd1f-9cb48abeb94c",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "ref:FR:SIRET": "34382798600013",
+    "shop": "dry_cleaning",
+    "source": "survey",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 366641883,
+   "lat": 45.1859941,
+   "lon": 5.7227652,
+   "tags": {
+    "check_date": "2024-01-17",
+    "contact:city": "Grenoble",
+    "contact:housenumber": "18",
+    "contact:postcode": "38000",
+    "contact:street": "Rue Lakanal",
+    "contact:website": "https://artypik.com/",
+    "craft": "jeweller",
+    "name": "Ar-typik",
+    "old_name": "Kalinka",
+    "opening_hours": "Tu-Sa 10:00-12:30,14:00-19:00",
+    "ref:FR:SIRET": "49046258700042",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 391313010,
+   "lat": 45.181324,
+   "lon": 5.717206,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Général Janssen",
+    "check_date": "2026-06-16",
+    "check_date:opening_hours": "2026-04-11",
+    "name": "Lux Laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "panoramax": "25dc7648-5e4a-4159-a87a-241473831c97",
+    "ref:FR:SIRET": "50959163200088",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "v2 ; cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 650049228,
+   "lat": 45.1864463,
+   "lon": 5.7169397,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "45",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Gabriel Péri",
+    "check_date": "2026-03-14",
+    "name": "City Laverie",
+    "opening_hours": "Mo-Su 08:00-21:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 663206901,
+   "lat": 45.1892581,
+   "lon": 5.7202756,
+   "tags": {
+    "check_date": "2026-07-07",
+    "check_date:opening_hours": "2026-02-18",
+    "craft": "electronics_repair",
+    "name": "Phone Express",
+    "opening_hours:signed": "no",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 946567408,
+   "lat": 45.1803109,
+   "lon": 5.7077755,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "48",
+    "addr:postcode": "38000",
+    "addr:street": "Boulevard Joseph Vallier",
+    "check_date": "2025-05-20",
+    "check_date:opening_hours": "2025-05-20",
+    "contact:website": "https://www.laverie-grenoble.fr/laverie-vallier/",
+    "name": "Laverie Vallier",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "phone": "+33 6 68 59 08 74",
+    "ref:FR:SIRET": "33136468700136",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 961816882,
+   "lat": 45.1771491,
+   "lon": 5.7263251,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "59",
+    "addr:postcode": "38100",
+    "addr:street": "Rue de Stalingrad",
+    "check_date": "2026-06-17",
+    "check_date:opening_hours": "2025-02-23",
+    "name": "Laverie Stalingrad",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "phone": "+33 4 76 50 96 57",
+    "ref:FR:SIRET": "33136468700128",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "http://www.laverie-grenoble.fr/laverie-stalingrad",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 975484976,
+   "lat": 45.1826339,
+   "lon": 5.7583069,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "160",
+    "addr:postcode": "38400",
+    "addr:street": "Avenue Ambroise Croizat",
+    "check_date:opening_hours": "2025-05-14",
+    "man_made": "surveillance",
+    "name": "Nickel'",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "payment:coins": "yes",
+    "payment:debit_cards": "no",
+    "payment:notes": "yes",
+    "phone": "+33 6 24 28 12 16",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1116093386,
+   "lat": 45.1476793,
+   "lon": 5.7132698,
+   "tags": {
+    "addr:city": "Échirolles",
+    "addr:housenumber": "29",
+    "addr:postcode": "38130",
+    "addr:street": "Rue Paul Héroult",
+    "check_date": "2026-03-03",
+    "craft": "shoemaker",
+    "name": "Cordonnerie des Écureuils",
+    "opening_hours": "Tu 07:30-16:00; We,Fr 07:30-12:15,15:00-18:30; Sa 07:30-12:15",
+    "ref:FR:SIRET": "51943258700011"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1117173509,
+   "lat": 45.1924841,
+   "lon": 5.6988342,
+   "tags": {
+    "addr:city": "Fontaine",
+    "addr:housenumber": "16",
+    "addr:postcode": "38600",
+    "addr:street": "Avenue du Vercors",
+    "check_date:opening_hours": "2024-08-10",
+    "contact:phone": "+33 4 76 26 11 21",
+    "contact:website": "http://www.laverie-grenoble.fr/laverie-de-fontaine",
+    "name": "Laverie de Fontaine",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "ref:FR:SIRET": "33136468700029",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1142119323,
+   "lat": 45.1814178,
+   "lon": 5.7287044,
+   "tags": {
+    "check_date": "2026-09-03",
+    "check_date:opening_hours": "2025-02-23",
+    "contact:website": "https://www.a2i-fermetures.com/",
+    "name": "A2i Fermetures",
+    "opening_hours": "Mo-Th 07:30-17:00; Fr 07:30-12:30",
+    "ref:FR:SIRET": "49992763000016",
+    "shop": "locksmith",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1145399194,
+   "lat": 45.1454621,
+   "lon": 5.7165888,
+   "tags": {
+    "addr:housenumber": "24",
+    "addr:postcode": "38130",
+    "addr:street": "Avenue du 8 Mai 1945",
+    "check_date": "2026-02-26",
+    "name": "Laverie Échirolles",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "phone": "+33 6 11 95 30 30",
+    "ref:FR:SIRET": "79469564300021",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "http://www.laverie-grenoble.fr/laverie-d-echirolles"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1145407564,
+   "lat": 45.1888002,
+   "lon": 5.707633,
+   "tags": {
+    "check_date": "2026-09-28",
+    "check_date:opening_hours": "2021-12-16",
+    "contact:housenumber": "152",
+    "contact:street": "Cours Berriat",
+    "name": "Laverie Automatique 2000",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "ref:FR:SIRET": "83789490600028",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1156829376,
+   "lat": 45.1420169,
+   "lon": 5.8288186,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Uriage",
+    "addr:housenumber": "238",
+    "addr:postcode": "38410",
+    "addr:street": "Avenue des Thermes",
+    "name": "Pressing du Rocher",
+    "opening_hours": "Tu-Fr 08:30-12:30,14:30-19:30; Sa 08:30-12:30,14:30-18:30",
+    "phone": "+33 4 76 89 20 60",
+    "shop": "dry_cleaning",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1472174515,
+   "lat": 45.1904529,
+   "lon": 5.7171047,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "43",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue Félix Viallet",
+    "brand": "Speed Queen",
+    "brand:wikidata": "Q7575499",
+    "check_date": "2025-01-25",
+    "check_date:opening_hours": "2025-01-25",
+    "email": "abernard@cpc-entreprises.com",
+    "name": "Speed Queen",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "phone": "+33 7 56 81 21 31",
+    "ref:FR:SIRET": "84846280000030",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1534058648,
+   "lat": 45.1845903,
+   "lon": 5.719202,
+   "tags": {
+    "addr:housenumber": "50",
+    "shop": "locksmith",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1627095564,
+   "lat": 45.187582,
+   "lon": 5.7213055,
+   "tags": {
+    "check_date": "2026-07-07",
+    "name": "Laverie Thiers",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "phone": "+33 4 76 96 28 03",
+    "ref:FR:SIRET": "33136468700052",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "website": "http://www.laverie-grenoble.fr/laverie-thiers-1",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1828396925,
+   "lat": 45.2836534,
+   "lon": 5.8843001,
+   "tags": {
+    "name": "Tout Propre",
+    "opening_hours": "Tu-Su 07:45-12:15,14:45-18:30; Sa 08:30-13:30",
+    "shop": "dry_cleaning"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1828396930,
+   "lat": 45.2836894,
+   "lon": 5.8843448,
+   "tags": {
+    "addr:city": "Crolles",
+    "addr:housenumber": "110",
+    "addr:postcode": "38920",
+    "addr:street": "Rue du 8 Mai 1945",
+    "name": "Tout Propre",
+    "opening_hours": "Mo-Su 07:30-19:00",
+    "phone": "+33 4 76 08 10 77",
+    "shop": "laundry",
+    "website": "https://pressing-isere.fr/sections/view.php/12/tout-propre"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1934298809,
+   "lat": 45.2064001,
+   "lon": 5.773558,
+   "tags": {
+    "addr:city": "Meylan",
+    "addr:housenumber": "27",
+    "addr:postcode": "38240",
+    "addr:street": "Avenue du Vercors",
+    "check_date": "2024-09-17",
+    "name": "Le Pressing des Buclos",
+    "phone": "+33 4 76 41 10 16",
+    "shop": "dry_cleaning"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1934340379,
+   "lat": 45.1856967,
+   "lon": 5.7467448,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "1",
+    "addr:postcode": "38100",
+    "addr:street": "Chemin de la Blanchisserie",
+    "check_date:opening_hours": "2026-05-08",
+    "name": "Laverie By Kis Wash",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "phone": "+33 6 69 44 38 02",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1942462788,
+   "lat": 45.1919816,
+   "lon": 5.755189,
+   "tags": {
+    "addr:housenumber": "68",
+    "addr:street": "Rue de la Houille Blanche",
+    "check_date:opening_hours": "2025-05-14",
+    "contact:mobile": "+33 6 11 95 30 30",
+    "name": "Laverie Ouest",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "WashOnline",
+    "payment:cash": "no",
+    "payment:credit_cards": "no",
+    "payment:debit_cards": "no",
+    "phone": "+33 4 76 96 28 03",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1946039077,
+   "lat": 45.1758835,
+   "lon": 5.7094005,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:floor": "G",
+    "addr:housenumber": "47",
+    "addr:postcode": "38100",
+    "addr:street": "Rue des Eaux Claires",
+    "check_date": "2026-08-12",
+    "level": "0",
+    "name": "Laverie Eaux Claires",
+    "opening_hours": "07:00-21:00",
+    "ref:FR:SIRET": "90863582400018",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1975373490,
+   "lat": 45.0549727,
+   "lon": 5.6690912,
+   "tags": {
+    "addr:city": "Vif",
+    "addr:housenumber": "14",
+    "addr:place": "Place des Onze Otages",
+    "addr:postcode": "38450",
+    "craft": "electronics_repair",
+    "name": "La Fabrique du Smartphone",
+    "opening_hours": "Tu-Sa 10:00-19:00",
+    "source": "local_survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1975373498,
+   "lat": 45.0549261,
+   "lon": 5.6694025,
+   "tags": {
+    "craft": "dressmaker",
+    "name": "Retouches Marie Goncalves",
+    "opening_hours": "Tu,Th 10:00-12:00,15:30-12:00; Fr 15:30-12:00",
+    "source": "local_survey",
+    "survey:date": "2021-09-02",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1975507739,
+   "lat": 45.0558309,
+   "lon": 5.6684354,
+   "tags": {
+    "name": "Mango Laverie",
+    "opening_hours": "Mo-Su 06:00-20:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "survey:date": "2019-10-25",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2006338421,
+   "lat": 45.1858626,
+   "lon": 5.7126374,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "30",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Nicolas Chorier",
+    "check_date": "2026-08-22",
+    "check_date:opening_hours": "2023-10-09",
+    "contact:phone": "+33 4 76 96 28 03",
+    "contact:website": "http://www.laverie-grenoble.fr/laverie-nicolas-chorier",
+    "name": "Laverie Nicolas Chorier",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "ref:FR:SIRET": "33136468700086",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2042648801,
+   "lat": 45.1946282,
+   "lon": 5.7280108,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "10",
+    "addr:postcode": "38000",
+    "addr:street": "Quai Perrière",
+    "contact:mobile": "+33 6 71 05 22 28",
+    "laundry_service": "no",
+    "name": "Laverie Bleu Claire",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "payment:coins": "yes",
+    "payment:debit_cards": "no",
+    "payment:notes": "no",
+    "phone": "+33 4 76 47 01 41",
+    "ref:FR:SIRET": "84846280000055",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2136036005,
+   "lat": 45.1882409,
+   "lon": 5.7172073,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "58",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Berriat",
+    "charge:conditional": "3.80 EUR @ 7.00 kg ; 4.20 EUR @ 9 kg ; 7.20 EUR @ 14 kg ; 10.00 EUR @ 20 kg",
+    "charge:drying": "2 EUR",
+    "check_date": "2026-01-24",
+    "name": "Laverie Berriat",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+33 6 11 95 30 30; +33 4 76 96 28 03",
+    "ref:FR:SIRET": "79469564300039",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "website": "http://www.laverie-grenoble.fr/laverie-berriat",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2146484354,
+   "lat": 45.1886648,
+   "lon": 5.7102138,
+   "tags": {
+    "check_date": "2026-09-14",
+    "craft": "dressmaker",
+    "name": "BMT Atelier De Couture",
+    "religion": "christian"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2147541320,
+   "lat": 45.1817088,
+   "lon": 5.7445779,
+   "tags": {
+    "contact:housenumber": "56",
+    "contact:street": "Avenue Jeanne d'Arc",
+    "name": "Laverie automatique Jeanne d'Arc",
+    "opening_hours": "Mo-Su 06:30-21:30",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2147541324,
+   "lat": 45.181871,
+   "lon": 5.7451913,
+   "tags": {
+    "craft": "electronics_repair",
+    "name": "Planet Phone",
+    "ref:FR:SIRET": "90331146200027",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2013"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2177128647,
+   "lat": 45.1870871,
+   "lon": 5.7125577,
+   "tags": {
+    "check_date": "2025-02-12",
+    "check_date:opening_hours": "2024-08-11",
+    "contact:city": "Grenoble",
+    "contact:housenumber": "65",
+    "contact:postcode": "38000",
+    "contact:street": "Place Saint-Bruno",
+    "name": "Laverie Saint-Bruno",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+33 4 76 96 28 03",
+    "ref:FR:SIRET": "33136468700037",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "website": "http://www.laverie-grenoble.fr/laverie-st-bruno",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2203224926,
+   "lat": 45.1886975,
+   "lon": 5.7065045,
+   "tags": {
+    "check_date": "2024-11-06",
+    "craft": "dressmaker",
+    "name": "Yasmine Negafa",
+    "opening_hours": "Tu-Sa 14:30-19:30",
+    "shop": "tailor",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2013",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2327666735,
+   "lat": 45.1800764,
+   "lon": 5.7156525,
+   "tags": {
+    "addr:housenumber": "1",
+    "addr:street": "Boulevard Joseph Vallier",
+    "check_date": "2025-02-10",
+    "laundry_service": "no",
+    "name": "Laverie des boulevards",
+    "opening_hours": "Mo-Su,PH 07:00-21:00",
+    "ref:FR:SIRET": "92748691000015",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2329961776,
+   "lat": 45.0730326,
+   "lon": 5.553601,
+   "tags": {
+    "laundry_service": "no",
+    "name": "Laverie automatique",
+    "ref:FR:SIRET": "75278916400015",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2329961778,
+   "lat": 45.0730838,
+   "lon": 5.5536722,
+   "tags": {
+    "check_date": "2025-11-08",
+    "keys": "yes",
+    "name": "Cordonnerie clés minute",
+    "opening_hours": "Tu-We,Fr 07:30-12:00,14:00-19:00; Th,Sa 07:30-12:00",
+    "ref:FR:SIRET": "48128049300026",
+    "shoe_repair": "yes",
+    "shop": "shoe_repair"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2351087964,
+   "lat": 45.1925952,
+   "lon": 5.7244266,
+   "tags": {
+    "check_date": "2026-07-08",
+    "check_date:opening_hours": "2026-06-03",
+    "name": "Signé Edith Création",
+    "opening_hours": "Mo 09:30-16:00; Tu-Sa 09:30-17:30",
+    "shop": "tailor",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2351087968,
+   "lat": 45.1925474,
+   "lon": 5.724098,
+   "tags": {
+    "check_date": "2026-07-08",
+    "check_date:opening_hours": "2026-06-03",
+    "contact:email": "contact@microtech-reparation.com",
+    "contact:phone": "+33 9 62 50 97 14",
+    "contact:website": "https://microtech-reparation.com/",
+    "craft": "electronics_repair",
+    "electronics_repair": "yes",
+    "name": "Microtech",
+    "opening_hours:signed": "no",
+    "repair": "computer;mobile_phone;tablet;game_console",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2360290277,
+   "lat": 45.1919482,
+   "lon": 5.7219843,
+   "tags": {
+    "contact:website": "https://www.cymbelinegrenoble.com/",
+    "name": "Cymbeline",
+    "ref:FR:SIRET": "43196139000033",
+    "shop": "tailor",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2373745857,
+   "lat": 45.1885766,
+   "lon": 5.7224647,
+   "tags": {
+    "check_date": "2025-06-25",
+    "contact:website": "https://zaga-couture.shop/atelier-de-couture-a-grenoble",
+    "craft": "dressmaker",
+    "name": "Zaga Couture",
+    "opening_hours": "Tu-Sa 09:00-19:00",
+    "ref:FR:SIRET": "48304572000032",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2373745862,
+   "lat": 45.1885001,
+   "lon": 5.7223875,
+   "tags": {
+    "check_date": "2025-06-25",
+    "name": "Rapid Service",
+    "opening_hours": "Mo-Fr 09:00-18:00; Sa 10:00-18:00",
+    "ref:FR:SIRET": "83052001100024",
+    "shop": "shoe_repair",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2417663097,
+   "lat": 45.1896213,
+   "lon": 5.7263625,
+   "tags": {
+    "check_date": "2026-07-23",
+    "craft": "shoemaker",
+    "name": "Grenette Express",
+    "opening_hours": "Tu-Sa 09:00-12:30,13:30-18:20",
+    "ref:FR:SIRET": "32974484100019",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2495586394,
+   "lat": 45.1856142,
+   "lon": 5.7055636,
+   "tags": {
+    "check_date": "2025-02-10",
+    "contact:housenumber": "10",
+    "contact:street": "Rue Ampère",
+    "name": "Lux Laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "phone": "+33 6 77 54 22 77",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2518932642,
+   "lat": 45.1807828,
+   "lon": 5.7132601,
+   "tags": {
+    "addr:postcode": "38000",
+    "check_date": "2025-03-05",
+    "name": "Laverie Irvoy",
+    "opening_hours": "Mo-Fr 08:30-12:00, 13:30-18:00",
+    "phone": "+33 6 11 95 30 30",
+    "ref:FR:SIRET": "79469564300047",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "http://www.laverie-grenoble.fr/laverie-irvoy",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2614657143,
+   "lat": 45.1857411,
+   "lon": 5.7187284,
+   "tags": {
+    "addr:housenumber": "33",
+    "addr:street": "Rue Condorcet",
+    "check_date": "2026-05-07",
+    "name": "Dominique Services",
+    "opening_hours": "Tu-Fr 09:00-12:15,14:00-18:00",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+33476879941",
+    "shop": "locksmith",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2675731100,
+   "lat": 45.2033383,
+   "lon": 5.7360409,
+   "tags": {
+    "addr:city": "La Tronche",
+    "addr:housenumber": "102",
+    "addr:postcode": "38700",
+    "addr:street": "Grande Rue",
+    "laundry_service": "no",
+    "man_made": "surveillance",
+    "name": "Liberté",
+    "opening_hours": "Mo-Su 06:30-21:00",
+    "payment:coins": "yes",
+    "payment:debit_cards": "no",
+    "payment:notes": "yes",
+    "phone": "+33 6 84 43 50 71",
+    "ref:FR:SIRET": "84846280000063",
+    "self_service": "yes",
+    "shop": "laundry",
+    "vending": "food",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2685658735,
+   "lat": 45.2022115,
+   "lon": 5.7534672,
+   "tags": {
+    "addr:city": "La Tronche",
+    "addr:housenumber": "6",
+    "addr:postcode": "38700",
+    "addr:street": "Rue Jean de la Fontaine",
+    "name": "Tout Clean",
+    "opening_hours": "Tu-Fr 08:00-12:00,14:00-19:00; Sa 08:00-12:00,14:00-17:00",
+    "shop": "dry_cleaning",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2744258033,
+   "lat": 45.1873442,
+   "lon": 5.7276786,
+   "tags": {
+    "check_date": "2026-09-16",
+    "shop": "laundry",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2744258068,
+   "lat": 45.1854107,
+   "lon": 5.7231516,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "49",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Lesdiguières",
+    "check_date": "2023-04-28",
+    "name": "Multiservices",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2756579007,
+   "lat": 45.1877317,
+   "lon": 5.7301179,
+   "tags": {
+    "check_date": "2023-05-15",
+    "name": "Edelweiss",
+    "opening_hours": "Tu-Fr 08:00-13:00,14:00-18:30; Sa 08:00-12:30, 14:00-17:30",
+    "ref:FR:SIRET": "41878202501730",
+    "shop": "dry_cleaning",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2782756990,
+   "lat": 45.1817677,
+   "lon": 5.7229497,
+   "tags": {
+    "check_date": "2025-06-01",
+    "name": "AVS",
+    "opening_hours": "Mo-Fr 09:00-12:00,14:00-17:30",
+    "shop": "locksmith",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2782811000,
+   "lat": 45.1809439,
+   "lon": 5.7246671,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "17",
+    "addr:postcode": "38100",
+    "addr:street": "Boulevard Maréchal Foch",
+    "check_date": "2026-09-24",
+    "description": "Cordonnerie, clefs, tampons, gravures",
+    "internet_access": "no",
+    "level": "0",
+    "name": "Le Cordonnier",
+    "opening_hours": "Tu-Fr 08:30-12:00,14:30-19:00; Sa 09:30-12:30; Jul-Aug Tu-Fr 09:00-12:00,15:00-18:30; Jul-Aug Sa 09:30-12:00",
+    "payment:cards": "no",
+    "payment:cash": "yes",
+    "payment:credit_cards": "no",
+    "payment:debit_cards": "no",
+    "ref:FR:SIRET": "39439393800037",
+    "shop": "locksmith",
+    "source": "survey",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2795842999,
+   "lat": 45.181709,
+   "lon": 5.7294598,
+   "tags": {
+    "check_date": "2026-02-11",
+    "craft": "shoemaker",
+    "name": "Aldo",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2813028187,
+   "lat": 45.188027,
+   "lon": 5.7211589,
+   "tags": {
+    "check_date": "2026-01-22",
+    "craft": "key_cutter",
+    "name": "Cordonnerie Bonaventure",
+    "opening_hours": "Tu-Sa 09:00-12:30, 13:30-18:00",
+    "payment:credit_cards": "yes",
+    "ref:FR:SIRET": "40343190100038",
+    "shop": "shoe_repair",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2813031213,
+   "lat": 45.1880203,
+   "lon": 5.7177126,
+   "tags": {
+    "addr:housenumber": "43",
+    "addr:street": "Cours Berriat",
+    "contact:instagram": "https://www.instagram.com/dresses_enchantees/",
+    "contact:tiktok": "https://www.tiktok.com/@dresses3800",
+    "email": "Snap@dresses.dubai",
+    "name": "Dresse Enchantée",
+    "shop": "tailor",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2813031232,
+   "lat": 45.1879745,
+   "lon": 5.7182758,
+   "tags": {
+    "check_date": "2026-04-21",
+    "name": "Quick Pressing",
+    "opening_hours": "Tu-Fr 09:00-19:00; Sa 09:30-19:00",
+    "ref:FR:SIRET": "52485837000017",
+    "shop": "dry_cleaning",
+    "source": "survey",
+    "survey:date": "2024-08-23",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2855216184,
+   "lat": 45.1869,
+   "lon": 5.7183397,
+   "tags": {
+    "check_date": "2026-04-20",
+    "check_date:opening_hours": "2026-04-20",
+    "name": "Eden Pressing",
+    "opening_hours": "Tu-Th 09:00-12:30, 14:00-18:30; Fr-Sa 09:00-12:30, 14:00-18:00",
+    "phone": "+33476875501",
+    "ref:FR:SIRET": "92012591100015",
+    "shop": "dry_cleaning",
+    "source": "survey",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2941733563,
+   "lat": 45.186466,
+   "lon": 5.7236647,
+   "tags": {
+    "check_date": "2026-07-07",
+    "check_date:opening_hours": "2025-06-25",
+    "craft": "dressmaker",
+    "name": "Maryse Couture",
+    "opening_hours": "Tu,We,Fr 10:00-12:30,14:00-18:30; Th 10:00-12:30; Sa 10:00-12:30,14:00-17:00",
+    "ref:FR:SIRET": "44916662800023",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2945785501,
+   "lat": 45.1868416,
+   "lon": 5.7212578,
+   "tags": {
+    "check_date": "2026-07-07",
+    "contact:website": "https://www.art-du-bijou.com/",
+    "craft": "jeweller",
+    "internet_access": "no",
+    "name": "L'Art du Bijou",
+    "ref:FR:SIRET": "51447237200010",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2976136324,
+   "lat": 45.2393957,
+   "lon": 5.6653135,
+   "tags": {
+    "addr:city": "Saint-Égrève",
+    "addr:housenumber": "1",
+    "addr:postcode": "38120",
+    "addr:street": "Rue des Abattoirs",
+    "check_date:opening_hours": "2026-04-11",
+    "name": "Lux Laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2976287899,
+   "lat": 45.166838,
+   "lon": 5.7282143,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "8bis",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue Marie Reynoard",
+    "check_date": "2022-11-03",
+    "laundry_service": "no",
+    "name": "Auclair laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "phone": "+33980801255",
+    "ref:FR:SIRET": "50959163200054",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2976319768,
+   "lat": 45.1794757,
+   "lon": 5.6952657,
+   "tags": {
+    "addr:city": "Seyssinet-Pariset",
+    "addr:housenumber": "18",
+    "addr:postcode": "38170",
+    "addr:street": "Rue Lamartine",
+    "check_date": "2025-05-28",
+    "name": "La Laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "phone": "+33 6 77 54 22 77",
+    "ref:FR:SIRET": "50959163200039",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2976409108,
+   "lat": 45.1927165,
+   "lon": 5.7711556,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "411",
+    "addr:postcode": "38400",
+    "addr:street": "Avenue de la Bibliothèque",
+    "check_date": "2026-02-27",
+    "check_date:opening_hours": "2026-02-27",
+    "contact:mobile": "+33 6 11 95 30 30",
+    "laundry_service": "no",
+    "name": "Laverie du Campus",
+    "opening_hours": "Mo-Su 07:00-20:00",
+    "payment:coins": "yes",
+    "payment:debit_cards": "no",
+    "payment:notes": "yes",
+    "phone": "+33 4 76 96 28 03",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "website": "https://www.laverie-grenoble.fr/laverie-thiers",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2986297635,
+   "lat": 45.1897811,
+   "lon": 5.7603411,
+   "tags": {
+    "addr:housenumber": "361",
+    "addr:street": "Allée Berlioz",
+    "email": "berlioz-faure@crous-grenoble.fr",
+    "name": "Laverie Berlioz",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "WashOnline",
+    "payment:cash": "no",
+    "payment:credit_cards": "no",
+    "payment:debit_cards": "no",
+    "phone": "+33 4 76 54 90 00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "https://www.crous-grenoble.fr/logement/residence-berlioz/",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2993609863,
+   "lat": 45.1886863,
+   "lon": 5.7737521,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "1220",
+    "addr:postcode": "38400",
+    "addr:street": "Rue des Résidences",
+    "camera:type": "dome",
+    "email": "residence.condillac@crous-grenoble.fr",
+    "man_made": "surveillance",
+    "name": "Laverie Condillac",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "payment:coins": "no",
+    "payment:credit_cards": "no",
+    "payment:notes": "no",
+    "phone": "+33 4 76 82 76 31",
+    "self_service": "yes",
+    "shop": "laundry",
+    "surveillance": "indoor",
+    "website": "https://www.crous-grenoble.fr/logement/residence-condillac-b/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2993815794,
+   "lat": 45.1981216,
+   "lon": 5.7377042,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "16bis",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue Maréchal Randon",
+    "check_date:opening_hours": "2023-07-26",
+    "man_made": "surveillance",
+    "name": "Laverie de l'Île Verte",
+    "opening_hours": "Mo-Su 07:30-21:30",
+    "operator": "Wash'n Dry",
+    "payment:coins": "yes",
+    "payment:debit_cards": "no",
+    "payment:notes": "yes",
+    "phone": "+33 6 61 46 00 58",
+    "ref:FR:SIRET": "79914495100016",
+    "self_service": "yes",
+    "shop": "laundry",
+    "surveillance": "indoor",
+    "website": "https://www.washndry-concept.com/laverie/laverie-lile-verte-grenoble/",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2993871214,
+   "lat": 45.1236559,
+   "lon": 5.6997935,
+   "tags": {
+    "addr:city": "Le Pont-de-Claix",
+    "addr:housenumber": "22",
+    "addr:postcode": "38800",
+    "addr:street": "Rue de Stalingrad",
+    "name": "Nickel",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "phone": "+33 7 60 75 20 02",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3034016367,
+   "lat": 45.1886063,
+   "lon": 5.7338614,
+   "tags": {
+    "addr:floor": "0",
+    "check_date": "2026-06-13",
+    "internet_access": "no",
+    "level": "0",
+    "name": "City laverie",
+    "opening_hours": "06:30-21:30",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "ref:FR:SIRET": "80301328300053",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3043534841,
+   "lat": 45.1889361,
+   "lon": 5.7054192,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "166",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Berriat",
+    "check_date:opening_hours": "2025-06-20",
+    "craft": "dressmaker",
+    "name": "La corbeille de Sophie",
+    "opening_hours": "Mo-Fr 08:00-12:30, Mo,We,Fr 16:00-18:00",
+    "ref:FR:SIRET": "42055684700069",
+    "shop": "tailor",
+    "source": "survey;streetlevel imagery",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3048042867,
+   "lat": 45.1908286,
+   "lon": 5.730026,
+   "tags": {
+    "check_date": "2025-05-31",
+    "name": "Caméléon",
+    "shop": "tailor",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3048042874,
+   "lat": 45.1908266,
+   "lon": 5.7301207,
+   "tags": {
+    "check_date": "2023-05-15",
+    "name": "Cordonnier Antoine de Guibert",
+    "opening_hours": "Tu-Sa 09:00-12:30,14:00-18:30",
+    "ref:FR:SIRET": "90965162200013",
+    "shop": "shoe_repair",
+    "source": "survey",
+    "website": "https://cordonnerie-grenoble-deguibert.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3048042923,
+   "lat": 45.1919037,
+   "lon": 5.730483,
+   "tags": {
+    "name": "lave ton linge",
+    "opening_hours": "Mo-Su 06:00-22:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3069782542,
+   "lat": 45.1849161,
+   "lon": 5.7219131,
+   "tags": {
+    "check_date": "2025-11-02",
+    "craft": "tailor",
+    "name": "Thuy Phuong",
+    "opening_hours": "Tu-Fr 09:00-12:30,13:30-18:30; Sa 09:00-13:00",
+    "phone": "+33 4 76 46 49 93",
+    "ref:FR:SIRET": "51752523400012",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3101784111,
+   "lat": 45.185191,
+   "lon": 5.7199703,
+   "tags": {
+    "check_date": "2026-07-07",
+    "contact:website": "https://zaga-couture.shop/atelier-de-couture-a-grenoble",
+    "craft": "tailor",
+    "name": "Tailleur",
+    "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-12:00,14:00-17:00",
+    "phone": "+33605784086",
+    "ref:FR:SIRET": "44472985900025",
+    "source": "survey",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3101784114,
+   "lat": 45.1846156,
+   "lon": 5.7195929,
+   "tags": {
+    "check_date": "2026-07-07",
+    "check_date:opening_hours": "2024-10-26",
+    "contact:email": "assogcouture@gmail.com",
+    "contact:phone": "+33 6 17 19 24 80",
+    "contact:website": "https://assog-couture.com/",
+    "craft": "dressmaker",
+    "name": "Assog'Couture",
+    "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-18:00",
+    "ref:FR:SIRET": "83506236500019",
+    "source": "survey",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3275488101,
+   "lat": 45.1231614,
+   "lon": 5.8756673,
+   "tags": {
+    "name": "Laverie",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3294710567,
+   "lat": 45.1527163,
+   "lon": 5.7146925,
+   "tags": {
+    "addr:city": "Échirolles",
+    "addr:housenumber": "12",
+    "addr:postcode": "38130",
+    "addr:street": "Rue Fernand Pelloutier",
+    "check_date": "2026-03-12",
+    "contact:email": "sav@pro-electro.com",
+    "contact:fax": "+33 4 76 40 14 22",
+    "contact:website": "http://www.pro-electro.com/",
+    "craft": "electronics_repair",
+    "electronics_repair": "appliance",
+    "name": "Pro Électro Pièces",
+    "opening_hours": "Mo-Fr 08:30-12:00,14:00-19:00; Sa 08:30-12:00",
+    "phone": "+33 4 76 09 67 83",
+    "shop": "electronics"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3390680556,
+   "lat": 45.1874251,
+   "lon": 5.7191741,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "31",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Jean Jaurès",
+    "check_date": "2024-11-12",
+    "craft": "shoemaker",
+    "description": "Réparation chaussures Reproduction clés",
+    "name": "L'atelier du cordonnier 38",
+    "old_name": "Lilia shop",
+    "opening_hours": "Mo-Fr 09:00-18:30",
+    "phone": "+33 4 76 58 05 63",
+    "ref:FR:SIRET": "90148217400017",
+    "source": "survey;local knowledge"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3773961116,
+   "lat": 45.2351915,
+   "lon": 5.6766743,
+   "tags": {
+    "addr:housenumber": "38 ter",
+    "addr:street": "Avenue du Général de Gaulle",
+    "name": "Couture Compagnie & Création",
+    "ref:FR:SIRET": "97992900700016",
+    "shop": "tailor",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3808064432,
+   "lat": 45.2347416,
+   "lon": 5.6774751,
+   "tags": {
+    "addr:housenumber": "20",
+    "addr:street": "Rue de Saint-Robert",
+    "name": "La Maison de Margot",
+    "opening_hours": "Tu-Fr 08:00-12:00,15:00-18:00; Sa 08:00-12:00",
+    "operator": "DGC PRESSING",
+    "phone": "+33 4 76 75 78 90",
+    "ref:FR:SIRET": "40429295500014",
+    "shop": "dry_cleaning",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3844346132,
+   "lat": 45.1703796,
+   "lon": 5.7394397,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38100",
+    "addr:street": "Avenue Malherbe",
+    "craft": "dressmaker",
+    "email": "katioucha.boutique@gmail.com",
+    "name": "Katioucha Boutique",
+    "opening_hours": "Mo-Fr 09:00-12:00, Mo-Fr 14:30-19:00",
+    "phone": "+33 4 76 24 23 28",
+    "ref:FR:SIRET": "87915178500018",
+    "shop": "sewing",
+    "website": "https://katioucha-boutique.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3844346137,
+   "lat": 45.1701975,
+   "lon": 5.7399104,
+   "tags": {
+    "check_date:opening_hours": "2022-02-17",
+    "name:signed": "no",
+    "opening_hours": "07:00-21:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3858519938,
+   "lat": 45.1811573,
+   "lon": 5.734551,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "10 bis",
+    "addr:postcode": "38100",
+    "addr:street": "Avenue Jean Perrot",
+    "check_date": "2025-09-27",
+    "craft": "dressmaker",
+    "name": "Selena Haute Couture"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4361996700,
+   "lat": 45.1815082,
+   "lon": 5.7270088,
+   "tags": {
+    "check_date": "2026-05-10",
+    "check_date:opening_hours": "2026-05-10",
+    "name": "L'écoLaverie",
+    "opening_hours": "Mo-Su 08:00-20:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4412974797,
+   "lat": 45.193389,
+   "lon": 5.7311139,
+   "tags": {
+    "name": "Laverie notre dame",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "ref:FR:SIRET": "87834535400020",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4523593891,
+   "lat": 45.1795488,
+   "lon": 5.7055682,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue Rhin et Danube",
+    "check_date": "2025-03-16",
+    "craft": "dressmaker",
+    "description": "Retouches de Vêtements - Particuliers - Professionnels",
+    "name": "Point Retouche",
+    "opening_hours": "Mo-Fr 09:00-12:00,12:30-18:00; Sa 09:00-12:30",
+    "phone": "+33 9 52 21 50 15",
+    "shop": "fabric",
+    "website": "https://www.servet.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4600084689,
+   "lat": 45.1891168,
+   "lon": 5.7291555,
+   "tags": {
+    "check_date": "2026-07-23",
+    "craft": "jeweller",
+    "name": "Thomas H",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4601497907,
+   "lat": 45.1814588,
+   "lon": 5.7160969,
+   "tags": {
+    "check_date": "2024-08-12",
+    "contact:website": "https://mariannedewindt.fr/",
+    "craft": "tailor",
+    "name": "Marianne De Windt",
+    "ref:FR:SIRET": "52201216000019"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5077719810,
+   "lat": 45.1845067,
+   "lon": 5.7154687,
+   "tags": {
+    "check_date": "2026-08-22",
+    "contact:phone": "+33 4 76 84 64 30",
+    "craft": "dressmaker",
+    "name": "Retouches Express",
+    "opening_hours": "Mo,Tu,Th,Fr 09:30-12:00, 14:00-18:00, Sa 09:30-12:00",
+    "ref:FR:SIRET": "44472994100021",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5266224454,
+   "lat": 45.1810367,
+   "lon": 5.7224956,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "36",
+    "addr:postcode": "38000",
+    "addr:street": "Boulevard Maréchal Foch",
+    "check_date": "2024-12-17",
+    "check_date:opening_hours": "2024-12-17",
+    "name": "La Laverie",
+    "opening_hours": "Mo-Su 06:00-21:00",
+    "phone": "+33 6 77 54 22 77",
+    "ref:FR:SIRET": "50959163200021",
+    "self_service": "yes",
+    "shop": "laundry",
+    "source": "v2 ; cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5418158183,
+   "lat": 45.1832616,
+   "lon": 5.7318451,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue Général Champon",
+    "check_date": "2025-05-12",
+    "craft": "electronics_repair",
+    "name": "PC Repare",
+    "phone": "+33 4 76 85 45 50",
+    "website": "https://pcreparegrenoble.wordpress.com/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5745089639,
+   "lat": 45.1298664,
+   "lon": 5.5807941,
+   "tags": {
+    "name": "Laverie automatique",
+    "ref:FR:SIRET": "52115732100014",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5840563290,
+   "lat": 45.1872765,
+   "lon": 5.7066601,
+   "tags": {
+    "check_date:opening_hours": "2024-10-24",
+    "contact:website": "https://www.guillot-entreprise.fr/",
+    "name": "Guillot",
+    "opening_hours:signed": "no",
+    "ref:FR:SIRET": "06650167700018",
+    "shop": "locksmith",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5949111890,
+   "lat": 45.2020658,
+   "lon": 5.705247,
+   "tags": {
+    "check_date": "2022-11-12",
+    "name": "Lux laverie",
+    "ref:FR:SIRET": "50959163200112",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5992660297,
+   "lat": 45.1857695,
+   "lon": 5.7475712,
+   "tags": {
+    "check_date": "2026-05-08",
+    "check_date:opening_hours": "2026-05-08",
+    "name": "Illico pressing",
+    "opening_hours": "Tu-Fr 09:00-12:00,14:00-19:00; Sa 09:00-12:00",
+    "shop": "dry_cleaning",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6052909085,
+   "lat": 45.1807511,
+   "lon": 5.7132199,
+   "tags": {
+    "check_date": "2026-10-04",
+    "check_date:opening_hours": "2026-10-04",
+    "name": "Pressing Irvoy",
+    "opening_hours": "Mo-Fr 08:30-12:00,13:30-18:00; Sa 09:00-12:00",
+    "phone": "+33 9 54 43 81 58",
+    "ref:FR:SIRET": "79469564300047",
+    "shop": "dry_cleaning",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6203781848,
+   "lat": 45.2348907,
+   "lon": 5.6722619,
+   "tags": {
+    "addr:city": "Saint-Egrève",
+    "addr:housenumber": "38",
+    "addr:postcode": "38120",
+    "addr:street": "Rue de la Gare",
+    "alt_name": "Repair Café",
+    "amenity": "workshop",
+    "bicycle:repair": "yes",
+    "computer:repair": "yes",
+    "contact:email": "contact@repaircafesaint-egreve.fr",
+    "contact:phone": "+33 7 81 71 44 94",
+    "contact:website": "http://www.repaircafesaint-egreve.fr",
+    "craft": "electronics_repair",
+    "description": "Dans une ambiance conviviale, vous pourrez venir avec vos petits appareils en panne ou vos objets cassés et vous repartirez avec, réparés ou non.",
+    "fabrik:repair": "yes",
+    "furniture:repair": "yes",
+    "image": "http://www.ici-grenoble.org/user/mes-fichiers-a-moi/structure/86/2013-12-03-Repair-Cafe-3_1.jpg",
+    "name": "Repair Café de Saint-Égrève",
+    "note": "Voir https://wiki.openstreetmap.org/wiki/WikiProject_CircularEconomy pour des conseils de cartographie.",
+    "office": "association",
+    "opening_hours": "Fr 14:00-18:00",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6203862213,
+   "lat": 45.2567863,
+   "lon": 5.6651929,
+   "tags": {
+    "addr:city": "Le Fontanil",
+    "addr:housename": "4",
+    "addr:postcode": "38120",
+    "addr:street": "Rue Fétola",
+    "amenity": "workshop",
+    "bicycle:repair": "yes",
+    "computer:repair": "yes",
+    "contact:email": "mjc.lefontanil@yahoo.fr",
+    "contact:housename": "MJC Fontanil",
+    "contact:phone": "+33 6 78 26 33 42",
+    "contact:website": "https://www.mjc-fontanil.fr/page/570333-repair-cafe",
+    "craft": "electronics_repair",
+    "description": "Petit électro-ménager (grille-pain, cafetière, mixer, aspirateur…) Petites interventions vélos : Freins (apporter câbles de freins), crevaison (apporter rustines), réglage dérailleur.",
+    "image": "https://services.jamesnook.com/services/storage?id=615569&type=picture&secret=7lnOXawZ8LSKCJCbwXroYImCsp8VtszYLroSzKXv&timestamp=1558447168",
+    "mobile_phone:repair": "yes",
+    "name": "Repair Café du Fontanil",
+    "opening_hours": "Mo,We 15:00-19:00",
+    "opening_hours:description": "\"En général le premier lundi de chaque mois, hors vacances scolaires, dans les locaux de la MJC du Fontanil de 16:00-19:00 et 2 samedis de 8:30-12:00.\"",
+    "repair": "assisted_self_service",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6203898992,
+   "lat": 45.2106624,
+   "lon": 5.7852338,
+   "tags": {
+    "addr:city": "Meylan",
+    "addr:housename": "LCR du Granier",
+    "addr:postcode": "38240",
+    "addr:street": "Rue des Tisserands",
+    "alt_name": "Local Commun Résidentiel du Granier",
+    "amenity": "workshop",
+    "check_date": "2026-10-17",
+    "computer:repair": "yes",
+    "contact:email": "repaircafemeylan@gmail.com",
+    "contact:website": "http://repaircafemeylan.fr",
+    "craft": "electronics_repair",
+    "description": "Remettre en état tout objet de taille raisonnable : audio-vidéo, électro-ménager, petit outillage électrique, matériel électrique de jardinage, informatique, mobilier, jouets, etc.",
+    "fabrik:repair": "yes",
+    "furniture:repair": "yes",
+    "image": "http://ici-grenoble.org/user/mes-fichiers-a-moi/structure/1049/repaircafe_Meylan3.jpg",
+    "mobile_phone:repair": "yes",
+    "name": "Repair Café de Meylan",
+    "note": "Voir https://wiki.openstreetmap.org/wiki/WikiProject_CircularEconomy pour des conseils de cartographie.",
+    "opening_hours": "Tu \"Un mardi sur deux, sauf vacances scolaires d'été.\"; Jul-Aug off",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6203930620,
+   "lat": 45.2274973,
+   "lon": 5.8028707,
+   "tags": {
+    "addr:city": "Monbonnot-Saint-Martin",
+    "addr:housename": "Maison pour Tous",
+    "addr:housenumber": "292",
+    "addr:postcode": "38330",
+    "addr:street": "Chemin de Savardin",
+    "alt_name": "Repair Café",
+    "amenity": "workshop",
+    "computer:repair": "yes",
+    "contact:email": "contact@reparerensemble.fr",
+    "contact:phone": "+33 6 52 62 53 54",
+    "contact:website": "https://www.repaircafemontbonnot.fr/",
+    "craft": "electronics_repair",
+    "furniture:repair": "yes",
+    "image": "https://www.repaircafemontbonnot.fr/wp-content/uploads/2015/04/2015-04-04-1er-samedi-01_1.jpg",
+    "mobile_phone:repair": "yes",
+    "name": "Repair Café de Montbonnot-Saint-Martin",
+    "opening_hours": "Tu 14:00-18:45 \"2 mardi par mois\"",
+    "repair": "assisted_self_service",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6204162721,
+   "lat": 45.180841,
+   "lon": 5.7706091,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housename": "Espace Elsa Triolet",
+    "addr:housenumber": "7",
+    "addr:postcode": "38400",
+    "addr:street": "Rue Elsa Triolet",
+    "alt_name": "Repair Café",
+    "amenity": "workshop",
+    "bicycle:repair": "yes",
+    "computer:repair": "yes",
+    "contact:email": "uncafeetcarepart@hotmail.fr",
+    "contact:website": "https://fr-fr.facebook.com/rcsmh38400/",
+    "craft": "electronics_repair",
+    "description": "Accepté (taille raisonnable) : audio-video, électro-ménager, petit outillage électrique, petite intervention sur vélo, matériel électrique de jardinage, informatique, vêtements, tenture, coussins, mobilier, jouets...  Refusé : téléphones portables.",
+    "fabrik:repair": "yes",
+    "furniture:repair": "yes",
+    "image": "http://ici-grenoble.org/user/mes-fichiers-a-moi/structure/514/2013-12-03-Repair-Cafe-3_1.jpg",
+    "name": "Repair Café de Saint-Martin-d'Hères",
+    "note": "Voir https://wiki.openstreetmap.org/wiki/WikiProject_CircularEconomy pour des conseils de cartographie.",
+    "opening_hours": "Mo[1] 14:00-17:30; We[2] 14:00-17:30",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6204167132,
+   "lat": 45.179146,
+   "lon": 5.6971957,
+   "tags": {
+    "addr:city": "Seyssinet-Pariset",
+    "addr:housename": "L'Arche",
+    "addr:housenumber": "79",
+    "addr:postcode": "38170",
+    "addr:street": "Avenue de la République",
+    "alt_name": "Repair Café",
+    "amenity": "workshop",
+    "check_date": "2024-07-27",
+    "computer:repair": "yes",
+    "contact:email": "repaircafe38170@orange.fr",
+    "contact:phone": "+33 4 38 12 00 50",
+    "contact:website": "https://seyssinetrepaircafe.wordpress.com/",
+    "craft": "electronics_repair",
+    "description": "Remettre en état tout objet de taille raisonnable : matériel audio-vidéo, petit électro-ménager, outillage électrique, matériel informatique, petites réparations sur vêtements et textiles, sur mobilier, jouets, etc.",
+    "fabrik:repair": "yes",
+    "furniture:repair": "yes",
+    "image": "http://www.ici-grenoble.org/user/mes-fichiers-a-moi/structure/709/2013-12-13-Repair-Cafe-1.jpg",
+    "mobile_phone:repair": "yes",
+    "name": "Repair Café de Seyssinet",
+    "note": "Voir https://wiki.openstreetmap.org/wiki/WikiProject_CircularEconomy pour des conseils de cartographie.",
+    "opening_hours": "We[1,3] 14:30-18:30; Sa 09:00-12:00",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6204181651,
+   "lat": 45.1962852,
+   "lon": 5.738157,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housename": "Salle polyvalente Île Verte",
+    "addr:housenumber": "37 bis",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Blanche Monier",
+    "alt_name": "Repair Café",
+    "amenity": "workshop",
+    "brand": "Repair Café",
+    "camera:repair": "yes",
+    "computer:repair": "yes",
+    "contact:email": "contact@repaircafegrenoble.fr",
+    "contact:phone": "+33 4 38 12 00 50",
+    "contact:website": "https://www.repaircafegrenoblecentre.fr",
+    "craft": "electronics_repair",
+    "description": "Un vendredi sur deux, des bénévoles expérimentés en électricité, électronique, mécanique, informatique, etc. aident à remettre en état ce qui réparable.",
+    "furniture:repair": "yes",
+    "image": "https://www.repaircafegrenoblecentre.fr/wp-content/uploads/2018/12/Salle-polyvalente-300x169.jpg",
+    "name": "Repair Café de Grenoble Centre",
+    "note": "Voir https://wiki.openstreetmap.org/wiki/WikiProject_CircularEconomy pour conseils de cartographie. ",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6470853871,
+   "lat": 45.1895618,
+   "lon": 5.7053067,
+   "tags": {
+    "craft": "dressmaker",
+    "name": "Audace Couture & Amani Makeup Artist"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6579615495,
+   "lat": 45.2724355,
+   "lon": 5.8911636,
+   "tags": {
+    "addr:city": "Crolles",
+    "addr:housenumber": "40",
+    "addr:postcode": "38920",
+    "addr:street": "Rue des Grives",
+    "name": "Natura Pressing",
+    "opening_hours": "Mo-Fr 15:00-19:00, Tu-Fr 09:00-19:00; Sa 09:00-17:00",
+    "phone": "+33 4 76 08 83 06",
+    "ref:FR:SIRET": "52162940200012",
+    "shop": "dry_cleaning",
+    "website": "https://www.natura-pressing.fr"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6615223235,
+   "lat": 45.1813912,
+   "lon": 5.762711,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "2",
+    "addr:postcode": "38400",
+    "addr:street": "Rue Alfred Gueymard",
+    "check_date:opening_hours": "2023-06-26",
+    "craft": "electronics_repair",
+    "name": "Télé Vidéo Croizat E. Cigrarettes",
+    "opening_hours:signed": "no",
+    "phone": "+33 4 76 44 73 98"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6677751167,
+   "lat": 45.2174986,
+   "lon": 5.6934681,
+   "tags": {
+    "check_date:opening_hours": "2026-01-03",
+    "name": "Une Autre Laverie",
+    "opening_hours": "06:00-21:00",
+    "ref:FR:SIRET": "50959163200138",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "https://auclair-laverie.com/saint-martin-le-vinoux/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6712273221,
+   "lat": 45.0787035,
+   "lon": 5.7733369,
+   "tags": {
+    "contact:email": "la-coordonnerie-du-chateau@orange.fr",
+    "contact:phone": "+33 4 76 08 04 74",
+    "craft": "shoemaker",
+    "name": "La Coordonnerie du Château",
+    "opening_hours": "Tu-Fr 09:00-12:30,14:30-18:30; Sa 09:00-12:00",
+    "shop": "leather"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6721200789,
+   "lat": 45.1803753,
+   "lon": 5.7266645,
+   "tags": {
+    "brand": "Speed Queen",
+    "brand:wikidata": "Q7575499",
+    "email": "abernard@cpc-entreprises.com",
+    "name": "Speed Queen",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "phone": "+33 4 58 47 47 40",
+    "ref:FR:SIRET": "84846280000022",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6721200790,
+   "lat": 45.1799358,
+   "lon": 5.7262827,
+   "tags": {
+    "check_date": "2026-06-17",
+    "craft": "tailor",
+    "name": "Élégante Retouche",
+    "opening_hours": "Tu-Fr 09:30-11:30,14:30-18:30; Sa 09:30-11:30,14:30-17:00",
+    "phone": "+33476474351",
+    "ref:FR:SIRET": "49297850700019",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6721200792,
+   "lat": 45.1788675,
+   "lon": 5.7259662,
+   "tags": {
+    "check_date": "2026-06-17",
+    "craft": "dressmaker",
+    "name": "Pointe naïve",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6721202488,
+   "lat": 45.1808826,
+   "lon": 5.7269021,
+   "tags": {
+    "check_date": "2026-06-17",
+    "craft": "dressmaker",
+    "name": "Eriss Couture"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7090027985,
+   "lat": 45.1911308,
+   "lon": 5.7195314,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "2",
+    "addr:postcode": "38000",
+    "addr:street": "Chemin Pinal",
+    "amenity": "workshop",
+    "bicycle:repair": "yes",
+    "computer:repair": "yes",
+    "contact:city": "Grenoble",
+    "contact:housename": "Espace Pinal",
+    "contact:housenumber": "2",
+    "contact:phone": "+33 7 66 51 61 36",
+    "contact:postcode": "38000",
+    "contact:street": "chemin Pinal",
+    "contact:website": "http://repaircafegrenoblepinal.fr/",
+    "craft": "electronics_repair",
+    "description": "Accepté (si taille raisonnable) : audio-vidéo, petit électro-ménager (grille-pain, cafetière, mixer, aspirateur...), petit outillage électrique, ordinateur, disque dur, imprimante, vélo, mobilier, jouets, etc. Refusé : smartphones, baladeurs MP3.",
+    "furniture:repair": "yes",
+    "image": "http://www.ici-grenoble.org/user/mes-fichiers-a-moi/structure/9329/repair_gare_3.jpg",
+    "name": "Repair Café de Grenoble Pinal",
+    "opening_hours": "Tu 09:30-12:00,14:00-17:30",
+    "ref:FR:SIRET": "80068076100015",
+    "repair": "assisted_self_service",
+    "source": "Site internet \"ici Grenoble\" (avec son accord)",
+    "transiscope": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7099731588,
+   "lat": 45.1723301,
+   "lon": 5.7140863,
+   "tags": {
+    "check_date": "2025-09-28",
+    "name": "Hello laverie",
+    "opening_hours": "06:30-21:00",
+    "ref:FR:SIRET": "80301328300046",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7121880176,
+   "lat": 45.1560545,
+   "lon": 5.7574342,
+   "tags": {
+    "craft": "electronics_repair",
+    "name": "Assistance Grenoble"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7581311104,
+   "lat": 45.1483681,
+   "lon": 5.7019995,
+   "tags": {
+    "addr:housenumber": "27",
+    "addr:street": "Rue Anatole France",
+    "check_date": "2026-03-12",
+    "name": "Laverie Automatique",
+    "opening_hours": "06:00-21:00",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8050988385,
+   "lat": 45.1672628,
+   "lon": 5.7123867,
+   "tags": {
+    "check_date": "2026-02-20",
+    "name": "Simplifiez-vous laverie",
+    "opening_hours": "Mo-Su 06:30-23:00",
+    "ref:FR:SIRET": "85350750700012",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8242783083,
+   "lat": 45.1666025,
+   "lon": 5.7463317,
+   "tags": {
+    "craft": "shoemaker",
+    "name": "Topy",
+    "survey:date": "2020-12-13"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8843961513,
+   "lat": 45.1859379,
+   "lon": 5.7129554,
+   "tags": {
+    "check_date": "2026-08-22",
+    "contact:housenumber": "28",
+    "contact:phone": "+33 7 68 66 44 95",
+    "contact:street": "Rue Nicolas Chorier",
+    "contact:website": "https://www.daff-multiservices.fr/",
+    "craft": "key_cutter",
+    "name": "Daff Multiservices",
+    "opening_hours": "Tu-Sa 10:00-13:00,14:00-19:00",
+    "ref:FR:SIRET": "98935520100017",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8907540635,
+   "lat": 45.1486438,
+   "lon": 5.7204299,
+   "tags": {
+    "addr:city": "Échirolles",
+    "addr:housenumber": "30",
+    "addr:street": "Rue Normandie Niémen",
+    "check_date": "2026-02-19",
+    "craft": "dressmaker",
+    "name": "Services Couture",
+    "opening_hours": "Tu-Sa 09:00-11:30,14:30-19:00"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9212899280,
+   "lat": 45.1874209,
+   "lon": 5.7192026,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "31",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Jean Jaurès",
+    "check_date": "2024-11-12",
+    "craft": "key_cutter",
+    "name": "L'atelier du cordonnier 38",
+    "note": "Même boutique que l'atelier du cordonnier 38",
+    "opening_hours": "Mo-Fr 09:00-18:30",
+    "phone": "+33 4 76 58 05 63",
+    "ref:FR:SIRET": "90148217400017"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9216128217,
+   "lat": 45.1892793,
+   "lon": 5.7278484,
+   "tags": {
+    "check_date": "2026-07-23",
+    "check_date:opening_hours": "2024-09-15",
+    "contact:facebook": "grenoblelaverie",
+    "contact:housenumber": "13 bis",
+    "contact:street": "Rue de la Poste",
+    "laundry_service": "no",
+    "name": "Eco laverie des dauphins",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "ref:FR:SIRET": "88172653300014",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9380048315,
+   "lat": 45.2178135,
+   "lon": 5.780303,
+   "tags": {
+    "craft": "dressmaker",
+    "name": "Muriel M",
+    "ref:FR:SIRET": "44354274100014"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9383623236,
+   "lat": 45.1952164,
+   "lon": 5.7182805,
+   "tags": {
+    "laundry_service": "no",
+    "name": "Laverie Révolution",
+    "opening_hours": "Mo-Su,PH 00:00-24:00",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9431774447,
+   "lat": 45.2713831,
+   "lon": 5.8931508,
+   "tags": {
+    "name": "Laverie révolution",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 9732926155,
+   "lat": 45.2887603,
+   "lon": 5.6402235,
+   "tags": {
+    "layer": "-1",
+    "opening_hours": "24/7",
+    "operator": "Super U",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10012978921,
+   "lat": 45.1192882,
+   "lon": 5.6922277,
+   "tags": {
+    "opening_hours": "Mo-Fr 09:00-12:00,14:00-19:00; Sa 09:00-12:00",
+    "shop": "dry_cleaning",
+    "survey:date": "2022-09-10",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10054009219,
+   "lat": 45.1886468,
+   "lon": 5.7073159,
+   "tags": {
+    "check_date": "2026-09-28",
+    "check_date:opening_hours": "2026-07-24",
+    "craft": "dressmaker",
+    "name": "Efata Couture",
+    "opening_hours": "Tu-Sa 10:00-13:00,14:00-19:00",
+    "phone": "+33 6 14 99 28 98",
+    "ref:FR:SIRET": "53364654300017",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10168959513,
+   "lat": 45.1476799,
+   "lon": 5.6928371,
+   "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Place de la grande Moucherolle",
+    "check_date": "2026-03-19",
+    "check_date:opening_hours": "2025-05-04",
+    "laundry_service": "no",
+    "name": "Le Clair Du Linge",
+    "opening_hours": "Mo-Su,PH 07:00-21:00",
+    "ref:FR:SIRET": "44087578900040",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10250742940,
+   "lat": 45.1497386,
+   "lon": 5.6934488,
+   "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Place de la Grande Moucherolle",
+    "brand": "Mister Minit",
+    "brand:wikidata": "Q1939269",
+    "check_date": "2026-07-16",
+    "craft": "shoemaker",
+    "name": "Mister Minit",
+    "shop": "repair"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10568377089,
+   "lat": 45.1495576,
+   "lon": 5.6935672,
+   "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Place de la Grande Moucherolle",
+    "brand": "Pressing",
+    "check_date": "2026-07-16",
+    "laundry_service": "yes",
+    "name": "Pressing",
+    "self_service": "no",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10711754907,
+   "lat": 45.1868123,
+   "lon": 5.7110572,
+   "tags": {
+    "check_date": "2026-09-28",
+    "check_date:opening_hours": "2025-06-22",
+    "craft": "dressmaker",
+    "name": "Eclipse",
+    "opening_hours:signed": "no",
+    "ref:FR:SIRET": "79114526100032"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10726409290,
+   "lat": 45.1882007,
+   "lon": 5.7601002,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "28",
+    "addr:postcode": "38400",
+    "addr:street": "Rue Barnave",
+    "contact:email": "ateliers.henricanin@wanadoo.fr",
+    "contact:phone": "+33 4 76 48 39 64",
+    "contact:website": "https://www.lechaussemontagne.fr/",
+    "craft": "shoemaker",
+    "description": "Cordonnier-bottier depuis 1976 à Grenoble, spécialisé dans la fabrication et la réparation de matériel et chaussures de montagne, chaussures de ski et chaussons d'escalade.",
+    "name": "Le Chausse Montagne",
+    "opening_hours": "Mo 13:00-17:00, Tu-Th 13:00-17:30, Fr 13:00-18:30",
+    "shop": "shoe_repair",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10751470580,
+   "lat": 45.2063609,
+   "lon": 5.7736942,
+   "tags": {
+    "addr:housenumber": "27",
+    "addr:postcode": "38240",
+    "addr:street": "Avenue du Vercors",
+    "craft": "shoemaker",
+    "name": "Cordonnerie des Buclos",
+    "opening_hours": "Tu-Fr 09:30-12:30,14:30-17:30; Sa 09:00-12:00,14:00-17:00",
+    "phone": "+33476410535",
+    "website": "https://cordonneriedesbuclos.com/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10774978538,
+   "lat": 45.140024,
+   "lon": 5.7192944,
+   "tags": {
+    "addr:housenumber": "63",
+    "addr:street": "Rue de Stalingrad",
+    "check_date": "2026-03-03",
+    "craft": "dressmaker",
+    "name": "Au fil d'Or",
+    "ref:FR:SIRET": "78962608200026"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10775111927,
+   "lat": 45.2787377,
+   "lon": 5.6470993,
+   "tags": {
+    "contact:housenumber": "9",
+    "contact:street": "Rue Beyle Stendhal",
+    "craft": "shoemaker",
+    "name": "Cordonnerie Mindo Nobas",
+    "opening_hours": "Tu-Fr 15:00-19:00, Tu-Sa 09:30-12:30"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10886638608,
+   "lat": 45.1813055,
+   "lon": 5.6972401,
+   "tags": {
+    "check_date": "2024-06-26",
+    "name": "Pressing Vercors",
+    "ref:FR:SIRET": "43175759000085",
+    "shop": "dry_cleaning",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10982201726,
+   "lat": 45.1827818,
+   "lon": 5.7587033,
+   "tags": {
+    "check_date": "2024-10-27",
+    "check_date:opening_hours": "2024-10-27",
+    "craft": "electronics_repair",
+    "mobile_phone:repair": "yes",
+    "name": "One Phone",
+    "opening_hours": "Tu-Fr 10:00-12:30,14:30-19:00; Sa 10:00-14:00",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11360487345,
+   "lat": 45.1893016,
+   "lon": 5.7277859,
+   "tags": {
+    "check_date": "2026-07-21",
+    "contact:housenumber": "13",
+    "contact:street": "Rue de la Poste",
+    "description": "Atelier de couture et retouches. Création couture et haute couture.",
+    "name": "Magi Couture",
+    "ref:FR:SIRET": "48793763300013",
+    "shop": "tailor",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11360955525,
+   "lat": 45.1901385,
+   "lon": 5.7168402,
+   "tags": {
+    "check_date": "2023-11-17",
+    "craft": "dressmaker",
+    "name": "Selff Makuin",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11365955620,
+   "lat": 45.1872374,
+   "lon": 5.7190952,
+   "tags": {
+    "check_date": "2026-07-07",
+    "name": "Laverie Jaurès",
+    "opening_hours": "07:00-21:00",
+    "payment:cash": "yes",
+    "payment:mastercard": "yes",
+    "payment:visa": "yes",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11608187257,
+   "lat": 45.1820364,
+   "lon": 5.7927222,
+   "tags": {
+    "addr:city": "Gières",
+    "addr:postcode": "38610",
+    "name": "Espace multiservice",
+    "shop": "shoe_repair"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11648496071,
+   "lat": 45.160814,
+   "lon": 5.6942164,
+   "tags": {
+    "check_date:opening_hours": "2024-07-23",
+    "laundry_service": "no",
+    "opening_hours": "Mo-Su 06:00-22:00",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11787986144,
+   "lat": 45.2031056,
+   "lon": 5.7637384,
+   "tags": {
+    "name": "Hello",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12058744620,
+   "lat": 45.134284,
+   "lon": 5.7014516,
+   "tags": {
+    "name": "Wash.me",
+    "opening_hours": "24/7",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12058744621,
+   "lat": 45.1405111,
+   "lon": 5.711628,
+   "tags": {
+    "opening_hours": "24/7",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12187686511,
+   "lat": 45.3247552,
+   "lon": 5.5822392,
+   "tags": {
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12258459272,
+   "lat": 45.1798364,
+   "lon": 5.7261773,
+   "tags": {
+    "check_date": "2025-05-16",
+    "craft": "electronics_repair",
+    "electronics_repair": "phone",
+    "name": "Amine PC Phone",
+    "ref:FR:SIRET": "84171680600028"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12293484138,
+   "lat": 45.2061041,
+   "lon": 5.7579924,
+   "tags": {
+    "addr:city": "Meylan",
+    "addr:housenumber": "21",
+    "addr:postcode": "38240",
+    "addr:street": "Avenue de la Plaine Fleurie",
+    "name": "Pressing Bulle d'O",
+    "opening_hours": "Mo-Fr 08:00-19:00; Sa 08:00-12:00",
+    "phone": "+33 4 56 00 32 82",
+    "shop": "dry_cleaning"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12373950086,
+   "lat": 45.1915947,
+   "lon": 5.7247609,
+   "tags": {
+    "check_date": "2024-11-25",
+    "craft": "dressmaker",
+    "name": "Retouche Discount",
+    "opening_hours": "Mo-Sa 11:00-19:00",
+    "ref:FR:SIRET": "78983111200022",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12379332459,
+   "lat": 45.1808004,
+   "lon": 5.7350443,
+   "tags": {
+    "check_date": "2026-04-24",
+    "check_date:opening_hours": "2026-04-24",
+    "internet_access": "no",
+    "name": "Laverie Jean Perrot",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "phone": "+33 6 11 95 30 30",
+    "ref:FR:SIRET": "33136468700060",
+    "self_service": "yes",
+    "shop": "laundry",
+    "website": "http://www.laverie-grenoble.fr/laverie-jean-perrot",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12531342990,
+   "lat": 45.193235,
+   "lon": 5.7322528,
+   "tags": {
+    "addr:street": "Rue du vieux temple",
+    "check_date": "2026-07-23",
+    "craft": "tailor",
+    "name": "À vos mesures",
+    "opening_hours": "Tu-Sa 09:00-14:00",
+    "phone": "+33 4 76 42 50 41",
+    "ref:FR:SIRET": "33979960300024",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12677468452,
+   "lat": 45.2761293,
+   "lon": 5.6224201,
+   "tags": {
+    "brand": "Laverie Révolution",
+    "opening_hours": "24/7",
+    "self_service": "yes",
+    "shop": "laundry",
+    "toilets:access": "yes",
+    "toilets:wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12985697857,
+   "lat": 45.2962278,
+   "lon": 5.6374591,
+   "tags": {
+    "brand": "Speed Queen",
+    "brand:wikidata": "Q7575499",
+    "contact:housenumber": "176",
+    "contact:street": "Grande Rue",
+    "name": "Speed Queen",
+    "opening_hours": "Mo-Su 07:00-22:00",
+    "operator": "LaverIsere",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13015831967,
+   "lat": 45.2553092,
+   "lon": 5.664511,
+   "tags": {
+    "name": "Bubble",
+    "opening_hours": "Mo-Su,PH 07:00-21:30",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13092039667,
+   "lat": 45.1894234,
+   "lon": 5.7259686,
+   "tags": {
+    "check_date": "2026-07-23",
+    "craft": "dressmaker",
+    "name": "Point retouche"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13242731200,
+   "lat": 45.1844692,
+   "lon": 5.7560151,
+   "tags": {
+    "addr:housenumber": "9",
+    "addr:street": "Avenue Benoît Frachon",
+    "craft": "electronics_repair",
+    "description": "Réparation Téléphone, Tablette & Console à Neyrpic",
+    "electronics_repair": "phone",
+    "level": "0",
+    "mobile": "+33 6 15 92 28 76",
+    "name": "NKD Tech Grenoble",
+    "opening_hours": "Mo-Sa 10:00-20:00; Su off",
+    "operator": "NKD Tech",
+    "phone": "+33 9 81 37 49 05",
+    "shop": "electronics",
+    "website": "https://www.nkdtech.fr"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13302544001,
+   "lat": 45.2720299,
+   "lon": 5.8944872,
+   "tags": {
+    "addr:housenumber": "47",
+    "addr:postcode": "38920",
+    "addr:street": "Rue des Frères Montgolfier",
+    "craft": "electronics_repair",
+    "email": "contact@repaircafe-crolles-gresivaudan.fr",
+    "name": "Repair Café Crolles-Grésivaudan",
+    "opening_hours": "Th 15:00-20:00",
+    "website": "https://www.repaircafe-crolles-gresivaudan.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13310985474,
+   "lat": 45.1688867,
+   "lon": 5.7532778,
+   "tags": {
+    "opening_hours": "08:30-21:00",
+    "self_service": "yes",
+    "shop": "laundry",
+    "survey:date": "2025-11-16"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13473780605,
+   "lat": 45.1791682,
+   "lon": 5.7052458,
+   "tags": {
+    "check_date": "2026-01-16",
+    "operator": "Wash.Me Group",
+    "payment:cash": "no",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13572607301,
+   "lat": 45.1867883,
+   "lon": 5.73106,
+   "tags": {
+    "addr:housenumber": "16",
+    "addr:postcode": "38000",
+    "addr:street": "Rue de Strasbourg",
+    "check_date": "2026-02-17",
+    "check_date:opening_hours": "2026-02-17",
+    "craft": "shoemaker",
+    "name": "Cordonnerie Strasbourg",
+    "opening_hours": "Tu-Fr 09:00-18:00; Sa 09:00-13:00",
+    "phone": "+33 9 80 32 41 17",
+    "ref:FR:SIRET": "42418188100030",
+    "website": "https://cordonneriestrasbourg.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13617188367,
+   "lat": 45.1393081,
+   "lon": 5.702261,
+   "tags": {
+    "name": "Hello Laverie",
+    "opening_hours": "06:30-21:30",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13941797827,
+   "lat": 45.0839187,
+   "lon": 5.7637562,
+   "tags": {
+    "name": "LAVERIE D'CORNAGE",
+    "self_service": "yes",
+    "shop": "laundry",
+    "survey:date": "2026-06-15"
+   }
+  },
+  {
+   "type": "node",
+   "id": 14282585914,
+   "lat": 45.2027139,
+   "lon": 5.7638885,
+   "tags": {
+    "craft": "key_cutter",
+    "shop": "vending_machine"
+   }
+  },
+  {
+   "type": "way",
+   "id": 79698910,
+   "center": {
+    "lat": 45.1393852,
+    "lon": 5.7928439
+   },
+   "tags": {
+    "addr:housenumber": "65",
+    "addr:street": "Route d'Uriage",
+    "building": "yes",
+    "contact:phone": "+33 767 211 183",
+    "contact:website": "https://www.belledonne-piquage.com/",
+    "craft": "dressmaker",
+    "description": "Fabrication et réparation de matériels textiles",
+    "name": "Belledonne Piquage",
+    "opening_hours": "Tu-Fr 15:00-19:00; Sa 15:00-18:00",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
+   }
+  },
+  {
+   "type": "way",
+   "id": 154875127,
+   "center": {
+    "lat": 45.0567908,
+    "lon": 5.6833768
+   },
+   "tags": {
+    "addr:housenumber": "7",
+    "building": "yes",
+    "name": "Serrurerie Rota",
+    "shop": "locksmith",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   }
+  },
+  {
+   "type": "way",
+   "id": 506503975,
+   "center": {
+    "lat": 45.1856217,
+    "lon": 5.7583202
+   },
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "76",
+    "addr:postcode": "38400",
+    "addr:street": "Avenue Gabriel Péri",
+    "check_date": "2026-04-14",
+    "check_date:opening_hours": "2026-04-14",
+    "indoor": "room",
+    "level": "0",
+    "name": "Hello Laundry",
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "room": "shop",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "way",
+   "id": 506565257,
+   "center": {
+    "lat": 45.1850394,
+    "lon": 5.7590811
+   },
+   "tags": {
+    "craft": "shoemaker",
+    "indoor": "room",
+    "level": "0",
+    "name": "Cordonnerie Fanny",
+    "opening_hours": "Mo-Sa 09:30-19:00",
+    "room": "shop",
+    "shop": "locksmith",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "way",
+   "id": 512912835,
+   "center": {
+    "lat": 45.1583862,
+    "lon": 5.7321303
+   },
+   "tags": {
+    "addr:housenumber": "42",
+    "addr:street": "Avenue de la Chartreuse",
+    "check_date": "2026-10-15",
+    "craft": "watchmaker",
+    "indoor": "room",
+    "level": "1",
+    "name": "Montre Service",
+    "room": "shop"
+   }
+  },
+  {
+   "type": "way",
+   "id": 723604003,
+   "center": {
+    "lat": 45.2390778,
+    "lon": 5.6633669
+   },
+   "tags": {
+    "addr:city": "Saint-Égrève",
+    "addr:housenumber": "1",
+    "addr:postcode": "38120",
+    "addr:street": "Rue des Abattoirs",
+    "brand": "5àsec",
+    "brand:wikidata": "Q2817899",
+    "indoor": "room",
+    "level": "0",
+    "name": "5àsec",
+    "shop": "dry_cleaning"
+   }
+  },
+  {
+   "type": "way",
+   "id": 737150390,
+   "center": {
+    "lat": 45.1583101,
+    "lon": 5.7281129
+   },
+   "tags": {
+    "addr:housenumber": "voie 24 Villeneuve",
+    "addr:street": "Grand'Place",
+    "check_date": "2026-07-08",
+    "indoor": "room",
+    "level": "0",
+    "name": "Hello Laverie",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "way",
+   "id": 737150391,
+   "center": {
+    "lat": 45.1583119,
+    "lon": 5.7282097
+   },
+   "tags": {
+    "addr:housenumber": "voie 24 Villeneuve",
+    "addr:street": "Grand'Place",
+    "check_date": "2026-07-08",
+    "indoor": "room",
+    "level": "0",
+    "name": "Laverie automatique",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  },
+  {
+   "type": "way",
+   "id": 737150414,
+   "center": {
+    "lat": 45.1584316,
+    "lon": 5.72631
+   },
+   "tags": {
+    "addr:housenumber": "voie 24 Villeneuve",
+    "addr:street": "Grand'Place",
+    "check_date": "2026-07-08",
+    "craft": "key_cutter",
+    "indoor": "room",
+    "level": "0",
+    "name": "Florine"
+   }
+  },
+  {
+   "type": "way",
+   "id": 852146603,
+   "center": {
+    "lat": 45.1847926,
+    "lon": 5.7675976
+   },
+   "tags": {
+    "building": "retail",
+    "building:levels": "1",
+    "check_date": "2025-08-22",
+    "name": "Laverie Révolution",
+    "opening_hours": "24/7",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "roof:levels": "0",
+    "roof:shape": "flat",
+    "self_service": "yes",
+    "shop": "laundry",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1267570798,
+   "center": {
+    "lat": 45.1833904,
+    "lon": 5.7686909
+   },
+   "tags": {
+    "building": "retail",
+    "building:levels": "2",
+    "check_date": "2025-03-27",
+    "diff:ref:FR:RNB": "splitted",
+    "name": "Natura",
+    "opening_hours": "Mo 14:00-19:00; Tu-Fr 09:00-19:00; Sa 09:00-18:00",
+    "ref:FR:RNB": "JR6XA6AMREWK",
+    "roof:shape": "flat",
+    "shop": "dry_cleaning",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1272153396,
+   "center": {
+    "lat": 45.1419612,
+    "lon": 5.7359602
+   },
+   "tags": {
+    "building:levels": "2",
+    "building:part": "retail",
+    "name": "Pressing Ecologique",
+    "roof:shape": "flat",
+    "shop": "dry_cleaning"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1307952786,
+   "center": {
+    "lat": 45.1881433,
+    "lon": 5.7208048
+   },
+   "tags": {
+    "check_date": "2025-11-15",
+    "indoor": "room",
+    "level": "0",
+    "name": "City laverie",
+    "payment:cash": "yes",
+    "payment:credit_cards": "yes",
+    "payment:debit_cards": "yes",
+    "self_service": "yes",
+    "shop": "laundry",
+    "survey:date": "2019-11-05",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1460810987,
+   "center": {
+    "lat": 45.1983365,
+    "lon": 5.6721639
+   },
+   "tags": {
+    "indoor": "room",
+    "level": "0",
+    "shop": "shoe_repair"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1533051565,
+   "center": {
+    "lat": 45.1772156,
+    "lon": 5.7288109
+   },
+   "tags": {
+    "building": "yes",
+    "name": "Kiswash",
+    "opening_hours": "Mo-Sa 08:15-19:30; Su 09:00-12:30",
+    "payment:coins": "yes",
+    "self_service": "yes",
+    "shop": "laundry"
+   }
+  }
+ ]
+}

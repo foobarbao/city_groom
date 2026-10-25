@@ -1,6 +1,8 @@
 # ADR-0003 — Monorepo layout, applications and integration boundaries
 
-- **Status**: Accepted
+- **Status**: Accepted — partially superseded by
+  [ADR-0005](0005-partner-web-portal.md) (`apps/merchant/` replaced by the
+  partner portal `apps/portal/`)
 - **Date**: 2026-10-24
 
 ## Context
@@ -48,10 +50,12 @@ city_groom/
   may replace it later if needs outgrow it (new ADR).
 - **Integration boundaries**: every external system is accessed through an
   interface in the backend, with a **simulated implementation** for the demo:
-  - `LockerDriver` — open a compartment, read status, receive events;
+  - `LockerDriver` — open a compartment, read status, receive events; must
+    support several access methods depending on the vendor (Bluetooth, NFC,
+    QR code);
   - `CourierProvider` — schedule pickups and rounds with a delivery partner;
-  - `PaymentProvider` — payment and merchant payouts (simulated for the demo,
-    see `docs/PRODUCT.md` open questions).
+  - `PaymentProvider` — payment and merchant payouts (simulated for the
+    demo).
 
   Real vendors are added as new implementations selected by configuration;
   business code depends only on the interfaces.
