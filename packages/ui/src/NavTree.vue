@@ -48,11 +48,28 @@ const paramsOf = (node: NavItem): Record<string, string> =>
   Object.fromEntries(
     (node.paramKeys ?? []).map((key) => [key, props.params[key] ?? ""]),
   );
+
+/**
+ * Icon colours of the top-level entries, in menu order: the greens first,
+ * then a few muted accents (strong tones, so icons keep a 3:1 contrast).
+ */
+const TONES = [
+  "var(--cg-leaf)",
+  "var(--cg-teal)",
+  "var(--cg-sky)",
+  "var(--cg-coral)",
+  "var(--cg-plum)",
+];
+const toneOf = (index: number): string => TONES[index % TONES.length] as string;
 </script>
 
 <template>
   <ul class="nav-list" :class="`depth-${depth}`">
-    <li v-for="node in nodes" :key="node.id">
+    <li
+      v-for="(node, i) in nodes"
+      :key="node.id"
+      :style="depth === 0 ? { '--nav-tone': toneOf(i) } : undefined"
+    >
       <router-link
         v-if="node.kind === 'item'"
         class="nav-row"
@@ -138,6 +155,11 @@ const paramsOf = (node: NavItem): Record<string, string> =>
 .nav-row ion-icon {
   flex: none;
   font-size: 18px;
+  /* Each top-level entry has its own icon colour, inherited by its
+     children (owner, 2026-10-25: colour welcome on the menu icons). */
+  color: var(--nav-tone, var(--cg-ink-soft));
+}
+.nav-row .chevron {
   color: var(--cg-ink-soft);
 }
 .nav-row:hover {
@@ -150,12 +172,14 @@ const paramsOf = (node: NavItem): Record<string, string> =>
   background: var(--cg-surface-soft);
 }
 .nav-row.active {
-  background: var(--cg-leaf-soft);
+  /* Light, translucent emerald: the former opaque dark tint looked olive
+     (owner, 2026-10-25). */
+  background: color-mix(in srgb, var(--cg-leaf) 13%, transparent);
   color: var(--cg-pine);
   font-weight: 600;
 }
-.nav-row.active ion-icon {
-  color: var(--cg-leaf);
+.nav-row.active ion-icon:not(.chevron) {
+  color: var(--nav-tone, var(--cg-leaf));
 }
 .label {
   flex: 1;

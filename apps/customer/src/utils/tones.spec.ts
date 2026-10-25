@@ -13,6 +13,7 @@ describe('tones', () => {
 
   it('cycles category tones', () => {
     expect(categoryTone(0)).toBe('leaf')
-    expect(categoryTone(5)).toBe('leaf')
+    expect(categoryTone(1)).toBe('teal')
+    expect(categoryTone(2)).toBe('leaf')
   })
 })

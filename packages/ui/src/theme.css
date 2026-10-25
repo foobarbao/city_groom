@@ -1,29 +1,31 @@
 /*
- * Visual identity of CityPal (docs/DESIGN.md): green for the planet, blue
- * for trust and tech, warm yellow for warmth, on a cream ground with soft
- * colour glows; translucent glass cards; neutral type (Inter), moderate
- * radii, short animations. Professional rather than playful (owner's
- * requests of 2026-10-25).
+ * Visual identity of CityPal (docs/DESIGN.md). Owner's brief of 2026-10-25:
+ * ecological, welcoming, but also tech and digital; lively, with animation;
+ * not colourful in every direction; refined. Hence one family of greens,
+ * from emerald to a teal touch for the "digital" side, on a pale green-white
+ * ground; soft contrasts; frosted glass; one slow aurora behind the screens;
+ * warm yellow kept for promotions and "to do" cues only.
  *
  * Every colour is a token; dark values are redefined below. Ionic colours are
  * mapped onto these tokens so its components follow the same palette.
  */
 :root {
   /* Palette */
-  --cg-ground: #f8f7f2; /* light cream background */
-  --cg-surface: #fffdf6; /* opaque surfaces, text on green */
-  --cg-surface-soft: #eef2df; /* chips, inactive controls (pastel sage) */
-  --cg-ink: #12352a; /* main text, deep green */
-  --cg-ink-soft: #566e66; /* secondary text */
-  --cg-leaf: #127a51; /* action green; white text on it passes AA (5.3:1) */
-  --cg-leaf-soft: #d3efdc; /* pastel mint, accent background */
-  --cg-pine: #0e4d37; /* strong text on pastel backgrounds */
-  --cg-sun: #f7d44c; /* warm lemon accent; dark text on it */
-  --cg-sun-soft: #fff1b8; /* pastel lemon background */
-  /* Accents. Owner's brief of 2026-10-25: blue for trust and tech, yellow
-     for warmth, green for the planet. Text on a soft tint uses the strong
-     tone (≥ 4.5:1). */
-  --cg-sky: #1a5fb8; /* trust blue */
+  --cg-ground: #f3f7f5; /* pale green-white background */
+  --cg-surface: #fbfdfc; /* opaque surfaces, text on green */
+  --cg-surface-soft: #e8f0ec; /* chips, inactive controls */
+  --cg-ink: #17322b; /* main text, deep green (softer than black) */
+  --cg-ink-soft: #5b6f69; /* secondary text */
+  --cg-leaf: #0e7a5c; /* emerald action green; white text on it 5.3:1 */
+  --cg-leaf-soft: #e0f1e9; /* mint tint, accent background */
+  --cg-pine: #0b5040; /* strong text on mint backgrounds */
+  --cg-teal: #12808a; /* the "digital" touch: gradients, tech cues */
+  --cg-sun: #e8c468; /* soft honey accent (the lemon hurt the eyes); dark text on it */
+  --cg-sun-soft: #f7edcf; /* pale honey background */
+  --cg-sun-strong: #8a6414; /* honey as text or icon on light grounds (5:1) */
+  /* Accents, kept small (status pills, category tiles). Text on a soft
+     tint uses the strong tone (≥ 4.5:1). */
+  --cg-sky: #1a5fb8;
   --cg-sky-soft: #dfeaff;
   --cg-coral: #b04a24;
   --cg-coral-soft: #fbe1d6;
@@ -33,23 +35,20 @@
   --cg-locker-door: #fffdf6; /* locker doors */
   --cg-locker-door-edge: #cdd6c2;
 
-  /* Glass: translucent cards over soft blue, yellow and green glows
-     (transparency asked for on 2026-10-25), with a hairline edge. */
-  --cg-glass: rgb(255 255 255 / 70%);
-  --cg-glass-strong: rgb(255 255 255 / 86%);
-  --cg-glass-filter: blur(16px) saturate(150%);
+  /* Glass: frosted, see-through cards over the aurora, with a light
+     hairline edge (transparency asked for on 2026-10-25). */
+  --cg-glass: rgb(255 255 255 / 60%);
+  --cg-glass-strong: rgb(255 255 255 / 78%);
+  --cg-glass-filter: blur(18px) saturate(160%);
+  /* Aurora: one slow, soft veil of emerald and teal at the top of every
+     screen (cg-drift, "ion-app::before" below). Low opacity on purpose. */
+  --cg-aurora-1: rgb(20 160 115 / 16%);
+  --cg-aurora-2: rgb(20 150 165 / 12%);
   --cg-shadow:
-    0 2px 10px rgb(26 60 110 / 7%), inset 0 0 0 1px rgb(255 255 255 / 70%);
+    0 2px 10px rgb(15 60 45 / 6%), inset 0 0 0 1px rgb(255 255 255 / 70%);
   --cg-shadow-strong:
-    0 12px 28px rgb(26 60 110 / 13%), inset 0 0 0 1px rgb(255 255 255 / 80%);
-  --cg-backdrop:
-    radial-gradient(55% 40% at 0% 0%, #dbe7ff 0%, transparent 70%),
-    radial-gradient(45% 35% at 100% 8%, #fff0b3 0%, transparent 70%),
-    radial-gradient(60% 40% at 90% 100%, #d4f1de 0%, transparent 70%),
-    var(--cg-ground);
-  /* Hero band: trust blue to planet green, white text (AA on both ends:
-     #1a5fb8 5.9:1, #127a51 5.3:1); the warm yellow is the accent on it. */
-  --cg-hero: linear-gradient(120deg, #1a5fb8 0%, #1f6fa8 45%, #127a51 100%);
+    0 12px 28px rgb(15 60 45 / 11%), inset 0 0 0 1px rgb(255 255 255 / 80%);
+  --cg-backdrop: var(--cg-ground);
 
   /* Motion: short, eased; disabled when the user prefers reduced motion. */
   --cg-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -76,66 +75,65 @@
   --ion-font-family: var(--cg-font);
   --ion-background-color: var(--cg-ground);
   --ion-text-color: var(--cg-ink);
-  --ion-color-primary: #127a51;
-  --ion-color-primary-rgb: 18, 122, 81;
+  --ion-color-primary: #0e7a5c;
+  --ion-color-primary-rgb: 14, 122, 92;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #106b47;
-  --ion-color-primary-tint: #2a8762;
-  --ion-color-secondary: #f7d44c;
-  --ion-color-secondary-rgb: 247, 212, 76;
-  --ion-color-secondary-contrast: #12352a;
-  --ion-color-secondary-contrast-rgb: 18, 53, 42;
-  --ion-color-secondary-shade: #d9bb43;
-  --ion-color-secondary-tint: #f8d85e;
-  --ion-color-success: #127a51;
-  --ion-color-medium: #566e66;
+  --ion-color-primary-shade: #0c6b51;
+  --ion-color-primary-tint: #26876c;
+  --ion-color-secondary: #e8c468;
+  --ion-color-secondary-rgb: 232, 196, 104;
+  --ion-color-secondary-contrast: #17322b;
+  --ion-color-secondary-contrast-rgb: 23, 50, 43;
+  --ion-color-secondary-shade: #ccac5c;
+  --ion-color-secondary-tint: #eaca77;
+  --ion-color-success: #0e7a5c;
+  --ion-color-medium: #5b6f69;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --cg-ground: #0d2219;
-    --cg-surface: #132c23;
-    --cg-surface-soft: #1d3a2f;
-    --cg-ink: #eaf4ee;
-    --cg-ink-soft: #a6bdb3;
-    --cg-leaf: #5bd394; /* dark text on it */
-    --cg-leaf-soft: #1c4a37;
-    --cg-pine: #a7e8c5;
-    --cg-sun: #f2cf4a;
-    --cg-sun-soft: #4a4119;
+    --cg-ground: #0b1411; /* deep green-black, neutral (no khaki) */
+    --cg-surface: #111d19;
+    --cg-surface-soft: #1a2a25;
+    --cg-ink: #e6f0ec;
+    --cg-ink-soft: #9fb3ab;
+    --cg-leaf: #4fd1a1; /* mint; dark text on it */
+    --cg-leaf-soft: #123a33; /* teal-leaning tint, not olive */
+    --cg-pine: #9be6c8;
+    --cg-teal: #5cc8d0;
+    --cg-sun: #d9b55e;
+    --cg-sun-strong: #e3c06a;
+    --cg-sun-soft: #3a3226;
     --cg-sky: #8fbaff;
     --cg-sky-soft: #172a4d;
     --cg-coral: #f2a585;
     --cg-coral-soft: #45261b;
     --cg-plum: #d6b2e3;
     --cg-plum-soft: #3a2742;
-    --cg-locker-body: #22392f;
-    --cg-locker-door: #2b463a;
-    --cg-locker-door-edge: #3f5d50;
-    --cg-glass: rgb(255 255 255 / 6%);
-    --cg-glass-strong: rgb(255 255 255 / 10%);
+    --cg-locker-body: #1b2c27;
+    --cg-locker-door: #22362f;
+    --cg-locker-door-edge: #36504a;
+    --cg-glass: rgb(20 34 30 / 55%);
+    --cg-glass-strong: rgb(20 34 30 / 72%);
+    --cg-aurora-1: rgb(40 200 150 / 13%);
+    --cg-aurora-2: rgb(40 170 185 / 10%);
     --cg-shadow:
       0 2px 10px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 9%);
     --cg-shadow-strong:
       0 12px 28px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 12%);
-    --cg-backdrop:
-      radial-gradient(55% 40% at 0% 0%, #17305c 0%, transparent 70%),
-      radial-gradient(45% 35% at 100% 8%, #3d3512 0%, transparent 70%),
-      radial-gradient(60% 40% at 90% 100%, #10442e 0%, transparent 70%),
-      var(--cg-ground);
-    --cg-hero: linear-gradient(120deg, #1a4a8f 0%, #1b5a80 45%, #0f5c3e 100%);
+    --cg-backdrop: var(--cg-ground);
     --cg-chart-1: #43a678; /* validated against the dark surface */
     --cg-chart-2: #cc7a38;
-    --cg-chart-grid: #2c423a;
-    --ion-color-primary: #5bd394;
-    --ion-color-primary-rgb: 91, 211, 148;
-    --ion-color-primary-contrast: #0d2219;
-    --ion-color-primary-contrast-rgb: 13, 34, 25;
-    --ion-color-primary-shade: #50ba82;
-    --ion-color-primary-tint: #6bd79f;
-    --ion-color-success: #5bd394;
-    --ion-color-medium: #a6bdb3;
+    --cg-chart-grid: #263a34;
+    --ion-color-primary: #4fd1a1;
+    --ion-color-primary-rgb: 79, 209, 161;
+    --ion-color-primary-contrast: #08231a;
+    --ion-color-primary-contrast-rgb: 8, 35, 26;
+    --ion-color-primary-shade: #46b88e;
+    --ion-color-primary-tint: #61d6aa;
+    --ion-color-success: #4fd1a1;
+    --ion-color-medium: #9fb3ab;
     color-scheme: dark;
   }
 }
@@ -148,9 +146,41 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pages sit on the cream ground and its soft colour glows. */
+/* Pages are transparent: the ambient blobs below show through every screen
+   and through the frosted cards. */
 ion-content {
-  --background: var(--cg-backdrop);
+  --background: transparent;
+}
+ion-app {
+  background: var(--cg-ground);
+}
+
+/* Aurora: a soft emerald and teal veil across the top of the app (menu
+   included), drifting slowly. Only transform is animated, so the browser
+   composites it without repainting. */
+ion-app::before {
+  content: "";
+  position: fixed;
+  inset: -15% -15% 30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 60% at 22% 20%, var(--cg-aurora-1) 0%, transparent 70%),
+    radial-gradient(45% 55% at 80% 30%, var(--cg-aurora-2) 0%, transparent 70%);
+  animation: cg-drift 30s ease-in-out infinite alternate;
+  will-change: transform;
+}
+ion-split-pane {
+  z-index: 0;
+}
+
+/* The side menu is frosted glass too. */
+ion-menu {
+  --background: transparent;
+}
+ion-menu::part(container) {
+  backdrop-filter: var(--cg-glass-filter);
+  -webkit-backdrop-filter: var(--cg-glass-filter);
 }
 
 /* Headers float as soft bars instead of hard toolbars. */
@@ -162,6 +192,15 @@ ion-toolbar {
 ion-header.ion-no-border::after,
 ion-header::after {
   display: none;
+}
+
+/* A disabled main button must look disabled: Ionic's half opacity is not
+   enough on a bright green (a "Payer" button looked active, 2026-10-25). */
+ion-button.button-solid.button-disabled {
+  --background: var(--cg-surface-soft);
+  --color: var(--cg-ink-soft);
+  --box-shadow: none;
+  opacity: 1;
 }
 
 h1,
@@ -188,6 +227,29 @@ h1 {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Aurora drift: slow wander of the background veil. */
+@keyframes cg-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(5%, 3%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-4%, 5%, 0) scale(0.97);
+  }
+}
+/* Light sheen sweeping across a surface. */
+@keyframes cg-sheen {
+  0%,
+  70% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-20deg);
   }
 }
 

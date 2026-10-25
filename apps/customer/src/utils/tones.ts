@@ -28,8 +28,11 @@ export function statusTone(status: string): string {
   }
 }
 
-/** Accent tints cycled over the service categories (icon tiles). */
-export const CATEGORY_TONES = ['leaf', 'sky', 'coral', 'plum', 'sun'] as const
+/**
+ * Tints alternated over the service categories (icon tiles): the green
+ * family only, so the grid stays calm (owner, 2026-10-25: "pas trop coloré").
+ */
+export const CATEGORY_TONES = ['leaf', 'teal'] as const
 
 /** Accent tint of the n-th category. */
 export const categoryTone = (index: number): string =>

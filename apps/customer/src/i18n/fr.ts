@@ -548,6 +548,11 @@ export default {
     whenText:
       'Déposez avant la prochaine tournée ({time}) : un coursier à vélo cargo l’apporte au commerçant.',
     total: 'Total',
+    /** Shown under a disabled "Payer" button: what is left to choose. */
+    missing: 'Pour payer, choisissez : {items}.',
+    missingDrop: 'le lieu de dépôt',
+    missingPickup: 'le lieu de retrait',
+    missingSlot: 'le créneau de retrait',
     guestNote:
       'Commande possible sans compte. Connectez-vous pour suivre vos commandes et donner votre avis.',
     pay: 'Payer {price} (simulé)',

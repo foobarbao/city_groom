@@ -9,11 +9,22 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
-- Warmer palette with meaning: trust blue, warm yellow, planet green; home
-  hero band in a blue-to-green gradient, mode cards tinted green and yellow,
-  translucent glass cards over coloured glows, light motion (staggered
-  rise-in, hover lift, press feedback; off with reduced motion), portal
-  cards included. Menu navigation unchanged.
+- Coloured menu icons: each top-level entry has its own tone (emerald,
+  teal, blue, coral, plum), inherited by its children.
+- Checkout: a disabled "Payer" button now looks disabled and a line lists
+  what is left to choose (drop place, pickup place, pickup slot).
+- Neon agent skills (`neon`, `neon-postgres`) for Claude Code, installed
+  with `npx neon@latest skills -s neon -s neon-postgres -y` into
+  `.claude/skills/` (pinned in `skills-lock.json`); they guide the Neon
+  database setup (docs/BUILD_AND_RELEASE.md §6).
+- Refined green palette (owner's brief: ecological, welcoming, tech and
+  digital, lively but not colourful in every direction): emerald and a teal
+  touch on a pale green-white ground, soft contrasts, plain greeting
+  instead of a gradient band, frosted glass cards and side menu over one
+  slow emerald/teal aurora, translucent emerald menu highlight (the former
+  dark tint looked olive), emerald/teal category tiles; motion: aurora
+  drift, staggered rise-in, hover lift, press feedback, sheen on promotions
+  (all off with reduced motion). Menu navigation unchanged.
 - Customer Google sign-in without a backend (demo site): the profile is
   read on the device from the Google credential, unverified and labelled as
   a demonstration (`PROD:` the backend verifies the token).
@@ -220,6 +231,12 @@ Versioning: [SemVer](https://semver.org/).
 - Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
 ### Changed
+
+- Status tags reworked to look serious on phones: one line, small radius,
+  light translucent tint with a hairline edge, toned text (new
+  `--cg-sun-strong` for honey text); calmer titles in the home lists.
+- Yellows softened to honey (`--cg-sun`, welcome promotion card): the
+  lemon hurt the eyes.
 
 - Compartments are given on arrival at the locker, never at booking: orders,
   weekly pack, consigne and transfers reserve a size; the door appears when
