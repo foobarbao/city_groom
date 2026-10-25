@@ -36,7 +36,9 @@ jobs:
       DJANGO_SECRET_KEY: seed-only-not-secret
       DATABASE_URL: ${{ secrets.HOSTED_DATABASE_URL }}
     steps:
+      # Runs before the checkout, so not in backend/ (it does not exist yet).
       - name: Check the secret
+        working-directory: .
         run: |
           if [ -z "$DATABASE_URL" ]; then
             echo "::error::Repository secret HOSTED_DATABASE_URL is missing (Settings > Secrets and variables > Actions)."
