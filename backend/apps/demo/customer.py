@@ -21,11 +21,11 @@ from apps.demo.catalogue import (
     CONSIGNE_PRICES,
     CONSIGNE_TRANSFER_PRICE,
     DEMO_MERCHANTS,
+    PACKS,
     PROMOTIONS,
     REVIEW_COMMENTS,
     SERVICES_BY_CATEGORY,
     SUBSCRIPTION_PLANS,
-    WEEKLY_PACK,
     DemoMerchant,
 )
 
@@ -113,19 +113,28 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
         ],
         "packs": [
             {
-                "code": WEEKLY_PACK.code,
-                "name": WEEKLY_PACK.name,
+                "code": pack.code,
+                "name": pack.name,
+                "kind": pack.kind,
                 "items": [
-                    {"service": code, "quantity": quantity} for code, quantity in WEEKLY_PACK.items
+                    {
+                        "service": code,
+                        "quantity": quantity,
+                        **({"label": pack.item_labels[code]} if code in pack.item_labels else {}),
+                    }
+                    for code, quantity in pack.items
                 ],
-                "weeks_per_purchase": WEEKLY_PACK.weeks_per_purchase,
-                "welcome_weekly_price": str(WEEKLY_PACK.welcome_weekly_price),
-                "weekly_prices": {
-                    plan: str(price) for plan, price in WEEKLY_PACK.weekly_prices.items()
-                },
-                "size": WEEKLY_PACK.size.value,
-                "turnaround_rounds": WEEKLY_PACK.turnaround_rounds,
+                "weeks_per_purchase": pack.weeks_per_purchase,
+                "welcome_weekly_price": (
+                    str(pack.welcome_weekly_price)
+                    if pack.welcome_weekly_price is not None
+                    else None
+                ),
+                "weekly_prices": {plan: str(price) for plan, price in pack.weekly_prices.items()},
+                "size": pack.size.value,
+                "turnaround_rounds": pack.turnaround_rounds,
             }
+            for pack in PACKS
         ],
         "promotions": [
             {

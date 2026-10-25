@@ -54,7 +54,7 @@ def test_services_have_search_keywords() -> None:
 
 
 def test_weekly_pack_follows_the_owner_rules() -> None:
-    pack = build_customer_catalogue(NOW)["packs"][0]
+    pack = next(p for p in build_customer_catalogue(NOW)["packs"] if p["code"] == "weekly_shirts")
     plans = {p["code"] for p in build_customer_catalogue(NOW)["plans"]}
 
     assert pack["items"] == [
@@ -81,3 +81,18 @@ def test_promotions_point_to_existing_packs_and_known_themes() -> None:
         assert promotion["theme"] in {"sun", "leaf", "coral"}
         # Prices come from the pack, never written in the texts.
         assert "€" not in promotion["title"] + promotion["text"]
+
+
+def test_sport_exchange_follows_the_owner_rules() -> None:
+    exchange = next(
+        p for p in build_customer_catalogue(NOW)["packs"] if p["code"] == "sport_exchange"
+    )
+
+    assert exchange["kind"] == "exchange"
+    assert exchange["weeks_per_purchase"] == 1
+    assert exchange["welcome_weekly_price"] is None
+    assert exchange["weekly_prices"] == {"premium": "5.00", "plus": "7.00"}
+    assert [i["quantity"] for i in exchange["items"]] == [1, 1, 1]
+    assert exchange["items"][0]["label"] == "Tenue de sport lavée-pliée"
+    # Back well before the next weekly exchange.
+    assert exchange["turnaround_rounds"] < 7 * 3

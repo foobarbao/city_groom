@@ -9,6 +9,7 @@ import { eligiblePromotions } from './promotions'
 const pack: DemoPack = {
   code: 'weekly_shirts',
   name: 'Pack semaine',
+  kind: 'weekly_pack',
   items: [{ service: 'shirt_ironing', quantity: 5 }],
   weeks_per_purchase: 4,
   welcome_weekly_price: '10.00',
@@ -40,9 +41,15 @@ describe('promotions', () => {
     )
   })
 
-  it('shows "all" promotions only when the customer can buy', () => {
+  it('shows "all" promotions with the price, or "from" the subscriber price', () => {
     const all = { ...welcome, audience: 'all' as const }
-    expect(eligiblePromotions([all], [pack], 'plus', () => true)[0]?.weeklyCents).toBe(2000)
-    expect(eligiblePromotions([all], [pack], 'free', () => true)).toEqual([])
+    expect(eligiblePromotions([all], [pack], 'plus', () => true)[0]).toMatchObject({
+      available: true,
+      weeklyCents: 2000,
+    })
+    expect(eligiblePromotions([all], [pack], 'free', () => true)[0]).toMatchObject({
+      available: false,
+      weeklyCents: 2000,
+    })
   })
 })

@@ -129,6 +129,36 @@ included services; garment compartment for drop-off and return; unused
 items of a week are not carried over; default laundry availability 40
 shirts/week; 18 fictitious active packs in the demo.
 
+### Sport exchange
+
+Decided by the project owner on 2026-10-25.
+
+- **Principle**: a scheduled weekly **exchange** at **one slot and one
+  place** (e.g. near the customer's gym): the customer collects the clean
+  items of the previous week and drops the dirty ones **in the same
+  compartment**, in a single visit (single-slot rotation).
+- **Each exchange**: 1 sport outfit (washed, folded) + 1 shirt + 1 pair of
+  trousers (washed, ironed, folded). The first exchange is a drop-off only;
+  the clean items are ready for the next one.
+- **Price**: per week, **subscribers only**: **7 €** with CityPal Plus,
+  **5 €** with CityPal Premium (a small price, in proportion to the weekly
+  pack). **Bought one week at a time**, no commitment; "same slot next
+  week" repeats the last exchange.
+- Provider shown: "CityPal" (dispatched to partner laundries, like the
+  weekly pack).
+- ASSUMPTIONS: garment compartment; turnaround = the longest included
+  service (well under a week).
+
+### Ecology and digital
+
+Global communication axis chosen by the project owner on 2026-10-25. First
+step: a "Notre engagement" page in the customer app (cargo-bike rounds,
+local shops, shared lockers turning over three times a day, lockers on the
+customer's way, everything in the app, minimal data), linked from the menu
+and the home screen. Only facts true of the service are stated; impact
+figures (km by bike, trips avoided, CO₂) will be added once measured and
+sourced.
+
 ### Promotions
 
 Requested on 2026-10-25: promotions must stand out, and more promotions on

@@ -21,7 +21,15 @@ import { type PackWeek, packPrice, packSchedule } from '../domain/pack'
 import { eligiblePromotions } from '../domain/promotions'
 import PromoCard from '../components/PromoCard.vue'
 import { type SlotWindow, slotsFrom } from '../domain/slots'
-import { PACK_PROVIDER, catalogue, lockers, planByCode, serviceByCode } from '../services/catalogue'
+import {
+  PACK_PROVIDER,
+  WEEKLY_PACK_CODE,
+  catalogue,
+  lockers,
+  packByCode,
+  packItemName,
+  planByCode,
+} from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -36,10 +44,8 @@ const inSentence = computed(() => ({
   tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
 }))
 
-const pack = catalogue.packs[0] as DemoPack
-const itemsLine = pack.items
-  .map((i) => `${i.quantity} × ${serviceByCode(i.service)?.name ?? i.service}`)
-  .join(' + ')
+const pack = packByCode(WEEKLY_PACK_CODE) as DemoPack
+const itemsLine = pack.items.map((i) => `${i.quantity} × ${packItemName(i)}`).join(' + ')
 const planPrice = (code: string): string =>
   euros(Math.round(Number(pack.weekly_prices[code]) * 100))
 

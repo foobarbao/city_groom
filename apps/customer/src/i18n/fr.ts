@@ -81,6 +81,8 @@ export default {
     services: 'Services',
     findService: 'Trouver un service',
     pack: 'Pack semaine',
+    exchange: 'Échange sport',
+    engagement: 'Notre engagement',
     orders: 'Mes commandes',
     messagesQuotes: 'Messages et devis',
     consigne: 'Consigne',
@@ -146,6 +148,10 @@ export default {
     nearMe: 'Près de moi',
   },
   home: {
+    engagement: {
+      title: 'Notre engagement',
+      text: 'Vélo cargo, commerces du quartier, zéro papier',
+    },
     pack: {
       title: 'Pack semaine · 5 chemises + 2 pantalons',
       welcome: 'Offre de bienvenue : {price} par semaine le premier mois',
@@ -367,6 +373,7 @@ export default {
     packDrop: 'Semaine {week} · dépôt {day} entre {from} et {by}',
     pickupLine: 'Retrait {day} entre {from} et {to}',
     dropNow: 'J’ai déposé mon article',
+    exchangeNow: 'C’est fait : j’ai repris mes affaires propres et déposé les sales',
     detail: {
       dropLocker: 'Dépôt',
       pickupLocker: 'Retrait',
@@ -381,6 +388,18 @@ export default {
         'Un coursier à vélo cargo le prend au prochain passage ({time}) et l’apporte à {shop}.',
       droppedAt: 'Déposé {date}',
       orderedAt: 'commandé {date}',
+      exchangePlace: 'Échange',
+      exchangeClean:
+        'Échange : vos affaires propres de la semaine dernière vous attendent dans le casier.',
+      exchangeFirst:
+        'Premier échange : déposez vos affaires ; elles seront propres pour votre prochain échange.',
+      exchangeInstruction:
+        'Reprenez vos affaires propres (tenue de sport, chemise, pantalon), déposez vos affaires sales dans le même casier, puis refermez bien la porte.',
+      exchangeFirstInstruction:
+        'Déposez votre tenue de sport et votre tenue de travail portée, puis refermez bien la porte.',
+      exchangeDoneTitle: 'Échange fait',
+      exchangeDoneText:
+        'Vos affaires reviennent lavées, repassées et pliées pour votre prochain échange.',
       pickupSlot: '{day} entre {from} et {to}',
       notFound: 'Commande introuvable.',
       inProgress: 'Votre article n’est plus au casier : {status}.',
@@ -395,11 +414,78 @@ export default {
       picked_up: 'Récupérée',
     },
   },
+  engagement: {
+    badge: 'Écologie et numérique',
+    title: 'Notre engagement',
+    intro:
+      'Prendre soin de vos affaires sans voiture, avec les commerces du quartier, et sans paperasse.',
+    ecologyTitle: 'Écologie',
+    digitalTitle: 'Numérique utile',
+    points: {
+      bike: {
+        title: 'Livré à vélo cargo',
+        text: 'Les tournées passent à {times}, à vélo cargo : pas de camionnette dans les rues.',
+      },
+      local: {
+        title: 'Les commerces du quartier',
+        text: 'Pressings, retouches, cordonniers : vos affaires sont confiées à des artisans de Grenoble.',
+      },
+      shared: {
+        title: 'Des casiers partagés',
+        text: 'Un même casier sert jusqu’à trois fois par jour : moins de place prise, plus de service.',
+      },
+      tram: {
+        title: 'Sur vos trajets',
+        text: 'Les casiers sont près des arrêts de tram, des gares et des campus : on dépose en passant.',
+      },
+      app: {
+        title: 'Tout dans l’application',
+        text: 'Commande, devis, échange avec la boutique et suivi : rien à imprimer.',
+      },
+      data: {
+        title: 'Seulement l’essentiel',
+        text: 'Avec la connexion Google, nous ne recevons que votre nom, votre e-mail et votre photo.',
+      },
+    },
+    note: 'Nous publierons nos chiffres d’impact (kilomètres à vélo, trajets évités) dès qu’ils seront mesurés.',
+  },
+  exchange: {
+    title: 'Échange sport',
+    intro:
+      'Du sport au bureau en un seul passage : chaque semaine, au même créneau, vous reprenez vos affaires propres et déposez les sales.',
+    howTitle: 'Comment ça marche',
+    how1: 'Choisissez un lieu (près de votre salle de sport, par exemple), un jour et un créneau.',
+    how2: 'Au créneau, ouvrez le casier : {items} propres vous attendent.',
+    how3: 'Déposez à la place votre tenue de sport et votre tenue de travail portée, dans le même casier.',
+    how4: 'Un coursier à vélo cargo les emporte ; elles seront prêtes pour l’échange suivant.',
+    subscribersOnly: 'L’échange sport est réservé aux abonnés CityPal Plus et Premium.',
+    mine: 'Mes échanges',
+    slotLine: '{day} entre {from} et {to}',
+    withClean: 'affaires propres à reprendre',
+    firstDrop: 'premier dépôt',
+    repeat: 'Même créneau la semaine prochaine',
+    bookedTitle: 'Échange programmé',
+    bookedText:
+      'Retrouvez-le dans « Mes commandes ». Au créneau, ouvrez le casier depuis la commande.',
+    seeIt: 'Voir l’échange',
+    placeTitle: 'Lieu de l’échange',
+    placeHint: 'Le même lieu pour reprendre et déposer : un seul passage.',
+    whenTitle: 'Jour de l’échange',
+    slotTitle: 'Créneau',
+    summary: 'Échange à {place}, {day} entre {from} et {to}.',
+    firstNote:
+      'Premier échange : vous déposez seulement ; vos affaires propres seront prêtes pour l’échange suivant.',
+    pay: 'Payer {price} (simulé)',
+  },
   promo: {
     title: 'Offres du moment',
     perWeek: 'par semaine',
     terms: '{total} pour {weeks} semaines, réglés en une fois',
     cta: 'J’en profite',
+    see: 'Voir l’offre',
+    from: 'Dès',
+    withSubscription: 'Avec un abonnement CityPal Plus ou Premium',
+    noCommitment: 'Sans engagement, à la semaine',
   },
   pack: {
     title: 'Pack semaine',

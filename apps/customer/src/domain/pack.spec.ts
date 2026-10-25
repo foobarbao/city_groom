@@ -4,11 +4,12 @@
 import type { DemoPack, Slot } from '@city-groom/demo-data'
 import { describe, expect, it } from 'vitest'
 
-import { addRounds, isoWeekday, packPrice, packSchedule } from './pack'
+import { addRounds, isoWeekday, lowestPlanWeeklyCents, packPrice, packSchedule } from './pack'
 
 const pack: DemoPack = {
   code: 'weekly_shirts',
   name: 'Pack semaine',
+  kind: 'weekly_pack',
   items: [
     { service: 'shirt_ironing', quantity: 5 },
     { service: 'trouser_ironing', quantity: 2 },
@@ -40,6 +41,31 @@ describe('weekly pack price', () => {
       available: false,
       reason: 'subscription_required',
     })
+  })
+})
+
+describe('offers without a welcome price (sport exchange)', () => {
+  const exchange: DemoPack = {
+    ...pack,
+    code: 'sport_exchange',
+    kind: 'exchange',
+    weeks_per_purchase: 1,
+    welcome_weekly_price: null,
+    weekly_prices: { premium: '5.00', plus: '7.00' },
+  }
+
+  it('charges the plan price from the first purchase, subscribers only', () => {
+    expect(packPrice(exchange, 'plus', false)).toEqual({
+      available: true,
+      weeklyCents: 700,
+      totalCents: 700,
+      welcome: false,
+    })
+    expect(packPrice(exchange, 'free', false)).toEqual({
+      available: false,
+      reason: 'subscription_required',
+    })
+    expect(lowestPlanWeeklyCents(exchange)).toBe(500)
   })
 })
 

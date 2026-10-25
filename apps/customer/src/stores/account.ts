@@ -44,6 +44,13 @@ export interface CustomerOrder {
   /** Pickup slot chosen by the customer: collect before `pickupEnd` (next round). */
   pickupStart?: string
   pickupEnd?: string
+  /**
+   * Sport exchange (docs/PRODUCT.md "Sport exchange"): one visit to collect
+   * last week's clean items and drop the dirty ones, in the same compartment.
+   */
+  kind?: 'exchange'
+  /** Exchange only: clean items from the previous exchange wait to be collected. */
+  collectsClean?: boolean
   /** Weekly pack this order belongs to, and its week (1 to 4). */
   packId?: string
   packWeek?: number
@@ -426,6 +433,45 @@ export const useAccountStore = defineStore('account', () => {
     return id
   }
 
+  /**
+   * Schedules one sport exchange (bought by the week). There are clean items
+   * to collect when an earlier exchange was dropped off.
+   * DEMO: payment simulated.
+   */
+  function addExchange(exchange: {
+    label: string
+    priceCents: number
+    size: string
+    shopCode: string
+    lockerCode: string
+    slotStart: Date
+    slotEnd: Date
+  }): string {
+    const id = newId('C')
+    const collectsClean = state.value.orders.some(
+      (o) => o.kind === 'exchange' && o.status !== 'awaiting_drop_off',
+    )
+    state.value.orders.unshift({
+      id,
+      kind: 'exchange',
+      collectsClean,
+      shopCode: exchange.shopCode,
+      label: exchange.label,
+      quantity: 1,
+      priceCents: exchange.priceCents,
+      size: exchange.size,
+      dropLocker: exchange.lockerCode,
+      pickupLocker: exchange.lockerCode,
+      createdAt: new Date().toISOString(),
+      status: 'awaiting_drop_off',
+      dropFrom: exchange.slotStart.toISOString(),
+      dropBy: exchange.slotEnd.toISOString(),
+      pickupStart: exchange.slotStart.toISOString(),
+      pickupEnd: exchange.slotEnd.toISOString(),
+    })
+    return id
+  }
+
   /** Records the door given on arrival at the drop locker (once). */
   function assignOrderDoor(id: string, door: string): void {
     const order = state.value.orders.find((o) => o.id === id)
@@ -529,6 +575,7 @@ export const useAccountStore = defineStore('account', () => {
     addOrder,
     markOrderDropped,
     assignOrderDoor,
+    addExchange,
     assignBookingDoor,
     hasBoughtPack,
     buyPack,

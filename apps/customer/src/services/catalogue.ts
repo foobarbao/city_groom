@@ -9,7 +9,7 @@
 import { type Offer, catalogueData, loadOffers, offersOf, publicData } from '@city-groom/demo-data'
 import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import type { CompartmentSize } from '@city-groom/api-client'
-import type { DemoPartner, DemoService, SubscriptionPlan } from '@city-groom/demo-data'
+import type { DemoPack, DemoPartner, DemoService, SubscriptionPlan } from '@city-groom/demo-data'
 
 import type { Shop } from '../domain/shops'
 
@@ -93,6 +93,22 @@ export const PACK_PROVIDER = 'citypal'
 /** Name of the provider of an order: the shop, or CityPal for pack orders. */
 export const providerName = (code: string): string =>
   code === PACK_PROVIDER ? 'CityPal' : (shopByCode(code)?.name ?? code)
+
+/** Offer by code (weekly pack, sport exchange). */
+export const packByCode = (code: string): DemoPack | undefined =>
+  catalogueData.packs.find((p) => p.code === code)
+
+/** Codes of the offers decided by the project owner (docs/PRODUCT.md). */
+export const WEEKLY_PACK_CODE = 'weekly_shirts'
+export const SPORT_EXCHANGE_CODE = 'sport_exchange'
+
+/** Screen of an offer: the pack screen, or the exchange screen. */
+export const offerPath = (pack: DemoPack): string =>
+  pack.kind === 'exchange' ? '/echange-sport' : '/pack'
+
+/** Name of an item of an offer: its label, or the service name. */
+export const packItemName = (item: DemoPack['items'][number]): string =>
+  item.label ?? serviceByCode(item.service)?.name ?? item.service
 
 /** Partner details (reviews), for partner shops. */
 export const partnerByCode = (code: string): DemoPartner | undefined =>

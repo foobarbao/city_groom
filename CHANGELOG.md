@@ -9,6 +9,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Sport exchange: weekly exchange at one slot and one place (collect last
+  week's clean sport outfit, shirt and trousers, drop the dirty ones in the
+  same compartment), subscribers only (7 € Plus, 5 € Premium), bought by
+  the week; "Échange sport" screen, exchange variant of the order screen,
+  "Nouveau" promotion. Offers now have a kind and an optional welcome price.
+- "Notre engagement" page (ecology and digital axis), in the menu and on
+  the home screen.
 - Promotions: catalogue data (pack, audience, badge, texts, colour theme;
   price taken from the pack), "Offres du moment" strip on the home screen
   and promotion card on the pack screen.

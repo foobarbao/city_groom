@@ -17,7 +17,7 @@ import {
 import { packCapacityOf } from './partnerState'
 import { catalogue, partners } from './source'
 
-export const weeklyPack = catalogue.packs[0] as DemoPack
+export const weeklyPack = catalogue.packs.find((p) => p.code === 'weekly_shirts') as DemoPack
 export const perPack = packQuantities(weeklyPack)
 
 /** Laundries able to process the pack, with their declared availability. */

@@ -1,6 +1,7 @@
 /**
- * @file Rules of the weekly pack (docs/PRODUCT.md "Weekly pack"), decided by
- * the project owner on 2026-10-25.
+ * @file Rules of the weekly offers (docs/PRODUCT.md "Weekly pack", "Sport
+ * exchange"), decided by the project owner on 2026-10-25. The price rules
+ * apply to both; the schedule below is the weekly pack's.
  *
  * - Each week: 5 shirts + 2 trousers washed, ironed and folded.
  * - Bought four weeks at a time, paid at once, in a single order.
@@ -32,15 +33,24 @@ export type PackPrice =
  * @param hasBoughtBefore - Whether the customer already bought this pack.
  */
 export function packPrice(pack: DemoPack, plan: string, hasBoughtBefore: boolean): PackPrice {
-  const weekly = hasBoughtBefore ? pack.weekly_prices[plan] : pack.welcome_weekly_price
-  if (weekly === undefined) return { available: false, reason: 'subscription_required' }
+  const welcome = !hasBoughtBefore && pack.welcome_weekly_price !== null
+  const weekly = welcome ? pack.welcome_weekly_price : pack.weekly_prices[plan]
+  if (weekly === undefined || weekly === null) {
+    return { available: false, reason: 'subscription_required' }
+  }
   const weeklyCents = toCents(weekly)
   return {
     available: true,
     weeklyCents,
     totalCents: weeklyCents * pack.weeks_per_purchase,
-    welcome: !hasBoughtBefore,
+    welcome,
   }
+}
+
+/** Lowest weekly price with a subscription ("dès … avec un abonnement"). */
+export function lowestPlanWeeklyCents(pack: DemoPack): number | null {
+  const prices = Object.values(pack.weekly_prices).map(toCents)
+  return prices.length ? Math.min(...prices) : null
 }
 
 export { addRounds }

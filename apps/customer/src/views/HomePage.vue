@@ -7,6 +7,7 @@
 import { IonContent, IonIcon, IonPage } from '@ionic/vue'
 import {
   chevronForwardOutline,
+  leafOutline,
   lockClosedOutline,
   navigateOutline,
   repeatOutline,
@@ -17,7 +18,15 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
-import { CATEGORY_ORDER, catalogue, lockers, providerName } from '../services/catalogue'
+import {
+  CATEGORY_ORDER,
+  WEEKLY_PACK_CODE,
+  catalogue,
+  lockers,
+  offerPath,
+  packByCode,
+  providerName,
+} from '../services/catalogue'
 import { packPrice } from '../domain/pack'
 import { eligiblePromotions } from '../domain/promotions'
 import PromoCard from '../components/PromoCard.vue'
@@ -35,7 +44,7 @@ const openOrders = computed(() => account.state.orders.filter((o) => o.status !=
 const hasCurrent = computed(
   () => account.activeBookings.length + openOrders.value.length + account.pendingQuotes.length > 0,
 )
-const pack = catalogue.packs[0]
+const pack = packByCode(WEEKLY_PACK_CODE)
 const packOffer = computed(() =>
   pack ? packPrice(pack, account.state.plan, account.hasBoughtPack(pack.code)) : null,
 )
@@ -84,7 +93,7 @@ const CATEGORY_ICONS: Record<string, string> = {
               v-for="p in promotions"
               :key="p.promotion.code"
               :promo="p"
-              :to="`/pack?offre=${p.promotion.code}`"
+              :to="offerPath(p.pack)"
             />
           </div>
         </section>
@@ -174,6 +183,15 @@ const CATEGORY_ICONS: Record<string, string> = {
             </router-link>
           </div>
         </section>
+
+        <router-link class="nearby engagement" to="/engagement">
+          <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="leafOutline" /></span>
+          <span class="nearby-text">
+            <strong>{{ t('home.engagement.title') }}</strong>
+            <span>{{ t('home.engagement.text') }}</span>
+          </span>
+          <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
+        </router-link>
 
         <router-link class="soft-card map-link" to="/carte">
           <strong>{{ t('home.map') }}</strong>

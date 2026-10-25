@@ -29,6 +29,16 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   { path: '/pack', name: 'pack', component: () => import('../views/PackPage.vue') },
+  {
+    path: '/echange-sport',
+    name: 'exchange',
+    component: () => import('../views/ExchangePage.vue'),
+  },
+  {
+    path: '/engagement',
+    name: 'engagement',
+    component: () => import('../views/EngagementPage.vue'),
+  },
   { path: '/commander', name: 'checkout', component: () => import('../views/CheckoutPage.vue') },
   { path: '/consigne', name: 'consigne', component: () => import('../views/ConsignePage.vue') },
   {

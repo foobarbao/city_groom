@@ -83,6 +83,27 @@ describe('account store', () => {
     expect(store.hasBoughtPack('weekly_shirts')).toBe(true)
   })
 
+  it('schedules sport exchanges: clean items to collect after a first drop-off', () => {
+    const store = useAccountStore()
+    const exchange = {
+      label: 'Échange sport',
+      priceCents: 700,
+      size: 'XL',
+      shopCode: 'citypal',
+      lockerCode: 'l',
+      slotStart: new Date('2026-10-27T17:00:00Z'),
+      slotEnd: new Date('2026-10-27T19:00:00Z'),
+    }
+    const first = store.addExchange(exchange)
+    expect(store.state.orders.find((o) => o.id === first)?.collectsClean).toBe(false)
+    store.markOrderDropped(first)
+    const second = store.addExchange(exchange)
+    const order = store.state.orders.find((o) => o.id === second)
+    expect(order?.collectsClean).toBe(true)
+    expect(order?.pickupLocker).toBe('l')
+    expect(order?.pickupStart).toBe(order?.dropFrom)
+  })
+
   it('records an order drop-off once, with its door and time', () => {
     const store = useAccountStore()
     const id = store.addOrder({

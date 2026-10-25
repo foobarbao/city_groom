@@ -30,14 +30,23 @@ const { t } = useI18n()
     <strong class="title">{{ promo.promotion.title }}</strong>
     <span class="text">{{ promo.promotion.text }}</span>
     <span class="price">
+      <span v-if="!promo.available">{{ t('promo.from') }}</span>
       <strong>{{ euros(promo.weeklyCents) }}</strong>
       <span>{{ t('promo.perWeek') }}</span>
     </span>
     <span class="terms">{{
-      t('promo.terms', { total: euros(promo.totalCents), weeks: promo.pack.weeks_per_purchase })
+      !promo.available
+        ? t('promo.withSubscription')
+        : promo.pack.weeks_per_purchase > 1
+          ? t('promo.terms', {
+              total: euros(promo.totalCents),
+              weeks: promo.pack.weeks_per_purchase,
+            })
+          : t('promo.noCommitment')
     }}</span>
     <span v-if="to" class="cta">
-      {{ t('promo.cta') }} <ion-icon :icon="arrowForwardOutline" aria-hidden="true" />
+      {{ promo.available ? t('promo.cta') : t('promo.see') }}
+      <ion-icon :icon="arrowForwardOutline" aria-hidden="true" />
     </span>
   </component>
 </template>

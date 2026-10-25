@@ -7,10 +7,12 @@
  */
 import {
   addCircleOutline,
+  barbellOutline,
   briefcaseOutline,
   chatbubblesOutline,
   fileTrayFullOutline,
   homeOutline,
+  leafOutline,
   lockClosedOutline,
   mapOutline,
   navigateOutline,
@@ -30,6 +32,7 @@ export const NAVIGATION: NavNode[] = [
   navGroup('services', 'nav.services', briefcaseOutline, [
     navItem('shops', 'nav.findService', searchOutline, 'shops', { also: ['shop', 'checkout'] }),
     navItem('pack', 'nav.pack', shirtOutline, 'pack'),
+    navItem('exchange', 'nav.exchange', barbellOutline, 'exchange'),
     navItem('orders', 'nav.orders', receiptOutline, 'orders', { also: ['order', 'review'] }),
     navItem('messages', 'nav.messagesQuotes', chatbubblesOutline, 'messages', {
       also: ['chat'],
@@ -49,6 +52,7 @@ export const NAVIGATION: NavNode[] = [
     navItem('profile', 'nav.profile', personOutline, 'account'),
     navItem('plans', 'nav.plans', ribbonOutline, 'plans'),
   ]),
+  navItem('engagement', 'nav.engagement', leafOutline, 'engagement'),
 ]
 
 /** Path from the top of the menu to the item of a route (see `navTrail`). */
