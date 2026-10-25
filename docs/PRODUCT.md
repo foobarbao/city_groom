@@ -359,7 +359,8 @@ with the project owner.
 - Operators see every account in the administration (**Comptes**): photo,
   name, e-mail, sign-in method, customer or team, sign-up and last sign-in
   dates, filters, search, key figures, deactivation.
-- PROD: privacy notice before real sign-ups; Google sign-in in the Android
+- PROD: privacy notice before real sign-ups (draft:
+  `docs/legal/privacy-policy.fr.md`, to complete and have validated); Google sign-in in the Android
   app (native plugin).
 
 ## 9. Business model

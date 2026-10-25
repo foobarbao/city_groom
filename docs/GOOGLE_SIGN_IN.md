@@ -44,7 +44,9 @@ copy it anywhere.
    in the console: the basic scopes need no Google verification; if the
    console marks the calendar scope as *sensitive*, Google must verify the
    app before merchants other than test users can sync (a logo, if added,
-   may also require a brand verification).
+   may also require a brand verification). Publishing requires a domain you
+   own (verified in Google Search Console) with a public home page and a
+   privacy policy on it (draft: `docs/legal/privacy-policy.fr.md`).
 
 ## 3. Create the OAuth client ID
 

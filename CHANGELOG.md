@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Privacy policy draft in French (`docs/legal/privacy-policy.fr.md`),
+  written from the data the code actually collects, with the points to
+  complete and to have validated by a legal adviser.
 - Merchant planning: Google Agenda synchronisation (Google Calendar API,
   scope `calendar.app.created`): "CityPal" calendar created in the
   merchant's agenda, every task written with a stable ID and updated when
