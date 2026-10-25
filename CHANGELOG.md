@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Hosted backend on Render + Neon (`https://citypal.onrender.com`); the
+  hosted customer app sends the Google sign-in to it (real token check,
+  account stored server-side) instead of the on-device demo fallback.
 - Coloured menu icons: each top-level entry has its own tone (emerald,
   teal, blue, coral, plum), inherited by its children.
 - Checkout: a disabled "Payer" button now looks disabled and a line lists
