@@ -342,6 +342,59 @@ SUBSCRIPTION_PLANS: tuple[SubscriptionPlan, ...] = (
     ),
 )
 
+
+@dataclass(frozen=True)
+class DemoPack:
+    """A weekly bundle of services, bought four weeks at a time.
+
+    Attributes:
+        code: Stable identifier.
+        name: Display name (French).
+        items: Services included each week, as (service code, quantity).
+        weeks_per_purchase: Weeks bought and paid at once.
+        welcome_weekly_price: Weekly price of a customer's first purchase,
+            whatever their plan (welcome offer).
+        weekly_prices: Weekly price by subscription plan code; plans absent
+            from it cannot buy the pack (except the welcome offer).
+        size: Compartment size used for each week's drop-off and return.
+    """
+
+    code: str
+    name: str
+    items: tuple[tuple[str, int], ...]
+    weeks_per_purchase: int
+    welcome_weekly_price: Decimal
+    weekly_prices: dict[str, Decimal]
+    size: CompartmentSize
+
+    @property
+    def turnaround_rounds(self) -> int:
+        """Rounds between collection and return: the longest included service.
+
+        ASSUMPTION: washing, ironing and folding fit in the longest turnaround
+        of the included services; to confirm with the partner laundries.
+        """
+        included = {code for code, _ in self.items}
+        return max(s.turnaround_rounds for s in SERVICES if s.code in included)
+
+
+# Weekly pack decided by the project owner on 2026-10-25 (docs/PRODUCT.md
+# "Weekly pack"): 5 shirts + 2 trousers washed, ironed and folded each week,
+# bought by 4 weeks; 10 EUR/week for the first purchase (welcome offer), then
+# 15 EUR/week with Premium and 20 EUR/week with Plus; not offered without a
+# subscription after the welcome offer.
+WEEKLY_PACK = DemoPack(
+    code="weekly_shirts",
+    name="Pack semaine",
+    items=(("shirt_ironing", 5), ("trouser_ironing", 2)),
+    weeks_per_purchase=4,
+    welcome_weekly_price=Decimal("10.00"),
+    weekly_prices={"premium": Decimal("15.00"), "plus": Decimal("20.00")},
+    # ASSUMPTION: ironed shirts come back hanging, so the pack uses the
+    # garment compartment; to confirm with the locker dimensions.
+    size=XL,
+)
+
 # ASSUMPTION: consigne price per booking without subscription, by compartment
 # size (placeholders, open question 9). Hanging compartments are not offered
 # for the consigne.

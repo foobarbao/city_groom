@@ -7,11 +7,13 @@
 export interface ReviewableOrder {
   id: string
   status: string
+  /** Weekly pack orders are not tied to one shop, so they are not rated. */
+  packId?: string
 }
 
 /** Whether an order can be reviewed now: collected by the customer, not yet reviewed. */
 export function canReview(order: ReviewableOrder, reviewedOrderIds: ReadonlySet<string>): boolean {
-  return order.status === 'picked_up' && !reviewedOrderIds.has(order.id)
+  return order.status === 'picked_up' && !order.packId && !reviewedOrderIds.has(order.id)
 }
 
 /** Whether a rating is valid: a whole number from 1 to 5. */

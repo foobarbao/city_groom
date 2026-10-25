@@ -9,6 +9,7 @@ import {
   chevronForwardOutline,
   lockClosedOutline,
   navigateOutline,
+  repeatOutline,
   shirtOutline,
 } from 'ionicons/icons'
 import { computed } from 'vue'
@@ -16,18 +17,24 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
-import { CATEGORY_ORDER, catalogue, lockers, shopByCode } from '../services/catalogue'
+import { CATEGORY_ORDER, catalogue, lockers, providerName } from '../services/catalogue'
+import { packPrice } from '../domain/pack'
 import { useAccountStore } from '../stores/account'
+import { euros } from '../utils/format'
 
 const { t } = useI18n()
 const account = useAccountStore()
 
 const lockerName = (code: string): string => lockers.find((l) => l.code === code)?.name ?? code
-const shopName = (code: string): string => shopByCode(code)?.name ?? code
+const shopName = providerName
 
 const openOrders = computed(() => account.state.orders.filter((o) => o.status !== 'picked_up'))
 const hasCurrent = computed(
   () => account.activeBookings.length + openOrders.value.length + account.pendingQuotes.length > 0,
+)
+const pack = catalogue.packs[0]
+const packOffer = computed(() =>
+  pack ? packPrice(pack, account.state.plan, account.hasBoughtPack(pack.code)) : null,
 )
 const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(catalogue.round_times)
 
@@ -79,6 +86,20 @@ const CATEGORY_ICONS: Record<string, string> = {
           <span class="nearby-text">
             <strong>{{ t('nearby.shortcut') }}</strong>
             <span>{{ t('nearby.shortcutText') }}</span>
+          </span>
+          <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
+        </router-link>
+
+        <router-link v-if="pack" class="nearby pack" to="/pack">
+          <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="repeatOutline" /></span>
+          <span class="nearby-text">
+            <strong>{{ t('home.pack.title') }}</strong>
+            <span v-if="packOffer?.available">{{
+              packOffer.welcome
+                ? t('home.pack.welcome', { price: euros(packOffer.weeklyCents) })
+                : t('home.pack.price', { price: euros(packOffer.weeklyCents) })
+            }}</span>
+            <span v-else>{{ t('home.pack.subscribers') }}</span>
           </span>
           <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
         </router-link>

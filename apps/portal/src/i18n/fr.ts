@@ -149,6 +149,15 @@ export default {
       reviews: 'Avis',
       services: 'Mes offres',
     },
+    pack: {
+      title: 'Packs semaine CityPal',
+      announced: 'Volume annoncé pour les {weeks} prochaines semaines :',
+      items: '{shirts} chemises et {trousers} pantalons',
+      perWeek: 'Soit {packs} packs par semaine : {items}, lavés, repassés et pliés.',
+      capacity: 'Votre disponibilité (chemises par semaine)',
+      save: 'Enregistrer',
+      saved: 'Disponibilité enregistrée : la répartition est mise à jour.',
+    },
     agenda: {
       intro:
         'Votre semaine : passages du coursier, prestations à faire et remises. Cochez chaque tâche une fois faite.',
@@ -433,6 +442,28 @@ export default {
       rounds: 'Tournées',
       partners: 'Commerces',
       forecast: 'Prévisions',
+      packs: 'Packs semaine',
+    },
+    packs: {
+      internal:
+        'Information interne : ne jamais communiquer ces volumes ni cette répartition aux clients.',
+      active: 'Packs actifs',
+      weekly: 'Volume par semaine',
+      monthly: 'Volume sur {weeks} semaines',
+      items: '{shirts} chemises · {trousers} pantalons',
+      load: 'Charge des blanchisseries',
+      loadHint: 'sur {capacity} chemises de disponibilité par semaine',
+      dispatchTitle: 'Répartition entre blanchisseries',
+      dispatchRule:
+        'Chaque pack va à la blanchisserie qui a le plus de disponibilité restante ; un pack n’est jamais partagé. Le volume sur 4 semaines est celui annoncé à chaque blanchisserie.',
+      laundry: 'Blanchisserie',
+      capacity: 'Disponibilité (chemises / sem.)',
+      packs: 'Packs',
+      perWeek: 'Par semaine',
+      announced: 'Annoncé sur {weeks} semaines',
+      unallocated:
+        'Aucun pack sans blanchisserie | 1 pack n’a pas de blanchisserie : demander plus de disponibilité | {count} packs n’ont pas de blanchisserie : demander plus de disponibilité',
+      demo: 'Démonstration : packs actifs fictifs, plus ceux achetés dans l’application client sur cet appareil. Disponibilité par défaut : 40 chemises par semaine, modifiable par chaque blanchisserie.',
     },
     sites: {
       tram_stop: 'Arrêt de tram',

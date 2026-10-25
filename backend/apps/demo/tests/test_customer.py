@@ -51,3 +51,20 @@ def test_services_have_search_keywords() -> None:
 
     assert "semelle" in services["sole_replacement"]["keywords"]
     assert all(s["keywords"] for s in services.values())
+
+
+def test_weekly_pack_follows_the_owner_rules() -> None:
+    pack = build_customer_catalogue(NOW)["packs"][0]
+    plans = {p["code"] for p in build_customer_catalogue(NOW)["plans"]}
+
+    assert pack["items"] == [
+        {"service": "shirt_ironing", "quantity": 5},
+        {"service": "trouser_ironing", "quantity": 2},
+    ]
+    assert pack["weeks_per_purchase"] == 4
+    assert pack["welcome_weekly_price"] == "10.00"
+    assert pack["weekly_prices"] == {"premium": "15.00", "plus": "20.00"}
+    # Every priced plan exists; without a subscription the pack is not offered.
+    assert set(pack["weekly_prices"]) <= plans
+    assert "free" not in pack["weekly_prices"]
+    assert pack["turnaround_rounds"] >= 1

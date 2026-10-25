@@ -87,8 +87,7 @@ the item category.
 1. **Standard services** — fixed price per item, ordered directly (e.g. ironing
    a shirt, cleaning a pair of shoes).
 2. **Packs** — bundles of standard services at a pack price, offered with
-   partner merchants (e.g. 5 shirts + 2 trousers). Details to be specified by
-   the project owner (see [Reminders](#reminders)).
+   partner merchants. First one: the **weekly pack** (below).
 3. **Special services (on quote)** — the customer opens a **direct chat** with
    the merchant, can upload **photos and videos**, the merchant sends a
    **quote**, and the customer accepts or declines it. Accepted quotes then
@@ -96,6 +95,39 @@ the item category.
 
 The guiding principle on both sides is **maximum simplicity**: as few steps as
 possible for the customer and for the merchant.
+
+### Weekly pack
+
+Decided by the project owner on 2026-10-25.
+
+- **Content**: each week, **5 shirts + 2 trousers** washed, ironed and
+  folded.
+- **Bought by the month**: 4 weeks at once, paid at once, in a single order;
+  **no automatic renewal** (the app offers to buy again during the last
+  week).
+- **Price per week**: **10 €** for a customer's first purchase (welcome
+  offer, first month only, whatever their plan), then **15 €** with
+  CityPal Premium and **20 €** with CityPal Plus (the first subscription).
+  Without a subscription the pack is not offered after the welcome month.
+- **Rhythm**: the customer chooses the weekly drop-off day and slot; the
+  return is computed from the laundries' turnaround; the customer chooses a
+  pickup slot (same rule as orders, below) and the pickup locker, kept for
+  the four weeks.
+- **Provider shown to the customer**: "CityPal". Pack orders are not rated
+  (not tied to one shop).
+
+**Internal — never shown or said to customers:** the pack is a traffic
+builder, not a source of margin. It uses CityPal's network and logistics;
+the weekly volume is dispatched to the partner laundries according to the
+availability they declare, which gives each of them a predictable, constant
+volume announced for the month (N shirts), and it builds the customer's
+habit. Operator view: Exploitation › Activité › Packs semaine; each laundry
+sees its announced volume and declares its availability on its dashboard.
+
+ASSUMPTIONS (placeholders, to confirm): turnaround = the longest of the
+included services; garment compartment for drop-off and return; unused
+items of a week are not carried over; default laundry availability 40
+shirts/week; 18 fictitious active packs in the demo.
 
 ### Out of scope: red lines
 
@@ -123,7 +155,16 @@ and operators use **web interfaces** (ADR-0005). Merchants also get a
    special service. Ordering is possible **as a guest** (see Accounts).
 3. The customer chooses a **drop-off locker**, and a **pickup locker** with a
    **pickup slot** (until the next round). The pickup locker may differ from the drop-off
-   locker.
+   locker. Clarified on 2026-10-25: the pickup locker is always chosen
+   explicitly (no default), and the slots offered start at the round that
+   brings the item back; the customer collects during the chosen slot,
+   before the following round, which frees the compartment, so each
+   compartment can turn over three times a day.
+   **Compartments are never booked** (stated 2026-10-25): the customer
+   chooses a place (a locker station) for drop-off and one for pickup, and
+   reserves a **size**; the compartment (door) is given when they arrive in
+   front of the machine and open it. The same applies to the consigne and
+   to transfers.
 4. The app shows the customer a **visual of the locker front**, highlighting
    the door that will open and its size, then the customer drops the item in.
    The opening method depends on the locker vendor: **Bluetooth**, **NFC** or
@@ -425,8 +466,14 @@ with the project owner.
 
 Topics the project owner asked to be reminded of:
 
-- **Packs with partners** (e.g. 5 shirts + 2 trousers): the project owner will
-  detail the pack offers and partnerships. *(Requested on 2026-10-24.)*
+- **Packs with partners**: the first one, the weekly pack, is specified
+  (§2 "Weekly pack"); other packs and partnerships to come. *(Requested on
+  2026-10-24.)*
+- **Making Google sign-in and the Google Agenda sync work for real** needs
+  two things from the project owner: the Google OAuth client ID
+  (docs/GOOGLE_SIGN_IN.md), and the Render + Neon backend
+  (docs/BUILD_AND_RELEASE.md §6) for the customer sign-in. *(Asked on
+  2026-10-25 to be reminded later.)*
 - **Other interfaces** (merchant, courier, operator) will be reworked after
   the customer app, including the consigne and three rounds.
   *(Stated on 2026-10-24.)*

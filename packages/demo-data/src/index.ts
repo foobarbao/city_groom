@@ -170,6 +170,24 @@ export interface SubscriptionPlan {
   perks: string[];
 }
 
+/** A weekly bundle of services bought four weeks at a time (docs/PRODUCT.md "Weekly pack"). */
+export interface DemoPack {
+  code: string;
+  name: string;
+  /** Services included each week. */
+  items: { service: string; quantity: number }[];
+  /** Weeks bought and paid at once. */
+  weeks_per_purchase: number;
+  /** Weekly price of a customer's first purchase, whatever their plan. */
+  welcome_weekly_price: string;
+  /** Weekly price by plan code; other plans cannot buy (except the welcome offer). */
+  weekly_prices: Record<string, string>;
+  /** Compartment size of each week's drop-off and return. */
+  size: string;
+  /** Rounds between collection and return (3 rounds = 1 day). */
+  turnaround_rounds: number;
+}
+
 /** A slot between two rounds (docs/PRODUCT.md §4). */
 export interface Slot {
   code: "morning" | "afternoon" | "evening";
@@ -185,6 +203,7 @@ export interface CatalogueData {
   partners: DemoPartner[];
   services: DemoService[];
   plans: SubscriptionPlan[];
+  packs: DemoPack[];
   consigne: {
     max_hours: number;
     min_notice_hours: number;

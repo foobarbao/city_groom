@@ -28,6 +28,7 @@ import {
   pricetagsOutline,
   pulseOutline,
   receiptOutline,
+  repeatOutline,
   speedometerOutline,
   starOutline,
   storefrontOutline,
@@ -94,6 +95,7 @@ export const NAVIGATION: NavNode[] = [
     group('operator-activity', 'nav.activity', pulseOutline, [
       item('operator-orders', 'operator.nav.orders', receiptOutline, 'operator-orders'),
       item('operator-rounds', 'operator.nav.rounds', bicycleOutline, 'operator-rounds'),
+      item('operator-packs', 'operator.nav.packs', repeatOutline, 'operator-packs'),
     ]),
     item('operator-forecast', 'operator.nav.forecast', trendingUpOutline, 'operator-forecast'),
   ]),

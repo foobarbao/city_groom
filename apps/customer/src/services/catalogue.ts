@@ -7,6 +7,8 @@
  * PROD: read the catalogue, offers, reviews and plans from the API.
  */
 import { type Offer, catalogueData, loadOffers, offersOf, publicData } from '@city-groom/demo-data'
+import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
+import type { CompartmentSize } from '@city-groom/api-client'
 import type { DemoPartner, DemoService, SubscriptionPlan } from '@city-groom/demo-data'
 
 import type { Shop } from '../domain/shops'
@@ -81,6 +83,17 @@ export const shops: Shop[] = [...partners, ...businesses]
 /** Shop by code. */
 export const shopByCode = (code: string): Shop | undefined => shops.find((s) => s.code === code)
 
+/**
+ * Provider shown for weekly pack orders. CityPal dispatches them to its
+ * partner laundries; which laundry handles a week is internal and never
+ * shown to the customer (docs/PRODUCT.md "Weekly pack").
+ */
+export const PACK_PROVIDER = 'citypal'
+
+/** Name of the provider of an order: the shop, or CityPal for pack orders. */
+export const providerName = (code: string): string =>
+  code === PACK_PROVIDER ? 'CityPal' : (shopByCode(code)?.name ?? code)
+
 /** Partner details (reviews), for partner shops. */
 export const partnerByCode = (code: string): DemoPartner | undefined =>
   catalogueData.partners.find((p) => p.code === code)
@@ -136,3 +149,17 @@ export const offeredServices = CATEGORY_ORDER.flatMap((category) =>
     (s) => s.category === category && partners.some((p) => p.services.includes(s.code)),
   ),
 )
+
+/**
+ * Compartment (door) given to the customer when they arrive at the locker
+ * and open it: customers reserve a size, never a particular compartment
+ * (stated by the project owner on 2026-10-25).
+ *
+ * DEMO: the first door of the reserved size. PROD: the locker assigns a free
+ * compartment of that size at arrival, through the locker driver.
+ */
+export function assignDoorLabel(lockerCode: string, size: string): string {
+  const layout = lockerLayout(lockerCode)
+  if (!layout) return ''
+  return exampleDoorLabel(computeLockerDrawing(layout, sizes), size as CompartmentSize) ?? ''
+}

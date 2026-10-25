@@ -15,6 +15,8 @@ import {
   isTaskDone,
   toggleStop,
   setWebhook,
+  packCapacityOf,
+  setPackCapacity,
   googleCalendarOf,
   markSynced,
   setGoogleCalendar,
@@ -67,6 +69,14 @@ describe('partner state', () => {
     expect(googleCalendarOf('m')?.lastSyncAt).toBe('2026-10-25T10:00:00.000Z')
     setGoogleCalendar('m', null)
     expect(googleCalendarOf('m')).toBeNull()
+  })
+
+  it('stores a laundry pack availability, never negative', () => {
+    expect(packCapacityOf('m')).toBeUndefined()
+    setPackCapacity('m', 32.4)
+    expect(packCapacityOf('m')).toBe(32)
+    setPackCapacity('m', -5)
+    expect(packCapacityOf('m')).toBe(0)
   })
 
   it('toggles ready items and done stops', () => {

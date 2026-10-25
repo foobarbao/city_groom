@@ -7,6 +7,8 @@
  * Props:
  * - `size`: size whose free compartments are shown and required (optional).
  * - `exclude`: sizes that cannot be used (e.g. hanging compartments for the consigne).
+ * - `excludeLockers`: lockers not offered (e.g. the drop-off locker when
+ *   choosing "another locker" for the pickup).
  * - `modelValue`: selected locker code (v-model).
  */
 import { IonIcon } from '@ionic/vue'
@@ -19,10 +21,10 @@ import { distanceMeters, formatDistance } from '../domain/geo'
 import { normalize } from '../domain/shops'
 import { type LockerSummary, lockers } from '../services/catalogue'
 
-const props = withDefaults(defineProps<{ size?: string | null; exclude?: string[] }>(), {
-  size: null,
-  exclude: () => [],
-})
+const props = withDefaults(
+  defineProps<{ size?: string | null; exclude?: string[]; excludeLockers?: string[] }>(),
+  { size: null, exclude: () => [], excludeLockers: () => [] },
+)
 const selected = defineModel<string | null>({ default: null })
 const { t } = useI18n()
 
@@ -56,6 +58,7 @@ const free = (locker: LockerSummary): number =>
 const shown = computed(() => {
   const words = normalize(query.value).split(' ').filter(Boolean)
   return lockers
+    .filter((l) => !props.excludeLockers.includes(l.code))
     .filter((l) => !category.value || l.siteCategory === category.value)
     .filter((l) => {
       const text = normalize(`${l.name} ${t(`sites.${l.siteCategory}`)}`)

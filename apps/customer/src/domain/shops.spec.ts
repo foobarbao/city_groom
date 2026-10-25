@@ -93,6 +93,8 @@ describe('reviews', () => {
     expect(canReview({ id: 'o1', status: 'picked_up' }, new Set())).toBe(true)
     expect(canReview({ id: 'o1', status: 'picked_up' }, new Set(['o1']))).toBe(false)
     expect(canReview({ id: 'o2', status: 'at_merchant' }, new Set())).toBe(false)
+    // Weekly pack orders are not tied to one shop.
+    expect(canReview({ id: 'o3', status: 'picked_up', packId: 'P-1' }, new Set())).toBe(false)
   })
 
   it('accepts whole ratings from 1 to 5 and updates the average', () => {

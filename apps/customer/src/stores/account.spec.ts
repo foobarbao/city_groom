@@ -48,6 +48,41 @@ describe('account store', () => {
     expect(store.pendingQuotes).toHaveLength(1)
   })
 
+  it('buys a weekly pack as one purchase and four weekly orders', () => {
+    const store = useAccountStore()
+    expect(store.hasBoughtPack('weekly_shirts')).toBe(false)
+    const week = (n: number) => ({
+      week: n,
+      dropFrom: new Date(`2026-11-0${n}T19:00:00Z`),
+      dropBy: new Date(`2026-11-0${n + 1}T06:00:00Z`),
+      returnAt: new Date(`2026-11-0${n + 1}T19:00:00Z`),
+    })
+    const id = store.buyPack(
+      {
+        packCode: 'weekly_shirts',
+        weeklyCents: 1000,
+        totalCents: 4000,
+        welcome: true,
+        plan: 'free',
+        dropLocker: 'l',
+        pickupLocker: 'l',
+        weekday: 5,
+        slotCode: 'evening',
+      },
+      [week(1), week(2), week(3), week(4)],
+      { label: 'Pack semaine', quantity: 7, size: 'XL', shopCode: 'citypal' },
+    )
+    const purchase = store.state.packs?.[0]
+    expect(purchase?.id).toBe(id)
+    expect(purchase?.orderIds).toHaveLength(4)
+    const orders = store.state.orders.filter((o) => o.packId === id)
+    expect(orders.map((o) => o.packWeek).sort()).toEqual([1, 2, 3, 4])
+    expect(orders.every((o) => o.status === 'awaiting_drop_off' && o.priceCents === 1000)).toBe(
+      true,
+    )
+    expect(store.hasBoughtPack('weekly_shirts')).toBe(true)
+  })
+
   it('records an order drop-off once, with its door and time', () => {
     const store = useAccountStore()
     const id = store.addOrder({

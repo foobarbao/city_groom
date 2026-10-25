@@ -24,6 +24,7 @@ from apps.demo.catalogue import (
     REVIEW_COMMENTS,
     SERVICES_BY_CATEGORY,
     SUBSCRIPTION_PLANS,
+    WEEKLY_PACK,
     DemoMerchant,
 )
 
@@ -108,6 +109,22 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
                 "perks": list(p.perks),
             }
             for p in SUBSCRIPTION_PLANS
+        ],
+        "packs": [
+            {
+                "code": WEEKLY_PACK.code,
+                "name": WEEKLY_PACK.name,
+                "items": [
+                    {"service": code, "quantity": quantity} for code, quantity in WEEKLY_PACK.items
+                ],
+                "weeks_per_purchase": WEEKLY_PACK.weeks_per_purchase,
+                "welcome_weekly_price": str(WEEKLY_PACK.welcome_weekly_price),
+                "weekly_prices": {
+                    plan: str(price) for plan, price in WEEKLY_PACK.weekly_prices.items()
+                },
+                "size": WEEKLY_PACK.size.value,
+                "turnaround_rounds": WEEKLY_PACK.turnaround_rounds,
+            }
         ],
         "consigne": {
             "max_hours": CONSIGNE_MAX_HOURS,

@@ -48,6 +48,8 @@ interface PartnerState {
   webhooks?: Record<string, string>
   /** Google Agenda linked per merchant (googleCalendar.ts). */
   googleCalendars?: Record<string, GoogleCalendarLink>
+  /** Weekly pack availability declared by laundries, in shirts per week. */
+  packCapacity?: Record<string, number>
 }
 
 /** The "CityPal" calendar created in a merchant's Google Agenda. */
@@ -90,6 +92,7 @@ const empty = (): PartnerState => ({
   tasksDone: [],
   webhooks: {},
   googleCalendars: {},
+  packCapacity: {},
 })
 
 export const partnerState = reactive<PartnerState>(load() ?? empty())
@@ -235,6 +238,15 @@ export function setGoogleCalendar(merchant: string, calendarId: string | null): 
 export function markSynced(merchant: string, at: Date = new Date()): void {
   const link = partnerState.googleCalendars?.[merchant]
   if (link) link.lastSyncAt = at.toISOString()
+}
+
+/** Weekly pack availability declared by a laundry, if any (shirts per week). */
+export const packCapacityOf = (merchant: string): number | undefined =>
+  partnerState.packCapacity?.[merchant]
+
+/** Declares a laundry's weekly pack availability (shirts per week, 0 or more). */
+export function setPackCapacity(merchant: string, shirts: number): void {
+  ;(partnerState.packCapacity ??= {})[merchant] = Math.max(0, Math.round(shirts))
 }
 
 /** Marks a stop of a round as done (or undoes it). */

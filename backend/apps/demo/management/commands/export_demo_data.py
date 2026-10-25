@@ -15,12 +15,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
 from django.test import override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient
 
+from apps.accounts.models import User
 from apps.demo.activity import LockerSite, generate_activity
 from apps.demo.customer import build_customer_catalogue
 from apps.lockers.models import Locker
