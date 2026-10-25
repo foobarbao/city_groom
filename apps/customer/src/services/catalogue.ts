@@ -81,6 +81,17 @@ export const shops: Shop[] = [...partners, ...businesses]
 /** Shop by code. */
 export const shopByCode = (code: string): Shop | undefined => shops.find((s) => s.code === code)
 
+/**
+ * Provider shown for weekly pack orders. CityPal dispatches them to its
+ * partner laundries; which laundry handles a week is internal and never
+ * shown to the customer (docs/PRODUCT.md "Weekly pack").
+ */
+export const PACK_PROVIDER = 'citypal'
+
+/** Name of the provider of an order: the shop, or CityPal for pack orders. */
+export const providerName = (code: string): string =>
+  code === PACK_PROVIDER ? 'CityPal' : (shopByCode(code)?.name ?? code)
+
 /** Partner details (reviews), for partner shops. */
 export const partnerByCode = (code: string): DemoPartner | undefined =>
   catalogueData.partners.find((p) => p.code === code)

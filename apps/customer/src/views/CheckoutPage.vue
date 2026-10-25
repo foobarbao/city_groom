@@ -26,7 +26,7 @@ import { useRoute } from 'vue-router'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { toCents } from '../domain/pricing'
-import { currentSlot } from '../domain/slots'
+import { type SlotWindow, addRounds, currentSlot, slotsFrom } from '../domain/slots'
 import {
   catalogue,
   lockerLayout,
@@ -37,7 +37,7 @@ import {
   sizes,
 } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
-import { clock, euros } from '../utils/format'
+import { clock, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
 
 const { t } = useI18n()
@@ -61,7 +61,10 @@ const quote = computed(() => account.state.quotes.find((q) => q.id === route.que
 const quantity = ref(1)
 const dropLocker = ref<string | null>(null)
 const pickupLocker = ref<string | null>(null)
-const sameLocker = ref(true)
+/** Where to collect: chosen explicitly by the customer, no default. */
+const pickupChoice = ref<'same' | 'other' | null>(null)
+/** Chosen pickup slot (index in `pickupOptions`). */
+const pickupIndex = ref<number | null>(null)
 const doneId = ref<string | null>(null)
 
 const label = computed(() => quote.value?.label ?? offer.value?.title ?? service.value?.name ?? '')
@@ -73,16 +76,37 @@ const unitCents = computed(() =>
 )
 const totalCents = computed(() => unitCents.value * (quote.value ? 1 : quantity.value))
 const nextRound = computed(() => currentSlot(new Date(), catalogue.slots)?.end ?? null)
-const readyDays = computed(() =>
-  Math.max(
-    1,
-    Math.round(
-      (offer.value?.turnaroundRounds ?? service.value?.turnaround_rounds ?? 3) /
-        catalogue.round_times.length,
-    ),
-  ),
+const pickup = computed(() =>
+  pickupChoice.value === 'same'
+    ? dropLocker.value
+    : pickupChoice.value === 'other'
+      ? pickupLocker.value
+      : null,
 )
-const pickup = computed(() => (sameLocker.value ? dropLocker.value : pickupLocker.value))
+const turnaround = computed(
+  () => offer.value?.turnaroundRounds ?? service.value?.turnaround_rounds ?? 3,
+)
+/** Round at which the item comes back to the pickup locker. */
+const readyAt = computed(() =>
+  nextRound.value ? addRounds(nextRound.value, turnaround.value, catalogue.round_times) : null,
+)
+/**
+ * Pickup slots offered: from the return round, over two days. The customer
+ * collects before the end of the chosen slot (the next round), which frees
+ * the compartment for the next rotation (three a day).
+ */
+const pickupOptions = computed<SlotWindow[]>(() =>
+  readyAt.value ? slotsFrom(readyAt.value, catalogue.slots, 6) : [],
+)
+const pickupSlot = computed(() =>
+  pickupIndex.value === null ? null : (pickupOptions.value[pickupIndex.value] ?? null),
+)
+const labels = computed(() => ({ today: t('common.today'), tomorrow: t('common.tomorrow') }))
+/** Same labels in lower case, for dates inside a sentence ("retrait demain…"). */
+const inSentence = computed(() => ({
+  today: t('common.today').toLocaleLowerCase('fr'),
+  tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
+}))
 const lockerName = (code: string | null): string => lockers.find((l) => l.code === code)?.name ?? ''
 const door = computed(() => {
   const layout = dropLocker.value ? lockerLayout(dropLocker.value) : undefined
@@ -90,13 +114,15 @@ const door = computed(() => {
     ? exampleDoorLabel(computeLockerDrawing(layout, sizes), size.value as CompartmentSize)
     : null
 })
-const ready = computed(() => Boolean(shop.value && label.value && dropLocker.value && pickup.value))
+const ready = computed(() =>
+  Boolean(shop.value && label.value && dropLocker.value && pickup.value && pickupSlot.value),
+)
 
 // After choosing a locker, bring the rest of the form into view.
 const afterDrop = ref<HTMLElement | null>(null)
 const summary = ref<HTMLElement | null>(null)
 watch(dropLocker, () => reveal(afterDrop.value))
-watch(pickupLocker, () => reveal(summary.value))
+watch(pickupIndex, () => reveal(summary.value))
 
 function pay(): void {
   if (!shop.value || !dropLocker.value || !pickup.value) return
@@ -109,6 +135,9 @@ function pay(): void {
     dropLocker: dropLocker.value,
     pickupLocker: pickup.value,
     door: door.value ?? undefined,
+    readyAt: readyAt.value?.toISOString(),
+    pickupStart: pickupSlot.value?.start.toISOString(),
+    pickupEnd: pickupSlot.value?.end.toISOString(),
   })
 }
 </script>
@@ -131,6 +160,16 @@ function pay(): void {
         <h1 class="page-title">✓ {{ t('checkout.done') }}</h1>
         <section class="soft-card">
           <p>{{ t('checkout.doneText', { locker: lockerName(dropLocker), door: door ?? '—' }) }}</p>
+          <p v-if="pickupSlot && pickup">
+            {{
+              t('checkout.donePickup', {
+                locker: lockerName(pickup),
+                day: dayLabel(pickupSlot.start, inSentence),
+                from: clock(pickupSlot.start),
+                to: clock(pickupSlot.end),
+              })
+            }}
+          </p>
           <p v-if="nextRound" class="muted">
             {{ t('checkout.whenText', { time: clock(nextRound) }) }}
           </p>
@@ -166,21 +205,80 @@ function pay(): void {
         <h2 class="section-title">{{ t('checkout.dropLocker') }}</h2>
         <locker-picker v-model="dropLocker" :size="size" />
 
-        <label ref="afterDrop" class="same">
-          <input v-model="sameLocker" type="checkbox" />
-          {{ t('checkout.sameLocker') }}
-        </label>
-        <template v-if="!sameLocker">
-          <h2 class="section-title">{{ t('checkout.pickupLocker') }}</h2>
-          <locker-picker v-model="pickupLocker" :size="size" />
-        </template>
+        <section ref="afterDrop" class="pickup">
+          <h2 class="section-title">{{ t('checkout.pickupTitle') }}</h2>
+          <div class="choices" role="radiogroup" :aria-label="t('checkout.pickupLocker')">
+            <button
+              type="button"
+              class="choice"
+              role="radio"
+              :aria-checked="pickupChoice === 'same'"
+              :class="{ active: pickupChoice === 'same' }"
+              :disabled="!dropLocker"
+              @click="pickupChoice = 'same'"
+            >
+              <strong>{{ t('checkout.sameLocker') }}</strong>
+              <span class="muted small">{{ lockerName(dropLocker) || '—' }}</span>
+            </button>
+            <button
+              type="button"
+              class="choice"
+              role="radio"
+              :aria-checked="pickupChoice === 'other'"
+              :class="{ active: pickupChoice === 'other' }"
+              @click="pickupChoice = 'other'"
+            >
+              <strong>{{ t('checkout.otherLocker') }}</strong>
+              <span class="muted small">{{
+                pickupChoice === 'other' && pickupLocker
+                  ? lockerName(pickupLocker)
+                  : t('checkout.otherLockerHint')
+              }}</span>
+            </button>
+          </div>
+          <locker-picker
+            v-if="pickupChoice === 'other'"
+            v-model="pickupLocker"
+            :size="size"
+            :exclude-lockers="dropLocker ? [dropLocker] : []"
+          />
+
+          <h3 class="sub-title">{{ t('checkout.pickupSlot') }}</h3>
+          <p class="muted small">{{ t('checkout.pickupSlotHint') }}</p>
+          <div class="chips wrap" role="radiogroup" :aria-label="t('checkout.pickupSlot')">
+            <button
+              v-for="(w, i) in pickupOptions"
+              :key="w.start.toISOString()"
+              type="button"
+              class="chip"
+              role="radio"
+              :aria-checked="pickupIndex === i"
+              :class="{ active: pickupIndex === i }"
+              @click="pickupIndex = i"
+            >
+              {{ dayLabel(w.start, labels) }} · {{ w.slot.label }} ({{ clock(w.start) }}–{{
+                clock(w.end)
+              }})
+            </button>
+          </div>
+        </section>
 
         <section ref="summary" class="soft-card">
           <p v-if="nextRound">
             <strong>{{ t('checkout.when') }}</strong> ·
             {{ t('checkout.whenText', { time: clock(nextRound) }) }}
           </p>
-          <p v-if="!quote">{{ t('checkout.ready', { days: t('shop.days', readyDays) }) }}</p>
+          <p v-if="pickupSlot && pickup">
+            <strong>{{ t('checkout.pickupSummary') }}</strong> ·
+            {{
+              t('checkout.pickupSummaryText', {
+                locker: lockerName(pickup),
+                day: dayLabel(pickupSlot.start, inSentence),
+                from: clock(pickupSlot.start),
+                to: clock(pickupSlot.end),
+              })
+            }}
+          </p>
           <p class="total">
             <span>{{ t('checkout.total') }}</span
             ><strong>{{ euros(totalCents) }}</strong>
@@ -222,6 +320,47 @@ function pay(): void {
 }
 .stepper button:disabled {
   opacity: 0.4;
+}
+.pickup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 2px solid transparent;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-glass);
+  box-shadow: var(--cg-shadow);
+  color: var(--cg-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.choice.active {
+  border-color: var(--cg-leaf);
+  background: var(--cg-leaf-soft);
+}
+.choice:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.sub-title {
+  margin: 6px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.chips.wrap {
+  flex-wrap: wrap;
+  overflow: visible;
 }
 .same {
   display: flex;

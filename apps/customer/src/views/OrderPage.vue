@@ -25,19 +25,24 @@ import type { CompartmentSize } from '@city-groom/api-client'
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { currentSlot } from '../domain/slots'
-import { catalogue, lockerLayout, lockers, shopByCode, sizes } from '../services/catalogue'
+import { catalogue, lockerLayout, lockers, providerName, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { reveal } from '../utils/scroll'
-import { clock, dateTime, euros } from '../utils/format'
+import { clock, dateTime, dayLabel, euros } from '../utils/format'
 
 const props = defineProps<{ id: string }>()
 const { t } = useI18n()
 const route = useRoute()
 const account = useAccountStore()
 const labels = computed(() => ({ today: t('common.today'), tomorrow: t('common.tomorrow') }))
+/** Same labels in lower case, for dates inside a sentence ("retrait demain…"). */
+const inSentence = computed(() => ({
+  today: t('common.today').toLocaleLowerCase('fr'),
+  tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
+}))
 
 const order = computed(() => account.state.orders.find((o) => o.id === props.id))
-const shopName = computed(() => shopByCode(order.value?.shopCode ?? '')?.name ?? '')
+const shopName = computed(() => providerName(order.value?.shopCode ?? ''))
 const lockerName = (code: string | undefined): string =>
   lockers.find((l) => l.code === code)?.name ?? code ?? ''
 
@@ -86,7 +91,9 @@ onMounted(() => {
         <span class="pill" :class="{ off: order.status === 'picked_up' }">
           {{ t(`orders.status.${order.status}`) }}
         </span>
-        <h1 class="page-title">{{ order.quantity }} × {{ order.label }}</h1>
+        <h1 class="page-title">
+          {{ order.packId ? order.label : `${order.quantity} × ${order.label}` }}
+        </h1>
         <p class="page-intro">{{ shopName }} · {{ euros(order.priceCents) }}</p>
 
         <section class="soft-card summary">
@@ -98,9 +105,20 @@ onMounted(() => {
           <p>
             {{ t('orders.detail.pickupLocker') }} :
             <strong>{{ lockerName(order.pickupLocker) }}</strong>
+            <template v-if="order.pickupStart && order.pickupEnd">
+              ·
+              {{
+                t('orders.detail.pickupSlot', {
+                  day: dayLabel(order.pickupStart, inSentence),
+                  from: clock(order.pickupStart),
+                  to: clock(order.pickupEnd),
+                })
+              }}
+            </template>
           </p>
           <p class="muted small">
-            {{ t(`locker.sizes.${order.size}`) }} · {{ dateTime(order.createdAt, labels) }}
+            {{ t(`locker.sizes.${order.size}`) }} ·
+            {{ t('orders.detail.orderedAt', { date: dateTime(order.createdAt, inSentence) }) }}
           </p>
           <p v-if="order.droppedAt" class="muted small">
             {{ t('orders.detail.droppedAt', { date: dateTime(order.droppedAt, labels) }) }}

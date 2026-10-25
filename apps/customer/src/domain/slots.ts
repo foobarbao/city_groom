@@ -14,7 +14,7 @@
  */
 import type { Slot } from '@city-groom/demo-data'
 
-import { addDays, addHours, serviceDay, zonedTime } from './time'
+import { SERVICE_TIME_ZONE, addDays, addHours, serviceDay, zonedTime } from './time'
 
 /** One occurrence of a slot on a given day. */
 export interface SlotWindow {
@@ -116,4 +116,47 @@ export function pickupWindows(dropStart: Date, slots: Slot[], maxHours: number):
 export function collectBy(dropOff: Date, pickupEnd: Date, maxHours: number): Date {
   const limit = pickupDeadline(dropOff, maxHours)
   return pickupEnd < limit ? pickupEnd : limit
+}
+
+const LOCAL_CLOCK = new Intl.DateTimeFormat('en-GB', {
+  timeZone: SERVICE_TIME_ZONE,
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+})
+
+/** The round `count` rounds after the round at `round` (local round times "HH:MM"). */
+export function addRounds(round: Date, count: number, roundTimes: string[]): Date {
+  const times = [...roundTimes].sort()
+  let day = serviceDay(round)
+  let index = times.indexOf(LOCAL_CLOCK.format(round))
+  if (index === -1) throw new Error(`Not a round time: ${round.toISOString()}`)
+  for (let i = 0; i < count; i++) {
+    index += 1
+    if (index === times.length) {
+      index = 0
+      day = addDays(day, 1)
+    }
+  }
+  return zonedTime(day, times[index] as string)
+}
+
+/**
+ * The `count` slot occurrences starting at or after `at`, in time order.
+ * Used for pickup: items are back at a round, the customer picks one of the
+ * following slots and collects before it ends (the next round), so each
+ * compartment can turn over three times a day.
+ */
+export function slotsFrom(at: Date, slots: Slot[], count: number): SlotWindow[] {
+  const result: SlotWindow[] = []
+  let day = addDays(serviceDay(at), -1)
+  while (result.length < count) {
+    const windows = slots
+      .map((slot) => slotWindow(day, slot))
+      .filter((w) => w.start >= at)
+      .sort((a, b) => a.start.getTime() - b.start.getTime())
+    result.push(...windows)
+    day = addDays(day, 1)
+  }
+  return result.sort((a, b) => a.start.getTime() - b.start.getTime()).slice(0, count)
 }

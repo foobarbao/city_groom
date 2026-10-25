@@ -990,6 +990,30 @@
    ]
   }
  ],
+ "packs": [
+  {
+   "code": "weekly_shirts",
+   "name": "Pack semaine",
+   "items": [
+    {
+     "service": "shirt_ironing",
+     "quantity": 5
+    },
+    {
+     "service": "trouser_ironing",
+     "quantity": 2
+    }
+   ],
+   "weeks_per_purchase": 4,
+   "welcome_weekly_price": "10.00",
+   "weekly_prices": {
+    "premium": "15.00",
+    "plus": "20.00"
+   },
+   "size": "XL",
+   "turnaround_rounds": 3
+  }
+ ],
  "consigne": {
   "max_hours": 24,
   "min_notice_hours": 4,

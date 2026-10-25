@@ -11,14 +11,18 @@ import { useI18n } from 'vue-i18n'
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { canReview } from '../domain/reviews'
-import { lockers, shopByCode } from '../services/catalogue'
+import { lockers, providerName } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
-import { dateTime, euros } from '../utils/format'
+import { clock, dateTime, dayLabel, euros } from '../utils/format'
 
 const { t } = useI18n()
 const account = useAccountStore()
-const labels = computed(() => ({ today: t('common.today'), tomorrow: t('common.tomorrow') }))
-const shopName = (code: string): string => shopByCode(code)?.name ?? code
+/** Same labels in lower case, for dates inside a sentence ("retrait demain…"). */
+const inSentence = computed(() => ({
+  today: t('common.today').toLocaleLowerCase('fr'),
+  tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
+}))
+const shopName = providerName
 const lockerName = (code: string): string => lockers.find((l) => l.code === code)?.name ?? code
 </script>
 
@@ -35,14 +39,33 @@ const lockerName = (code: string): string => lockers.find((l) => l.code === code
               <span class="pill" :class="{ off: o.status === 'picked_up' }">{{
                 t(`orders.status.${o.status}`)
               }}</span>
-              <strong>{{ o.quantity }} × {{ o.label }}</strong>
+              <strong>{{ o.packId ? o.label : `${o.quantity} × ${o.label}` }}</strong>
               <span class="muted small">
                 {{ shopName(o.shopCode) }} · {{ euros(o.priceCents) }} ·
-                {{ dateTime(o.createdAt, labels) }}
+                {{ t('orders.detail.orderedAt', { date: dateTime(o.createdAt, inSentence) }) }}
               </span>
               <span class="muted small"
                 >{{ lockerName(o.dropLocker) }} → {{ lockerName(o.pickupLocker) }}</span
               >
+              <span v-if="o.pickupStart && o.pickupEnd && o.status !== 'picked_up'" class="small">
+                {{
+                  t('orders.pickupLine', {
+                    day: dayLabel(o.pickupStart, inSentence),
+                    from: clock(o.pickupStart),
+                    to: clock(o.pickupEnd),
+                  })
+                }}
+              </span>
+              <span v-if="o.packWeek && o.dropBy && o.status === 'awaiting_drop_off'" class="small">
+                {{
+                  t('orders.packDrop', {
+                    week: o.packWeek,
+                    day: dayLabel(o.dropFrom ?? o.dropBy, inSentence),
+                    from: clock(o.dropFrom ?? o.dropBy),
+                    by: clock(o.dropBy),
+                  })
+                }}
+              </span>
             </router-link>
             <ion-button
               v-if="o.status === 'awaiting_drop_off'"

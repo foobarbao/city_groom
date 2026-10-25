@@ -9,14 +9,16 @@
  */
 import { IonIcon } from '@ionic/vue'
 import { calendarOutline, chevronForwardOutline } from 'ionicons/icons'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import BarChart, { type Bar } from '../components/BarChart.vue'
 import MerchantShell from '../components/MerchantShell.vue'
 import StatTile from '../components/StatTile.vue'
 import { clock, euros, eurosRounded, number, percent, shortDay } from '../data/format'
-import { googleCalendarOf } from '../data/partnerState'
+import { packDispatch, weeklyPack } from '../data/packDispatch'
+import { DEFAULT_CAPACITY_SHIRTS, PACK_CATEGORIES } from '../data/packs'
+import { googleCalendarOf, packCapacityOf, setPackCapacity } from '../data/partnerState'
 import { activity, demoNow, partnerOrFirst, serviceName } from '../data/source'
 import { merchantSummary } from '../data/summaries'
 
@@ -31,6 +33,27 @@ const props = defineProps<{
 const { t } = useI18n()
 
 const merchant = computed(() => partnerOrFirst(props.code))
+
+// Weekly pack (laundries only): volume announced by CityPal for the next
+// weeks, and the availability the laundry declares for it.
+const takesPacks = computed(() => PACK_CATEGORIES.includes(merchant.value?.category ?? ''))
+const packShare = computed(() =>
+  packDispatch.value.allocations.find((a) => a.code === merchant.value?.code),
+)
+const capacityDraft = ref(DEFAULT_CAPACITY_SHIRTS)
+watch(
+  merchant,
+  (m) => {
+    capacityDraft.value = (m && packCapacityOf(m.code)) ?? DEFAULT_CAPACITY_SHIRTS
+  },
+  { immediate: true },
+)
+const capacitySaved = ref(false)
+function saveCapacity(): void {
+  if (!merchant.value) return
+  setPackCapacity(merchant.value.code, Number(capacityDraft.value))
+  capacitySaved.value = true
+}
 const summary = computed(() =>
   merchant.value ? merchantSummary(activity, merchant.value.code, demoNow) : null,
 )
@@ -73,6 +96,46 @@ const itemBars = computed<Bar[]>(() => [
       </span>
       <ion-icon class="gcal-chevron" :icon="chevronForwardOutline" aria-hidden="true" />
     </router-link>
+    <section v-if="takesPacks && packShare" class="card pack">
+      <h2>{{ t('merchant.pack.title') }}</h2>
+      <p>
+        {{ t('merchant.pack.announced', { weeks: weeklyPack.weeks_per_purchase }) }}
+        <strong>{{
+          t('merchant.pack.items', {
+            shirts: packShare.shirts * weeklyPack.weeks_per_purchase,
+            trousers: packShare.trousers * weeklyPack.weeks_per_purchase,
+          })
+        }}</strong>
+      </p>
+      <p class="note">
+        {{
+          t('merchant.pack.perWeek', {
+            packs: packShare.packs,
+            items: t('merchant.pack.items', {
+              shirts: packShare.shirts,
+              trousers: packShare.trousers,
+            }),
+          })
+        }}
+      </p>
+      <form class="capacity" @submit.prevent="saveCapacity">
+        <label>
+          {{ t('merchant.pack.capacity') }}
+          <input
+            v-model.number="capacityDraft"
+            type="number"
+            min="0"
+            step="5"
+            inputmode="numeric"
+            @input="capacitySaved = false"
+          />
+        </label>
+        <button type="submit">{{ t('merchant.pack.save') }}</button>
+        <span v-if="capacitySaved" class="note" role="status"
+          >✓ {{ t('merchant.pack.saved') }}</span
+        >
+      </form>
+    </section>
     <template v-if="summary">
       <div class="columns">
         <section class="card">
@@ -263,5 +326,40 @@ const itemBars = computed<Bar[]>(() => [
 }
 .gcal-chevron {
   color: var(--cg-ink-soft);
+}
+.pack p {
+  margin: 0;
+}
+.capacity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+.capacity label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.capacity input {
+  width: 120px;
+  padding: 8px 12px;
+  border: 1px solid var(--cg-locker-door-edge);
+  border-radius: var(--cg-radius-s);
+  background: var(--cg-ground);
+  color: var(--cg-ink);
+  font: inherit;
+}
+.capacity button {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-leaf);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
 }
 </style>

@@ -39,6 +39,38 @@ export interface CustomerOrder {
   door?: string
   /** When the customer confirmed the drop-off. */
   droppedAt?: string | null
+  /** Round at which the item comes back to the pickup locker. */
+  readyAt?: string
+  /** Pickup slot chosen by the customer: collect before `pickupEnd` (next round). */
+  pickupStart?: string
+  pickupEnd?: string
+  /** Weekly pack this order belongs to, and its week (1 to 4). */
+  packId?: string
+  packWeek?: number
+  /** Pack weeks: drop-off slot (from → by, the collecting round) and return. */
+  dropFrom?: string
+  dropBy?: string
+  returnAt?: string
+}
+
+/** A weekly pack bought by the customer (four weekly orders). */
+export interface PackPurchase {
+  id: string
+  packCode: string
+  weeklyCents: number
+  totalCents: number
+  /** Bought at the welcome price. */
+  welcome: boolean
+  /** Plan at purchase time. */
+  plan: string
+  dropLocker: string
+  pickupLocker: string
+  /** ISO weekday (1 = Monday) and slot code of the weekly drop-off. */
+  weekday: number
+  slotCode: string
+  boughtAt: string
+  /** The four weekly orders, in order. */
+  orderIds: string[]
 }
 
 /** A consigne booking. */
@@ -126,6 +158,8 @@ interface AccountState {
   conversations: Record<string, ChatMessage[]>
   quotes: Quote[]
   reviews: MyReview[]
+  /** Weekly packs bought (absent in states saved before packs existed). */
+  packs?: PackPurchase[]
 }
 
 const STORAGE_KEY = 'citypal-demo-v1'
@@ -340,6 +374,57 @@ export const useAccountStore = defineStore('account', () => {
     return id
   }
 
+  /** Whether the customer already bought a given pack (welcome offer used). */
+  function hasBoughtPack(code: string): boolean {
+    return (state.value.packs ?? []).some((p) => p.packCode === code)
+  }
+
+  /**
+   * Buys four weeks of a pack in one order: one purchase, and one order per
+   * week to drop off and collect. DEMO: payment simulated.
+   */
+  function buyPack(
+    purchase: Omit<PackPurchase, 'id' | 'boughtAt' | 'orderIds'>,
+    weeks: {
+      week: number
+      dropFrom: Date
+      dropBy: Date
+      returnAt: Date
+      pickupStart?: Date
+      pickupEnd?: Date
+    }[],
+    order: { label: string; quantity: number; size: string; shopCode: string; door?: string },
+  ): string {
+    const id = newId('P')
+    const now = new Date().toISOString()
+    const created: CustomerOrder[] = weeks.map((w) => ({
+      id: newId('C'),
+      shopCode: order.shopCode,
+      label: `${order.label} · semaine ${w.week}/${weeks.length}`,
+      quantity: order.quantity,
+      priceCents: purchase.weeklyCents,
+      size: order.size,
+      dropLocker: purchase.dropLocker,
+      pickupLocker: purchase.pickupLocker,
+      createdAt: now,
+      status: 'awaiting_drop_off',
+      door: order.door,
+      packId: id,
+      packWeek: w.week,
+      dropFrom: w.dropFrom.toISOString(),
+      dropBy: w.dropBy.toISOString(),
+      returnAt: w.returnAt.toISOString(),
+      readyAt: w.returnAt.toISOString(),
+      pickupStart: w.pickupStart?.toISOString(),
+      pickupEnd: w.pickupEnd?.toISOString(),
+    }))
+    // Week 1 first in the order list.
+    state.value.orders.unshift(...created)
+    const orderIds = created.map((o) => o.id)
+    ;(state.value.packs ??= []).unshift({ ...purchase, id, boughtAt: now, orderIds })
+    return id
+  }
+
   function markOrderDropped(id: string): void {
     const order = state.value.orders.find((o) => o.id === id)
     if (order?.status !== 'awaiting_drop_off') return
@@ -424,6 +509,8 @@ export const useAccountStore = defineStore('account', () => {
     requestTransfer,
     addOrder,
     markOrderDropped,
+    hasBoughtPack,
+    buyPack,
     addReview,
     setQuoteStatus,
     sendMessage,

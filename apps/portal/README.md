@@ -31,6 +31,7 @@ operator API endpoints do not exist yet (roadmap item 7).
 | `/exploitation/commandes`     | Orders: search and filter by status                                                                                                                              |
 | `/exploitation/tournees`      | Rounds: today's totals, planned and past rounds, link to the round sheet                                                                                         |
 | `/exploitation/commerces`     | Partner shops: rating, orders, revenue, commission, items in progress                                                                                            |
+| `/exploitation/packs`         | Weekly packs (internal): active packs, volume, dispatch to laundries by declared availability                                                                    |
 | `/exploitation/previsions`    | Forecasts: items per day, per round and busiest lockers                                                                                                          |
 
 The demo merchants are fictitious ("Démo · …"): no real business is shown

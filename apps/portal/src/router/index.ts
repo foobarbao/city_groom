@@ -86,6 +86,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/OperatorPartnersPage.vue'),
   },
   {
+    path: '/exploitation/packs',
+    name: 'operator-packs',
+    component: () => import('../views/OperatorPacksPage.vue'),
+  },
+  {
     path: '/exploitation/previsions',
     name: 'operator-forecast',
     component: () => import('../views/OperatorForecastPage.vue'),

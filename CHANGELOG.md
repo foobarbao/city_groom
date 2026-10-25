@@ -9,6 +9,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Weekly pack (5 shirts + 2 trousers washed, ironed, folded each week,
+  bought by 4 weeks): customer "Pack semaine" screen with welcome price
+  then price by plan, weekly drop-off day and slot, computed return, pickup
+  slot and locker, four weekly orders with guided drop-off; operator
+  "Packs semaine" (dispatch to laundries by declared availability, volume
+  announced for the month); laundry dashboard card with announced volume
+  and availability. Pack definition exported from the backend catalogue.
 - "Continuer avec Google" is always visible on the account screen (shown as
   being activated until the Google client ID is configured), above the demo
   sign-in; merchant dashboard banner to the Google Agenda sync. The client ID
@@ -190,6 +197,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- Orders: the pickup locker is chosen explicitly, and the customer picks a
+  pickup slot starting at the return round (collect before the next round);
+  the order date is labelled as such instead of looking like a pickup time.
 - Customer app navigation: folding side menu with nested entries (same
   component as the portal, `NavTree` in `packages/ui`), drawer on phones,
   replacing the bottom tab bar; top bar with menu button on every screen.
