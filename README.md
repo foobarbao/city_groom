@@ -49,11 +49,13 @@ Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributor
 | [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md) | Coding and documentation rules (**read first**) |
 | [`docs/PRODUCT.md`](docs/PRODUCT.md) | Vision, actors, flows, business model, open questions |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Iterations: done, in progress, next |
-| [`docs/DESIGN.md`](docs/DESIGN.md) | Visual direction of the customer app (soft, green) and design tokens |
+| [`docs/DESIGN.md`](docs/DESIGN.md) | Visual direction (sober, green), navigation rules and design tokens |
 | [`docs/DEMO.md`](docs/DEMO.md) | Hosted demo: contents, real vs fictitious data, Netlify hosting |
 | [`docs/BUILD_AND_RELEASE.md`](docs/BUILD_AND_RELEASE.md) | Building the Android app (APK), signing, publication |
 | [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md) | External data (map, tram stops, businesses), licences, import commands |
 | [`docs/LOCKERS.md`](docs/LOCKERS.md) | Locker research, simulated sizes, layouts, events |
+| [`docs/GOOGLE_SIGN_IN.md`](docs/GOOGLE_SIGN_IN.md) | Google OAuth client for sign-in and Google Agenda sync |
+| [`docs/legal/privacy-policy.fr.md`](docs/legal/privacy-policy.fr.md) | Privacy policy **draft** (French, user-facing), to complete and have validated |
 | [`docs/api/README.md`](docs/api/README.md) | API integration guide (authentication, scopes, errors, rate limits, versioning) |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Branches, commits, pull requests, versioning |
 | [`docs/adr/`](docs/adr/) | Architecture decisions |

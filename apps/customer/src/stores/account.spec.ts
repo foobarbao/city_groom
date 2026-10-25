@@ -48,6 +48,28 @@ describe('account store', () => {
     expect(store.pendingQuotes).toHaveLength(1)
   })
 
+  it('records an order drop-off once, with its door and time', () => {
+    const store = useAccountStore()
+    const id = store.addOrder({
+      shopCode: 'demo-pressing',
+      label: 'Repassage chemise',
+      quantity: 1,
+      priceCents: 350,
+      size: 'M',
+      dropLocker: 'l',
+      pickupLocker: 'l',
+      door: 'B4',
+    })
+    store.markOrderDropped(id)
+    const order = store.state.orders.find((o) => o.id === id)
+    expect(order?.status).toBe('in_locker')
+    expect(order?.door).toBe('B4')
+    const droppedAt = order?.droppedAt
+    expect(droppedAt).toBeTruthy()
+    store.markOrderDropped(id) // a second confirmation changes nothing
+    expect(order?.droppedAt).toBe(droppedAt)
+  })
+
   it('follows a consigne booking from booked to collected', () => {
     const store = useAccountStore()
     const id = store.addBooking({

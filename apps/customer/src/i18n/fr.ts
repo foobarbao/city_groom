@@ -347,7 +347,24 @@ export default {
     none: 'Aucune commande pour le moment.',
     review: 'Noter',
     reviewed: 'Avis donné',
-    dropNow: 'J’ai déposé l’article',
+    drop: 'Déposer',
+    dropNow: 'J’ai déposé mon article',
+    detail: {
+      dropLocker: 'Dépôt',
+      pickupLocker: 'Retrait',
+      door: 'Porte {label}',
+      open: 'Ouvrir la porte {label}',
+      opened: 'La porte {label} est ouverte',
+      instruction: 'Déposez votre article dans le compartiment, puis refermez bien la porte.',
+      doneTitle: 'Article déposé',
+      doneText:
+        'Un coursier à vélo cargo le prend au prochain passage ({time}) et l’apporte à {shop}.',
+      droppedAt: 'Déposé {date}',
+      notFound: 'Commande introuvable.',
+      inProgress: 'Votre article n’est plus au casier : {status}.',
+      doorNote:
+        'Démonstration : la porte ne s’ouvre pas vraiment. En service, elle s’ouvre quand votre téléphone est devant le casier.',
+    },
     status: {
       awaiting_drop_off: 'À déposer',
       in_locker: 'Au casier',

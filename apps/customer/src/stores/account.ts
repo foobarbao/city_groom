@@ -35,6 +35,10 @@ export interface CustomerOrder {
   pickupLocker: string
   createdAt: string
   status: OrderStatus
+  /** Door of the drop locker (absent on orders saved before doors were stored). */
+  door?: string
+  /** When the customer confirmed the drop-off. */
+  droppedAt?: string | null
 }
 
 /** A consigne booking. */
@@ -338,7 +342,9 @@ export const useAccountStore = defineStore('account', () => {
 
   function markOrderDropped(id: string): void {
     const order = state.value.orders.find((o) => o.id === id)
-    if (order?.status === 'awaiting_drop_off') order.status = 'in_locker'
+    if (order?.status !== 'awaiting_drop_off') return
+    order.status = 'in_locker'
+    order.droppedAt = new Date().toISOString()
   }
 
   function addReview(review: Omit<MyReview, 'at'>): void {

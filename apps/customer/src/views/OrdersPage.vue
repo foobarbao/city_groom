@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /**
- * The customer's orders with their status; collected orders can be rated
- * once (ADR-0008).
+ * The customer's orders with their status. An order opens its detail
+ * (`OrderPage`); "Déposer" opens it with the locker door already open, for
+ * the drop-off. Collected orders can be rated once (ADR-0008).
  */
 import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed } from 'vue'
@@ -30,24 +31,26 @@ const lockerName = (code: string): string => lockers.find((l) => l.code === code
         <p v-if="!account.state.orders.length" class="muted">{{ t('orders.none') }}</p>
         <ul class="list">
           <li v-for="o in account.state.orders" :key="o.id" class="soft-card">
-            <span class="pill" :class="{ off: o.status === 'picked_up' }">{{
-              t(`orders.status.${o.status}`)
-            }}</span>
-            <strong>{{ o.quantity }} × {{ o.label }}</strong>
-            <span class="muted small">
-              {{ shopName(o.shopCode) }} · {{ euros(o.priceCents) }} ·
-              {{ dateTime(o.createdAt, labels) }}
-            </span>
-            <span class="muted small"
-              >{{ lockerName(o.dropLocker) }} → {{ lockerName(o.pickupLocker) }}</span
-            >
+            <router-link class="detail-link" :to="`/compte/commandes/${o.id}`">
+              <span class="pill" :class="{ off: o.status === 'picked_up' }">{{
+                t(`orders.status.${o.status}`)
+              }}</span>
+              <strong>{{ o.quantity }} × {{ o.label }}</strong>
+              <span class="muted small">
+                {{ shopName(o.shopCode) }} · {{ euros(o.priceCents) }} ·
+                {{ dateTime(o.createdAt, labels) }}
+              </span>
+              <span class="muted small"
+                >{{ lockerName(o.dropLocker) }} → {{ lockerName(o.pickupLocker) }}</span
+              >
+            </router-link>
             <ion-button
               v-if="o.status === 'awaiting_drop_off'"
               size="small"
               shape="round"
-              @click="account.markOrderDropped(o.id)"
+              :router-link="`/compte/commandes/${o.id}?ouvrir=1`"
             >
-              {{ t('orders.dropNow') }}
+              {{ t('orders.drop') }}
             </ion-button>
             <ion-button
               v-if="canReview(o, account.reviewedOrderIds)"
@@ -74,5 +77,12 @@ const lockerName = (code: string): string => lockers.find((l) => l.code === code
 }
 .soft-card ion-button {
   align-self: flex-start;
+}
+.detail-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
 }
 </style>
