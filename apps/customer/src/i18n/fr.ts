@@ -320,9 +320,15 @@ export default {
     signInPitch:
       'Créez un compte pour suivre vos commandes, profiter des abonnements et gagner des avantages.',
     name: 'Prénom',
-    signIn: 'Se connecter (démo)',
+    signIn: 'Essayer la démo',
     signOut: 'Se déconnecter',
     google: {
+      continue: 'Continuer avec Google',
+      or: 'Ou, pour essayer la démo sans compte Google :',
+      notConfigured:
+        'Connexion Google en cours d’activation sur cette démo : elle fonctionnera dès que CityPal aura terminé sa configuration Google.',
+      notInApp:
+        'Connexion Google bientôt disponible dans l’application Android ; elle fonctionne déjà depuis le navigateur.',
       busy: 'Connexion en cours… Le serveur de démo peut mettre jusqu’à une minute à se réveiller.',
       refused: 'Connexion Google refusée. Réessayez ou utilisez un autre compte Google.',
       unreachable: 'Le serveur CityPal ne répond pas. Réessayez dans un instant.',
