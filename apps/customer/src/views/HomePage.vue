@@ -74,7 +74,7 @@ const CATEGORY_ICONS: Record<string, string> = {
     <app-header />
     <ion-content>
       <main class="page home">
-        <header class="hello">
+        <header class="hello hero">
           <h1 class="page-title">
             {{
               account.state.signedIn
@@ -201,6 +201,31 @@ const CATEGORY_ICONS: Record<string, string> = {
   gap: 4px;
   padding-top: 12px;
 }
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 18px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-hero);
+  box-shadow: var(--cg-shadow-strong);
+}
+/* Warm yellow glow in the corner: the "warmth" of the palette. */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -30px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(247 212 76 / 55%) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero .page-title,
+.hero .page-intro {
+  position: relative;
+  color: #fff;
+}
 .modes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -213,14 +238,25 @@ const CATEGORY_ICONS: Record<string, string> = {
   padding: 16px;
   border-radius: var(--cg-radius-l);
   background: var(--cg-glass);
+  backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   color: inherit;
   text-decoration: none;
-  transition: box-shadow 0.15s ease;
+  transition:
+    box-shadow var(--cg-motion) var(--cg-ease),
+    transform var(--cg-motion) var(--cg-ease);
+}
+/* Soft tint per mode: green for services, yellow for the consigne. */
+.mode.services {
+  background: linear-gradient(160deg, var(--cg-leaf-soft) 0%, var(--cg-glass) 70%);
+}
+.mode.consigne {
+  background: linear-gradient(160deg, var(--cg-sun-soft) 0%, var(--cg-glass) 70%);
 }
 .mode:hover,
 .mode:focus-visible {
   box-shadow: var(--cg-shadow-strong);
+  transform: translateY(-2px);
 }
 .mode-icon {
   display: grid;

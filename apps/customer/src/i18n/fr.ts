@@ -347,6 +347,7 @@ export default {
       privacy:
         'CityPal reçoit seulement votre nom, votre adresse e-mail et votre photo de profil Google.',
       linked: 'compte Google',
+      demoNote: 'Démonstration : profil lu sur cet appareil, pas encore enregistré chez CityPal.',
     },
     plan: 'Abonnement',
     orders: 'Mes commandes',

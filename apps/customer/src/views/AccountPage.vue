@@ -18,8 +18,13 @@ import { signInWithGoogle } from '../api/auth'
 import { ApiError } from '../api/http'
 import DemoNotice from '../components/DemoNotice.vue'
 import { canReview } from '../domain/reviews'
+import { API_CONFIGURED } from '../config'
 import { planByCode } from '../services/catalogue'
-import { googleSignInAvailable, renderGoogleButton } from '../services/googleIdentity'
+import {
+  googleSignInAvailable,
+  readGoogleProfileUnverified,
+  renderGoogleButton,
+} from '../services/googleIdentity'
 import { useAccountStore } from '../stores/account'
 
 const { t } = useI18n()
@@ -40,6 +45,13 @@ async function onCredential(credential: string): Promise<void> {
   googleBusy.value = true
   googleError.value = ''
   try {
+    if (!API_CONFIGURED) {
+      // DEMO: no backend online yet; show the Google profile read on the device.
+      const profile = readGoogleProfileUnverified(credential)
+      if (!profile) throw new Error('unreadable token')
+      account.signInWithGoogleDemo(profile)
+      return
+    }
     account.signInWithGoogle(await signInWithGoogle(credential))
   } catch (error) {
     googleError.value =
@@ -111,6 +123,9 @@ const toReview = computed(
             <strong>{{ account.state.name }}</strong>
             <span v-if="account.state.google" class="muted small">
               {{ account.state.google.email }} · {{ t('account.google.linked') }}
+            </span>
+            <span v-if="account.state.google && !account.state.google.token" class="muted small">
+              {{ t('account.google.demoNote') }}
             </span>
           </span>
           <ion-button fill="clear" size="small" @click="account.signOut()">{{

@@ -1,9 +1,9 @@
 /*
- * Visual identity of CityPal: green for the ecological side, warm lemon as a
- * sparing accent, cream ground. Since 2026-10-25 the look is sober and
- * professional (project owner's request: "less childish, more serious"):
- * neutral type (Inter), moderate radii, opaque cards with a hairline border,
- * a plain ground (docs/DESIGN.md).
+ * Visual identity of CityPal (docs/DESIGN.md): green for the planet, blue
+ * for trust and tech, warm yellow for warmth, on a cream ground with soft
+ * colour glows; translucent glass cards; neutral type (Inter), moderate
+ * radii, short animations. Professional rather than playful (owner's
+ * requests of 2026-10-25).
  *
  * Every colour is a token; dark values are redefined below. Ionic colours are
  * mapped onto these tokens so its components follow the same palette.
@@ -20,11 +20,11 @@
   --cg-pine: #0e4d37; /* strong text on pastel backgrounds */
   --cg-sun: #f7d44c; /* warm lemon accent; dark text on it */
   --cg-sun-soft: #fff1b8; /* pastel lemon background */
-  /* Accents (since 2026-10-25, owner: "livelier, highlight promotions"):
-     statuses, category icons and promotion cards; text on the soft tints
-     uses the strong tone. */
-  --cg-sky: #2b6a96;
-  --cg-sky-soft: #dcebf6;
+  /* Accents. Owner's brief of 2026-10-25: blue for trust and tech, yellow
+     for warmth, green for the planet. Text on a soft tint uses the strong
+     tone (≥ 4.5:1). */
+  --cg-sky: #1a5fb8; /* trust blue */
+  --cg-sky-soft: #dfeaff;
   --cg-coral: #b04a24;
   --cg-coral-soft: #fbe1d6;
   --cg-plum: #7a4a8c;
@@ -33,16 +33,27 @@
   --cg-locker-door: #fffdf6; /* locker doors */
   --cg-locker-door-edge: #cdd6c2;
 
-  /* Cards: opaque surfaces with a hairline border and a light shadow. The
-     "glass" token names are kept so components need no change. */
-  --cg-glass: #ffffff;
-  --cg-glass-strong: #ffffff;
-  --cg-glass-filter: none;
+  /* Glass: translucent cards over soft blue, yellow and green glows
+     (transparency asked for on 2026-10-25), with a hairline edge. */
+  --cg-glass: rgb(255 255 255 / 70%);
+  --cg-glass-strong: rgb(255 255 255 / 86%);
+  --cg-glass-filter: blur(16px) saturate(150%);
   --cg-shadow:
-    0 1px 2px rgb(18 53 42 / 6%), inset 0 0 0 1px rgb(18 53 42 / 9%);
+    0 2px 10px rgb(26 60 110 / 7%), inset 0 0 0 1px rgb(255 255 255 / 70%);
   --cg-shadow-strong:
-    0 6px 20px rgb(18 53 42 / 10%), inset 0 0 0 1px rgb(18 53 42 / 10%);
-  --cg-backdrop: var(--cg-ground);
+    0 12px 28px rgb(26 60 110 / 13%), inset 0 0 0 1px rgb(255 255 255 / 80%);
+  --cg-backdrop:
+    radial-gradient(55% 40% at 0% 0%, #dbe7ff 0%, transparent 70%),
+    radial-gradient(45% 35% at 100% 8%, #fff0b3 0%, transparent 70%),
+    radial-gradient(60% 40% at 90% 100%, #d4f1de 0%, transparent 70%),
+    var(--cg-ground);
+  /* Hero band: trust blue to planet green, white text (AA on both ends:
+     #1a5fb8 5.9:1, #127a51 5.3:1); the warm yellow is the accent on it. */
+  --cg-hero: linear-gradient(120deg, #1a5fb8 0%, #1f6fa8 45%, #127a51 100%);
+
+  /* Motion: short, eased; disabled when the user prefers reduced motion. */
+  --cg-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --cg-motion: 0.32s;
 
   /* Charts (validated with the dataviz palette validator: CVD separation and
      lightness band, light surface). Text never uses these colours. */
@@ -93,8 +104,8 @@
     --cg-pine: #a7e8c5;
     --cg-sun: #f2cf4a;
     --cg-sun-soft: #4a4119;
-    --cg-sky: #9ccbea;
-    --cg-sky-soft: #1c3445;
+    --cg-sky: #8fbaff;
+    --cg-sky-soft: #172a4d;
     --cg-coral: #f2a585;
     --cg-coral-soft: #45261b;
     --cg-plum: #d6b2e3;
@@ -102,13 +113,18 @@
     --cg-locker-body: #22392f;
     --cg-locker-door: #2b463a;
     --cg-locker-door-edge: #3f5d50;
-    --cg-glass: #132c23;
-    --cg-glass-strong: #17332a;
+    --cg-glass: rgb(255 255 255 / 6%);
+    --cg-glass-strong: rgb(255 255 255 / 10%);
     --cg-shadow:
-      0 1px 2px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 8%);
+      0 2px 10px rgb(0 0 0 / 30%), inset 0 0 0 1px rgb(255 255 255 / 9%);
     --cg-shadow-strong:
-      0 6px 20px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 10%);
-    --cg-backdrop: var(--cg-ground);
+      0 12px 28px rgb(0 0 0 / 40%), inset 0 0 0 1px rgb(255 255 255 / 12%);
+    --cg-backdrop:
+      radial-gradient(55% 40% at 0% 0%, #17305c 0%, transparent 70%),
+      radial-gradient(45% 35% at 100% 8%, #3d3512 0%, transparent 70%),
+      radial-gradient(60% 40% at 90% 100%, #10442e 0%, transparent 70%),
+      var(--cg-ground);
+    --cg-hero: linear-gradient(120deg, #1a4a8f 0%, #1b5a80 45%, #0f5c3e 100%);
     --cg-chart-1: #43a678; /* validated against the dark surface */
     --cg-chart-2: #cc7a38;
     --cg-chart-grid: #2c423a;
@@ -126,12 +142,13 @@
 
 body {
   background: var(--cg-backdrop);
+  background-attachment: fixed;
   color: var(--cg-ink);
   font-family: var(--cg-font);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pages sit on the plain cream ground. */
+/* Pages sit on the cream ground and its soft colour glows. */
 ion-content {
   --background: var(--cg-backdrop);
 }
@@ -160,4 +177,25 @@ h1 {
 :focus-visible {
   outline: 3px solid var(--cg-leaf);
   outline-offset: 3px;
+}
+
+/* Entrance: content rises gently into place. */
+@keyframes cg-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

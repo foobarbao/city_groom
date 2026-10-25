@@ -7,12 +7,21 @@
 History: the first brief asked for a **very soft** interface ("très douce");
 on 2026-10-24 the palette became green, warm lemon and cream, with frosted
 glass and colour halos. On **2026-10-25** the project owner found the result
-childish and asked for something **more professional and serious**. The
-current principles:
+childish and asked for something **more professional and serious**. Later
+the same day the result looked too sad: the owner asked for **warmer
+colours with a meaning — blue for trust and tech, yellow for warmth, green
+for the planet — with transparency and a little more animation**, keeping
+the menu navigation as it is. The current principles:
 
-- **Sober shapes**: moderate radii (8 / 10 / 14 px), opaque white cards with
-  a hairline border and a light shadow, plain cream ground (no halos, no
-  frosted glass). Pills only for chips (filters) and counters.
+- **Three-colour palette**: trust blue (`--cg-sky`) for the hero band and
+  "tech" cues (lockers, location), warm yellow (`--cg-sun`) for warmth and
+  things to do, planet green (`--cg-leaf`) for actions and services. The
+  home screen opens on a blue-to-green gradient band (`--cg-hero`, white
+  text, a warm yellow glow in the corner).
+- **Sober shapes, translucent surfaces**: moderate radii (8 / 10 / 14 px);
+  cards are translucent glass (`--cg-glass` + `--cg-glass-filter`) over a
+  ground lit by soft blue, yellow and green glows (`--cg-backdrop`). Pills
+  only for chips (filters) and counters.
 - **Colour with intent** (revised 2026-10-25: the sober version looked too
   monochrome; the owner asked for more life, especially on promotions):
   deep green text and green actions stay; colour now carries meaning:
@@ -32,8 +41,12 @@ current principles:
   weights.
 - **Icons, not emoji**: outline Ionicons in tinted squares; emoji are not
   used in the interface (the typographic ✓ and rating stars ★ stay).
-- **Calm motion**: no lift-on-hover; shadows change on hover, the locker door
-  still swings open; motion off when the user prefers reduced motion.
+- **Light motion** (revised 2026-10-25): page blocks rise in with a short
+  stagger (`cg-rise`, 40 ms steps); clickable cards lift by 2 px on hover
+  and shrink slightly when pressed; portal cards rise in; the locker door
+  still swings open. Durations come from `--cg-motion` / `--cg-ease`, and
+  all motion is off when the user prefers reduced motion. The navigation
+  menu is not animated beyond Ionic's own drawer.
 - **Show, don't explain**: the locker is drawn; the door the customer will
   use is highlighted; sizes are shown with pictograms.
 - **Accessible**: visible keyboard focus, doors reachable with the keyboard,
@@ -107,7 +120,10 @@ mapped onto Ionic's colour variables. Components only use these tokens.
 | `--cg-pine` | Strong text on soft backgrounds |
 | `--cg-sun`, `--cg-sun-soft` | Warm lemon accent (consigne, badges, opening door) and its pastel |
 | `--cg-glass`, `--cg-glass-strong`, `--cg-glass-filter` | Frosted glass cards and bars |
-| `--cg-backdrop` | Cream ground with colour halos, behind every page |
+| `--cg-sky`, `--cg-sky-soft` | Trust blue (tech, lockers, location) and its tint |
+| `--cg-backdrop` | Ground with soft blue, yellow and green glows, behind every page |
+| `--cg-hero` | Blue-to-green gradient of the home hero band (white text) |
+| `--cg-ease`, `--cg-motion` | Easing and duration of every transition |
 | `--cg-locker-*` | Locker drawing |
 | `--cg-radius-*`, `--cg-shadow*` | Shapes and depth |
 | `--cg-chart-1`, `--cg-chart-2`, `--cg-chart-grid` | Chart series and grid (never text) |

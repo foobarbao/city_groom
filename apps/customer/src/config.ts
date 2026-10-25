@@ -5,6 +5,13 @@
  * (CODING_STANDARDS.md §7). Variables are documented in `.env.example`.
  */
 
+/**
+ * Whether a backend is configured for this build. The hosted demo has none
+ * yet: the Google sign-in then falls back to a demo sign-in on the device
+ * (AccountPage). PROD: always configured.
+ */
+export const API_CONFIGURED = Boolean(import.meta.env.VITE_API_BASE_URL)
+
 /** Base URL of the backend API, without trailing slash. */
 export const API_BASE_URL: string =
   import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000/api/v1'
