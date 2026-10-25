@@ -12,7 +12,6 @@ import {
   chatbubblesOutline,
   fileTrayFullOutline,
   homeOutline,
-  leafOutline,
   lockClosedOutline,
   mapOutline,
   navigateOutline,
@@ -52,7 +51,6 @@ export const NAVIGATION: NavNode[] = [
     navItem('profile', 'nav.profile', personOutline, 'account'),
     navItem('plans', 'nav.plans', ribbonOutline, 'plans'),
   ]),
-  navItem('engagement', 'nav.engagement', leafOutline, 'engagement'),
 ]
 
 /** Path from the top of the menu to the item of a route (see `navTrail`). */

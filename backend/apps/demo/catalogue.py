@@ -404,7 +404,7 @@ WEEKLY_PACK = DemoPack(
 )
 
 
-# Sport exchange decided by the project owner on 2026-10-25 (docs/PRODUCT.md
+# Sport exchange, named "Swap Sport", decided by the project owner on 2026-10-25 (docs/PRODUCT.md
 # "Sport exchange"): once a week, at one slot, the customer collects the
 # clean items of the previous week (sport outfit, shirt and trousers ironed
 # and folded) and drops the dirty sport outfit and the worn work outfit, in
@@ -412,7 +412,7 @@ WEEKLY_PACK = DemoPack(
 # with Plus, 5 EUR with Premium.
 SPORT_EXCHANGE = DemoPack(
     code="sport_exchange",
-    name="Échange sport",
+    name="Swap Sport",
     kind="exchange",
     items=(("sport_kit", 1), ("shirt_ironing", 1), ("trouser_ironing", 1)),
     weeks_per_purchase=1,

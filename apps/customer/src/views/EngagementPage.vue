@@ -4,6 +4,9 @@
  * and digital approach of CityPal, as a global communication axis decided
  * by the project owner on 2026-10-25.
  *
+ * On hold (2026-10-25, the owner will come back to it): not linked from the
+ * menu or the home screen; reachable at /engagement only.
+ *
  * Only facts true of the service are stated (cargo-bike rounds, local
  * shops, shared lockers turning over three times a day, everything in the
  * app, minimal data). No figure (CO₂, km) is shown until it can be measured

@@ -86,7 +86,7 @@ describe('account store', () => {
   it('schedules sport exchanges: clean items to collect after a first drop-off', () => {
     const store = useAccountStore()
     const exchange = {
-      label: 'Échange sport',
+      label: 'Swap Sport',
       priceCents: 700,
       size: 'XL',
       shopCode: 'citypal',

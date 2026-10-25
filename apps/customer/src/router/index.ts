@@ -30,7 +30,7 @@ const routes: RouteRecordRaw[] = [
   },
   { path: '/pack', name: 'pack', component: () => import('../views/PackPage.vue') },
   {
-    path: '/echange-sport',
+    path: '/swap-sport',
     name: 'exchange',
     component: () => import('../views/ExchangePage.vue'),
   },

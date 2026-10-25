@@ -7,7 +7,6 @@
 import { IonContent, IonIcon, IonPage } from '@ionic/vue'
 import {
   chevronForwardOutline,
-  leafOutline,
   lockClosedOutline,
   navigateOutline,
   repeatOutline,
@@ -183,15 +182,6 @@ const CATEGORY_ICONS: Record<string, string> = {
             </router-link>
           </div>
         </section>
-
-        <router-link class="nearby engagement" to="/engagement">
-          <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="leafOutline" /></span>
-          <span class="nearby-text">
-            <strong>{{ t('home.engagement.title') }}</strong>
-            <span>{{ t('home.engagement.text') }}</span>
-          </span>
-          <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
-        </router-link>
 
         <router-link class="soft-card map-link" to="/carte">
           <strong>{{ t('home.map') }}</strong>

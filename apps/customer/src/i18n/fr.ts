@@ -81,8 +81,7 @@ export default {
     services: 'Services',
     findService: 'Trouver un service',
     pack: 'Pack semaine',
-    exchange: 'Échange sport',
-    engagement: 'Notre engagement',
+    exchange: 'Swap Sport',
     orders: 'Mes commandes',
     messagesQuotes: 'Messages et devis',
     consigne: 'Consigne',
@@ -148,10 +147,6 @@ export default {
     nearMe: 'Près de moi',
   },
   home: {
-    engagement: {
-      title: 'Notre engagement',
-      text: 'Vélo cargo, commerces du quartier, zéro papier',
-    },
     pack: {
       title: 'Pack semaine · 5 chemises + 2 pantalons',
       welcome: 'Offre de bienvenue : {price} par semaine le premier mois',
@@ -450,7 +445,7 @@ export default {
     note: 'Nous publierons nos chiffres d’impact (kilomètres à vélo, trajets évités) dès qu’ils seront mesurés.',
   },
   exchange: {
-    title: 'Échange sport',
+    title: 'Swap Sport',
     intro:
       'Du sport au bureau en un seul passage : chaque semaine, au même créneau, vous reprenez vos affaires propres et déposez les sales.',
     howTitle: 'Comment ça marche',
@@ -458,7 +453,7 @@ export default {
     how2: 'Au créneau, ouvrez le casier : {items} propres vous attendent.',
     how3: 'Déposez à la place votre tenue de sport et votre tenue de travail portée, dans le même casier.',
     how4: 'Un coursier à vélo cargo les emporte ; elles seront prêtes pour l’échange suivant.',
-    subscribersOnly: 'L’échange sport est réservé aux abonnés CityPal Plus et Premium.',
+    subscribersOnly: 'Swap Sport est réservé aux abonnés CityPal Plus et Premium.',
     mine: 'Mes échanges',
     slotLine: '{day} entre {from} et {to}',
     withClean: 'affaires propres à reprendre',

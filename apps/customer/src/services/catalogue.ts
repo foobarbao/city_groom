@@ -104,7 +104,7 @@ export const SPORT_EXCHANGE_CODE = 'sport_exchange'
 
 /** Screen of an offer: the pack screen, or the exchange screen. */
 export const offerPath = (pack: DemoPack): string =>
-  pack.kind === 'exchange' ? '/echange-sport' : '/pack'
+  pack.kind === 'exchange' ? '/swap-sport' : '/pack'
 
 /** Name of an item of an offer: its label, or the service name. */
 export const packItemName = (item: DemoPack['items'][number]): string =>
