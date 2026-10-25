@@ -54,7 +54,10 @@ a real itinerary needs a routing engine (roadmap item 8).
   builds the customer app (base `/client/`) and the portal (base `/pro/`),
   then `scripts/assemble-demo-site.mjs` combines them in `dist-demo-site/`
   with the Netlify redirect rules. Deployed on Netlify (`netlify.toml`) at
-  <https://citygroom.netlify.app>; every pull request gets a deploy preview.
+  <https://citygroom.netlify.app>, then <https://citypal.fr> once the domain
+  is connected (`/` opens the customer app; `pro.citypal.fr` leads to the
+  portal; docs/BUILD_AND_RELEASE.md §6); every pull request gets a deploy
+  preview.
 - **Single-page demo** (`npm run build:demo -w apps/customer`): one HTML file
   with an embedded offline map, published as a Claude artifact.
 

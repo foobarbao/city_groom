@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- `citypal.fr` addresses: the site root opens the customer app (was the
+  portal demo home); `pro.citypal.fr` redirects to the portal; DNS steps
+  for OVH documented.
 - List rows with an icon on every item (category pictogram, lock, quote),
   a short title and a discreet description, on the home "En cours" list,
   orders, consigne bookings and Swap Sport exchanges (`ListRow.vue`).

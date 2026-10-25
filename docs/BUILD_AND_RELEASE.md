@@ -171,5 +171,37 @@ and `VITE_GOOGLE_CLIENT_ID`, then trigger a deploy (`docs/GOOGLE_SIGN_IN.md`
 §4). Only the sign-in uses the backend; the rest of the hosted demo keeps
 its bundled fictitious data.
 
+### Custom domain (citypal.fr)
+
+Bought by the project owner on 2026-10-25 at OVHcloud (DNS zone at OVH).
+Addresses (owner's decision, 2026-10-25):
+
+| Address | Serves |
+|---|---|
+| `https://citypal.fr` (and `www`) | customer app (`/` redirects to `/client/`) |
+| `https://pro.citypal.fr` | redirects to `https://citypal.fr/pro/` (portal) |
+| `https://api.citypal.fr` | backend and admin (Render) |
+
+1. Add the domains to the services first: Netlify → Domain management →
+   `citypal.fr` (with `www`) and `pro.citypal.fr`; Render → Custom Domains →
+   `api.citypal.fr`.
+2. OVH DNS zone (values from Netlify's documentation, checked 2026-10-25):
+   - `citypal.fr` **A** → `75.2.60.5` (Netlify load balancer; OVH has no
+     ALIAS record at the apex); delete the OVH welcome `AAAA` and `TXT`
+     records of `citypal.fr` and `www`;
+   - `www` **CNAME** → `citygroom.netlify.app.` (after deleting the `www`
+     A, AAAA and TXT records: a CNAME cannot sit next to other records);
+   - `pro` **CNAME** → `citygroom.netlify.app.`;
+   - `api` **CNAME** → the target Render shows (expected
+     `citypal.onrender.com.`);
+   - keep NS, MX and SPF (e-mail).
+3. Once verified (HTTPS issued by both services): point
+   `VITE_API_BASE_URL` to `https://api.citypal.fr/api/v1`, add
+   `api.citypal.fr` to `DJANGO_ALLOWED_HOSTS` and
+   `https://api.citypal.fr` to `DJANGO_CSRF_TRUSTED_ORIGINS`, add
+   `https://citypal.fr` to `CORS_ALLOWED_ORIGINS` (Render), and
+   `https://citypal.fr` to the OAuth client's JavaScript origins
+   (`docs/GOOGLE_SIGN_IN.md`).
+
 PROD: database backups (limited on free plans), a custom domain, HSTS, and
 moving to an always-on plan before showing the demo to partners (ADR-0004).
