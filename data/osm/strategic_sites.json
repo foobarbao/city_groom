@@ -2,7 +2,7 @@
  "version": 0.6,
  "generator": "Overpass API 0.7.62.11 87bfad18",
  "osm3s": {
-  "timestamp_osm_base": "2026-10-24T20:03:31Z",
+  "timestamp_osm_base": "2026-10-25T07:47:20Z",
   "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
  },
  "elements": [
@@ -230,26 +230,6 @@
   },
   {
    "type": "node",
-   "id": 784171652,
-   "lat": 45.2808332,
-   "lon": 5.8796109,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Léo Lagrange"
-   }
-  },
-  {
-   "type": "node",
-   "id": 784207771,
-   "lat": 45.2783197,
-   "lon": 5.8786638,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Simone de Beauvoir"
-   }
-  },
-  {
-   "type": "node",
    "id": 817614048,
    "lat": 45.0359431,
    "lon": 5.9048203,
@@ -290,19 +270,6 @@
   },
   {
    "type": "node",
-   "id": 961822534,
-   "lat": 45.1807713,
-   "lon": 5.7265366,
-   "tags": {
-    "check_date": "2026-06-17",
-    "leisure": "sports_centre",
-    "name": "Wellness Fitness",
-    "sport": "multi",
-    "website": "https://www.wellness-sportclub.fr"
-   }
-  },
-  {
-   "type": "node",
    "id": 971820701,
    "lat": 45.2909801,
    "lon": 5.6575856,
@@ -338,17 +305,6 @@
   },
   {
    "type": "node",
-   "id": 1044671651,
-   "lat": 45.1431183,
-   "lon": 5.7134409,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Boulodrome Tessaro Chorier",
-    "sport": "boules"
-   }
-  },
-  {
-   "type": "node",
    "id": 1071629363,
    "lat": 45.1789994,
    "lon": 5.6240966,
@@ -369,38 +325,6 @@
     "tourism": "attraction",
     "wheelchair": "no",
     "wikipedia": "fr:Fontaine ardente"
-   }
-  },
-  {
-   "type": "node",
-   "id": 1125956869,
-   "lat": 45.2226509,
-   "lon": 5.802825,
-   "tags": {
-    "addr:city": "Montbonnot-Saint-martin",
-    "addr:housenumber": "366",
-    "addr:postcode": "38330",
-    "addr:street": "Chemin de la Laurelle",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "length": "25",
-    "name": "Piscine de l'école des pupilles de l'air et de l'espace",
-    "phone": "+33 4 80 42 20 55",
-    "short_name": "Piscine de l'EPAE",
-    "sport": "swimming",
-    "website": "https://www.montbonnot.fr/17965-piscine-de-l-epae.htm"
-   }
-  },
-  {
-   "type": "node",
-   "id": 1149204674,
-   "lat": 45.1620697,
-   "lon": 5.7473978,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "À la Découverte du Cirque",
-    "sport": "circus",
-    "website": "https://www.cirque-eybens.org/"
    }
   },
   {
@@ -512,19 +436,6 @@
   },
   {
    "type": "node",
-   "id": 1307737004,
-   "lat": 45.2418504,
-   "lon": 5.8285417,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Complexe sportif François-Régis Bériot",
-    "sport": "tennis",
-    "wheelchair": "yes",
-    "wikidata": "Q120157392"
-   }
-  },
-  {
-   "type": "node",
    "id": 1340375268,
    "lat": 45.0200947,
    "lon": 5.6878348,
@@ -632,26 +543,6 @@
     "website": "https://www.ville-champsurdrac.fr/associations-culture/musee/",
     "wikidata": "Q3329068",
     "wikipedia": "fr:Musée Autrefois"
-   }
-  },
-  {
-   "type": "node",
-   "id": 1446831145,
-   "lat": 45.1605308,
-   "lon": 5.7454547,
-   "tags": {
-    "check_date": "2023-10-03",
-    "contact:facebook": "https://www.facebook.com/StudioK38",
-    "contact:instagram": "https://www.instagram.com/karine.studio/?hl=fr",
-    "contact:phone": "+33 7 81 80 40 62",
-    "dispensing": "yes",
-    "email": "contact@le-studio-k.com",
-    "leisure": "sports_centre",
-    "name": "Studio K",
-    "opening_hours": "Mo-Fr 07:30-13:30,17:00-20:00; Sa 09:00-12:30",
-    "ref:FR:SIRET": "81040129900013",
-    "sport": "yoga;fitness;pilates;gymnastics",
-    "website": "https://le-studio-k.com"
    }
   },
   {
@@ -794,17 +685,6 @@
   },
   {
    "type": "node",
-   "id": 1822915469,
-   "lat": 45.1614385,
-   "lon": 5.7366692,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Les Trembles",
-    "sport": "gymnastics"
-   }
-  },
-  {
-   "type": "node",
    "id": 1871493564,
    "lat": 45.1060591,
    "lon": 5.5987487,
@@ -860,16 +740,6 @@
    "lon": 5.7900936,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 1912997668,
-   "lat": 45.1586019,
-   "lon": 5.7598057,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "salle Jacques Higelin"
    }
   },
   {
@@ -1106,21 +976,6 @@
   },
   {
    "type": "node",
-   "id": 2166243881,
-   "lat": 45.186551,
-   "lon": 5.6947263,
-   "tags": {
-    "addr:city": "Fontaine",
-    "addr:housenumber": "2",
-    "addr:postcode": "38600",
-    "addr:street": "Rue d'Alpignano",
-    "leisure": "sports_centre",
-    "name": "Le Clair de L'Aube",
-    "sport": "yoga"
-   }
-  },
-  {
-   "type": "node",
    "id": 2197187567,
    "lat": 45.267143,
    "lon": 5.7205604,
@@ -1174,25 +1029,6 @@
     "tourism": "viewpoint",
     "wikidata": "Q19543915",
     "wikipedia": "fr:Bec de l'Échaillon"
-   }
-  },
-  {
-   "type": "node",
-   "id": 2327936031,
-   "lat": 45.1871855,
-   "lon": 5.7633157,
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "23",
-    "addr:postcode": "38400",
-    "addr:street": "Rue des Glairons",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Alpes Crossfit Unity",
-    "opening_hours": "Mo-Fr 06:30-21:00; Sa 09:00-12:30",
-    "phone": "+33 9 81 85 98 96",
-    "sport": "crossfit",
-    "website": "https://www.alpescrossfit-unity.fr/"
    }
   },
   {
@@ -1260,18 +1096,6 @@
   },
   {
    "type": "node",
-   "id": 2387382672,
-   "lat": 45.1909335,
-   "lon": 5.7255663,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Conservatoire de la Danse",
-    "source": "survey",
-    "sport": "dance"
-   }
-  },
-  {
-   "type": "node",
    "id": 2388638743,
    "lat": 45.1915799,
    "lon": 5.7281471,
@@ -1327,18 +1151,6 @@
   },
   {
    "type": "node",
-   "id": 2466226905,
-   "lat": 45.1933278,
-   "lon": 5.7294784,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Grenoble Fitness",
-    "source": "survey",
-    "sport": "zumba"
-   }
-  },
-  {
-   "type": "node",
    "id": 2468077451,
    "lat": 45.1900049,
    "lon": 5.6762197,
@@ -1353,32 +1165,6 @@
    "lon": 5.6395796,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 2607968023,
-   "lat": 45.176884,
-   "lon": 5.7340389,
-   "tags": {
-    "access": "yes",
-    "check_date": "2026-02-13",
-    "check_date:opening_hours": "2026-02-13",
-    "climbing:boulder": "yes",
-    "climbing:sport": "no",
-    "contact:facebook": "https://www.facebook.com/Ablok-Salle-descalade-163966200282765/",
-    "contact:instagram": "https://www.instagram.com/ablok_grenoble/",
-    "contact:phone": "+33 9 81 16 46 60",
-    "contact:website": "https://www.ablok.fr/",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Ablok",
-    "opening_hours": "Mo-Fr 12:00-22:00; Sa,Su 10:00-18:00; PH 10:00-18:00",
-    "operator": "Ablok",
-    "operator:type": "private",
-    "source": "survey",
-    "sport": "climbing",
-    "wheelchair": "yes"
    }
   },
   {
@@ -1400,49 +1186,6 @@
     "uic_ref": "8774769",
     "wheelchair": "yes",
     "wikidata": "Q3097052"
-   }
-  },
-  {
-   "type": "node",
-   "id": 2696678608,
-   "lat": 45.1922474,
-   "lon": 5.7329506,
-   "tags": {
-    "check_date": "2026-07-23",
-    "contact:phone": "+33 6 16 83 78 89",
-    "contact:website": "https://yoga.mireillelaurent.fr/",
-    "leisure": "sports_centre",
-    "name": "Centre yoga de l'énergie"
-   }
-  },
-  {
-   "type": "node",
-   "id": 2708739684,
-   "lat": 45.1858291,
-   "lon": 5.7111633,
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "12",
-    "addr:postcode": "38000",
-    "addr:street": "Rue Henri le Châtelier",
-    "charge": "1,2 à 6 EUR",
-    "check_date": "2026-09-08",
-    "covered": "yes",
-    "email": "piscine.municipale@grenoble.fr",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "level": "0",
-    "name": "Piscine Bulle d’O",
-    "opening_hours": "Sep-Jun Mo 11:30-13:40,17:30-21:40; Sep-Jun Tu 07:00-08:45,11:00-13:40,17:30-21:45; Sep-Jun We 07:00-08:45,11:00-21:45; Sep-Jun Th,Fr 11:30-13:45,16:00-21:40",
-    "operator": "Ville de Grenoble",
-    "operator:type": "public",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "payment:debit_cards": "yes",
-    "phone": "+33 4 76 21 05 91",
-    "sport": "swimming",
-    "website": "https://www.grenoble.fr/lieu/573/137-piscine-bulle-d-o.htm",
-    "wheelchair": "yes"
    }
   },
   {
@@ -1619,18 +1362,6 @@
     "network:type": "node_network",
     "network:wikidata": "Q137260795",
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 3177528667,
-   "lat": 45.3220868,
-   "lon": 5.602489,
-   "tags": {
-    "fixme": "centre équestre réorganisé suite ouverture sortie autoroute",
-    "leisure": "sports_centre",
-    "name": "Centre équestre",
-    "sport": "equestrian"
    }
   },
   {
@@ -1987,29 +1718,6 @@
   },
   {
    "type": "node",
-   "id": 3992888442,
-   "lat": 45.1668043,
-   "lon": 5.6270123,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Parcours Aventure Saint-Nizier-du-Moucherotte",
-    "sport": "climbing_adventure"
-   }
-  },
-  {
-   "type": "node",
-   "id": 3994317375,
-   "lat": 45.2641772,
-   "lon": 5.7633971,
-   "tags": {
-    "check_date": "2024-03-15",
-    "leisure": "sports_centre",
-    "name": "Domaine des Bens Ecurie du Sappey",
-    "sport": "equestrian"
-   }
-  },
-  {
-   "type": "node",
    "id": 4008314172,
    "lat": 45.2134475,
    "lon": 5.7820618,
@@ -2111,34 +1819,6 @@
    "lon": 5.7615257,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 4601722419,
-   "lat": 45.2172164,
-   "lon": 5.864832,
-   "tags": {
-    "addr:city": "Le Versoud",
-    "addr:postcode": "38420",
-    "addr:street": "Rue Anatole France",
-    "leisure": "sports_centre",
-    "name": "Espace Sportif Alain Cherfils - Gymnase"
-   }
-  },
-  {
-   "type": "node",
-   "id": 4696381192,
-   "lat": 45.2004441,
-   "lon": 5.7071985,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Espace de Vie Étudiante Escape",
-    "opening_hours": "Mo-We,Fr 17:00-22:00, Th 14:00-22:00",
-    "sport": "volleyball",
-    "sport_1": "basketball",
-    "sport_2": "handball",
-    "wheelchair": "yes"
    }
   },
   {
@@ -2898,18 +2578,6 @@
   },
   {
    "type": "node",
-   "id": 5773554580,
-   "lat": 45.1989672,
-   "lon": 5.7254308,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Acrobastille",
-    "sport": "climbing_adventure",
-    "website": "https://acrobastille.fr/"
-   }
-  },
-  {
-   "type": "node",
    "id": 5790938375,
    "lat": 45.1689224,
    "lon": 5.6180821,
@@ -2953,22 +2621,6 @@
    "tags": {
     "direction": "N",
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 5821099193,
-   "lat": 45.1708153,
-   "lon": 5.7051337,
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "73",
-    "addr:postcode": "38100",
-    "addr:street": "Avenue Rhin et Danube",
-    "leisure": "sports_centre",
-    "name": "Mistral FC",
-    "sport": "soccer",
-    "website": "https://www.mistral-fc.fr/"
    }
   },
   {
@@ -4010,21 +3662,6 @@
   },
   {
    "type": "node",
-   "id": 6165824900,
-   "lat": 45.1783196,
-   "lon": 5.7173403,
-   "tags": {
-    "addr:housenumber": "7",
-    "addr:street": "Rue Sidi-Brahim",
-    "entrance": "main",
-    "leisure": "sports_centre",
-    "name": "Vit'anim",
-    "sport": "circus",
-    "website": "https://www.vitanim.net/"
-   }
-  },
-  {
-   "type": "node",
    "id": 6166794177,
    "lat": 45.1466679,
    "lon": 5.6462089,
@@ -4139,17 +3776,6 @@
    "tags": {
     "amenity": "university",
     "name": "IRMaGe - IPA"
-   }
-  },
-  {
-   "type": "node",
-   "id": 6398597270,
-   "lat": 45.1981886,
-   "lon": 5.7778731,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Halle Chartreuse",
-    "sport": "climbing"
    }
   },
   {
@@ -4296,16 +3922,6 @@
   },
   {
    "type": "node",
-   "id": 6622520182,
-   "lat": 45.1977847,
-   "lon": 5.7778508,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Halle Belledone"
-   }
-  },
-  {
-   "type": "node",
    "id": 6626959170,
    "lat": 45.1934728,
    "lon": 5.770757,
@@ -4394,22 +4010,6 @@
     "wheelchair": "yes",
     "wikidata": "Q2206243",
     "wikipedia": "fr:Gare d'Échirolles"
-   }
-  },
-  {
-   "type": "node",
-   "id": 7003000414,
-   "lat": 45.1481508,
-   "lon": 5.7203081,
-   "tags": {
-    "addr:city": "Échirolles",
-    "addr:housenumber": "26",
-    "addr:street": "Rue Normandie Niémen",
-    "check_date": "2026-02-19",
-    "leisure": "sports_centre",
-    "name": "Les haches de Grenoble",
-    "sport": "axe_throwing",
-    "website": "https://h2grenoble.com/"
    }
   },
   {
@@ -4819,29 +4419,6 @@
   },
   {
    "type": "node",
-   "id": 8043051863,
-   "lat": 45.1905655,
-   "lon": 5.7161914,
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "56",
-    "addr:postcode": "38000",
-    "addr:street": "Avenue Félix Viallet",
-    "check_date": "2026-04-30",
-    "check_date:opening_hours": "2026-02-18",
-    "climbing:boulder": "yes",
-    "email": "lelabo.escalade@gmail.com",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Le Labo",
-    "opening_hours": "Mo-Fr 12:00-22:30, Sa,Su,PH 10:00-19:00; Dec 24 10:00-17:00; Dec 31 10:00-17:00; Dec 25 off; Jan 01 off",
-    "phone": "+33 476954515",
-    "sport": "climbing",
-    "website": "https://www.espacevertical.com/labo/"
-   }
-  },
-  {
-   "type": "node",
    "id": 8194484156,
    "lat": 45.2179823,
    "lon": 5.7457343,
@@ -4926,18 +4503,6 @@
    "tags": {
     "direction": "200",
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 8273446022,
-   "lat": 45.2565598,
-   "lon": 5.6444246,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Laser Park Voreppe",
-    "sport": "laser_tag",
-    "website": "http://laserpark.fr/"
    }
   },
   {
@@ -6041,18 +5606,6 @@
   },
   {
    "type": "node",
-   "id": 9680146357,
-   "lat": 45.1932687,
-   "lon": 5.7205125,
-   "tags": {
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Mur d'escalade",
-    "sport": "climbing"
-   }
-  },
-  {
-   "type": "node",
    "id": 9687571055,
    "lat": 45.0582092,
    "lon": 5.647129,
@@ -6769,31 +6322,6 @@
   },
   {
    "type": "node",
-   "id": 10079711342,
-   "lat": 45.2740774,
-   "lon": 5.8880838,
-   "tags": {
-    "addr:city": "Crolles",
-    "addr:housenumber": "492",
-    "addr:postcode": "38920",
-    "addr:street": "Rue des Bécasses",
-    "air_conditioning": "no",
-    "amenity": "cafe",
-    "check_date": "2026-02-11",
-    "contact:email": "contact@auperchoir.fr",
-    "contact:facebook": "https://www.facebook.com/Au.Perchoir.Crolles/",
-    "contact:phone": "+33 4 76 04 17 05",
-    "description": "Escalade, Café, Restaurant, Coworking",
-    "leisure": "sports_centre",
-    "name": "Au Perchoir",
-    "office": "coworking",
-    "opening_hours": "Mo-Fr 08:00-23:00; Sa 09:00-21:00; Su 09:00-20:00",
-    "sport": "climbing",
-    "website": "https://auperchoir.fr/"
-   }
-  },
-  {
-   "type": "node",
    "id": 10092579091,
    "lat": 45.1355022,
    "lon": 5.6849259,
@@ -7235,34 +6763,6 @@
   },
   {
    "type": "node",
-   "id": 11059134037,
-   "lat": 45.1848059,
-   "lon": 5.7565397,
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "12",
-    "addr:postcode": "38400",
-    "addr:street": "Rue Marceau Leyssieux",
-    "charge": "14 EUR",
-    "email": "espacevertical@yahoo.fr;serviceclient.evlabo@gmail.com",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "level": "0",
-    "name": "Espace Vertical 4",
-    "opening_hours": "Mo-Fr 12:00-22:30; Sa-Su 10:00-19:00; PH 10:00-19:00; Dec 24 10:00-17:00; Dec 31 10:00-17:00; Dec 25 off; Jan 01 off",
-    "operator": "Espace Vertical",
-    "operator:type": "private",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "phone": "+33 4 76 44 18 17",
-    "short_name": "EV4",
-    "sport": "climbing",
-    "website": "https://www.espacevertical.com",
-    "wikidata": "Q124735648"
-   }
-  },
-  {
-   "type": "node",
    "id": 11064525049,
    "lat": 45.0239798,
    "lon": 5.819836,
@@ -7666,17 +7166,6 @@
   },
   {
    "type": "node",
-   "id": 12161566402,
-   "lat": 45.2199958,
-   "lon": 5.7886056,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Freedom Fitness",
-    "outdoor_seating": "no"
-   }
-  },
-  {
-   "type": "node",
    "id": 12172348898,
    "lat": 45.1930255,
    "lon": 5.7282029,
@@ -7703,22 +7192,6 @@
    "lon": 5.5719225,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 12253399435,
-   "lat": 45.1836137,
-   "lon": 5.7229783,
-   "tags": {
-    "brand": "Hapik",
-    "brand:wikidata": "Q135729937",
-    "check_date": "2026-04-21",
-    "leisure": "sports_centre",
-    "name": "Hapik",
-    "ref:FR:SIRET": "81917199200020",
-    "sport": "climbing",
-    "website": "https://hapik.fr/centres-tarifs/grenoble-caserne-de-bonne"
    }
   },
   {
@@ -7763,33 +7236,6 @@
   },
   {
    "type": "node",
-   "id": 12407036875,
-   "lat": 45.1853999,
-   "lon": 5.7567776,
-   "tags": {
-    "brand": "Hapik",
-    "brand:wikidata": "Q135729937",
-    "club": "sport",
-    "leisure": "sports_centre",
-    "level": "1",
-    "name": "Hapik",
-    "sport": "climbing"
-   }
-  },
-  {
-   "type": "node",
-   "id": 12407036879,
-   "lat": 45.1839037,
-   "lon": 5.7555333,
-   "tags": {
-    "leisure": "sports_centre",
-    "level": "1",
-    "name": "Seven Squares",
-    "sport": "laser_tag"
-   }
-  },
-  {
-   "type": "node",
    "id": 12520742994,
    "lat": 45.1453184,
    "lon": 5.7066865,
@@ -7821,37 +7267,11 @@
   },
   {
    "type": "node",
-   "id": 12543438736,
-   "lat": 45.2116818,
-   "lon": 5.6819151,
-   "tags": {
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "STG Société de Tir de Grenoble",
-    "operator": "STG",
-    "operator:type": "association",
-    "payment:membership": "yes",
-    "sport": "shooting"
-   }
-  },
-  {
-   "type": "node",
    "id": 12601561976,
    "lat": 45.0370696,
    "lon": 5.6980725,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 12616150295,
-   "lat": 45.2052,
-   "lon": 5.7780946,
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Dojo",
-    "sport": "arts martiaux"
    }
   },
   {
@@ -7957,36 +7377,6 @@
   },
   {
    "type": "node",
-   "id": 12873499167,
-   "lat": 45.1709265,
-   "lon": 5.7503363,
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "100",
-    "addr:postcode": "38100",
-    "addr:street": "Avenue de la Mogne",
-    "leisure": "sports_centre",
-    "name": "Grenoble Tennis Padel",
-    "sport": "padel;tennis"
-   }
-  },
-  {
-   "type": "node",
-   "id": 12881415556,
-   "lat": 45.228698,
-   "lon": 5.8757951,
-   "tags": {
-    "addr:city": "Le Versoud",
-    "addr:housenumber": "622",
-    "addr:postcode": "38420",
-    "addr:street": "Rue Amable Matussière",
-    "leisure": "sports_centre",
-    "name": "Mooving Arena",
-    "sport": "padel;fitness;badminton;basketball;futsal;pickleball;squash"
-   }
-  },
-  {
-   "type": "node",
    "id": 12985806794,
    "lat": 45.2831241,
    "lon": 5.6530646,
@@ -8054,36 +7444,6 @@
    "lon": 5.5934494,
    "tags": {
     "tourism": "viewpoint"
-   }
-  },
-  {
-   "type": "node",
-   "id": 13191620459,
-   "lat": 45.1659562,
-   "lon": 5.7120444,
-   "tags": {
-    "check_date": "2025-09-28",
-    "leisure": "sports_centre",
-    "name": "TSB Team Samir Boxing",
-    "sport": "boxing"
-   }
-  },
-  {
-   "type": "node",
-   "id": 13191620460,
-   "lat": 45.1653671,
-   "lon": 5.7119036,
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "175",
-    "addr:street": "Cours de la Libération et du Général de Gaulle",
-    "check_date": "2025-09-28",
-    "email": "contact@crossfit-lesdiguieres.fr",
-    "leisure": "sports_centre",
-    "name": "Crossfit Lesdiguieres",
-    "phone": "+33781515698",
-    "sport": "crossfit",
-    "website": "https://www.crossfit-lesdiguieres.fr/"
    }
   },
   {
@@ -8290,49 +7650,12 @@
   },
   {
    "type": "node",
-   "id": 13516832203,
-   "lat": 45.2234295,
-   "lon": 5.6728506,
-   "tags": {
-    "addr:housenumber": "29",
-    "addr:street": "Rue des Glairaux",
-    "check_date": "2026-02-01",
-    "leisure": "sports_centre",
-    "name": "Alcatraz Adventure Grenoble",
-    "phone": "+33 7 82 58 90 62",
-    "website": "https://alcatrazadventure-grenoble.fr"
-   }
-  },
-  {
-   "type": "node",
    "id": 13521736205,
    "lat": 45.2118801,
    "lon": 5.7985801,
    "tags": {
     "leisure": "park",
     "name": "Le Trèfle"
-   }
-  },
-  {
-   "type": "node",
-   "id": 13541297091,
-   "lat": 45.1880621,
-   "lon": 5.7377525,
-   "tags": {
-    "amenity": "restaurant",
-    "contact:instagram": "https://instagram.com/orangerie_perchee",
-    "contact:linkedin": "https://www.linkedin.com/company/l-orangerie-perch%C3%A9e/",
-    "description": "Un lieu hybride au cœur de Grenoble : Escalade, cuisine durable et moments à partager.",
-    "diet:vegan": "no",
-    "diet:vegetarian": "yes",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "L'Orangerie Perchée",
-    "opening_hours": "Mo-Fr 08:00-01:00, Sa 09:00-01:00, Su 09:00-22:00",
-    "phone": "+33 4 76 42 91 39",
-    "sport": "climbing",
-    "website": "https://orangerie-perchee.fr",
-    "wheelchair": "limited"
    }
   },
   {
@@ -8550,29 +7873,6 @@
     "operator": "OSUG",
     "operator:type": "university",
     "tourism": "attraction"
-   }
-  },
-  {
-   "type": "node",
-   "id": 13912101693,
-   "lat": 45.2241479,
-   "lon": 5.6721581,
-   "tags": {
-    "addr:city": "Saint-Égrève",
-    "addr:housenumber": "29",
-    "addr:postcode": "38120",
-    "addr:street": "Rue des Glairaux",
-    "charge": "29.95€/m",
-    "email": "crolles@freedom-fitness.fr",
-    "fee": "yes",
-    "image": "https://urls.fr/jZfFd3",
-    "leisure": "sports_centre",
-    "name": "Freedom fitness",
-    "opening_hours": "24/7",
-    "payment:cards": "yes",
-    "phone": "+33 4 76 87 25 82",
-    "sport": "fitness",
-    "website": "https://www.freedom-fitness.fr/"
    }
   },
   {
@@ -9182,30 +8482,6 @@
   },
   {
    "type": "way",
-   "id": 28699752,
-   "center": {
-    "lat": 45.1833241,
-    "lon": 5.7366339
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "40",
-    "addr:postcode": "38100",
-    "addr:street": "Boulevard Clémenceau",
-    "building": "yes",
-    "diff:ref:FR:RNB": "splitted",
-    "leisure": "sports_centre",
-    "name": "Halle Clémenceau",
-    "ref:FR:RNB": "ETKFA7QAVXMJ",
-    "roof:shape": "round",
-    "wheelchair": "limited",
-    "wikidata": "Q3126056",
-    "wikimedia_commons": "Category:Halle Clémenceau",
-    "wikipedia": "fr:Halle Clémenceau"
-   }
-  },
-  {
-   "type": "way",
    "id": 28709471,
    "center": {
     "lat": 45.1848939,
@@ -9344,21 +8620,6 @@
    "tags": {
     "leisure": "park",
     "name": "Parc des Maisons Neuves"
-   }
-  },
-  {
-   "type": "way",
-   "id": 31051387,
-   "center": {
-    "lat": 45.1477892,
-    "lon": 5.75674
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Vélodrome",
-    "note": "Sert de bassin de rétention des eaux en cas de fortes pluies.",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "cycling"
    }
   },
   {
@@ -9568,33 +8829,6 @@
   },
   {
    "type": "way",
-   "id": 32851160,
-   "center": {
-    "lat": 45.1858492,
-    "lon": 5.7264026
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "7",
-    "addr:postcode": "38000",
-    "addr:street": "Rue François Raoult",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre sportif Hoche",
-    "opening_hours": "08:00-22:00",
-    "operator": "Office municipal des sports de Grenoble",
-    "phone": "+33476876028",
-    "ref:FR:RNB": "RE5G3F2XQXGH",
-    "roof:colour": "#b8c9bc",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "multi;martial_arts;basketball;gymnastics",
-    "start_date": "1967",
-    "website": "https://www.grenoble.fr/lieu/525/137-centre-sportif-hoche.htm",
-    "wikidata": "Q120303097"
-   }
-  },
-  {
-   "type": "way",
    "id": 33695010,
    "center": {
     "lat": 45.1928226,
@@ -9648,66 +8882,6 @@
   },
   {
    "type": "way",
-   "id": 34485777,
-   "center": {
-    "lat": 45.1845442,
-    "lon": 5.7238954
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre sportif Berthe de Boissieux",
-    "ref:FR:RNB": "K6BMQZMK2TH3",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "start_date": "1934",
-    "wheelchair": "limited",
-    "wikidata": "Q120303080"
-   }
-  },
-  {
-   "type": "way",
-   "id": 34573503,
-   "center": {
-    "lat": 45.181546,
-    "lon": 5.7210419
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "12;14",
-    "addr:postcode": "39000",
-    "addr:street": "Rue Colonel Dumont",
-    "building": "yes",
-    "contact:phone": "+33476170850",
-    "contact:website": "https://www.lasergame-evolution.com/fr/6/Grenoble/",
-    "diff:ref:FR:RNB": "multiple",
-    "leisure": "sports_centre",
-    "name": "Laser Game Evolution",
-    "ref:FR:RNB": "1XRDGV8ZBB9B;8QFH74QKMEYD",
-    "roof:colour": "#be8988",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "laser_tag"
-   }
-  },
-  {
-   "type": "way",
-   "id": 34690002,
-   "center": {
-    "lat": 45.1935747,
-    "lon": 5.7123691
-   },
-   "tags": {
-    "building": "sports_hall",
-    "building:levels": "2",
-    "elevator": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Europole",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "wheelchair": "yes",
-    "wikidata": "Q120302919"
-   }
-  },
-  {
-   "type": "way",
    "id": 34781662,
    "center": {
     "lat": 45.2001669,
@@ -9716,20 +8890,6 @@
    "tags": {
     "leisure": "park",
     "name": "Parc de l'Île d'Amour"
-   }
-  },
-  {
-   "type": "way",
-   "id": 34941224,
-   "center": {
-    "lat": 45.2922626,
-    "lon": 5.6344686
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase de l'Arcade",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
    }
   },
   {
@@ -9755,23 +8915,6 @@
     "ref:FR:RNB": "22GTBEY6NA8A",
     "roof:colour": "#be8988",
     "roof:shape": "flat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
-   }
-  },
-  {
-   "type": "way",
-   "id": 35073537,
-   "center": {
-    "lat": 45.1911174,
-    "lon": 5.7353862
-   },
-   "tags": {
-    "access": "private",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "military complex",
-    "ref:FR:RNB": "VS2KAMCYW51A",
-    "roof:colour": "#be8988",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
    }
   },
@@ -9877,20 +9020,6 @@
   },
   {
    "type": "way",
-   "id": 35134650,
-   "center": {
-    "lat": 45.1708677,
-    "lon": 5.7472347
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Raymond Espagnac - Teisseire",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "american_football"
-   }
-  },
-  {
-   "type": "way",
    "id": 36911863,
    "center": {
     "lat": 45.185271,
@@ -9903,33 +9032,6 @@
     "name": "Place du 24 Avril 1915",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
     "surface": "concrete"
-   }
-  },
-  {
-   "type": "way",
-   "id": 37293826,
-   "center": {
-    "lat": 45.1883223,
-    "lon": 5.785734
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Paul Bourgeat"
-   }
-  },
-  {
-   "type": "way",
-   "id": 37626501,
-   "center": {
-    "lat": 45.197989,
-    "lon": 5.7776872
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase UFR STAPS",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "multi"
    }
   },
   {
@@ -10045,25 +9147,6 @@
     "wheelchair": "limited",
     "wikidata": "Q3224155",
     "wikipedia": "fr:Magasin-CNAC"
-   }
-  },
-  {
-   "type": "way",
-   "id": 39961760,
-   "center": {
-    "lat": 45.149768,
-    "lon": 5.7536508
-   },
-   "tags": {
-    "addr:city": "Eybens",
-    "addr:housenumber": "5",
-    "addr:postcode": "38320",
-    "addr:street": "Rue du Château",
-    "alt_name": "Piscine Municipale d'Eybens",
-    "leisure": "sports_centre",
-    "name": "Piscine d'Eybens",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "swimming"
    }
   },
   {
@@ -10185,29 +9268,6 @@
   },
   {
    "type": "way",
-   "id": 41711607,
-   "center": {
-    "lat": 45.1385464,
-    "lon": 5.7016844
-   },
-   "tags": {
-    "addr:city": "Pont-de-Claix",
-    "addr:housenumber": "83",
-    "addr:postcode": "38800",
-    "addr:street": "Cours Saint-André",
-    "building": "yes",
-    "contact:phone": "+33 4 76 29 86 00",
-    "covered": "yes",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre aquatique Flottibulle",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "swimming",
-    "website": "https://www.pontdeclaix.fr/flottibulle"
-   }
-  },
-  {
-   "type": "way",
    "id": 41795556,
    "center": {
     "lat": 45.131228,
@@ -10217,35 +9277,6 @@
     "name": "Place Michel Couëtoux",
     "place": "square",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009"
-   }
-  },
-  {
-   "type": "way",
-   "id": 41795580,
-   "center": {
-    "lat": 45.1335578,
-    "lon": 5.6971462
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Complexe sportif",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
-    "sport": "multi;dance",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 41809792,
-   "center": {
-    "lat": 45.1304325,
-    "lon": 5.6918989
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Ensemble sportif Louis Maisonnat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009"
    }
   },
   {
@@ -10289,32 +9320,6 @@
     "name": "Espace Comboire",
     "ref:FR:FANTOIR": "38151A035C",
     "wikidata": "Q2985089"
-   }
-  },
-  {
-   "type": "way",
-   "id": 42107083,
-   "center": {
-    "lat": 45.1813295,
-    "lon": 5.7035388
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "9",
-    "addr:postcode": "38000",
-    "addr:street": "Rue Docteur Greffier",
-    "building": "sports_hall",
-    "building:levels": "2",
-    "leisure": "sports_centre",
-    "name": "Gymnase Joseph Vallier",
-    "operator": "Ville de Grenoble",
-    "phone": "+33 4 76 96 51 94",
-    "roof:colour": "#aeb5c2",
-    "roof:levels": "0",
-    "roof:shape": "flat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "gymnastics",
-    "wheelchair": "yes"
    }
   },
   {
@@ -10633,68 +9638,6 @@
   },
   {
    "type": "way",
-   "id": 43328208,
-   "center": {
-    "lat": 45.1662309,
-    "lon": 5.7306657
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre sportif Jean-Philippe Motte",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2020",
-    "sport": "multi",
-    "survey:date": "2024-03-27",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 43337201,
-   "center": {
-    "lat": 45.1736874,
-    "lon": 5.7338077
-   },
-   "tags": {
-    "access": "private",
-    "addr:city": "Grenoble",
-    "addr:housenumber": "45",
-    "addr:postcode": "38100",
-    "addr:street": "Avenue Marcelin Berthelot",
-    "building": "sports_hall",
-    "building:levels": "1",
-    "check_date": "2024-03-23",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Gymnase Veujoz",
-    "operator:type": "private",
-    "roof:shape": "gabled",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 43337202,
-   "center": {
-    "lat": 45.1741902,
-    "lon": 5.7339071
-   },
-   "tags": {
-    "access": "private",
-    "building": "sports_centre",
-    "check_date": "2024-03-23",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Gymnase Chanou",
-    "operator:type": "private",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
-    "sport": "multi",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
    "id": 43473964,
    "center": {
     "lat": 45.1804469,
@@ -10735,21 +9678,6 @@
     "name": "Parc Danielle Casanova",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
     "surface": "grass"
-   }
-  },
-  {
-   "type": "way",
-   "id": 43856173,
-   "center": {
-    "lat": 45.1559186,
-    "lon": 5.7292823
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jean Vilar",
-    "sport": "multi",
-    "wikidata": "Q120303138"
    }
   },
   {
@@ -10808,53 +9736,6 @@
   },
   {
    "type": "way",
-   "id": 43975040,
-   "center": {
-    "lat": 45.1469274,
-    "lon": 5.8338283
-   },
-   "tags": {
-    "addr:city": "Saint Martin d'Uriage",
-    "addr:postcode": "38410",
-    "addr:street": "Allée des Petites Maisons",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre Sportif Pierre Allain",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour :2009",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 44332768,
-   "center": {
-    "lat": 45.1912771,
-    "lon": 5.7560195
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Halles des Sports Ouest",
-    "ref:FR:RNB": "JZMKBP7SFXZ7",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre",
-    "wheelchair": "limited"
-   }
-  },
-  {
-   "type": "way",
-   "id": 44397858,
-   "center": {
-    "lat": 45.2337236,
-    "lon": 5.6912183
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stades municipaux Jean Balestas",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2009"
-   }
-  },
-  {
-   "type": "way",
    "id": 44539863,
    "center": {
     "lat": 45.1862684,
@@ -10881,20 +9762,6 @@
     "name": "Place Pierre Mendès-France",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 44865300,
-   "center": {
-    "lat": 45.1987895,
-    "lon": 5.7614308
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "ASPTT",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2014"
    }
   },
   {
@@ -11088,23 +9955,6 @@
   },
   {
    "type": "way",
-   "id": 49643198,
-   "center": {
-    "lat": 45.1720814,
-    "lon": 5.7384821
-   },
-   "tags": {
-    "building": "sports_hall",
-    "check_date": "2022-11-08",
-    "contact:website": "www.gvuc.org",
-    "leisure": "sports_centre",
-    "name": "Gymnase Malherbe",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
-    "wikidata": "Q120303259"
-   }
-  },
-  {
-   "type": "way",
    "id": 49707407,
    "center": {
     "lat": 45.1693648,
@@ -11114,61 +9964,6 @@
     "leisure": "park",
     "name": "Square Marcellin Berthelot",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50078405,
-   "center": {
-    "lat": 45.1597825,
-    "lon": 5.727291
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "12",
-    "addr:postcode": "38100",
-    "addr:street": "Avenue Edmond Esmonin",
-    "building": "yes",
-    "building:colour": "steelblue",
-    "building:material": "metal",
-    "building:use": "sport",
-    "charge": "1,2 à 6 €",
-    "description": "Bassin ludique de natation, Piscine Sud",
-    "email": "piscine.municipale@grenoble.fr",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine Les Dauphins",
-    "opening_hours": "Sep-Jun Mo 07:00-08:40,11:30-13:40,16:00-21:40; Sep-Jun Tu 11:30-13:40,16:00-19:40; Sep-Jun We 11:30-19:40; Sep-Jun Th 07:00-08:40,11:30-13:40,16:00-19:40; Sep-Jun Fr 16:00-21:40; Sep-Jun Sa 09:00-12:40,14:00-17:40; Sep-Jun Su 09:00-12:40; SH Mo-Fr 10:00-",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "phone": "+33 4 76 84 25 50",
-    "roof:shape": "dome",
-    "source": "v2;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "swimming",
-    "website": "https://www.grenoble.fr/lieu/948/137-piscine-les-dauphins.htm",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50078646,
-   "center": {
-    "lat": 45.1705355,
-    "lon": 5.725538
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "111",
-    "addr:postcode": "38100",
-    "addr:street": "Rue de Stalingrad",
-    "building": "yes",
-    "building:levels": "2",
-    "contact:phone": "+33 4 76 09 08 51",
-    "leisure": "sports_centre",
-    "name": "Piscine du Clos d'Or",
-    "opening_hours": "Mo 12:00-13:45,17:30-19:45; Tu,Th 12:00-13:45; We 14:00-19:45; Fr 12:00-13:45,18:30-21:45; Su 14:30-17:45",
-    "source": "v2;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "swimming"
    }
   },
   {
@@ -11190,80 +9985,6 @@
     "operator": "Grenoble INP",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
     "website": "https://phelma.grenoble-inp.fr/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50186631,
-   "center": {
-    "lat": 45.1697155,
-    "lon": 5.7091285
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine Vaucanson",
-    "source": "v2 ; cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
-    "sport": "swimming",
-    "wikidata": "Q118523169"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50186734,
-   "center": {
-    "lat": 45.172753,
-    "lon": 5.7063175
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "74",
-    "addr:postcode": "38100",
-    "addr:street": "Rue Anatole France",
-    "building": "sports_hall",
-    "building:levels": "2",
-    "elevator": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Ampère",
-    "source": "v2;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "wheelchair": "yes",
-    "wikidata": "Q120302810"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50187890,
-   "center": {
-    "lat": 45.1798755,
-    "lon": 5.7149225
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "2",
-    "addr:postcode": "38000",
-    "addr:street": "Rue Louis le Cardonnel",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Adolphe Pégoud",
-    "source": "v2;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
-    "sport": "multi;aikido"
-   }
-  },
-  {
-   "type": "way",
-   "id": 50210586,
-   "center": {
-    "lat": 45.170176,
-    "lon": 5.72143
-   },
-   "tags": {
-    "addr:street": "Rue Amable Matussière",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Alphonse Daudet",
-    "opening_hours:description": "\"Jeux autorisés du lundi au samedi jusqu'à 20:00. Fermé le dimanche et Jours fériés. Plateau sportif réservé à l'école DAUDET lundi, mardi, jeudi, vendredi de 10:00-10:15 et de 15:00-15:15 en période scolaire.\"",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120303045"
    }
   },
   {
@@ -11351,25 +10072,6 @@
     "name": "Place Louis Jouvet",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
     "wikidata": "Q118470411"
-   }
-  },
-  {
-   "type": "way",
-   "id": 51454464,
-   "center": {
-    "lat": 45.1837776,
-    "lon": 5.780936
-   },
-   "tags": {
-    "addr:city": "Gières",
-    "addr:housenumber": "51",
-    "addr:postcode": "38610",
-    "addr:street": "Rue de la Gare",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Chamandier",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
-    "wikidata": "Q120303858"
    }
   },
   {
@@ -11571,25 +10273,6 @@
   },
   {
    "type": "way",
-   "id": 55462270,
-   "center": {
-    "lat": 45.2516001,
-    "lon": 5.8995788
-   },
-   "tags": {
-    "addr:city": "Villard-Bonnot",
-    "addr:housenumber": "20",
-    "addr:postcode": "38190",
-    "addr:street": "Rue Louis Néel",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase intercommunal Roger Frison-Roche",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi;climbing;fitness"
-   }
-  },
-  {
-   "type": "way",
    "id": 55695474,
    "center": {
     "lat": 45.1495072,
@@ -11640,33 +10323,6 @@
     "leisure": "park",
     "name": "Parc Pasteur",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 56016849,
-   "center": {
-    "lat": 45.1846469,
-    "lon": 5.7036485
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "22",
-    "addr:postcode": "38000",
-    "addr:street": "Rue Victor Lastella",
-    "check_date:opening_hours": "2021-12-17",
-    "climbing:boulder": "yes",
-    "climbing:sport": "yes",
-    "email": "espacevertical@yahoo.fr",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Espace Vertical 3",
-    "opening_hours": "Mo-Fr 12:00-22:30, Sa,Su,PH 10:00-19:00; Dec 24 10:00-17:00; Dec 31 10:00-17:00; Dec 25 off; Jan 01 off",
-    "phone": "+33 4 76 53 16 60",
-    "short_name": "EV3",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "climbing",
-    "website": "https://www.espacevertical.com/"
    }
   },
   {
@@ -11763,38 +10419,6 @@
     "name:etymology:wikidata": "Q2976823",
     "surface": "unhewn_cobblestone",
     "wikidata": "Q118470792"
-   }
-  },
-  {
-   "type": "way",
-   "id": 57996491,
-   "center": {
-    "lat": 45.1624356,
-    "lon": 5.7324832
-   },
-   "tags": {
-    "building": "sports_hall",
-    "building:levels": "2",
-    "leisure": "sports_centre",
-    "name": "Gymnase La Rampe",
-    "roof:shape": "flat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 57996493,
-   "center": {
-    "lat": 45.1624344,
-    "lon": 5.7329768
-   },
-   "tags": {
-    "building": "sports_hall",
-    "building:levels": "2",
-    "leisure": "sports_centre",
-    "name": "Gymnase La Rampe",
-    "roof:shape": "flat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
    }
   },
   {
@@ -11903,48 +10527,6 @@
   },
   {
    "type": "way",
-   "id": 61426841,
-   "center": {
-    "lat": 45.1514496,
-    "lon": 5.7166638
-   },
-   "tags": {
-    "addr:city": "Échirolles",
-    "addr:housenumber": "9",
-    "addr:postcode": "38130",
-    "addr:street": "Rue Fernand Pelloutier",
-    "check_date": "2026-03-05",
-    "contact:email": "stade.nautique@echirolles.fr",
-    "contact:phone": "+33 4 76 22 26 36",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Stade nautique d'Échirolles",
-    "sport": "swimming",
-    "website": "https://www.echirolles.fr/culture-sports-loisirs/stade-nautique",
-    "wikidata": "Q118525941"
-   }
-  },
-  {
-   "type": "way",
-   "id": 61459033,
-   "center": {
-    "lat": 45.186781,
-    "lon": 5.7864922
-   },
-   "tags": {
-    "addr:city": "Gières",
-    "addr:housenumber": "1",
-    "addr:postcode": "38610",
-    "addr:street": "Rue des Sports",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase de la Plaine des Sports",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "basketball;aikido"
-   }
-  },
-  {
-   "type": "way",
    "id": 61485435,
    "center": {
     "lat": 45.1815906,
@@ -11972,26 +10554,6 @@
   },
   {
    "type": "way",
-   "id": 62111529,
-   "center": {
-    "lat": 45.2071797,
-    "lon": 5.7621062
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "3",
-    "addr:postcode": "38240",
-    "addr:street": "Rue le Poulet",
-    "building": "sports_hall",
-    "contact:phone": "+33 4 76 90 09 03",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Gymnase des Aiguinards",
-    "sport": "aikido"
-   }
-  },
-  {
-   "type": "way",
    "id": 62303140,
    "center": {
     "lat": 45.1647933,
@@ -12003,51 +10565,6 @@
     "name": "Place de la Liberté",
     "surface": "compacted",
     "wikimedia_commons": "File:SMH place Liberte 6810.jpg"
-   }
-  },
-  {
-   "type": "way",
-   "id": 62836591,
-   "center": {
-    "lat": 45.2041449,
-    "lon": 5.8396278
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Espace Sportif du Château",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120304508"
-   }
-  },
-  {
-   "type": "way",
-   "id": 62848276,
-   "center": {
-    "lat": 45.2005472,
-    "lon": 5.8342965
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Espace Sportif Pierre de Coubertin",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 62851027,
-   "center": {
-    "lat": 45.1965631,
-    "lon": 5.8288145
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase La Moulinière",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120304355"
    }
   },
   {
@@ -12097,42 +10614,6 @@
   },
   {
    "type": "way",
-   "id": 63134511,
-   "center": {
-    "lat": 45.2250243,
-    "lon": 5.874747
-   },
-   "tags": {
-    "building": "public",
-    "leisure": "sports_centre",
-    "name": "Salle Polyvalente du Pruney",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 63142270,
-   "center": {
-    "lat": 45.2280453,
-    "lon": 5.8747778
-   },
-   "tags": {
-    "addr:housenumber": "622",
-    "addr:street": "Rue Amable Matussière",
-    "building": "commercial",
-    "email": "contact@moovingarena.fr",
-    "leisure": "sports_centre",
-    "name": "Mooving Arena",
-    "opening_hours": "Mo-Fr 09:00-23:30; Sa-Su 09:00-21:00",
-    "phone": "+33 476920008",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "fitness;basketball;beachvolleyball;badminton;squash;padel;table_tennis;soccer",
-    "website": "https://moovingarena.fr/"
-   }
-  },
-  {
-   "type": "way",
    "id": 63151945,
    "center": {
     "lat": 45.2330357,
@@ -12165,22 +10646,6 @@
     "name": "ancienne centrale hydroélectrique",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "tourism": "attraction"
-   }
-  },
-  {
-   "type": "way",
-   "id": 63198883,
-   "center": {
-    "lat": 45.2143507,
-    "lon": 5.7528248
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Rondeau-Montfleury",
-    "operator": "Groupe Scolaire Rondeau-Montfleury",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "basketball;volleyball;climbing;table_tennis;multi"
    }
   },
   {
@@ -12227,80 +10692,6 @@
   },
   {
    "type": "way",
-   "id": 66184233,
-   "center": {
-    "lat": 45.1796214,
-    "lon": 5.6928754
-   },
-   "tags": {
-    "addr:city": "Seyssinet-Pariset",
-    "addr:housenumber": "11",
-    "addr:postcode": "38170",
-    "addr:street": "Rue de Pacalaire",
-    "building": "yes",
-    "building:colour": "silver",
-    "leisure": "sports_centre",
-    "name": "ACS Squash Center",
-    "opening_hours": "Mo-Fr 10:00-23:00; Sa-Su 10:00-19:00",
-    "phone": "+33 4 76 84 51 53",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "squash",
-    "website": "http://squashcenter.free.fr/",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66184345,
-   "center": {
-    "lat": 45.1796759,
-    "lon": 5.6933243
-   },
-   "tags": {
-    "addr:housenumber": "18",
-    "addr:postcode": "38170",
-    "addr:street": "Avenue de la Houille Blanche",
-    "building": "yes",
-    "building:colour": "black",
-    "leisure": "sports_centre",
-    "name": "Biafit club",
-    "opening_hours": "Mo-Fr 07:00-21:00; Sa 09:00-17:00; Su 09:00-13:00",
-    "phone": "+33 4 76 21 72 98",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "toilets:wheelchair": "no",
-    "wheelchair": "limited",
-    "wikidata": "Q120302577"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66186127,
-   "center": {
-    "lat": 45.1764105,
-    "lon": 5.6914716
-   },
-   "tags": {
-    "addr:city": "Seyssinet-Pariset",
-    "addr:housename": "Piscine Municipale",
-    "addr:housenumber": "9",
-    "addr:postcode": "38170",
-    "addr:street": "Allée des Glycines",
-    "building": "civic",
-    "email": "piscine@seyssinet-pariset.fr",
-    "leisure": "sports_centre",
-    "length": "25",
-    "name": "Piscine municipale",
-    "opening_hours": "Tu 12:00-13:30,17:00-19:45; We 14:00-19:45; Fr 12:00-13:30,16:45-19:30; Sa 10:00-11:45,14:00-18:45",
-    "operator": "Mairie",
-    "phone": "+33 4 76 96 78 76",
-    "roof:shape": "many",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2014",
-    "sport": "swimming",
-    "website": "https://www.ville-seyssinet-pariset.fr/piscine-municipale"
-   }
-  },
-  {
-   "type": "way",
    "id": 66187540,
    "center": {
     "lat": 45.1704523,
@@ -12317,176 +10708,6 @@
     "ref:UAI": "0383040Y",
     "short_name": "ISFEC",
     "source": "data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66187975,
-   "center": {
-    "lat": 45.1848991,
-    "lon": 5.6912463
-   },
-   "tags": {
-    "addr:city": "Seyssinet-Pariset",
-    "addr:housenumber": "25",
-    "addr:postcode": "38170",
-    "addr:street": "Allée des Balmes",
-    "building": "sports_hall",
-    "diff:ref:FR:RNB": "multiple",
-    "leisure": "sports_centre",
-    "mobile": "+33 6 47 71 82 38",
-    "name": "Gymnase Aristide Bergès",
-    "operator": "Syndicat Intercommunal à Vocation Multiple de la Rive Gauche du Drac (SIRD)",
-    "phone": "+33 4 76 94 33 13",
-    "ref:FR:RNB": "8KMV5V4EY2NZ;CFW7MQ75DS9S;S76B9EM2DTVT",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66383431,
-   "center": {
-    "lat": 45.1638075,
-    "lon": 5.6899264
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre sportif Yves Brouzet",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66593437,
-   "center": {
-    "lat": 45.2007135,
-    "lon": 5.6771755
-   },
-   "tags": {
-    "alt_name": "Tennis couverts Hector Berlioz",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Hector Berlioz",
-    "operator": "Ville de Fontaine",
-    "ref:FR:RNB": "JSWKY16DSEMX",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "tennis",
-    "wikidata": "Q120191090"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66593883,
-   "center": {
-    "lat": 45.1993822,
-    "lon": 5.6777882
-   },
-   "tags": {
-    "addr:city": "Fontaine",
-    "addr:postcode": "38600",
-    "addr:street": "Allée des Plans",
-    "building": "sports_centre",
-    "contact:phone": "+33 4 76 43 84 09",
-    "leisure": "sports_centre",
-    "name": "Gymnase Gérard Philipe",
-    "operator": "Ville de Fontaine",
-    "ref:FR:RNB": "QM2GTCS6ZWBE",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010;Le ministère de la ville / de la jeunesse et des sports - 01/2018",
-    "sport": "handball;climbing;multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66595675,
-   "center": {
-    "lat": 45.1860932,
-    "lon": 5.6902006
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Maurice Thorez",
-    "ref:FR:RNB": "WJX8K9S94DTT",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66595922,
-   "center": {
-    "lat": 45.1953094,
-    "lon": 5.6871816
-   },
-   "tags": {
-    "building": "sports_hall",
-    "diff:ref:FR:RNB": "multiple",
-    "leisure": "sports_centre",
-    "name": "Gymnase Florence Arthaud",
-    "old_name": "Gymnase Cachin",
-    "ref:FR:RNB": "H12ETB16N7XD;JYRKEYKS7RN2",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66598031,
-   "center": {
-    "lat": 45.1941893,
-    "lon": 5.688367
-   },
-   "tags": {
-    "addr:city": "Fontaine",
-    "addr:housenumber": "80",
-    "addr:postcode": "38600",
-    "addr:street": "Rue Charles Michels",
-    "building": "sports_hall",
-    "diff:ref:FR:RNB": "multiple",
-    "leisure": "sports_centre",
-    "name": "Halle aux Sports Julie Pomagalski",
-    "old_name": "Halle aux Sports",
-    "operator": "Ville de Fontaine",
-    "ref:FR:RNB": "64JQT2RD8K51;FPT64VAQ64BE;V5CKZBZH1RMZ",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66598380,
-   "center": {
-    "lat": 45.2013972,
-    "lon": 5.686918
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Robert Vial",
-    "operator": "Ville de Fontaine",
-    "ref:FR:RNB": "HRSAWG1ZCHHK",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120157246"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66619213,
-   "center": {
-    "lat": 45.2159449,
-    "lon": 5.6901732
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-le-Vinoux",
-    "addr:postcode": "38950",
-    "addr:street": "Rue du Petit Lac",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jeannie Longo",
-    "operator": "Commune de Saint-Martin-le-Vinoux",
-    "phone": "+33 4 76 75 59 77",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120302514"
    }
   },
   {
@@ -12514,159 +10735,6 @@
     "website": "https://casamaures.org/",
     "wikidata": "Q2940800",
     "wikipedia": "fr:Casamaures"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66956681,
-   "center": {
-    "lat": 45.2348568,
-    "lon": 5.6729741
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase de la Gare",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi",
-    "wikidata": "Q120302340"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66956686,
-   "center": {
-    "lat": 45.233609,
-    "lon": 5.6928551
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jean Balestas",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66956894,
-   "center": {
-    "lat": 45.2401694,
-    "lon": 5.6842493
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase de la Monta",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66958767,
-   "center": {
-    "lat": 45.2335909,
-    "lon": 5.6937447
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Tennis couverts",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "tennis"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66960107,
-   "center": {
-    "lat": 45.229442,
-    "lon": 5.6886637
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Barnave",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 66962323,
-   "center": {
-    "lat": 45.2290298,
-    "lon": 5.6804333
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Pont de Vence",
-    "opening_hours": "\"horaires selon planning activités\"",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 68279702,
-   "center": {
-    "lat": 45.1760278,
-    "lon": 5.747013
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wheelchair": "yes",
-    "wikidata": "Q120303394"
-   }
-  },
-  {
-   "type": "way",
-   "id": 68280701,
-   "center": {
-    "lat": 45.1758868,
-    "lon": 5.7406862
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jouhaux",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 68280708,
-   "center": {
-    "lat": 45.1760627,
-    "lon": 5.7406797
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Espace Boxe Anglaise Emile Chabut / René Goujon",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 68281847,
-   "center": {
-    "lat": 45.1976612,
-    "lon": 5.7167278
-   },
-   "tags": {
-    "addr:housenumber": "49",
-    "building": "sports_hall",
-    "building:levels": "0",
-    "leisure": "sports_centre",
-    "name": "Boulodrome",
-    "roof:shape": "round",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "boules",
-    "website": "https://www.grenoble.fr/lieu/4682/137-boulodrome.htm"
    }
   },
   {
@@ -12802,164 +10870,6 @@
   },
   {
    "type": "way",
-   "id": 69104892,
-   "center": {
-    "lat": 45.2757622,
-    "lon": 5.8967918
-   },
-   "tags": {
-    "building": "yes",
-    "covered": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre nautique intercommunal",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "swimming",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 69106238,
-   "center": {
-    "lat": 45.2796983,
-    "lon": 5.8790095
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "La Marelle",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 69112087,
-   "center": {
-    "lat": 45.276363,
-    "lon": 5.8845386
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Guy Bolès",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "gymnastics"
-   }
-  },
-  {
-   "type": "way",
-   "id": 69221477,
-   "center": {
-    "lat": 45.2799777,
-    "lon": 5.8774659
-   },
-   "tags": {
-    "barrier": "fence",
-    "fence_type": "chain_link",
-    "leisure": "sports_centre",
-    "name": "Stade de la Dent de Crolles",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010",
-    "sport": "soccer"
-   }
-  },
-  {
-   "type": "way",
-   "id": 70894293,
-   "center": {
-    "lat": 45.155478,
-    "lon": 5.7480726
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Boulodrome d'Eybens",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "bowls",
-    "wikidata": "Q120303401"
-   }
-  },
-  {
-   "type": "way",
-   "id": 70894430,
-   "center": {
-    "lat": 45.151348,
-    "lon": 5.7426544
-   },
-   "tags": {
-    "building": "sports_hall",
-    "check_date": "2022-11-10",
-    "leisure": "sports_centre",
-    "name": "Gymnase Roger Journet",
-    "old_name": "Gymnase des Ruires",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 70895894,
-   "center": {
-    "lat": 45.1580018,
-    "lon": 5.7475921
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Tennis Couverts",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "tennis",
-    "wikidata": "Q120191087"
-   }
-  },
-  {
-   "type": "way",
-   "id": 70898653,
-   "center": {
-    "lat": 45.1578423,
-    "lon": 5.752645
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Fernand Faivre",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "wikidata": "Q120157235"
-   }
-  },
-  {
-   "type": "way",
-   "id": 70899132,
-   "center": {
-    "lat": 45.1560322,
-    "lon": 5.7482045
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Dojo Clarisse Agbegnenou",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 71149516,
-   "center": {
-    "lat": 45.1202986,
-    "lon": 5.6927423
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Pompidou",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2009",
-    "sport": "multi",
-    "wikidata": "Q120177924"
-   }
-  },
-  {
-   "type": "way",
    "id": 71376275,
    "center": {
     "lat": 45.1198595,
@@ -13016,36 +10926,6 @@
   },
   {
    "type": "way",
-   "id": 74118548,
-   "center": {
-    "lat": 45.0958536,
-    "lon": 5.6727083
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase de Champ Nigat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi",
-    "wikidata": "Q120302347"
-   }
-  },
-  {
-   "type": "way",
-   "id": 74151108,
-   "center": {
-    "lat": 45.0885597,
-    "lon": 5.6859674
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Lionel Terray",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
    "id": 76346080,
    "center": {
     "lat": 45.2840535,
@@ -13056,21 +10936,6 @@
     "highway": "pedestrian",
     "name": "Place Ingrid Bétancourt",
     "surface": "concrete"
-   }
-  },
-  {
-   "type": "way",
-   "id": 78546902,
-   "center": {
-    "lat": 45.2250755,
-    "lon": 5.8193718
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Pré de l'Eau",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wheelchair": "yes"
    }
   },
   {
@@ -13092,42 +10957,6 @@
   },
   {
    "type": "way",
-   "id": 78606305,
-   "center": {
-    "lat": 45.220403,
-    "lon": 5.8132039
-   },
-   "tags": {
-    "access": "private",
-    "leisure": "sports_centre",
-    "name": "ASPTT Grenoble",
-    "operator": "ASPTT Grenoble"
-   }
-  },
-  {
-   "type": "way",
-   "id": 79181661,
-   "center": {
-    "lat": 45.2082067,
-    "lon": 5.7669253
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "44",
-    "addr:postcode": "38240",
-    "addr:street": "Chemin de la Revirée",
-    "building": "sports_hall",
-    "contact:phone": "+33 4 76 41 02 52",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Gymnase de la Revirée",
-    "sport": "handibasket",
-    "toilets:wheelchair": "yes",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
    "id": 79627592,
    "center": {
     "lat": 45.0956535,
@@ -13138,22 +10967,6 @@
     "highway": "pedestrian",
     "name": "Place de la Fontaine",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80281704,
-   "center": {
-    "lat": 45.2128568,
-    "lon": 5.8289459
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "lit": "no",
-    "name": "Circuit de modélisme automobile du RACG",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010",
-    "sport": "rc_car",
-    "website": "https://racg-club.fr"
    }
   },
   {
@@ -13180,115 +10993,6 @@
   },
   {
    "type": "way",
-   "id": 80360176,
-   "center": {
-    "lat": 45.3230042,
-    "lon": 5.5649959
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre sportif municipal de Moirans",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80360292,
-   "center": {
-    "lat": 45.3228386,
-    "lon": 5.5642012
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Le Vergeron",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80361198,
-   "center": {
-    "lat": 45.3196832,
-    "lon": 5.5885726
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase du lycée",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80427319,
-   "center": {
-    "lat": 45.3216816,
-    "lon": 5.5662658
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Piscine municipale",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "swimming"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80580964,
-   "center": {
-    "lat": 45.292214,
-    "lon": 5.6338512
-   },
-   "tags": {
-    "building": "yes",
-    "construction_date": "2004",
-    "leisure": "sports_centre",
-    "name": "Espace Sportif Claude Balmand",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80582088,
-   "center": {
-    "lat": 45.2859351,
-    "lon": 5.6457591
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Ernest Pignéguy",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80993136,
-   "center": {
-    "lat": 45.1512268,
-    "lon": 5.7188124
-   },
-   "tags": {
-    "addr:city": "Échirolles",
-    "addr:housenumber": "23",
-    "addr:postcode": "38130",
-    "addr:street": "Avenue du 8 Mai 1945",
-    "building": "sports_hall",
-    "check_date": "2022-12-15",
-    "leisure": "sports_centre",
-    "name": "Gymnase et dojo Croix de Vérines",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
    "id": 80993253,
    "center": {
     "lat": 45.1549352,
@@ -13305,94 +11009,6 @@
     "short_name": "IFTS",
     "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2014",
     "website": "https://ifts-asso.com/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80993341,
-   "center": {
-    "lat": 45.1508253,
-    "lon": 5.7168596
-   },
-   "tags": {
-    "addr:housenumber": "19",
-    "addr:postcode": "38130",
-    "addr:street": "Avenue de Grugliasco",
-    "building": "yes",
-    "check_date": "2026-03-16",
-    "contact:phone": "+33 4 76 23 40 90",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Bowling d'Échirolles",
-    "opening_hours": "Tu-Th 14:00-01:00; Fr-Sa 14:00-03:00; Su-Mo 14:00-00:00",
-    "ref:FR:SIRET": "44469690000018",
-    "sport": "10pin",
-    "website": "https://echirolles.bowlcenter.fr/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 80993395,
-   "center": {
-    "lat": 45.1524553,
-    "lon": 5.7149552
-   },
-   "tags": {
-    "addr:housenumber": "14",
-    "addr:postcode": "38130",
-    "addr:street": "Rue Fernand Pelloutier",
-    "building": "yes",
-    "check_date": "2026-03-19",
-    "contact:facebook": "https://www.facebook.com/people/Dock-14/100086922404571/",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Dock14",
-    "opening_hours": "We 14:00-20:00; Th,Fr 17:00-23:59; Sa 10:00-23:59; Su 10:00-20:00",
-    "opening_hours:url": "https://dock14.fr/horaires/",
-    "payment:cash": "yes",
-    "payment:debit_cards": "yes",
-    "phone": "+33476212520",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010;survey",
-    "sport": "laser_tag",
-    "website": "https://dock14.fr/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 81060002,
-   "center": {
-    "lat": 45.1444621,
-    "lon": 5.706099
-   },
-   "tags": {
-    "addr:housenumber": "5",
-    "addr:street": "Rue Léon Fournier Sud",
-    "building": "yes",
-    "check_date": "2026-03-31",
-    "leisure": "sports_centre",
-    "name": "Green Kart",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "karting",
-    "website": "https://green-kart.com/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 81060050,
-   "center": {
-    "lat": 45.1376709,
-    "lon": 5.709027
-   },
-   "tags": {
-    "addr:housenumber": "9",
-    "addr:street": "Rue du Maréchal Leclerc",
-    "building": "yes",
-    "check_date": "2026-03-31",
-    "leisure": "sports_centre",
-    "name": "Foot Time",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "soccer;badminton;paddle_tennis",
-    "website": "http://www.foottime.fr/"
    }
   },
   {
@@ -13416,22 +11032,6 @@
     "short_name": "ICM",
     "source": "data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011",
     "wikipedia": "fr:Institut de la communication et des médias"
-   }
-  },
-  {
-   "type": "way",
-   "id": 81095880,
-   "center": {
-    "lat": 45.1447296,
-    "lon": 5.702723
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Marcel David",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi",
-    "wikidata": "Q120302731"
    }
   },
   {
@@ -13490,21 +11090,6 @@
     "website": "https://www.le-trace.fr/le-trace/musee-geo-charles/",
     "wikidata": "Q3329195",
     "wikipedia": "fr:Musée Géo-Charles"
-   }
-  },
-  {
-   "type": "way",
-   "id": 81099528,
-   "center": {
-    "lat": 45.1436043,
-    "lon": 5.6971751
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Pablo Picasso",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "wikidata": "Q120157227"
    }
   },
   {
@@ -13586,21 +11171,6 @@
     "name": "Place Pompée",
     "place": "square",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 82424029,
-   "center": {
-    "lat": 45.2523743,
-    "lon": 5.6664839
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Lionel Terray",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010",
-    "sport": "multi"
    }
   },
   {
@@ -13715,21 +11285,6 @@
   },
   {
    "type": "way",
-   "id": 83107213,
-   "center": {
-    "lat": 45.1710627,
-    "lon": 5.7484904
-   },
-   "tags": {
-    "check_date": "2022-12-13",
-    "leisure": "sports_centre",
-    "name": "Plaine des Sports",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
-    "surface": "grass"
-   }
-  },
-  {
-   "type": "way",
    "id": 83194278,
    "center": {
     "lat": 45.1843344,
@@ -13753,71 +11308,6 @@
     "place": "square",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
     "wikidata": "Q118470802"
-   }
-  },
-  {
-   "type": "way",
-   "id": 84825018,
-   "center": {
-    "lat": 45.2150327,
-    "lon": 5.6704511
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Complexe sportif Jean Jullien",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 84825070,
-   "center": {
-    "lat": 45.1998428,
-    "lon": 5.6673503
-   },
-   "tags": {
-    "building": "sports_hall",
-    "diff:ref:FR:RNB": "multiple",
-    "leisure": "sports_centre",
-    "name": "Gymnase des Pies",
-    "ref:FR:RNB": "EYAVV19M9TMF;X3VYMEXG22CN",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi;martial_arts",
-    "wikidata": "Q120302281"
-   }
-  },
-  {
-   "type": "way",
-   "id": 84828137,
-   "center": {
-    "lat": 45.2115437,
-    "lon": 5.6719413
-   },
-   "tags": {
-    "access": "customers",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "location": "indoor",
-    "name": "Piscine municipale",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "swimming;dive",
-    "survey:date": "2022-06-17"
-   }
-  },
-  {
-   "type": "way",
-   "id": 84828411,
-   "center": {
-    "lat": 45.2124824,
-    "lon": 5.6709452
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Halle des Sports Jeannie Longo",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
    }
   },
   {
@@ -13948,23 +11438,6 @@
     "name": "Zone industrielle Mayencin",
     "short_name": "ZI Mayencin",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 89691976,
-   "center": {
-    "lat": 45.1734371,
-    "lon": 5.7526684
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Voltaire",
-    "ref:FR:RNB": "8EEEJF664AM4",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
-    "wheelchair": "yes",
-    "wikidata": "Q120303444"
    }
   },
   {
@@ -14176,82 +11649,6 @@
   },
   {
    "type": "way",
-   "id": 102932698,
-   "center": {
-    "lat": 45.214075,
-    "lon": 5.795866
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "2",
-    "addr:postcode": "38240",
-    "addr:street": "Allée des Étangs",
-    "building": "sports_centre",
-    "building:colour": "#85552e",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Mini gymnase de Maupertuis",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "aikido"
-   }
-  },
-  {
-   "type": "way",
-   "id": 102933160,
-   "center": {
-    "lat": 45.2048625,
-    "lon": 5.7782085
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "53",
-    "addr:postcode": "38240",
-    "addr:street": "Boulevard des Alpes",
-    "contact:phone": "+33 4 76 41 03 80",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Gymnase des Buclos",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "handball"
-   }
-  },
-  {
-   "type": "way",
-   "id": 102936803,
-   "center": {
-    "lat": 45.2043835,
-    "lon": 5.7745445
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Tennis couverts",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "tennis"
-   }
-  },
-  {
-   "type": "way",
-   "id": 102937327,
-   "center": {
-    "lat": 45.2107485,
-    "lon": 5.7991595
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:postcode": "38240",
-    "addr:street": "Chemin du Vieux Chêne",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Charlaix",
-    "phone": "+33 4 76 18 03 74",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "climbing;basketball;badminton",
-    "wikidata": "Q120304053"
-   }
-  },
-  {
-   "type": "way",
    "id": 103092009,
    "center": {
     "lat": 45.2227765,
@@ -14316,34 +11713,6 @@
   },
   {
    "type": "way",
-   "id": 104124065,
-   "center": {
-    "lat": 45.0831654,
-    "lon": 5.7743854
-   },
-   "tags": {
-    "building": "public",
-    "leisure": "sports_centre",
-    "name": "Gymnase Guy Môquet",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-   }
-  },
-  {
-   "type": "way",
-   "id": 104139281,
-   "center": {
-    "lat": 45.071655,
-    "lon": 5.772663
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Parc du Château",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-   }
-  },
-  {
-   "type": "way",
    "id": 104152225,
    "center": {
     "lat": 45.1438304,
@@ -14356,25 +11725,6 @@
     "ref:FR:FANTOIR": "381510145",
     "source": "Photos géolocalisées",
     "surface": "gravel"
-   }
-  },
-  {
-   "type": "way",
-   "id": 105189176,
-   "center": {
-    "lat": 45.0770565,
-    "lon": 5.7284405
-   },
-   "tags": {
-    "addr:city": "Champ-sur-Drac",
-    "addr:housenumber": "68",
-    "addr:postcode": "38560",
-    "addr:street": "Chemin des Gonnardières",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "wikidata": "Q120303126"
    }
   },
   {
@@ -14447,20 +11797,6 @@
     "name": "Parc Michel Hannoun",
     "old_name": "Parc Lefrançois",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour :2011"
-   }
-  },
-  {
-   "type": "way",
-   "id": 106879964,
-   "center": {
-    "lat": 45.2850972,
-    "lon": 5.6452798
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Ensemble sportif Ernest Pigneguy",
-    "source": "Plan Ville + cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2011",
-    "sport": "multi"
    }
   },
   {
@@ -14696,35 +12032,6 @@
   },
   {
    "type": "way",
-   "id": 122623500,
-   "center": {
-    "lat": 45.0661801,
-    "lon": 5.8697145
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre nautique",
-    "source": "Bing",
-    "sport": "swimming",
-    "wikidata": "Q118525947"
-   }
-  },
-  {
-   "type": "way",
-   "id": 125956360,
-   "center": {
-    "lat": 45.1192206,
-    "lon": 5.700579
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Complexe Sportif des Deux Ponts",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2011"
-   }
-  },
-  {
-   "type": "way",
    "id": 127582855,
    "center": {
     "lat": 45.2118495,
@@ -14930,21 +12237,6 @@
   },
   {
    "type": "way",
-   "id": 140992546,
-   "center": {
-    "lat": 45.1791645,
-    "lon": 5.7581318
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Paul Langevin",
-    "ref:FR:RNB": "WHAGT7E466P4",
-    "sport": "athletics;tennis;handball;badminton;volleyball;soccer;basketball;running;gymnastics"
-   }
-  },
-  {
-   "type": "way",
    "id": 143740124,
    "center": {
     "lat": 45.194626,
@@ -14993,41 +12285,6 @@
   },
   {
    "type": "way",
-   "id": 149488755,
-   "center": {
-    "lat": 45.1859315,
-    "lon": 5.767953
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "41",
-    "addr:postcode": "38400",
-    "addr:street": "Rue des Glairons",
-    "brewery": "various",
-    "building": "retail",
-    "charge": "16 EUR",
-    "check_date": "2026-09-29",
-    "email": "grenoble@vertical-art.fr",
-    "fee": "yes",
-    "height": "7",
-    "leisure": "sports_centre",
-    "min_age": "4",
-    "name": "Vertical'Art Grenoble",
-    "opening_hours": "Mo-Fr 11:00-23:00; Sa-Su 09:00-21:00",
-    "operator": "Vertical'Art",
-    "operator:type": "private",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "phone": "+33 9 81 71 49 01",
-    "ref:FR:RNB": "FYHABY1QQVTF",
-    "sport": "climbing",
-    "start_date": "2023-10-28",
-    "website": "https://grenoble.vertical-art.fr/",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
    "id": 150133815,
    "center": {
     "lat": 45.20001,
@@ -15070,23 +12327,6 @@
   },
   {
    "type": "way",
-   "id": 150133914,
-   "center": {
-    "lat": 45.2004105,
-    "lon": 5.7564953
-   },
-   "tags": {
-    "addr:housenumber": "8",
-    "addr:postcode": "38700",
-    "addr:street": "Boulevard de la Chantourne",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase Merici",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-   }
-  },
-  {
-   "type": "way",
    "id": 150134291,
    "center": {
     "lat": 45.2057368,
@@ -15116,20 +12356,6 @@
     "wheelchair": "yes",
     "wikidata": "Q3329205",
     "wikipedia": "fr:Musée Hébert (La Tronche)"
-   }
-  },
-  {
-   "type": "way",
-   "id": 150134571,
-   "center": {
-    "lat": 45.2042799,
-    "lon": 5.7485062
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jean Berger",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
    }
   },
   {
@@ -15210,26 +12436,6 @@
   },
   {
    "type": "way",
-   "id": 154873642,
-   "center": {
-    "lat": 45.0576786,
-    "lon": 5.679557
-   },
-   "tags": {
-    "addr:city": "Vif",
-    "addr:housenumber": "12",
-    "addr:postcode": "38450",
-    "addr:street": "Rue du Stade",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "athleticaclub",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012",
-    "sport": "multi",
-    "wikidata": "Q120302391"
-   }
-  },
-  {
-   "type": "way",
    "id": 154875338,
    "center": {
     "lat": 45.0533665,
@@ -15270,20 +12476,6 @@
    "tags": {
     "leisure": "park",
     "name": "Parc Karl Marx"
-   }
-  },
-  {
-   "type": "way",
-   "id": 156028542,
-   "center": {
-    "lat": 45.240943,
-    "lon": 5.81907
-   },
-   "tags": {
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Grésivaudan",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
    }
   },
   {
@@ -15519,21 +12711,6 @@
     "landuse": "commercial",
     "name": "Zone d'activités La Bâtie",
     "short_name": "ZA la Bâtie"
-   }
-  },
-  {
-   "type": "way",
-   "id": 166963093,
-   "center": {
-    "lat": 45.215278,
-    "lon": 5.6699522
-   },
-   "tags": {
-    "access": "private",
-    "barrier": "fence",
-    "description": "Utilisation réservée aux titulaires des cartes AS CENG et Universités",
-    "leisure": "sports_centre",
-    "name": "Stade Jean Jullien"
    }
   },
   {
@@ -16022,33 +13199,6 @@
   },
   {
    "type": "way",
-   "id": 185448880,
-   "center": {
-    "lat": 45.1855077,
-    "lon": 5.6894387
-   },
-   "tags": {
-    "addr:city": "Fontaine",
-    "addr:housenumber": "76",
-    "addr:postcode": "38600",
-    "addr:street": "Allée des Balmes",
-    "admin_level": "8",
-    "check_date:opening_hours": "2025-12-21",
-    "contact:phone": "+33 4 76 28 22 62",
-    "contact:website": "https://ville-fontaine.fr/piscine/",
-    "government": "sport",
-    "leisure": "sports_centre",
-    "name": "Centre nautique Lino Refuggi",
-    "office": "government",
-    "opening_hours": "Tu 12:00-13:45; We 16:00-19:30; Th 11:30-13:45; Fr 17:00-19:30; Su 09:00-12:30",
-    "opening_hours:signed": "no",
-    "operator": "Ville de Fontaine",
-    "operator:type": "public",
-    "sport": "swimming"
-   }
-  },
-  {
-   "type": "way",
    "id": 186810206,
    "center": {
     "lat": 45.056085,
@@ -16058,50 +13208,6 @@
     "area": "yes",
     "highway": "pedestrian",
     "name": "Place Berriat"
-   }
-  },
-  {
-   "type": "way",
-   "id": 186869298,
-   "center": {
-    "lat": 45.0517794,
-    "lon": 5.6733057
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Gymnase le Masségu",
-    "sport": "gymnastics"
-   }
-  },
-  {
-   "type": "way",
-   "id": 187151639,
-   "center": {
-    "lat": 45.1832902,
-    "lon": 5.751112
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Auguste Delaune",
-    "ref:FR:RNB": "9W8GCFC5ACAV",
-    "source": "Bing",
-    "sport": "handball;badminton;volleyball;soccer",
-    "wikidata": "Q120303432"
-   }
-  },
-  {
-   "type": "way",
-   "id": 187636531,
-   "center": {
-    "lat": 45.1669824,
-    "lon": 5.7498871
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Henri Maurice",
-    "ref:FR:RNB": "YFF91MK8ABKP"
    }
   },
   {
@@ -16158,21 +13264,6 @@
     "name": "Parc de la Poya",
     "operator": "Ville de Fontaine",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
-   }
-  },
-  {
-   "type": "way",
-   "id": 189334852,
-   "center": {
-    "lat": 45.1672676,
-    "lon": 5.75519
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Complexe sportif Edmond Inebria",
-    "operator": "Commune de Saint-Martin-d'Hères",
-    "ref:FR:RNB": "XEM3PNG7M7HX"
    }
   },
   {
@@ -16375,42 +13466,6 @@
   },
   {
    "type": "way",
-   "id": 203266754,
-   "center": {
-    "lat": 45.217631,
-    "lon": 5.7793256
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Haut-Meylan",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour :2012",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 203493720,
-   "center": {
-    "lat": 45.2109974,
-    "lon": 5.7008272
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-le-Vinoux",
-    "addr:housenumber": "180",
-    "addr:postcode": "38950",
-    "addr:street": "Rue des Rosiers",
-    "building": "sports_centre",
-    "check_date": "2022-11-12",
-    "leisure": "sports_centre",
-    "name": "Gymnase Pierre Mendès-France",
-    "source": "survey",
-    "sport": "climbing",
-    "website": "https://www.saint-martin-le-vinoux.fr/3909-sport.htm"
-   }
-  },
-  {
-   "type": "way",
    "id": 204828804,
    "center": {
     "lat": 45.3232151,
@@ -16561,21 +13616,6 @@
     "leisure": "park",
     "name": "Parc de la Butte",
     "source": "Bing;Ville d'Echirolles"
-   }
-  },
-  {
-   "type": "way",
-   "id": 217355379,
-   "center": {
-    "lat": 45.1560646,
-    "lon": 5.7182544
-   },
-   "tags": {
-    "building": "sports_hall",
-    "height": "9",
-    "leisure": "sports_centre",
-    "name": "La Butte",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010"
    }
   },
   {
@@ -16765,31 +13805,6 @@
     "name": "Jardin des Arts",
     "operator": "Jardinons nos rues",
     "surface": "concrete"
-   }
-  },
-  {
-   "type": "way",
-   "id": 225042522,
-   "center": {
-    "lat": 45.1653938,
-    "lon": 5.7034078
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Bachelard",
-    "wikidata": "Q120157258"
-   }
-  },
-  {
-   "type": "way",
-   "id": 225042528,
-   "center": {
-    "lat": 45.1964734,
-    "lon": 5.7778799
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Est UFR STAPS"
    }
   },
   {
@@ -17076,47 +14091,6 @@
   },
   {
    "type": "way",
-   "id": 254096479,
-   "center": {
-    "lat": 45.073095,
-    "lon": 5.5515171
-   },
-   "tags": {
-    "addr:city": "Villard-de-Lans",
-    "addr:housenumber": "101",
-    "addr:postcode": "38250",
-    "addr:street": "Chemin de la Patinoire",
-    "building": "yes",
-    "contact:phone": "+33 4 76 95 50 12",
-    "covered": "yes",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Centre aquatique",
-    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2013",
-    "sport": "swimming",
-    "website": "https://www.villarddelans-correnconenvercors.com/activites/lespace-loisirs/centre-aquatique"
-   }
-  },
-  {
-   "type": "way",
-   "id": 254096574,
-   "center": {
-    "lat": 45.088185,
-    "lon": 5.5609035
-   },
-   "tags": {
-    "building": "yes",
-    "check_date": "2026-08-01",
-    "contact:website": "https://www.blocdelours.com/",
-    "leisure": "sports_centre",
-    "name": "Le bloc de l'ours",
-    "opening_hours": "Mo-Tu,Th-Fr 11:30-22:00; We 10:00-22:00; Sa 10:00-21:00; Su,PH 10:00-20:00; Jul,Aug: Mo-Sa 10:00-21:00",
-    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2013",
-    "sport": "climbing"
-   }
-  },
-  {
-   "type": "way",
    "id": 256064555,
    "center": {
     "lat": 45.1848827,
@@ -17128,65 +14102,6 @@
     "lit": "yes",
     "name": "Parvis de la Gare",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 257108633,
-   "center": {
-    "lat": 45.1201915,
-    "lon": 5.700082
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Club House Jeannot Viard",
-    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2014"
-   }
-  },
-  {
-   "type": "way",
-   "id": 257108777,
-   "center": {
-    "lat": 45.1196575,
-    "lon": 5.6995695
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Malik Cherchari",
-    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2014"
-   }
-  },
-  {
-   "type": "way",
-   "id": 257595738,
-   "center": {
-    "lat": 45.0559538,
-    "lon": 5.8343315
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2014",
-    "wikidata": "Q120304440"
-   }
-  },
-  {
-   "type": "way",
-   "id": 258364165,
-   "center": {
-    "lat": 45.1752083,
-    "lon": 5.689125
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Ensemble sportif Joseph Guetat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2014 + Bing",
-    "sport": "multi",
-    "survey:date": "2020-01-09",
-    "wikidata": "Q120302487"
    }
   },
   {
@@ -17741,32 +14656,6 @@
   },
   {
    "type": "way",
-   "id": 313918511,
-   "center": {
-    "lat": 45.2042633,
-    "lon": 5.7736493
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "45",
-    "addr:postcode": "38240",
-    "addr:street": "45 Bd des Alpes",
-    "building": "sports_hall",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "UrbanSoccer - Grenoble",
-    "opening_hours": "Mo-We 14:00-23:00; Th-Fr 12:00-23:00; Sa-Su 14:00-21:00",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "payment:debit_cards": "yes",
-    "phone": "+33 4 76 15 24 65",
-    "source": "https://www.urbansoccer.fr/centres/grenoble/?utm_source=Fiche_Maps&utm_medium=Organic&utm_campaign=grenoble",
-    "sport": "soccer;futsal",
-    "website": "https://www.urbansoccer.fr/centres/grenoble/"
-   }
-  },
-  {
-   "type": "way",
    "id": 314290079,
    "center": {
     "lat": 45.201032,
@@ -17807,25 +14696,6 @@
     "leisure": "park",
     "name": "Place Paul Éluard",
     "ref:FR:FANTOIR": "385380443U"
-   }
-  },
-  {
-   "type": "way",
-   "id": 317967435,
-   "center": {
-    "lat": 45.2045396,
-    "lon": 5.6689049
-   },
-   "tags": {
-    "addr:city": "Sassenage",
-    "addr:postcode": "38360",
-    "addr:street": "Rue Georges Bizet",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase Alexandre Fleming",
-    "ref:FR:RNB": "B1849XF5MFHN",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2014",
-    "sport": "multi;climbing"
    }
   },
   {
@@ -17897,19 +14767,6 @@
     "lit": "no",
     "name": "Place des Alpes",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 332268186,
-   "center": {
-    "lat": 45.2410438,
-    "lon": 5.6850157
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Parc Eva Reynier",
-    "source": "Bing"
    }
   },
   {
@@ -18344,20 +15201,6 @@
   },
   {
    "type": "way",
-   "id": 366345678,
-   "center": {
-    "lat": 45.3200085,
-    "lon": 5.5647222
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Colette Besson",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
    "id": 366345679,
    "center": {
     "lat": 45.3210981,
@@ -18608,19 +15451,6 @@
   },
   {
    "type": "way",
-   "id": 383597235,
-   "center": {
-    "lat": 45.1760034,
-    "lon": 5.7406396
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Gymnase Léon Jouhaux",
-    "wikidata": "Q120303299"
-   }
-  },
-  {
-   "type": "way",
    "id": 384283943,
    "center": {
     "lat": 45.1749999,
@@ -18671,21 +15501,6 @@
   },
   {
    "type": "way",
-   "id": 390136007,
-   "center": {
-    "lat": 45.3223147,
-    "lon": 5.5633453
-   },
-   "tags": {
-    "building": "public",
-    "leisure": "sports_centre",
-    "name": "Salle de gymnastique Marie-Jo et Lucien Balondrade",
-    "source": "Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2016",
-    "sport": "gymnastics"
-   }
-  },
-  {
-   "type": "way",
    "id": 407220554,
    "center": {
     "lat": 45.1693695,
@@ -18709,39 +15524,6 @@
     "leisure": "park",
     "name": "Parc André Malraux",
     "operator": "Ville de Fontaine"
-   }
-  },
-  {
-   "type": "way",
-   "id": 426092034,
-   "center": {
-    "lat": 45.1502611,
-    "lon": 5.8375121
-   },
-   "tags": {
-    "access": "customers",
-    "leisure": "sports_centre",
-    "name": "Piscine municipale",
-    "sport": "swimming",
-    "wheelchair": "no",
-    "wikimedia_commons": "File:Bourg St Martin Uriage 18 piscine.jpg"
-   }
-  },
-  {
-   "type": "way",
-   "id": 440476176,
-   "center": {
-    "lat": 45.2633879,
-    "lon": 5.8687939
-   },
-   "tags": {
-    "addr:city": "Bernin",
-    "addr:housenumber": "170",
-    "addr:postcode": "38190",
-    "addr:street": "Chemin du clôt",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Le Cube"
    }
   },
   {
@@ -18895,26 +15677,6 @@
   },
   {
    "type": "way",
-   "id": 456410099,
-   "center": {
-    "lat": 45.1725569,
-    "lon": 5.7626219
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "35",
-    "addr:postcode": "38400",
-    "addr:street": "Rue Henri Wallon",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Halle Pablo Neruda",
-    "phone": "+33 4 76 25 06 15",
-    "ref:FR:RNB": "1T4V837MA7CZ",
-    "sport": "handball"
-   }
-  },
-  {
-   "type": "way",
    "id": 459882689,
    "center": {
     "lat": 45.1926804,
@@ -18942,29 +15704,6 @@
   },
   {
    "type": "way",
-   "id": 464154204,
-   "center": {
-    "lat": 45.1708761,
-    "lon": 5.7503324
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "100",
-    "addr:postcode": "38100",
-    "addr:street": "Avenue de la Mogne",
-    "building": "sports_hall",
-    "contact:phone": "+33 4 76 25 22 52",
-    "contact:website": "https://www.grenobletennis.fr/",
-    "leisure": "sports_centre",
-    "name": "Halle Alice Milliat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "tennis",
-    "survey:date": "2020-11-29",
-    "wikidata": "Q120191101"
-   }
-  },
-  {
-   "type": "way",
    "id": 466972364,
    "center": {
     "lat": 45.2077082,
@@ -18976,19 +15715,6 @@
     "lit": "no",
     "name": "Square de la République",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 471800069,
-   "center": {
-    "lat": 45.1837812,
-    "lon": 5.7509577
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Piscine municipale",
-    "sport": "swimming"
    }
   },
   {
@@ -19076,48 +15802,6 @@
     "lit": "yes",
     "name": "Place Victor Schoelcher",
     "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 481355037,
-   "center": {
-    "lat": 45.0978966,
-    "lon": 5.7451109
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "operator": "Département de l'Isère"
-   }
-  },
-  {
-   "type": "way",
-   "id": 481355038,
-   "center": {
-    "lat": 45.0980319,
-    "lon": 5.7450608
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "operator": "Département de l'Isère"
-   }
-  },
-  {
-   "type": "way",
-   "id": 481355039,
-   "center": {
-    "lat": 45.0980555,
-    "lon": 5.7447917
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "operator": "Département de l'Isère"
    }
   },
   {
@@ -19346,19 +16030,6 @@
   },
   {
    "type": "way",
-   "id": 503632027,
-   "center": {
-    "lat": 45.110479,
-    "lon": 5.6732298
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Complexe sportif de la Batie",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
    "id": 512917497,
    "center": {
     "lat": 45.157825,
@@ -19497,86 +16168,6 @@
     "internet_access": "wlan",
     "name": "Phelma 2",
     "operator": "Grenoble INP"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103008,
-   "center": {
-    "lat": 45.1847506,
-    "lon": 5.6913272
-   },
-   "tags": {
-    "building:part": "yes",
-    "leisure": "sports_centre",
-    "name": "Salle Moucherotte"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103010,
-   "center": {
-    "lat": 45.1846456,
-    "lon": 5.6914242
-   },
-   "tags": {
-    "building:part": "yes",
-    "leisure": "sports_centre",
-    "name": "Salle Oisans"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103012,
-   "center": {
-    "lat": 45.1849462,
-    "lon": 5.6913394
-   },
-   "tags": {
-    "building:part": "yes",
-    "leisure": "sports_centre",
-    "name": "Salle Chartreuse"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103015,
-   "center": {
-    "lat": 45.1849407,
-    "lon": 5.6907126
-   },
-   "tags": {
-    "building:part": "yes",
-    "leisure": "sports_centre",
-    "name": "Salle Vercors"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103017,
-   "center": {
-    "lat": 45.1850789,
-    "lon": 5.6917727
-   },
-   "tags": {
-    "building:part": "yes",
-    "leisure": "sports_centre",
-    "name": "Salle Belledonne"
-   }
-  },
-  {
-   "type": "way",
-   "id": 530103019,
-   "center": {
-    "lat": 45.1848353,
-    "lon": 5.6908338
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Complexe sportif Aristide Bergès",
-    "note": "fixme landuse complexe sportif comment le caractériser ?",
-    "operator": "Syndicat Intercommunal à Vocation Multiple de la Rive Gauche du Drac (SIRD)",
-    "wikidata": "Q120302533"
    }
   },
   {
@@ -19914,19 +16505,6 @@
   },
   {
    "type": "way",
-   "id": 591815303,
-   "center": {
-    "lat": 45.1639989,
-    "lon": 5.6888035
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Tennis Club de Seyssins",
-    "sport": "tennis"
-   }
-  },
-  {
-   "type": "way",
    "id": 591815322,
    "center": {
     "lat": 45.1625887,
@@ -19957,20 +16535,6 @@
   },
   {
    "type": "way",
-   "id": 617445004,
-   "center": {
-    "lat": 45.0212479,
-    "lon": 5.7767989
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Air Park",
-    "sport": "climbing_adventure",
-    "website": "https://www.air-park.fr/"
-   }
-  },
-  {
-   "type": "way",
    "id": 618575041,
    "center": {
     "lat": 45.162587,
@@ -19991,20 +16555,6 @@
    "tags": {
     "leisure": "park",
     "name": "Parc de Pré Nouvel"
-   }
-  },
-  {
-   "type": "way",
-   "id": 621245648,
-   "center": {
-    "lat": 45.2044288,
-    "lon": 5.6695636
-   },
-   "tags": {
-    "landuse": "grass",
-    "leisure": "sports_centre",
-    "name": "Stade d'athlétisme",
-    "sport": "athletics"
    }
   },
   {
@@ -20078,83 +16628,6 @@
    "tags": {
     "name": "Place du Soleil",
     "place": "square"
-   }
-  },
-  {
-   "type": "way",
-   "id": 633032053,
-   "center": {
-    "lat": 45.2089077,
-    "lon": 5.7746713
-   },
-   "tags": {
-    "access": "yes",
-    "addr:city": "Meylan",
-    "addr:housenumber": "14",
-    "addr:postcode": "38240",
-    "addr:street": "Avenue du Vercors",
-    "contact:phone": "+33438240824",
-    "covered": "yes",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine des Buclos",
-    "operator": "Ville de Meylan",
-    "operator:type": "public",
-    "sport": "swimming",
-    "toilets:wheelchair": "yes",
-    "website": "https://www.meylan.fr/49-piscine.htm",
-    "wheelchair": "yes",
-    "wikidata": "Q118525952"
-   }
-  },
-  {
-   "type": "way",
-   "id": 636033269,
-   "center": {
-    "lat": 45.215989,
-    "lon": 5.6908489
-   },
-   "tags": {
-    "access": "yes",
-    "addr:city": "Saint-Martin-le-Vinoux",
-    "addr:housenumber": "3117",
-    "addr:postcode": "38950",
-    "addr:street": "Rue du Petit Lac",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Futur centre de glisse urbaine",
-    "roof:height": "6",
-    "roof:shape": "dome",
-    "sport": "skateboard"
-   }
-  },
-  {
-   "type": "way",
-   "id": 636033272,
-   "center": {
-    "lat": 45.2010824,
-    "lon": 5.7547455
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Stade Louis Gailliard",
-    "sport": "soccer;running;athletics;basketball",
-    "wheelchair": "yes"
-   }
-  },
-  {
-   "type": "way",
-   "id": 636033273,
-   "center": {
-    "lat": 45.2018353,
-    "lon": 5.7542353
-   },
-   "tags": {
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine Les Ondines",
-    "sport": "swimming",
-    "website": "https://www.latronche.fr/102-piscine-municipale.htm"
    }
   },
   {
@@ -20367,29 +16840,6 @@
   },
   {
    "type": "way",
-   "id": 700704999,
-   "center": {
-    "lat": 45.1447323,
-    "lon": 5.6975999
-   },
-   "tags": {
-    "access": "private",
-    "addr:city": "Échirolles",
-    "addr:housenumber": "2B",
-    "addr:postcode": "38130",
-    "addr:street": "Rue Pablo Picasso",
-    "building": "sports_hall",
-    "building:levels": "1",
-    "contact:email": "auxagresduvent@hotmail.fr",
-    "contact:phone": "+33 6 48 72 61 05",
-    "contact:website": "http://auxagresduvent.fr",
-    "description": "Ecole de cirque",
-    "leisure": "sports_centre",
-    "name": "Aux Agrès du Vent"
-   }
-  },
-  {
-   "type": "way",
    "id": 701130451,
    "center": {
     "lat": 45.1613397,
@@ -20522,32 +16972,6 @@
    "tags": {
     "landuse": "retail",
     "name": "ZI des Condamines"
-   }
-  },
-  {
-   "type": "way",
-   "id": 735408384,
-   "center": {
-    "lat": 45.2226367,
-    "lon": 5.6900341
-   },
-   "tags": {
-    "addr:city": "Saint-Égrève",
-    "addr:housenumber": "31",
-    "addr:postcode": "38120",
-    "addr:street": "Route de Grenoble",
-    "building": "sports_centre",
-    "charge": "6.5 EUR",
-    "email": "accueil@piscineduneron.fr",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine intercommunale du Néron",
-    "opening_hours": "Mo 11:30-13:30,16:30-20:00; Tu 11:30-13:30,16:30-21:00; We 12:00-19:00; Th 07:00-08:30,11:30-13:30; Fr 11:30-13:30,16:30-22:00; Sa 09:00-13:00,14:00-18:00; Su 09:00-13:00,14:00-18:00; PH 10:00-20:00",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "phone": "+33476565505",
-    "sport": "swimming",
-    "website": "https://piscineduneron.horanet.com/"
    }
   },
   {
@@ -20761,60 +17185,6 @@
   },
   {
    "type": "way",
-   "id": 807271611,
-   "center": {
-    "lat": 45.2068369,
-    "lon": 5.7482488
-   },
-   "tags": {
-    "access": "private",
-    "alt_name": "Gymnase de la Clinique du Grésivaudan",
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
-   }
-  },
-  {
-   "type": "way",
-   "id": 810390451,
-   "center": {
-    "lat": 45.1639507,
-    "lon": 5.7351645
-   },
-   "tags": {
-    "alt_name": "Ancien Collège Lucie Aubrac",
-    "leisure": "sports_centre",
-    "lit": "no",
-    "name": "Sport dans la ville",
-    "old_name": "Collège de la Villeneuve",
-    "sport": "basketball",
-    "surface": "asphalt"
-   }
-  },
-  {
-   "type": "way",
-   "id": 823915884,
-   "center": {
-    "lat": 45.1766333,
-    "lon": 5.7665808
-   },
-   "tags": {
-    "building": "sports_hall",
-    "building:levels": "3",
-    "leisure": "sports_centre",
-    "name": "Gymnase Colette Besson",
-    "ref:FR:RNB": "K7ZPWKNMCTGR",
-    "roof:shape": "hipped",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2020",
-    "sport": "climbing;handball;badminton;bodybuilding;volleyball;basketball",
-    "wheelchair": "yes",
-    "wikidata": "Q120303633",
-    "wikimedia_commons": "File:Gymnase Colette Besson - Saint-Martin-d'Hères.JPG"
-   }
-  },
-  {
-   "type": "way",
    "id": 849427231,
    "center": {
     "lat": 45.1689658,
@@ -20977,90 +17347,6 @@
   },
   {
    "type": "way",
-   "id": 970160130,
-   "center": {
-    "lat": 45.1866698,
-    "lon": 5.6891961
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Ensemble sportif Maurice Thorez / Centre nautique Lino Refuggi",
-    "operator": "Ville de Fontaine"
-   }
-  },
-  {
-   "type": "way",
-   "id": 973961279,
-   "center": {
-    "lat": 45.1957838,
-    "lon": 5.7671953
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "430",
-    "addr:postcode": "38400",
-    "addr:street": "Rue de la Passerelle",
-    "building": "sports_hall",
-    "diff:ref:FR:RNB": "splitted",
-    "leisure": "sports_centre",
-    "name": "Gymnase et Dojo",
-    "ref:FR:RNB": "Z3NPQW6SW5H2",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2021",
-    "sport": "aikido;judo"
-   }
-  },
-  {
-   "type": "way",
-   "id": 973961280,
-   "center": {
-    "lat": 45.1961491,
-    "lon": 5.7669986
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "340",
-    "addr:postcode": "38400",
-    "addr:street": "Rue de la Passerelle",
-    "building": "yes",
-    "leisure": "sports_centre",
-    "name": "Grenoble Université Club d'Escalade Montagne (GUCEM)",
-    "ref:FR:RNB": "HJQ4MFA6BBSN",
-    "short_name": "ESMUG",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2021",
-    "sport": "climbing;alpinism;canyoning;caving;skiing",
-    "website": "https://www.gucem.fr/"
-   }
-  },
-  {
-   "type": "way",
-   "id": 973961293,
-   "center": {
-    "lat": 45.1952901,
-    "lon": 5.7668077
-   },
-   "tags": {
-    "addr:city": "Saint-Martin-d'Hères",
-    "addr:housenumber": "430",
-    "addr:postcode": "38406",
-    "addr:street": "Rue de la Passerelle",
-    "building": "yes",
-    "building:colour": "aqua",
-    "contact:phone": "+33 4 76 82 44 00",
-    "diff:ref:FR:RNB": "splitted",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine universitaire",
-    "opening_hours": "Sep-Jun Mo-Th 12:00-14:00,17:00-18:30; Sep-Jun Fr 12:00-14:00,17:00-18:30,20:00-22:00; Sep-Jun Sa 12:00-18:00; Sep-Jun Su 10:00-13:00; Jul-Aug Mo-Fr 12:00-19:00",
-    "ref:FR:RNB": "Z3NPQW6SW5H2",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2021",
-    "sport": "swimming",
-    "website": "https://suaps.univ-grenoble-alpes.fr/menu-principal/installations/la-piscine-universitaire/",
-    "wheelchair": "yes",
-    "wikimedia_commons": "File:Piscine Universitaire - Saint-Martin-d'Hères.JPG"
-   }
-  },
-  {
-   "type": "way",
    "id": 975390160,
    "center": {
     "lat": 45.2220444,
@@ -21073,19 +17359,6 @@
   },
   {
    "type": "way",
-   "id": 977009475,
-   "center": {
-    "lat": 45.2000805,
-    "lon": 5.8340147
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Piscine municipale",
-    "sport": "swimming"
-   }
-  },
-  {
-   "type": "way",
    "id": 978825798,
    "center": {
     "lat": 45.0528373,
@@ -21094,21 +17367,6 @@
    "tags": {
     "leisure": "park",
     "name": "Parc Champollion"
-   }
-  },
-  {
-   "type": "way",
-   "id": 984016123,
-   "center": {
-    "lat": 45.0874944,
-    "lon": 5.7750951
-   },
-   "tags": {
-    "building": "school",
-    "leisure": "sports_centre",
-    "name": "Gymnase du collège",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "multi"
    }
   },
   {
@@ -21168,26 +17426,6 @@
     "website": "https://grand-place.klepierre.fr/",
     "wikidata": "Q3113431",
     "wikipedia": "fr:Grand'Place (Grenoble)"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1010993285,
-   "center": {
-    "lat": 45.2009873,
-    "lon": 5.6860055
-   },
-   "tags": {
-    "barrier": "fence",
-    "contact:email": "rtf38vtttrial@gmail.com",
-    "contact:website": "https://www.rtf38.com/",
-    "landuse": "recreation_ground",
-    "leisure": "sports_centre",
-    "lit": "no",
-    "name": "Terrain de VTT Trial du RTF38",
-    "operator": "RTF38",
-    "sport": "cycling",
-    "surface": "grass"
    }
   },
   {
@@ -21510,24 +17748,6 @@
   },
   {
    "type": "way",
-   "id": 1068236892,
-   "center": {
-    "lat": 45.2982921,
-    "lon": 5.6298476
-   },
-   "tags": {
-    "access": "yes",
-    "contact:housenumber": "215",
-    "contact:street": "Chemin des Buis",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine municipale Les Bannettes",
-    "sport": "swimming",
-    "wikidata": "Q118525980"
-   }
-  },
-  {
-   "type": "way",
    "id": 1075561145,
    "center": {
     "lat": 45.119468,
@@ -21537,27 +17757,6 @@
     "fixme": "mieux qualifier cette zone",
     "leisure": "park",
     "name": "Parc de la Ronzy"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1076525738,
-   "center": {
-    "lat": 45.2296193,
-    "lon": 5.8744695
-   },
-   "tags": {
-    "addr:city": "Le Versoud",
-    "addr:housenumber": "233",
-    "addr:postcode": "38420",
-    "addr:street": "Rue Amable Matussière",
-    "email": "contact@alteractiv.fr",
-    "height": "6",
-    "leisure": "sports_centre",
-    "name": "AlterActiv",
-    "phone": "+33 7 67 09 71 44",
-    "sport": "cirque;karate",
-    "website": "https://www.alteractiv.fr/"
    }
   },
   {
@@ -21728,20 +17927,6 @@
   },
   {
    "type": "way",
-   "id": 1112086463,
-   "center": {
-    "lat": 45.2203676,
-    "lon": 5.8149409
-   },
-   "tags": {
-    "access": "yes",
-    "leisure": "sports_centre",
-    "name": "Parc des Loisirs",
-    "operator": "Commune de Montbonnot-Saint-Martin"
-   }
-  },
-  {
-   "type": "way",
    "id": 1125417579,
    "center": {
     "lat": 45.3010711,
@@ -21764,66 +17949,6 @@
     "leisure": "park",
     "name": "Parc du Château",
     "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2022"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1139021992,
-   "center": {
-    "lat": 45.1947671,
-    "lon": 5.682575
-   },
-   "tags": {
-    "amenity": "community_centre",
-    "building": "sports_hall",
-    "check_date:opening_hours": "2025-12-05",
-    "leisure": "sports_centre",
-    "name": "Gymnase Jules Vallès",
-    "noaddress": "yes",
-    "opening_hours:signed": "no",
-    "operator": "Ville de Fontaine",
-    "ref:FR:RNB": "AT7RF3GB9Q47",
-    "roof:shape": "flat",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "multi"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1148018974,
-   "center": {
-    "lat": 45.1581152,
-    "lon": 5.7033708
-   },
-   "tags": {
-    "addr:housenumber": "2",
-    "addr:street": "Allée de la Soie",
-    "alt_name": "Salle Polyvalente Sportive du Rayon vert",
-    "building": "sports_hall",
-    "check_date": "2026-03-12",
-    "description": "Cette salle polyvalente sportive remplace le Gymnase Navis qui e été détruit en sept 2022",
-    "leisure": "sports_centre",
-    "name": "Salle Sportive du Rayon vert",
-    "old_name": "Gymnase Navis"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1149267212,
-   "center": {
-    "lat": 45.1488603,
-    "lon": 5.736469
-   },
-   "tags": {
-    "building": "sports_hall",
-    "check_date": "2024-06-11",
-    "contact:phone": "+33 9 84 47 27 27",
-    "contact:website": "https://prosoccer5.fr/",
-    "leisure": "sports_centre",
-    "name": "Pro Soccer 5",
-    "opening_hours": "Mo-Fr 11:00-17:00, Sa 10:00-22:00,Su 11:00-23:00",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
-    "sport": "five-a-side"
    }
   },
   {
@@ -21910,24 +18035,6 @@
   },
   {
    "type": "way",
-   "id": 1167393528,
-   "center": {
-    "lat": 45.2047511,
-    "lon": 5.7666342
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:postcode": "38240",
-    "addr:street": "Allée des Centaurées",
-    "leisure": "sports_centre",
-    "name": "Stade Albert Batteux",
-    "sport": "soccer",
-    "website": "https://www.meylan.fr/60-stades-et-gymnases.htm",
-    "wikidata": "Q120157293"
-   }
-  },
-  {
-   "type": "way",
    "id": 1176917284,
    "center": {
     "lat": 45.1405428,
@@ -21975,41 +18082,6 @@
   },
   {
    "type": "way",
-   "id": 1185811514,
-   "center": {
-    "lat": 45.1450288,
-    "lon": 5.6897377
-   },
-   "tags": {
-    "addr:housenumber": "32",
-    "addr:postcode": "38130",
-    "addr:street": "Rue de Comboire",
-    "building": "yes",
-    "check_date": "2026-03-19",
-    "contact:email": "echirolles@fiftyninefitnessclub.fr",
-    "contact:phone": "+33 4 76 09 21 87",
-    "contact:website": "https://fiftyninefitnessclub.fr/echirolles/",
-    "leisure": "sports_centre",
-    "name": "FiftyNine Fitness Club",
-    "opening_hours": "Mo-Su 06:00-23:00",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1190246919,
-   "center": {
-    "lat": 45.1187463,
-    "lon": 5.7835034
-   },
-   "tags": {
-    "building": "sports_hall",
-    "leisure": "sports_centre",
-    "name": "Gymnase du Barlatier"
-   }
-  },
-  {
-   "type": "way",
    "id": 1205238588,
    "center": {
     "lat": 45.2985727,
@@ -22049,18 +18121,6 @@
     "name": "La Puceroise",
     "opening_hours": "We-Sa 10:00-18:00, Su 10:00-17:30",
     "shop": "antiques"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1210293905,
-   "center": {
-    "lat": 45.0521878,
-    "lon": 5.8225282
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Ensemble Sportif et de Loisirs Sous La Broue"
    }
   },
   {
@@ -22168,18 +18228,6 @@
    "tags": {
     "leisure": "park",
     "name": "Roseraie"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1234570960,
-   "center": {
-    "lat": 45.2046428,
-    "lon": 5.705976
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Centre Sportif CASI (SNCF)"
    }
   },
   {
@@ -22420,62 +18468,6 @@
     "leisure": "park",
     "name": "Parc Maurice Thorez",
     "osm_type": "way"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1359318132,
-   "center": {
-    "lat": 45.1533778,
-    "lon": 5.7310958
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Parc des sports Jean Vilar",
-    "osm_type": "way",
-    "sport": "multi",
-    "wikidata": "Q120178263"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1360151824,
-   "center": {
-    "lat": 45.2068859,
-    "lon": 5.7621686
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "3",
-    "addr:postcode": "38240",
-    "addr:street": "Rue le Poulet",
-    "amenity": "dojo",
-    "building": "sports_hall",
-    "contact:phone": "+33 4 76 90 09 03",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Dojo des Aiguinards",
-    "sport": "aikido;judo"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1360151971,
-   "center": {
-    "lat": 45.205213,
-    "lon": 5.7780665
-   },
-   "tags": {
-    "addr:city": "Meylan",
-    "addr:housenumber": "53",
-    "addr:postcode": "38240",
-    "addr:street": "Boulevard des Alpes",
-    "contact:phone": "+33 4 76 41 03 80",
-    "fee": "no",
-    "leisure": "sports_centre",
-    "name": "Dojo des Buclos",
-    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
-    "sport": "aikido"
    }
   },
   {
@@ -22791,22 +18783,6 @@
   },
   {
    "type": "way",
-   "id": 1553690554,
-   "center": {
-    "lat": 45.0973593,
-    "lon": 5.7447723
-   },
-   "tags": {
-    "description": "La piscine de Jarrie se situe dans le parc du Clos Jouvin.\nC’est une piscine extérieure, ouverte uniquement l’été.",
-    "leisure": "sports_centre",
-    "name": "Piscine du Clos Jouvin",
-    "phone": "+33 4 76 68 84 81",
-    "sport": "swimming",
-    "website": "https://www.ville-jarrie.fr/piscine/"
-   }
-  },
-  {
-   "type": "way",
    "id": 1555040471,
    "center": {
     "lat": 45.1998992,
@@ -22815,36 +18791,6 @@
    "tags": {
     "leisure": "park",
     "name": "square du Charmeyran"
-   }
-  },
-  {
-   "type": "way",
-   "id": 1557314125,
-   "center": {
-    "lat": 45.1850845,
-    "lon": 5.7241931
-   },
-   "tags": {
-    "addr:city": "Grenoble",
-    "addr:housenumber": "7",
-    "addr:postcode": "38000",
-    "addr:street": "rue lazare carnot",
-    "charge": "1,2 - 6 EUR",
-    "check_date": "2026-09-08",
-    "email": "piscine.municipale@ville-grenoble.fr",
-    "fee": "yes",
-    "leisure": "sports_centre",
-    "name": "Piscine Jean Bron",
-    "opening_hours": "Sep-Jun Mo-Fr 11:30-13:30; Sep-Jun Tu,Th 17:00-19:40",
-    "operator": "Ville de Grenoble",
-    "operator:type": "public",
-    "payment:cash": "yes",
-    "payment:credit_cards": "yes",
-    "payment:debit_cards": "yes",
-    "phone": "+33 4 76 46 13 87",
-    "sport": "swimming;beachvolleyball",
-    "website": "https://www.grenoble.fr/lieu/575/137-piscine-jean-bron.htm",
-    "wheelchair": "limited"
    }
   },
   {
@@ -23000,27 +18946,6 @@
     "operator": "Université Grenoble Alpes",
     "type": "multipolygon",
     "website": "https://staps.univ-grenoble-alpes.fr/"
-   }
-  },
-  {
-   "type": "relation",
-   "id": 236793,
-   "center": {
-    "lat": 45.1767167,
-    "lon": 5.7219169
-   },
-   "tags": {
-    "addr:housename": "Gymnase reynies bayard",
-    "addr:housenumber": "10",
-    "addr:postcode": "38100",
-    "addr:street": "Rue Leo Lagrange",
-    "building": "civic",
-    "building:levels": "4",
-    "leisure": "sports_centre",
-    "name": "Gymnase Reynies Bayard",
-    "roof:shape": "flat",
-    "survey:date": "2024-03-25",
-    "type": "multipolygon"
    }
   },
   {
@@ -23277,19 +19202,6 @@
     "name": "Cour du Mikado",
     "surface": "paving_stones",
     "type": "multipolygon"
-   }
-  },
-  {
-   "type": "relation",
-   "id": 13211260,
-   "center": {
-    "lat": 45.3199187,
-    "lon": 5.5658088
-   },
-   "tags": {
-    "leisure": "sports_centre",
-    "name": "Complexe sportif des Béthanies Colette Besson",
-    "type": "site"
    }
   },
   {
