@@ -43,7 +43,7 @@ defineProps<{
 .value {
   margin: 0;
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
   font-variant-numeric: tabular-nums;
 }

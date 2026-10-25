@@ -55,7 +55,7 @@ const { t } = useI18n()
   height: 48px;
   border-radius: var(--cg-radius-m);
   background: var(--cg-surface-soft);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 20px;
   color: var(--cg-ink-soft);
 }
@@ -74,7 +74,7 @@ const { t } = useI18n()
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .meta {

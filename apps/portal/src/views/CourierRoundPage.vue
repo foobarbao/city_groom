@@ -183,7 +183,7 @@ function choose(id: string): void {
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .chip.past {
@@ -230,7 +230,7 @@ function choose(id: string): void {
   border-radius: 50%;
   background: var(--cg-leaf);
   color: #ffffff;
-  font-weight: 900;
+  font-weight: 700;
 }
 .stop-title {
   display: flex;
@@ -240,7 +240,7 @@ function choose(id: string): void {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .tick input {
@@ -270,7 +270,7 @@ function choose(id: string): void {
   background: var(--cg-leaf-soft);
 }
 .arrow {
-  font-weight: 900;
+  font-weight: 700;
   text-align: center;
 }
 .muted {

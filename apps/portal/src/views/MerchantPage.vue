@@ -171,14 +171,14 @@ const itemBars = computed<Bar[]>(() => [
 .section-title {
   margin: 8px 0 0;
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .commission p {
   margin: 0;
 }
 .rate {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-pine);
 }
 .gauge {
@@ -215,7 +215,7 @@ const itemBars = computed<Bar[]>(() => [
   border-radius: var(--cg-radius-pill);
   background: var(--cg-sun-soft);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 </style>

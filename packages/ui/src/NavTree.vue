@@ -1,39 +1,53 @@
 <script setup lang="ts">
 /**
- * One level of the side menu: items (links) and folding groups, rendered
- * recursively for nested groups.
+ * One level of a side menu (navTree.ts): items (links) and folding groups,
+ * rendered recursively for nested groups. Shared by the customer app and
+ * the partner portal (docs/DESIGN.md "Navigation").
  *
  * Props:
  * - `nodes`: entries of this level.
  * - `depth`: 0 for the top level (indentation).
  * - `route`: name of the current route.
  * - `open`: ids of the unfolded groups.
- * - `shop`: current shop code, for merchant links.
- * - `badges`: counters by badge kind.
+ * - `params`: route parameters available to items (`NavItem.paramKeys`).
+ * - `badges`: counters by badge key.
+ * - `translate`: turns a label key into text (the app's i18n).
  *
  * Events:
  * - `toggle(id)`: a group is folded or unfolded.
  * - `navigate`: a link was followed (closes the menu on small screens).
  */
-import { IonIcon } from '@ionic/vue'
-import { chevronDownOutline } from 'ionicons/icons'
-import { useI18n } from 'vue-i18n'
+import { IonIcon } from "@ionic/vue";
+import { chevronDownOutline } from "ionicons/icons";
 
-import { type NavBadge, type NavNode, matches, trail } from '../navigation'
+import {
+  type NavItem,
+  type NavNode,
+  matchesRoute as matches,
+  navTrail,
+} from "./navTree";
 
 const props = defineProps<{
-  nodes: NavNode[]
-  depth: number
-  route: string
-  open: string[]
-  shop: string
-  badges: Record<NavBadge, number>
-}>()
-const emit = defineEmits<{ toggle: [id: string]; navigate: [] }>()
-const { t } = useI18n()
+  nodes: NavNode[];
+  depth: number;
+  route: string;
+  open: string[];
+  params: Record<string, string>;
+  badges: Record<string, number>;
+  translate: (key: string) => string;
+}>();
+const emit = defineEmits<{ toggle: [id: string]; navigate: [] }>();
+const t = (key: string): string => props.translate(key);
 
 /** A folded group still shows that it contains the current page. */
-const containsCurrent = (node: NavNode): boolean => trail(props.route, [node]).length > 0
+const containsCurrent = (node: NavNode): boolean =>
+  navTrail([node], props.route).length > 0;
+
+/** Parameters of an item's route, taken from the current context. */
+const paramsOf = (node: NavItem): Record<string, string> =>
+  Object.fromEntries(
+    (node.paramKeys ?? []).map((key) => [key, props.params[key] ?? ""]),
+  );
 </script>
 
 <template>
@@ -43,13 +57,15 @@ const containsCurrent = (node: NavNode): boolean => trail(props.route, [node]).l
         v-if="node.kind === 'item'"
         class="nav-row"
         :class="{ active: matches(node, route) }"
-        :to="{ name: node.route, params: node.shop ? { code: shop } : {} }"
+        :to="{ name: node.route, params: paramsOf(node) }"
         :aria-current="matches(node, route) ? 'page' : undefined"
         @click="emit('navigate')"
       >
         <ion-icon :icon="node.icon" aria-hidden="true" />
         <span class="label">{{ t(node.label) }}</span>
-        <span v-if="node.badge && badges[node.badge]" class="badge">{{ badges[node.badge] }}</span>
+        <span v-if="node.badge && badges[node.badge]" class="badge">{{
+          badges[node.badge]
+        }}</span>
       </router-link>
       <template v-else>
         <button
@@ -70,13 +86,14 @@ const containsCurrent = (node: NavNode): boolean => trail(props.route, [node]).l
           />
         </button>
         <div v-show="open.includes(node.id)" :id="`nav-${node.id}`">
-          <portal-nav-list
+          <nav-tree
             :nodes="node.children"
             :depth="depth + 1"
             :route="route"
             :open="open"
-            :shop="shop"
+            :params="params"
             :badges="badges"
+            :translate="translate"
             @toggle="(id: string) => emit('toggle', id)"
             @navigate="emit('navigate')"
           />
@@ -127,15 +144,15 @@ const containsCurrent = (node: NavNode): boolean => trail(props.route, [node]).l
   background: var(--cg-surface-soft);
 }
 .depth-0 > li > .nav-row {
-  font-weight: 800;
+  font-weight: 600;
 }
-.group.current:not([aria-expanded='true']) {
+.group.current:not([aria-expanded="true"]) {
   background: var(--cg-surface-soft);
 }
 .nav-row.active {
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
-  font-weight: 800;
+  font-weight: 600;
 }
 .nav-row.active ion-icon {
   color: var(--cg-leaf);
@@ -157,7 +174,7 @@ const containsCurrent = (node: NavNode): boolean => trail(props.route, [node]).l
   background: var(--cg-sun);
   color: var(--cg-ink);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   text-align: center;
 }
 @media (prefers-reduced-motion: reduce) {

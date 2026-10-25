@@ -12,6 +12,7 @@ import { IonButton, IonContent, IonPage, IonSpinner, useIonRouter } from '@ionic
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import { fetchLockers } from '../api/lockers'
 import { fetchMerchants } from '../api/merchants'
 import { HAS_MAP } from '../config'
@@ -71,6 +72,7 @@ onMounted(load)
 
 <template>
   <ion-page>
+    <app-header />
     <ion-content :scroll-y="false">
       <div v-if="error" class="state">
         <p>{{ error }}</p>
@@ -195,7 +197,7 @@ onMounted(load)
 .brand {
   margin: 0;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #f7d44c;
@@ -203,7 +205,7 @@ onMounted(load)
 .welcome h1 {
   margin: 0;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.25;
 }
 .sub {
@@ -248,7 +250,7 @@ onMounted(load)
   background: transparent;
   color: var(--cg-ink-soft);
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .tabs button.active {
@@ -301,7 +303,7 @@ onMounted(load)
   border-radius: var(--cg-radius-pill);
   background: var(--cg-leaf);
   color: var(--cg-surface);
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: none;
 }
 .group {
@@ -312,7 +314,7 @@ onMounted(load)
 .group-title {
   margin: 6px 0 0;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .count {

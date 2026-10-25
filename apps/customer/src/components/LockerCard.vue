@@ -85,7 +85,7 @@ const total = computed(() => Object.values(free.value).reduce((a, b) => a + b, 0
   box-shadow: 0 0 0 4px var(--cg-surface-soft);
 }
 .name {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 16px;
   min-width: 0;
 }
@@ -118,7 +118,7 @@ const total = computed(() => Object.values(free.value).reduce((a, b) => a + b, 0
 }
 .cta {
   justify-self: start;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
 }
 </style>

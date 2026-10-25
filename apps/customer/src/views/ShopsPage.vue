@@ -6,11 +6,13 @@
  * search field suggests services and shops (name, category, street); below,
  * shops are grouped by category, partners first, best rated first.
  */
-import { IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/vue'
+import { IonContent, IonIcon, IonPage } from '@ionic/vue'
+import { chevronForwardOutline, storefrontOutline } from 'ionicons/icons'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import ShopCard from '../components/ShopCard.vue'
 import {
@@ -88,19 +90,17 @@ const groups = computed(() =>
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar class="search-bar">
-        <div class="search-wrap">
-          <input
-            v-model="query"
-            class="search"
-            type="search"
-            :placeholder="t('shops.searchPlaceholder')"
-            :aria-label="t('common.search')"
-          />
-        </div>
-      </ion-toolbar>
-    </ion-header>
+    <app-header>
+      <div class="search-wrap">
+        <input
+          v-model="query"
+          class="search"
+          type="search"
+          :placeholder="t('shops.searchPlaceholder')"
+          :aria-label="t('common.search')"
+        />
+      </div>
+    </app-header>
     <ion-content>
       <main v-if="service" class="page">
         <button class="back-link" type="button" @click="chooseService(null)">
@@ -117,7 +117,7 @@ const groups = computed(() =>
           <li v-for="p in providers" :key="p.offer.id" class="soft-card provider">
             <div class="thumb">
               <img v-if="p.offer.photo" :src="p.offer.photo" :alt="p.offer.title" />
-              <span v-else aria-hidden="true">🧺</span>
+              <ion-icon v-else :icon="storefrontOutline" aria-hidden="true" />
             </div>
             <div class="provider-body">
               <strong>{{ p.offer.title }}</strong>
@@ -150,17 +150,18 @@ const groups = computed(() =>
       <main v-else class="page">
         <section v-if="!query.trim()" class="services">
           <h2 class="section-title">{{ t('shops.servicesTitle') }}</h2>
-          <div v-for="g in servicesByCategory" :key="g.category" class="service-group">
-            <span class="group-label">{{ t(`merchants.categories.${g.category}`) }}</span>
-            <div class="service-chips">
+          <div class="service-groups">
+            <div v-for="g in servicesByCategory" :key="g.category" class="service-group">
+              <span class="group-label">{{ t(`merchants.categories.${g.category}`) }}</span>
               <button
                 v-for="sv in g.services"
                 :key="sv.code"
-                class="service-chip"
+                class="service-row"
                 type="button"
                 @click="chooseService(sv.code)"
               >
-                {{ sv.name }}
+                <span>{{ sv.name }}</span>
+                <ion-icon :icon="chevronForwardOutline" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -168,15 +169,16 @@ const groups = computed(() =>
         </section>
         <section v-else-if="suggestions.length" class="services">
           <h2 class="section-title">{{ t('shops.matchingServices') }}</h2>
-          <div class="service-chips">
+          <div class="service-group">
             <button
               v-for="sv in suggestions"
               :key="sv.code"
-              class="service-chip"
+              class="service-row"
               type="button"
               @click="chooseService(sv.code)"
             >
-              {{ sv.name }} →
+              <span>{{ sv.name }}</span>
+              <ion-icon :icon="chevronForwardOutline" aria-hidden="true" />
             </button>
           </div>
           <h2 class="section-title">{{ t('shops.title') }}</h2>
@@ -243,7 +245,7 @@ const groups = computed(() =>
   background: var(--cg-glass);
   color: var(--cg-pine);
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .services {
@@ -251,39 +253,51 @@ const groups = computed(() =>
   flex-direction: column;
   gap: 10px;
 }
+.service-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 12px;
+  align-items: start;
+}
+/* One card per category, services as rows separated by hairlines. */
 .service-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  overflow: hidden;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-glass);
+  box-shadow: var(--cg-shadow);
 }
 .group-label {
+  padding: 12px 14px 6px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--cg-ink-soft);
 }
-.service-chips {
+.service-row {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
-}
-.service-chip {
-  padding: 10px 16px;
+  padding: 12px 14px;
   border: none;
-  border-radius: var(--cg-radius-pill);
-  background: var(--cg-glass-strong);
-  backdrop-filter: var(--cg-glass-filter);
-  box-shadow: var(--cg-shadow);
+  border-top: 1px solid var(--cg-surface-soft);
+  background: none;
   color: var(--cg-ink);
   font: inherit;
-  font-weight: 800;
+  font-size: 15px;
+  text-align: left;
   cursor: pointer;
 }
-.service-chip:hover,
-.service-chip:focus-visible {
-  background: var(--cg-leaf);
-  color: #ffffff;
+.service-row ion-icon {
+  flex: none;
+  color: var(--cg-ink-soft);
+}
+.service-row:hover,
+.service-row:focus-visible {
+  background: var(--cg-leaf-soft);
 }
 .provider {
   display: grid;
@@ -340,16 +354,12 @@ const groups = computed(() =>
   background: var(--cg-leaf);
   color: #ffffff;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 600;
   text-decoration: none;
-}
-.search-bar {
-  --background: var(--cg-ground);
 }
 .search-wrap {
   max-width: 640px;
-  margin: 0 auto;
-  padding: 10px 16px 4px;
+  padding: 6px 12px 6px 4px;
 }
 .filters {
   display: flex;

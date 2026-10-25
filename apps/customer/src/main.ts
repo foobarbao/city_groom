@@ -12,7 +12,7 @@ import '@ionic/vue/css/structure.css'
 import '@ionic/vue/css/typography.css'
 import '@ionic/vue/css/padding.css'
 import '@ionic/vue/css/display.css'
-import '@fontsource-variable/nunito'
+import '@fontsource-variable/inter'
 import '@city-groom/ui/src/theme.css'
 import './styles.css'
 

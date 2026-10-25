@@ -3,10 +3,12 @@
  * Consigne overview: how it works, the button to book, current bookings and
  * history (docs/PRODUCT.md §4b).
  */
-import { IonButton, IonContent, IonPage } from '@ionic/vue'
+import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/vue'
+import { navigateOutline } from 'ionicons/icons'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { lockers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
@@ -23,21 +25,16 @@ const past = computed(() =>
 
 <template>
   <ion-page>
+    <app-header />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('consigne.title') }}</h1>
         <p class="page-intro">{{ t('consigne.intro') }}</p>
-        <ion-button
-          expand="block"
-          shape="round"
-          size="large"
-          color="secondary"
-          router-link="/consigne/reserver"
-        >
+        <ion-button expand="block" shape="round" size="large" router-link="/consigne/reserver">
           {{ t('consigne.book') }}
         </ion-button>
         <ion-button expand="block" shape="round" fill="outline" router-link="/autour">
-          📍 {{ t('nearby.shortcut') }}
+          <ion-icon :icon="navigateOutline" aria-hidden="true" /> {{ t('nearby.shortcut') }}
         </ion-button>
 
         <section v-if="account.activeBookings.length" class="group">

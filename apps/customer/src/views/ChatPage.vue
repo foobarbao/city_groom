@@ -12,11 +12,14 @@ import {
   IonContent,
   IonFooter,
   IonHeader,
+  IonIcon,
+  IonMenuButton,
   IonPage,
   IonTitle,
   IonToolbar,
   useIonRouter,
 } from '@ionic/vue'
+import { cameraOutline } from 'ionicons/icons'
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -69,6 +72,7 @@ function accept(id: string): void {
     <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons slot="start">
+          <ion-menu-button :aria-label="t('nav.menu')" />
           <ion-back-button default-href="/messages" :text="''" />
         </ion-buttons>
         <ion-title>{{ shopName }}</ion-title>
@@ -116,7 +120,7 @@ function accept(id: string): void {
         </div>
         <label class="attach" :title="t('messages.photo')">
           <input type="file" accept="image/*" class="hidden" @change="onPhoto" />
-          <span aria-hidden="true">📷</span>
+          <ion-icon :icon="cameraOutline" aria-hidden="true" />
           <span class="sr-only">{{ t('messages.photo') }}</span>
         </label>
         <input v-model="text" class="input" type="text" :placeholder="t('messages.placeholder')" />

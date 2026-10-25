@@ -3,19 +3,11 @@
  * Rating a shop after a collected order: 1 to 5 stars and an optional
  * comment, once per order (ADR-0008).
  */
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-  useIonRouter,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonPage, useIonRouter } from '@ionic/vue'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import RatingStars from '../components/RatingStars.vue'
 import { canReview, isValidRating } from '../domain/reviews'
 import { shopByCode } from '../services/catalogue'
@@ -48,13 +40,7 @@ function publish(): void {
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/compte/commandes" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/compte/commandes" />
     <ion-content>
       <main v-if="order && shop" class="page">
         <h1 class="page-title">{{ t('review.title', { shop: shop.name }) }}</h1>

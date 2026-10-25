@@ -16,6 +16,7 @@ import {
   IonPage,
   IonToolbar,
   useIonRouter,
+  IonMenuButton,
 } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -84,6 +85,7 @@ function confirm(): void {
     <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons slot="start">
+          <ion-menu-button :aria-label="t('nav.menu')" />
           <ion-back-button :default-href="`/consigne/${id}`" :text="t('common.back')" />
         </ion-buttons>
       </ion-toolbar>

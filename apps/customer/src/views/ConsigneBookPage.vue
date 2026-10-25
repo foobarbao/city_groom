@@ -6,20 +6,12 @@
  */
 import type { CompartmentSize } from '@city-groom/api-client'
 import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-  useIonRouter,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonPage, useIonRouter } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { consignePrice } from '../domain/pricing'
@@ -145,13 +137,7 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/consigne" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/consigne" />
     <ion-content>
       <main class="page">
         <ol class="stepper" :aria-label="t('consigne.book')">
@@ -406,7 +392,7 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
   justify-content: space-between;
 }
 .day-label {
-  font-weight: 800;
+  font-weight: 600;
   margin-bottom: 6px !important;
 }
 .slots {

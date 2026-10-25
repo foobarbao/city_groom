@@ -3,17 +3,10 @@
  * Subscription plans (placeholders, docs/PRODUCT.md open question 8):
  * subscribers pay less for the consigne. Subscribing needs an account.
  */
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import { toCents } from '../domain/pricing'
 import { catalogue } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
@@ -25,13 +18,7 @@ const account = useAccountStore()
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/compte" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/compte" />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('plans.title') }}</h1>

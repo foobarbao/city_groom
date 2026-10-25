@@ -11,6 +11,8 @@
  */
 import { type Offer, loadOffers, offersOf, saveOffers } from '@city-groom/demo-data'
 import { downscalePhoto } from '@city-groom/ui'
+import { IonIcon } from '@ionic/vue'
+import { cameraOutline, storefrontOutline } from 'ionicons/icons'
 import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -130,7 +132,10 @@ async function onPhoto(event: Event): Promise<void> {
         <label class="photo-drop">
           <input type="file" accept="image/*" class="hidden" @change="onPhoto" />
           <img v-if="draft.photo" :src="draft.photo" :alt="t('merchant.offers.photo')" />
-          <span v-else class="placeholder">📷 {{ t('merchant.offers.addPhoto') }}</span>
+          <span v-else class="placeholder"
+            ><ion-icon :icon="cameraOutline" aria-hidden="true" />
+            {{ t('merchant.offers.addPhoto') }}</span
+          >
         </label>
         <div class="fields">
           <label>
@@ -210,7 +215,7 @@ async function onPhoto(event: Event): Promise<void> {
       <article v-for="o in offers" :key="o.id" class="card offer" :class="{ off: !o.active }">
         <div class="thumb">
           <img v-if="o.photo" :src="o.photo" :alt="o.title" />
-          <span v-else aria-hidden="true">🧺</span>
+          <ion-icon v-else :icon="storefrontOutline" aria-hidden="true" />
         </div>
         <div class="offer-body">
           <strong class="offer-title">{{ o.title }}</strong>
@@ -260,7 +265,7 @@ button {
   border: none;
   border-radius: var(--cg-radius-pill);
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .primary {
@@ -311,7 +316,7 @@ button {
   object-fit: cover;
 }
 .placeholder {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink-soft);
 }
 .hidden {
@@ -331,7 +336,7 @@ button {
   flex-direction: column;
   gap: 4px;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink-soft);
 }
 .fields input[type='text'],
@@ -369,7 +374,7 @@ button {
 }
 .switch.small {
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .buttons {
   display: flex;

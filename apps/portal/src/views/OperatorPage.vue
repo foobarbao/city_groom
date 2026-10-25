@@ -195,7 +195,7 @@ function openLocker(code: string): void {
   background: var(--cg-chart-1);
 }
 .more {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
   text-decoration: none;
 }

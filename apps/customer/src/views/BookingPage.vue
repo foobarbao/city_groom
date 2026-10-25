@@ -13,18 +13,11 @@
  * reported by the locker (`door_closed` event).
  */
 import { LockerFront, computeLockerDrawing } from '@city-groom/ui'
-import {
-  IonBackButton,
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonToolbar,
-} from '@ionic/vue'
+import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { collectBy, pickupDeadline } from '../domain/slots'
 import { catalogue, lockerLayout, lockers, sizes } from '../services/catalogue'
@@ -106,13 +99,7 @@ function confirmClosed(): void {
 
 <template>
   <ion-page>
-    <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/consigne" :text="t('common.back')" />
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <app-header back-href="/consigne" />
     <ion-content>
       <main v-if="booking" class="page">
         <span
@@ -333,7 +320,7 @@ function confirmClosed(): void {
   background: var(--cg-glass-strong);
   backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-pine);
 }
 </style>

@@ -8,6 +8,8 @@
  * task is written in a "CityPal" calendar and kept up to date, including the
  * "done" check. Other calendars: .ics export and per-task links.
  */
+import { IonIcon } from '@ionic/vue'
+import { downloadOutline, extensionPuzzleOutline } from 'ionicons/icons'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -176,7 +178,7 @@ function exportWeek(): void {
     <div class="top">
       <p class="intro">{{ t('merchant.agenda.intro') }}</p>
       <button class="export" type="button" @click="exportWeek">
-        📅 {{ t('merchant.agenda.export') }}
+        <ion-icon :icon="downloadOutline" aria-hidden="true" /> {{ t('merchant.agenda.export') }}
       </button>
     </div>
 
@@ -325,7 +327,8 @@ function exportWeek(): void {
         class="export connectors"
         :to="{ name: 'merchant-connectors', params: { code: shop?.code } }"
       >
-        🔌 {{ t('merchant.agenda.connectors') }}
+        <ion-icon :icon="extensionPuzzleOutline" aria-hidden="true" />
+        {{ t('merchant.agenda.connectors') }}
       </router-link>
     </section>
   </merchant-shell>
@@ -353,7 +356,7 @@ button {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-leaf);
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 600;
 }
 .week {
   display: grid;
@@ -379,7 +382,7 @@ button {
   background: var(--cg-leaf-soft);
 }
 .day-name {
-  font-weight: 800;
+  font-weight: 600;
   text-transform: capitalize;
 }
 .day-count {
@@ -387,7 +390,7 @@ button {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-sun);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .day-count.none {
   background: var(--cg-surface-soft);
@@ -422,7 +425,7 @@ button {
 }
 .time {
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 .task-body {
@@ -433,7 +436,7 @@ button {
 }
 .kind {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--cg-ink-soft);
@@ -447,7 +450,7 @@ button {
   border: none;
   background: none;
   color: var(--cg-leaf);
-  font-weight: 800;
+  font-weight: 600;
 }
 .details {
   margin-top: 6px;
@@ -479,7 +482,7 @@ button {
   border-radius: var(--cg-radius-pill);
   background: transparent;
   color: var(--cg-leaf);
-  font-weight: 800;
+  font-weight: 600;
   white-space: nowrap;
 }
 .done-btn[aria-pressed='true'] {

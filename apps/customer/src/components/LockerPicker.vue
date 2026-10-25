@@ -9,6 +9,8 @@
  * - `exclude`: sizes that cannot be used (e.g. hanging compartments for the consigne).
  * - `modelValue`: selected locker code (v-model).
  */
+import { IonIcon } from '@ionic/vue'
+import { navigateOutline } from 'ionicons/icons'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -84,7 +86,7 @@ const shown = computed(() => {
         :aria-pressed="nearMe"
         @click="toggleNearMe"
       >
-        📍 {{ t('nearby.nearMe') }}
+        <ion-icon :icon="navigateOutline" aria-hidden="true" /> {{ t('nearby.nearMe') }}
       </button>
       <button
         class="chip"
@@ -164,7 +166,7 @@ const shown = computed(() => {
   cursor: not-allowed;
 }
 .name {
-  font-weight: 800;
+  font-weight: 600;
 }
 .meta {
   grid-column: 1;

@@ -23,7 +23,7 @@
   top: 0;
   background: var(--cg-surface);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink-soft);
 }
 .data-table td.num,
@@ -58,7 +58,7 @@
   color: var(--cg-ink);
   font: inherit;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 600;
   cursor: pointer;
 }
 .chip-btn.active {
@@ -71,7 +71,7 @@
   border-radius: var(--cg-radius-pill);
   background: var(--cg-surface-soft);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .status-pill.warn {
   background: var(--cg-sun-soft);

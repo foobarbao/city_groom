@@ -82,7 +82,7 @@ const isLocker = (kind: string): boolean => kind !== 'late_pickup'
   color: var(--cg-ink-soft);
 }
 .open {
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-leaf);
   text-decoration: none;
   white-space: nowrap;

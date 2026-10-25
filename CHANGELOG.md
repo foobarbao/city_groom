@@ -180,6 +180,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- Customer app navigation: folding side menu with nested entries (same
+  component as the portal, `NavTree` in `packages/ui`), drawer on phones,
+  replacing the bottom tab bar; top bar with menu button on every screen.
+- More professional look (project owner's request): Inter instead of
+  Nunito, moderate radii, opaque cards with hairline borders, plain ground
+  without colour halos or frosted glass, lighter weights, icons instead of
+  emoji, lemon used as an accent only. Rules in `docs/DESIGN.md`.
 - Partner portal navigation: folding side menu with nested entries (spaces,
   groups, pages, icons, counters), fixed column on wide screens and drawer
   on narrow ones; page titles and breadcrumbs come from the menu. Replaces

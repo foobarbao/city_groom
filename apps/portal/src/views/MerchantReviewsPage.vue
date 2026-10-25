@@ -155,7 +155,7 @@ const stars = (n: number): string => '★'.repeat(n) + '☆'.repeat(5 - n)
   background: var(--cg-leaf);
   color: #ffffff;
   font: inherit;
-  font-weight: 800;
+  font-weight: 600;
 }
 .reply-form button:disabled {
   opacity: 0.5;

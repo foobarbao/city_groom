@@ -7,6 +7,7 @@ import { IonContent, IonPage } from '@ionic/vue'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { shopByCode } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
@@ -27,6 +28,7 @@ const conversations = computed(() =>
 
 <template>
   <ion-page>
+    <app-header />
     <ion-content>
       <main class="page">
         <h1 class="page-title">{{ t('messages.title') }}</h1>

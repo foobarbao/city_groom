@@ -17,6 +17,7 @@ import {
   IonHeader,
   IonPage,
   IonToolbar,
+  IonMenuButton,
 } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -116,6 +117,7 @@ function pay(): void {
     <ion-header class="ion-no-border">
       <ion-toolbar>
         <ion-buttons slot="start">
+          <ion-menu-button :aria-label="t('nav.menu')" />
           <ion-back-button
             :default-href="shop ? `/boutiques/${shop.code}` : '/boutiques'"
             :text="t('common.back')"
@@ -208,7 +210,7 @@ function pay(): void {
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
 }
 .stepper button:disabled {
   opacity: 0.4;

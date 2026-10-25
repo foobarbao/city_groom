@@ -119,7 +119,7 @@ const asOf = t('app.asOf', {
 h1 {
   margin: 0;
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .fictitious {

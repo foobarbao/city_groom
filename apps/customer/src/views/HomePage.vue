@@ -4,10 +4,17 @@
  * see what is in progress (consigne, orders, quotes), browse shops by
  * category, open the map of the lockers.
  */
-import { IonContent, IonPage } from '@ionic/vue'
+import { IonContent, IonIcon, IonPage } from '@ionic/vue'
+import {
+  chevronForwardOutline,
+  lockClosedOutline,
+  navigateOutline,
+  shirtOutline,
+} from 'ionicons/icons'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { CATEGORY_ORDER, catalogue, lockers, shopByCode } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
@@ -40,10 +47,10 @@ const CATEGORY_ICONS: Record<string, string> = {
 
 <template>
   <ion-page>
+    <app-header />
     <ion-content>
       <main class="page home">
         <header class="hello">
-          <p class="brand">{{ t('app.name') }}</p>
           <h1 class="page-title">
             {{
               account.state.signedIn
@@ -56,24 +63,24 @@ const CATEGORY_ICONS: Record<string, string> = {
 
         <nav class="modes">
           <router-link class="mode services" to="/boutiques">
-            <span class="mode-icon" aria-hidden="true">🧺</span>
+            <span class="mode-icon" aria-hidden="true"><ion-icon :icon="shirtOutline" /></span>
             <span class="mode-title">{{ t('home.services.title') }}</span>
             <span class="mode-text">{{ t('home.services.text') }}</span>
           </router-link>
           <router-link class="mode consigne" to="/consigne/reserver">
-            <span class="mode-icon" aria-hidden="true">🔐</span>
+            <span class="mode-icon" aria-hidden="true"><ion-icon :icon="lockClosedOutline" /></span>
             <span class="mode-title">{{ t('home.consigne.title') }}</span>
             <span class="mode-text">{{ t('home.consigne.text') }}</span>
           </router-link>
         </nav>
 
         <router-link class="nearby" to="/autour">
-          <span class="nearby-icon" aria-hidden="true">📍</span>
+          <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="navigateOutline" /></span>
           <span class="nearby-text">
             <strong>{{ t('nearby.shortcut') }}</strong>
             <span>{{ t('nearby.shortcutText') }}</span>
           </span>
-          <span aria-hidden="true">›</span>
+          <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
         </router-link>
 
         <section v-if="hasCurrent" class="current">
@@ -120,7 +127,7 @@ const CATEGORY_ICONS: Record<string, string> = {
         </section>
 
         <router-link class="soft-card map-link" to="/carte">
-          <strong>{{ t('home.map') }} →</strong>
+          <strong>{{ t('home.map') }}</strong>
           <span class="muted small">{{ t('home.rounds', { times: roundTimes }) }}</span>
         </router-link>
 
@@ -137,14 +144,6 @@ const CATEGORY_ICONS: Record<string, string> = {
   gap: 4px;
   padding-top: 12px;
 }
-.brand {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--cg-leaf);
-}
 .modes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -154,77 +153,70 @@ const CATEGORY_ICONS: Record<string, string> = {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-height: 170px;
-  padding: 18px;
+  padding: 16px;
   border-radius: var(--cg-radius-l);
+  background: var(--cg-glass);
+  box-shadow: var(--cg-shadow);
   color: inherit;
   text-decoration: none;
-  box-shadow: var(--cg-shadow);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.mode.services {
-  /* Both ends keep white text above 4.5:1. */
-  background: linear-gradient(150deg, #0f6b47, #158556);
-}
-.mode.consigne {
-  background: linear-gradient(150deg, #f7d44c, #ffeea0);
-}
-/* Fixed text colours: both cards keep their colours in dark mode. */
-.mode.services .mode-title,
-.mode.services .mode-text {
-  color: #ffffff;
-}
-.mode.consigne .mode-title,
-.mode.consigne .mode-text {
-  color: #12352a;
+  transition: box-shadow 0.15s ease;
 }
 .mode:hover,
 .mode:focus-visible {
-  transform: translateY(-2px);
   box-shadow: var(--cg-shadow-strong);
 }
 .mode-icon {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
   border-radius: var(--cg-radius-m);
-  background: rgb(255 255 255 / 35%);
-  backdrop-filter: blur(6px);
-  font-size: 26px;
+  font-size: 22px;
+}
+.services .mode-icon {
+  background: var(--cg-leaf-soft);
+  color: var(--cg-leaf);
+}
+.consigne .mode-icon {
+  background: var(--cg-sun-soft);
+  color: var(--cg-ink);
 }
 .mode-title {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--cg-ink);
 }
 .mode-text {
   font-size: 13px;
+  line-height: 1.4;
   color: var(--cg-ink-soft);
 }
 .nearby {
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 40px 1fr auto;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-glass-strong);
-  backdrop-filter: var(--cg-glass-filter);
+  background: var(--cg-glass);
   box-shadow: var(--cg-shadow);
   color: var(--cg-ink);
-  font-size: 22px;
   text-decoration: none;
 }
 .nearby-icon {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--cg-sun);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-leaf-soft);
+  color: var(--cg-leaf);
+  font-size: 20px;
+}
+.chevron {
+  font-size: 18px;
+  color: var(--cg-ink-soft);
 }
 .nearby-text {
   display: flex;
