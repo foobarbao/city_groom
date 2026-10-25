@@ -16,17 +16,25 @@ import {
   IonPage,
   IonSpinner,
   IonToolbar,
+  useIonRouter,
 } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import DemoNotice from '../components/DemoNotice.vue'
+import LockerMap from '../components/LockerMap.vue'
+import { HAS_MAP } from '../config'
 import { usePosition } from '../composables/usePosition'
 import { byDistance, formatDistance, walkingMinutes } from '../domain/geo'
-import { catalogue, lockers } from '../services/catalogue'
+import { catalogue, lockerFeatures, lockers } from '../services/catalogue'
 
 const { t } = useI18n()
-const { status, origin, locate } = usePosition()
+const { status, origin, position, locate } = usePosition()
+const router = useIonRouter()
+/** Hidden when no base map is configured or it failed to load. */
+const mapShown = ref(HAS_MAP)
+/** Close-up zoom: lockers within walking distance. */
+const NEARBY_ZOOM = 14.5
 
 /** Lockers listed at first; "Voir plus" adds as many. */
 const STEP = 8
@@ -71,6 +79,18 @@ onMounted(() => {
           <ion-button size="small" shape="round" fill="outline" @click="locate">
             {{ t('nearby.retry') }}
           </ion-button>
+        </div>
+
+        <div v-if="mapShown" class="map-box">
+          <locker-map
+            :lockers="lockerFeatures"
+            :center="origin"
+            :zoom="NEARBY_ZOOM"
+            :me="position"
+            compact
+            @select="(code) => router.push(`/casiers/${code}`)"
+            @unavailable="mapShown = false"
+          />
         </div>
 
         <div class="chips" role="group">
@@ -165,6 +185,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.map-box {
+  position: relative;
+  height: 280px;
+  border-radius: var(--cg-radius-l);
+  overflow: hidden;
+  box-shadow: var(--cg-shadow);
+}
 .banner {
   display: flex;
   flex-wrap: wrap;

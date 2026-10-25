@@ -36,9 +36,9 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   {
-    path: '/commerce/:code/services',
+    path: '/commerce/:code/offres',
     name: 'merchant-services',
-    component: () => import('../views/MerchantServicesPage.vue'),
+    component: () => import('../views/MerchantOffersPage.vue'),
     props: true,
   },
   { path: '/coursier', name: 'courier', component: () => import('../views/CourierPage.vue') },

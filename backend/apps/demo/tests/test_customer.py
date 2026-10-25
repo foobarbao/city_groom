@@ -44,3 +44,10 @@ def test_plans_include_transfers() -> None:
 
     assert [p["transfers_included"] for p in catalogue["plans"]] == [0, 2, 6]
     assert catalogue["consigne"]["transfer_price"] == "2.00"
+
+
+def test_services_have_search_keywords() -> None:
+    services = {s["code"]: s for s in build_customer_catalogue(NOW)["services"]}
+
+    assert "semelle" in services["sole_replacement"]["keywords"]
+    assert all(s["keywords"] for s in services.values())

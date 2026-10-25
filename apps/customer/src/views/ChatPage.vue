@@ -23,7 +23,7 @@ import { useI18n } from 'vue-i18n'
 import { shopByCode } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, euros } from '../utils/format'
-import { downscalePhoto } from '../utils/image'
+import { downscalePhoto } from '@city-groom/ui'
 
 const props = defineProps<{ shop: string }>()
 const { t } = useI18n()

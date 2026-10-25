@@ -10,6 +10,11 @@
  * Props:
  * - `lockers`: GeoJSON collection from `GET /api/v1/lockers/`.
  * - `merchants`: GeoJSON collection from `GET /api/v1/merchants/` (optional).
+ * - `center`, `zoom`: initial view (default: centre of Grenoble); the map
+ *   flies to a new centre when it changes.
+ * - `me`: the customer's position, drawn as a blue dot (optional).
+ * - `compact`: embedded in a page rather than full screen (credit in the
+ *   bottom corner instead of under the welcome card).
  *
  * Emits:
  * - `select(code)`: when the user taps a locker.
@@ -33,12 +38,29 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 import { DEFAULT_MAP_ZOOM, GRENOBLE_CENTER, MAP_STYLE_URL } from '../config'
 
-const props = defineProps<{
-  /** Lockers to display. */
-  lockers: LockerFeatureCollection
-  /** Local businesses to display. */
-  merchants?: MerchantFeatureCollection
-}>()
+const props = withDefaults(
+  defineProps<{
+    /** Lockers to display. */
+    lockers: LockerFeatureCollection
+    /** Local businesses to display. */
+    merchants?: MerchantFeatureCollection
+    /** Initial centre, [longitude, latitude]. */
+    center?: [number, number]
+    /** Initial zoom. */
+    zoom?: number
+    /** Position of the customer, [longitude, latitude]. */
+    me?: [number, number] | null
+    /** Embedded in a page instead of full screen. */
+    compact?: boolean
+  }>(),
+  {
+    merchants: undefined,
+    center: () => GRENOBLE_CENTER,
+    zoom: DEFAULT_MAP_ZOOM,
+    me: null,
+    compact: false,
+  },
+)
 
 const emit = defineEmits<{
   /** A locker was tapped; payload is its code. */
@@ -49,11 +71,21 @@ const emit = defineEmits<{
 
 const SOURCE_ID = 'lockers'
 const MERCHANTS_SOURCE_ID = 'merchants'
+const ME_SOURCE_ID = 'me'
 const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] }
 const container = ref<HTMLDivElement | null>(null)
 let map: MapLibreMap | null = null
 
 /** Adds a `free_total` property used to colour markers by availability. */
+/** The customer's position as GeoJSON (empty when unknown). */
+function mePoint(me: [number, number] | null): FeatureCollection {
+  if (!me) return EMPTY
+  return {
+    type: 'FeatureCollection',
+    features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: me }, properties: {} }],
+  }
+}
+
 function withTotals(collection: LockerFeatureCollection): FeatureCollection {
   return {
     type: 'FeatureCollection',
@@ -95,8 +127,8 @@ onMounted(async () => {
   map = new MapLibreMap({
     container: container.value,
     style,
-    center: GRENOBLE_CENTER,
-    zoom: DEFAULT_MAP_ZOOM,
+    center: props.center,
+    zoom: props.zoom,
     // Re-added below in a corner the bottom sheet does not cover.
     attributionControl: false,
   })
@@ -117,7 +149,10 @@ onMounted(async () => {
   // Mandatory OpenStreetMap credit (ODbL), always visible on one line, placed
   // under the welcome card (see `.locker-map` styles) so that neither the card
   // nor the bottom sheet hides it.
-  map.addControl(new AttributionControl({ compact: false }), 'top-left')
+  map.addControl(
+    new AttributionControl({ compact: false }),
+    props.compact ? 'bottom-left' : 'top-left',
+  )
 
   map.on('load', () => {
     loaded = true
@@ -165,6 +200,25 @@ onMounted(async () => {
       },
       paint: { 'text-color': '#203a33', 'text-halo-color': '#ffffff', 'text-halo-width': 1.5 },
     })
+    // The customer's position: a blue dot with a white ring, above lockers.
+    map.addSource(ME_SOURCE_ID, { type: 'geojson', data: mePoint(props.me) })
+    map.addLayer({
+      id: 'me-halo',
+      type: 'circle',
+      source: ME_SOURCE_ID,
+      paint: { 'circle-radius': 18, 'circle-color': '#2b7de9', 'circle-opacity': 0.18 },
+    })
+    map.addLayer({
+      id: 'me-dot',
+      type: 'circle',
+      source: ME_SOURCE_ID,
+      paint: {
+        'circle-radius': 7,
+        'circle-color': '#2b7de9',
+        'circle-stroke-color': '#ffffff',
+        'circle-stroke-width': 3,
+      },
+    })
     map.on('click', 'lockers-circle', (event: MapLayerMouseEvent) => {
       const code = event.features?.[0]?.properties?.code
       if (typeof code === 'string') emit('select', code)
@@ -192,6 +246,19 @@ watch(
   },
 )
 
+watch(
+  () => props.me,
+  (me) => {
+    const source = map?.getSource(ME_SOURCE_ID) as GeoJSONSource | undefined
+    source?.setData(mePoint(me))
+  },
+)
+
+watch(
+  () => props.center,
+  (center) => map?.flyTo({ center, zoom: props.zoom }),
+)
+
 onBeforeUnmount(() => {
   resizeObserver?.disconnect()
   map?.remove()
@@ -200,7 +267,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="container" class="locker-map" />
+  <div ref="container" class="locker-map" :class="{ compact }" />
 </template>
 
 <style scoped>
@@ -209,7 +276,7 @@ onBeforeUnmount(() => {
   inset: 0;
 }
 /* The credit sits under the welcome card of the map screen (about 130 px). */
-.locker-map :deep(.maplibregl-ctrl-top-left) {
+.locker-map:not(.compact) :deep(.maplibregl-ctrl-top-left) {
   top: calc(132px + env(safe-area-inset-top, 0px));
   right: 64px;
 }

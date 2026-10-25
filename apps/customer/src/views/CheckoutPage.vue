@@ -4,8 +4,8 @@
  * drop-off and pickup lockers, collection by the next round, total and
  * simulated payment. Guests can order (docs/PRODUCT.md §8).
  *
- * Query: `boutique` (shop code) and either `service` (service code) or
- * `devis` (accepted quote id).
+ * Query: `boutique` (shop code) and either `offre` (offer id), `service`
+ * (service code: the shop's offer for it) or `devis` (accepted quote id).
  */
 import type { CompartmentSize } from '@city-groom/api-client'
 import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
@@ -32,6 +32,7 @@ import {
   lockers,
   serviceByCode,
   shopByCode,
+  shopOffers,
   sizes,
 } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
@@ -43,7 +44,17 @@ const route = useRoute()
 const account = useAccountStore()
 
 const shop = computed(() => shopByCode(String(route.query.boutique ?? '')))
-const service = computed(() => serviceByCode(String(route.query.service ?? '')))
+/** The shop's offer: by id, or the first visible one for the requested service type. */
+const offer = computed(() => {
+  const offers = shop.value ? shopOffers(shop.value.code) : []
+  return (
+    offers.find((o) => o.id === route.query.offre) ??
+    offers.find((o) => o.service === route.query.service)
+  )
+})
+const service = computed(() =>
+  serviceByCode(offer.value?.service ?? String(route.query.service ?? '')),
+)
 const quote = computed(() => account.state.quotes.find((q) => q.id === route.query.devis))
 
 const quantity = ref(1)
@@ -52,15 +63,23 @@ const pickupLocker = ref<string | null>(null)
 const sameLocker = ref(true)
 const doneId = ref<string | null>(null)
 
-const label = computed(() => quote.value?.label ?? service.value?.name ?? '')
-const size = computed(() => quote.value?.size ?? service.value?.size ?? 'L')
+const label = computed(() => quote.value?.label ?? offer.value?.title ?? service.value?.name ?? '')
+const size = computed(() => quote.value?.size ?? offer.value?.size ?? service.value?.size ?? 'L')
 const unitCents = computed(() =>
-  quote.value ? quote.value.priceCents : service.value ? toCents(service.value.price) : 0,
+  quote.value
+    ? quote.value.priceCents
+    : (offer.value?.priceCents ?? (service.value ? toCents(service.value.price) : 0)),
 )
 const totalCents = computed(() => unitCents.value * (quote.value ? 1 : quantity.value))
 const nextRound = computed(() => currentSlot(new Date(), catalogue.slots)?.end ?? null)
 const readyDays = computed(() =>
-  Math.max(1, Math.round((service.value?.turnaround_rounds ?? 3) / catalogue.round_times.length)),
+  Math.max(
+    1,
+    Math.round(
+      (offer.value?.turnaroundRounds ?? service.value?.turnaround_rounds ?? 3) /
+        catalogue.round_times.length,
+    ),
+  ),
 )
 const pickup = computed(() => (sameLocker.value ? dropLocker.value : pickupLocker.value))
 const lockerName = (code: string | null): string => lockers.find((l) => l.code === code)?.name ?? ''

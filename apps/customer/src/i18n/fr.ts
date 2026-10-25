@@ -155,7 +155,13 @@ export default {
   },
   shops: {
     title: 'Boutiques',
-    searchPlaceholder: 'Nom, service, rue… (ex. ourlet, pressing)',
+    searchPlaceholder: 'Un service, une boutique… (ex. repassage, semelle)',
+    servicesTitle: 'Quel service cherchez-vous ?',
+    orBrowse: 'Ou parcourez les boutiques',
+    matchingServices: 'Services',
+    allServices: 'Tous les services',
+    providers: 'Aucune boutique | 1 boutique | {count} boutiques',
+    fromPrice: 'à partir de {price}',
     all: 'Toutes',
     partnersOnly: 'Partenaires CityPal',
     results: 'Aucun résultat | 1 résultat | {count} résultats',
@@ -197,6 +203,8 @@ export default {
       step1: 'Choisissez un casier près de vous : gare, musée, campus, place…',
       step2:
         'Déposez maintenant, ou réservez une matinée, un après-midi ou une soirée, au moins 4 h à l’avance.',
+      step2b:
+        'Choisissez quand vous récupérez : dans le même créneau, plus tard dans la journée ou le lendemain.',
       step3:
         'Au plus tard 24 h après le dépôt. Besoin de les récupérer ailleurs ? Faites-les déplacer.',
     },

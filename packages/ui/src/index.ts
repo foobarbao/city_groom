@@ -5,3 +5,4 @@
  */
 export { default as LockerFront } from "./LockerFront.vue";
 export * from "./lockerDrawing";
+export { downscalePhoto } from "./image";

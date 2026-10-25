@@ -1,7 +1,8 @@
 <script setup lang="ts">
 /**
  * Shop page. Partner shops: rating and reviews (verified orders, ADR-0008),
- * services with prices, order, contact and quote buttons. Other businesses:
+ * the merchant's offers (photo, description, price, turnaround), order,
+ * contact and quote buttons. Other businesses:
  * public information only, never a rating.
  */
 import {
@@ -18,9 +19,8 @@ import { useI18n } from 'vue-i18n'
 
 import DemoNotice from '../components/DemoNotice.vue'
 import RatingStars from '../components/RatingStars.vue'
-import { toCents } from '../domain/pricing'
 import { withRatings } from '../domain/reviews'
-import { partnerByCode, serviceByCode, shopByCode } from '../services/catalogue'
+import { partnerByCode, shopByCode, shopOffers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { euros } from '../utils/format'
 
@@ -30,9 +30,8 @@ const account = useAccountStore()
 
 const shop = computed(() => shopByCode(props.code))
 const partner = computed(() => partnerByCode(props.code))
-const services = computed(() =>
-  (shop.value?.services ?? []).flatMap((code) => serviceByCode(code) ?? []),
-)
+/** The merchant's visible offers. */
+const offers = computed(() => (shop.value ? shopOffers(shop.value.code) : []))
 /** The customer's own reviews of this shop (kept on the device in the demo). */
 const myReviews = computed(() => account.state.reviews.filter((r) => r.shopCode === props.code))
 const rating = computed(() =>
@@ -88,12 +87,17 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
           <section class="soft-card">
             <h2 class="section-title">{{ t('shop.services') }}</h2>
             <ul class="list services">
-              <li v-for="s in services" :key="s.code" class="service">
-                <span>
-                  <strong>{{ s.name }}</strong>
+              <li v-for="o in offers" :key="o.id" class="offer">
+                <div class="thumb">
+                  <img v-if="o.photo" :src="o.photo" :alt="o.title" />
+                  <span v-else aria-hidden="true">🧺</span>
+                </div>
+                <span class="offer-body">
+                  <strong>{{ o.title }}</strong>
+                  <span v-if="o.description" class="small">{{ o.description }}</span>
                   <span class="muted small">
-                    {{ t('shop.perItem', { price: euros(toCents(s.price)) }) }} ·
-                    {{ t('shop.turnaround', { days: t('shop.days', days(s.turnaround_rounds)) }) }}
+                    {{ t('shop.perItem', { price: euros(o.priceCents) }) }} ·
+                    {{ t('shop.turnaround', { days: t('shop.days', days(o.turnaroundRounds)) }) }}
                   </span>
                 </span>
                 <ion-button
@@ -101,7 +105,7 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
                   shape="round"
                   :router-link="{
                     path: '/commander',
-                    query: { boutique: shop.code, service: s.code },
+                    query: { boutique: shop.code, offre: o.id },
                   }"
                 >
                   {{ t('shop.order') }}
@@ -185,6 +189,33 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+.offer {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-leaf-soft);
+  overflow: hidden;
+  font-size: 22px;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.offer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 .service {
   display: flex;

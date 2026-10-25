@@ -218,6 +218,11 @@ Decided by the project owner on 2026-10-24:
 Requested on 2026-10-24: a **complete customer UX**, with menus to:
 
 - **choose the mode** (Services or Consigne);
+- **search by service first** (decided 2026-10-25): customers mostly look
+  for a service (ironing, resoling…) rather than a given shop; the shops tab
+  starts with the service types, one tap lists the partner shops offering
+  it (rating, price, turnaround), and the search suggests services from
+  their name and keywords ("semelle" finds "Ressemelage");
 - **browse partner shops**, with a **clear classification**: shops grouped
   by category (not "all in bulk"), indexed and easy to **search** (name,
   category, service, street);

@@ -9,6 +9,7 @@
    "longitude": 5.7205,
    "services": [
     "shirt_ironing",
+    "trouser_ironing",
     "suit_cleaning"
    ],
    "reviews": {
@@ -113,6 +114,7 @@
    "longitude": 5.7305,
    "services": [
     "shoe_cleaning",
+    "sole_replacement",
     "heel_repair"
    ],
    "reviews": {
@@ -321,6 +323,7 @@
    "longitude": 5.7125,
    "services": [
     "shirt_ironing",
+    "trouser_ironing",
     "suit_cleaning"
    ],
    "reviews": {
@@ -373,6 +376,7 @@
    "longitude": 5.7364999999999995,
    "services": [
     "shirt_ironing",
+    "trouser_ironing",
     "suit_cleaning"
    ],
    "reviews": {
@@ -477,6 +481,7 @@
    "longitude": 5.7185,
    "services": [
     "shoe_cleaning",
+    "sole_replacement",
     "heel_repair"
    ],
    "reviews": {
@@ -735,7 +740,25 @@
    "category": "dry_cleaning",
    "price": "3.50",
    "size": "XL",
-   "turnaround_rounds": 3
+   "turnaround_rounds": 3,
+   "keywords": [
+    "repasser",
+    "fer",
+    "chemisier"
+   ]
+  },
+  {
+   "code": "trouser_ironing",
+   "name": "Repassage pantalon",
+   "category": "dry_cleaning",
+   "price": "4.00",
+   "size": "XL",
+   "turnaround_rounds": 3,
+   "keywords": [
+    "repasser",
+    "fer",
+    "jean"
+   ]
   },
   {
    "code": "suit_cleaning",
@@ -743,7 +766,12 @@
    "category": "dry_cleaning",
    "price": "16.00",
    "size": "XL",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "pressing",
+    "veste",
+    "nettoyage à sec"
+   ]
   },
   {
    "code": "laundry_bag",
@@ -751,7 +779,13 @@
    "category": "laundry",
    "price": "18.00",
    "size": "L",
-   "turnaround_rounds": 3
+   "turnaround_rounds": 3,
+   "keywords": [
+    "lessive",
+    "lavage",
+    "linge",
+    "laver"
+   ]
   },
   {
    "code": "duvet_cleaning",
@@ -759,7 +793,12 @@
    "category": "laundry",
    "price": "22.00",
    "size": "L",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "couverture",
+    "plaid",
+    "lavage"
+   ]
   },
   {
    "code": "shoe_cleaning",
@@ -767,7 +806,26 @@
    "category": "shoe_repair",
    "price": "12.00",
    "size": "M",
-   "turnaround_rounds": 3
+   "turnaround_rounds": 3,
+   "keywords": [
+    "cirage",
+    "baskets",
+    "sneakers"
+   ]
+  },
+  {
+   "code": "sole_replacement",
+   "name": "Ressemelage",
+   "category": "shoe_repair",
+   "price": "35.00",
+   "size": "M",
+   "turnaround_rounds": 6,
+   "keywords": [
+    "semelle",
+    "semelles",
+    "chaussures",
+    "cordonnier"
+   ]
   },
   {
    "code": "heel_repair",
@@ -775,7 +833,13 @@
    "category": "shoe_repair",
    "price": "15.00",
    "size": "M",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "talon",
+    "talonnette",
+    "chaussures",
+    "cordonnier"
+   ]
   },
   {
    "code": "hem_alteration",
@@ -783,7 +847,13 @@
    "category": "tailoring",
    "price": "11.00",
    "size": "M",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "raccourcir",
+    "ourlet",
+    "retouche",
+    "couture"
+   ]
   },
   {
    "code": "zip_repair",
@@ -791,7 +861,13 @@
    "category": "tailoring",
    "price": "14.00",
    "size": "M",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "zip",
+    "fermeture",
+    "couture",
+    "retouche"
+   ]
   },
   {
    "code": "watch_battery",
@@ -799,7 +875,12 @@
    "category": "watch_repair",
    "price": "9.00",
    "size": "S",
-   "turnaround_rounds": 3
+   "turnaround_rounds": 3,
+   "keywords": [
+    "pile",
+    "montre",
+    "horloger"
+   ]
   },
   {
    "code": "watch_strap",
@@ -807,7 +888,12 @@
    "category": "watch_repair",
    "price": "25.00",
    "size": "S",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "bracelet",
+    "montre",
+    "horloger"
+   ]
   },
   {
    "code": "phone_screen",
@@ -815,7 +901,13 @@
    "category": "electronics_repair",
    "price": "79.00",
    "size": "S",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "smartphone",
+    "écran",
+    "vitre",
+    "téléphone"
+   ]
   },
   {
    "code": "laptop_cleaning",
@@ -823,7 +915,13 @@
    "category": "electronics_repair",
    "price": "39.00",
    "size": "L",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "ordinateur",
+    "pc",
+    "portable",
+    "nettoyage"
+   ]
   },
   {
    "code": "chain_repair",
@@ -831,7 +929,13 @@
    "category": "jewellery_repair",
    "price": "20.00",
    "size": "S",
-   "turnaround_rounds": 6
+   "turnaround_rounds": 6,
+   "keywords": [
+    "collier",
+    "bijou",
+    "chaîne",
+    "fermoir"
+   ]
   },
   {
    "code": "key_copy",
@@ -839,7 +943,13 @@
    "category": "key_cutting",
    "price": "6.00",
    "size": "S",
-   "turnaround_rounds": 3
+   "turnaround_rounds": 3,
+   "keywords": [
+    "clé",
+    "clef",
+    "double",
+    "reproduction"
+   ]
   }
  ],
  "plans": [

@@ -37,17 +37,9 @@ export interface Thread {
   messages: ThreadMessage[]
 }
 
-/** Merchant's settings for one service. */
-export interface ServiceSetting {
-  active: boolean
-  priceCents: number
-  turnaroundRounds: number
-}
-
 interface PartnerState {
   threads: Record<string, Thread[]>
   reviewReplies: Record<string, Record<string, string>>
-  services: Record<string, Record<string, ServiceSetting>>
   ready: string[]
   stopsDone: Record<string, string[]>
 }
@@ -80,7 +72,6 @@ function load(): PartnerState | null {
 const empty = (): PartnerState => ({
   threads: {},
   reviewReplies: {},
-  services: {},
   ready: [],
   stopsDone: {},
 })

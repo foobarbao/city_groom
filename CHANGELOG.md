@@ -9,6 +9,17 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Merchant offers: "Mes offres" in the merchant space (create, edit, hide,
+  delete; photo, title, service type, description, price, locker size,
+  turnaround), shared with the customer app on the same device in the demo
+  (`packages/demo-data`, offers.ts).
+- Customer app: search by service type (service grid, suggestions with
+  keywords, list of shops offering a service with price and turnaround);
+  shop pages and checkout use the merchant's offers; map with the customer's
+  position in "Casiers autour de moi".
+- Catalogue: "Repassage pantalon" and "Ressemelage" services, search
+  keywords for every service.
+- Translation key check in both apps (a missing key fails the tests).
 - Customer app: "Casiers autour de moi" view (nearest lockers, walking
   distance, free consigne compartments, drop now / book a slot), entry points
   on the home page and the Consigne tab, "Près de moi" sort in locker lists;
@@ -144,6 +155,7 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Fixed
 
+- Consigne "how it works": step 3 showed a raw key (`consigne.how.step2b`).
 - Demo dates keep their local time across a daylight-saving change (rounds
   showed at 13:00 and 19:00 after the switch to winter time).
 - Map screen: welcome card in the brand green (was hard to read over the

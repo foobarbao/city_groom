@@ -114,3 +114,39 @@ export function groupByCategory(
     }))
     .filter((group) => group.shops.length > 0)
 }
+
+/** A service type, as the customer searches it. */
+export interface ServiceType {
+  code: string
+  name: string
+  category: string
+  /** Other words customers may search with ("semelle" for "Ressemelage"). */
+  keywords?: string[]
+}
+
+/** Service types whose name or keywords match every word of the query (word prefix). */
+export function matchServices(services: ServiceType[], query: string): ServiceType[] {
+  const words = normalize(query).split(' ').filter(Boolean)
+  if (!words.length) return []
+  return services.filter((s) => {
+    const known = normalize([s.name, ...(s.keywords ?? [])].join(' ')).split(' ')
+    return words.every((w) => known.some((n) => n.startsWith(w)))
+  })
+}
+
+/** An offer of a shop for a service type. */
+export interface Provider<O> {
+  shop: Shop
+  offer: O
+}
+
+/** Best rated first, then cheapest. */
+export function rankProviders<O extends { priceCents: number }>(
+  providers: Provider<O>[],
+): Provider<O>[] {
+  return [...providers].sort(
+    (a, b) =>
+      (b.shop.rating?.average ?? 0) - (a.shop.rating?.average ?? 0) ||
+      a.offer.priceCents - b.offer.priceCents,
+  )
+}
