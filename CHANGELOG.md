@@ -9,6 +9,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Merchant planning ("Planning"): week strip with open-task counts, timeline
+  of courier arrivals, work and handovers, order details, "Marquer fait" on
+  every task (a handover done marks its items ready), .ics export of the
+  week, "add to Google Agenda / Outlook" per task.
+- Merchant connectors page: calendars, planners and automation tools, with
+  their status; iCal subscription and webhook simulated (ADR-0009, proposed).
+
 - Merchant offers: "Mes offres" in the merchant space (create, edit, hide,
   delete; photo, title, service type, description, price, locker size,
   turnaround), shared with the customer app on the same device in the demo
@@ -162,6 +169,7 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Fixed
 
+- .ics export: semicolons are now escaped as RFC 5545 requires.
 - Consigne "how it works": step 3 showed a raw key (`consigne.how.step2b`).
 - Demo dates keep their local time across a daylight-saving change (rounds
   showed at 13:00 and 19:00 after the switch to winter time).

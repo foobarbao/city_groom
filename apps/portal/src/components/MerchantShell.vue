@@ -20,7 +20,12 @@ import { partnerOrFirst, partners } from '../data/source'
 import PortalPage from './PortalPage.vue'
 
 export type MerchantSection =
-  'merchant' | 'merchant-rounds' | 'merchant-messages' | 'merchant-reviews' | 'merchant-services'
+  | 'merchant'
+  | 'merchant-rounds'
+  | 'merchant-messages'
+  | 'merchant-reviews'
+  | 'merchant-services'
+  | 'merchant-agenda'
 
 const props = defineProps<{ code?: string; section: MerchantSection }>()
 const { t } = useI18n()
@@ -34,6 +39,7 @@ const unanswered = computed(() =>
 )
 const SECTIONS: { name: MerchantSection; label: string }[] = [
   { name: 'merchant', label: 'merchant.nav.dashboard' },
+  { name: 'merchant-agenda', label: 'merchant.nav.agenda' },
   { name: 'merchant-rounds', label: 'merchant.nav.rounds' },
   { name: 'merchant-messages', label: 'merchant.nav.messages' },
   { name: 'merchant-reviews', label: 'merchant.nav.reviews' },

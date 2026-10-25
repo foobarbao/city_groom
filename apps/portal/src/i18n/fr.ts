@@ -127,10 +127,103 @@ export default {
     choose: 'Commerce',
     nav: {
       dashboard: 'Tableau de bord',
+      agenda: 'Planning',
       rounds: 'Tournées',
       messages: 'Messages et devis',
       reviews: 'Avis',
       services: 'Mes offres',
+    },
+    agenda: {
+      intro:
+        'Votre semaine : passages du coursier, prestations à faire et remises. Cochez chaque tâche une fois faite.',
+      export: 'Exporter la semaine (.ics)',
+      week: 'Semaine',
+      open: 'rien à faire | 1 à faire | {count} à faire',
+      nothing: 'Rien de prévu ce jour-là.',
+      kinds: { arrival: 'Arrivée', work: 'Prestation', handover: 'Remise au coursier' },
+      arrival: 'Le coursier vous apporte 1 article | Le coursier vous apporte {count} articles',
+      handover: 'À remettre au coursier : 1 article | À remettre au coursier : {count} articles',
+      work: '{count} × {service}',
+      details: 'Détail de la commande | Détail des {count} commandes',
+      hide: 'Masquer le détail',
+      order: 'Commande',
+      service: 'Prestation',
+      size: 'Casier',
+      handoverCol: 'Remise',
+      amount: 'Montant',
+      markDone: 'Marquer fait',
+      done: 'Fait',
+      addTo: 'Ajouter à :',
+      google: 'Google Agenda',
+      outlook: 'Outlook',
+      syncTitle: 'Votre agenda et vos outils',
+      syncImport:
+        'Exportez la semaine en fichier .ics puis importez-le dans Google Agenda (Paramètres > Importer et exporter), Apple Calendrier ou Outlook. Chaque tâche peut aussi être ajoutée seule à Google Agenda ou Outlook.',
+      syncLater:
+        'Trello, Notion, Asana, Todoist… : voyez tous les connecteurs, dont l’abonnement automatique.',
+      connectors: 'Voir les connecteurs',
+    },
+    connectors: {
+      back: 'Planning',
+      intro:
+        'Retrouvez votre planning CityPal dans les outils que vous utilisez déjà : agenda, planificateur, liste de tâches.',
+      groups: {
+        calendar: 'Agendas',
+        planner: 'Planificateurs et listes de tâches',
+        automation: 'Automatisation',
+      },
+      groupsHint: {
+        calendar: 'Format standard iCalendar : compatible avec la plupart des agendas.',
+        planner:
+          'Via Zapier, Make ou n8n : chaque tâche CityPal crée une carte, une tâche ou une ligne dans votre outil.',
+        automation:
+          'Collez l’adresse « webhook » fournie par votre outil d’automatisation : CityPal y enverra chaque tâche planifiée ou faite.',
+      },
+      status: { ready: 'Disponible', simulated: 'Démo simulée', planned: 'Bientôt' },
+      items: {
+        googleLink: {
+          name: 'Google Agenda',
+          text: 'Ajoutez une tâche d’un clic depuis le planning, ou importez le fichier .ics de la semaine.',
+        },
+        outlookLink: {
+          name: 'Outlook.com',
+          text: 'Ajoutez une tâche d’un clic depuis le planning, ou importez le fichier .ics de la semaine.',
+        },
+        icsFile: {
+          name: 'Apple Calendrier, Microsoft 365, Thunderbird…',
+          text: 'Exportez la semaine en fichier .ics depuis le planning et ouvrez-le avec votre agenda.',
+        },
+        icalFeed: {
+          name: 'Abonnement automatique (iCal)',
+          text: 'Une adresse privée à ajouter une fois dans votre agenda (« S’abonner à un agenda ») : il se met ensuite à jour tout seul.',
+        },
+        webhook: {
+          name: 'Zapier, Make, n8n',
+          text: 'Déclencheur « Webhook » dans votre outil, puis l’action de votre choix : carte, tâche, ligne, message…',
+        },
+        trello: { name: 'Trello', text: 'Une carte par tâche, dans la liste de votre choix.' },
+        notion: { name: 'Notion', text: 'Une ligne par tâche dans une base Notion.' },
+        asana: { name: 'Asana', text: 'Une tâche Asana par tâche CityPal, avec l’échéance.' },
+        microsoftPlanner: {
+          name: 'Microsoft Planner / To Do',
+          text: 'Une tâche par remise ou prestation, avec l’échéance.',
+        },
+        todoist: { name: 'Todoist', text: 'Une tâche datée par tâche CityPal.' },
+        sheets: {
+          name: 'Google Sheets, Excel',
+          text: 'Une ligne par tâche : pratique pour un suivi ou une compta maison.',
+        },
+      },
+      openPlanning: 'Depuis le planning →',
+      feedLabel: 'Adresse d’abonnement',
+      copy: 'Copier',
+      copied: 'Copié',
+      hookLabel: 'Adresse du webhook',
+      hookSave: 'Enregistrer',
+      hookSaved: 'Webhook enregistré : {url}',
+      hookRemove: 'Retirer',
+      payload: 'Exemple de données envoyées',
+      demo: 'Démonstration : l’adresse d’abonnement est fictive et rien n’est envoyé au webhook. Les connecteurs automatiques arriveront avec le serveur CityPal.',
     },
     rounds: {
       intro:

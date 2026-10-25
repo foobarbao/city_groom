@@ -42,6 +42,10 @@ interface PartnerState {
   reviewReplies: Record<string, Record<string, string>>
   ready: string[]
   stopsDone: Record<string, string[]>
+  /** Planning tasks marked done (absent in states saved before the planning). */
+  tasksDone?: string[]
+  /** Webhook address entered per merchant (DEMO: stored, nothing is sent). */
+  webhooks?: Record<string, string>
 }
 
 const STORAGE_KEY = 'citypal-partner-demo-v1'
@@ -74,6 +78,8 @@ const empty = (): PartnerState => ({
   reviewReplies: {},
   ready: [],
   stopsDone: {},
+  tasksDone: [],
+  webhooks: {},
 })
 
 export const partnerState = reactive<PartnerState>(load() ?? empty())
@@ -175,6 +181,33 @@ export function toggleReady(orderId: string): void {
   const index = partnerState.ready.indexOf(orderId)
   if (index === -1) partnerState.ready.push(orderId)
   else partnerState.ready.splice(index, 1)
+}
+
+/** Whether a planning task is done. */
+export const isTaskDone = (id: string): boolean => (partnerState.tasksDone ?? []).includes(id)
+
+/**
+ * Marks a planning task done (or undoes it). A handover done also marks its
+ * items ready for the courier, as on the rounds screen.
+ */
+export function toggleTask(id: string, handoverOrders: string[] = []): void {
+  const done = (partnerState.tasksDone ??= [])
+  const index = done.indexOf(id)
+  if (index === -1) {
+    done.push(id)
+    for (const orderId of handoverOrders)
+      if (!partnerState.ready.includes(orderId)) partnerState.ready.push(orderId)
+  } else done.splice(index, 1)
+}
+
+/** Webhook address of a merchant's automation, if entered. */
+export const webhookOf = (merchant: string): string => partnerState.webhooks?.[merchant] ?? ''
+
+/** Saves (or clears, with an empty string) a merchant's webhook address. */
+export function setWebhook(merchant: string, url: string): void {
+  const hooks = (partnerState.webhooks ??= {})
+  if (url) hooks[merchant] = url
+  else delete hooks[merchant]
 }
 
 /** Marks a stop of a round as done (or undoes it). */

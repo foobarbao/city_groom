@@ -271,6 +271,28 @@ Merchant space contents confirmed on 2026-10-25: dashboard (above),
 marked ready), **messages and quotes**, **reviews** (rating, verified
 reviews, public reply) and **services** (on/off, price, turnaround).
 
+### Planning and connectors
+
+Requested on 2026-10-25: a **planning** view (agenda) of what is scheduled,
+with the order details, a **"done" action on every task** from the planning,
+and a link with Google Calendar; then "connectors to link as many external
+tools as possible, such as planners".
+
+- Tasks: courier arrival at a round (items brought), work to do on each order
+  (due at the handover), handover to the courier at a round. Marking a
+  handover done also marks its items ready for the courier.
+- ASSUMPTION: task durations shown in calendars are 15 min (arrival,
+  handover) and 30 min (work), placeholders until the project owner says
+  otherwise.
+- Works without a server: .ics export of the week (Google Agenda, Apple
+  Calendar, Outlook, Microsoft 365, Thunderbird…) and per-task "add to"
+  links for Google Agenda and Outlook.com.
+- Connectors (ADR-0009, **proposed**): private iCal subscription address for
+  calendars, and outgoing webhooks for planners and to-do lists through
+  Zapier, Make or n8n (Trello, Notion, Asana, Microsoft Planner / To Do,
+  Todoist, Google Sheets, Excel…). Both are simulated in the demo. PROD: API
+  endpoints once the ADR is accepted.
+
 In the demo, the merchant's data (orders, forecasts) is **simulated**.
 
 ## 6. Courier partner experience
@@ -427,3 +449,8 @@ Questions to the project owner. Answers are moved into the sections above.
 11. **Transfer amounts**: supplement without subscription, number of
     transfers included per plan, reduction beyond the included ones. Can a
     stored item be transferred more than once?
+12. **Planning connectors** (ADR-0009, proposed): accept the approach (iCal
+    subscription + webhooks through Zapier / Make / n8n, native integrations
+    only on demand)? Which tools do merchants use most, to be tested first?
+    Should a task done in an external tool come back to CityPal (two-way
+    sync)? Task durations in calendars (15 / 30 min placeholders)?

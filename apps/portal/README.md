@@ -16,10 +16,12 @@ operator API endpoints do not exist yet (roadmap item 7).
 | `/`                           | Demo home: one card per space, including the customer app                                                                                                      |
 | `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                                                                                    |
 | `/commerce/:code?`            | Merchant dashboard: incoming items, items being processed, revenue and commission, forecast                                                                    |
+| `/commerce/:code/planning`    | Week planning: courier arrivals, work to do, handovers, order details, "Marquer fait", .ics export, add to Google Agenda / Outlook                             |
+| `/commerce/:code/connecteurs` | Connectors to calendars, planners and automation tools (iCal subscription and webhook simulated, ADR-0009)                                                     |
 | `/commerce/:code/tournees`    | What arrives and what goes back at each round (07:00, 14:00, 20:00), items to mark ready                                                                       |
 | `/commerce/:code/messages`    | Customer requests, answers and quotes (label, price, locker size) with their status                                                                            |
 | `/commerce/:code/avis`        | Rating out of 5, distribution, verified reviews, public replies                                                                                                |
-| `/commerce/:code/services`    | Services offered through CityPal: on/off, price, turnaround                                                                                                    |
+| `/commerce/:code/offres`      | "Mes offres": create and edit offers (photo, title, service, description, price, locker size, turnaround), hide or delete                                      |
 | `/coursier`                   | Courier space, presentation: rounds per day, items and km per round, monthly projection, consigne transfers, next rounds, map                                  |
 | `/coursier/tournee`           | Round sheet: stops in order with items to pick up and drop off (orders and consigne transfers), stops ticked as done, route map                                |
 | `/exploitation`               | Operator overview: volumes, fill rate, consigne transfers today, orders and forecast, live map, fill per size, alerts to watch, data management (Django admin) |
