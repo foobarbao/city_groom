@@ -104,12 +104,18 @@ minute to wake up; Neon's free plan stores about 1 GB.
 ### Database (Neon)
 
 1. Sign up at <https://neon.tech/>, create a project `citypal` in an **EU
-   region** (e.g. Frankfurt), PostgreSQL 17.
-2. Copy the **connection string** (`postgresql://…?sslmode=require`). It is a
-   secret: it goes only into Render's environment variables.
+   region** (e.g. Frankfurt). Done on 2026-10-25: project `citypal`,
+   `aws-eu-central-1`, PostgreSQL 18.6, branch `production`, database
+   `neondb` (Django 5.2 supports PostgreSQL 14 and later).
+2. Copy the **direct** connection string (Neon console → Connect, pooling
+   **off**: the host has no `-pooler` suffix; `postgresql://…?sslmode=require`).
+   Direct, because `start.sh` runs `migrate` with the same URL and
+   migrations can fail through the pooler (transaction-mode PgBouncer). It
+   is a secret: it goes only into Render's environment variables.
 3. Nothing else: `migrate` creates the PostGIS extension itself (GeoDjango
-   runs `CREATE EXTENSION IF NOT EXISTS postgis`). ASSUMPTION: Neon allows
-   it on the free plan, as its documentation reports; if `migrate` fails on
+   runs `CREATE EXTENSION IF NOT EXISTS postgis`). Checked on 2026-10-25:
+   PostGIS 3.6.4 is available on the project (`pg_available_extensions`);
+   creating it through `migrate` is not verified yet. If `migrate` fails on
    it, run `CREATE EXTENSION postgis;` in Neon's SQL editor.
 
 ### Web service (Render)
