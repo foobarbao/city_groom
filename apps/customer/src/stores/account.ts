@@ -47,6 +47,9 @@ export interface ConsigneBooking {
   priceCents: number
   bookedAt: string
   droppedAt: string | null
+  /** Pickup slot chosen by the customer (absent on older bookings: 24 hours). */
+  pickupStart?: string | null
+  pickupEnd?: string | null
   status: 'booked' | 'stored' | 'collected' | 'cancelled'
   /** Move to another locker at a round (absent on bookings saved before transfers existed). */
   transfer?: ConsigneTransfer | null

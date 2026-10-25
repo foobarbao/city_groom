@@ -4,7 +4,15 @@
 import type { Slot } from '@city-groom/demo-data'
 import { describe, expect, it } from 'vitest'
 
-import { bookingStatus, currentSlot, pickupDeadline, slotWindow, upcomingWindows } from './slots'
+import {
+  bookingStatus,
+  collectBy,
+  currentSlot,
+  pickupDeadline,
+  pickupWindows,
+  slotWindow,
+  upcomingWindows,
+} from './slots'
 import { serviceDay, zonedTime } from './time'
 
 const SLOTS: Slot[] = [
@@ -58,6 +66,33 @@ describe('slots', () => {
       'bookable',
       'bookable',
     ])
+  })
+
+  it('offers the drop-off slot and the next ones within 24 hours for pickup', () => {
+    // Morning slot of 20 October (summer time): 07:00 local = 05:00 UTC.
+    const morning = slotWindow('2026-10-20', MORNING)
+    const windows = pickupWindows(morning.start, SLOTS, 24)
+    expect(windows.map((w) => `${w.day} ${w.slot.code}`)).toEqual([
+      '2026-10-20 morning',
+      '2026-10-20 afternoon',
+      '2026-10-20 evening',
+    ])
+    // Immediate drop-off at 15:00: afternoon, evening, then the next morning and afternoon.
+    const now = new Date('2026-10-20T13:00:00Z')
+    expect(pickupWindows(now, SLOTS, 24).map((w) => w.slot.code)).toEqual([
+      'afternoon',
+      'evening',
+      'morning',
+      'afternoon',
+    ])
+  })
+
+  it('collects by the end of the pickup slot, never later than 24 hours', () => {
+    const dropOff = new Date('2026-10-20T13:00:00Z')
+    const sameSlotEnd = new Date('2026-10-20T18:00:00Z')
+    expect(collectBy(dropOff, sameSlotEnd, 24)).toEqual(sameSlotEnd)
+    const nextAfternoonEnd = new Date('2026-10-21T18:00:00Z')
+    expect(collectBy(dropOff, nextAfternoonEnd, 24).toISOString()).toBe('2026-10-21T13:00:00.000Z')
   })
 
   it('gives 24 hours to collect a stored item', () => {

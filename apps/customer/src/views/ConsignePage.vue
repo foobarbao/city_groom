@@ -60,6 +60,7 @@ const past = computed(() =>
           <ol>
             <li>{{ t('consigne.how.step1') }}</li>
             <li>{{ t('consigne.how.step2') }}</li>
+            <li>{{ t('consigne.how.step2b') }}</li>
             <li>{{ t('consigne.how.step3') }}</li>
           </ol>
           <router-link class="small" to="/compte/abonnement"

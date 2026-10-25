@@ -187,6 +187,15 @@ Decided by the project owner on 2026-10-24:
   (e.g. free compartments). Booking earlier, e.g. the day before, is allowed.
 - **Immediate drop-off** without booking is also possible when a compartment
   of the right size is free.
+- **Pickup slot** (decided 2026-10-25): the customer also chooses when they
+  collect: the **same slot** as the drop-off (e.g. drop off and collect in
+  the morning) or a **later slot** (afternoon, evening, next day). Storage
+  is therefore not 24 hours by default: **24 hours is the maximum**. The
+  items must be collected by the end of the pickup slot, and never later
+  than 24 hours after drop-off.
+- **At the locker**, the app guides the customer: the door opens, they put
+  their things in (or take them out) and **close the door**, then the app
+  confirms the result.
 - **Price** depends on the customer's **subscription**: subscribers pay less.
   Plans and prices are not defined yet; the demo shows placeholder plans
   labelled as such (open question 8).

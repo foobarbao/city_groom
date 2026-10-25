@@ -118,9 +118,18 @@ Versioning: [SemVer](https://semver.org/).
   transfer screen and booking page states.
 - New visual theme: green, warm lemon and cream, frosted glass cards, floating
   tab bar, vivid mode cards (docs/DESIGN.md); applies to both apps.
+- Consigne pickup slot: the customer chooses when they collect (same slot or
+  a later one, at most 24 h after drop-off); transfers arrive before the end
+  of the pickup slot.
+- Guided drop-off and collection on the booking page: the door opens, "put
+  your things in / take them out, then close the door", then a clear
+  confirmation.
 
 ### Fixed
 
+- Map screen: welcome card in the brand green (was hard to read over the
+  map); businesses grouped by category with a link to the searchable
+  catalogue (the list was unsorted).
 - Customer app: after choosing a locker, a size or a round, the page scrolls
   to the next part of the form, so the "Continuer" button is no longer hidden
   below the list on phones.

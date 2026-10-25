@@ -22,7 +22,14 @@ import { useI18n } from 'vue-i18n'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { consignePrice } from '../domain/pricing'
-import { type SlotWindow, currentSlot, pickupDeadline, upcomingWindows } from '../domain/slots'
+import {
+  type SlotWindow,
+  collectBy,
+  currentSlot,
+  pickupDeadline,
+  pickupWindows,
+  upcomingWindows,
+} from '../domain/slots'
 import { catalogue, lockerLayout, lockers, planByCode, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
@@ -33,12 +40,14 @@ const router = useIonRouter()
 const account = useAccountStore()
 const labels = computed(() => ({ today: t('common.today'), tomorrow: t('common.tomorrow') }))
 
-const STEPS = ['locker', 'when', 'size', 'confirm'] as const
+const STEPS = ['locker', 'when', 'pickup', 'size', 'confirm'] as const
 const step = ref(0)
 const lockerCode = ref<string | null>(null)
 /** null = drop off now; otherwise the booked slot. */
 const window = ref<SlotWindow | null>(null)
 const whenChosen = ref(false)
+/** Slot in which the customer will collect the items. */
+const pickup = ref<SlotWindow | null>(null)
 const size = ref<string | null>(null)
 
 const now = new Date()
@@ -69,7 +78,10 @@ const door = computed(() => {
 })
 
 const canContinue = computed(
-  () => [lockerCode.value !== null, whenChosen.value, size.value !== null, true][step.value],
+  () =>
+    [lockerCode.value !== null, whenChosen.value, pickup.value !== null, size.value !== null, true][
+      step.value
+    ],
 )
 
 // After choosing a locker or a size, bring the "Continuer" button into view.
@@ -79,13 +91,25 @@ watch([lockerCode, size], () => reveal(continueButton.value))
 function chooseNow(): void {
   window.value = null
   whenChosen.value = true
+  pickup.value = null
   step.value = 2
 }
 
 function chooseSlot(w: SlotWindow): void {
   window.value = w
   whenChosen.value = true
+  pickup.value = null
   step.value = 2
+}
+
+/** Pickup slots: the drop-off slot and the next ones, within 24 hours. */
+const pickupOptions = computed(() =>
+  pickupWindows(window.value?.start ?? now, catalogue.slots, catalogue.consigne.max_hours),
+)
+
+function choosePickup(w: SlotWindow): void {
+  pickup.value = w
+  step.value = 3
 }
 
 function pay(): void {
@@ -101,6 +125,8 @@ function pay(): void {
     door: door.value,
     priceCents: price.value.cents,
     droppedAt: null,
+    pickupStart: pickup.value?.start.toISOString() ?? null,
+    pickupEnd: pickup.value?.end.toISOString() ?? null,
   })
   router.replace(`/consigne/${id}`)
 }
@@ -176,6 +202,27 @@ function pay(): void {
         </section>
 
         <section v-else-if="step === 2" class="group">
+          <h1 class="page-title">{{ t('consigne.choosePickup') }}</h1>
+          <p class="muted">{{ t('consigne.pickupHint') }}</p>
+          <button
+            v-for="(w, i) in pickupOptions"
+            :key="w.start.toISOString()"
+            type="button"
+            class="soft-card option"
+            :class="{ selected: pickup?.start.getTime() === w.start.getTime() }"
+            @click="choosePickup(w)"
+          >
+            <strong>
+              {{ t('consigne.slot', { slot: w.slot.label, day: dayLabel(w.day, labels) }) }}
+              <span v-if="i === 0" class="pill">{{ t('consigne.sameSlot') }}</span>
+            </strong>
+            <span class="muted small">
+              {{ t('consigne.slotHours', { start: w.slot.starts, end: w.slot.ends }) }}
+            </span>
+          </button>
+        </section>
+
+        <section v-else-if="step === 3" class="group">
           <h1 class="page-title">{{ t('consigne.chooseSize') }}</h1>
           <button
             v-for="spec in sizeSpecs"
@@ -224,15 +271,24 @@ function pay(): void {
               </strong>
               <strong v-else>{{ t('consigne.now') }}</strong>
             </p>
+            <p v-if="pickup">
+              {{ t('consigne.pickup') }} :
+              <strong>
+                {{
+                  t('consigne.slot', { slot: pickup.slot.label, day: dayLabel(pickup.day, labels) })
+                }}
+                ({{ clock(pickup.start) }}–{{ clock(pickup.end) }})
+              </strong>
+            </p>
             <p>{{ t(`locker.sizes.${size}`) }} · {{ t('consigne.door', { label: door }) }}</p>
-            <p v-if="!window">
+            <p v-if="!window && pickup">
               {{
                 t('consigne.deadlineAt', {
-                  date: dateTime(pickupDeadline(now, catalogue.consigne.max_hours), labels),
+                  date: dateTime(collectBy(now, pickup.end, catalogue.consigne.max_hours), labels),
                 })
               }}
             </p>
-            <p v-else>{{ t('consigne.deadline') }}</p>
+            <p v-else>{{ t('consigne.deadlineSlot') }}</p>
             <p v-if="price" class="price">
               {{ t('consigne.price') }} : <strong>{{ euros(price.cents) }}</strong>
               <span v-if="price.cents !== price.baseCents" class="muted small">
@@ -255,7 +311,7 @@ function pay(): void {
         </section>
 
         <ion-button
-          v-if="step === 0 || step === 2"
+          v-if="step === 0 || step === 3"
           ref="continueButton"
           expand="block"
           shape="round"
@@ -280,7 +336,7 @@ function pay(): void {
 }
 .stepper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 6px;
   margin: 0;
   padding: 0;

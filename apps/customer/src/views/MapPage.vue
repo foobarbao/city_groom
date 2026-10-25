@@ -19,6 +19,7 @@ import LockerCard from '../components/LockerCard.vue'
 import LockerMap from '../components/LockerMap.vue'
 import MerchantCard from '../components/MerchantCard.vue'
 import { useErrorMessage } from '../composables/useErrorMessage'
+import { CATEGORY_ORDER } from '../services/catalogue'
 
 const { t } = useI18n()
 const router = useIonRouter()
@@ -40,6 +41,16 @@ const sortedLockers = computed(() =>
     if ((freeA === 0) !== (freeB === 0)) return freeA === 0 ? 1 : -1
     return (a.properties?.name ?? '').localeCompare(b.properties?.name ?? '', 'fr')
   }),
+)
+
+/** Businesses grouped by category (catalogue order), alphabetical within a group. */
+const merchantGroups = computed(() =>
+  CATEGORY_ORDER.map((category) => ({
+    category,
+    merchants: (merchants.value?.features ?? [])
+      .filter((m) => m.properties?.category === category)
+      .sort((a, b) => (a.properties?.name ?? '').localeCompare(b.properties?.name ?? '', 'fr')),
+  })).filter((group) => group.merchants.length > 0),
 )
 
 function open(code: string): void {
@@ -122,13 +133,24 @@ onMounted(load)
             <p class="notice">{{ t('app.simulatedNotice') }}</p>
           </template>
           <template v-else>
-            <div v-if="merchants?.features?.length" class="cards">
-              <merchant-card
-                v-for="merchant in merchants.features"
-                :key="merchant.id"
-                :merchant="merchant"
-              />
-            </div>
+            <template v-if="merchants?.features?.length">
+              <router-link class="to-catalogue" to="/boutiques">
+                {{ t('map.searchShops') }} →
+              </router-link>
+              <section v-for="group in merchantGroups" :key="group.category" class="group">
+                <h2 class="group-title">
+                  {{ t(`merchants.categories.${group.category}`) }}
+                  <span class="count">{{ group.merchants.length }}</span>
+                </h2>
+                <div class="cards">
+                  <merchant-card
+                    v-for="merchant in group.merchants"
+                    :key="merchant.id"
+                    :merchant="merchant"
+                  />
+                </div>
+              </section>
+            </template>
             <p v-else class="empty">{{ t('merchants.empty') }}</p>
             <p class="notice">{{ t('merchants.source') }}</p>
           </template>
@@ -164,9 +186,11 @@ onMounted(load)
   gap: 2px;
   padding: 14px 18px;
   border-radius: var(--cg-radius-l);
-  background: var(--cg-glass);
-  backdrop-filter: var(--cg-glass-filter);
-  box-shadow: var(--cg-shadow);
+  /* Brand green, opaque: readable over any part of the map. White text
+     keeps 4.5:1 on both ends of the gradient. */
+  background: linear-gradient(150deg, #0f6b47, #158556);
+  box-shadow: var(--cg-shadow-strong);
+  color: #ffffff;
 }
 .brand {
   margin: 0;
@@ -174,7 +198,7 @@ onMounted(load)
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--cg-leaf);
+  color: #f7d44c;
 }
 .welcome h1 {
   margin: 0;
@@ -185,7 +209,7 @@ onMounted(load)
 .sub {
   margin: 0;
   font-size: 13px;
-  color: var(--cg-ink-soft);
+  color: rgb(255 255 255 / 85%);
 }
 .sheet {
   position: absolute;
@@ -270,5 +294,33 @@ onMounted(load)
 }
 .no-map .grabber {
   display: none;
+}
+.to-catalogue {
+  align-self: flex-start;
+  padding: 10px 16px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-leaf);
+  color: var(--cg-surface);
+  font-weight: 800;
+  text-decoration: none;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.group-title {
+  margin: 6px 0 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cg-ink);
+}
+.count {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-surface-soft);
+  font-size: 12px;
+  color: var(--cg-ink-soft);
 }
 </style>

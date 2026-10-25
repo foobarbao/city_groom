@@ -16,6 +16,8 @@ export interface TransferableBooking {
   slotStart: string
   slotEnd: string
   droppedAt: string | null
+  /** End of the chosen pickup slot: the items must reach the new locker before it. */
+  pickupEnd?: string | null
 }
 
 /** Round instants strictly after `from` and at most `to`. */
@@ -51,7 +53,11 @@ export function transferRounds(
     dropped ?? (booking.mode === 'slot' ? latest(new Date(booking.slotStart), now) : now)
   const inLockerFrom =
     dropped ?? (booking.mode === 'slot' ? latest(new Date(booking.slotEnd), now) : now)
-  return roundsBetween(latest(inLockerFrom, now), addHours(earliestDrop, maxHours), roundTimes)
+  const limit = addHours(earliestDrop, maxHours)
+  const pickupEnd = booking.pickupEnd ? new Date(booking.pickupEnd) : null
+  // A round at the very end of the pickup slot would leave no time to collect.
+  const until = pickupEnd && pickupEnd < limit ? new Date(pickupEnd.getTime() - 1) : limit
+  return roundsBetween(latest(inLockerFrom, now), until, roundTimes)
 }
 
 /** Price of a transfer for a plan, given the included transfers already used this month. */

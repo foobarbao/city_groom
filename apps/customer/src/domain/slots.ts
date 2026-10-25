@@ -6,7 +6,9 @@
  *   (the evening slot ends the next morning).
  * - A slot can be booked at least `minNoticeHours` before it starts.
  * - An item can also be dropped off immediately, without booking.
- * - A stored item must be collected at most `maxHours` after drop-off.
+ * - A stored item must be collected at most `maxHours` after drop-off; the
+ *   customer picks the pickup slot: the drop-off slot itself or a later one,
+ *   so a booking can last a few hours or up to 24 hours.
  *
  * PROD: the backend enforces these rules; the app only previews them.
  */
@@ -82,3 +84,36 @@ export function upcomingWindows(
 
 /** Latest time to collect an item stored at `dropOff`. */
 export const pickupDeadline = (dropOff: Date, maxHours: number): Date => addHours(dropOff, maxHours)
+
+/**
+ * Slots in which items dropped off during `drop` can be collected: the same
+ * slot, then the following ones that start less than `maxHours` after the
+ * drop-off slot starts (or after `now`, for an immediate drop-off).
+ *
+ * @param dropStart - Start of the drop-off: slot start, or now.
+ */
+export function pickupWindows(dropStart: Date, slots: Slot[], maxHours: number): SlotWindow[] {
+  const limit = addHours(dropStart, maxHours)
+  const first = currentSlot(dropStart, slots)
+  if (!first) return []
+  const windows: SlotWindow[] = []
+  let day = first.day
+  let index = slots.findIndex((s) => s.code === first.slot.code)
+  for (;;) {
+    const window = slotWindow(day, slots[index] as Slot)
+    if (window.start >= limit) break
+    windows.push(window)
+    index += 1
+    if (index === slots.length) {
+      index = 0
+      day = addDays(day, 1)
+    }
+  }
+  return windows
+}
+
+/** Latest collection time: end of the pickup slot, within `maxHours` after drop-off. */
+export function collectBy(dropOff: Date, pickupEnd: Date, maxHours: number): Date {
+  const limit = pickupDeadline(dropOff, maxHours)
+  return pickupEnd < limit ? pickupEnd : limit
+}

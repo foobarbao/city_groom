@@ -50,6 +50,20 @@ describe('transfer rounds', () => {
     // from 07:00 to 14:00 the next day (slot start + 24 h).
     expect(iso(rounds)).toEqual(['2026-10-21T05:00:00.000Z', '2026-10-21T12:00:00.000Z'])
   })
+
+  it('moves items before the end of the chosen pickup slot', () => {
+    const booking = {
+      mode: 'now' as const,
+      slotStart: '2026-10-20T08:00:00Z',
+      slotEnd: '2026-10-20T12:00:00Z',
+      droppedAt: '2026-10-20T08:00:00Z', // 10:00
+      pickupEnd: '2026-10-20T18:00:00Z', // afternoon slot, until 20:00
+    }
+    // Only the 14:00 round: the 20:00 one ends the pickup slot.
+    expect(iso(transferRounds(booking, new Date('2026-10-20T08:30:00Z'), 24, ROUNDS))).toEqual([
+      '2026-10-20T12:00:00.000Z',
+    ])
+  })
 })
 
 describe('transfer price', () => {
