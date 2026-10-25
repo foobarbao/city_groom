@@ -21,6 +21,7 @@ from apps.demo.catalogue import (
     CONSIGNE_PRICES,
     CONSIGNE_TRANSFER_PRICE,
     DEMO_MERCHANTS,
+    PROMOTIONS,
     REVIEW_COMMENTS,
     SERVICES_BY_CATEGORY,
     SUBSCRIPTION_PLANS,
@@ -125,6 +126,18 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
                 "size": WEEKLY_PACK.size.value,
                 "turnaround_rounds": WEEKLY_PACK.turnaround_rounds,
             }
+        ],
+        "promotions": [
+            {
+                "code": p.code,
+                "pack": p.pack_code,
+                "audience": p.audience,
+                "badge": p.badge,
+                "title": p.title,
+                "text": p.text,
+                "theme": p.theme,
+            }
+            for p in PROMOTIONS
         ],
         "consigne": {
             "max_hours": CONSIGNE_MAX_HOURS,

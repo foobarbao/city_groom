@@ -129,6 +129,19 @@ included services; garment compartment for drop-off and return; unused
 items of a week are not carried over; default laundry availability 40
 shirts/week; 18 fictitious active packs in the demo.
 
+### Promotions
+
+Requested on 2026-10-25: promotions must stand out, and more promotions on
+particular packs will come. A promotion is catalogue data (backend
+`PROMOTIONS`): the pack it applies to, its audience ("first_purchase" or
+"all"), a badge, a title, a pitch and a colour theme. The **price always
+comes from the pack rules**, never from the texts, so prices cannot go
+stale. The home screen shows the promotions the customer can use in an
+"Offres du moment" strip; the pack screen shows its own promotion.
+First promotion: the weekly pack welcome offer. No struck-through "before"
+price is shown (ASSUMPTION: showing one would need a legal check of the
+reference-price rules first).
+
 ### Out of scope: red lines
 
 - **No parcel delivery** for e-commerce platforms (e.g. no Amazon parcels).

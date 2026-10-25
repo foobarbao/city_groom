@@ -13,9 +13,20 @@ current principles:
 - **Sober shapes**: moderate radii (8 / 10 / 14 px), opaque white cards with
   a hairline border and a light shadow, plain cream ground (no halos, no
   frosted glass). Pills only for chips (filters) and counters.
-- **Colour with restraint**: deep green text, green for actions (white text,
-  5.3:1), mint tints for selected states and icon tiles; the warm lemon is
-  an accent (counters, "to answer" states), no longer a large block colour.
+- **Colour with intent** (revised 2026-10-25: the sober version looked too
+  monochrome; the owner asked for more life, especially on promotions):
+  deep green text and green actions stay; colour now carries meaning:
+  - **promotions** are the only large colour blocks: gradient cards (`sun`
+    lemon, `leaf` green, `coral`), with a badge, the weekly price in large
+    type and a call to action (`PromoCard.vue`); they keep their colours in
+    dark mode, like a printed flyer;
+  - **statuses** each have a tint (`utils/tones.ts`): lemon = something to
+    do, sky = in a locker, plum = being processed, solid green = ready to
+    collect, grey = done;
+  - **categories** cycle through soft accent tiles (leaf, sky, coral, plum,
+    lemon) behind line icons.
+  Accent tokens: `--cg-sky`, `--cg-coral`, `--cg-plum` and their `-soft`
+  tints, light and dark; strong tone on soft tint keeps text above 4.5:1.
 - **Neutral type**: Inter (variable, bundled with the apps so it works
   offline and in the Android app); headings 700, emphasis 600, no black
   weights.

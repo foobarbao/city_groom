@@ -188,6 +188,19 @@ export interface DemoPack {
   turnaround_rounds: number;
 }
 
+/** A promotion highlighted in the customer app (prices come from its pack). */
+export interface DemoPromotion {
+  code: string;
+  /** Code of the pack it applies to. */
+  pack: string;
+  /** "first_purchase": customers who never bought the pack; "all": everyone. */
+  audience: "first_purchase" | "all";
+  badge: string;
+  title: string;
+  text: string;
+  theme: "sun" | "leaf" | "coral";
+}
+
 /** A slot between two rounds (docs/PRODUCT.md §4). */
 export interface Slot {
   code: "morning" | "afternoon" | "evening";
@@ -204,6 +217,7 @@ export interface CatalogueData {
   services: DemoService[];
   plans: SubscriptionPlan[];
   packs: DemoPack[];
+  promotions: DemoPromotion[];
   consigne: {
     max_hours: number;
     min_notice_hours: number;

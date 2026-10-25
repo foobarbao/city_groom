@@ -68,3 +68,16 @@ def test_weekly_pack_follows_the_owner_rules() -> None:
     assert set(pack["weekly_prices"]) <= plans
     assert "free" not in pack["weekly_prices"]
     assert pack["turnaround_rounds"] >= 1
+
+
+def test_promotions_point_to_existing_packs_and_known_themes() -> None:
+    catalogue = build_customer_catalogue(NOW)
+    packs = {p["code"] for p in catalogue["packs"]}
+
+    assert catalogue["promotions"]
+    for promotion in catalogue["promotions"]:
+        assert promotion["pack"] in packs
+        assert promotion["audience"] in {"first_purchase", "all"}
+        assert promotion["theme"] in {"sun", "leaf", "coral"}
+        # Prices come from the pack, never written in the texts.
+        assert "€" not in promotion["title"] + promotion["text"]

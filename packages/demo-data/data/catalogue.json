@@ -1014,6 +1014,17 @@
    "turnaround_rounds": 3
   }
  ],
+ "promotions": [
+  {
+   "code": "welcome_weekly_shirts",
+   "pack": "weekly_shirts",
+   "audience": "first_purchase",
+   "badge": "Offre de bienvenue",
+   "title": "Votre semaine de chemises, sans y penser",
+   "text": "5 chemises + 2 pantalons lavés, repassés et pliés chaque semaine.",
+   "theme": "sun"
+  }
+ ],
  "consigne": {
   "max_hours": 24,
   "min_notice_hours": 4,

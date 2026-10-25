@@ -35,6 +35,7 @@ import {
 import { useAccountStore } from '../stores/account'
 import { reveal } from '../utils/scroll'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
+import { statusTone } from '../utils/tones'
 
 const props = defineProps<{ id: string }>()
 const { t } = useI18n()
@@ -91,7 +92,7 @@ onMounted(() => {
     <app-header back-href="/compte/commandes" />
     <ion-content>
       <main v-if="order" class="page">
-        <span class="pill" :class="{ off: order.status === 'picked_up' }">
+        <span class="pill" :class="statusTone(order.status)">
           {{ t(`orders.status.${order.status}`) }}
         </span>
         <h1 class="page-title">

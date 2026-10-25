@@ -395,6 +395,12 @@ export default {
       picked_up: 'Récupérée',
     },
   },
+  promo: {
+    title: 'Offres du moment',
+    perWeek: 'par semaine',
+    terms: '{total} pour {weeks} semaines, réglés en une fois',
+    cta: 'J’en profite',
+  },
   pack: {
     title: 'Pack semaine',
     intro: 'Chaque semaine, {items} lavés, repassés et pliés. Vous déposez, on s’occupe du reste.',

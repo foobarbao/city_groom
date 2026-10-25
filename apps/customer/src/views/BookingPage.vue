@@ -25,6 +25,7 @@ import { assignDoorLabel, catalogue, lockerLayout, lockers, sizes } from '../ser
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
+import { statusTone } from '../utils/tones'
 
 const props = defineProps<{ id: string }>()
 const { t } = useI18n()
@@ -107,10 +108,7 @@ function confirmClosed(): void {
     <app-header back-href="/consigne" />
     <ion-content>
       <main v-if="booking" class="page">
-        <span
-          class="pill"
-          :class="{ off: booking.status === 'cancelled' || booking.status === 'collected' }"
-        >
+        <span class="pill" :class="statusTone(booking.status)">
           {{ t(`consigne.status.${booking.status}`) }}
         </span>
         <h1 class="page-title">{{ locker?.name }}</h1>

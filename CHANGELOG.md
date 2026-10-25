@@ -9,6 +9,11 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Promotions: catalogue data (pack, audience, badge, texts, colour theme;
+  price taken from the pack), "Offres du moment" strip on the home screen
+  and promotion card on the pack screen.
+- Livelier colours: accent tokens (sky, coral, plum), a tint per order and
+  booking status, coloured category tiles.
 - Weekly pack (5 shirts + 2 trousers washed, ironed, folded each week,
   bought by 4 weeks): customer "Pack semaine" screen with welcome price
   then price by plan, weekly drop-off day and slot, computed return, pickup

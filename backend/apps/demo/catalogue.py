@@ -395,6 +395,47 @@ WEEKLY_PACK = DemoPack(
     size=XL,
 )
 
+
+@dataclass(frozen=True)
+class DemoPromotion:
+    """A promotion highlighted in the customer app.
+
+    Attributes:
+        code: Stable identifier.
+        pack_code: Pack the promotion applies to.
+        audience: Who sees it: "first_purchase" (customers who never bought
+            the pack) or "all".
+        badge: Short label on the card (French).
+        title: Card title (French).
+        text: One-line pitch (French).
+        theme: Colour theme of the card: "sun", "leaf" or "coral".
+    """
+
+    code: str
+    pack_code: str
+    audience: str
+    badge: str
+    title: str
+    text: str
+    theme: str
+
+
+# Promotions shown on the home screen. The welcome offer of the weekly pack
+# is the one decided by the project owner on 2026-10-25; more promotions on
+# particular packs will be added here. The price itself comes from the pack
+# (never repeated in the texts), so a price change cannot leave a stale text.
+PROMOTIONS: tuple[DemoPromotion, ...] = (
+    DemoPromotion(
+        code="welcome_weekly_shirts",
+        pack_code=WEEKLY_PACK.code,
+        audience="first_purchase",
+        badge="Offre de bienvenue",
+        title="Votre semaine de chemises, sans y penser",
+        text="5 chemises + 2 pantalons lavés, repassés et pliés chaque semaine.",
+        theme="sun",
+    ),
+)
+
 # ASSUMPTION: consigne price per booking without subscription, by compartment
 # size (placeholders, open question 9). Hanging compartments are not offered
 # for the consigne.
