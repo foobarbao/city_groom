@@ -484,6 +484,18 @@ with the project owner.
   customers they serve.
 - Prepare a structure able to host the production version, including
   **connecting real lockers** later (see ADR-0003, integration boundaries).
+- **Hosted backend data** (decided 2026-10-25): the Render + Neon database
+  is filled by a GitHub Actions workflow run by hand ("Seed hosted
+  database"), from the `data/osm/` files: the same simulated lockers and
+  real merchants as the demo site, plus the fictitious "Démo ·" shops
+  (asked for, labelled; `load_demo_merchants --remove` takes them out).
+  The fictitious activity (orders, reviews, rounds) cannot be loaded yet:
+  the backend has no models for it; adding them is a structural decision
+  (ADR to propose).
+- **Goal of the hosted demo** (stated 2026-10-25): it is the base of the
+  final product; run it with real Google sign-in to **collect first e-mail
+  addresses**. The project owner can buy `citypal.fr`. Open question 14
+  (marketing consent) must be settled before writing to these addresses.
 
 ## Glossary
 
@@ -577,3 +589,10 @@ Questions to the project owner. Answers are moved into the sections above.
     non-expiring app tokens, project user model) to validate. Should
     merchants and couriers also sign in with Google on the portal? How long
     are inactive customer accounts kept (GDPR retention)?
+
+14. **E-mails collected through Google sign-in** (2026-10-25): may CityPal
+    write to these addresses about the launch? ASSUMPTION to validate with a
+    legal adviser: service messages are fine, but marketing e-mails need an
+    explicit, unticked opt-in at sign-in (CNIL rules on electronic
+    prospecting), plus the privacy policy published on the domain. Wording
+    and storage of the opt-in to decide.

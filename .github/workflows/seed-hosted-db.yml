@@ -1,0 +1,66 @@
+# Fills the hosted database (Neon, used by the Render backend) with the same
+# data as the demo site: simulated lockers at real places and real merchants
+# from the OpenStreetMap files of data/osm/, plus the fictitious "Démo ·"
+# shops if asked (docs/BUILD_AND_RELEASE.md §6). Run by hand from the Actions
+# tab; every step is safe to repeat (existing lockers are kept, merchants
+# are updated in place).
+#
+# Needs the repository secret HOSTED_DATABASE_URL: the Neon *direct*
+# connection string (host without "-pooler"), the same as DATABASE_URL on
+# Render. GitHub runners reach Neon; the development containers cannot.
+name: Seed hosted database
+
+on:
+  workflow_dispatch:
+    inputs:
+      demo_merchants:
+        description: 'Add the fictitious "Démo ·" shops'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seed-hosted-db
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      # django.setup() needs a key; nothing signed here is kept.
+      DJANGO_SECRET_KEY: seed-only-not-secret
+      DATABASE_URL: ${{ secrets.HOSTED_DATABASE_URL }}
+    steps:
+      - name: Check the secret
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::Repository secret HOSTED_DATABASE_URL is missing (Settings > Secrets and variables > Actions)."
+            exit 1
+          fi
+      - uses: actions/checkout@v7
+      - name: Install GDAL (required by GeoDjango)
+        run: sudo apt-get update && sudo apt-get install -y gdal-bin
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.32"
+      - run: uv sync --frozen --no-dev
+      - name: Apply migrations
+        run: uv run python manage.py migrate --noinput
+      # Same counts as the demo site: 25 service lockers at tram stops and 45
+      # consigne lockers at strategic places.
+      - name: Simulated lockers
+        run: >-
+          uv run python manage.py seed_simulated_lockers
+          --sites-file ../data/osm/tram_stops.json
+          --strategic-file ../data/osm/strategic_sites.json
+          --count 25 --strategic-count 45
+      - name: Real merchants (OpenStreetMap)
+        run: uv run python manage.py import_osm_merchants --from-file ../data/osm/merchants.json
+      - name: Fictitious demo merchants
+        if: ${{ inputs.demo_merchants }}
+        run: uv run python manage.py load_demo_merchants
