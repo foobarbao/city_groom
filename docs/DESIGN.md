@@ -34,8 +34,8 @@ the menu navigation as it is. The current principles:
     collect, grey = done;
   - **categories** cycle through soft accent tiles (leaf, sky, coral, plum,
     lemon) behind line icons.
-  Accent tokens: `--cg-sky`, `--cg-coral`, `--cg-plum` and their `-soft`
-  tints, light and dark; strong tone on soft tint keeps text above 4.5:1.
+    Accent tokens: `--cg-sky`, `--cg-coral`, `--cg-plum` and their `-soft`
+    tints, light and dark; strong tone on soft tint keeps text above 4.5:1.
 - **Neutral type**: Inter (variable, bundled with the apps so it works
   offline and in the Android app); headings 700, emphasis 600, no black
   weights.
@@ -111,22 +111,22 @@ component renders both menus (`packages/ui/src/NavTree.vue`, tree types in
 Defined once in `packages/ui/src/theme.css` (shared by every frontend) (light and dark values) and
 mapped onto Ionic's colour variables. Components only use these tokens.
 
-| Token | Role |
-|---|---|
-| `--cg-ground` | Page background |
-| `--cg-surface`, `--cg-surface-soft` | Cards and sheets; chips and inactive controls |
-| `--cg-ink`, `--cg-ink-soft` | Main and secondary text |
-| `--cg-leaf`, `--cg-leaf-soft` | Accent (actions, selected, available) and its background |
-| `--cg-pine` | Strong text on soft backgrounds |
-| `--cg-sun`, `--cg-sun-soft` | Warm lemon accent (consigne, badges, opening door) and its pastel |
-| `--cg-glass`, `--cg-glass-strong`, `--cg-glass-filter` | Frosted glass cards and bars |
-| `--cg-sky`, `--cg-sky-soft` | Trust blue (tech, lockers, location) and its tint |
-| `--cg-backdrop` | Ground with soft blue, yellow and green glows, behind every page |
-| `--cg-hero` | Blue-to-green gradient of the home hero band (white text) |
-| `--cg-ease`, `--cg-motion` | Easing and duration of every transition |
-| `--cg-locker-*` | Locker drawing |
-| `--cg-radius-*`, `--cg-shadow*` | Shapes and depth |
-| `--cg-chart-1`, `--cg-chart-2`, `--cg-chart-grid` | Chart series and grid (never text) |
+| Token                                                  | Role                                                              |
+| ------------------------------------------------------ | ----------------------------------------------------------------- |
+| `--cg-ground`                                          | Page background                                                   |
+| `--cg-surface`, `--cg-surface-soft`                    | Cards and sheets; chips and inactive controls                     |
+| `--cg-ink`, `--cg-ink-soft`                            | Main and secondary text                                           |
+| `--cg-leaf`, `--cg-leaf-soft`                          | Accent (actions, selected, available) and its background          |
+| `--cg-pine`                                            | Strong text on soft backgrounds                                   |
+| `--cg-sun`, `--cg-sun-soft`                            | Warm lemon accent (consigne, badges, opening door) and its pastel |
+| `--cg-glass`, `--cg-glass-strong`, `--cg-glass-filter` | Frosted glass cards and bars                                      |
+| `--cg-sky`, `--cg-sky-soft`                            | Trust blue (tech, lockers, location) and its tint                 |
+| `--cg-backdrop`                                        | Ground with soft blue, yellow and green glows, behind every page  |
+| `--cg-hero`                                            | Blue-to-green gradient of the home hero band (white text)         |
+| `--cg-ease`, `--cg-motion`                             | Easing and duration of every transition                           |
+| `--cg-locker-*`                                        | Locker drawing                                                    |
+| `--cg-radius-*`, `--cg-shadow*`                        | Shapes and depth                                                  |
+| `--cg-chart-1`, `--cg-chart-2`, `--cg-chart-grid`      | Chart series and grid (never text)                                |
 
 ## Charts (partner portal)
 
