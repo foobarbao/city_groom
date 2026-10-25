@@ -38,7 +38,8 @@ not colourful in every direction; refined**. The current principles:
     lemon, `leaf` green, `coral`), with a badge, the weekly price in large
     type and a call to action (`PromoCard.vue`); they keep their colours in
     dark mode, like a printed flyer;
-  - **statuses** each have a tint (`utils/tones.ts`): lemon = something to
+  - **statuses** are compact tags (one line, 6 px radius, light
+    translucent tint, hairline edge, toned text), each with a tint (`utils/tones.ts`): lemon = something to
     do, sky = in a locker, plum = being processed, solid green = ready to
     collect, grey = done;
   - **categories** alternate emerald and teal tiles behind line icons.

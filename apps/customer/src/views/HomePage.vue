@@ -307,8 +307,10 @@ const CATEGORY_ICONS: Record<string, string> = {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 14px 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
 }
 .categories {
   display: grid;

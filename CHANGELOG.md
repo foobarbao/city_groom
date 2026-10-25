@@ -232,6 +232,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- Status tags reworked to look serious on phones: one line, small radius,
+  light translucent tint with a hairline edge, toned text (new
+  `--cg-sun-strong` for honey text); calmer titles in the home lists.
 - Yellows softened to honey (`--cg-sun`, welcome promotion card): the
   lemon hurt the eyes.
 

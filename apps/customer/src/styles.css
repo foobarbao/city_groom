@@ -108,35 +108,41 @@ a.soft-card:active {
   padding: 0;
   list-style: none;
 }
+/*
+ * Status tags: compact and sober, like the side menu (owner, 2026-10-25:
+ * the round, filled, wrapping badges did not look serious on phones). One
+ * line, small radius, a light translucent tint of the tone and a hairline
+ * edge; the tone colours the text.
+ */
 .pill {
+  --tone: var(--cg-leaf);
+  flex: none;
   align-self: flex-start;
-  padding: 4px 10px;
-  border-radius: var(--cg-radius-pill);
-  background: var(--cg-leaf-soft);
-  color: var(--cg-pine);
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--tone) 11%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 22%, transparent);
+  color: var(--tone);
   font-size: 12px;
   font-weight: 600;
+  line-height: 18px;
+  white-space: nowrap;
 }
 .pill.warn {
-  background: color-mix(in srgb, var(--cg-sun) 45%, transparent);
-  color: var(--cg-ink);
+  --tone: var(--cg-sun-strong);
 }
 .pill.off {
-  background: var(--cg-surface-soft);
-  color: var(--cg-ink-soft);
+  --tone: var(--cg-ink-soft);
 }
 .pill.info {
-  background: var(--cg-sky-soft);
-  color: var(--cg-sky);
+  --tone: var(--cg-sky);
 }
 .pill.plum {
-  background: var(--cg-plum-soft);
-  color: var(--cg-plum);
+  --tone: var(--cg-plum);
 }
-/* Ready to collect: the strongest signal, solid green. */
+/* Ready to collect: the strongest signal, a slightly denser green tint. */
 .pill.ready {
-  background: var(--cg-leaf);
-  color: var(--cg-surface);
+  background: color-mix(in srgb, var(--tone) 18%, transparent);
 }
 .search {
   width: 100%;

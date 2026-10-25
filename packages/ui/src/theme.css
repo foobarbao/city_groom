@@ -22,6 +22,7 @@
   --cg-teal: #12808a; /* the "digital" touch: gradients, tech cues */
   --cg-sun: #e8c468; /* soft honey accent (the lemon hurt the eyes); dark text on it */
   --cg-sun-soft: #f7edcf; /* pale honey background */
+  --cg-sun-strong: #8a6414; /* honey as text or icon on light grounds (5:1) */
   /* Accents, kept small (status pills, category tiles). Text on a soft
      tint uses the strong tone (≥ 4.5:1). */
   --cg-sky: #1a5fb8;
@@ -102,6 +103,7 @@
     --cg-pine: #9be6c8;
     --cg-teal: #5cc8d0;
     --cg-sun: #d9b55e;
+    --cg-sun-strong: #e3c06a;
     --cg-sun-soft: #3a3226;
     --cg-sky: #8fbaff;
     --cg-sky-soft: #172a4d;
