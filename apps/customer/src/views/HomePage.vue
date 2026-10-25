@@ -17,6 +17,7 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
+import ListRow from '../components/ListRow.vue'
 import {
   CATEGORY_ORDER,
   WEEKLY_PACK_CODE,
@@ -30,6 +31,7 @@ import { packPrice } from '../domain/pack'
 import { eligiblePromotions } from '../domain/promotions'
 import PromoCard from '../components/PromoCard.vue'
 import { useAccountStore } from '../stores/account'
+import { CATEGORY_ICONS, CONSIGNE_ICON, QUOTE_ICON, orderIcon } from '../utils/icons'
 import { euros } from '../utils/format'
 import { categoryTone, statusTone } from '../utils/tones'
 
@@ -54,19 +56,6 @@ const promotions = computed(() =>
   ),
 )
 const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(catalogue.round_times)
-
-/** Line pictograms (24×24) for the category tiles. */
-const CATEGORY_ICONS: Record<string, string> = {
-  dry_cleaning: 'M12 6a2 2 0 1 1 2 2c-1 .5-2 1-2 2l9 6H3l9-6',
-  laundry: 'M5 3h14v18H5zM5 7h14M12 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0',
-  tailoring:
-    'M6 3l12 18M18 3L6 21M4 7a2 2 0 1 0 4 0a2 2 0 1 0-4 0M16 7a2 2 0 1 0 4 0a2 2 0 1 0-4 0',
-  shoe_repair: 'M3 16c0-3 1-6 2-8l4 3c2 1 5 2 8 2 2 0 4 1 4 3v2H3zM3 18h18',
-  watch_repair: 'M9 3h6l1 4a5 5 0 0 1 0 10l-1 4H9l-1-4a5 5 0 0 1 0-10zM12 9v3l2 1',
-  jewellery_repair: 'M6 9l3-5h6l3 5-6 11zM6 9h12',
-  electronics_repair: 'M7 3h10v18H7zM11 18h2',
-  key_cutting: 'M8 14a4 4 0 1 1 3-6.7L20 7v3h-2v2h-2v2h-4.3A4 4 0 0 1 8 14z',
-}
 </script>
 
 <template>
@@ -139,28 +128,33 @@ const CATEGORY_ICONS: Record<string, string> = {
           <h2 class="section-title">{{ t('home.current') }}</h2>
           <ul class="list">
             <li v-for="b in account.activeBookings" :key="b.id">
-              <router-link class="soft-card row" :to="`/consigne/${b.id}`">
-                <span>{{ t('home.bookingActive', { locker: lockerName(b.lockerCode) }) }}</span>
-                <span class="pill" :class="statusTone(b.status)">{{
-                  t(`consigne.status.${b.status}`)
-                }}</span>
-              </router-link>
+              <list-row
+                :icon="CONSIGNE_ICON"
+                tone="teal"
+                :title="t('home.bookingTitle')"
+                :description="t('home.bookingAt', { locker: lockerName(b.lockerCode) })"
+                :status="{ label: t(`consigne.status.${b.status}`), tone: statusTone(b.status) }"
+                :to="`/consigne/${b.id}`"
+              />
             </li>
             <li v-for="o in openOrders" :key="o.id">
-              <router-link class="soft-card row" to="/compte/commandes">
-                <span>{{
-                  t('home.orderActive', { label: o.label, shop: shopName(o.shopCode) })
-                }}</span>
-                <span class="pill" :class="statusTone(o.status)">{{
-                  t(`orders.status.${o.status}`)
-                }}</span>
-              </router-link>
+              <list-row
+                :icon="orderIcon(o)"
+                :title="o.label"
+                :description="shopName(o.shopCode)"
+                :status="{ label: t(`orders.status.${o.status}`), tone: statusTone(o.status) }"
+                :to="`/compte/commandes/${o.id}`"
+              />
             </li>
             <li v-for="q in account.pendingQuotes" :key="q.id">
-              <router-link class="soft-card row" :to="`/messages/${q.shopCode}`">
-                <span>{{ t('home.quotePending', { shop: shopName(q.shopCode) }) }}</span>
-                <span class="pill warn">{{ t('messages.quoteStatus.pending') }}</span>
-              </router-link>
+              <list-row
+                :icon="QUOTE_ICON"
+                tone="sun"
+                :title="t('home.quoteTitle')"
+                :description="shopName(q.shopCode)"
+                :status="{ label: t('messages.quoteStatus.pending'), tone: 'warn' }"
+                :to="`/messages/${q.shopCode}`"
+              />
             </li>
           </ul>
         </section>
@@ -302,15 +296,6 @@ const CATEGORY_ICONS: Record<string, string> = {
 .nearby-text span {
   font-size: 13px;
   color: var(--cg-ink-soft);
-}
-.row {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  font-size: 15px;
-  font-weight: 600;
 }
 .categories {
   display: grid;

@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- List rows with an icon on every item (category pictogram, lock, quote),
+  a short title and a discreet description, on the home "En cours" list,
+  orders, consigne bookings and Swap Sport exchanges (`ListRow.vue`).
 - "Seed hosted database" workflow (manual): fills the Neon database with
   the demo site's simulated lockers and real OpenStreetMap merchants, plus
   the fictitious "Démo ·" shops (`load_demo_merchants` command, with

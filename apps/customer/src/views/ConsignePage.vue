@@ -10,9 +10,11 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
+import ListRow from '../components/ListRow.vue'
 import { lockers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { dateTime, euros } from '../utils/format'
+import { CONSIGNE_ICON } from '../utils/icons'
 import { statusTone } from '../utils/tones'
 
 const { t } = useI18n()
@@ -42,20 +44,16 @@ const past = computed(() =>
           <h2 class="section-title">{{ t('consigne.active') }}</h2>
           <ul class="list">
             <li v-for="b in account.activeBookings" :key="b.id">
-              <router-link class="soft-card" :to="`/consigne/${b.id}`">
-                <span class="pill" :class="statusTone(b.status)">{{
-                  t(`consigne.status.${b.status}`)
-                }}</span>
-                <strong
-                  >{{ lockerName(b.lockerCode) }} ·
-                  {{
-                    b.door ? t('consigne.door', { label: b.door }) : t(`locker.sizes.${b.size}`)
-                  }}</strong
-                >
-                <span class="muted small"
-                  >{{ dateTime(b.slotStart, labels) }} · {{ euros(b.priceCents) }}</span
-                >
-              </router-link>
+              <list-row
+                :icon="CONSIGNE_ICON"
+                tone="teal"
+                :title="lockerName(b.lockerCode)"
+                :description="`${
+                  b.door ? t('consigne.door', { label: b.door }) : t(`locker.sizes.${b.size}`)
+                } · ${dateTime(b.slotStart, labels)} · ${euros(b.priceCents)}`"
+                :status="{ label: t(`consigne.status.${b.status}`), tone: statusTone(b.status) }"
+                :to="`/consigne/${b.id}`"
+              />
             </li>
           </ul>
         </section>
@@ -76,9 +74,14 @@ const past = computed(() =>
         <section v-if="past.length" class="group">
           <h2 class="section-title">{{ t('consigne.past') }}</h2>
           <ul class="list">
-            <li v-for="b in past" :key="b.id" class="soft-card">
-              <span class="pill off">{{ t(`consigne.status.${b.status}`) }}</span>
-              <span>{{ lockerName(b.lockerCode) }} · {{ dateTime(b.slotStart, labels) }}</span>
+            <li v-for="b in past" :key="b.id">
+              <list-row
+                :icon="CONSIGNE_ICON"
+                tone="teal"
+                :title="lockerName(b.lockerCode)"
+                :description="dateTime(b.slotStart, labels)"
+                :status="{ label: t(`consigne.status.${b.status}`), tone: 'off' }"
+              />
             </li>
           </ul>
         </section>
