@@ -10,7 +10,6 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
-import CourierNav from '../components/CourierNav.vue'
 import PortalMap from '../components/PortalMap.vue'
 import PortalPage from '../components/PortalPage.vue'
 import { clock, number, shortDay } from '../data/format'
@@ -65,8 +64,7 @@ function choose(id: string): void {
 </script>
 
 <template>
-  <portal-page :title="t('courier.title')" back-href="/">
-    <courier-nav current="courier-round" />
+  <portal-page>
     <div class="chips" role="radiogroup" :aria-label="t('courier.sheet.choose')">
       <button
         v-for="r in choices"

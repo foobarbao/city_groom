@@ -6,7 +6,6 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import StatTile from '../components/StatTile.vue'
 import { clock, number, shortDay } from '../data/format'
@@ -33,8 +32,7 @@ const sum = (key: 'items_collected' | 'items_returned' | 'transfers' | 'distance
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-rounds" />
+  <portal-page>
     <div class="tiles">
       <stat-tile
         :label="t('operator.rounds.today')"

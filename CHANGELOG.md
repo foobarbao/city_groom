@@ -180,6 +180,11 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- Partner portal navigation: folding side menu with nested entries (spaces,
+  groups, pages, icons, counters), fixed column on wide screens and drawer
+  on narrow ones; page titles and breadcrumbs come from the menu. Replaces
+  the rows of pill buttons (`CourierNav`, `OperatorNav`, merchant sub-menu).
+  Rules recorded in `docs/DESIGN.md`.
 - API authentication: token (apps) and session (admin); HTTP Basic, never
   documented, is no longer accepted. Local databases must be recreated for
   the new user model.

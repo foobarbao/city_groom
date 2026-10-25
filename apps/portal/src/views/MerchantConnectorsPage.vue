@@ -66,9 +66,6 @@ const example = computed(() => {
 
 <template>
   <merchant-shell :code="code" section="merchant-agenda">
-    <router-link class="back" :to="{ name: 'merchant-agenda', params: { code: shop?.code } }">
-      ← {{ t('merchant.connectors.back') }}
-    </router-link>
     <p class="intro">{{ t('merchant.connectors.intro') }}</p>
 
     <section v-for="group in GROUPS" :key="group" class="card">
@@ -131,12 +128,6 @@ const example = computed(() => {
 </template>
 
 <style scoped>
-.back {
-  align-self: flex-start;
-  color: var(--cg-leaf);
-  font-weight: 800;
-  text-decoration: none;
-}
 .intro {
   margin: 0;
   color: var(--cg-ink-soft);

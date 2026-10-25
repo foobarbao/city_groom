@@ -9,7 +9,6 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import BarChart, { type Bar } from '../components/BarChart.vue'
-import CourierNav from '../components/CourierNav.vue'
 import PortalMap from '../components/PortalMap.vue'
 import PortalPage from '../components/PortalPage.vue'
 import StatTile from '../components/StatTile.vue'
@@ -56,8 +55,7 @@ const bars: Bar[] = [
 </script>
 
 <template>
-  <portal-page :title="t('courier.title')" back-href="/">
-    <courier-nav current="courier" />
+  <portal-page>
     <p class="intro">{{ t('courier.intro') }}</p>
     <div class="tiles">
       <stat-tile

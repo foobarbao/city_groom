@@ -6,7 +6,6 @@
  */
 import { useI18n } from 'vue-i18n'
 
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import { ALMOST_FULL, operatorAlerts } from '../data/operator'
 import { percent } from '../data/format'
@@ -18,8 +17,7 @@ const isLocker = (kind: string): boolean => kind !== 'late_pickup'
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-alerts" />
+  <portal-page>
     <p class="intro">{{ t('operator.alerts.intro', { threshold: percent(ALMOST_FULL) }) }}</p>
     <p v-if="!alerts.length" class="card">{{ t('operator.alerts.none') }}</p>
     <ul class="alerts">

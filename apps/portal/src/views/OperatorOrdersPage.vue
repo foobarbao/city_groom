@@ -7,7 +7,6 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import { clock, euros, number, shortDay } from '../data/format'
 import { activity, placeName, serviceName } from '../data/source'
@@ -68,8 +67,7 @@ const counts = computed(() =>
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-orders" />
+  <portal-page>
     <div class="filters">
       <input
         v-model="query"

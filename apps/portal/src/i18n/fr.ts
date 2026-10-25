@@ -12,6 +12,22 @@ export default {
     asOf: 'Situation au {date} à {time}',
     home: 'Accueil',
   },
+  nav: {
+    label: 'Menu principal',
+    menu: 'Menu',
+    demo: 'Démonstration',
+    home: 'Accueil',
+    mission: 'Notre mission',
+    merchant: 'Commerce',
+    courier: 'Coursier',
+    operator: 'Exploitation',
+    activity: 'Activité',
+    customers: 'Clients',
+    offersTools: 'Offres et outils',
+    connectors: 'Connecteurs',
+    network: 'Réseau',
+    customerApp: 'Application client',
+  },
   home: {
     title: 'Démonstration CityPal',
     intro:
@@ -180,7 +196,6 @@ export default {
       connectors: 'Voir les connecteurs',
     },
     connectors: {
-      back: 'Planning',
       intro:
         'Retrouvez votre planning CityPal dans les outils que vous utilisez déjà : agenda, planificateur, liste de tâches.',
       groups: {

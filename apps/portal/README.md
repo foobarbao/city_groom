@@ -41,13 +41,19 @@ with invented orders or revenue.
 ```
 src/
 ├── assets/     Mission page photos (free licences, credited on the page, see data/missionPhotos.ts)
-├── components/   PortalPage (frame + fictitious notice), StatTile, BarChart, PortalMap
+├── components/   PortalNav / PortalNavList (side menu), PortalPage (frame, breadcrumb, fictitious
+│                 notice), MerchantShell (shop picker), StatTile, BarChart, PortalMap
+├── navigation.ts Side menu tree (spaces, groups, pages), unit-tested
 ├── data/         Data source (demo dataset), figures (summaries.ts), round sheet (roundSheet.ts),
 │                 partner demo state (partnerState.ts) and French formats, unit-tested
 ├── i18n/         French strings — no user-facing text in components
 ├── router/       Routes (French paths, user-visible); spaces are loaded on demand
 └── views/        Screens
 ```
+
+Navigation: a folding side menu with nested entries, a fixed column on wide
+screens and a drawer on narrow ones (rules in `docs/DESIGN.md`, "Partner
+portal navigation").
 
 Charts follow the dataviz rules recorded in `docs/DESIGN.md` (colour tokens
 `--cg-chart-*` in `packages/ui/src/theme.css`). Times are always shown in the
