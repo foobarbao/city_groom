@@ -11,27 +11,27 @@ operator API endpoints do not exist yet (roadmap item 7).
 
 ## Screens
 
-| Route                         | Screen                                                                                                                                                         |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                           | Demo home: one card per space, including the customer app                                                                                                      |
-| `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                                                                                    |
-| `/commerce/:code?`            | Merchant dashboard: incoming items, items being processed, revenue and commission, forecast                                                                    |
-| `/commerce/:code/planning`    | Week planning: courier arrivals, work to do, handovers, order details, "Marquer fait", Google Agenda sync (`VITE_GOOGLE_CLIENT_ID`), .ics export, add to Outlook                             |
-| `/commerce/:code/connecteurs` | Connectors to calendars, planners and automation tools (iCal subscription and webhook simulated, ADR-0009)                                                     |
-| `/commerce/:code/tournees`    | What arrives and what goes back at each round (07:00, 14:00, 20:00), items to mark ready                                                                       |
-| `/commerce/:code/messages`    | Customer requests, answers and quotes (label, price, locker size) with their status                                                                            |
-| `/commerce/:code/avis`        | Rating out of 5, distribution, verified reviews, public replies                                                                                                |
-| `/commerce/:code/offres`      | "Mes offres": create and edit offers (photo, title, service, description, price, locker size, turnaround), hide or delete                                      |
-| `/coursier`                   | Courier space, presentation: rounds per day, items and km per round, monthly projection, consigne transfers, next rounds, map                                  |
-| `/coursier/tournee`           | Round sheet: stops in order with items to pick up and drop off (orders and consigne transfers), stops ticked as done, route map                                |
-| `/exploitation`               | Operator overview: volumes, fill rate, consigne transfers today, orders and forecast, live map, fill per size, alerts to watch, data management (Django admin) |
-| `/exploitation/alertes`       | Alerts: lockers almost full or without a large free door, doors out of service, late pickups                                                                   |
-| `/exploitation/casiers`       | Lockers: search, filter by kind of place, sort by fill rate                                                                                                    |
-| `/exploitation/casiers/:code` | Locker detail: locker front with the status of every door                                                                                                      |
-| `/exploitation/commandes`     | Orders: search and filter by status                                                                                                                            |
-| `/exploitation/tournees`      | Rounds: today's totals, planned and past rounds, link to the round sheet                                                                                       |
-| `/exploitation/commerces`     | Partner shops: rating, orders, revenue, commission, items in progress                                                                                          |
-| `/exploitation/previsions`    | Forecasts: items per day, per round and busiest lockers                                                                                                        |
+| Route                         | Screen                                                                                                                                                           |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                           | Demo home: one card per space, including the customer app                                                                                                        |
+| `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                                                                                      |
+| `/commerce/:code?`            | Merchant dashboard: incoming items, items being processed, revenue and commission, forecast                                                                      |
+| `/commerce/:code/planning`    | Week planning: courier arrivals, work to do, handovers, order details, "Marquer fait", Google Agenda sync (`VITE_GOOGLE_CLIENT_ID`), .ics export, add to Outlook |
+| `/commerce/:code/connecteurs` | Connectors to calendars, planners and automation tools (iCal subscription and webhook simulated, ADR-0009)                                                       |
+| `/commerce/:code/tournees`    | What arrives and what goes back at each round (07:00, 14:00, 20:00), items to mark ready                                                                         |
+| `/commerce/:code/messages`    | Customer requests, answers and quotes (label, price, locker size) with their status                                                                              |
+| `/commerce/:code/avis`        | Rating out of 5, distribution, verified reviews, public replies                                                                                                  |
+| `/commerce/:code/offres`      | "Mes offres": create and edit offers (photo, title, service, description, price, locker size, turnaround), hide or delete                                        |
+| `/coursier`                   | Courier space, presentation: rounds per day, items and km per round, monthly projection, consigne transfers, next rounds, map                                    |
+| `/coursier/tournee`           | Round sheet: stops in order with items to pick up and drop off (orders and consigne transfers), stops ticked as done, route map                                  |
+| `/exploitation`               | Operator overview: volumes, fill rate, consigne transfers today, orders and forecast, live map, fill per size, alerts to watch, data management (Django admin)   |
+| `/exploitation/alertes`       | Alerts: lockers almost full or without a large free door, doors out of service, late pickups                                                                     |
+| `/exploitation/casiers`       | Lockers: search, filter by kind of place, sort by fill rate                                                                                                      |
+| `/exploitation/casiers/:code` | Locker detail: locker front with the status of every door                                                                                                        |
+| `/exploitation/commandes`     | Orders: search and filter by status                                                                                                                              |
+| `/exploitation/tournees`      | Rounds: today's totals, planned and past rounds, link to the round sheet                                                                                         |
+| `/exploitation/commerces`     | Partner shops: rating, orders, revenue, commission, items in progress                                                                                            |
+| `/exploitation/previsions`    | Forecasts: items per day, per round and busiest lockers                                                                                                          |
 
 The demo merchants are fictitious ("Démo · …"): no real business is shown
 with invented orders or revenue.
