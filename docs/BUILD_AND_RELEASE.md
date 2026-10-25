@@ -146,6 +146,18 @@ pre-deploy step, hence this script.
 6. Deploy, then open `https://<service>.onrender.com/admin/` and sign in
    with the administrator account.
 
+### Fill the database
+
+The workflow **Seed hosted database** (`.github/workflows/seed-hosted-db.yml`,
+Actions tab → Run workflow) applies the migrations, then loads the
+`data/osm/` files: 70 simulated lockers (25 at tram stops, 45 at strategic
+places, as on the demo site), the real OpenStreetMap merchants and, unless
+unticked, the fictitious "Démo ·" shops. Safe to run again.
+
+One-time setup: add the repository secret **`HOSTED_DATABASE_URL`**
+(Settings → Secrets and variables → Actions) with the same Neon direct
+connection string as `DATABASE_URL` on Render.
+
 ### Connect the customer app
 
 Done on 2026-10-25: service `https://citypal.onrender.com` (admin at
