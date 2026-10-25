@@ -129,6 +129,50 @@ included services; garment compartment for drop-off and return; unused
 items of a week are not carried over; default laundry availability 40
 shirts/week; 18 fictitious active packs in the demo.
 
+### Sport exchange: "Swap Sport"
+
+Decided by the project owner on 2026-10-25; named **Swap Sport** the same
+day.
+
+- **Principle**: a scheduled weekly **exchange** at **one slot and one
+  place** (e.g. near the customer's gym): the customer collects the clean
+  items of the previous week and drops the dirty ones **in the same
+  compartment**, in a single visit (single-slot rotation).
+- **Each exchange**: 1 sport outfit (washed, folded) + 1 shirt + 1 pair of
+  trousers (washed, ironed, folded). The first exchange is a drop-off only;
+  the clean items are ready for the next one.
+- **Price**: per week, **subscribers only**: **7 €** with CityPal Plus,
+  **5 €** with CityPal Premium (a small price, in proportion to the weekly
+  pack). **Bought one week at a time**, no commitment; "same slot next
+  week" repeats the last exchange.
+- Provider shown: "CityPal" (dispatched to partner laundries, like the
+  weekly pack).
+- ASSUMPTIONS: garment compartment; turnaround = the longest included
+  service (well under a week).
+
+### Ecology and digital
+
+Global communication axis chosen by the project owner on 2026-10-25, then
+**put on hold** the same day ("on verra plus tard"). A first draft exists:
+a "Notre engagement" page in the customer app, not linked for now (cargo-bike rounds,
+local shops, shared lockers turning over three times a day, lockers on the
+customer's way, everything in the app, minimal data). Only facts true of the service are stated; impact
+figures (km by bike, trips avoided, CO₂) will be added once measured and
+sourced.
+
+### Promotions
+
+Requested on 2026-10-25: promotions must stand out, and more promotions on
+particular packs will come. A promotion is catalogue data (backend
+`PROMOTIONS`): the pack it applies to, its audience ("first_purchase" or
+"all"), a badge, a title, a pitch and a colour theme. The **price always
+comes from the pack rules**, never from the texts, so prices cannot go
+stale. The home screen shows the promotions the customer can use in an
+"Offres du moment" strip; the pack screen shows its own promotion.
+First promotion: the weekly pack welcome offer. No struck-through "before"
+price is shown (ASSUMPTION: showing one would need a legal check of the
+reference-price rules first).
+
 ### Out of scope: red lines
 
 - **No parcel delivery** for e-commerce platforms (e.g. no Amazon parcels).
@@ -469,6 +513,8 @@ Topics the project owner asked to be reminded of:
 - **Packs with partners**: the first one, the weekly pack, is specified
   (§2 "Weekly pack"); other packs and partnerships to come. *(Requested on
   2026-10-24.)*
+- **Ecology and digital axis** ("Notre engagement"): on hold, draft page
+  ready at `/engagement` (not linked). *(Stated on 2026-10-25.)*
 - **Making Google sign-in and the Google Agenda sync work for real** needs
   two things from the project owner: the Google OAuth client ID
   (docs/GOOGLE_SIGN_IN.md), and the Render + Neon backend

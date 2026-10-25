@@ -35,6 +35,7 @@ import {
 import { useAccountStore } from '../stores/account'
 import { reveal } from '../utils/scroll'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
+import { statusTone } from '../utils/tones'
 
 const props = defineProps<{ id: string }>()
 const { t } = useI18n()
@@ -56,6 +57,8 @@ const drawing = computed(() => {
   const layout = order.value ? lockerLayout(order.value.dropLocker) : undefined
   return layout ? computeLockerDrawing(layout, sizes) : null
 })
+/** Sport exchange: one visit, clean items out and dirty items in. */
+const isExchange = computed(() => order.value?.kind === 'exchange')
 /** Door given on arrival at the drop locker ('' until then: a size is reserved). */
 const door = computed(() => order.value?.door ?? '')
 const nextRound = computed(() => currentSlot(new Date(), catalogue.slots)?.end ?? null)
@@ -91,17 +94,17 @@ onMounted(() => {
     <app-header back-href="/compte/commandes" />
     <ion-content>
       <main v-if="order" class="page">
-        <span class="pill" :class="{ off: order.status === 'picked_up' }">
+        <span class="pill" :class="statusTone(order.status)">
           {{ t(`orders.status.${order.status}`) }}
         </span>
         <h1 class="page-title">
-          {{ order.packId ? order.label : `${order.quantity} × ${order.label}` }}
+          {{ order.packId || order.kind ? order.label : `${order.quantity} × ${order.label}` }}
         </h1>
         <p class="page-intro">{{ shopName }} · {{ euros(order.priceCents) }}</p>
 
         <section class="soft-card summary">
           <p>
-            {{ t('orders.detail.dropLocker') }} :
+            {{ isExchange ? t('orders.detail.exchangePlace') : t('orders.detail.dropLocker') }} :
             <strong>{{ lockerName(order.dropLocker) }}</strong>
             ·
             {{
@@ -110,7 +113,14 @@ onMounted(() => {
                 : t('orders.detail.sizeReserved', { size: t(`locker.sizes.${order.size}`) })
             }}
           </p>
-          <p>
+          <p v-if="isExchange">
+            {{
+              order.collectsClean
+                ? t('orders.detail.exchangeClean')
+                : t('orders.detail.exchangeFirst')
+            }}
+          </p>
+          <p v-else>
             {{ t('orders.detail.pickupLocker') }} :
             <strong>{{ lockerName(order.pickupLocker) }}</strong>
             <template v-if="order.pickupStart && order.pickupEnd">
@@ -136,8 +146,14 @@ onMounted(() => {
         <!-- Next action, right under the summary so it is never hidden. -->
         <section ref="panel" class="actions">
           <div v-if="done" class="result" role="status">
-            <strong>✓ {{ t('orders.detail.doneTitle') }}</strong>
-            <span v-if="nextRound">
+            <strong
+              >✓
+              {{
+                isExchange ? t('orders.detail.exchangeDoneTitle') : t('orders.detail.doneTitle')
+              }}</strong
+            >
+            <span v-if="isExchange">{{ t('orders.detail.exchangeDoneText') }}</span>
+            <span v-else-if="nextRound">
               {{ t('orders.detail.doneText', { time: clock(nextRound), shop: shopName }) }}
             </span>
             <ion-button shape="round" router-link="/compte/commandes">
@@ -147,9 +163,17 @@ onMounted(() => {
 
           <div v-else-if="doorOpen" class="door-open" role="status">
             <strong>{{ t('orders.detail.opened', { label: door }) }}</strong>
-            <span>{{ t('orders.detail.instruction') }}</span>
+            <span>{{
+              !isExchange
+                ? t('orders.detail.instruction')
+                : order.collectsClean
+                  ? t('orders.detail.exchangeInstruction')
+                  : t('orders.detail.exchangeFirstInstruction')
+            }}</span>
             <ion-button expand="block" shape="round" size="large" @click="confirmDropped">
-              {{ t('orders.dropNow') }}
+              {{
+                isExchange && order.collectsClean ? t('orders.exchangeNow') : t('orders.dropNow')
+              }}
             </ion-button>
           </div>
 

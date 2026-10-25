@@ -994,6 +994,7 @@
   {
    "code": "weekly_shirts",
    "name": "Pack semaine",
+   "kind": "weekly_pack",
    "items": [
     {
      "service": "shirt_ironing",
@@ -1012,6 +1013,54 @@
    },
    "size": "XL",
    "turnaround_rounds": 3
+  },
+  {
+   "code": "sport_exchange",
+   "name": "Swap Sport",
+   "kind": "exchange",
+   "items": [
+    {
+     "service": "sport_kit",
+     "quantity": 1,
+     "label": "Tenue de sport lavée-pliée"
+    },
+    {
+     "service": "shirt_ironing",
+     "quantity": 1
+    },
+    {
+     "service": "trouser_ironing",
+     "quantity": 1
+    }
+   ],
+   "weeks_per_purchase": 1,
+   "welcome_weekly_price": null,
+   "weekly_prices": {
+    "premium": "5.00",
+    "plus": "7.00"
+   },
+   "size": "XL",
+   "turnaround_rounds": 3
+  }
+ ],
+ "promotions": [
+  {
+   "code": "welcome_weekly_shirts",
+   "pack": "weekly_shirts",
+   "audience": "first_purchase",
+   "badge": "Offre de bienvenue",
+   "title": "Votre semaine de chemises, sans y penser",
+   "text": "5 chemises + 2 pantalons lavés, repassés et pliés chaque semaine.",
+   "theme": "sun"
+  },
+  {
+   "code": "new_sport_exchange",
+   "pack": "sport_exchange",
+   "audience": "all",
+   "badge": "Nouveau",
+   "title": "Du sport au bureau, en un seul passage",
+   "text": "Déposez votre tenue de sport, reprenez chemise et pantalon repassés.",
+   "theme": "leaf"
   }
  ],
  "consigne": {

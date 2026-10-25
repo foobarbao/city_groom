@@ -93,6 +93,19 @@
   background: var(--cg-surface-soft);
   color: var(--cg-ink-soft);
 }
+.pill.info {
+  background: var(--cg-sky-soft);
+  color: var(--cg-sky);
+}
+.pill.plum {
+  background: var(--cg-plum-soft);
+  color: var(--cg-plum);
+}
+/* Ready to collect: the strongest signal, solid green. */
+.pill.ready {
+  background: var(--cg-leaf);
+  color: var(--cg-surface);
+}
 .search {
   width: 100%;
   padding: 12px 16px;

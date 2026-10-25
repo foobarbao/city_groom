@@ -9,6 +9,21 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Google OAuth client ID set for the hosted demo (public value, in the
+  demo-site env files): Google Agenda sync and the Google sign-in button
+  are active; the sign-in completes once the backend is hosted.
+- Swap Sport (sport exchange): weekly exchange at one slot and one place (collect last
+  week's clean sport outfit, shirt and trousers, drop the dirty ones in the
+  same compartment), subscribers only (7 € Plus, 5 € Premium), bought by
+  the week; "Swap Sport" screen, exchange variant of the order screen,
+  "Nouveau" promotion. Offers now have a kind and an optional welcome price.
+- "Notre engagement" draft page (ecology and digital axis), on hold: not
+  linked from the menu or the home screen yet.
+- Promotions: catalogue data (pack, audience, badge, texts, colour theme;
+  price taken from the pack), "Offres du moment" strip on the home screen
+  and promotion card on the pack screen.
+- Livelier colours: accent tokens (sky, coral, plum), a tint per order and
+  booking status, coloured category tiles.
 - Weekly pack (5 shirts + 2 trousers washed, ironed, folded each week,
   bought by 4 weeks): customer "Pack semaine" screen with welcome price
   then price by plan, weekly drop-off day and slot, computed return, pickup

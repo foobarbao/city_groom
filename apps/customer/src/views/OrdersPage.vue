@@ -14,6 +14,7 @@ import { canReview } from '../domain/reviews'
 import { lockers, providerName } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
+import { statusTone } from '../utils/tones'
 
 const { t } = useI18n()
 const account = useAccountStore()
@@ -36,10 +37,10 @@ const lockerName = (code: string): string => lockers.find((l) => l.code === code
         <ul class="list">
           <li v-for="o in account.state.orders" :key="o.id" class="soft-card">
             <router-link class="detail-link" :to="`/compte/commandes/${o.id}`">
-              <span class="pill" :class="{ off: o.status === 'picked_up' }">{{
+              <span class="pill" :class="statusTone(o.status)">{{
                 t(`orders.status.${o.status}`)
               }}</span>
-              <strong>{{ o.packId ? o.label : `${o.quantity} × ${o.label}` }}</strong>
+              <strong>{{ o.packId || o.kind ? o.label : `${o.quantity} × ${o.label}` }}</strong>
               <span class="muted small">
                 {{ shopName(o.shopCode) }} · {{ euros(o.priceCents) }} ·
                 {{ t('orders.detail.orderedAt', { date: dateTime(o.createdAt, inSentence) }) }}

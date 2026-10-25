@@ -20,6 +20,15 @@
   --cg-pine: #0e4d37; /* strong text on pastel backgrounds */
   --cg-sun: #f7d44c; /* warm lemon accent; dark text on it */
   --cg-sun-soft: #fff1b8; /* pastel lemon background */
+  /* Accents (since 2026-10-25, owner: "livelier, highlight promotions"):
+     statuses, category icons and promotion cards; text on the soft tints
+     uses the strong tone. */
+  --cg-sky: #2b6a96;
+  --cg-sky-soft: #dcebf6;
+  --cg-coral: #b04a24;
+  --cg-coral-soft: #fbe1d6;
+  --cg-plum: #7a4a8c;
+  --cg-plum-soft: #efe2f4;
   --cg-locker-body: #e4e9d9; /* locker frame */
   --cg-locker-door: #fffdf6; /* locker doors */
   --cg-locker-door-edge: #cdd6c2;
@@ -84,6 +93,12 @@
     --cg-pine: #a7e8c5;
     --cg-sun: #f2cf4a;
     --cg-sun-soft: #4a4119;
+    --cg-sky: #9ccbea;
+    --cg-sky-soft: #1c3445;
+    --cg-coral: #f2a585;
+    --cg-coral-soft: #45261b;
+    --cg-plum: #d6b2e3;
+    --cg-plum-soft: #3a2742;
     --cg-locker-body: #22392f;
     --cg-locker-door: #2b463a;
     --cg-locker-door-edge: #3f5d50;

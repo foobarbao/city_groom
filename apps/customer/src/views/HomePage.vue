@@ -17,10 +17,21 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
-import { CATEGORY_ORDER, catalogue, lockers, providerName } from '../services/catalogue'
+import {
+  CATEGORY_ORDER,
+  WEEKLY_PACK_CODE,
+  catalogue,
+  lockers,
+  offerPath,
+  packByCode,
+  providerName,
+} from '../services/catalogue'
 import { packPrice } from '../domain/pack'
+import { eligiblePromotions } from '../domain/promotions'
+import PromoCard from '../components/PromoCard.vue'
 import { useAccountStore } from '../stores/account'
 import { euros } from '../utils/format'
+import { categoryTone, statusTone } from '../utils/tones'
 
 const { t } = useI18n()
 const account = useAccountStore()
@@ -32,9 +43,15 @@ const openOrders = computed(() => account.state.orders.filter((o) => o.status !=
 const hasCurrent = computed(
   () => account.activeBookings.length + openOrders.value.length + account.pendingQuotes.length > 0,
 )
-const pack = catalogue.packs[0]
+const pack = packByCode(WEEKLY_PACK_CODE)
 const packOffer = computed(() =>
   pack ? packPrice(pack, account.state.plan, account.hasBoughtPack(pack.code)) : null,
+)
+/** Promotions this customer can use, highlighted first on the home screen. */
+const promotions = computed(() =>
+  eligiblePromotions(catalogue.promotions, catalogue.packs, account.state.plan, (code) =>
+    account.hasBoughtPack(code),
+  ),
 )
 const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(catalogue.round_times)
 
@@ -68,6 +85,18 @@ const CATEGORY_ICONS: Record<string, string> = {
           <p class="page-intro">{{ t('home.question') }}</p>
         </header>
 
+        <section v-if="promotions.length" class="promos-section">
+          <h2 class="section-title">{{ t('promo.title') }}</h2>
+          <div class="promos" :class="{ single: promotions.length === 1 }">
+            <promo-card
+              v-for="p in promotions"
+              :key="p.promotion.code"
+              :promo="p"
+              :to="offerPath(p.pack)"
+            />
+          </div>
+        </section>
+
         <nav class="modes">
           <router-link class="mode services" to="/boutiques">
             <span class="mode-icon" aria-hidden="true"><ion-icon :icon="shirtOutline" /></span>
@@ -82,7 +111,9 @@ const CATEGORY_ICONS: Record<string, string> = {
         </nav>
 
         <router-link class="nearby" to="/autour">
-          <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="navigateOutline" /></span>
+          <span class="nearby-icon sky" aria-hidden="true"
+            ><ion-icon :icon="navigateOutline"
+          /></span>
           <span class="nearby-text">
             <strong>{{ t('nearby.shortcut') }}</strong>
             <span>{{ t('nearby.shortcutText') }}</span>
@@ -90,7 +121,7 @@ const CATEGORY_ICONS: Record<string, string> = {
           <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
         </router-link>
 
-        <router-link v-if="pack" class="nearby pack" to="/pack">
+        <router-link v-if="pack && !promotions.length" class="nearby pack" to="/pack">
           <span class="nearby-icon" aria-hidden="true"><ion-icon :icon="repeatOutline" /></span>
           <span class="nearby-text">
             <strong>{{ t('home.pack.title') }}</strong>
@@ -110,7 +141,9 @@ const CATEGORY_ICONS: Record<string, string> = {
             <li v-for="b in account.activeBookings" :key="b.id">
               <router-link class="soft-card row" :to="`/consigne/${b.id}`">
                 <span>{{ t('home.bookingActive', { locker: lockerName(b.lockerCode) }) }}</span>
-                <span class="pill">{{ t(`consigne.status.${b.status}`) }}</span>
+                <span class="pill" :class="statusTone(b.status)">{{
+                  t(`consigne.status.${b.status}`)
+                }}</span>
               </router-link>
             </li>
             <li v-for="o in openOrders" :key="o.id">
@@ -118,7 +151,9 @@ const CATEGORY_ICONS: Record<string, string> = {
                 <span>{{
                   t('home.orderActive', { label: o.label, shop: shopName(o.shopCode) })
                 }}</span>
-                <span class="pill">{{ t(`orders.status.${o.status}`) }}</span>
+                <span class="pill" :class="statusTone(o.status)">{{
+                  t(`orders.status.${o.status}`)
+                }}</span>
               </router-link>
             </li>
             <li v-for="q in account.pendingQuotes" :key="q.id">
@@ -134,9 +169,10 @@ const CATEGORY_ICONS: Record<string, string> = {
           <h2 class="section-title">{{ t('home.categoriesTitle') }}</h2>
           <div class="categories">
             <router-link
-              v-for="c in CATEGORY_ORDER"
+              v-for="(c, i) in CATEGORY_ORDER"
               :key="c"
               class="category"
+              :class="`tone-${categoryTone(i)}`"
               :to="{ path: '/boutiques', query: { categorie: c } }"
             >
               <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
@@ -235,6 +271,10 @@ const CATEGORY_ICONS: Record<string, string> = {
   color: var(--cg-leaf);
   font-size: 20px;
 }
+.nearby-icon.sky {
+  background: var(--cg-sky-soft);
+  color: var(--cg-sky);
+}
 .chevron {
   font-size: 18px;
   color: var(--cg-ink-soft);
@@ -278,11 +318,57 @@ const CATEGORY_ICONS: Record<string, string> = {
   text-decoration: none;
 }
 .category svg {
+  box-sizing: content-box;
+  padding: 8px;
+  border-radius: var(--cg-radius-m);
+  background: var(--tone-soft);
   fill: none;
-  stroke: var(--cg-leaf);
+  stroke: var(--tone);
   stroke-width: 1.6;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.tone-leaf {
+  --tone: var(--cg-leaf);
+  --tone-soft: var(--cg-leaf-soft);
+}
+.tone-sky {
+  --tone: var(--cg-sky);
+  --tone-soft: var(--cg-sky-soft);
+}
+.tone-coral {
+  --tone: var(--cg-coral);
+  --tone-soft: var(--cg-coral-soft);
+}
+.tone-plum {
+  --tone: var(--cg-plum);
+  --tone-soft: var(--cg-plum-soft);
+}
+.tone-sun {
+  --tone: var(--cg-ink);
+  --tone-soft: var(--cg-sun-soft);
+}
+.promos-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Several promotions scroll sideways, one card per view on phones. */
+.promos {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 88%);
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.promos > * {
+  scroll-snap-align: start;
+}
+.promos.single {
+  grid-auto-columns: 100%;
 }
 .map-link {
   gap: 4px;

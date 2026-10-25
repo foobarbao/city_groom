@@ -13,6 +13,7 @@ import DemoNotice from '../components/DemoNotice.vue'
 import { lockers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { dateTime, euros } from '../utils/format'
+import { statusTone } from '../utils/tones'
 
 const { t } = useI18n()
 const account = useAccountStore()
@@ -42,7 +43,9 @@ const past = computed(() =>
           <ul class="list">
             <li v-for="b in account.activeBookings" :key="b.id">
               <router-link class="soft-card" :to="`/consigne/${b.id}`">
-                <span class="pill">{{ t(`consigne.status.${b.status}`) }}</span>
+                <span class="pill" :class="statusTone(b.status)">{{
+                  t(`consigne.status.${b.status}`)
+                }}</span>
                 <strong
                   >{{ lockerName(b.lockerCode) }} ·
                   {{

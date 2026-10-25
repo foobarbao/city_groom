@@ -12,7 +12,7 @@ Everything here is **placeholder demo data** (CODING_STANDARDS.md §10):
 PROD: replace with the real catalogue and merchant accounts.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 
 from apps.lockers.sizes import CompartmentSize
@@ -345,27 +345,34 @@ SUBSCRIPTION_PLANS: tuple[SubscriptionPlan, ...] = (
 
 @dataclass(frozen=True)
 class DemoPack:
-    """A weekly bundle of services, bought four weeks at a time.
+    """A weekly offer of bundled services (weekly pack, sport exchange).
 
     Attributes:
         code: Stable identifier.
         name: Display name (French).
-        items: Services included each week, as (service code, quantity).
+        kind: "weekly_pack" (drop-off and pickup slots, bought by weeks) or
+            "exchange" (one visit per week: collect the clean items of the
+            previous week and drop the dirty ones, same compartment).
+        items: Items included each week, as (code, quantity); codes are
+            services, or entries of ``item_labels``.
         weeks_per_purchase: Weeks bought and paid at once.
         welcome_weekly_price: Weekly price of a customer's first purchase,
-            whatever their plan (welcome offer).
+            whatever their plan (welcome offer), or None without one.
         weekly_prices: Weekly price by subscription plan code; plans absent
-            from it cannot buy the pack (except the welcome offer).
-        size: Compartment size used for each week's drop-off and return.
+            from it cannot buy (except a welcome offer).
+        size: Compartment size used each week.
+        item_labels: Names of items that are not standard services (French).
     """
 
     code: str
     name: str
+    kind: str
     items: tuple[tuple[str, int], ...]
     weeks_per_purchase: int
-    welcome_weekly_price: Decimal
+    welcome_weekly_price: Decimal | None
     weekly_prices: dict[str, Decimal]
     size: CompartmentSize
+    item_labels: dict[str, str] = field(default_factory=dict)
 
     @property
     def turnaround_rounds(self) -> int:
@@ -386,6 +393,7 @@ class DemoPack:
 WEEKLY_PACK = DemoPack(
     code="weekly_shirts",
     name="Pack semaine",
+    kind="weekly_pack",
     items=(("shirt_ironing", 5), ("trouser_ironing", 2)),
     weeks_per_purchase=4,
     welcome_weekly_price=Decimal("10.00"),
@@ -393,6 +401,78 @@ WEEKLY_PACK = DemoPack(
     # ASSUMPTION: ironed shirts come back hanging, so the pack uses the
     # garment compartment; to confirm with the locker dimensions.
     size=XL,
+)
+
+
+# Sport exchange, named "Swap Sport", decided by the project owner on 2026-10-25 (docs/PRODUCT.md
+# "Sport exchange"): once a week, at one slot, the customer collects the
+# clean items of the previous week (sport outfit, shirt and trousers ironed
+# and folded) and drops the dirty sport outfit and the worn work outfit, in
+# the same compartment; bought one week at a time; subscribers only: 7 EUR
+# with Plus, 5 EUR with Premium.
+SPORT_EXCHANGE = DemoPack(
+    code="sport_exchange",
+    name="Swap Sport",
+    kind="exchange",
+    items=(("sport_kit", 1), ("shirt_ironing", 1), ("trouser_ironing", 1)),
+    weeks_per_purchase=1,
+    welcome_weekly_price=None,
+    weekly_prices={"premium": Decimal("5.00"), "plus": Decimal("7.00")},
+    # ASSUMPTION: the ironed shirt comes back hanging (garment compartment).
+    size=XL,
+    item_labels={"sport_kit": "Tenue de sport lavée-pliée"},
+)
+
+PACKS: tuple[DemoPack, ...] = (WEEKLY_PACK, SPORT_EXCHANGE)
+
+
+@dataclass(frozen=True)
+class DemoPromotion:
+    """A promotion highlighted in the customer app.
+
+    Attributes:
+        code: Stable identifier.
+        pack_code: Pack the promotion applies to.
+        audience: Who sees it: "first_purchase" (customers who never bought
+            the pack) or "all".
+        badge: Short label on the card (French).
+        title: Card title (French).
+        text: One-line pitch (French).
+        theme: Colour theme of the card: "sun", "leaf" or "coral".
+    """
+
+    code: str
+    pack_code: str
+    audience: str
+    badge: str
+    title: str
+    text: str
+    theme: str
+
+
+# Promotions shown on the home screen. The welcome offer of the weekly pack
+# is the one decided by the project owner on 2026-10-25; more promotions on
+# particular packs will be added here. The price itself comes from the pack
+# (never repeated in the texts), so a price change cannot leave a stale text.
+PROMOTIONS: tuple[DemoPromotion, ...] = (
+    DemoPromotion(
+        code="welcome_weekly_shirts",
+        pack_code=WEEKLY_PACK.code,
+        audience="first_purchase",
+        badge="Offre de bienvenue",
+        title="Votre semaine de chemises, sans y penser",
+        text="5 chemises + 2 pantalons lavés, repassés et pliés chaque semaine.",
+        theme="sun",
+    ),
+    DemoPromotion(
+        code="new_sport_exchange",
+        pack_code=SPORT_EXCHANGE.code,
+        audience="all",
+        badge="Nouveau",
+        title="Du sport au bureau, en un seul passage",
+        text="Déposez votre tenue de sport, reprenez chemise et pantalon repassés.",
+        theme="leaf",
+    ),
 )
 
 # ASSUMPTION: consigne price per booking without subscription, by compartment

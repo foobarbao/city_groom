@@ -18,11 +18,22 @@ import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { type PackWeek, packPrice, packSchedule } from '../domain/pack'
+import { eligiblePromotions } from '../domain/promotions'
+import PromoCard from '../components/PromoCard.vue'
 import { type SlotWindow, slotsFrom } from '../domain/slots'
-import { PACK_PROVIDER, catalogue, lockers, planByCode, serviceByCode } from '../services/catalogue'
+import {
+  PACK_PROVIDER,
+  WEEKLY_PACK_CODE,
+  catalogue,
+  lockers,
+  packByCode,
+  packItemName,
+  planByCode,
+} from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
+import { statusTone } from '../utils/tones'
 
 const { t } = useI18n()
 const account = useAccountStore()
@@ -33,15 +44,20 @@ const inSentence = computed(() => ({
   tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
 }))
 
-const pack = catalogue.packs[0] as DemoPack
-const itemsLine = pack.items
-  .map((i) => `${i.quantity} × ${serviceByCode(i.service)?.name ?? i.service}`)
-  .join(' + ')
+const pack = packByCode(WEEKLY_PACK_CODE) as DemoPack
+const itemsLine = pack.items.map((i) => `${i.quantity} × ${packItemName(i)}`).join(' + ')
 const planPrice = (code: string): string =>
   euros(Math.round(Number(pack.weekly_prices[code]) * 100))
 
 const price = computed(() => packPrice(pack, account.state.plan, account.hasBoughtPack(pack.code)))
 const plan = computed(() => planByCode(account.state.plan))
+/** Promotion of this pack for this customer, shown as the offer card. */
+const promo = computed(
+  () =>
+    eligiblePromotions(catalogue.promotions, catalogue.packs, account.state.plan, (code) =>
+      account.hasBoughtPack(code),
+    ).find((p) => p.pack.code === pack.code) ?? null,
+)
 const lockerName = (code: string): string => lockers.find((l) => l.code === code)?.name ?? code
 
 /** The latest purchase still running (its last week not yet back). */
@@ -173,7 +189,11 @@ function buy(): void {
         <h1 class="page-title">{{ t('pack.title') }}</h1>
         <p class="page-intro">{{ t('pack.intro', { items: itemsLine }) }}</p>
 
-        <section class="soft-card offer">
+        <promo-card v-if="promo" :promo="promo" />
+        <p v-if="promo" class="muted small">
+          {{ t('pack.afterWelcome', { plus: planPrice('plus'), premium: planPrice('premium') }) }}
+        </p>
+        <section v-else class="soft-card offer">
           <template v-if="price.available">
             <span v-if="price.welcome" class="pill">{{ t('pack.welcomeBadge') }}</span>
             <p class="amount">
@@ -248,7 +268,7 @@ function buy(): void {
                       : t('pack.returnLine', { date: dateTime(o.returnAt ?? o.createdAt, labels) })
                   }}</span>
                 </span>
-                <span class="pill" :class="{ off: o.status === 'picked_up' }">{{
+                <span class="pill" :class="statusTone(o.status)">{{
                   t(`orders.status.${o.status}`)
                 }}</span>
               </router-link>

@@ -7,6 +7,7 @@
  */
 import {
   addCircleOutline,
+  barbellOutline,
   briefcaseOutline,
   chatbubblesOutline,
   fileTrayFullOutline,
@@ -30,6 +31,7 @@ export const NAVIGATION: NavNode[] = [
   navGroup('services', 'nav.services', briefcaseOutline, [
     navItem('shops', 'nav.findService', searchOutline, 'shops', { also: ['shop', 'checkout'] }),
     navItem('pack', 'nav.pack', shirtOutline, 'pack'),
+    navItem('exchange', 'nav.exchange', barbellOutline, 'exchange'),
     navItem('orders', 'nav.orders', receiptOutline, 'orders', { also: ['order', 'review'] }),
     navItem('messages', 'nav.messagesQuotes', chatbubblesOutline, 'messages', {
       also: ['chat'],

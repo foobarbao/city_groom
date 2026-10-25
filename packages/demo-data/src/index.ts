@@ -170,22 +170,40 @@ export interface SubscriptionPlan {
   perks: string[];
 }
 
-/** A weekly bundle of services bought four weeks at a time (docs/PRODUCT.md "Weekly pack"). */
+/** A weekly offer of bundled services (docs/PRODUCT.md "Weekly pack", "Sport exchange"). */
 export interface DemoPack {
   code: string;
   name: string;
-  /** Services included each week. */
-  items: { service: string; quantity: number }[];
+  /**
+   * "weekly_pack": drop-off and pickup slots, bought by weeks; "exchange":
+   * one visit a week to collect last week's clean items and drop dirty ones.
+   */
+  kind: "weekly_pack" | "exchange";
+  /** Items included each week; `label` names items that are not services. */
+  items: { service: string; quantity: number; label?: string }[];
   /** Weeks bought and paid at once. */
   weeks_per_purchase: number;
-  /** Weekly price of a customer's first purchase, whatever their plan. */
-  welcome_weekly_price: string;
+  /** Weekly price of a customer's first purchase, whatever their plan; null without one. */
+  welcome_weekly_price: string | null;
   /** Weekly price by plan code; other plans cannot buy (except the welcome offer). */
   weekly_prices: Record<string, string>;
   /** Compartment size of each week's drop-off and return. */
   size: string;
   /** Rounds between collection and return (3 rounds = 1 day). */
   turnaround_rounds: number;
+}
+
+/** A promotion highlighted in the customer app (prices come from its pack). */
+export interface DemoPromotion {
+  code: string;
+  /** Code of the pack it applies to. */
+  pack: string;
+  /** "first_purchase": customers who never bought the pack; "all": everyone. */
+  audience: "first_purchase" | "all";
+  badge: string;
+  title: string;
+  text: string;
+  theme: "sun" | "leaf" | "coral";
 }
 
 /** A slot between two rounds (docs/PRODUCT.md §4). */
@@ -204,6 +222,7 @@ export interface CatalogueData {
   services: DemoService[];
   plans: SubscriptionPlan[];
   packs: DemoPack[];
+  promotions: DemoPromotion[];
   consigne: {
     max_hours: number;
     min_notice_hours: number;
