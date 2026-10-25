@@ -153,6 +153,13 @@ Versioning: [SemVer](https://semver.org/).
   day, per round, per locker).
 - Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
+### Changed
+
+- Merchant space: rounds show what to have ready for each courier visit
+  (time first, ready counter), then what the courier brings; the dashboard
+  shows "À remettre au coursier : 14:00"; lockers are no longer shown to
+  merchants.
+
 ### Fixed
 
 - Consigne "how it works": step 3 showed a raw key (`consigne.how.step2b`).

@@ -14,7 +14,7 @@ import BarChart, { type Bar } from '../components/BarChart.vue'
 import MerchantShell from '../components/MerchantShell.vue'
 import StatTile from '../components/StatTile.vue'
 import { clock, euros, eurosRounded, number, percent, shortDay } from '../data/format'
-import { activity, demoNow, partnerOrFirst, placeName, serviceName } from '../data/source'
+import { activity, demoNow, partnerOrFirst, serviceName } from '../data/source'
 import { merchantSummary } from '../data/summaries'
 
 /** Long-term commission target stated by the project owner (docs/PRODUCT.md §9). */
@@ -30,6 +30,13 @@ const { t } = useI18n()
 const merchant = computed(() => partnerOrFirst(props.code))
 const summary = computed(() =>
   merchant.value ? merchantSummary(activity, merchant.value.code, demoNow) : null,
+)
+
+/** Items being processed, the next handover to the courier first. */
+const handoverOrder = computed(() =>
+  [...(summary.value?.inProgress ?? [])].sort((a, b) =>
+    (a.returned_at ?? '9').localeCompare(b.returned_at ?? '9'),
+  ),
 )
 
 const revenueBars = computed<Bar[]>(() =>
@@ -78,22 +85,20 @@ const itemBars = computed<Bar[]>(() => [
         <section class="card">
           <h2>{{ t('merchant.inProgressTitle') }}</h2>
           <ul v-if="summary.inProgress.length" class="plain-list">
-            <li v-for="order in summary.inProgress.slice(0, 6)" :key="order.id">
+            <li v-for="order in handoverOrder.slice(0, 6)" :key="order.id">
               <strong>
                 {{ t('merchant.items', order.items) }} ·
                 {{ serviceName(order.service) }}
               </strong>
-              <span class="muted">
-                {{ order.id }} ·
+              <span v-if="order.returned_at" class="handover">
                 {{
-                  t('merchant.returnBy', {
-                    locker: placeName(order.pickup_locker),
+                  t('merchant.handoverAt', {
+                    time: clock(order.returned_at),
+                    day: shortDay(order.returned_at),
                   })
                 }}
-                <template v-if="order.returned_at">
-                  · {{ shortDay(order.returned_at) }} {{ clock(order.returned_at) }}
-                </template>
               </span>
+              <span class="muted">{{ order.id }}</span>
             </li>
           </ul>
           <p v-else class="note">{{ t('merchant.inProgressEmpty') }}</p>
@@ -202,5 +207,15 @@ const itemBars = computed<Bar[]>(() => [
   background: var(--cg-glass);
   backdrop-filter: var(--cg-glass-filter);
   border: 4px solid var(--cg-chart-2);
+}
+.handover {
+  align-self: flex-start;
+  margin: 2px 0;
+  padding: 3px 10px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-sun-soft);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cg-ink);
 }
 </style>

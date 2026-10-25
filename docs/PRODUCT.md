@@ -261,6 +261,11 @@ the value the platform brings:
 The merchant also answers chat requests and sends quotes for special services,
 with a deliberately minimal interface.
 
+What matters to the merchant (stated 2026-10-25) is **when to hand items
+over to the courier** (the time of the courier's visit), not which locker
+the items come from or go to: merchant screens show the handover time and
+never the lockers.
+
 Merchant space contents confirmed on 2026-10-25: dashboard (above),
 **rounds** (what arrives and what goes back at 07:00, 14:00 and 20:00, items
 marked ready), **messages and quotes**, **reviews** (rating, verified
