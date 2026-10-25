@@ -7,6 +7,8 @@
  * The demo shows fictitious "Démo · …" merchants only, so that no real
  * business is associated with invented orders or revenue (docs/DEMO.md).
  */
+import { IonIcon } from '@ionic/vue'
+import { calendarOutline, chevronForwardOutline } from 'ionicons/icons'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -14,6 +16,7 @@ import BarChart, { type Bar } from '../components/BarChart.vue'
 import MerchantShell from '../components/MerchantShell.vue'
 import StatTile from '../components/StatTile.vue'
 import { clock, euros, eurosRounded, number, percent, shortDay } from '../data/format'
+import { googleCalendarOf } from '../data/partnerState'
 import { activity, demoNow, partnerOrFirst, serviceName } from '../data/source'
 import { merchantSummary } from '../data/summaries'
 
@@ -57,6 +60,19 @@ const itemBars = computed<Bar[]>(() => [
 
 <template>
   <merchant-shell :code="code" section="merchant">
+    <!-- Entry point to the Google Agenda sync, kept visible on the dashboard. -->
+    <router-link
+      v-if="merchant && !googleCalendarOf(merchant.code)"
+      class="card gcal-banner"
+      :to="{ name: 'merchant-agenda', params: { code: merchant.code } }"
+    >
+      <span class="gcal-icon" aria-hidden="true"><ion-icon :icon="calendarOutline" /></span>
+      <span class="gcal-text">
+        <strong>{{ t('merchant.agenda.gsync.bannerTitle') }}</strong>
+        <span>{{ t('merchant.agenda.gsync.bannerText') }}</span>
+      </span>
+      <ion-icon class="gcal-chevron" :icon="chevronForwardOutline" aria-hidden="true" />
+    </router-link>
     <template v-if="summary">
       <div class="columns">
         <section class="card">
@@ -217,5 +233,35 @@ const itemBars = computed<Bar[]>(() => [
   font-size: 13px;
   font-weight: 600;
   color: var(--cg-ink);
+}
+.gcal-banner {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.gcal-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-leaf-soft);
+  color: var(--cg-leaf);
+  font-size: 20px;
+}
+.gcal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gcal-text span {
+  font-size: 14px;
+  color: var(--cg-ink-soft);
+}
+.gcal-chevron {
+  color: var(--cg-ink-soft);
 }
 </style>

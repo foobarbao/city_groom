@@ -72,7 +72,13 @@ The same value goes to two places:
 | Customer app and portal (Netlify → *Site configuration* → *Environment variables*) | `VITE_GOOGLE_CLIENT_ID` | the client ID |
 | Customer app (Netlify, same place) | `VITE_API_BASE_URL` | `https://<render-service>.onrender.com/api/v1` |
 
-Then redeploy both (on Netlify: *Deploys* → *Trigger deploy*). Vite writes
+Then redeploy both (on Netlify: *Deploys* → *Trigger deploy*).
+
+Shortcut: the client ID and the API address are public values, so they can
+also be committed in `apps/customer/.env.demo-site` and
+`apps/portal/.env.demo-site` instead of Netlify's variables (Netlify's
+variables take precedence when both are set). Give them to the assistant
+and the next deploy carries them. Vite writes
 `VITE_*` values into the bundle at build time, so a rebuild is required.
 
 Locally: `GOOGLE_OAUTH_CLIENT_IDS` in `backend/.env`, `VITE_GOOGLE_CLIENT_ID`

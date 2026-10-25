@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- "Continuer avec Google" is always visible on the account screen (shown as
+  being activated until the Google client ID is configured), above the demo
+  sign-in; merchant dashboard banner to the Google Agenda sync. The client ID
+  can be committed in the demo-site env files (public value).
 - Customer app: order detail screen with a guided drop-off. "Déposer"
   opens the locker drawing with the door open, then "J'ai déposé mon
   article" confirms; the door chosen at checkout is stored with the order.

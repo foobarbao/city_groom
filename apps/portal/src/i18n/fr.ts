@@ -186,7 +186,10 @@ export default {
           'Des changements attendent : cliquez sur « Synchroniser maintenant » (l’accès Google dure une heure).',
         error: 'La synchronisation n’a pas abouti. Réessayez.',
         notConfigured:
-          'Bientôt disponible sur cette démo : la connexion Google est en cours de configuration.',
+          'En cours d’activation sur cette démo : le bouton fonctionnera dès que CityPal aura terminé sa configuration Google.',
+        bannerTitle: 'Synchroniser votre Google Agenda',
+        bannerText:
+          'Vos passages du coursier, prestations et remises dans votre agenda, à jour tout seuls.',
       },
       syncTitle: 'Autres agendas et outils',
       syncImport:

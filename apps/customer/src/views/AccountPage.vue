@@ -12,6 +12,8 @@ import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
+import { Capacitor } from '@capacitor/core'
+
 import { signInWithGoogle } from '../api/auth'
 import { ApiError } from '../api/http'
 import DemoNotice from '../components/DemoNotice.vue'
@@ -26,6 +28,10 @@ const name = ref('')
 const plan = computed(() => planByCode(account.state.plan))
 
 const withGoogle = googleSignInAvailable()
+/** Why "Continuer avec Google" is not usable yet, shown instead of hiding it. */
+const googleUnavailable = Capacitor.isNativePlatform()
+  ? 'account.google.notInApp'
+  : 'account.google.notConfigured'
 const googleButton = ref<HTMLElement | null>(null)
 const googleBusy = ref(false)
 const googleError = ref('')
@@ -74,9 +80,17 @@ const toReview = computed(
             <div ref="googleButton" class="google-button" :aria-busy="googleBusy" />
             <p v-if="googleBusy" class="muted small">{{ t('account.google.busy') }}</p>
             <p v-if="googleError" class="error small" role="alert">{{ googleError }}</p>
-            <p class="muted small">{{ t('account.google.privacy') }}</p>
           </template>
-          <form v-else class="sign-in" @submit.prevent="account.signIn(name)">
+          <template v-else>
+            <!-- Shown even when not usable yet, so the sign-in option is visible. -->
+            <button type="button" class="google-placeholder" disabled>
+              {{ t('account.google.continue') }}
+            </button>
+            <p class="muted small">{{ t(googleUnavailable) }}</p>
+          </template>
+          <p class="muted small">{{ t('account.google.privacy') }}</p>
+          <p class="or">{{ t('account.google.or') }}</p>
+          <form class="sign-in" @submit.prevent="account.signIn(name)">
             <label class="field">
               {{ t('account.name') }}
               <input v-model="name" type="text" autocomplete="given-name" />
@@ -165,6 +179,23 @@ const toReview = computed(
 }
 .google-button {
   min-height: 44px;
+}
+.google-placeholder {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--cg-locker-door-edge);
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-glass);
+  color: var(--cg-ink-soft);
+  font: inherit;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+.or {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cg-ink-soft);
 }
 .error {
   color: #b42318;
