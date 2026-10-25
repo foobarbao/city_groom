@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Google OAuth client ID set for the hosted demo (public value, in the
+  demo-site env files): Google Agenda sync and the Google sign-in button
+  are active; the sign-in completes once the backend is hosted.
 - Swap Sport (sport exchange): weekly exchange at one slot and one place (collect last
   week's clean sport outfit, shirt and trousers, drop the dirty ones in the
   same compartment), subscribers only (7 € Plus, 5 € Premium), bought by
