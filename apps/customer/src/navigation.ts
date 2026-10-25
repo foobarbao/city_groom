@@ -28,7 +28,7 @@ export const NAVIGATION: NavNode[] = [
   navItem('home', 'nav.home', homeOutline, 'home'),
   navGroup('services', 'nav.services', briefcaseOutline, [
     navItem('shops', 'nav.findService', searchOutline, 'shops', { also: ['shop', 'checkout'] }),
-    navItem('orders', 'nav.orders', receiptOutline, 'orders', { also: ['review'] }),
+    navItem('orders', 'nav.orders', receiptOutline, 'orders', { also: ['order', 'review'] }),
     navItem('messages', 'nav.messagesQuotes', chatbubblesOutline, 'messages', {
       also: ['chat'],
       badge: 'quotes',

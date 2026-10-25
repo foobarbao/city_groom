@@ -108,6 +108,7 @@ function pay(): void {
     size: size.value,
     dropLocker: dropLocker.value,
     pickupLocker: pickup.value,
+    door: door.value ?? undefined,
   })
 }
 </script>
@@ -134,7 +135,14 @@ function pay(): void {
             {{ t('checkout.whenText', { time: clock(nextRound) }) }}
           </p>
         </section>
-        <ion-button expand="block" shape="round" router-link="/compte/commandes">{{
+        <ion-button
+          expand="block"
+          shape="round"
+          :router-link="`/compte/commandes/${doneId}?ouvrir=1`"
+        >
+          {{ t('orders.drop') }}
+        </ion-button>
+        <ion-button expand="block" shape="round" fill="outline" router-link="/compte/commandes">{{
           t('account.orders')
         }}</ion-button>
         <demo-notice />

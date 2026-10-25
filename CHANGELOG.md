@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Customer app: order detail screen with a guided drop-off. "Déposer"
+  opens the locker drawing with the door open, then "J'ai déposé mon
+  article" confirms; the door chosen at checkout is stored with the order.
 - Privacy policy draft in French (`docs/legal/privacy-policy.fr.md`),
   written from the data the code actually collects, with the points to
   complete and to have validated by a legal adviser.

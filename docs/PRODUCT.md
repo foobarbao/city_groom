@@ -128,6 +128,10 @@ and operators use **web interfaces** (ADR-0005). Merchants also get a
    the door that will open and its size, then the customer drops the item in.
    The opening method depends on the locker vendor: **Bluetooth**, **NFC** or
    **QR code**.
+   Guided drop-off (requested 2026-10-25): from "Mes commandes", "Déposer"
+   opens the order with the locker drawn and its door open; the customer
+   puts the item in, closes the door and confirms with "J'ai déposé mon
+   article". The door is chosen at checkout and kept with the order.
 5. A courier collects the item during a scheduled round and delivers it to the
    merchant.
 6. The merchant performs the service.
@@ -450,7 +454,12 @@ Questions to the project owner. Answers are moved into the sections above.
    Which domain (e.g. `citypal.fr`)? The provisional Android ids are
    `fr.citypal.app` (customers) and `fr.citypal.pro` (merchants); they cannot
    be changed after publication on the Play Store. Have trademark (INPI) and
-   domain checks been done for "CityPal"?
+   domain checks been done for "CityPal"? A domain is required to open
+   Google sign-in and the Google Agenda sync beyond test users (Google brand
+   verification, docs/GOOGLE_SIGN_IN.md).
+   **Legal entity** (2026-10-25): none yet, form not decided. Needed for
+   the privacy policy (data controller) and the terms; until then the
+   draft keeps placeholders.
 8. **Subscriptions**: plans, prices, what they include (consigne discounts,
    service benefits, status levels of section 8?). The demo shows
    placeholder plans.

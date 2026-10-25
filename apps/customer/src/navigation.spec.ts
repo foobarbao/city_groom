@@ -18,6 +18,7 @@ describe('customer navigation', () => {
     expect(trail('booking').map((n) => n.id)).toEqual(['consigne', 'bookings'])
     expect(trail('chat').map((n) => n.id)).toEqual(['services', 'messages'])
     expect(trail('locker').map((n) => n.id)).toEqual(['map'])
+    expect(trail('order').map((n) => n.id)).toEqual(['services', 'orders'])
   })
 
   it('stays shallow and fully translated', () => {
