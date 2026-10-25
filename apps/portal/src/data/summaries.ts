@@ -119,6 +119,8 @@ export interface CourierSummary {
   averageKmPerRound: number
   itemsLast7Days: number
   projectedItemsPerMonth: number
+  /** Consigne transfers made over the last 7 days. */
+  transfersLast7Days: number
 }
 
 /**
@@ -151,6 +153,7 @@ export function courierSummary(activity: ActivityData, now: Date, upcoming = 4):
         10
       : 0,
     itemsLast7Days,
+    transfersLast7Days: lastWeek.reduce((sum, r) => sum + (r.transfers ?? 0), 0),
     // Each item travels twice (to the merchant and back).
     projectedItemsPerMonth: Math.round(forecastPerDay * 2 * 30),
   }

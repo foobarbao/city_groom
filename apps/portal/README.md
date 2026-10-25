@@ -11,14 +11,19 @@ operator API endpoints do not exist yet (roadmap item 7).
 
 ## Screens
 
-| Route                         | Screen                                                                                                    |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `/`                           | Demo home: one card per space, including the customer app                                                 |
-| `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                               |
-| `/commerce/:code?`            | Merchant space: incoming items per round, items being processed, revenue and commission, forecast         |
-| `/coursier`                   | Courier space: rounds per day, items and km per round, monthly projection, next rounds, map of next round |
-| `/exploitation`               | Operator space: volumes, fill rate per size and per locker, live map, daily orders and forecast           |
-| `/exploitation/casiers/:code` | Locker detail: locker front with the status of every door                                                 |
+| Route                         | Screen                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                           | Demo home: one card per space, including the customer app                                                                       |
+| `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                                                     |
+| `/commerce/:code?`            | Merchant dashboard: incoming items, items being processed, revenue and commission, forecast                                     |
+| `/commerce/:code/tournees`    | What arrives and what goes back at each round (07:00, 14:00, 20:00), items to mark ready                                        |
+| `/commerce/:code/messages`    | Customer requests, answers and quotes (label, price, locker size) with their status                                             |
+| `/commerce/:code/avis`        | Rating out of 5, distribution, verified reviews, public replies                                                                 |
+| `/commerce/:code/services`    | Services offered through CityPal: on/off, price, turnaround                                                                     |
+| `/coursier`                   | Courier space, presentation: rounds per day, items and km per round, monthly projection, consigne transfers, next rounds, map   |
+| `/coursier/tournee`           | Round sheet: stops in order with items to pick up and drop off (orders and consigne transfers), stops ticked as done, route map |
+| `/exploitation`               | Operator space: volumes, fill rate per size and per locker, live map, daily orders and forecast                                 |
+| `/exploitation/casiers/:code` | Locker detail: locker front with the status of every door                                                                       |
 
 The demo merchants are fictitious ("Démo · …"): no real business is shown
 with invented orders or revenue.
@@ -29,7 +34,8 @@ with invented orders or revenue.
 src/
 ├── assets/     Mission page photos (free licences, credited on the page, see data/missionPhotos.ts)
 ├── components/   PortalPage (frame + fictitious notice), StatTile, BarChart, PortalMap
-├── data/         Data source (demo dataset), figures (summaries.ts) and French formats, unit-tested
+├── data/         Data source (demo dataset), figures (summaries.ts), round sheet (roundSheet.ts),
+│                 partner demo state (partnerState.ts) and French formats, unit-tested
 ├── i18n/         French strings — no user-facing text in components
 ├── router/       Routes (French paths, user-visible); spaces are loaded on demand
 └── views/        Screens
@@ -63,3 +69,11 @@ npm run format:check -w apps/portal
 npm run typecheck -w apps/portal
 npm test -w apps/portal
 ```
+
+## Demo state
+
+Merchant conversations, quotes, replies to reviews, service settings, items
+marked ready and courier stops ticked as done live on the device
+(`src/data/partnerState.ts`, `localStorage` when available). Conversations
+start from fictitious customer requests and customer answers are simulated
+(labelled in the app). PROD: merchant and courier endpoints of the API.

@@ -9,13 +9,12 @@
  */
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
 
 import BarChart, { type Bar } from '../components/BarChart.vue'
-import PortalPage from '../components/PortalPage.vue'
+import MerchantShell from '../components/MerchantShell.vue'
 import StatTile from '../components/StatTile.vue'
 import { clock, euros, eurosRounded, number, percent, shortDay } from '../data/format'
-import { activity, demoNow, placeName, serviceName } from '../data/source'
+import { activity, demoNow, partnerOrFirst, placeName, serviceName } from '../data/source'
 import { merchantSummary } from '../data/summaries'
 
 /** Long-term commission target stated by the project owner (docs/PRODUCT.md §9). */
@@ -27,10 +26,8 @@ const props = defineProps<{
 }>()
 
 const { t } = useI18n()
-const router = useRouter()
 
-const merchants = activity.merchants
-const merchant = computed(() => merchants.find((m) => m.code === props.code) ?? merchants[0])
+const merchant = computed(() => partnerOrFirst(props.code))
 const summary = computed(() =>
   merchant.value ? merchantSummary(activity, merchant.value.code, demoNow) : null,
 )
@@ -49,26 +46,10 @@ const itemBars = computed<Bar[]>(() => [
     forecast: true,
   })),
 ])
-
-function select(code: string): void {
-  void router.replace({ name: 'merchant', params: { code } })
-}
 </script>
 
 <template>
-  <portal-page :title="t('merchant.title')" back-href="/">
-    <template #actions>
-      <label class="picker">
-        <span>{{ t('merchant.choose') }}</span>
-        <select
-          :value="merchant?.code"
-          @change="select(($event.target as HTMLSelectElement).value)"
-        >
-          <option v-for="m in merchants" :key="m.code" :value="m.code">{{ m.name }}</option>
-        </select>
-      </label>
-    </template>
-
+  <merchant-shell :code="code" section="merchant">
     <template v-if="summary">
       <div class="columns">
         <section class="card">
@@ -178,30 +159,10 @@ function select(code: string): void {
         </p>
       </section>
     </template>
-  </portal-page>
+  </merchant-shell>
 </template>
 
 <style scoped>
-.picker {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--cg-ink-soft);
-}
-.picker select {
-  min-width: 240px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: var(--cg-radius-pill);
-  background: var(--cg-glass);
-  backdrop-filter: var(--cg-glass-filter);
-  box-shadow: var(--cg-shadow);
-  font: inherit;
-  font-size: 15px;
-  color: var(--cg-ink);
-}
 .section-title {
   margin: 8px 0 0;
   font-size: 19px;

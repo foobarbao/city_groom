@@ -6,11 +6,11 @@
  * fictitious activity for orders and rounds; docs/DEMO.md).
  * PROD: read the merchant, courier and operator endpoints of the API instead.
  */
-import { activityData, operatorData, publicData } from '@city-groom/demo-data'
+import { activityData, catalogueData, operatorData, publicData } from '@city-groom/demo-data'
 
 import type { MapPoint } from '../components/PortalMap.vue'
 
-export { activityData as activity, operatorData, publicData }
+export { activityData as activity, catalogueData as catalogue, operatorData, publicData }
 
 /**
  * Reference time of the demo: the moment the activity was generated, moved to
@@ -19,10 +19,19 @@ export { activityData as activity, operatorData, publicData }
  */
 export const demoNow = new Date(activityData.generated_at)
 
-/** Names of the services, by code. */
+/** Names of the services, by code (the catalogue lists every service). */
 export const serviceNames: Record<string, string> = Object.fromEntries(
-  activityData.services.map((s) => [s.code, s.name]),
+  catalogueData.services.map((s) => [s.code, s.name]),
 )
+
+/** Fictitious partner shops ("Démo · …") of the merchant space, by name. */
+export const partners = [...catalogueData.partners].sort((a, b) =>
+  a.name.localeCompare(b.name, 'fr'),
+)
+
+/** Partner shop by code, falling back to the first one. */
+export const partnerOrFirst = (code: string | undefined) =>
+  partners.find((p) => p.code === code) ?? partners[0]
 
 /** Every locker with its operator details (fill rate, doors), by name. */
 export const lockers = Object.values(operatorData.details).sort((a, b) =>
@@ -53,7 +62,7 @@ export const positions: Record<string, [number, number]> = Object.fromEntries(
 
 /** Names of lockers and demo merchants, by code. */
 export const placeNames: Record<string, string> = Object.fromEntries(
-  [...lockerPoints, ...merchantPoints].map((p) => [p.code, p.name]),
+  [...lockerPoints, ...catalogueData.partners].map((p) => [p.code, p.name]),
 )
 
 /** Name of a service, falling back to its code. */

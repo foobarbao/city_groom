@@ -34,6 +34,7 @@ function round(overrides: Partial<DemoRound>): DemoRound {
     status: 'done',
     items_collected: 4,
     items_returned: 2,
+    transfers: 1,
     locker_stops: ['a'],
     merchant_stops: ['m1'],
     distance_km: 12,
@@ -54,6 +55,7 @@ const activity = {
     order({ id: 'D-2', items: 1, price_total: '20.00', commission: '2.00', status: 'at_merchant' }),
     order({ id: 'D-3', merchant: 'm2', items: 3 }),
   ],
+  transfers: [],
   rounds: [round({}), round({ starts_at: '2026-10-21T20:00:00+02:00', status: 'planned' })],
   daily: [{ date: '2026-10-21', orders: 3, items: 6, revenue: '40.00', commission: '4.00' }],
   forecast: [{ date: '2026-10-22', orders: 4, items: 10 }],
@@ -88,6 +90,8 @@ describe('courierSummary', () => {
     expect(summary.averageItemsPerRound).toBe(6)
     expect(summary.averageKmPerRound).toBe(12)
     expect(summary.projectedItemsPerMonth).toBe(600)
+    // One consigne transfer over the last 7 days.
+    expect(summary.transfersLast7Days).toBe(1)
   })
 })
 

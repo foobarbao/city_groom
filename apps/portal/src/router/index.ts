@@ -17,7 +17,36 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/MerchantPage.vue'),
     props: true,
   },
+  {
+    path: '/commerce/:code/tournees',
+    name: 'merchant-rounds',
+    component: () => import('../views/MerchantRoundsPage.vue'),
+    props: true,
+  },
+  {
+    path: '/commerce/:code/messages',
+    name: 'merchant-messages',
+    component: () => import('../views/MerchantMessagesPage.vue'),
+    props: true,
+  },
+  {
+    path: '/commerce/:code/avis',
+    name: 'merchant-reviews',
+    component: () => import('../views/MerchantReviewsPage.vue'),
+    props: true,
+  },
+  {
+    path: '/commerce/:code/services',
+    name: 'merchant-services',
+    component: () => import('../views/MerchantServicesPage.vue'),
+    props: true,
+  },
   { path: '/coursier', name: 'courier', component: () => import('../views/CourierPage.vue') },
+  {
+    path: '/coursier/tournee',
+    name: 'courier-round',
+    component: () => import('../views/CourierRoundPage.vue'),
+  },
   { path: '/exploitation', name: 'operator', component: () => import('../views/OperatorPage.vue') },
   {
     path: '/exploitation/casiers/:code',

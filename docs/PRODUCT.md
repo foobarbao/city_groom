@@ -251,6 +251,11 @@ the value the platform brings:
 The merchant also answers chat requests and sends quotes for special services,
 with a deliberately minimal interface.
 
+Merchant space contents confirmed on 2026-10-25: dashboard (above),
+**rounds** (what arrives and what goes back at 07:00, 14:00 and 20:00, items
+marked ready), **messages and quotes**, **reviews** (rating, verified
+reviews, public reply) and **services** (on/off, price, turnaround).
+
 In the demo, the merchant's data (orders, forecasts) is **simulated**.
 
 ## 6. Courier partner experience
@@ -269,6 +274,11 @@ Content proposed, to be confirmed (see open questions):
   collection rounds;
 - map of the lockers and merchants to serve, and the resulting rounds;
 - upcoming rounds once the service runs.
+
+Decided on 2026-10-25: the courier space serves **both** purposes, in two
+tabs: **presenting the activity** to prospective courier partners, and a
+**round sheet** used during a round (stops in order, what to pick up and drop
+off at each locker and merchant, consigne transfers, stops ticked as done).
 
 In the demo, all courier data is **simulated** and labelled as such.
 

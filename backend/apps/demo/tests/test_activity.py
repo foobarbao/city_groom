@@ -73,3 +73,15 @@ def test_invalid_inputs_are_rejected() -> None:
         generate_activity([], NOW)
     with pytest.raises(ValueError, match="timezone"):
         generate_activity(LOCKERS, NOW.replace(tzinfo=None))
+
+
+def test_transfers_happen_at_rounds_between_two_lockers() -> None:
+    activity = generate_activity(LOCKERS, NOW)
+    rounds = {r["starts_at"]: r for r in activity["rounds"]}
+
+    assert activity["transfers"]
+    for transfer in activity["transfers"]:
+        assert transfer["from_locker"] != transfer["to_locker"]
+        round_ = rounds[transfer["round_at"]]
+        assert {transfer["from_locker"], transfer["to_locker"]} <= set(round_["locker_stops"])
+    assert sum(r["transfers"] for r in activity["rounds"]) == len(activity["transfers"])

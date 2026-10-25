@@ -124,9 +124,19 @@ Versioning: [SemVer](https://semver.org/).
 - Guided drop-off and collection on the booking page: the door opens, "put
   your things in / take them out, then close the door", then a clear
   confirmation.
+- Merchant space: sub-menu with rounds (arrivals and departures at each of
+  the three rounds, items marked ready), messages and quotes, reviews with
+  public replies, services (on/off, price, turnaround); all 14 demo partner
+  shops selectable.
+- Courier space: "Présenter l'activité" tab (three rounds, consigne
+  transfers) and "Feuille de tournée" tab (stops in a valid order with what
+  to pick up and drop off, progress, route map).
+- Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
 ### Fixed
 
+- Demo dates keep their local time across a daylight-saving change (rounds
+  showed at 13:00 and 19:00 after the switch to winter time).
 - Map screen: welcome card in the brand green (was hard to read over the
   map); businesses grouped by category with a link to the searchable
   catalogue (the list was unsorted).

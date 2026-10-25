@@ -7138,17 +7138,514 @@
    "status": "at_merchant"
   }
  ],
+ "transfers": [
+  {
+   "id": "T-00001",
+   "round_at": "2026-10-10T07:00:00+02:00",
+   "from_locker": "universite-bibliotheques",
+   "to_locker": "marie-louise-paris-cea",
+   "size": "M"
+  },
+  {
+   "id": "T-00002",
+   "round_at": "2026-10-10T07:00:00+02:00",
+   "from_locker": "marche-general-ferrie",
+   "to_locker": "chu-nord-de-grenoble",
+   "size": "S"
+  },
+  {
+   "id": "T-00003",
+   "round_at": "2026-10-10T14:00:00+02:00",
+   "from_locker": "institut-durbanisme-et-de-geographie-alp",
+   "to_locker": "grenoble-hotel-de-ville",
+   "size": "M"
+  },
+  {
+   "id": "T-00004",
+   "round_at": "2026-10-10T20:00:00+02:00",
+   "from_locker": "edmee-chandon",
+   "to_locker": "gare-echirolles",
+   "size": "L"
+  },
+  {
+   "id": "T-00005",
+   "round_at": "2026-10-11T07:00:00+02:00",
+   "from_locker": "place-du-lys-rouge",
+   "to_locker": "place-eugene-chavant",
+   "size": "L"
+  },
+  {
+   "id": "T-00006",
+   "round_at": "2026-10-11T14:00:00+02:00",
+   "from_locker": "centre-dart-bastille",
+   "to_locker": "zone-dactivites-pre-ruffier",
+   "size": "M"
+  },
+  {
+   "id": "T-00007",
+   "round_at": "2026-10-11T20:00:00+02:00",
+   "from_locker": "batiment-pierre-mendes-france",
+   "to_locker": "marche-saint-bruno",
+   "size": "M"
+  },
+  {
+   "id": "T-00008",
+   "round_at": "2026-10-11T20:00:00+02:00",
+   "from_locker": "berriat-le-magasin",
+   "to_locker": "annie-fratellini-esplanade",
+   "size": "M"
+  },
+  {
+   "id": "T-00009",
+   "round_at": "2026-10-12T14:00:00+02:00",
+   "from_locker": "marche-dinteret-national-de-grenoble",
+   "to_locker": "gare-echirolles",
+   "size": "S"
+  },
+  {
+   "id": "T-00010",
+   "round_at": "2026-10-12T14:00:00+02:00",
+   "from_locker": "parc-jo-blanchon",
+   "to_locker": "zone-dactivites-commerciales-des-catalpa",
+   "size": "L"
+  },
+  {
+   "id": "T-00011",
+   "round_at": "2026-10-13T07:00:00+02:00",
+   "from_locker": "marche-croix-rouge",
+   "to_locker": "louise-michel",
+   "size": "L"
+  },
+  {
+   "id": "T-00012",
+   "round_at": "2026-10-13T07:00:00+02:00",
+   "from_locker": "zone-dactivites-des-glairons",
+   "to_locker": "zone-dactivites-percevaliere",
+   "size": "L"
+  },
+  {
+   "id": "T-00013",
+   "round_at": "2026-10-13T14:00:00+02:00",
+   "from_locker": "gare-saint-egreve-saint-robert",
+   "to_locker": "mc2-maison-de-la-culture",
+   "size": "L"
+  },
+  {
+   "id": "T-00014",
+   "round_at": "2026-10-13T20:00:00+02:00",
+   "from_locker": "horloge",
+   "to_locker": "grenoble-hotel-de-ville",
+   "size": "L"
+  },
+  {
+   "id": "T-00015",
+   "round_at": "2026-10-14T20:00:00+02:00",
+   "from_locker": "iut-2-de-grenoble",
+   "to_locker": "berriat-le-magasin",
+   "size": "M"
+  },
+  {
+   "id": "T-00016",
+   "round_at": "2026-10-14T20:00:00+02:00",
+   "from_locker": "fiancey-predieu",
+   "to_locker": "neyrpic-belledonne",
+   "size": "S"
+  },
+  {
+   "id": "T-00017",
+   "round_at": "2026-10-14T20:00:00+02:00",
+   "from_locker": "parc-albert-michallon",
+   "to_locker": "la-pinea-saint-robert",
+   "size": "S"
+  },
+  {
+   "id": "T-00018",
+   "round_at": "2026-10-15T07:00:00+02:00",
+   "from_locker": "chu-grenoble-alpes-site-sud",
+   "to_locker": "europole",
+   "size": "S"
+  },
+  {
+   "id": "T-00019",
+   "round_at": "2026-10-16T07:00:00+02:00",
+   "from_locker": "fiancey-predieu",
+   "to_locker": "la-pinea-saint-robert",
+   "size": "L"
+  },
+  {
+   "id": "T-00020",
+   "round_at": "2026-10-16T14:00:00+02:00",
+   "from_locker": "institut-durbanisme-et-de-geographie-alp",
+   "to_locker": "batiment-pierre-mendes-france",
+   "size": "L"
+  },
+  {
+   "id": "T-00021",
+   "round_at": "2026-10-16T14:00:00+02:00",
+   "from_locker": "place-edmond-arnaud",
+   "to_locker": "estacade-condorcet",
+   "size": "L"
+  },
+  {
+   "id": "T-00022",
+   "round_at": "2026-10-16T20:00:00+02:00",
+   "from_locker": "gare-saint-egreve-saint-robert",
+   "to_locker": "place-edmond-arnaud",
+   "size": "S"
+  },
+  {
+   "id": "T-00023",
+   "round_at": "2026-10-17T07:00:00+02:00",
+   "from_locker": "fiancey-predieu",
+   "to_locker": "louis-maisonnat",
+   "size": "S"
+  },
+  {
+   "id": "T-00024",
+   "round_at": "2026-10-17T14:00:00+02:00",
+   "from_locker": "vallier-catane",
+   "to_locker": "ile-verte",
+   "size": "M"
+  },
+  {
+   "id": "T-00025",
+   "round_at": "2026-10-17T14:00:00+02:00",
+   "from_locker": "la-poya",
+   "to_locker": "zone-dactivites-des-glairons",
+   "size": "M"
+  },
+  {
+   "id": "T-00026",
+   "round_at": "2026-10-17T20:00:00+02:00",
+   "from_locker": "place-du-saint-eynard",
+   "to_locker": "louise-michel",
+   "size": "M"
+  },
+  {
+   "id": "T-00027",
+   "round_at": "2026-10-18T14:00:00+02:00",
+   "from_locker": "institut-durbanisme-et-de-geographie-alp",
+   "to_locker": "tour-perret",
+   "size": "L"
+  },
+  {
+   "id": "T-00028",
+   "round_at": "2026-10-20T07:00:00+02:00",
+   "from_locker": "vallier-catane",
+   "to_locker": "grand-sablon",
+   "size": "S"
+  },
+  {
+   "id": "T-00029",
+   "round_at": "2026-10-20T14:00:00+02:00",
+   "from_locker": "ecole-polytechnique-universitaire-grenob",
+   "to_locker": "estacade-condorcet",
+   "size": "L"
+  },
+  {
+   "id": "T-00030",
+   "round_at": "2026-10-20T14:00:00+02:00",
+   "from_locker": "jardin-hoche",
+   "to_locker": "square-barbara",
+   "size": "L"
+  },
+  {
+   "id": "T-00031",
+   "round_at": "2026-10-21T14:00:00+02:00",
+   "from_locker": "centre-hospitalier-alpes-isere",
+   "to_locker": "louise-michel",
+   "size": "L"
+  },
+  {
+   "id": "T-00032",
+   "round_at": "2026-10-21T14:00:00+02:00",
+   "from_locker": "marche-general-ferrie",
+   "to_locker": "place-eugene-chavant",
+   "size": "S"
+  },
+  {
+   "id": "T-00033",
+   "round_at": "2026-10-22T07:00:00+02:00",
+   "from_locker": "centre-hospitalier-alpes-isere",
+   "to_locker": "batiment-pierre-mendes-france",
+   "size": "M"
+  },
+  {
+   "id": "T-00034",
+   "round_at": "2026-10-22T07:00:00+02:00",
+   "from_locker": "grenoble-hotel-de-ville",
+   "to_locker": "marie-louise-paris-cea",
+   "size": "L"
+  },
+  {
+   "id": "T-00035",
+   "round_at": "2026-10-22T14:00:00+02:00",
+   "from_locker": "la-rampe-centre-ville",
+   "to_locker": "edmee-chandon",
+   "size": "L"
+  },
+  {
+   "id": "T-00036",
+   "round_at": "2026-10-22T14:00:00+02:00",
+   "from_locker": "mc2-maison-de-la-culture",
+   "to_locker": "halle-sainte-claire",
+   "size": "S"
+  },
+  {
+   "id": "T-00037",
+   "round_at": "2026-10-22T20:00:00+02:00",
+   "from_locker": "square-barbara",
+   "to_locker": "la-rampe-centre-ville",
+   "size": "L"
+  },
+  {
+   "id": "T-00038",
+   "round_at": "2026-10-23T07:00:00+02:00",
+   "from_locker": "tour-perret",
+   "to_locker": "place-edmond-arnaud",
+   "size": "M"
+  },
+  {
+   "id": "T-00039",
+   "round_at": "2026-10-23T20:00:00+02:00",
+   "from_locker": "chu-nord-de-grenoble",
+   "to_locker": "grandplace",
+   "size": "S"
+  },
+  {
+   "id": "T-00040",
+   "round_at": "2026-10-24T07:00:00+02:00",
+   "from_locker": "tour-perret",
+   "to_locker": "place-saint-andre",
+   "size": "M"
+  },
+  {
+   "id": "T-00041",
+   "round_at": "2026-10-24T14:00:00+02:00",
+   "from_locker": "musee-de-la-resistance-et-de-la-deportat",
+   "to_locker": "caserne-de-bonne",
+   "size": "M"
+  },
+  {
+   "id": "T-00042",
+   "round_at": "2026-10-24T20:00:00+02:00",
+   "from_locker": "universite-bibliotheques",
+   "to_locker": "fauconniere",
+   "size": "L"
+  },
+  {
+   "id": "T-00043",
+   "round_at": "2026-10-25T07:00:00+01:00",
+   "from_locker": "domaine-universitaire-de-grenoble",
+   "to_locker": "la-poya",
+   "size": "L"
+  },
+  {
+   "id": "T-00044",
+   "round_at": "2026-10-25T20:00:00+01:00",
+   "from_locker": "zone-dactivites-percevaliere",
+   "to_locker": "jardin-des-dauphins",
+   "size": "L"
+  },
+  {
+   "id": "T-00045",
+   "round_at": "2026-10-25T20:00:00+01:00",
+   "from_locker": "zone-dactivites-des-glairons",
+   "to_locker": "estacade-condorcet",
+   "size": "L"
+  },
+  {
+   "id": "T-00046",
+   "round_at": "2026-10-26T07:00:00+01:00",
+   "from_locker": "la-casamaures",
+   "to_locker": "tour-perret",
+   "size": "L"
+  },
+  {
+   "id": "T-00047",
+   "round_at": "2026-10-26T14:00:00+01:00",
+   "from_locker": "parc-jo-blanchon",
+   "to_locker": "grand-sablon",
+   "size": "S"
+  },
+  {
+   "id": "T-00048",
+   "round_at": "2026-10-27T07:00:00+01:00",
+   "from_locker": "zone-dactivites-commerciales-des-catalpa",
+   "to_locker": "studio-m-grenoble",
+   "size": "L"
+  },
+  {
+   "id": "T-00049",
+   "round_at": "2026-10-27T07:00:00+01:00",
+   "from_locker": "grenoble-hotel-de-ville",
+   "to_locker": "ecole-polytechnique-universitaire-grenob",
+   "size": "L"
+  },
+  {
+   "id": "T-00050",
+   "round_at": "2026-10-27T07:00:00+01:00",
+   "from_locker": "marche-saint-bruno",
+   "to_locker": "k-store",
+   "size": "L"
+  },
+  {
+   "id": "T-00051",
+   "round_at": "2026-10-27T14:00:00+01:00",
+   "from_locker": "chu-grenoble-alpes-site-sud",
+   "to_locker": "zone-dactivites-commerciales-des-catalpa",
+   "size": "M"
+  },
+  {
+   "id": "T-00052",
+   "round_at": "2026-10-27T14:00:00+01:00",
+   "from_locker": "parc-albert-michallon",
+   "to_locker": "place-du-lys-rouge",
+   "size": "M"
+  },
+  {
+   "id": "T-00053",
+   "round_at": "2026-10-27T14:00:00+01:00",
+   "from_locker": "ecole-superieure-dart-et-design-grenoble",
+   "to_locker": "square-barbara",
+   "size": "L"
+  },
+  {
+   "id": "T-00054",
+   "round_at": "2026-10-27T20:00:00+01:00",
+   "from_locker": "place-victor-hugo",
+   "to_locker": "edmee-chandon",
+   "size": "L"
+  },
+  {
+   "id": "T-00055",
+   "round_at": "2026-10-27T20:00:00+01:00",
+   "from_locker": "place-victor-hugo",
+   "to_locker": "marche-general-ferrie",
+   "size": "S"
+  },
+  {
+   "id": "T-00056",
+   "round_at": "2026-10-28T07:00:00+01:00",
+   "from_locker": "berriat-le-magasin",
+   "to_locker": "europole",
+   "size": "L"
+  },
+  {
+   "id": "T-00057",
+   "round_at": "2026-10-28T07:00:00+01:00",
+   "from_locker": "place-du-saint-eynard",
+   "to_locker": "centre-dart-bastille",
+   "size": "S"
+  },
+  {
+   "id": "T-00058",
+   "round_at": "2026-10-28T07:00:00+01:00",
+   "from_locker": "edmee-chandon",
+   "to_locker": "marche-croix-rouge",
+   "size": "M"
+  },
+  {
+   "id": "T-00059",
+   "round_at": "2026-10-28T14:00:00+01:00",
+   "from_locker": "square-barbara",
+   "to_locker": "mc2-maison-de-la-culture",
+   "size": "L"
+  },
+  {
+   "id": "T-00060",
+   "round_at": "2026-10-28T20:00:00+01:00",
+   "from_locker": "jardin-des-dauphins",
+   "to_locker": "square-barbara",
+   "size": "L"
+  },
+  {
+   "id": "T-00061",
+   "round_at": "2026-10-28T20:00:00+01:00",
+   "from_locker": "studio-m-grenoble",
+   "to_locker": "neyrpic-belledonne",
+   "size": "L"
+  },
+  {
+   "id": "T-00062",
+   "round_at": "2026-10-29T14:00:00+01:00",
+   "from_locker": "jardin-des-dauphins",
+   "to_locker": "annie-fratellini-esplanade",
+   "size": "L"
+  },
+  {
+   "id": "T-00063",
+   "round_at": "2026-10-29T14:00:00+01:00",
+   "from_locker": "musee-de-la-resistance-et-de-la-deportat",
+   "to_locker": "louise-michel",
+   "size": "L"
+  },
+  {
+   "id": "T-00064",
+   "round_at": "2026-10-29T20:00:00+01:00",
+   "from_locker": "centre-hospitalier-alpes-isere",
+   "to_locker": "grenoble-hotel-de-ville",
+   "size": "L"
+  },
+  {
+   "id": "T-00065",
+   "round_at": "2026-10-29T20:00:00+01:00",
+   "from_locker": "gare-saint-egreve-saint-robert",
+   "to_locker": "place-du-saint-eynard",
+   "size": "S"
+  },
+  {
+   "id": "T-00066",
+   "round_at": "2026-10-31T07:00:00+01:00",
+   "from_locker": "iut-2-de-grenoble",
+   "to_locker": "square-barbara",
+   "size": "M"
+  },
+  {
+   "id": "T-00067",
+   "round_at": "2026-10-31T07:00:00+01:00",
+   "from_locker": "mc2-maison-de-la-culture",
+   "to_locker": "europole",
+   "size": "L"
+  },
+  {
+   "id": "T-00068",
+   "round_at": "2026-10-31T20:00:00+01:00",
+   "from_locker": "fiancey-predieu",
+   "to_locker": "place-victor-hugo",
+   "size": "L"
+  }
+ ],
  "rounds": [
+  {
+   "id": "R-20261010-0700",
+   "starts_at": "2026-10-10T07:00:00+02:00",
+   "status": "done",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "chu-nord-de-grenoble",
+    "marche-general-ferrie",
+    "marie-louise-paris-cea",
+    "universite-bibliotheques"
+   ],
+   "merchant_stops": [],
+   "distance_km": 18.6
+  },
   {
    "id": "R-20261010-1400",
    "starts_at": "2026-10-10T14:00:00+02:00",
    "status": "done",
    "items_collected": 31,
    "items_returned": 0,
+   "transfers": 1,
    "locker_stops": [
     "chu-nord-de-grenoble",
     "ecole-polytechnique-universitaire-grenob",
+    "grenoble-hotel-de-ville",
     "ile-verte",
+    "institut-durbanisme-et-de-geographie-alp",
     "louise-michel",
     "marche-saint-bruno",
     "musee-dauphinois",
@@ -7165,7 +7662,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 30.4
+   "distance_km": 31.1
   },
   {
    "id": "R-20261010-2000",
@@ -7173,7 +7670,10 @@
    "status": "done",
    "items_collected": 12,
    "items_returned": 0,
+   "transfers": 1,
    "locker_stops": [
+    "edmee-chandon",
+    "gare-echirolles",
     "jardin-hoche",
     "la-casamaures",
     "marche-general-ferrie",
@@ -7186,7 +7686,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 20.0
+   "distance_km": 29.8
   },
   {
    "id": "R-20261011-0700",
@@ -7194,15 +7694,18 @@
    "status": "done",
    "items_collected": 2,
    "items_returned": 0,
+   "transfers": 1,
    "locker_stops": [
     "mc2-maison-de-la-culture",
+    "place-du-lys-rouge",
+    "place-eugene-chavant",
     "zone-dactivites-commerciales-des-catalpa"
    ],
    "merchant_stops": [
     "demo-horlogerie",
     "demo-reparation"
    ],
-   "distance_km": 12.2
+   "distance_km": 12.8
   },
   {
    "id": "R-20261011-1400",
@@ -7210,7 +7713,9 @@
    "status": "done",
    "items_collected": 18,
    "items_returned": 28,
+   "transfers": 1,
    "locker_stops": [
+    "centre-dart-bastille",
     "chu-nord-de-grenoble",
     "ecole-polytechnique-universitaire-grenob",
     "k-store",
@@ -7229,7 +7734,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 31.4
+   "distance_km": 32.1
   },
   {
    "id": "R-20261011-2000",
@@ -7237,10 +7742,15 @@
    "status": "done",
    "items_collected": 7,
    "items_returned": 6,
+   "transfers": 2,
    "locker_stops": [
+    "annie-fratellini-esplanade",
+    "batiment-pierre-mendes-france",
+    "berriat-le-magasin",
     "institut-durbanisme-et-de-geographie-alp",
     "louise-michel",
     "marche-general-ferrie",
+    "marche-saint-bruno",
     "square-docteur-valois",
     "zone-dactivites-percevaliere"
    ],
@@ -7248,7 +7758,7 @@
     "demo-cordonnerie",
     "demo-pressing"
    ],
-   "distance_km": 15.9
+   "distance_km": 28.8
   },
   {
    "id": "R-20261012-0700",
@@ -7256,6 +7766,7 @@
    "status": "done",
    "items_collected": 1,
    "items_returned": 0,
+   "transfers": 0,
    "locker_stops": [
     "place-paul-huillier"
    ],
@@ -7270,9 +7781,11 @@
    "status": "done",
    "items_collected": 8,
    "items_returned": 18,
+   "transfers": 2,
    "locker_stops": [
     "chu-nord-de-grenoble",
     "europole",
+    "gare-echirolles",
     "grand-sablon",
     "groupe-hospitalier-mutualiste-de-grenobl",
     "k-store",
@@ -7281,10 +7794,12 @@
     "marche-dinteret-national-de-grenoble",
     "musee-de-la-resistance-et-de-la-deportat",
     "neyrpic-belledonne",
+    "parc-jo-blanchon",
     "place-eugene-chavant",
     "place-paul-huillier",
     "square-barbara",
-    "tour-perret"
+    "tour-perret",
+    "zone-dactivites-commerciales-des-catalpa"
    ],
    "merchant_stops": [
     "demo-blanchisserie",
@@ -7294,7 +7809,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 33.5
+   "distance_km": 41.0
   },
   {
    "id": "R-20261012-2000",
@@ -7302,6 +7817,7 @@
    "status": "done",
    "items_collected": 23,
    "items_returned": 11,
+   "transfers": 0,
    "locker_stops": [
     "chu-nord-de-grenoble",
     "europole",
@@ -7341,15 +7857,19 @@
    "status": "done",
    "items_collected": 11,
    "items_returned": 3,
+   "transfers": 2,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "caserne-de-bonne",
     "grandplace",
     "le-prisme",
+    "louise-michel",
     "marche-croix-rouge",
     "marche-saint-bruno",
     "mc2-maison-de-la-culture",
-    "place-paul-huillier"
+    "place-paul-huillier",
+    "zone-dactivites-des-glairons",
+    "zone-dactivites-percevaliere"
    ],
    "merchant_stops": [
     "demo-blanchisserie",
@@ -7358,7 +7878,7 @@
     "demo-pressing",
     "demo-reparation"
    ],
-   "distance_km": 26.7
+   "distance_km": 29.3
   },
   {
    "id": "R-20261013-1400",
@@ -7366,11 +7886,13 @@
    "status": "done",
    "items_collected": 14,
    "items_returned": 8,
+   "transfers": 1,
    "locker_stops": [
     "ecole-polytechnique-universitaire-grenob",
     "europole",
     "fauconniere",
     "gare-echirolles",
+    "gare-saint-egreve-saint-robert",
     "grand-sablon",
     "ile-verte",
     "jardin-des-dauphins",
@@ -7380,6 +7902,7 @@
     "le-prisme",
     "louis-maisonnat",
     "marche-dinteret-national-de-grenoble",
+    "mc2-maison-de-la-culture",
     "place-du-saint-eynard",
     "place-paul-huillier",
     "studio-m-grenoble"
@@ -7392,7 +7915,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 31.9
+   "distance_km": 50.3
   },
   {
    "id": "R-20261013-2000",
@@ -7400,12 +7923,15 @@
    "status": "done",
    "items_collected": 18,
    "items_returned": 11,
+   "transfers": 1,
    "locker_stops": [
     "centre-hospitalier-alpes-isere",
     "ecole-polytechnique-universitaire-grenob",
     "europole",
     "fauconniere",
+    "grenoble-hotel-de-ville",
     "halle-sainte-claire",
+    "horloge",
     "institut-durbanisme-et-de-geographie-alp",
     "iut-2-de-grenoble",
     "jardin-des-dauphins",
@@ -7425,7 +7951,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 43.0
+   "distance_km": 37.2
   },
   {
    "id": "R-20261014-0700",
@@ -7433,6 +7959,7 @@
    "status": "done",
    "items_collected": 14,
    "items_returned": 6,
+   "transfers": 0,
    "locker_stops": [
     "caserne-de-bonne",
     "europole",
@@ -7454,6 +7981,7 @@
    "status": "done",
    "items_collected": 7,
    "items_returned": 6,
+   "transfers": 0,
    "locker_stops": [
     "groupe-hospitalier-mutualiste-de-grenobl",
     "jardin-des-dauphins",
@@ -7479,18 +8007,25 @@
    "status": "done",
    "items_collected": 22,
    "items_returned": 22,
+   "transfers": 3,
    "locker_stops": [
+    "berriat-le-magasin",
     "centre-hospitalier-alpes-isere",
     "chu-grenoble-alpes-site-sud",
     "chu-nord-de-grenoble",
     "edmee-chandon",
+    "fiancey-predieu",
     "grenoble-hotel-de-ville",
     "horloge",
+    "iut-2-de-grenoble",
     "k-store",
+    "la-pinea-saint-robert",
     "la-rampe-centre-ville",
     "le-prisme",
     "louise-michel",
     "marche-croix-rouge",
+    "neyrpic-belledonne",
+    "parc-albert-michallon",
     "place-eugene-chavant",
     "place-paul-huillier",
     "place-saint-andre",
@@ -7508,7 +8043,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 51.5
+   "distance_km": 54.3
   },
   {
    "id": "R-20261015-0700",
@@ -7516,8 +8051,11 @@
    "status": "done",
    "items_collected": 11,
    "items_returned": 16,
+   "transfers": 1,
    "locker_stops": [
+    "chu-grenoble-alpes-site-sud",
     "ecole-polytechnique-universitaire-grenob",
+    "europole",
     "groupe-hospitalier-mutualiste-de-grenobl",
     "la-rampe-centre-ville",
     "le-prisme",
@@ -7537,7 +8075,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 29.1
+   "distance_km": 31.8
   },
   {
    "id": "R-20261015-1400",
@@ -7545,6 +8083,7 @@
    "status": "done",
    "items_collected": 28,
    "items_returned": 14,
+   "transfers": 0,
    "locker_stops": [
     "domaine-universitaire-de-grenoble",
     "gare-echirolles",
@@ -7581,6 +8120,7 @@
    "status": "done",
    "items_collected": 15,
    "items_returned": 19,
+   "transfers": 0,
    "locker_stops": [
     "centre-hospitalier-alpes-isere",
     "ecole-polytechnique-universitaire-grenob",
@@ -7615,11 +8155,14 @@
    "status": "done",
    "items_collected": 8,
    "items_returned": 5,
+   "transfers": 1,
    "locker_stops": [
     "caserne-de-bonne",
+    "fiancey-predieu",
     "gieres-gare-universites",
     "jardin-des-dauphins",
     "jardin-hoche",
+    "la-pinea-saint-robert",
     "place-eugene-chavant",
     "place-saint-andre",
     "place-victor-hugo"
@@ -7630,7 +8173,7 @@
     "demo-horlogerie",
     "demo-pressing"
    ],
-   "distance_km": 18.0
+   "distance_km": 32.1
   },
   {
    "id": "R-20261016-1400",
@@ -7638,10 +8181,14 @@
    "status": "done",
    "items_collected": 15,
    "items_returned": 22,
+   "transfers": 2,
    "locker_stops": [
+    "batiment-pierre-mendes-france",
     "centre-hospitalier-alpes-isere",
     "edmee-chandon",
+    "estacade-condorcet",
     "grand-sablon",
+    "institut-durbanisme-et-de-geographie-alp",
     "jardin-des-dauphins",
     "la-pinea-saint-robert",
     "louise-michel",
@@ -7649,6 +8196,7 @@
     "mc2-maison-de-la-culture",
     "palluel",
     "place-du-lys-rouge",
+    "place-edmond-arnaud",
     "place-paul-huillier",
     "place-victor-hugo",
     "square-barbara",
@@ -7662,7 +8210,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 55.8
+   "distance_km": 59.9
   },
   {
    "id": "R-20261016-2000",
@@ -7670,6 +8218,7 @@
    "status": "done",
    "items_collected": 24,
    "items_returned": 17,
+   "transfers": 1,
    "locker_stops": [
     "centre-hospitalier-alpes-isere",
     "chu-grenoble-alpes-site-sud",
@@ -7677,6 +8226,7 @@
     "ecole-superieure-dart-et-design-grenoble",
     "edmee-chandon",
     "gare-echirolles",
+    "gare-saint-egreve-saint-robert",
     "gieres-gare-universites",
     "grenoble-hotel-de-ville",
     "k-store",
@@ -7688,6 +8238,7 @@
     "musee-de-la-resistance-et-de-la-deportat",
     "palluel",
     "place-charles-dullin",
+    "place-edmond-arnaud",
     "place-saint-andre",
     "square-barbara",
     "studio-m-grenoble",
@@ -7702,7 +8253,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 63.8
+   "distance_km": 64.3
   },
   {
    "id": "R-20261017-0700",
@@ -7710,9 +8261,11 @@
    "status": "done",
    "items_collected": 24,
    "items_returned": 17,
+   "transfers": 1,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "ecole-polytechnique-universitaire-grenob",
+    "fiancey-predieu",
     "grand-sablon",
     "groupe-hospitalier-mutualiste-de-grenobl",
     "ile-verte",
@@ -7736,7 +8289,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 30.1
+   "distance_km": 39.4
   },
   {
    "id": "R-20261017-1400",
@@ -7744,6 +8297,7 @@
    "status": "done",
    "items_collected": 10,
    "items_returned": 17,
+   "transfers": 2,
    "locker_stops": [
     "centre-hospitalier-alpes-isere",
     "domaine-universitaire-de-grenoble",
@@ -7751,15 +8305,18 @@
     "gieres-gare-universites",
     "grandplace",
     "halle-sainte-claire",
+    "ile-verte",
     "institut-durbanisme-et-de-geographie-alp",
     "iut-2-de-grenoble",
     "jardin-des-dauphins",
+    "la-poya",
     "le-prisme",
     "musee-de-la-resistance-et-de-la-deportat",
     "place-du-saint-eynard",
     "place-paul-huillier",
     "place-victor-hugo",
     "vallier-catane",
+    "zone-dactivites-des-glairons",
     "zone-dactivites-percevaliere"
    ],
    "merchant_stops": [
@@ -7769,7 +8326,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 47.0
+   "distance_km": 48.7
   },
   {
    "id": "R-20261017-2000",
@@ -7777,6 +8334,7 @@
    "status": "done",
    "items_collected": 6,
    "items_returned": 24,
+   "transfers": 1,
    "locker_stops": [
     "centre-hospitalier-alpes-isere",
     "chu-grenoble-alpes-site-sud",
@@ -7787,9 +8345,11 @@
     "k-store",
     "la-pinea-saint-robert",
     "le-prisme",
+    "louise-michel",
     "marche-general-ferrie",
     "mc2-maison-de-la-culture",
     "place-charles-dullin",
+    "place-du-saint-eynard",
     "square-barbara",
     "studio-m-grenoble",
     "tour-perret",
@@ -7803,7 +8363,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 45.9
+   "distance_km": 47.5
   },
   {
    "id": "R-20261018-0700",
@@ -7811,6 +8371,7 @@
    "status": "done",
    "items_collected": 11,
    "items_returned": 18,
+   "transfers": 0,
    "locker_stops": [
     "centre-dart-bastille",
     "ecole-polytechnique-universitaire-grenob",
@@ -7836,13 +8397,16 @@
    "status": "done",
    "items_collected": 2,
    "items_returned": 9,
+   "transfers": 1,
    "locker_stops": [
     "caserne-de-bonne",
     "edmee-chandon",
     "grand-sablon",
+    "institut-durbanisme-et-de-geographie-alp",
     "louis-maisonnat",
     "mc2-maison-de-la-culture",
     "place-saint-andre",
+    "tour-perret",
     "zone-dactivites-commerciales-des-catalpa",
     "zone-dactivites-de-la-tuilerie"
    ],
@@ -7854,7 +8418,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 32.6
+   "distance_km": 39.2
   },
   {
    "id": "R-20261018-2000",
@@ -7862,6 +8426,7 @@
    "status": "done",
    "items_collected": 20,
    "items_returned": 12,
+   "transfers": 0,
    "locker_stops": [
     "berriat-le-magasin",
     "centre-dart-bastille",
@@ -7900,6 +8465,7 @@
    "status": "done",
    "items_collected": 11,
    "items_returned": 12,
+   "transfers": 0,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "gare-saint-egreve-saint-robert",
@@ -7926,6 +8492,7 @@
    "status": "done",
    "items_collected": 15,
    "items_returned": 10,
+   "transfers": 0,
    "locker_stops": [
     "batiment-pierre-mendes-france",
     "chu-grenoble-alpes-site-sud",
@@ -7960,6 +8527,7 @@
    "status": "done",
    "items_collected": 16,
    "items_returned": 16,
+   "transfers": 0,
    "locker_stops": [
     "centre-dart-bastille",
     "fiancey-predieu",
@@ -7989,6 +8557,7 @@
    "status": "done",
    "items_collected": 13,
    "items_returned": 15,
+   "transfers": 1,
    "locker_stops": [
     "batiment-pierre-mendes-france",
     "centre-dart-bastille",
@@ -8002,7 +8571,8 @@
     "place-du-lys-rouge",
     "place-du-saint-eynard",
     "square-docteur-valois",
-    "tour-perret"
+    "tour-perret",
+    "vallier-catane"
    ],
    "merchant_stops": [
     "demo-blanchisserie",
@@ -8012,7 +8582,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 44.5
+   "distance_km": 44.7
   },
   {
    "id": "R-20261020-1400",
@@ -8020,15 +8590,19 @@
    "status": "done",
    "items_collected": 19,
    "items_returned": 6,
+   "transfers": 2,
    "locker_stops": [
     "berriat-le-magasin",
     "chu-grenoble-alpes-site-sud",
     "ecole-polytechnique-universitaire-grenob",
+    "estacade-condorcet",
     "ile-verte",
+    "jardin-hoche",
     "la-rampe-centre-ville",
     "mc2-maison-de-la-culture",
     "parc-jo-blanchon",
     "place-saint-andre",
+    "square-barbara",
     "zone-dactivites-commerciales-des-catalpa",
     "zone-dactivites-des-glairons"
    ],
@@ -8040,7 +8614,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 32.3
+   "distance_km": 31.5
   },
   {
    "id": "R-20261020-2000",
@@ -8048,6 +8622,7 @@
    "status": "done",
    "items_collected": 29,
    "items_returned": 18,
+   "transfers": 0,
    "locker_stops": [
     "berriat-le-magasin",
     "caserne-de-bonne",
@@ -8092,6 +8667,7 @@
    "status": "done",
    "items_collected": 3,
    "items_returned": 8,
+   "transfers": 0,
    "locker_stops": [
     "centre-dart-bastille",
     "centre-hospitalier-alpes-isere",
@@ -8116,8 +8692,10 @@
    "status": "done",
    "items_collected": 17,
    "items_returned": 24,
+   "transfers": 2,
    "locker_stops": [
     "berriat-le-magasin",
+    "centre-hospitalier-alpes-isere",
     "domaine-universitaire-de-grenoble",
     "europole",
     "groupe-hospitalier-mutualiste-de-grenobl",
@@ -8125,11 +8703,13 @@
     "jardin-hoche",
     "k-store",
     "louise-michel",
+    "marche-general-ferrie",
     "mc2-maison-de-la-culture",
     "palluel",
     "parc-albert-michallon",
     "parc-jo-blanchon",
     "place-charles-dullin",
+    "place-eugene-chavant",
     "zone-dactivites-commerciales-des-catalpa",
     "zone-dactivites-des-glairons"
    ],
@@ -8139,7 +8719,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 49.9
+   "distance_km": 49.1
   },
   {
    "id": "R-20261021-2000",
@@ -8147,6 +8727,7 @@
    "status": "done",
    "items_collected": 45,
    "items_returned": 22,
+   "transfers": 0,
    "locker_stops": [
     "batiment-pierre-mendes-france",
     "chu-nord-de-grenoble",
@@ -8192,14 +8773,17 @@
    "status": "done",
    "items_collected": 9,
    "items_returned": 7,
+   "transfers": 2,
    "locker_stops": [
     "batiment-pierre-mendes-france",
+    "centre-hospitalier-alpes-isere",
     "edmee-chandon",
     "estacade-condorcet",
     "europole",
     "fauconniere",
     "gieres-gare-universites",
     "grand-sablon",
+    "grenoble-hotel-de-ville",
     "louis-maisonnat",
     "marie-louise-paris-cea",
     "place-du-lys-rouge",
@@ -8213,7 +8797,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 44.2
+   "distance_km": 54.5
   },
   {
    "id": "R-20261022-1400",
@@ -8221,16 +8805,21 @@
    "status": "done",
    "items_collected": 17,
    "items_returned": 20,
+   "transfers": 2,
    "locker_stops": [
     "centre-dart-bastille",
     "domaine-universitaire-de-grenoble",
     "ecole-polytechnique-universitaire-grenob",
     "ecole-superieure-dart-et-design-grenoble",
+    "edmee-chandon",
     "gare-echirolles",
     "groupe-hospitalier-mutualiste-de-grenobl",
+    "halle-sainte-claire",
+    "la-rampe-centre-ville",
     "le-prisme",
     "louise-michel",
     "marche-croix-rouge",
+    "mc2-maison-de-la-culture",
     "palluel",
     "parc-jo-blanchon",
     "place-eugene-chavant",
@@ -8245,7 +8834,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 53.4
+   "distance_km": 61.6
   },
   {
    "id": "R-20261022-2000",
@@ -8253,6 +8842,7 @@
    "status": "done",
    "items_collected": 25,
    "items_returned": 45,
+   "transfers": 1,
    "locker_stops": [
     "caserne-de-bonne",
     "centre-dart-bastille",
@@ -8267,6 +8857,7 @@
     "institut-durbanisme-et-de-geographie-alp",
     "jardin-hoche",
     "k-store",
+    "la-rampe-centre-ville",
     "louis-maisonnat",
     "marche-croix-rouge",
     "marche-dinteret-national-de-grenoble",
@@ -8278,6 +8869,7 @@
     "place-du-saint-eynard",
     "place-paul-huillier",
     "place-victor-hugo",
+    "square-barbara",
     "universite-bibliotheques",
     "zone-dactivites-pre-ruffier"
    ],
@@ -8289,7 +8881,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 65.4
+   "distance_km": 67.1
   },
   {
    "id": "R-20261023-0700",
@@ -8297,6 +8889,7 @@
    "status": "done",
    "items_collected": 14,
    "items_returned": 7,
+   "transfers": 1,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "chu-grenoble-alpes-site-sud",
@@ -8307,7 +8900,9 @@
     "la-rampe-centre-ville",
     "louise-michel",
     "marche-saint-bruno",
+    "place-edmond-arnaud",
     "place-eugene-chavant",
+    "tour-perret",
     "zone-dactivites-de-la-tuilerie"
    ],
    "merchant_stops": [
@@ -8318,7 +8913,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 31.1
+   "distance_km": 31.9
   },
   {
    "id": "R-20261023-1400",
@@ -8326,6 +8921,7 @@
    "status": "done",
    "items_collected": 19,
    "items_returned": 11,
+   "transfers": 0,
    "locker_stops": [
     "chu-grenoble-alpes-site-sud",
     "gare-echirolles",
@@ -8358,16 +8954,19 @@
    "status": "done",
    "items_collected": 26,
    "items_returned": 30,
+   "transfers": 1,
    "locker_stops": [
     "batiment-pierre-mendes-france",
     "caserne-de-bonne",
     "centre-dart-bastille",
+    "chu-nord-de-grenoble",
     "domaine-universitaire-de-grenoble",
     "edmee-chandon",
     "gare-echirolles",
     "gare-saint-egreve-saint-robert",
     "gieres-gare-universites",
     "grand-sablon",
+    "grandplace",
     "grenoble-hotel-de-ville",
     "ile-verte",
     "institut-durbanisme-et-de-geographie-alp",
@@ -8391,7 +8990,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 65.3
+   "distance_km": 65.8
   },
   {
    "id": "R-20261024-0700",
@@ -8399,6 +8998,7 @@
    "status": "done",
    "items_collected": 6,
    "items_returned": 12,
+   "transfers": 1,
    "locker_stops": [
     "berriat-le-magasin",
     "domaine-universitaire-de-grenoble",
@@ -8410,7 +9010,9 @@
     "marche-saint-bruno",
     "parc-albert-michallon",
     "place-du-saint-eynard",
+    "place-saint-andre",
     "studio-m-grenoble",
+    "tour-perret",
     "zone-dactivites-de-la-tuilerie"
    ],
    "merchant_stops": [
@@ -8419,7 +9021,7 @@
     "demo-horlogerie",
     "demo-pressing"
    ],
-   "distance_km": 45.5
+   "distance_km": 47.6
   },
   {
    "id": "R-20261024-1400",
@@ -8427,7 +9029,9 @@
    "status": "done",
    "items_collected": 16,
    "items_returned": 19,
+   "transfers": 1,
    "locker_stops": [
+    "caserne-de-bonne",
     "centre-dart-bastille",
     "ecole-superieure-dart-et-design-grenoble",
     "gare-echirolles",
@@ -8454,7 +9058,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 43.9
+   "distance_km": 44.2
   },
   {
    "id": "R-20261024-2000",
@@ -8462,6 +9066,7 @@
    "status": "planned",
    "items_collected": 18,
    "items_returned": 25,
+   "transfers": 1,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "chu-nord-de-grenoble",
@@ -8469,6 +9074,7 @@
     "ecole-polytechnique-universitaire-grenob",
     "ecole-superieure-dart-et-design-grenoble",
     "edmee-chandon",
+    "fauconniere",
     "grenoble-hotel-de-ville",
     "groupe-hospitalier-mutualiste-de-grenobl",
     "halle-sainte-claire",
@@ -8478,6 +9084,7 @@
     "palluel",
     "place-du-saint-eynard",
     "place-victor-hugo",
+    "universite-bibliotheques",
     "vallier-catane",
     "zone-damenagement-concerte-cure-bourse"
    ],
@@ -8489,7 +9096,7 @@
     "demo-reparation",
     "demo-retouches"
    ],
-   "distance_km": 63.1
+   "distance_km": 64.7
   },
   {
    "id": "R-20261025-0700",
@@ -8497,12 +9104,15 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 8,
+   "transfers": 1,
    "locker_stops": [
     "caserne-de-bonne",
+    "domaine-universitaire-de-grenoble",
     "ecole-polytechnique-universitaire-grenob",
     "ecole-superieure-dart-et-design-grenoble",
     "europole",
     "gare-saint-egreve-saint-robert",
+    "la-poya",
     "la-rampe-centre-ville"
    ],
    "merchant_stops": [
@@ -8511,7 +9121,7 @@
     "demo-horlogerie",
     "demo-retouches"
    ],
-   "distance_km": 36.7
+   "distance_km": 40.9
   },
   {
    "id": "R-20261025-1400",
@@ -8519,6 +9129,7 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 13,
+   "transfers": 0,
    "locker_stops": [
     "chu-grenoble-alpes-site-sud",
     "estacade-condorcet",
@@ -8544,10 +9155,12 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 24,
+   "transfers": 2,
    "locker_stops": [
     "caserne-de-bonne",
     "domaine-universitaire-de-grenoble",
     "edmee-chandon",
+    "estacade-condorcet",
     "grand-sablon",
     "grenoble-hotel-de-ville",
     "halle-sainte-claire",
@@ -8555,7 +9168,9 @@
     "k-store",
     "la-poya",
     "parc-jo-blanchon",
-    "place-du-saint-eynard"
+    "place-du-saint-eynard",
+    "zone-dactivites-des-glairons",
+    "zone-dactivites-percevaliere"
    ],
    "merchant_stops": [
     "demo-blanchisserie",
@@ -8563,7 +9178,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 37.4
+   "distance_km": 43.7
   },
   {
    "id": "R-20261026-0700",
@@ -8571,18 +9186,21 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 4,
+   "transfers": 1,
    "locker_stops": [
     "berriat-le-magasin",
     "groupe-hospitalier-mutualiste-de-grenobl",
+    "la-casamaures",
     "place-du-saint-eynard",
-    "studio-m-grenoble"
+    "studio-m-grenoble",
+    "tour-perret"
    ],
    "merchant_stops": [
     "demo-blanchisserie",
     "demo-horlogerie",
     "demo-pressing"
    ],
-   "distance_km": 10.9
+   "distance_km": 12.9
   },
   {
    "id": "R-20261026-1400",
@@ -8590,6 +9208,7 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 11,
+   "transfers": 1,
    "locker_stops": [
     "caserne-de-bonne",
     "gare-echirolles",
@@ -8598,6 +9217,7 @@
     "ile-verte",
     "jardin-des-dauphins",
     "le-prisme",
+    "parc-jo-blanchon",
     "square-barbara"
    ],
    "merchant_stops": [
@@ -8605,7 +9225,7 @@
     "demo-pressing",
     "demo-retouches"
    ],
-   "distance_km": 31.8
+   "distance_km": 34.0
   },
   {
    "id": "R-20261026-2000",
@@ -8613,6 +9233,7 @@
    "status": "planned",
    "items_collected": 0,
    "items_returned": 4,
+   "transfers": 0,
    "locker_stops": [
     "annie-fratellini-esplanade",
     "edmee-chandon",
@@ -8623,6 +9244,167 @@
     "demo-retouches"
    ],
    "distance_km": 28.6
+  },
+  {
+   "id": "R-20261027-0700",
+   "starts_at": "2026-10-27T07:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 3,
+   "locker_stops": [
+    "ecole-polytechnique-universitaire-grenob",
+    "grenoble-hotel-de-ville",
+    "k-store",
+    "marche-saint-bruno",
+    "studio-m-grenoble",
+    "zone-dactivites-commerciales-des-catalpa"
+   ],
+   "merchant_stops": [],
+   "distance_km": 15.0
+  },
+  {
+   "id": "R-20261027-1400",
+   "starts_at": "2026-10-27T14:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 3,
+   "locker_stops": [
+    "chu-grenoble-alpes-site-sud",
+    "ecole-superieure-dart-et-design-grenoble",
+    "parc-albert-michallon",
+    "place-du-lys-rouge",
+    "square-barbara",
+    "zone-dactivites-commerciales-des-catalpa"
+   ],
+   "merchant_stops": [],
+   "distance_km": 22.6
+  },
+  {
+   "id": "R-20261027-2000",
+   "starts_at": "2026-10-27T20:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "edmee-chandon",
+    "marche-general-ferrie",
+    "place-victor-hugo"
+   ],
+   "merchant_stops": [],
+   "distance_km": 15.5
+  },
+  {
+   "id": "R-20261028-0700",
+   "starts_at": "2026-10-28T07:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 3,
+   "locker_stops": [
+    "berriat-le-magasin",
+    "centre-dart-bastille",
+    "edmee-chandon",
+    "europole",
+    "marche-croix-rouge",
+    "place-du-saint-eynard"
+   ],
+   "merchant_stops": [],
+   "distance_km": 24.0
+  },
+  {
+   "id": "R-20261028-1400",
+   "starts_at": "2026-10-28T14:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 1,
+   "locker_stops": [
+    "mc2-maison-de-la-culture",
+    "square-barbara"
+   ],
+   "merchant_stops": [],
+   "distance_km": 6.7
+  },
+  {
+   "id": "R-20261028-2000",
+   "starts_at": "2026-10-28T20:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "jardin-des-dauphins",
+    "neyrpic-belledonne",
+    "square-barbara",
+    "studio-m-grenoble"
+   ],
+   "merchant_stops": [],
+   "distance_km": 12.3
+  },
+  {
+   "id": "R-20261029-1400",
+   "starts_at": "2026-10-29T14:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "annie-fratellini-esplanade",
+    "jardin-des-dauphins",
+    "louise-michel",
+    "musee-de-la-resistance-et-de-la-deportat"
+   ],
+   "merchant_stops": [],
+   "distance_km": 10.2
+  },
+  {
+   "id": "R-20261029-2000",
+   "starts_at": "2026-10-29T20:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "centre-hospitalier-alpes-isere",
+    "gare-saint-egreve-saint-robert",
+    "grenoble-hotel-de-ville",
+    "place-du-saint-eynard"
+   ],
+   "merchant_stops": [],
+   "distance_km": 20.7
+  },
+  {
+   "id": "R-20261031-0700",
+   "starts_at": "2026-10-31T07:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 2,
+   "locker_stops": [
+    "europole",
+    "iut-2-de-grenoble",
+    "mc2-maison-de-la-culture",
+    "square-barbara"
+   ],
+   "merchant_stops": [],
+   "distance_km": 9.0
+  },
+  {
+   "id": "R-20261031-2000",
+   "starts_at": "2026-10-31T20:00:00+01:00",
+   "status": "planned",
+   "items_collected": 0,
+   "items_returned": 0,
+   "transfers": 1,
+   "locker_stops": [
+    "fiancey-predieu",
+    "place-victor-hugo"
+   ],
+   "merchant_stops": [],
+   "distance_km": 12.3
   }
  ],
  "daily": [

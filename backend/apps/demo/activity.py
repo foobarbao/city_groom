@@ -13,6 +13,9 @@ Model, following docs/PRODUCT.md:
 - after the service's turnaround (a number of rounds), the item is returned to
   the pickup locker at a round, then collected by the customer before the
   next round (a few customers are late and pay a small fee);
+- consigne transfers: at each round, a courier also moves a few stored items
+  from one locker to another (0 to 3 per round, ASSUMPTION), as customers
+  ask to collect elsewhere (docs/PRODUCT.md §4b);
 - ASSUMPTION: volumes are deliberately modest (about 25 orders a day at the
   start of the window, +1.5 % a day, lower at weekends), as requested by the
   project owner; to be refined together.
@@ -170,6 +173,8 @@ def generate_activity(
     for order in orders:
         order["status"] = _status(order, now)
 
+    transfers = _transfers(lockers, slots, today, future_days, rng)
+
     return {
         "fictitious": True,
         "generated_at": now.isoformat(),
@@ -198,7 +203,8 @@ def generate_activity(
             for s in services
         ],
         "orders": orders,
-        "rounds": _rounds(orders, lockers, merchants, slots, now, today, future_days),
+        "transfers": transfers,
+        "rounds": _rounds(orders, transfers, lockers, merchants, slots, now, today, future_days),
         "daily": _daily(orders, start, past_days),
         "forecast": _forecast(orders, today, past_days, future_days),
     }
@@ -276,8 +282,38 @@ def _status(order: dict[str, Any], now: datetime) -> str:
     return "awaiting_drop_off"
 
 
+def _transfers(
+    lockers: Sequence[LockerSite],
+    slots: Sequence[datetime],
+    today: date,
+    future_days: int,
+    rng: random.Random,
+) -> list[dict[str, Any]]:
+    """Consigne transfers: stored items moved between two lockers at a round."""
+    if len(lockers) < 2:
+        return []
+    last_day = today + timedelta(days=future_days)
+    transfers: list[dict[str, Any]] = []
+    for slot in slots:
+        if slot.date() > last_day:
+            break
+        for _ in range(rng.choices((0, 1, 2, 3), (3, 4, 2, 1))[0]):
+            origin, destination = rng.sample(list(lockers), 2)
+            transfers.append(
+                {
+                    "id": f"T-{len(transfers) + 1:05d}",
+                    "round_at": slot.isoformat(),
+                    "from_locker": origin.code,
+                    "to_locker": destination.code,
+                    "size": rng.choice(("S", "M", "L", "L")),
+                }
+            )
+    return transfers
+
+
 def _rounds(
     orders: list[dict[str, Any]],
+    transfers: list[dict[str, Any]],
     lockers: Sequence[LockerSite],
     merchants: list[DemoMerchant],
     slots: Sequence[datetime],
@@ -296,10 +332,14 @@ def _rounds(
         iso = slot.isoformat()
         collected = [o for o in orders if o["collected_at"] == iso]
         returned = [o for o in orders if o["returned_at"] == iso]
-        if not collected and not returned:
+        moved = [t for t in transfers if t["round_at"] == iso]
+        if not collected and not returned and not moved:
             continue
         locker_codes = sorted(
-            {o["drop_locker"] for o in collected} | {o["pickup_locker"] for o in returned}
+            {o["drop_locker"] for o in collected}
+            | {o["pickup_locker"] for o in returned}
+            | {t["from_locker"] for t in moved}
+            | {t["to_locker"] for t in moved}
         )
         merchant_codes = sorted({o["merchant"] for o in collected + returned})
         points = [
@@ -312,6 +352,7 @@ def _rounds(
                 "status": "done" if slot <= now else "planned",
                 "items_collected": sum(o["items"] for o in collected),
                 "items_returned": sum(o["items"] for o in returned),
+                "transfers": len(moved),
                 "locker_stops": locker_codes,
                 "merchant_stops": merchant_codes,
                 "distance_km": _tour_km(points),

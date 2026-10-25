@@ -31,8 +31,8 @@ Fictitious data is always labelled as such in the apps.
 | Demo home page linking every space | Everyone | `/pro/` (`/` redirects there) | Done |
 | Customer app: home with the two modes, shop catalogue with search, ratings and reviews, ordering, consigne booking, messages and quotes, account and plans, map and locker view | Residents | `/client/` | Done (demo state on the device) |
 | "Notre mission" page: the double mission (convenience and ecology, served by technology) over photos of green Grenoble streets | Everyone, funders | `/pro/mission` | Done; wording to review |
-| Merchant space (incoming items, items being processed, revenue, commission, forecast) | Businesses | `/pro/commerce` | Done |
-| Courier space (rounds per day, items and km per round, monthly projection, next rounds, route map) | Cargo-bike partners | `/pro/coursier` | Done; indicators to confirm (open question 5) |
+| Merchant space: dashboard (revenue, commission, forecast), rounds (arrivals, departures to mark ready), messages and quotes, reviews and replies, services and prices | Businesses | `/pro/commerce` | Done (demo state on the device) |
+| Courier space: presentation of the activity (three rounds a day, consigne transfers, projections) and round sheet (stops in order, what to pick up and drop off, progress) | Cargo-bike partners | `/pro/coursier` | Done; indicators to confirm (open question 5) |
 | Operator space (volumes, fill rate per size and per locker, live map, orders and forecast, door statuses) | City Groom team | `/pro/exploitation` | Done |
 
 Every portal page shows a permanent "fictitious" notice with the reference
