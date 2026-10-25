@@ -89,3 +89,63 @@ Not done yet; nothing is published on the Play Store for now.
   (`uuid` via `xcode`, used for iOS projects only). The CLI is a build tool,
   not shipped in the app; the suggested fix downgrades the CLI and is not
   applied.
+
+## 6. Deploy the backend (Render + Neon)
+
+Chosen on 2026-10-25 for the first hosted backend (ADR-0004, option A):
+**Neon** for PostgreSQL + PostGIS, **Render** (free web service) for Django.
+Web parallel: the same Docker image as `docker compose`, with configuration
+in environment variables instead of `backend/.env`.
+
+Free-tier limits (third-party figures, to check on the providers' pages):
+the Render service sleeps after 15 minutes without traffic and takes about a
+minute to wake up; Neon's free plan stores about 1 GB.
+
+### Database (Neon)
+
+1. Sign up at <https://neon.tech/>, create a project `citypal` in an **EU
+   region** (e.g. Frankfurt), PostgreSQL 17.
+2. Copy the **connection string** (`postgresql://…?sslmode=require`). It is a
+   secret: it goes only into Render's environment variables.
+3. Nothing else: `migrate` creates the PostGIS extension itself (GeoDjango
+   runs `CREATE EXTENSION IF NOT EXISTS postgis`). ASSUMPTION: Neon allows
+   it on the free plan, as its documentation reports; if `migrate` fails on
+   it, run `CREATE EXTENSION postgis;` in Neon's SQL editor.
+
+### Web service (Render)
+
+1. Sign up at <https://render.com/> with GitHub and allow access to
+   `foobarbao/city_groom`.
+2. **New → Web Service**, repository `city_groom`, branch **`develop`**.
+3. Language **Docker**; root directory / Docker build context **`backend`**
+   (Dockerfile `backend/Dockerfile`); region **Frankfurt**; instance **Free**.
+4. Health check path: `/api/v1/health/`.
+5. Environment variables:
+
+| Variable | Value |
+|---|---|
+| `DJANGO_SECRET_KEY` | long random value: `python -c "import secrets; print(secrets.token_urlsafe(50))"` |
+| `DJANGO_ALLOWED_HOSTS` | `<service>.onrender.com` |
+| `DJANGO_CSRF_TRUSTED_ORIGINS` | `https://<service>.onrender.com` (admin sign-in form) |
+| `DATABASE_URL` | Neon connection string |
+| `CORS_ALLOWED_ORIGINS` | `https://citygroom.netlify.app` |
+| `GOOGLE_OAUTH_CLIENT_IDS` | Google client ID (`docs/GOOGLE_SIGN_IN.md`) |
+| `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL`, `DJANGO_SUPERUSER_PASSWORD` | first administrator; remove them after the first deploy |
+
+The image's start command (`backend/scripts/start.sh`) applies migrations,
+creates the first administrator from the variables above if missing, then
+starts Gunicorn on Render's `$PORT`. Free plans have no shell and no
+pre-deploy step, hence this script.
+
+6. Deploy, then open `https://<service>.onrender.com/admin/` and sign in
+   with the administrator account.
+
+### Connect the customer app
+
+On Netlify, set `VITE_API_BASE_URL=https://<service>.onrender.com/api/v1`
+and `VITE_GOOGLE_CLIENT_ID`, then trigger a deploy (`docs/GOOGLE_SIGN_IN.md`
+§4). Only the sign-in uses the backend; the rest of the hosted demo keeps
+its bundled fictitious data.
+
+PROD: database backups (limited on free plans), a custom domain, HSTS, and
+moving to an always-on plan before showing the demo to partners (ADR-0004).

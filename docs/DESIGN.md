@@ -1,6 +1,6 @@
-# Design — customer app
+# Design — CityPal apps
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-25
 
 ## Direction
 
@@ -40,6 +40,41 @@ Principles:
   numbered stepper.
 - Partner shops get a green initial mark and a "Partenaire" pill; other
   businesses stay neutral and never show stars.
+
+## Partner portal navigation
+
+Decided on 2026-10-25 at the project owner's request: the rows of pill
+buttons used as section menus looked unprofessional ("vibecode"); the portal
+uses a **folding side menu with nested entries** instead.
+
+- **Where**: one side menu for the whole portal (`App.vue`, Ionic split
+  pane). From 992 px wide it is a fixed column (272 px); below, it is a
+  drawer opened by the ☰ button of each page and closed after choosing a
+  page. Web parallel: a classic admin sidebar that becomes an off-canvas
+  menu on mobile.
+- **Structure** (`apps/portal/src/navigation.ts`, the single source):
+  space → page or group → page, **three levels at most**. Groups gather
+  related pages (e.g. Commerce › Activité › Planning, Tournées) and are never
+  created for a single page.
+- **Behaviour**: groups fold and unfold (chevron, `aria-expanded`); the
+  groups leading to the current page unfold on their own, the others keep
+  the person's choice; a folded group containing the current page stays
+  tinted. The current page is highlighted (mint background, `aria-current`).
+- **Look**: an outline icon (Ionicons) per entry, sentence-case labels,
+  nested levels hanging from a thin guide line, counters as small lemon
+  badges on the entry (messages to answer, alerts).
+- **Page header**: breadcrumb of the groups (eyebrow, e.g. "Exploitation ›
+  Réseau") and the page name as title, both taken from the menu; a back
+  button only on detail pages (e.g. one locker).
+- **Pills are for filtering, not for navigating**: chips stay for filters
+  and choices inside a page (order status, day of the planning), never as a
+  section menu.
+- **Roles**: the demo lists every space so it can be toured. PROD: each
+  person sees only the spaces of their role.
+- **Exceptions**: the mission page is a full-screen story without menu. The
+  **customer mobile app keeps its bottom tab bar** (five areas): it is the
+  mobile convention for primary navigation on Android and iOS, reachable with
+  the thumb; nested navigation there happens inside screens (lists → detail).
 
 ## Tokens
 

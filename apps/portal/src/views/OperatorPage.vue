@@ -15,7 +15,6 @@ import { number, percent, shortDay } from '../data/format'
 import { activity, demoNow, lockerPoints, lockers, operatorData, placeName } from '../data/source'
 import { operatorAlerts } from '../data/operator'
 import { operatorKpis } from '../data/summaries'
-import OperatorNav from '../components/OperatorNav.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -51,8 +50,7 @@ function openLocker(code: string): void {
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator" />
+  <portal-page>
     <div class="tiles">
       <stat-tile :label="t('operator.ordersToday')" :value="number(kpis.ordersToday)" />
       <stat-tile :label="t('operator.itemsInLockers')" :value="number(kpis.itemsInLockers)" />

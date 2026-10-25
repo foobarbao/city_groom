@@ -8,6 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_MAP_STYLE_URL?: string
   /** URL of the customer app, linked from the home page. */
   readonly VITE_CUSTOMER_URL?: string
+  /** OAuth web client ID (same as the customer app) for Google Agenda sync; empty: off. */
+  readonly VITE_GOOGLE_CLIENT_ID?: string
 }
 
 interface ImportMeta {

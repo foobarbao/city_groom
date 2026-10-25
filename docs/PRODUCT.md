@@ -218,12 +218,22 @@ Decided by the project owner on 2026-10-24:
 Requested on 2026-10-24: a **complete customer UX**, with menus to:
 
 - **choose the mode** (Services or Consigne);
+- **search by service first** (decided 2026-10-25): customers mostly look
+  for a service (ironing, resoling…) rather than a given shop; the shops tab
+  starts with the service types, one tap lists the partner shops offering
+  it (rating, price, turnaround), and the search suggests services from
+  their name and keywords ("semelle" finds "Ressemelage");
 - **browse partner shops**, with a **clear classification**: shops grouped
   by category (not "all in bulk"), indexed and easy to **search** (name,
   category, service, street);
 - see each shop's **rating out of 5** and reviews;
 - **chat with a merchant**, send photos, and follow **quotes** (quote space);
-- follow orders and consigne bookings, manage the account and subscription.
+- follow orders and consigne bookings, manage the account and subscription;
+- see the **lockers around me** (requested 2026-10-25), especially to drop a
+  consigne quickly: nearest lockers with walking distance and free
+  compartments, one tap to drop off now or book a slot. The position is
+  asked only when the customer opens this view (or "Près de moi" in a locker
+  list), used on the device only, never stored nor sent.
 
 ### Ratings and reviews
 
@@ -251,10 +261,42 @@ the value the platform brings:
 The merchant also answers chat requests and sends quotes for special services,
 with a deliberately minimal interface.
 
+What matters to the merchant (stated 2026-10-25) is **when to hand items
+over to the courier** (the time of the courier's visit), not which locker
+the items come from or go to: merchant screens show the handover time and
+never the lockers.
+
 Merchant space contents confirmed on 2026-10-25: dashboard (above),
 **rounds** (what arrives and what goes back at 07:00, 14:00 and 20:00, items
 marked ready), **messages and quotes**, **reviews** (rating, verified
 reviews, public reply) and **services** (on/off, price, turnaround).
+
+### Planning and connectors
+
+Requested on 2026-10-25: a **planning** view (agenda) of what is scheduled,
+with the order details, a **"done" action on every task** from the planning,
+and a link with Google Calendar; then "connectors to link as many external
+tools as possible, such as planners".
+
+- Tasks: courier arrival at a round (items brought), work to do on each order
+  (due at the handover), handover to the courier at a round. Marking a
+  handover done also marks its items ready for the courier.
+- ASSUMPTION: task durations shown in calendars are 15 min (arrival,
+  handover) and 30 min (work), placeholders until the project owner says
+  otherwise.
+- **Google Agenda is synchronised** (owner's request, 2026-10-25: "a sync,
+  not an .ics"): the merchant connects once, a "CityPal" calendar is created
+  in their Google Agenda with every task, kept up to date including the
+  "done" check. Demo: the sync runs from the open planning (Google access
+  lasts an hour, renewed by a click). PROD: server-side sync, also when the
+  portal is closed.
+- Other calendars: .ics export of the week (Apple Calendar, Outlook,
+  Microsoft 365, Thunderbird…) and per-task "add to" links.
+- Connectors (ADR-0009, **proposed**): private iCal subscription address for
+  calendars, and outgoing webhooks for planners and to-do lists through
+  Zapier, Make or n8n (Trello, Notion, Asana, Microsoft Planner / To Do,
+  Todoist, Google Sheets, Excel…). Both are simulated in the demo. PROD: API
+  endpoints once the ADR is accepted.
 
 In the demo, the merchant's data (orders, forecasts) is **simulated**.
 
@@ -308,6 +350,17 @@ with the project owner.
 - **Guest checkout** is allowed: no account is required to order.
 - Customers are **strongly encouraged to sign in**, in order to unlock
   **status levels** and **premium** benefits (details to be defined).
+- **Sign in with Google** (requested 2026-10-25, ADR-0010): one tap, no
+  password. Only the **basic Google profile** is collected (name, e-mail,
+  picture): the project owner chose it after being told about GDPR data
+  minimisation and Google's verification of extended data. Other data
+  (e.g. phone number for locker notifications) would be asked in the app
+  when needed, with its purpose.
+- Operators see every account in the administration (**Comptes**): photo,
+  name, e-mail, sign-in method, customer or team, sign-up and last sign-in
+  dates, filters, search, key figures, deactivation.
+- PROD: privacy notice before real sign-ups; Google sign-in in the Android
+  app (native plugin).
 
 ## 9. Business model
 
@@ -412,3 +465,12 @@ Questions to the project owner. Answers are moved into the sections above.
 11. **Transfer amounts**: supplement without subscription, number of
     transfers included per plan, reduction beyond the included ones. Can a
     stored item be transferred more than once?
+12. **Planning connectors** (ADR-0009, proposed): accept the approach (iCal
+    subscription + webhooks through Zapier / Make / n8n, native integrations
+    only on demand)? Which tools do merchants use most, to be tested first?
+    Should a task done in an external tool come back to CityPal (two-way
+    sync)? Task durations in calendars (15 / 30 min placeholders)?
+13. **Accounts**: technical choices of ADR-0010 (own Google token check,
+    non-expiring app tokens, project user model) to validate. Should
+    merchants and couriers also sign in with Google on the portal? How long
+    are inactive customer accounts kept (GDPR retention)?

@@ -14,8 +14,14 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
+# Branding of the administration (French UI).
+admin.site.site_header = "CityPal · Administration"
+admin.site.site_title = "CityPal"
+admin.site.index_title = "Tableau de bord"
+
 api_v1: list[URLPattern | URLResolver] = [
     path("", include("apps.core.urls")),
+    path("", include("apps.accounts.urls")),
     path("", include("apps.lockers.urls")),
     path("", include("apps.merchants.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),

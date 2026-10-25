@@ -9,6 +9,46 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Merchant planning: Google Agenda synchronisation (Google Calendar API,
+  scope `calendar.app.created`): "CityPal" calendar created in the
+  merchant's agenda, every task written with a stable ID and updated when
+  marked done; enabled by `VITE_GOOGLE_CLIENT_ID` (ADR-0009 update).
+
+- Sign in with Google (ADR-0010): `POST /api/v1/auth/google/` verifies the
+  Google ID token with Google's library and returns a token;
+  `GET /api/v1/auth/me/`, `POST /api/v1/auth/sign-out/`. Customer app:
+  "Continuer avec Google" on the account screen when `VITE_GOOGLE_CLIENT_ID`
+  is set (basic profile only), profile with photo and e-mail.
+- Project user model `accounts.User` with linked `GoogleAccount`, and an
+  accounts administration: photo, sign-in method, customer/team, dates,
+  filters, search, key figures, deactivation. Admin branded "CityPal".
+- Hosting on Render + Neon (ADR-0004 accepted, option A): start script
+  (migrations, first administrator from environment variables, `$PORT`),
+  deployment guide (`docs/BUILD_AND_RELEASE.md` §6) and Google setup guide
+  (`docs/GOOGLE_SIGN_IN.md`).
+
+- Merchant planning ("Planning"): week strip with open-task counts, timeline
+  of courier arrivals, work and handovers, order details, "Marquer fait" on
+  every task (a handover done marks its items ready), .ics export of the
+  week, "add to Google Agenda / Outlook" per task.
+- Merchant connectors page: calendars, planners and automation tools, with
+  their status; iCal subscription and webhook simulated (ADR-0009, proposed).
+
+- Merchant offers: "Mes offres" in the merchant space (create, edit, hide,
+  delete; photo, title, service type, description, price, locker size,
+  turnaround), shared with the customer app on the same device in the demo
+  (`packages/demo-data`, offers.ts).
+- Customer app: search by service type (service grid, suggestions with
+  keywords, list of shops offering a service with price and turnaround);
+  shop pages and checkout use the merchant's offers; map with the customer's
+  position in "Casiers autour de moi".
+- Catalogue: "Repassage pantalon" and "Ressemelage" services, search
+  keywords for every service.
+- Translation key check in both apps (a missing key fails the tests).
+- Customer app: "Casiers autour de moi" view (nearest lockers, walking
+  distance, free consigne compartments, drop now / book a slot), entry points
+  on the home page and the Consigne tab, "Près de moi" sort in locker lists;
+  location used on the device only.
 - Coding and documentation standards (`docs/CODING_STANDARDS.md`), including
   the "never invent, ask when in doubt" rule.
 - Product document: vision, actors, main flow, business model, red lines and
@@ -138,8 +178,25 @@ Versioning: [SemVer](https://semver.org/).
   day, per round, per locker).
 - Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
+### Changed
+
+- Partner portal navigation: folding side menu with nested entries (spaces,
+  groups, pages, icons, counters), fixed column on wide screens and drawer
+  on narrow ones; page titles and breadcrumbs come from the menu. Replaces
+  the rows of pill buttons (`CourierNav`, `OperatorNav`, merchant sub-menu).
+  Rules recorded in `docs/DESIGN.md`.
+- API authentication: token (apps) and session (admin); HTTP Basic, never
+  documented, is no longer accepted. Local databases must be recreated for
+  the new user model.
+- Merchant space: rounds show what to have ready for each courier visit
+  (time first, ready counter), then what the courier brings; the dashboard
+  shows "À remettre au coursier : 14:00"; lockers are no longer shown to
+  merchants.
+
 ### Fixed
 
+- .ics export: semicolons are now escaped as RFC 5545 requires.
+- Consigne "how it works": step 3 showed a raw key (`consigne.how.step2b`).
 - Demo dates keep their local time across a daylight-saving change (rounds
   showed at 13:00 and 19:00 after the switch to winter time).
 - Map screen: welcome card in the brand green (was hard to read over the

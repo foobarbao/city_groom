@@ -6,7 +6,6 @@
  */
 import { useI18n } from 'vue-i18n'
 
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import StatTile from '../components/StatTile.vue'
 import { euros, number, percent } from '../data/format'
@@ -24,8 +23,7 @@ const otherBusinesses = (publicData.merchants.features ?? []).length
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-partners" />
+  <portal-page>
     <div class="tiles">
       <stat-tile
         :label="t('operator.partners.partners')"

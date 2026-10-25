@@ -37,6 +37,7 @@ class DemoService:
         price: Price per item, in euros (placeholder).
         size: Compartment size the item needs.
         turnaround_rounds: Rounds between collection and return (3 rounds = 1 day).
+        keywords: Other words customers may search with (French).
     """
 
     code: str
@@ -45,11 +46,20 @@ class DemoService:
     price: Decimal
     size: CompartmentSize
     turnaround_rounds: int
+    keywords: tuple[str, ...] = ()
 
 
 SERVICES: tuple[DemoService, ...] = (
     DemoService(
         "shirt_ironing", "Repassage chemise", ServiceCategory.DRY_CLEANING, Decimal("3.50"), XL, 3
+    ),
+    DemoService(
+        "trouser_ironing",
+        "Repassage pantalon",
+        ServiceCategory.DRY_CLEANING,
+        Decimal("4.00"),
+        XL,
+        3,
     ),
     DemoService(
         "suit_cleaning", "Nettoyage costume", ServiceCategory.DRY_CLEANING, Decimal("16.00"), XL, 6
@@ -62,6 +72,14 @@ SERVICES: tuple[DemoService, ...] = (
     ),
     DemoService(
         "shoe_cleaning", "Nettoyage chaussures", ServiceCategory.SHOE_REPAIR, Decimal("12.00"), M, 3
+    ),
+    DemoService(
+        "sole_replacement",
+        "Ressemelage",
+        ServiceCategory.SHOE_REPAIR,
+        Decimal("35.00"),
+        M,
+        6,
     ),
     DemoService(
         "heel_repair", "Talons refaits", ServiceCategory.SHOE_REPAIR, Decimal("15.00"), M, 6
@@ -103,6 +121,31 @@ SERVICES: tuple[DemoService, ...] = (
         L,
         6,
     ),
+)
+
+# Search keywords per service (French), so that "semelle" finds "Ressemelage".
+# ASSUMPTION: first list, to complete with real customer searches.
+SERVICE_KEYWORDS: dict[str, tuple[str, ...]] = {
+    "shirt_ironing": ("repasser", "fer", "chemisier"),
+    "trouser_ironing": ("repasser", "fer", "jean"),
+    "suit_cleaning": ("pressing", "veste", "nettoyage à sec"),
+    "laundry_bag": ("lessive", "lavage", "linge", "laver"),
+    "duvet_cleaning": ("couverture", "plaid", "lavage"),
+    "shoe_cleaning": ("cirage", "baskets", "sneakers"),
+    "sole_replacement": ("semelle", "semelles", "chaussures", "cordonnier"),
+    "heel_repair": ("talon", "talonnette", "chaussures", "cordonnier"),
+    "hem_alteration": ("raccourcir", "ourlet", "retouche", "couture"),
+    "zip_repair": ("zip", "fermeture", "couture", "retouche"),
+    "watch_battery": ("pile", "montre", "horloger"),
+    "watch_strap": ("bracelet", "montre", "horloger"),
+    "phone_screen": ("smartphone", "écran", "vitre", "téléphone"),
+    "laptop_cleaning": ("ordinateur", "pc", "portable", "nettoyage"),
+    "chain_repair": ("collier", "bijou", "chaîne", "fermoir"),
+    "key_copy": ("clé", "clef", "double", "reproduction"),
+}
+SERVICES = tuple(
+    DemoService(**{**service.__dict__, "keywords": SERVICE_KEYWORDS.get(service.code, ())})
+    for service in SERVICES
 )
 
 SERVICES_BY_CATEGORY: dict[ServiceCategory, list[DemoService]] = {}

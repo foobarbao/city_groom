@@ -9,6 +9,7 @@ the reference documents prevail in case of doubt.
 - Product requirements and open questions: `docs/PRODUCT.md`
 - Git workflow: `CONTRIBUTING.md`
 - Architecture decisions: `docs/adr/`
+- Design rules (navigation, tokens, charts): `docs/DESIGN.md`
 
 ## Essential rules
 

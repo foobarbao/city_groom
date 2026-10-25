@@ -33,4 +33,5 @@ RUN useradd --system --no-create-home app
 USER app
 
 EXPOSE 8000
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Migrations, optional first administrator, then Gunicorn on $PORT.
+CMD ["sh", "scripts/start.sh"]

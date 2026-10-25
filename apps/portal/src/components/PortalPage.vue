@@ -1,30 +1,51 @@
 <script setup lang="ts">
 /**
- * Page frame shared by every portal space: header with the way back, title,
- * and a permanent notice that the figures are fictitious, with their date.
+ * Page frame shared by every portal space: toolbar (menu button on narrow
+ * screens, optional way back), breadcrumb and title taken from the side menu
+ * (`navigation.ts`), and a permanent notice that the figures are fictitious,
+ * with their date.
  *
  * Props:
- * - `title`: page title.
- * - `backHref`: where the back button leads; no back button when omitted.
+ * - `title`: page title; defaults to the label of the current menu entry.
+ * - `backHref`: where the back button leads (detail pages); none when omitted.
  * - `backText`: label of the back button.
  *
  * Slots:
  * - default: page content, laid out in a centred column.
  * - `actions`: controls shown next to the title (e.g. merchant picker).
  */
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonToolbar } from '@ionic/vue'
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonToolbar,
+} from '@ionic/vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 import { clock, longDay } from '../data/format'
 import { demoNow } from '../data/source'
+import { trail } from '../navigation'
 
-defineProps<{
-  title: string
+const props = defineProps<{
+  title?: string
   backHref?: string
   backText?: string
 }>()
 
 const { t } = useI18n()
+const route = useRoute()
+const path = computed(() => trail(String(route.name ?? '')))
+/** Groups above the current entry, e.g. "Exploitation › Réseau". */
+const crumbs = computed(() => path.value.slice(0, -1).map((node) => t(node.label)))
+const heading = computed(() => {
+  const current = path.value.at(-1)
+  return props.title ?? (current ? t(current.label) : t('app.name'))
+})
 const asOf = t('app.asOf', {
   date: longDay(demoNow.toISOString()),
   time: clock(demoNow.toISOString()),
@@ -35,8 +56,14 @@ const asOf = t('app.asOf', {
   <ion-page>
     <ion-header class="ion-no-border">
       <ion-toolbar>
-        <ion-buttons v-if="backHref" slot="start">
-          <ion-back-button :default-href="backHref" :text="backText ?? t('app.home')" />
+        <ion-buttons slot="start">
+          <!-- Shown only when the menu is a drawer (narrow screens). -->
+          <ion-menu-button :aria-label="t('nav.menu')" />
+          <ion-back-button
+            v-if="backHref"
+            :default-href="backHref"
+            :text="backText ?? t('app.home')"
+          />
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -44,8 +71,15 @@ const asOf = t('app.asOf', {
       <main class="portal-page">
         <header class="portal-head">
           <div>
-            <p class="eyebrow">{{ t('app.name') }}</p>
-            <h1>{{ title }}</h1>
+            <p class="eyebrow">
+              <template v-if="crumbs.length">
+                <span v-for="(crumb, i) in crumbs" :key="crumb"
+                  ><span v-if="i" aria-hidden="true"> › </span>{{ crumb }}</span
+                >
+              </template>
+              <template v-else>{{ t('app.name') }}</template>
+            </p>
+            <h1>{{ heading }}</h1>
           </div>
           <slot name="actions" />
         </header>

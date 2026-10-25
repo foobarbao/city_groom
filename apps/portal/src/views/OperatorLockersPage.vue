@@ -6,7 +6,6 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import { number, percent } from '../data/format'
 import { lockers } from '../data/source'
@@ -37,8 +36,7 @@ const rows = computed(() =>
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-lockers" />
+  <portal-page>
     <div class="filters">
       <input
         v-model="query"

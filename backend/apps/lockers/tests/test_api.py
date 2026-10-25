@@ -2,10 +2,10 @@ import random
 from typing import Any
 
 import pytest
-from django.contrib.auth.models import User
 from django.core.management import call_command
 from rest_framework.test import APIClient
 
+from apps.accounts.models import User
 from apps.lockers.models import Compartment, Locker
 from apps.lockers.simulation import create_simulated_locker, simulate_occupancy
 from apps.lockers.tests.factories import (
@@ -29,7 +29,9 @@ def lockers(db: Any) -> list[Locker]:
 @pytest.fixture
 def staff_client(db: Any) -> APIClient:
     client = APIClient()
-    client.force_authenticate(User.objects.create_user("operator", is_staff=True))
+    client.force_authenticate(
+        User.objects.create_user("operator", "operator@citypal.example", is_staff=True)
+    )
     return client
 
 

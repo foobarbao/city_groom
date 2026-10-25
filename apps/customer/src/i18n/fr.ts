@@ -113,6 +113,26 @@ export default {
     leisure: 'Parc, stade',
     other: 'Autre',
   },
+  nearby: {
+    title: 'Casiers autour de moi',
+    shortcut: 'Casiers autour de moi',
+    shortcutText: 'Déposer une consigne en quelques secondes',
+    locating: 'Recherche de votre position…',
+    located: 'Casiers les plus proches de vous',
+    denied: 'Position non autorisée : casiers les plus proches du centre de Grenoble.',
+    unavailable: 'Position indisponible : casiers les plus proches du centre de Grenoble.',
+    retry: 'Me localiser',
+    forConsigne: 'Avec de la place pour une consigne',
+    all: 'Tous les casiers',
+    walk: '{minutes} min à pied',
+    dropNow: 'Déposer maintenant',
+    book: 'Réserver un créneau',
+    see: 'Voir le casier',
+    more: 'Voir plus de casiers',
+    privacy:
+      'Votre position sert uniquement à trier les casiers sur cet appareil ; elle n’est ni enregistrée ni envoyée.',
+    nearMe: 'Près de moi',
+  },
   home: {
     hello: 'Bonjour {name}',
     helloGuest: 'Bonjour',
@@ -135,7 +155,13 @@ export default {
   },
   shops: {
     title: 'Boutiques',
-    searchPlaceholder: 'Nom, service, rue… (ex. ourlet, pressing)',
+    searchPlaceholder: 'Un service, une boutique… (ex. repassage, semelle)',
+    servicesTitle: 'Quel service cherchez-vous ?',
+    orBrowse: 'Ou parcourez les boutiques',
+    matchingServices: 'Services',
+    allServices: 'Tous les services',
+    providers: 'Aucune boutique | 1 boutique | {count} boutiques',
+    fromPrice: 'à partir de {price}',
     all: 'Toutes',
     partnersOnly: 'Partenaires CityPal',
     results: 'Aucun résultat | 1 résultat | {count} résultats',
@@ -177,6 +203,8 @@ export default {
       step1: 'Choisissez un casier près de vous : gare, musée, campus, place…',
       step2:
         'Déposez maintenant, ou réservez une matinée, un après-midi ou une soirée, au moins 4 h à l’avance.',
+      step2b:
+        'Choisissez quand vous récupérez : dans le même créneau, plus tard dans la journée ou le lendemain.',
       step3:
         'Au plus tard 24 h après le dépôt. Besoin de les récupérer ailleurs ? Faites-les déplacer.',
     },
@@ -283,6 +311,15 @@ export default {
     name: 'Prénom',
     signIn: 'Se connecter (démo)',
     signOut: 'Se déconnecter',
+    google: {
+      busy: 'Connexion en cours… Le serveur de démo peut mettre jusqu’à une minute à se réveiller.',
+      refused: 'Connexion Google refusée. Réessayez ou utilisez un autre compte Google.',
+      unreachable: 'Le serveur CityPal ne répond pas. Réessayez dans un instant.',
+      unavailable: 'La connexion Google est indisponible pour le moment (hors ligne ?).',
+      privacy:
+        'CityPal reçoit seulement votre nom, votre adresse e-mail et votre photo de profil Google.',
+      linked: 'compte Google',
+    },
     plan: 'Abonnement',
     orders: 'Mes commandes',
     reviewsToWrite: 'aucun avis à donner | 1 avis à donner | {count} avis à donner',

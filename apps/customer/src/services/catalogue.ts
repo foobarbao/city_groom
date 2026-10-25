@@ -6,7 +6,7 @@
  * (not partners), placeholder plans and prices.
  * PROD: read the catalogue, offers, reviews and plans from the API.
  */
-import { catalogueData, publicData } from '@city-groom/demo-data'
+import { type Offer, catalogueData, loadOffers, offersOf, publicData } from '@city-groom/demo-data'
 import type { DemoPartner, DemoService, SubscriptionPlan } from '@city-groom/demo-data'
 
 import type { Shop } from '../domain/shops'
@@ -25,6 +25,20 @@ export const CATEGORY_ORDER = [
 
 export const catalogue = catalogueData
 
+/**
+ * Offers saved by merchants in the portal on this device (demo), read when
+ * the app starts; reload the app to see a change made in the portal.
+ */
+const savedOffers = loadOffers()
+
+/** Visible offers of a partner shop (merchant's offers, or the catalogue defaults). */
+export const shopOffers = (code: string): Offer[] => {
+  const partner = catalogueData.partners.find((p) => p.code === code)
+  return partner
+    ? offersOf(partner, catalogueData.services, savedOffers).filter((o) => o.active)
+    : []
+}
+
 const partners: Shop[] = catalogueData.partners.map((p: DemoPartner) => ({
   code: p.code,
   name: p.name,
@@ -35,7 +49,8 @@ const partners: Shop[] = catalogueData.partners.map((p: DemoPartner) => ({
   address: '',
   openingHours: '',
   website: '',
-  services: p.services,
+  // Service types of the shop's visible offers, for the search.
+  services: [...new Set(shopOffers(p.code).map((o) => o.service))],
   rating: { average: p.reviews.average, count: p.reviews.count },
 }))
 
@@ -97,8 +112,27 @@ export const lockers = (publicData.lockers.features ?? []).flatMap((f) => {
 
 export type LockerSummary = (typeof lockers)[number]
 
+/** Lockers as GeoJSON, for the maps. */
+export const lockerFeatures = publicData.lockers
+
 /** Locker layout (doors) by code, for the locker drawing. */
 export const lockerLayout = (code: string) => publicData.details[code]
 
 /** Compartment size catalogue (dimensions). */
 export const sizes = publicData.sizes
+
+/** Partner shops offering a service type, with their offer (unranked). */
+export function providersOf(service: string) {
+  return partners.flatMap((shop) =>
+    shopOffers(shop.code)
+      .filter((o) => o.service === service)
+      .map((offer) => ({ shop, offer })),
+  )
+}
+
+/** Service types offered by at least one partner shop, in category order. */
+export const offeredServices = CATEGORY_ORDER.flatMap((category) =>
+  catalogueData.services.filter(
+    (s) => s.category === category && partners.some((p) => p.services.includes(s.code)),
+  ),
+)

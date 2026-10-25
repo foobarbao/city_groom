@@ -4,6 +4,66 @@
  */
 
 export interface paths {
+    "/api/v1/auth/google/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign in with Google
+         * @description The app sends the ID token it received from Google. The API verifies it (signature, expiry, issuer, audience), finds or creates the account from the basic Google profile, and returns a token for the next requests. Accounts of team members or with a password are never reached this way.
+         */
+        post: operations["auth_google_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/me/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Current user
+         * @description Profile of the user the token belongs to.
+         */
+        get: operations["auth_me_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/sign-out/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Sign out
+         * @description Deletes the token used for this request.
+         */
+        post: operations["auth_sign_out_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/health/": {
         parameters: {
             query?: never;
@@ -207,6 +267,11 @@ export interface components {
         GisFeatureCollectionEnum: "FeatureCollection";
         /** @enum {string} */
         GisFeatureEnum: "Feature";
+        /** @description ID token returned by Google to the app. */
+        GoogleSignInRequestRequest: {
+            /** @description Google ID token (JWT) obtained by the app from Google Identity Services. */
+            credential: string;
+        };
         Health: {
             status: string;
         };
@@ -429,6 +494,31 @@ export interface components {
          * @enum {string}
          */
         LockerStatusEnum: "active" | "maintenance" | "offline";
+        /** @description Profile of the signed-in user. */
+        Me: {
+            readonly id: number;
+            /**
+             * Adresse e-mail
+             * Format: email
+             */
+            readonly email: string;
+            /** Prénom */
+            readonly first_name: string;
+            /** Nom */
+            readonly last_name: string;
+            /**
+             * Photo de profil
+             * Format: uri
+             */
+            readonly picture_url: string;
+            /**
+             * Date d’inscription
+             * Format: date-time
+             */
+            readonly date_joined: string;
+            /** @description Whether the account is linked to a Google identity. */
+            readonly signed_in_with_google: boolean;
+        };
         /** @description Merchant as a GeoJSON feature for the map and the list of businesses. */
         MerchantFeature: {
             type?: components["schemas"]["GisFeatureEnum"];
@@ -743,6 +833,14 @@ export interface components {
             /** @description Index dans la colonne, à partir de 0, de haut en bas. */
             readonly position: number;
         };
+        /** @description Result of a successful sign-in. */
+        SignInResponse: {
+            /** @description Send it as `Authorization: Token <token>` on the next requests. */
+            token: string;
+            /** @description True when the account was just created. */
+            created: boolean;
+            user: components["schemas"]["Me"];
+        };
         /**
          * @description * `tram_stop` - Arrêt de tram
          *     * `tourism` - Site touristique
@@ -785,6 +883,75 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    auth_google_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["GoogleSignInRequestRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["GoogleSignInRequestRequest"];
+                "multipart/form-data": components["schemas"]["GoogleSignInRequestRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SignInResponse"];
+                };
+            };
+            /** @description Invalid token or unusable Google account. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    auth_me_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+        };
+    };
+    auth_sign_out_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     health_retrieve: {
         parameters: {
             query?: never;

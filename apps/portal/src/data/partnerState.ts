@@ -37,19 +37,24 @@ export interface Thread {
   messages: ThreadMessage[]
 }
 
-/** Merchant's settings for one service. */
-export interface ServiceSetting {
-  active: boolean
-  priceCents: number
-  turnaroundRounds: number
-}
-
 interface PartnerState {
   threads: Record<string, Thread[]>
   reviewReplies: Record<string, Record<string, string>>
-  services: Record<string, Record<string, ServiceSetting>>
   ready: string[]
   stopsDone: Record<string, string[]>
+  /** Planning tasks marked done (absent in states saved before the planning). */
+  tasksDone?: string[]
+  /** Webhook address entered per merchant (DEMO: stored, nothing is sent). */
+  webhooks?: Record<string, string>
+  /** Google Agenda linked per merchant (googleCalendar.ts). */
+  googleCalendars?: Record<string, GoogleCalendarLink>
+}
+
+/** The "CityPal" calendar created in a merchant's Google Agenda. */
+export interface GoogleCalendarLink {
+  calendarId: string
+  /** Last complete sync, ISO 8601. */
+  lastSyncAt: string | null
 }
 
 const STORAGE_KEY = 'citypal-partner-demo-v1'
@@ -80,9 +85,11 @@ function load(): PartnerState | null {
 const empty = (): PartnerState => ({
   threads: {},
   reviewReplies: {},
-  services: {},
   ready: [],
   stopsDone: {},
+  tasksDone: [],
+  webhooks: {},
+  googleCalendars: {},
 })
 
 export const partnerState = reactive<PartnerState>(load() ?? empty())
@@ -184,6 +191,50 @@ export function toggleReady(orderId: string): void {
   const index = partnerState.ready.indexOf(orderId)
   if (index === -1) partnerState.ready.push(orderId)
   else partnerState.ready.splice(index, 1)
+}
+
+/** Whether a planning task is done. */
+export const isTaskDone = (id: string): boolean => (partnerState.tasksDone ?? []).includes(id)
+
+/**
+ * Marks a planning task done (or undoes it). A handover done also marks its
+ * items ready for the courier, as on the rounds screen.
+ */
+export function toggleTask(id: string, handoverOrders: string[] = []): void {
+  const done = (partnerState.tasksDone ??= [])
+  const index = done.indexOf(id)
+  if (index === -1) {
+    done.push(id)
+    for (const orderId of handoverOrders)
+      if (!partnerState.ready.includes(orderId)) partnerState.ready.push(orderId)
+  } else done.splice(index, 1)
+}
+
+/** Webhook address of a merchant's automation, if entered. */
+export const webhookOf = (merchant: string): string => partnerState.webhooks?.[merchant] ?? ''
+
+/** Saves (or clears, with an empty string) a merchant's webhook address. */
+export function setWebhook(merchant: string, url: string): void {
+  const hooks = (partnerState.webhooks ??= {})
+  if (url) hooks[merchant] = url
+  else delete hooks[merchant]
+}
+
+/** Google Agenda linked to a merchant, if any. */
+export const googleCalendarOf = (merchant: string): GoogleCalendarLink | null =>
+  partnerState.googleCalendars?.[merchant] ?? null
+
+/** Links (or unlinks, with null) a merchant's Google Agenda calendar. */
+export function setGoogleCalendar(merchant: string, calendarId: string | null): void {
+  const links = (partnerState.googleCalendars ??= {})
+  if (calendarId) links[merchant] = { calendarId, lastSyncAt: null }
+  else delete links[merchant]
+}
+
+/** Records a complete sync of a merchant's planning. */
+export function markSynced(merchant: string, at: Date = new Date()): void {
+  const link = partnerState.googleCalendars?.[merchant]
+  if (link) link.lastSyncAt = at.toISOString()
 }
 
 /** Marks a stop of a round as done (or undoes it). */

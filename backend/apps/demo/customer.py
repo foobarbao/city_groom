@@ -93,6 +93,7 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
                 "price": str(s.price),
                 "size": s.size.value,
                 "turnaround_rounds": s.turnaround_rounds,
+                "keywords": list(s.keywords),
             }
             for services in SERVICES_BY_CATEGORY.values()
             for s in services

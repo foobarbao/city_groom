@@ -18,6 +18,18 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   {
+    path: '/commerce/:code/planning',
+    name: 'merchant-agenda',
+    component: () => import('../views/MerchantAgendaPage.vue'),
+    props: true,
+  },
+  {
+    path: '/commerce/:code/connecteurs',
+    name: 'merchant-connectors',
+    component: () => import('../views/MerchantConnectorsPage.vue'),
+    props: true,
+  },
+  {
     path: '/commerce/:code/tournees',
     name: 'merchant-rounds',
     component: () => import('../views/MerchantRoundsPage.vue'),
@@ -36,9 +48,9 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   {
-    path: '/commerce/:code/services',
+    path: '/commerce/:code/offres',
     name: 'merchant-services',
-    component: () => import('../views/MerchantServicesPage.vue'),
+    component: () => import('../views/MerchantOffersPage.vue'),
     props: true,
   },
   { path: '/coursier', name: 'courier', component: () => import('../views/CourierPage.vue') },

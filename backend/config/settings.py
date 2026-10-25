@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     "rest_framework_gis",
     "drf_spectacular",
     "rest_framework_api_key",
+    "rest_framework.authtoken",
     # Project
+    "apps.accounts",
     "apps.core",
     "apps.lockers",
     "apps.merchants",
@@ -97,6 +99,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # --- Authentication ---------------------------------------------------------
 
+# Project user model (ADR-0010).
+AUTH_USER_MODEL = "accounts.User"
+
+# OAuth client IDs whose Google ID tokens are accepted (sign in with Google,
+# ADR-0010): the web client, later the Android one. Public values, not
+# secrets. Empty: sign-in with Google is disabled.
+GOOGLE_OAUTH_CLIENT_IDS: list[str] = env.list("GOOGLE_OAUTH_CLIENT_IDS", default=[])
+
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -129,6 +139,14 @@ REST_FRAMEWORK = {
     # Access is denied by default; each view opens what it needs explicitly
     # (CODING_STANDARDS.md §9).
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    # Apps send `Authorization: Token <token>` (ADR-0010); sessions serve the
+    # browsable API for signed-in team members. Integration API keys are
+    # checked by their own permission class (ADR-0007).
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        # Token first, so unauthenticated calls get 401 with WWW-Authenticate.
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     # Rate limits protect the service from abusive or buggy clients; values
     # are documented in docs/api/README.md.
@@ -142,6 +160,7 @@ REST_FRAMEWORK = {
         "anon": env.str("API_THROTTLE_ANON", default="120/min"),
         "user": env.str("API_THROTTLE_USER", default="600/min"),
         "api_key": env.str("API_THROTTLE_API_KEY", default="600/min"),
+        "sign_in": env.str("API_THROTTLE_SIGN_IN", default="20/min"),
     },
 }
 
@@ -177,6 +196,7 @@ SPECTACULAR_SETTINGS = {
         "AccessMethodEnum": "apps.lockers.models.AccessMethod",
     },
     "TAGS": [
+        {"name": "accounts", "description": "Customer sign-in (Google) and profile."},
         {"name": "lockers", "description": "Public locker data (map, locker fronts, sizes)."},
         {"name": "merchants", "description": "Local businesses (public data)."},
         {"name": "operations", "description": "Operator data: occupancy, statistics, events."},

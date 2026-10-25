@@ -100,3 +100,42 @@ describe('reviews', () => {
     expect(withRatings({ average: 4, count: 3 }, [5])).toEqual({ average: 4.3, count: 4 })
   })
 })
+
+describe('service search', async () => {
+  const { matchServices, rankProviders } = await import('./shops')
+  const services = [
+    { code: 'shirt_ironing', name: 'Repassage chemise', category: 'dry_cleaning' },
+    { code: 'trouser_ironing', name: 'Repassage pantalon', category: 'dry_cleaning' },
+    {
+      code: 'sole_replacement',
+      name: 'Ressemelage',
+      category: 'shoe_repair',
+      keywords: ['semelle', 'chaussures'],
+    },
+  ]
+
+  it('finds service types by word prefix, ignoring accents', () => {
+    expect(matchServices(services, 'repass').map((s) => s.code)).toEqual([
+      'shirt_ironing',
+      'trouser_ironing',
+    ])
+    expect(matchServices(services, 'repassage pant').map((s) => s.code)).toEqual([
+      'trouser_ironing',
+    ])
+    expect(matchServices(services, 'RESSEM').map((s) => s.code)).toEqual(['sole_replacement'])
+    expect(matchServices(services, 'semelle').map((s) => s.code)).toEqual(['sole_replacement'])
+    expect(matchServices(services, '')).toEqual([])
+  })
+
+  it('ranks providers by rating, then price', () => {
+    const a = shop({ code: 'a', rating: { average: 4.2, count: 3 } })
+    const b = shop({ code: 'b', rating: { average: 4.8, count: 9 } })
+    const c = shop({ code: 'c', rating: { average: 4.8, count: 1 } })
+    const ranked = rankProviders([
+      { shop: a, offer: { priceCents: 300 } },
+      { shop: b, offer: { priceCents: 500 } },
+      { shop: c, offer: { priceCents: 400 } },
+    ])
+    expect(ranked.map((p) => p.shop.code)).toEqual(['c', 'b', 'a'])
+  })
+})

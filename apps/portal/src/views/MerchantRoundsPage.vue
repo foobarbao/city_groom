@@ -1,8 +1,10 @@
 <script setup lang="ts">
 /**
- * Merchant rounds: for each of the next rounds (07:00, 14:00, 20:00), the
- * items a courier brings to the shop and the items that go back to the
- * customers' lockers, which the merchant marks ready beforehand.
+ * Merchant rounds: for each courier visit (07:00, 14:00, 20:00), first the
+ * items to have ready for the courier at that time, marked ready one by one,
+ * then the items the courier brings. Lockers are deliberately not shown:
+ * the merchant only needs to know when to hand items over
+ * (docs/PRODUCT.md §5).
  */
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -10,14 +12,7 @@ import { useI18n } from 'vue-i18n'
 import MerchantShell from '../components/MerchantShell.vue'
 import { clock, shortDay } from '../data/format'
 import { partnerState, toggleReady } from '../data/partnerState'
-import {
-  activity,
-  catalogue,
-  demoNow,
-  partnerOrFirst,
-  placeName,
-  serviceName,
-} from '../data/source'
+import { activity, catalogue, demoNow, partnerOrFirst, serviceName } from '../data/source'
 
 const props = defineProps<{ code?: string }>()
 const { t } = useI18n()
@@ -61,7 +56,7 @@ const ready = (id: string): boolean => partnerState.ready.includes(id)
       <section v-for="round in rounds" :key="round.id" class="card">
         <h2>
           {{
-            t('merchant.incomingRound', {
+            t('merchant.rounds.visit', {
               time: clock(round.startsAt),
               day: shortDay(round.startsAt),
             })
@@ -70,6 +65,34 @@ const ready = (id: string): boolean => partnerState.ready.includes(id)
         <p v-if="!round.arriving.length && !round.leaving.length" class="note">
           {{ t('merchant.rounds.nothing') }}
         </p>
+        <div v-if="round.leaving.length" class="block handover">
+          <h3 class="handover-title">
+            <span class="time">{{ clock(round.startsAt) }}</span>
+            <span>
+              {{ t('merchant.rounds.handover', { time: clock(round.startsAt) }) }}
+              <span class="count">
+                {{
+                  t('merchant.rounds.readyCount', {
+                    ready: round.leaving.filter((o) => ready(o.id)).length,
+                    total: round.leaving.length,
+                  })
+                }}
+              </span>
+            </span>
+          </h3>
+          <ul class="plain-list">
+            <li v-for="o in round.leaving" :key="o.id" :class="{ done: ready(o.id) }">
+              <label class="ready">
+                <input type="checkbox" :checked="ready(o.id)" @change="toggleReady(o.id)" />
+                <span>
+                  <strong>{{ o.items }} × {{ serviceName(o.service) }}</strong>
+                  <span class="muted">{{ o.id }}</span>
+                </span>
+              </label>
+            </li>
+          </ul>
+          <p class="note">{{ t('merchant.rounds.readyHint') }}</p>
+        </div>
         <div v-if="round.arriving.length" class="block">
           <h3>
             ↓ {{ t('merchant.rounds.arriving') }} ·
@@ -83,38 +106,9 @@ const ready = (id: string): boolean => partnerState.ready.includes(id)
           <ul class="plain-list">
             <li v-for="o in round.arriving" :key="o.id">
               <strong>{{ o.items }} × {{ serviceName(o.service) }}</strong>
-              <span class="muted"
-                >{{ o.id }} ·
-                {{ t('merchant.rounds.from', { locker: placeName(o.drop_locker) }) }}</span
-              >
+              <span class="muted">{{ o.id }}</span>
             </li>
           </ul>
-        </div>
-        <div v-if="round.leaving.length" class="block">
-          <h3>
-            ↑ {{ t('merchant.rounds.leaving') }} ·
-            {{
-              t(
-                'merchant.items',
-                round.leaving.reduce((s, o) => s + o.items, 0),
-              )
-            }}
-          </h3>
-          <ul class="plain-list">
-            <li v-for="o in round.leaving" :key="o.id" :class="{ done: ready(o.id) }">
-              <label class="ready">
-                <input type="checkbox" :checked="ready(o.id)" @change="toggleReady(o.id)" />
-                <span>
-                  <strong>{{ o.items }} × {{ serviceName(o.service) }}</strong>
-                  <span class="muted"
-                    >{{ o.id }} ·
-                    {{ t('merchant.rounds.to', { locker: placeName(o.pickup_locker) }) }}</span
-                  >
-                </span>
-              </label>
-            </li>
-          </ul>
-          <p class="note">{{ t('merchant.rounds.readyHint') }}</p>
         </div>
       </section>
     </div>
@@ -158,6 +152,33 @@ h3 {
   width: 22px;
   height: 22px;
   accent-color: var(--cg-leaf);
+}
+.handover {
+  padding: 12px;
+  border-radius: var(--cg-radius-m);
+  background: var(--cg-sun-soft);
+}
+.handover-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--cg-ink);
+}
+.handover-title > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+.time {
+  padding: 6px 12px;
+  border-radius: var(--cg-radius-pill);
+  background: var(--cg-sun);
+  font-size: 20px;
+  font-weight: 900;
+}
+.count {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cg-ink-soft);
 }
 li.done {
   background: var(--cg-leaf-soft) !important;

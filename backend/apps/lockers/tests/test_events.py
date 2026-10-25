@@ -2,9 +2,9 @@ import random
 from typing import Any
 
 import pytest
-from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 
+from apps.accounts.models import User
 from apps.lockers.drivers.base import LockerDriverError, get_driver
 from apps.lockers.drivers.simulated import (
     MAX_DOOR_OPEN_SECONDS,
@@ -28,7 +28,9 @@ def locker(db: Any) -> Locker:
 @pytest.fixture
 def staff_client(db: Any) -> APIClient:
     client = APIClient()
-    client.force_authenticate(User.objects.create_user("operator", is_staff=True))
+    client.force_authenticate(
+        User.objects.create_user("operator", "operator@citypal.example", is_staff=True)
+    )
     return client
 
 

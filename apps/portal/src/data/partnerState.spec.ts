@@ -11,7 +11,14 @@ import {
   seedThreads,
   threadsOf,
   toggleReady,
+  toggleTask,
+  isTaskDone,
   toggleStop,
+  setWebhook,
+  googleCalendarOf,
+  markSynced,
+  setGoogleCalendar,
+  webhookOf,
 } from './partnerState'
 
 beforeEach(() => resetPartnerDemo())
@@ -36,6 +43,30 @@ describe('partner state', () => {
     expect(thread.messages.at(-2)?.quote?.status).toBe('accepted')
     expect(thread.messages.at(-1)?.simulated).toBe(true)
     vi.useRealTimers()
+  })
+
+  it('marks planning tasks done; a handover marks its items ready', () => {
+    toggleTask('handover-x', ['D-1', 'D-2'])
+    expect(isTaskDone('handover-x')).toBe(true)
+    expect(partnerState.ready).toEqual(['D-1', 'D-2'])
+    toggleTask('handover-x')
+    expect(isTaskDone('handover-x')).toBe(false)
+  })
+
+  it('stores and clears a merchant webhook address', () => {
+    setWebhook('m', 'https://hooks.example.com/abc')
+    expect(webhookOf('m')).toBe('https://hooks.example.com/abc')
+    setWebhook('m', '')
+    expect(webhookOf('m')).toBe('')
+  })
+
+  it('links, syncs and unlinks a Google Agenda calendar', () => {
+    setGoogleCalendar('m', 'cal-1')
+    expect(googleCalendarOf('m')).toEqual({ calendarId: 'cal-1', lastSyncAt: null })
+    markSynced('m', new Date('2026-10-25T10:00:00Z'))
+    expect(googleCalendarOf('m')?.lastSyncAt).toBe('2026-10-25T10:00:00.000Z')
+    setGoogleCalendar('m', null)
+    expect(googleCalendarOf('m')).toBeNull()
   })
 
   it('toggles ready items and done stops', () => {

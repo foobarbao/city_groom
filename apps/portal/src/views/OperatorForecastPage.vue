@@ -6,7 +6,6 @@
 import { useI18n } from 'vue-i18n'
 
 import BarChart, { type Bar } from '../components/BarChart.vue'
-import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import { number, shortDay } from '../data/format'
 import { forecastByLocker, forecastByRound } from '../data/operator'
@@ -25,8 +24,7 @@ const lockers = forecastByLocker(activity)
 </script>
 
 <template>
-  <portal-page :title="t('operator.title')" back-href="/">
-    <operator-nav current="operator-forecast" />
+  <portal-page>
     <section class="card">
       <bar-chart
         :title="t('operator.forecast.days')"
