@@ -78,7 +78,7 @@ function navigated(): void {
 
 <style scoped>
 .app-nav {
-  --background: var(--cg-surface);
+  --background: var(--cg-glass);
 }
 .nav {
   display: flex;
@@ -110,7 +110,7 @@ function navigated(): void {
   width: 32px;
   height: 32px;
   border-radius: var(--cg-radius-s);
-  background: var(--cg-leaf);
+  background: linear-gradient(135deg, var(--cg-leaf), var(--cg-teal));
   color: #ffffff;
   font-weight: 700;
 }

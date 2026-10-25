@@ -74,7 +74,7 @@ const CATEGORY_ICONS: Record<string, string> = {
     <app-header />
     <ion-content>
       <main class="page home">
-        <header class="hello hero">
+        <header class="hello">
           <h1 class="page-title">
             {{
               account.state.signedIn
@@ -201,31 +201,6 @@ const CATEGORY_ICONS: Record<string, string> = {
   gap: 4px;
   padding-top: 12px;
 }
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 20px 18px;
-  border-radius: var(--cg-radius-l);
-  background: var(--cg-hero);
-  box-shadow: var(--cg-shadow-strong);
-}
-/* Warm yellow glow in the corner: the "warmth" of the palette. */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -40px;
-  right: -30px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(247 212 76 / 55%) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero .page-title,
-.hero .page-intro {
-  position: relative;
-  color: #fff;
-}
 .modes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -246,12 +221,16 @@ const CATEGORY_ICONS: Record<string, string> = {
     box-shadow var(--cg-motion) var(--cg-ease),
     transform var(--cg-motion) var(--cg-ease);
 }
-/* Soft tint per mode: green for services, yellow for the consigne. */
+/* Soft tint per mode: emerald for services, teal for the consigne. */
 .mode.services {
   background: linear-gradient(160deg, var(--cg-leaf-soft) 0%, var(--cg-glass) 70%);
 }
 .mode.consigne {
-  background: linear-gradient(160deg, var(--cg-sun-soft) 0%, var(--cg-glass) 70%);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--cg-teal) 12%, transparent) 0%,
+    var(--cg-glass) 70%
+  );
 }
 .mode:hover,
 .mode:focus-visible {
@@ -272,8 +251,8 @@ const CATEGORY_ICONS: Record<string, string> = {
   color: var(--cg-leaf);
 }
 .consigne .mode-icon {
-  background: var(--cg-sun-soft);
-  color: var(--cg-ink);
+  background: color-mix(in srgb, var(--cg-teal) 15%, transparent);
+  color: var(--cg-teal);
 }
 .mode-title {
   font-size: 16px;
@@ -308,8 +287,8 @@ const CATEGORY_ICONS: Record<string, string> = {
   font-size: 20px;
 }
 .nearby-icon.sky {
-  background: var(--cg-sky-soft);
-  color: var(--cg-sky);
+  background: color-mix(in srgb, var(--cg-teal) 15%, transparent);
+  color: var(--cg-teal);
 }
 .chevron {
   font-size: 18px;
@@ -368,6 +347,10 @@ const CATEGORY_ICONS: Record<string, string> = {
   --tone: var(--cg-leaf);
   --tone-soft: var(--cg-leaf-soft);
 }
+.tone-teal {
+  --tone: var(--cg-teal);
+  --tone-soft: color-mix(in srgb, var(--cg-teal) 15%, transparent);
+}
 .tone-sky {
   --tone: var(--cg-sky);
   --tone-soft: var(--cg-sky-soft);
@@ -397,11 +380,16 @@ const CATEGORY_ICONS: Record<string, string> = {
   gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 4px;
+  /* Room for the cards' shadow, which the scroll box would otherwise cut
+     into a grey band. */
+  padding: 4px 12px 16px;
+  margin: -4px -12px -12px;
+  scroll-padding: 0 12px;
   scrollbar-width: none;
 }
 .promos > * {
   scroll-snap-align: start;
+  box-shadow: var(--cg-shadow);
 }
 .promos.single {
   grid-auto-columns: 100%;

@@ -150,7 +150,9 @@ const paramsOf = (node: NavItem): Record<string, string> =>
   background: var(--cg-surface-soft);
 }
 .nav-row.active {
-  background: var(--cg-leaf-soft);
+  /* Light, translucent emerald: the former opaque dark tint looked olive
+     (owner, 2026-10-25). */
+  background: color-mix(in srgb, var(--cg-leaf) 13%, transparent);
   color: var(--cg-pine);
   font-weight: 600;
 }

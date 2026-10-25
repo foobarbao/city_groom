@@ -9,11 +9,14 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
-- Warmer palette with meaning: trust blue, warm yellow, planet green; home
-  hero band in a blue-to-green gradient, mode cards tinted green and yellow,
-  translucent glass cards over coloured glows, light motion (staggered
-  rise-in, hover lift, press feedback; off with reduced motion), portal
-  cards included. Menu navigation unchanged.
+- Refined green palette (owner's brief: ecological, welcoming, tech and
+  digital, lively but not colourful in every direction): emerald and a teal
+  touch on a pale green-white ground, soft contrasts, plain greeting
+  instead of a gradient band, frosted glass cards and side menu over one
+  slow emerald/teal aurora, translucent emerald menu highlight (the former
+  dark tint looked olive), emerald/teal category tiles; motion: aurora
+  drift, staggered rise-in, hover lift, press feedback, sheen on promotions
+  (all off with reduced motion). Menu navigation unchanged.
 - Customer Google sign-in without a backend (demo site): the profile is
   read on the device from the Google credential, unverified and labelled as
   a demonstration (`PROD:` the backend verifies the token).

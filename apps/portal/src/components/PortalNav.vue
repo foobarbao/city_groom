@@ -93,7 +93,7 @@ function navigated(): void {
 
 <style scoped>
 .portal-nav {
-  --background: var(--cg-surface);
+  --background: var(--cg-glass);
 }
 .nav {
   display: flex;
@@ -126,7 +126,7 @@ function navigated(): void {
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: var(--cg-leaf);
+  background: linear-gradient(135deg, var(--cg-leaf), var(--cg-teal));
   color: #ffffff;
   font-weight: 700;
 }

@@ -8,20 +8,26 @@ History: the first brief asked for a **very soft** interface ("très douce");
 on 2026-10-24 the palette became green, warm lemon and cream, with frosted
 glass and colour halos. On **2026-10-25** the project owner found the result
 childish and asked for something **more professional and serious**. Later
-the same day the result looked too sad: the owner asked for **warmer
-colours with a meaning — blue for trust and tech, yellow for warmth, green
-for the planet — with transparency and a little more animation**, keeping
-the menu navigation as it is. The current principles:
+the same day it looked too sad; a blue / yellow / green attempt with a
+gradient hero band and colour blobs was then rejected as too contrasted and
+too colourful ("ce n'est pas un cirque"), and the green of the menu looked
+olive. The owner's brief, still 2026-10-25: **stay in the green;
+ecological, welcoming, but also tech and digital; lively, with animation;
+not colourful in every direction; refined**. The current principles:
 
-- **Three-colour palette**: trust blue (`--cg-sky`) for the hero band and
-  "tech" cues (lockers, location), warm yellow (`--cg-sun`) for warmth and
-  things to do, planet green (`--cg-leaf`) for actions and services. The
-  home screen opens on a blue-to-green gradient band (`--cg-hero`, white
-  text, a warm yellow glow in the corner).
+- **One family of greens**: emerald (`--cg-leaf`) for actions and the
+  selected menu item (a light translucent tint, never an opaque dark
+  green), a teal touch (`--cg-teal`) for the "digital" side (the logo
+  gradient, the consigne and location cues, every other category tile).
+  Warm yellow (`--cg-sun`) stays only for promotions and "to do" pills.
+- **Soft contrasts**: deep green ink rather than black, pale green-white
+  ground (deep green-black in dark mode); no saturated band behind
+  headings: the greeting is plain text.
 - **Sober shapes, translucent surfaces**: moderate radii (8 / 10 / 14 px);
-  cards are translucent glass (`--cg-glass` + `--cg-glass-filter`) over a
-  ground lit by soft blue, yellow and green glows (`--cg-backdrop`). Pills
-  only for chips (filters) and counters.
+  cards and the side menu are frosted glass (`--cg-glass` +
+  `--cg-glass-filter`) over one slow emerald and teal **aurora** at the top
+  of the screens (`--cg-aurora-1/2`). No scattered colour spots. Pills only
+  for chips (filters) and counters.
 - **Colour with intent** (revised 2026-10-25: the sober version looked too
   monochrome; the owner asked for more life, especially on promotions):
   deep green text and green actions stay; colour now carries meaning:
@@ -32,19 +38,20 @@ the menu navigation as it is. The current principles:
   - **statuses** each have a tint (`utils/tones.ts`): lemon = something to
     do, sky = in a locker, plum = being processed, solid green = ready to
     collect, grey = done;
-  - **categories** cycle through soft accent tiles (leaf, sky, coral, plum,
-    lemon) behind line icons.
-    Accent tokens: `--cg-sky`, `--cg-coral`, `--cg-plum` and their `-soft`
-    tints, light and dark; strong tone on soft tint keeps text above 4.5:1.
+  - **categories** alternate emerald and teal tiles behind line icons.
+    Accent tokens (status pills only): `--cg-sky`, `--cg-coral`, `--cg-plum`
+    and their `-soft` tints, light and dark; strong tone on soft tint keeps
+    text above 4.5:1.
 - **Neutral type**: Inter (variable, bundled with the apps so it works
   offline and in the Android app); headings 700, emphasis 600, no black
   weights.
 - **Icons, not emoji**: outline Ionicons in tinted squares; emoji are not
   used in the interface (the typographic ✓ and rating stars ★ stay).
-- **Light motion** (revised 2026-10-25): page blocks rise in with a short
-  stagger (`cg-rise`, 40 ms steps); clickable cards lift by 2 px on hover
-  and shrink slightly when pressed; portal cards rise in; the locker door
-  still swings open. Durations come from `--cg-motion` / `--cg-ease`, and
+- **Light motion** (revised 2026-10-25): the aurora drifts slowly
+  (`cg-drift`, 30 s); page blocks rise in with a short stagger (`cg-rise`,
+  40 ms steps); clickable cards lift on hover and shrink slightly when
+  pressed; a soft sheen crosses the promotion cards every few seconds
+  (`cg-sheen`); portal cards rise in; the locker door still swings open. Durations come from `--cg-motion` / `--cg-ease`, and
   all motion is off when the user prefers reduced motion. The navigation
   menu is not animated beyond Ionic's own drawer.
 - **Show, don't explain**: the locker is drawn; the door the customer will
@@ -120,9 +127,9 @@ mapped onto Ionic's colour variables. Components only use these tokens.
 | `--cg-pine`                                            | Strong text on soft backgrounds                                   |
 | `--cg-sun`, `--cg-sun-soft`                            | Warm lemon accent (consigne, badges, opening door) and its pastel |
 | `--cg-glass`, `--cg-glass-strong`, `--cg-glass-filter` | Frosted glass cards and bars                                      |
-| `--cg-sky`, `--cg-sky-soft`                            | Trust blue (tech, lockers, location) and its tint                 |
-| `--cg-backdrop`                                        | Ground with soft blue, yellow and green glows, behind every page  |
-| `--cg-hero`                                            | Blue-to-green gradient of the home hero band (white text)         |
+| `--cg-teal`                                            | Teal touch: the digital side (logo, consigne and location cues)   |
+| `--cg-aurora-1`, `--cg-aurora-2`                       | Emerald and teal veil drifting behind every screen                |
+| `--cg-backdrop`                                        | Page ground (plain)                                               |
 | `--cg-ease`, `--cg-motion`                             | Easing and duration of every transition                           |
 | `--cg-locker-*`                                        | Locker drawing                                                    |
 | `--cg-radius-*`, `--cg-shadow*`                        | Shapes and depth                                                  |

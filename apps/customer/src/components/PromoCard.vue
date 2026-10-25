@@ -65,6 +65,28 @@ const { t } = useI18n()
   color: #12352a;
   text-decoration: none;
   box-shadow: var(--cg-shadow-strong);
+  transition:
+    transform var(--cg-motion) var(--cg-ease),
+    box-shadow var(--cg-motion) var(--cg-ease);
+}
+a.promo:hover,
+a.promo:focus-visible {
+  transform: translateY(-3px);
+}
+a.promo:active {
+  transform: scale(0.985);
+}
+/* A light sheen sweeps across the card every few seconds: the offer catches
+   the eye without blinking. */
+.promo::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 35%), transparent);
+  animation: cg-sheen 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
 }
 /* A soft disc in the corner gives depth without imagery. */
 .promo::after {
