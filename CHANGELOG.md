@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Neon agent skills (`neon`, `neon-postgres`) for Claude Code, installed
+  with `npx neon@latest skills -s neon -s neon-postgres -y` into
+  `.claude/skills/` (pinned in `skills-lock.json`); they guide the Neon
+  database setup (docs/BUILD_AND_RELEASE.md §6).
 - Refined green palette (owner's brief: ecological, welcoming, tech and
   digital, lively but not colourful in every direction): emerald and a teal
   touch on a pale green-white ground, soft contrasts, plain greeting
