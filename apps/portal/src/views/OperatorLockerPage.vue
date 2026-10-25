@@ -8,6 +8,7 @@ import { LockerFront, computeLockerDrawing } from '@city-groom/ui'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import OperatorNav from '../components/OperatorNav.vue'
 import PortalPage from '../components/PortalPage.vue'
 import StatTile from '../components/StatTile.vue'
 import { number, percent } from '../data/format'
@@ -43,9 +44,10 @@ const methods = computed(() =>
 <template>
   <portal-page
     :title="locker?.name ?? code"
-    back-href="/exploitation"
+    back-href="/exploitation/casiers"
     :back-text="t('operator.lockerBack')"
   >
+    <operator-nav current="operator-lockers" />
     <template v-if="locker && drawing">
       <div class="tiles">
         <stat-tile :label="t('operator.lockerFillRate')" :value="percent(locker.fill_rate)" />

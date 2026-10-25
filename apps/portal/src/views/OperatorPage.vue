@@ -12,8 +12,10 @@ import PortalMap from '../components/PortalMap.vue'
 import PortalPage from '../components/PortalPage.vue'
 import StatTile from '../components/StatTile.vue'
 import { number, percent, shortDay } from '../data/format'
-import { activity, demoNow, lockerPoints, lockers, operatorData } from '../data/source'
+import { activity, demoNow, lockerPoints, lockers, operatorData, placeName } from '../data/source'
+import { operatorAlerts } from '../data/operator'
 import { operatorKpis } from '../data/summaries'
+import OperatorNav from '../components/OperatorNav.vue'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -21,9 +23,12 @@ const router = useRouter()
 const kpis = operatorKpis(activity, demoNow)
 const stats = operatorData.stats
 
-const lockerList = [...lockers].sort((a, b) => b.fill_rate - a.fill_rate)
-const freeCount = (free: Record<string, number>): number =>
-  Object.values(free).reduce((sum, n) => sum + n, 0)
+const alerts = operatorAlerts(lockers, activity.orders)
+const transfersToday = activity.transfers.filter(
+  (tr) =>
+    new Date(tr.round_at).toLocaleDateString('sv-SE', { timeZone: activity.timezone }) ===
+    demoNow.toLocaleDateString('sv-SE', { timeZone: activity.timezone }),
+).length
 
 const sizes = Object.keys(stats.capacity_by_size).map((size) => {
   const capacity = stats.capacity_by_size[size] ?? 0
@@ -47,6 +52,7 @@ function openLocker(code: string): void {
 
 <template>
   <portal-page :title="t('operator.title')" back-href="/">
+    <operator-nav current="operator" />
     <div class="tiles">
       <stat-tile :label="t('operator.ordersToday')" :value="number(kpis.ordersToday)" />
       <stat-tile :label="t('operator.itemsInLockers')" :value="number(kpis.itemsInLockers)" />
@@ -60,6 +66,11 @@ function openLocker(code: string): void {
             total: number(stats.in_service),
           })
         "
+      />
+      <stat-tile
+        :label="t('operator.transfersToday')"
+        :value="number(transfersToday)"
+        :hint="t('operator.consigne')"
       />
     </div>
 
@@ -111,27 +122,38 @@ function openLocker(code: string): void {
       </section>
     </div>
 
-    <section class="card">
-      <h2>{{ t('operator.lockersTitle') }}</h2>
-      <ul class="lockers">
-        <li v-for="locker in lockerList" :key="locker.code">
-          <router-link :to="{ name: 'operator-locker', params: { code: locker.code } }">
-            <strong>{{ locker.name }}</strong>
-            <span class="meter"
-              ><span class="meter-fill" :style="{ width: `${locker.fill_rate * 100}%` }"
-            /></span>
-            <span class="muted">
-              {{
-                t('operator.lockerLine', {
-                  rate: percent(locker.fill_rate),
-                  free: freeCount(locker.free_by_size),
-                })
-              }}
-            </span>
-          </router-link>
-        </li>
-      </ul>
-    </section>
+    <div class="columns">
+      <section class="card">
+        <h2>{{ t('operator.alerts.title') }}</h2>
+        <p v-if="!alerts.length" class="note">{{ t('operator.alerts.none') }}</p>
+        <ul class="plain-list">
+          <li v-for="a in alerts.slice(0, 4)" :key="a.kind + a.ref">
+            <strong>{{ t(`operator.alerts.kinds.${a.kind}`, { value: a.value }) }}</strong>
+            <span class="muted">{{
+              a.kind === 'late_pickup'
+                ? t('operator.alerts.order', { id: a.ref })
+                : placeName(a.ref)
+            }}</span>
+          </li>
+        </ul>
+        <router-link class="more" :to="{ name: 'operator-alerts' }"
+          >{{ t('operator.alerts.all', alerts.length) }} →</router-link
+        >
+      </section>
+      <section class="card">
+        <h2>{{ t('operator.admin.title') }}</h2>
+        <p>{{ t('operator.admin.text') }}</p>
+        <ul class="admin-list">
+          <li
+            v-for="item in ['lockers', 'merchants', 'offers', 'commission', 'apiKeys']"
+            :key="item"
+          >
+            {{ t(`operator.admin.items.${item}`) }}
+          </li>
+        </ul>
+        <p class="note">{{ t('operator.admin.demo') }}</p>
+      </section>
+    </div>
   </portal-page>
 </template>
 
@@ -174,27 +196,15 @@ function openLocker(code: string): void {
   border-radius: var(--cg-radius-pill);
   background: var(--cg-chart-1);
 }
-.lockers {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.lockers a {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border-radius: var(--cg-radius-m);
-  background: var(--cg-ground);
-  color: inherit;
+.more {
+  font-weight: 800;
+  color: var(--cg-leaf);
   text-decoration: none;
 }
-.lockers a:hover,
-.lockers a:focus-visible {
-  background: var(--cg-leaf-soft);
+.admin-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--cg-ink-soft);
 }
 .muted {
   font-size: 13px;

@@ -49,6 +49,36 @@ const routes: RouteRecordRaw[] = [
   },
   { path: '/exploitation', name: 'operator', component: () => import('../views/OperatorPage.vue') },
   {
+    path: '/exploitation/alertes',
+    name: 'operator-alerts',
+    component: () => import('../views/OperatorAlertsPage.vue'),
+  },
+  {
+    path: '/exploitation/casiers',
+    name: 'operator-lockers',
+    component: () => import('../views/OperatorLockersPage.vue'),
+  },
+  {
+    path: '/exploitation/commandes',
+    name: 'operator-orders',
+    component: () => import('../views/OperatorOrdersPage.vue'),
+  },
+  {
+    path: '/exploitation/tournees',
+    name: 'operator-rounds',
+    component: () => import('../views/OperatorRoundsPage.vue'),
+  },
+  {
+    path: '/exploitation/commerces',
+    name: 'operator-partners',
+    component: () => import('../views/OperatorPartnersPage.vue'),
+  },
+  {
+    path: '/exploitation/previsions',
+    name: 'operator-forecast',
+    component: () => import('../views/OperatorForecastPage.vue'),
+  },
+  {
     path: '/exploitation/casiers/:code',
     name: 'operator-locker',
     component: () => import('../views/OperatorLockerPage.vue'),

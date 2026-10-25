@@ -131,6 +131,11 @@ Versioning: [SemVer](https://semver.org/).
 - Courier space: "Présenter l'activité" tab (three rounds, consigne
   transfers) and "Feuille de tournée" tab (stops in a valid order with what
   to pick up and drop off, progress, route map).
+- Operator space: sub-menu with overview (alerts to watch, consigne
+  transfers, data management), alerts, lockers (search, filter, sort),
+  orders (search, status filter), rounds (today's totals, link to the round
+  sheet), partner shops (rating, revenue, commission) and forecasts (per
+  day, per round, per locker).
 - Demo dataset: consigne transfers at rounds (`transfers` in the activity).
 
 ### Fixed

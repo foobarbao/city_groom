@@ -33,7 +33,7 @@ Fictitious data is always labelled as such in the apps.
 | "Notre mission" page: the double mission (convenience and ecology, served by technology) over photos of green Grenoble streets | Everyone, funders | `/pro/mission` | Done; wording to review |
 | Merchant space: dashboard (revenue, commission, forecast), rounds (arrivals, departures to mark ready), messages and quotes, reviews and replies, services and prices | Businesses | `/pro/commerce` | Done (demo state on the device) |
 | Courier space: presentation of the activity (three rounds a day, consigne transfers, projections) and round sheet (stops in order, what to pick up and drop off, progress) | Cargo-bike partners | `/pro/coursier` | Done; indicators to confirm (open question 5) |
-| Operator space (volumes, fill rate per size and per locker, live map, orders and forecast, door statuses) | City Groom team | `/pro/exploitation` | Done |
+| Operator space: overview, alerts, lockers (door statuses), orders, rounds, partner shops, forecasts | CityPal team | `/pro/exploitation` | Done |
 
 Every portal page shows a permanent "fictitious" notice with the reference
 time of the data. All times are shown in the Grenoble time zone

@@ -294,6 +294,12 @@ In the demo, all courier data is **simulated** and labelled as such.
   using real map data.
 - **Flow forecasts** (expected items per locker, per round, per merchant).
 
+Operator space contents (2026-10-25): overview, **alerts** (lockers almost
+full or without a large free door, doors out of service, late pickups),
+**lockers**, **orders**, **rounds**, **partner shops** and **forecasts** (per
+day, per round, per locker). ASSUMPTION: the "almost full" threshold is 75 %
+in the demo, to set with the project owner.
+
 In the demo, all activity is **simulated** with modest figures, refined later
 with the project owner.
 
