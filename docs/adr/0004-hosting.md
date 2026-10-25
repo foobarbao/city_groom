@@ -1,6 +1,7 @@
 # ADR-0004 — Hosting for the demo
 
-- **Status**: Proposed (awaiting the project owner's choice)
+- **Status**: Accepted (2026-10-25: option A chosen for the first hosted
+  backend, see `docs/BUILD_AND_RELEASE.md` §6)
 - **Date**: 2026-10-24
 
 ## Context

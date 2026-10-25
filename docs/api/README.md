@@ -60,6 +60,19 @@ Three kinds of callers exist:
 | Anyone (apps, guests, integrations) | No credentials | Public endpoints only |
 | Integration (tool, partner, script) | `Authorization: Api-Key <key>` header | Public endpoints + endpoints allowed by the key's **scopes** |
 | City Groom operator | Django admin session (browser) | Everything, including operator endpoints |
+| Signed-in customer (CityPal apps) | `Authorization: Token <token>` header, token from `POST /api/v1/auth/google/` | Public endpoints + their own account (`/auth/me/`) |
+
+### Customer sign-in (Google)
+
+ADR-0010. The app gets an ID token from Google and posts it as
+`{"credential": "<id token>"}` to `POST /api/v1/auth/google/`. The API verifies
+it (signature, expiry, issuer, audience = a client ID listed in
+`GOOGLE_OAUTH_CLIENT_IDS`) and answers `{"token", "created", "user"}`. Only the
+basic profile is kept. Errors: `400` (invalid token, unverified e-mail,
+deactivated account, e-mail used by a team or password account), `503`
+(Google unreachable), `429` beyond the sign-in rate limit. The token does not
+expire; `POST /api/v1/auth/sign-out/` deletes it (every device of the user is
+signed out).
 
 ### Integration API keys
 
@@ -108,6 +121,14 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 | `GET /api/v1/operator/lockers/{code}/` | Locker front with the **status of every door** and the fill rate. |
 | `GET /api/v1/operator/lockers/stats/` | Network totals: lockers, compartments, in service, in use, fill rate, free and capacity per size. |
 | `GET /api/v1/operator/locker-events/` | Events reported by lockers, newest first (see §9). Filters: `locker`, `kind`, `since`. |
+
+### Accounts (`accounts` tag)
+
+| Method & path | Description |
+|---|---|
+| `POST /api/v1/auth/google/` | Sign in with Google: exchanges a Google ID token for a CityPal token and the profile. No authentication. |
+| `GET /api/v1/auth/me/` | Profile of the signed-in user (token). |
+| `POST /api/v1/auth/sign-out/` | Deletes the user's token (`204`). |
 
 ### System (`system` tag)
 
@@ -171,6 +192,7 @@ Errors use standard HTTP status codes with a JSON body. Messages are in French
 | Anonymous | 120 requests / minute | IP address |
 | Signed-in user | 600 requests / minute | User account |
 | Integration API key | 600 requests / minute | API key |
+| Google sign-in (`POST /auth/google/`) | 20 requests / minute | IP address |
 
 Limits are configurable per environment. When exceeded, the API answers `429`
 with a `Retry-After` header; wait that long before retrying, and use

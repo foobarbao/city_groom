@@ -70,6 +70,11 @@ cp apps/customer/.env.example apps/customer/.env.local
 npm run dev -w apps/customer        # http://localhost:5173
 ```
 
+Sign in with Google appears on the account screen when
+`VITE_GOOGLE_CLIENT_ID` is set (`docs/GOOGLE_SIGN_IN.md`); otherwise the demo
+sign-in (a first name) is shown. Not available in the Android app yet
+(ADR-0010).
+
 ## Quality checks
 
 Run in CI (`.github/workflows/frontend.yml`) and before pushing:

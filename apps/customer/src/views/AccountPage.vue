@@ -1,21 +1,59 @@
 <script setup lang="ts">
 /**
- * Account: demo sign-in (guests can order, signing in is encouraged,
+ * Account: sign-in (guests can order, signing in is encouraged,
  * docs/PRODUCT.md §8), subscription, orders and reviews to write.
+ *
+ * Sign-in is real with Google when it is configured (VITE_GOOGLE_CLIENT_ID,
+ * ADR-0010): Google's button, then the API verifies the token. Otherwise, and
+ * in the Android app for now, the demo sign-in (a first name) is kept.
  */
 import { IonButton, IonContent, IonPage } from '@ionic/vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { signInWithGoogle } from '../api/auth'
+import { ApiError } from '../api/http'
 import DemoNotice from '../components/DemoNotice.vue'
 import { canReview } from '../domain/reviews'
 import { planByCode } from '../services/catalogue'
+import { googleSignInAvailable, renderGoogleButton } from '../services/googleIdentity'
 import { useAccountStore } from '../stores/account'
 
 const { t } = useI18n()
 const account = useAccountStore()
 const name = ref('')
 const plan = computed(() => planByCode(account.state.plan))
+
+const withGoogle = googleSignInAvailable()
+const googleButton = ref<HTMLElement | null>(null)
+const googleBusy = ref(false)
+const googleError = ref('')
+
+async function onCredential(credential: string): Promise<void> {
+  googleBusy.value = true
+  googleError.value = ''
+  try {
+    account.signInWithGoogle(await signInWithGoogle(credential))
+  } catch (error) {
+    googleError.value =
+      error instanceof ApiError && error.status === 400
+        ? t('account.google.refused')
+        : t('account.google.unreachable')
+  } finally {
+    googleBusy.value = false
+  }
+}
+
+async function showGoogleButton(): Promise<void> {
+  if (!withGoogle || !googleButton.value) return
+  try {
+    await renderGoogleButton(googleButton.value, (credential) => void onCredential(credential))
+  } catch {
+    googleError.value = t('account.google.unavailable')
+  }
+}
+onMounted(() => void showGoogleButton())
+
 const toReview = computed(
   () => account.state.orders.filter((o) => canReview(o, account.reviewedOrderIds)).length,
 )
@@ -30,7 +68,13 @@ const toReview = computed(
         <section v-if="!account.state.signedIn" class="soft-card">
           <p class="muted">{{ t('account.guest') }}</p>
           <p>{{ t('account.signInPitch') }}</p>
-          <form class="sign-in" @submit.prevent="account.signIn(name)">
+          <template v-if="withGoogle">
+            <div ref="googleButton" class="google-button" :aria-busy="googleBusy" />
+            <p v-if="googleBusy" class="muted small">{{ t('account.google.busy') }}</p>
+            <p v-if="googleError" class="error small" role="alert">{{ googleError }}</p>
+            <p class="muted small">{{ t('account.google.privacy') }}</p>
+          </template>
+          <form v-else class="sign-in" @submit.prevent="account.signIn(name)">
             <label class="field">
               {{ t('account.name') }}
               <input v-model="name" type="text" autocomplete="given-name" />
@@ -39,8 +83,20 @@ const toReview = computed(
           </form>
         </section>
         <section v-else class="soft-card profile">
-          <span class="avatar" aria-hidden="true">{{ account.state.name.charAt(0) }}</span>
-          <strong>{{ account.state.name }}</strong>
+          <img
+            v-if="account.state.google?.pictureUrl"
+            class="avatar"
+            :src="account.state.google.pictureUrl"
+            alt=""
+            referrerpolicy="no-referrer"
+          />
+          <span v-else class="avatar" aria-hidden="true">{{ account.state.name.charAt(0) }}</span>
+          <span class="who">
+            <strong>{{ account.state.name }}</strong>
+            <span v-if="account.state.google" class="muted small">
+              {{ account.state.google.email }} · {{ t('account.google.linked') }}
+            </span>
+          </span>
           <ion-button fill="clear" size="small" @click="account.signOut()">{{
             t('account.signOut')
           }}</ion-button>
@@ -98,8 +154,18 @@ const toReview = computed(
   align-items: center;
   gap: 12px;
 }
-.profile strong {
+.who {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.google-button {
+  min-height: 44px;
+}
+.error {
+  color: #b42318;
 }
 .avatar {
   display: grid;
@@ -110,6 +176,7 @@ const toReview = computed(
   background: var(--cg-leaf-soft);
   color: var(--cg-pine);
   font-weight: 800;
+  object-fit: cover;
 }
 .item {
   flex-direction: row;

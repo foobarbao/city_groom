@@ -311,6 +311,15 @@ export default {
     name: 'Prénom',
     signIn: 'Se connecter (démo)',
     signOut: 'Se déconnecter',
+    google: {
+      busy: 'Connexion en cours… Le serveur de démo peut mettre jusqu’à une minute à se réveiller.',
+      refused: 'Connexion Google refusée. Réessayez ou utilisez un autre compte Google.',
+      unreachable: 'Le serveur CityPal ne répond pas. Réessayez dans un instant.',
+      unavailable: 'La connexion Google est indisponible pour le moment (hors ligne ?).',
+      privacy:
+        'CityPal reçoit seulement votre nom, votre adresse e-mail et votre photo de profil Google.',
+      linked: 'compte Google',
+    },
     plan: 'Abonnement',
     orders: 'Mes commandes',
     reviewsToWrite: 'aucun avis à donner | 1 avis à donner | {count} avis à donner',

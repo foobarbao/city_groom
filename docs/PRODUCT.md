@@ -345,6 +345,17 @@ with the project owner.
 - **Guest checkout** is allowed: no account is required to order.
 - Customers are **strongly encouraged to sign in**, in order to unlock
   **status levels** and **premium** benefits (details to be defined).
+- **Sign in with Google** (requested 2026-10-25, ADR-0010): one tap, no
+  password. Only the **basic Google profile** is collected (name, e-mail,
+  picture): the project owner chose it after being told about GDPR data
+  minimisation and Google's verification of extended data. Other data
+  (e.g. phone number for locker notifications) would be asked in the app
+  when needed, with its purpose.
+- Operators see every account in the administration (**Comptes**): photo,
+  name, e-mail, sign-in method, customer or team, sign-up and last sign-in
+  dates, filters, search, key figures, deactivation.
+- PROD: privacy notice before real sign-ups; Google sign-in in the Android
+  app (native plugin).
 
 ## 9. Business model
 
@@ -454,3 +465,7 @@ Questions to the project owner. Answers are moved into the sections above.
     only on demand)? Which tools do merchants use most, to be tested first?
     Should a task done in an external tool come back to CityPal (two-way
     sync)? Task durations in calendars (15 / 30 min placeholders)?
+13. **Accounts**: technical choices of ADR-0010 (own Google token check,
+    non-expiring app tokens, project user model) to validate. Should
+    merchants and couriers also sign in with Google on the portal? How long
+    are inactive customer accounts kept (GDPR retention)?

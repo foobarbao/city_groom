@@ -11,6 +11,7 @@ backend/
 ├── config/          Project settings, root URLs, WSGI entry point
 ├── apps/
 │   ├── core/          Technical features (health check)
+│   ├── accounts/      User model, sign-in with Google, accounts administration
 │   ├── lockers/       Lockers, compartments, events, drivers, simulation
 │   ├── merchants/     Local businesses imported from OpenStreetMap
 │   └── integrations/  API keys and scopes for third-party integrations
@@ -18,6 +19,7 @@ backend/
 ├── pyproject.toml   Dependencies and tool configuration (Ruff, mypy, pytest)
 ├── uv.lock          Locked dependency versions (committed)
 ├── Dockerfile
+├── scripts/start.sh Start command on a host: migrate, first admin, Gunicorn
 └── .env.example     Documented environment variables
 ```
 
@@ -60,6 +62,13 @@ Integration guide (authentication, scopes, rate limits, errors, versioning):
 
 Alternatively, `docker compose up --build` from the root runs both the database
 and the backend in containers.
+
+The project has its own user model (`accounts.User`, ADR-0010). A database
+created before it must be recreated: `docker compose down -v`, then
+`docker compose up -d db` and `migrate`.
+
+Sign in with Google: set `GOOGLE_OAUTH_CLIENT_IDS` (`docs/GOOGLE_SIGN_IN.md`).
+Hosting on Render + Neon: `docs/BUILD_AND_RELEASE.md` §6.
 
 ## Quality checks
 

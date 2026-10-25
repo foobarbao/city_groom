@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% comment %}
+  Accounts list: a summary of the key figures above the standard list.
+{% endcomment %}
+{% block content %}
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin:0 0 16px">
+    {% for label, value in accounts_summary %}
+      <div style="flex:1 1 150px;padding:12px 16px;border-radius:12px;background:var(--darkened-bg);border:1px solid var(--hairline-color)">
+        <div style="font-size:24px;font-weight:700">{{ value }}</div>
+        <div style="color:var(--body-quiet-color)">{{ label }}</div>
+      </div>
+    {% endfor %}
+  </div>
+  {{ block.super }}
+{% endblock %}

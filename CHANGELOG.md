@@ -9,6 +9,19 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Sign in with Google (ADR-0010): `POST /api/v1/auth/google/` verifies the
+  Google ID token with Google's library and returns a token;
+  `GET /api/v1/auth/me/`, `POST /api/v1/auth/sign-out/`. Customer app:
+  "Continuer avec Google" on the account screen when `VITE_GOOGLE_CLIENT_ID`
+  is set (basic profile only), profile with photo and e-mail.
+- Project user model `accounts.User` with linked `GoogleAccount`, and an
+  accounts administration: photo, sign-in method, customer/team, dates,
+  filters, search, key figures, deactivation. Admin branded "CityPal".
+- Hosting on Render + Neon (ADR-0004 accepted, option A): start script
+  (migrations, first administrator from environment variables, `$PORT`),
+  deployment guide (`docs/BUILD_AND_RELEASE.md` §6) and Google setup guide
+  (`docs/GOOGLE_SIGN_IN.md`).
+
 - Merchant planning ("Planning"): week strip with open-task counts, timeline
   of courier arrivals, work and handovers, order details, "Marquer fait" on
   every task (a handover done marks its items ready), .ics export of the
@@ -162,6 +175,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- API authentication: token (apps) and session (admin); HTTP Basic, never
+  documented, is no longer accepted. Local databases must be recreated for
+  the new user model.
 - Merchant space: rounds show what to have ready for each courier visit
   (time first, ready counter), then what the courier brings; the dashboard
   shows "À remettre au coursier : 14:00"; lockers are no longer shown to

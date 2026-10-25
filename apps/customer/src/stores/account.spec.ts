@@ -6,12 +6,42 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useAccountStore } from './account'
 
+vi.mock('../api/auth', () => ({
+  signOutFromApi: vi.fn(() => Promise.resolve()),
+}))
+
 beforeEach(() => {
   localStorage.clear()
   setActivePinia(createPinia())
 })
 
 describe('account store', () => {
+  it('signs in with Google, then signs out on the server too', async () => {
+    const { signOutFromApi } = await import('../api/auth')
+    const store = useAccountStore()
+    store.signInWithGoogle({
+      token: 'tok',
+      created: true,
+      user: {
+        id: 1,
+        email: 'camille@example.com',
+        first_name: 'Camille',
+        last_name: 'Martin',
+        picture_url: 'https://lh3.googleusercontent.com/a/x',
+        date_joined: '2026-10-25T10:00:00Z',
+        signed_in_with_google: true,
+      },
+    })
+    expect(store.state.signedIn).toBe(true)
+    expect(store.state.name).toBe('Camille')
+    expect(store.state.google?.email).toBe('camille@example.com')
+
+    store.signOut()
+    expect(signOutFromApi).toHaveBeenCalledWith('tok')
+    expect(store.state.signedIn).toBe(false)
+    expect(store.state.google).toBeNull()
+  })
+
   it('starts from the demo seed with orders to review and a pending quote', () => {
     const store = useAccountStore()
     expect(store.state.orders.filter((o) => o.status === 'picked_up')).toHaveLength(2)

@@ -7,6 +7,69 @@ info:
     in the integration guide (docs/api/README.md in the repository). Data marked as
     simulated is fictitious demo data.
 paths:
+  /api/v1/auth/google/:
+    post:
+      operationId: auth_google_create
+      description: The app sends the ID token it received from Google. The API verifies
+        it (signature, expiry, issuer, audience), finds or creates the account from
+        the basic Google profile, and returns a token for the next requests. Accounts
+        of team members or with a password are never reached this way.
+      summary: Sign in with Google
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleSignInRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GoogleSignInRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GoogleSignInRequestRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+          description: ''
+        '400':
+          description: Invalid token or unusable Google account.
+  /api/v1/auth/me/:
+    get:
+      operationId: auth_me_retrieve
+      description: Profile of the user the token belongs to.
+      summary: Current user
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+          description: ''
+  /api/v1/auth/sign-out/:
+    post:
+      operationId: auth_sign_out_create
+      description: Deletes the token used for this request.
+      summary: Sign out
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '204':
+          description: No response body
   /api/v1/health/:
     get:
       operationId: health_retrieve
@@ -198,8 +261,8 @@ paths:
       tags:
       - operations
       security:
+      - tokenAuth: []
       - cookieAuth: []
-      - basicAuth: []
       - ApiKeyAuth: []
       responses:
         '200':
@@ -235,8 +298,8 @@ paths:
       tags:
       - operations
       security:
+      - tokenAuth: []
       - cookieAuth: []
-      - basicAuth: []
       - ApiKeyAuth: []
       responses:
         '200':
@@ -262,8 +325,8 @@ paths:
       tags:
       - operations
       security:
+      - tokenAuth: []
       - cookieAuth: []
-      - basicAuth: []
       - ApiKeyAuth: []
       responses:
         '200':
@@ -281,8 +344,8 @@ paths:
       tags:
       - operations
       security:
+      - tokenAuth: []
       - cookieAuth: []
-      - basicAuth: []
       - ApiKeyAuth: []
       responses:
         '200':
@@ -323,6 +386,17 @@ components:
       type: string
       enum:
       - Feature
+    GoogleSignInRequestRequest:
+      type: object
+      description: ID token returned by Google to the app.
+      properties:
+        credential:
+          type: string
+          minLength: 1
+          description: Google ID token (JWT) obtained by the app from Google Identity
+            Services.
+      required:
+      - credential
     Health:
       type: object
       properties:
@@ -671,6 +745,48 @@ components:
         * `active` - En service
         * `maintenance` - En maintenance
         * `offline` - Hors ligne
+    Me:
+      type: object
+      description: Profile of the signed-in user.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Adresse e-mail
+        first_name:
+          type: string
+          readOnly: true
+          title: Prénom
+        last_name:
+          type: string
+          readOnly: true
+          title: Nom
+        picture_url:
+          type: string
+          format: uri
+          readOnly: true
+          title: Photo de profil
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Date d’inscription
+        signed_in_with_google:
+          type: boolean
+          description: Whether the account is linked to a Google identity.
+          readOnly: true
+      required:
+      - date_joined
+      - email
+      - first_name
+      - id
+      - last_name
+      - picture_url
+      - signed_in_with_google
     MerchantFeature:
       type: object
       description: Merchant as a GeoJSON feature for the map and the list of businesses.
@@ -1155,6 +1271,22 @@ components:
       - label
       - position
       - size
+    SignInResponse:
+      type: object
+      description: Result of a successful sign-in.
+      properties:
+        token:
+          type: string
+          description: 'Send it as `Authorization: Token <token>` on the next requests.'
+        created:
+          type: boolean
+          description: True when the account was just created.
+        user:
+          $ref: '#/components/schemas/Me'
+      required:
+      - created
+      - token
+      - user
     SiteCategoryEnum:
       enum:
       - tram_stop
@@ -1226,14 +1358,18 @@ components:
       in: header
       name: Authorization
       description: 'Integration API key, sent as `Authorization: Api-Key <key>`.'
-    basicAuth:
-      type: http
-      scheme: basic
     cookieAuth:
       type: apiKey
       in: cookie
       name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
 tags:
+- name: accounts
+  description: Customer sign-in (Google) and profile.
 - name: lockers
   description: Public locker data (map, locker fronts, sizes).
 - name: merchants

@@ -8,6 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_DEMO?: string
   /** "true" in the single-page demo: embedded offline map, in-memory navigation. */
   readonly VITE_OFFLINE_MAP?: string
+  /** OAuth web client ID for "Continuer avec Google" (ADR-0010); empty: demo sign-in. */
+  readonly VITE_GOOGLE_CLIENT_ID?: string
 }
 
 interface ImportMeta {

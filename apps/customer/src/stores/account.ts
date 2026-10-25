@@ -12,7 +12,11 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
+import type { SignInResponse } from '@city-groom/api-client'
+
+import { signOutFromApi } from '../api/auth'
 import { addHours, serviceDay } from '../domain/time'
+import { forgetGoogleSession } from '../services/googleIdentity'
 
 /** Status of a service order, as in the demo activity. */
 export type OrderStatus =
@@ -100,9 +104,18 @@ export interface MyReview {
   at: string
 }
 
+/** Account signed in with Google (absent for the demo sign-in and older states). */
+export interface GoogleSession {
+  email: string
+  pictureUrl: string
+  /** CityPal API token. PROD: keep it in secure storage on Android. */
+  token: string
+}
+
 interface AccountState {
   signedIn: boolean
   name: string
+  google?: GoogleSession | null
   plan: string
   bookings: ConsigneBooking[]
   orders: CustomerOrder[]
@@ -242,8 +255,26 @@ export const useAccountStore = defineStore('account', () => {
     state.value.name = name.trim() || 'Camille'
   }
 
+  /** Real sign-in with Google: the API has verified the Google token (ADR-0010). */
+  function signInWithGoogle(result: SignInResponse): void {
+    state.value.signedIn = true
+    state.value.name = result.user.first_name || result.user.email
+    state.value.google = {
+      email: result.user.email,
+      pictureUrl: result.user.picture_url,
+      token: result.token,
+    }
+  }
+
   function signOut(): void {
+    const token = state.value.google?.token
+    if (token) {
+      // Best effort: the local session ends even if the server is unreachable.
+      signOutFromApi(token).catch(() => undefined)
+      forgetGoogleSession()
+    }
     state.value.signedIn = false
+    state.value.google = null
     state.value.plan = 'free'
   }
 
@@ -377,6 +408,7 @@ export const useAccountStore = defineStore('account', () => {
     pendingQuotes,
     transfersUsedThisMonth,
     signIn,
+    signInWithGoogle,
     signOut,
     choosePlan,
     addBooking,

@@ -23,3 +23,16 @@ def _plain_http(settings: Settings) -> None:
     redirect to HTTPS would answer every request with a 301.
     """
     settings.SECURE_SSL_REDIRECT = False
+
+
+@pytest.fixture(autouse=True)
+def _plain_static_files(settings: Settings) -> None:
+    """Serve static files without the manifest built by ``collectstatic``.
+
+    Admin pages rendered in tests would otherwise fail on missing manifest
+    entries, since tests never run ``collectstatic``.
+    """
+    settings.STORAGES = {
+        **settings.STORAGES,
+        "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+    }
