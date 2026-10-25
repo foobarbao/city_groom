@@ -8,12 +8,10 @@
  * The internal rationale (traffic builder, volumes announced to partner
  * laundries, dispatch) is commercial and never shown to customers.
  */
-import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import type { CompartmentSize } from '@city-groom/api-client'
 import type { DemoPack, Slot } from '@city-groom/demo-data'
 
 import AppHeader from '../components/AppHeader.vue'
@@ -21,15 +19,7 @@ import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { type PackWeek, packPrice, packSchedule } from '../domain/pack'
 import { type SlotWindow, slotsFrom } from '../domain/slots'
-import {
-  PACK_PROVIDER,
-  catalogue,
-  lockerLayout,
-  lockers,
-  planByCode,
-  serviceByCode,
-  sizes,
-} from '../services/catalogue'
+import { PACK_PROVIDER, catalogue, lockers, planByCode, serviceByCode } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -124,13 +114,6 @@ const plannedWeeks = computed(() =>
         : (slotsFrom(w.returnAt, catalogue.slots, pickupRank.value + 1)[pickupRank.value] ?? null),
   })),
 )
-const door = computed(() => {
-  const layout = dropLocker.value ? lockerLayout(dropLocker.value) : undefined
-  return layout
-    ? (exampleDoorLabel(computeLockerDrawing(layout, sizes), pack.size as CompartmentSize) ??
-        undefined)
-    : undefined
-})
 const ready = computed(
   () =>
     price.value.available &&
@@ -176,7 +159,6 @@ function buy(): void {
       quantity: pack.items.reduce((n, i) => n + i.quantity, 0),
       size: pack.size,
       shopCode: PACK_PROVIDER,
-      door: door.value,
     },
   )
   showForm.value = false

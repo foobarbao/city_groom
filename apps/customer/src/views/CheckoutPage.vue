@@ -7,8 +7,6 @@
  * Query: `boutique` (shop code) and either `offre` (offer id), `service`
  * (service code: the shop's offer for it) or `devis` (accepted quote id).
  */
-import type { CompartmentSize } from '@city-groom/api-client'
-import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import {
   IonBackButton,
   IonButton,
@@ -27,15 +25,7 @@ import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { toCents } from '../domain/pricing'
 import { type SlotWindow, addRounds, currentSlot, slotsFrom } from '../domain/slots'
-import {
-  catalogue,
-  lockerLayout,
-  lockers,
-  serviceByCode,
-  shopByCode,
-  shopOffers,
-  sizes,
-} from '../services/catalogue'
+import { catalogue, lockers, serviceByCode, shopByCode, shopOffers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -108,12 +98,6 @@ const inSentence = computed(() => ({
   tomorrow: t('common.tomorrow').toLocaleLowerCase('fr'),
 }))
 const lockerName = (code: string | null): string => lockers.find((l) => l.code === code)?.name ?? ''
-const door = computed(() => {
-  const layout = dropLocker.value ? lockerLayout(dropLocker.value) : undefined
-  return layout
-    ? exampleDoorLabel(computeLockerDrawing(layout, sizes), size.value as CompartmentSize)
-    : null
-})
 const ready = computed(() =>
   Boolean(shop.value && label.value && dropLocker.value && pickup.value && pickupSlot.value),
 )
@@ -134,7 +118,6 @@ function pay(): void {
     size: size.value,
     dropLocker: dropLocker.value,
     pickupLocker: pickup.value,
-    door: door.value ?? undefined,
     readyAt: readyAt.value?.toISOString(),
     pickupStart: pickupSlot.value?.start.toISOString(),
     pickupEnd: pickupSlot.value?.end.toISOString(),
@@ -159,7 +142,14 @@ function pay(): void {
       <main v-if="doneId" class="page">
         <h1 class="page-title">✓ {{ t('checkout.done') }}</h1>
         <section class="soft-card">
-          <p>{{ t('checkout.doneText', { locker: lockerName(dropLocker), door: door ?? '—' }) }}</p>
+          <p>
+            {{
+              t('checkout.doneText', {
+                locker: lockerName(dropLocker),
+                size: t(`locker.sizes.${size}`),
+              })
+            }}
+          </p>
           <p v-if="pickupSlot && pickup">
             {{
               t('checkout.donePickup', {

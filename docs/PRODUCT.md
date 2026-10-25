@@ -160,6 +160,11 @@ and operators use **web interfaces** (ADR-0005). Merchants also get a
    brings the item back; the customer collects during the chosen slot,
    before the following round, which frees the compartment, so each
    compartment can turn over three times a day.
+   **Compartments are never booked** (stated 2026-10-25): the customer
+   chooses a place (a locker station) for drop-off and one for pickup, and
+   reserves a **size**; the compartment (door) is given when they arrive in
+   front of the machine and open it. The same applies to the consigne and
+   to transfers.
 4. The app shows the customer a **visual of the locker front**, highlighting
    the door that will open and its size, then the customer drops the item in.
    The opening method depends on the locker vendor: **Bluetooth**, **NFC** or

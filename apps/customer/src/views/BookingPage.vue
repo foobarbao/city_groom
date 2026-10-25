@@ -4,7 +4,8 @@
  * the summary, then the locker front with the door to open.
  *
  * Drop-off and collection are guided in two steps, as at the locker:
- * 1. "Open door B9": the door opens;
+ * 1. "Open a compartment": the customer reserved a size only; the door is
+ *    given on arrival (first opening) and kept for the collection;
  * 2. "Put your things in (or take them out), then close the door", confirmed
  *    with "Done" — followed by a clear confirmation of the result.
  *
@@ -20,7 +21,7 @@ import { useI18n } from 'vue-i18n'
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { collectBy, pickupDeadline } from '../domain/slots'
-import { catalogue, lockerLayout, lockers, sizes } from '../services/catalogue'
+import { assignDoorLabel, catalogue, lockerLayout, lockers, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -80,6 +81,10 @@ const done = ref<'stored' | 'collected' | null>(null)
 const panel = ref<HTMLElement | null>(null)
 
 function openDoor(kind: 'drop' | 'collect'): void {
+  const b = booking.value
+  // The door is given on arrival, when the customer opens the locker.
+  if (b && !shownDoor.value)
+    account.assignBookingDoor(b.id, assignDoorLabel(shownLocker.value, b.size))
   doorOpen.value = kind
   void reveal(panel.value)
 }
@@ -214,7 +219,11 @@ function confirmClosed(): void {
               size="large"
               @click="openDoor('drop')"
             >
-              {{ t('consigne.open', { label: shownDoor }) }}
+              {{
+                shownDoor
+                  ? t('consigne.open', { label: shownDoor })
+                  : t('consigne.openNew', { size: t(`locker.sizes.${booking.size}`) })
+              }}
             </ion-button>
             <ion-button
               v-if="booking.status === 'stored'"
@@ -223,7 +232,11 @@ function confirmClosed(): void {
               size="large"
               @click="openDoor('collect')"
             >
-              {{ t('consigne.open', { label: shownDoor }) }}
+              {{
+                shownDoor
+                  ? t('consigne.open', { label: shownDoor })
+                  : t('consigne.openNew', { size: t(`locker.sizes.${booking.size}`) })
+              }}
             </ion-button>
           </template>
 
@@ -251,12 +264,17 @@ function confirmClosed(): void {
         <section v-if="drawing && booking.status !== 'collected'" class="stage">
           <locker-front
             :drawing="drawing"
-            :highlighted-label="shownDoor"
+            :highlighted-label="shownDoor || null"
             :panel-label="t('locker.panel')"
-            :aria-label="t('consigne.door', { label: shownDoor })"
+            :aria-label="lockerName(shownLocker)"
           />
           <p class="door">
-            {{ lockerName(shownLocker) }} · {{ t('consigne.door', { label: shownDoor }) }}
+            {{ lockerName(shownLocker) }} ·
+            {{
+              shownDoor
+                ? t('consigne.door', { label: shownDoor })
+                : t('consigne.sizeReserved', { size: t(`locker.sizes.${booking.size}`) })
+            }}
           </p>
           <p class="muted small">{{ t('consigne.doorNote') }}</p>
         </section>

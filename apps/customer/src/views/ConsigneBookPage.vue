@@ -4,8 +4,6 @@
  * least 4 hours ahead), size, summary and simulated payment
  * (docs/PRODUCT.md §4b).
  */
-import type { CompartmentSize } from '@city-groom/api-client'
-import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import { IonButton, IonContent, IonPage, useIonRouter } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -23,7 +21,7 @@ import {
   pickupWindows,
   upcomingWindows,
 } from '../domain/slots'
-import { catalogue, lockerLayout, lockers, planByCode, sizes } from '../services/catalogue'
+import { catalogue, lockers, planByCode, sizes } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -63,13 +61,6 @@ const price = computed(() =>
 )
 const sizeSpecs = computed(() => sizes.filter((s) => CONSIGNE_SIZES.includes(s.code)))
 
-/** Door shown to the customer. DEMO: an example door of the size; PROD: the reserved one. */
-const door = computed(() => {
-  const layout = lockerCode.value ? lockerLayout(lockerCode.value) : undefined
-  if (!layout || !size.value) return null
-  return exampleDoorLabel(computeLockerDrawing(layout, sizes), size.value as CompartmentSize)
-})
-
 const canContinue = computed(
   () =>
     [lockerCode.value !== null, whenChosen.value, pickup.value !== null, size.value !== null, true][
@@ -106,7 +97,7 @@ function choosePickup(w: SlotWindow): void {
 }
 
 function pay(): void {
-  if (!lockerCode.value || !size.value || !price.value || !door.value) return
+  if (!lockerCode.value || !size.value || !price.value) return
   const current = window.value ?? currentSlot(new Date(), catalogue.slots)
   const id = account.addBooking({
     lockerCode: lockerCode.value,
@@ -115,7 +106,7 @@ function pay(): void {
     slotCode: window.value?.slot.code ?? null,
     slotStart: window.value ? window.value.start.toISOString() : new Date().toISOString(),
     slotEnd: (current?.end ?? pickupDeadline(new Date(), 1)).toISOString(),
-    door: door.value,
+    door: '', // given on arrival at the locker
     priceCents: price.value.cents,
     droppedAt: null,
     pickupStart: pickup.value?.start.toISOString() ?? null,
@@ -277,7 +268,9 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
                 ({{ clock(pickup.start) }}–{{ clock(pickup.end) }})
               </strong>
             </p>
-            <p>{{ t(`locker.sizes.${size}`) }} · {{ t('consigne.door', { label: door }) }}</p>
+            <p>
+              {{ t('consigne.sizeReserved', { size: t(`locker.sizes.${size}`) }) }}
+            </p>
             <p v-if="!window && pickup">
               {{
                 t('consigne.deadlineAt', {

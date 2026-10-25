@@ -5,8 +5,6 @@
  * according to the plan (included transfers, then a reduced supplement).
  * See docs/PRODUCT.md §4b.
  */
-import type { CompartmentSize } from '@city-groom/api-client'
-import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import {
   IonBackButton,
   IonButton,
@@ -24,7 +22,7 @@ import { useI18n } from 'vue-i18n'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
 import { transferPrice, transferRounds } from '../domain/transfer'
-import { catalogue, lockerLayout, planByCode, sizes } from '../services/catalogue'
+import { catalogue, planByCode } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { clock, dayLabel, euros } from '../utils/format'
 import { reveal } from '../utils/scroll'
@@ -48,18 +46,7 @@ const plan = computed(() => planByCode(account.state.plan))
 const price = computed(() =>
   transferPrice(catalogue.consigne.transfer_price, plan.value, account.transfersUsedThisMonth),
 )
-/** Door at the new locker. DEMO: an example door of the size; PROD: the reserved one. */
-const door = computed(() => {
-  const layout = toLocker.value ? lockerLayout(toLocker.value) : undefined
-  if (!layout || !booking.value) return null
-  return exampleDoorLabel(
-    computeLockerDrawing(layout, sizes),
-    booking.value.size as CompartmentSize,
-  )
-})
-const ready = computed(
-  () => toLocker.value !== null && roundAt.value !== null && door.value !== null,
-)
+const ready = computed(() => toLocker.value !== null && roundAt.value !== null)
 
 // After each choice, bring the next part of the form into view.
 const roundTitle = ref<HTMLElement | null>(null)
@@ -68,11 +55,11 @@ watch(toLocker, () => reveal(roundTitle.value))
 watch(roundAt, () => reveal(confirmButton.value))
 
 function confirm(): void {
-  if (!booking.value || !toLocker.value || !roundAt.value || !door.value) return
+  if (!booking.value || !toLocker.value || !roundAt.value) return
   account.requestTransfer(booking.value.id, {
     toLocker: toLocker.value,
     roundAt: roundAt.value,
-    door: door.value,
+    door: '', // given on arrival at the new locker
     priceCents: price.value.cents,
     included: price.value.included,
   })

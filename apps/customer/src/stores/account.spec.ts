@@ -70,7 +70,7 @@ describe('account store', () => {
         slotCode: 'evening',
       },
       [week(1), week(2), week(3), week(4)],
-      { label: 'Pack semaine', quantity: 7, size: 'XL', shopCode: 'citypal', door: 'G1' },
+      { label: 'Pack semaine', quantity: 7, size: 'XL', shopCode: 'citypal' },
     )
     const purchase = store.state.packs?.[0]
     expect(purchase?.id).toBe(id)

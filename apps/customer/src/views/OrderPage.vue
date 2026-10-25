@@ -2,7 +2,8 @@
 /**
  * One service order: summary, then the drop-off at the locker, guided in two
  * steps as for the consigne (BookingPage):
- * 1. the door of the drop locker opens (shown open on the locker drawing);
+ * 1. the customer, at the drop locker, opens a compartment of the reserved
+ *    size: the door is given then (shown open on the locker drawing);
  * 2. the customer puts the item in, closes the door and confirms with
  *    "J'ai déposé mon article".
  *
@@ -14,18 +15,23 @@
  * locker driver when the phone is at the locker (QR, NFC or Bluetooth), and
  * the closing is reported by the locker (`door_closed` event).
  */
-import { LockerFront, computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
+import { LockerFront, computeLockerDrawing } from '@city-groom/ui'
 import { IonButton, IonContent, IonPage } from '@ionic/vue'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
-import type { CompartmentSize } from '@city-groom/api-client'
-
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import { currentSlot } from '../domain/slots'
-import { catalogue, lockerLayout, lockers, providerName, sizes } from '../services/catalogue'
+import {
+  assignDoorLabel,
+  catalogue,
+  lockerLayout,
+  lockers,
+  providerName,
+  sizes,
+} from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { reveal } from '../utils/scroll'
 import { clock, dateTime, dayLabel, euros } from '../utils/format'
@@ -50,14 +56,8 @@ const drawing = computed(() => {
   const layout = order.value ? lockerLayout(order.value.dropLocker) : undefined
   return layout ? computeLockerDrawing(layout, sizes) : null
 })
-/** Door stored at checkout; older demo orders get an example door of their size. */
-const door = computed(() => {
-  if (!order.value) return ''
-  if (order.value.door) return order.value.door
-  return drawing.value
-    ? (exampleDoorLabel(drawing.value, order.value.size as CompartmentSize) ?? '')
-    : ''
-})
+/** Door given on arrival at the drop locker ('' until then: a size is reserved). */
+const door = computed(() => order.value?.door ?? '')
 const nextRound = computed(() => currentSlot(new Date(), catalogue.slots)?.end ?? null)
 
 /** Door open in the guided flow. */
@@ -67,6 +67,9 @@ const done = ref(false)
 const panel = ref<HTMLElement | null>(null)
 
 function openDoor(): void {
+  const o = order.value
+  // The door is given on arrival, when the customer opens the locker.
+  if (o && !o.door) account.assignOrderDoor(o.id, assignDoorLabel(o.dropLocker, o.size))
   doorOpen.value = true
   void reveal(panel.value)
 }
@@ -100,7 +103,12 @@ onMounted(() => {
           <p>
             {{ t('orders.detail.dropLocker') }} :
             <strong>{{ lockerName(order.dropLocker) }}</strong>
-            <template v-if="door"> · {{ t('orders.detail.door', { label: door }) }}</template>
+            ·
+            {{
+              door
+                ? t('orders.detail.door', { label: door })
+                : t('orders.detail.sizeReserved', { size: t(`locker.sizes.${order.size}`) })
+            }}
           </p>
           <p>
             {{ t('orders.detail.pickupLocker') }} :
@@ -152,7 +160,11 @@ onMounted(() => {
             size="large"
             @click="openDoor"
           >
-            {{ t('orders.detail.open', { label: door }) }}
+            {{
+              door
+                ? t('orders.detail.open', { label: door })
+                : t('orders.detail.openNew', { size: t(`locker.sizes.${order.size}`) })
+            }}
           </ion-button>
         </section>
 
@@ -161,10 +173,15 @@ onMounted(() => {
             :drawing="drawing"
             :highlighted-label="doorOpen ? door : null"
             :panel-label="t('locker.panel')"
-            :aria-label="t('orders.detail.door', { label: door })"
+            :aria-label="lockerName(order.dropLocker)"
           />
           <p class="door">
-            {{ lockerName(order.dropLocker) }} · {{ t('orders.detail.door', { label: door }) }}
+            {{ lockerName(order.dropLocker) }} ·
+            {{
+              door
+                ? t('orders.detail.door', { label: door })
+                : t('orders.detail.sizeReserved', { size: t(`locker.sizes.${order.size}`) })
+            }}
           </p>
           <p class="muted small">{{ t('orders.detail.doorNote') }}</p>
         </section>

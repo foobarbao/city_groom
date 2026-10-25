@@ -45,7 +45,9 @@ const past = computed(() =>
                 <span class="pill">{{ t(`consigne.status.${b.status}`) }}</span>
                 <strong
                   >{{ lockerName(b.lockerCode) }} ·
-                  {{ t('consigne.door', { label: b.door }) }}</strong
+                  {{
+                    b.door ? t('consigne.door', { label: b.door }) : t(`locker.sizes.${b.size}`)
+                  }}</strong
                 >
                 <span class="muted small"
                   >{{ dateTime(b.slotStart, labels) }} · {{ euros(b.priceCents) }}</span

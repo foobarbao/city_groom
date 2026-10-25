@@ -262,7 +262,10 @@ export default {
     pay: 'Payer {price} (simulé)',
     booked: 'Consigne réservée !',
     door: 'Porte {label}',
-    doorNote: 'La porte vous est attribuée à la réservation (simulé dans la démo).',
+    doorNote:
+      'Vous réservez un format ; le casier précis vous est attribué à votre arrivée devant la machine (simulé dans la démo).',
+    sizeReserved: 'Format réservé : {size}',
+    openNew: 'Je suis devant la machine : ouvrir un casier {size}',
     open: 'Ouvrir la porte {label}',
     dropped: 'J’ai déposé mes affaires',
     collect: 'J’ai récupéré mes affaires',
@@ -369,6 +372,8 @@ export default {
       pickupLocker: 'Retrait',
       door: 'Porte {label}',
       open: 'Ouvrir la porte {label}',
+      sizeReserved: 'format {size} réservé',
+      openNew: 'Je suis devant la machine : ouvrir un casier {size}',
       opened: 'La porte {label} est ouverte',
       instruction: 'Déposez votre article dans le compartiment, puis refermez bien la porte.',
       doneTitle: 'Article déposé',
@@ -380,7 +385,7 @@ export default {
       notFound: 'Commande introuvable.',
       inProgress: 'Votre article n’est plus au casier : {status}.',
       doorNote:
-        'Démonstration : la porte ne s’ouvre pas vraiment. En service, elle s’ouvre quand votre téléphone est devant le casier.',
+        'Démonstration : la porte ne s’ouvre pas vraiment. En service, la machine vous attribue un casier libre du format réservé et l’ouvre quand votre téléphone est devant elle.',
     },
     status: {
       awaiting_drop_off: 'À déposer',
@@ -419,7 +424,7 @@ export default {
     signIn: 'Se connecter',
     dayTitle: 'Votre jour de dépôt',
     slotTitle: 'Créneau de dépôt',
-    lockerTitle: 'Votre casier',
+    lockerTitle: 'Votre lieu de dépôt',
     pickupTitle: 'Retrait',
     pickupSlot: 'Créneau de retrait, chaque semaine',
     pickupSlotHint:
@@ -440,10 +445,10 @@ export default {
   checkout: {
     title: 'Commander',
     quantity: 'Nombre d’articles',
-    dropLocker: 'Casier de dépôt',
-    pickupLocker: 'Casier de retrait',
-    sameLocker: 'Le même casier',
-    otherLocker: 'Un autre casier',
+    dropLocker: 'Lieu de dépôt',
+    pickupLocker: 'Lieu de retrait',
+    sameLocker: 'Le même lieu',
+    otherLocker: 'Un autre lieu',
     otherLockerHint: 'Près du travail, d’une gare…',
     pickupTitle: 'Retrait',
     pickupSlot: 'Créneau de retrait',
@@ -459,7 +464,8 @@ export default {
       'Commande possible sans compte. Connectez-vous pour suivre vos commandes et donner votre avis.',
     pay: 'Payer {price} (simulé)',
     done: 'Commande confirmée !',
-    doneText: 'Déposez votre article au casier {locker}, porte {door}.',
+    doneText:
+      'Déposez votre article à {locker} : un casier au format {size} vous est attribué à votre arrivée devant la machine.',
     donePickup: 'Retrait : {locker}, {day} entre {from} et {to}.',
   },
 }

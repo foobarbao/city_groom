@@ -197,6 +197,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Changed
 
+- Compartments are given on arrival at the locker, never at booking: orders,
+  weekly pack, consigne and transfers reserve a size; the door appears when
+  the customer opens the locker ("Je suis devant la machine : ouvrir un
+  casier …"). Places are called "lieu" in the drop-off and pickup choices.
 - Orders: the pickup locker is chosen explicitly, and the customer picks a
   pickup slot starting at the return round (collect before the next round);
   the order date is labelled as such instead of looking like a pickup time.

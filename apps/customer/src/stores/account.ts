@@ -35,7 +35,7 @@ export interface CustomerOrder {
   pickupLocker: string
   createdAt: string
   status: OrderStatus
-  /** Door of the drop locker (absent on orders saved before doors were stored). */
+  /** Door given at the drop locker on arrival (customers reserve a size only). */
   door?: string
   /** When the customer confirmed the drop-off. */
   droppedAt?: string | null
@@ -83,6 +83,7 @@ export interface ConsigneBooking {
   slotCode: string | null
   slotStart: string
   slotEnd: string
+  /** Door given on arrival ('' until then: customers reserve a size only). */
   door: string
   priceCents: number
   bookedAt: string
@@ -100,6 +101,7 @@ export interface ConsigneTransfer {
   toLocker: string
   /** Round at which the items are moved; collectable at the new locker after it. */
   roundAt: string
+  /** Door at the new locker, given on arrival to collect ('' until then). */
   door: string
   priceCents: number
   /** True when covered by the plan's monthly allowance. */
@@ -393,7 +395,7 @@ export const useAccountStore = defineStore('account', () => {
       pickupStart?: Date
       pickupEnd?: Date
     }[],
-    order: { label: string; quantity: number; size: string; shopCode: string; door?: string },
+    order: { label: string; quantity: number; size: string; shopCode: string },
   ): string {
     const id = newId('P')
     const now = new Date().toISOString()
@@ -408,7 +410,6 @@ export const useAccountStore = defineStore('account', () => {
       pickupLocker: purchase.pickupLocker,
       createdAt: now,
       status: 'awaiting_drop_off',
-      door: order.door,
       packId: id,
       packWeek: w.week,
       dropFrom: w.dropFrom.toISOString(),
@@ -423,6 +424,24 @@ export const useAccountStore = defineStore('account', () => {
     const orderIds = created.map((o) => o.id)
     ;(state.value.packs ??= []).unshift({ ...purchase, id, boughtAt: now, orderIds })
     return id
+  }
+
+  /** Records the door given on arrival at the drop locker (once). */
+  function assignOrderDoor(id: string, door: string): void {
+    const order = state.value.orders.find((o) => o.id === id)
+    if (order && !order.door) order.door = door
+  }
+
+  /**
+   * Records the door given on arrival for a consigne: at the booked locker,
+   * or at the new locker once a transfer round has moved the items.
+   */
+  function assignBookingDoor(id: string, door: string, now: Date = new Date()): void {
+    const booking = state.value.bookings.find((b) => b.id === id)
+    if (!booking) return
+    if (booking.transfer && new Date(booking.transfer.roundAt) <= now) {
+      if (!booking.transfer.door) booking.transfer.door = door
+    } else if (!booking.door) booking.door = door
   }
 
   function markOrderDropped(id: string): void {
@@ -509,6 +528,8 @@ export const useAccountStore = defineStore('account', () => {
     requestTransfer,
     addOrder,
     markOrderDropped,
+    assignOrderDoor,
+    assignBookingDoor,
     hasBoughtPack,
     buyPack,
     addReview,
