@@ -10,8 +10,10 @@
   border-radius: var(--cg-radius-l);
   background: var(--cg-glass);
   backdrop-filter: var(--cg-glass-filter);
+  -webkit-backdrop-filter: var(--cg-glass-filter);
   box-shadow: var(--cg-shadow);
   min-width: 0;
+  animation: cg-rise var(--cg-motion) var(--cg-ease) both;
 }
 .card h2 {
   margin: 0;

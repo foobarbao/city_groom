@@ -105,3 +105,41 @@ export async function renderGoogleButton(
 export function forgetGoogleSession(): void {
   window.google?.accounts.id.disableAutoSelect()
 }
+
+/** Basic profile read from a Google ID token, without verification. */
+export interface UnverifiedGoogleProfile {
+  email: string
+  firstName: string
+  lastName: string
+  pictureUrl: string
+}
+
+/**
+ * Reads the basic profile carried by a Google ID token, on the device and
+ * WITHOUT checking its signature.
+ *
+ * DEMO only: used by the hosted demo while no backend is online, to show
+ * the person's name and photo. It proves nothing about who they are.
+ * PROD: never trust this; the backend verifies the token (ADR-0010).
+ *
+ * @returns The profile, or null if the token is not a readable JWT.
+ */
+export function readGoogleProfileUnverified(credential: string): UnverifiedGoogleProfile | null {
+  const payload = credential.split('.')[1]
+  if (!payload) return null
+  try {
+    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/')
+    const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0))
+    const claims = JSON.parse(new TextDecoder().decode(bytes)) as Record<string, unknown>
+    const text = (key: string): string => (typeof claims[key] === 'string' ? claims[key] : '')
+    if (!text('email')) return null
+    return {
+      email: text('email'),
+      firstName: text('given_name'),
+      lastName: text('family_name'),
+      pictureUrl: text('picture'),
+    }
+  } catch {
+    return null // not base64url JSON
+  }
+}

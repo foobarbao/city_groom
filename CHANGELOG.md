@@ -9,6 +9,15 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Warmer palette with meaning: trust blue, warm yellow, planet green; home
+  hero band in a blue-to-green gradient, mode cards tinted green and yellow,
+  translucent glass cards over coloured glows, light motion (staggered
+  rise-in, hover lift, press feedback; off with reduced motion), portal
+  cards included. Menu navigation unchanged.
+- Customer Google sign-in without a backend (demo site): the profile is
+  read on the device from the Google credential, unverified and labelled as
+  a demonstration (`PROD:` the backend verifies the token).
+
 - Google OAuth client ID set for the hosted demo (public value, in the
   demo-site env files): Google Agenda sync and the Google sign-in button
   are active; the sign-in completes once the backend is hosted.

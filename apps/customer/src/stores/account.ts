@@ -153,7 +153,10 @@ export interface MyReview {
 export interface GoogleSession {
   email: string
   pictureUrl: string
-  /** CityPal API token. PROD: keep it in secure storage on Android. */
+  /**
+   * CityPal API token. Empty for the demo sign-in of the hosted demo (no
+   * backend yet). PROD: keep it in secure storage on Android.
+   */
   token: string
 }
 
@@ -311,6 +314,20 @@ export const useAccountStore = defineStore('account', () => {
       pictureUrl: result.user.picture_url,
       token: result.token,
     }
+  }
+
+  /**
+   * DEMO: Google sign-in without backend (hosted demo): the profile read on
+   * the device is shown, no API token. PROD: removed, `signInWithGoogle`.
+   */
+  function signInWithGoogleDemo(profile: {
+    email: string
+    firstName: string
+    pictureUrl: string
+  }): void {
+    state.value.signedIn = true
+    state.value.name = profile.firstName || profile.email
+    state.value.google = { email: profile.email, pictureUrl: profile.pictureUrl, token: '' }
   }
 
   function signOut(): void {
@@ -565,6 +582,7 @@ export const useAccountStore = defineStore('account', () => {
     transfersUsedThisMonth,
     signIn,
     signInWithGoogle,
+    signInWithGoogleDemo,
     signOut,
     choosePlan,
     addBooking,
