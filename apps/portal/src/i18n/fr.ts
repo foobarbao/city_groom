@@ -156,9 +156,25 @@ export default {
       addTo: 'Ajouter à :',
       google: 'Google Agenda',
       outlook: 'Outlook',
-      syncTitle: 'Votre agenda et vos outils',
+      gsync: {
+        title: 'Google Agenda',
+        pitch:
+          'Connectez votre Google Agenda : vos tâches CityPal s’y affichent dans un agenda « CityPal » et se mettent à jour toutes seules, coche « fait » comprise.',
+        connect: 'Connecter Google Agenda',
+        connected: 'Google Agenda connecté.',
+        synced: 'Synchronisé à {time} · {count} tâches dans l’agenda « CityPal ».',
+        syncNow: 'Synchroniser maintenant',
+        syncing: 'Synchronisation…',
+        disconnect: 'Déconnecter',
+        pending:
+          'Des changements attendent : cliquez sur « Synchroniser maintenant » (l’accès Google dure une heure).',
+        error: 'La synchronisation n’a pas abouti. Réessayez.',
+        notConfigured:
+          'Bientôt disponible sur cette démo : la connexion Google est en cours de configuration.',
+      },
+      syncTitle: 'Autres agendas et outils',
       syncImport:
-        'Exportez la semaine en fichier .ics puis importez-le dans Google Agenda (Paramètres > Importer et exporter), Apple Calendrier ou Outlook. Chaque tâche peut aussi être ajoutée seule à Google Agenda ou Outlook.',
+        'Apple Calendrier, Outlook… : exportez la semaine en fichier .ics, ou ajoutez une tâche seule avec les liens « Ajouter à ».',
       syncLater:
         'Trello, Notion, Asana, Todoist… : voyez tous les connecteurs, dont l’abonnement automatique.',
       connectors: 'Voir les connecteurs',
@@ -173,7 +189,8 @@ export default {
         automation: 'Automatisation',
       },
       groupsHint: {
-        calendar: 'Format standard iCalendar : compatible avec la plupart des agendas.',
+        calendar:
+          'Google Agenda est synchronisé ; les autres agendas utilisent le format standard iCalendar.',
         planner:
           'Via Zapier, Make ou n8n : chaque tâche CityPal crée une carte, une tâche ou une ligne dans votre outil.',
         automation:
@@ -181,9 +198,9 @@ export default {
       },
       status: { ready: 'Disponible', simulated: 'Démo simulée', planned: 'Bientôt' },
       items: {
-        googleLink: {
+        googleSync: {
           name: 'Google Agenda',
-          text: 'Ajoutez une tâche d’un clic depuis le planning, ou importez le fichier .ics de la semaine.',
+          text: 'Synchronisation automatique : connectez votre Google Agenda depuis le planning, vos tâches s’y mettent à jour toutes seules.',
         },
         outlookLink: {
           name: 'Outlook.com',

@@ -1,6 +1,7 @@
 # ADR-0009 — Connectors between the merchant planning and external tools
 
-- **Status**: Proposed
+- **Status**: Proposed; Google Agenda part decided by the project owner
+  (native sync, see "Update" below)
 - **Date**: 2026-10-25
 
 ## Context
@@ -73,3 +74,26 @@ Proposed, to be accepted by the project owner:
   question.
 - The demo shows the feed and webhook as simulated: a fictitious address on
   a reserved `.invalid` domain, nothing sent.
+
+## Update — 2026-10-25: native Google Agenda sync
+
+The project owner asked for Google Agenda to be **synchronised**, not
+imported from an .ics file. Google Agenda therefore gets option 4 now:
+
+- Google Calendar API v3, scope `calendar.app.created` (the narrowest one
+  that lets CityPal create its own calendar and manage its events; it gives
+  no access to the merchant's other calendars). ASSUMPTION, to check in the
+  Google console: whether Google classes this scope as sensitive, which
+  would require its verification before opening the sync to everyone (test
+  users work meanwhile).
+- A "CityPal · <shop>" calendar is created in the merchant's agenda; every
+  task has a stable event ID (hexadecimal of "<merchant>/<task>", valid
+  base32hex), so a sync inserts or, on 409, updates.
+- Demo: access token from Google Identity Services' token model in the
+  browser (about one hour, renewed by a click), same OAuth client as the
+  customer sign-in (ADR-0010). The sync runs on "Connecter" / "Synchroniser
+  maintenant" and each "Marquer fait".
+- PROD: server-side sync with a refresh token (authorization code flow with
+  offline access, client secret kept on the server, tokens encrypted), so
+  changes reach the agenda while the portal is closed; removal of cancelled
+  tasks.

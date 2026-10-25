@@ -15,6 +15,9 @@ import {
   isTaskDone,
   toggleStop,
   setWebhook,
+  googleCalendarOf,
+  markSynced,
+  setGoogleCalendar,
   webhookOf,
 } from './partnerState'
 
@@ -55,6 +58,15 @@ describe('partner state', () => {
     expect(webhookOf('m')).toBe('https://hooks.example.com/abc')
     setWebhook('m', '')
     expect(webhookOf('m')).toBe('')
+  })
+
+  it('links, syncs and unlinks a Google Agenda calendar', () => {
+    setGoogleCalendar('m', 'cal-1')
+    expect(googleCalendarOf('m')).toEqual({ calendarId: 'cal-1', lastSyncAt: null })
+    markSynced('m', new Date('2026-10-25T10:00:00Z'))
+    expect(googleCalendarOf('m')?.lastSyncAt).toBe('2026-10-25T10:00:00.000Z')
+    setGoogleCalendar('m', null)
+    expect(googleCalendarOf('m')).toBeNull()
   })
 
   it('toggles ready items and done stops', () => {

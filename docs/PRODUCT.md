@@ -284,9 +284,14 @@ tools as possible, such as planners".
 - ASSUMPTION: task durations shown in calendars are 15 min (arrival,
   handover) and 30 min (work), placeholders until the project owner says
   otherwise.
-- Works without a server: .ics export of the week (Google Agenda, Apple
-  Calendar, Outlook, Microsoft 365, Thunderbird…) and per-task "add to"
-  links for Google Agenda and Outlook.com.
+- **Google Agenda is synchronised** (owner's request, 2026-10-25: "a sync,
+  not an .ics"): the merchant connects once, a "CityPal" calendar is created
+  in their Google Agenda with every task, kept up to date including the
+  "done" check. Demo: the sync runs from the open planning (Google access
+  lasts an hour, renewed by a click). PROD: server-side sync, also when the
+  portal is closed.
+- Other calendars: .ics export of the week (Apple Calendar, Outlook,
+  Microsoft 365, Thunderbird…) and per-task "add to" links.
 - Connectors (ADR-0009, **proposed**): private iCal subscription address for
   calendars, and outgoing webhooks for planners and to-do lists through
   Zapier, Make or n8n (Trello, Notion, Asana, Microsoft Planner / To Do,

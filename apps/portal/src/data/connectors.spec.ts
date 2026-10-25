@@ -8,10 +8,10 @@ import type { AgendaTask } from './agenda'
 import { CONNECTORS, demoFeedUrl, webhookPayload } from './connectors'
 
 describe('connectors', () => {
-  it('has unique ids and only marks server-less methods as ready', () => {
+  it('has unique ids and only marks methods working without a CityPal server as ready', () => {
     expect(new Set(CONNECTORS.map((c) => c.id)).size).toBe(CONNECTORS.length)
     for (const c of CONNECTORS.filter((x) => x.status === 'ready'))
-      expect(['file', 'link']).toContain(c.method)
+      expect(['native', 'file', 'link']).toContain(c.method)
   })
 
   it('uses a reserved domain for the fictitious feed address', () => {

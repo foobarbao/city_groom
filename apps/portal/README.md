@@ -16,7 +16,7 @@ operator API endpoints do not exist yet (roadmap item 7).
 | `/`                           | Demo home: one card per space, including the customer app                                                                                                      |
 | `/mission`                    | "Notre mission": full-screen chapters over photos of green Grenoble streets                                                                                    |
 | `/commerce/:code?`            | Merchant dashboard: incoming items, items being processed, revenue and commission, forecast                                                                    |
-| `/commerce/:code/planning`    | Week planning: courier arrivals, work to do, handovers, order details, "Marquer fait", .ics export, add to Google Agenda / Outlook                             |
+| `/commerce/:code/planning`    | Week planning: courier arrivals, work to do, handovers, order details, "Marquer fait", Google Agenda sync (`VITE_GOOGLE_CLIENT_ID`), .ics export, add to Outlook                             |
 | `/commerce/:code/connecteurs` | Connectors to calendars, planners and automation tools (iCal subscription and webhook simulated, ADR-0009)                                                     |
 | `/commerce/:code/tournees`    | What arrives and what goes back at each round (07:00, 14:00, 20:00), items to mark ready                                                                       |
 | `/commerce/:code/messages`    | Customer requests, answers and quotes (label, price, locker size) with their status                                                                            |

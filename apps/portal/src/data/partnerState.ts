@@ -46,6 +46,15 @@ interface PartnerState {
   tasksDone?: string[]
   /** Webhook address entered per merchant (DEMO: stored, nothing is sent). */
   webhooks?: Record<string, string>
+  /** Google Agenda linked per merchant (googleCalendar.ts). */
+  googleCalendars?: Record<string, GoogleCalendarLink>
+}
+
+/** The "CityPal" calendar created in a merchant's Google Agenda. */
+export interface GoogleCalendarLink {
+  calendarId: string
+  /** Last complete sync, ISO 8601. */
+  lastSyncAt: string | null
 }
 
 const STORAGE_KEY = 'citypal-partner-demo-v1'
@@ -80,6 +89,7 @@ const empty = (): PartnerState => ({
   stopsDone: {},
   tasksDone: [],
   webhooks: {},
+  googleCalendars: {},
 })
 
 export const partnerState = reactive<PartnerState>(load() ?? empty())
@@ -208,6 +218,23 @@ export function setWebhook(merchant: string, url: string): void {
   const hooks = (partnerState.webhooks ??= {})
   if (url) hooks[merchant] = url
   else delete hooks[merchant]
+}
+
+/** Google Agenda linked to a merchant, if any. */
+export const googleCalendarOf = (merchant: string): GoogleCalendarLink | null =>
+  partnerState.googleCalendars?.[merchant] ?? null
+
+/** Links (or unlinks, with null) a merchant's Google Agenda calendar. */
+export function setGoogleCalendar(merchant: string, calendarId: string | null): void {
+  const links = (partnerState.googleCalendars ??= {})
+  if (calendarId) links[merchant] = { calendarId, lastSyncAt: null }
+  else delete links[merchant]
+}
+
+/** Records a complete sync of a merchant's planning. */
+export function markSynced(merchant: string, at: Date = new Date()): void {
+  const link = partnerState.googleCalendars?.[merchant]
+  if (link) link.lastSyncAt = at.toISOString()
 }
 
 /** Marks a stop of a round as done (or undoes it). */

@@ -3,7 +3,8 @@
 > **Status**: living document · **Last updated**: 2026-10-25
 >
 > How to create the Google OAuth client used by "Continuer avec Google" in the
-> customer app (ADR-0010). About 10 minutes, with a Google account you own.
+> customer app (ADR-0010) and by the Google Agenda sync of the merchant
+> planning (ADR-0009). About 10 minutes, with a Google account you own.
 > Google renames console menus from time to time: if a label differs, look
 > for the closest one.
 
@@ -30,13 +31,20 @@ copy it anywhere.
 2. App information: name **CityPal**, user support e-mail (yours), developer
    contact e-mail.
 3. Audience: **External**.
-4. Data access (scopes): nothing to add. The app asks only for the basic
-   profile (`openid`, `email`, `profile`), as decided on 2026-10-25.
-5. While the app is in **Testing**, only the **test users** you add (your
+4. Data access (scopes): add
+   `https://www.googleapis.com/auth/calendar.app.created` (Google Agenda
+   sync: CityPal may create its own calendar and manage only that one). The
+   customer sign-in asks only for the basic profile (`openid`, `email`,
+   `profile`), as decided on 2026-10-25.
+5. **Enable the Google Calendar API**: menu → *APIs & Services* → *Library*
+   → "Google Calendar API" → *Enable*.
+6. While the app is in **Testing**, only the **test users** you add (your
    Google address and the testers') can sign in. To open it to everyone,
    **publish** the app (*Audience* → *Publish app*). ASSUMPTION, to confirm
-   in the console: with the basic scopes only, publishing needs no Google
-   verification (a logo, if added, may require a brand verification).
+   in the console: the basic scopes need no Google verification; if the
+   console marks the calendar scope as *sensitive*, Google must verify the
+   app before merchants other than test users can sync (a logo, if added,
+   may also require a brand verification).
 
 ## 3. Create the OAuth client ID
 
@@ -59,7 +67,7 @@ The same value goes to two places:
 | Where | Variable | Value |
 |---|---|---|
 | Backend (Render → service → *Environment*) | `GOOGLE_OAUTH_CLIENT_IDS` | the client ID |
-| Customer app (Netlify → *Site configuration* → *Environment variables*) | `VITE_GOOGLE_CLIENT_ID` | the client ID |
+| Customer app and portal (Netlify → *Site configuration* → *Environment variables*) | `VITE_GOOGLE_CLIENT_ID` | the client ID |
 | Customer app (Netlify, same place) | `VITE_API_BASE_URL` | `https://<render-service>.onrender.com/api/v1` |
 
 Then redeploy both (on Netlify: *Deploys* → *Trigger deploy*). Vite writes
@@ -74,7 +82,10 @@ in `apps/customer/.env.local`.
    Google** button replaces the demo form.
 2. Sign in. The first request may take up to a minute: the free Render
    service sleeps after 15 minutes without traffic.
-3. In the administration (`https://<render-service>.onrender.com/admin/`) →
+3. Portal → merchant space → **Planning** → **Connecter Google Agenda**:
+   after Google's consent screen, a "CityPal · …" calendar appears in Google
+   Agenda with the week's tasks; "Marquer fait" adds "✓" to the event.
+4. In the administration (`https://<render-service>.onrender.com/admin/`) →
    **Comptes**: the new account appears with its photo and "Google".
 
 If the button does not appear: the variable is missing or the site was not

@@ -2,8 +2,11 @@
 /**
  * Merchant planning: the week day by day, with what is scheduled (courier
  * visits bringing items, work to do, handovers to the courier) and the
- * details of every order. Each task can be marked done from here. The
- * planning can be exported to a calendar (.ics file, Google Agenda link).
+ * details of every order. Each task can be marked done from here.
+ *
+ * Google Agenda is synchronised (googleCalendar.ts): once connected, every
+ * task is written in a "CityPal" calendar and kept up to date, including the
+ * "done" check. Other calendars: .ics export and per-task links.
  */
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -17,7 +20,22 @@ import {
   toIcs,
 } from '../data/calendarExport'
 import { clock, euros, longDay, shortDay } from '../data/format'
-import { isTaskDone, toggleTask } from '../data/partnerState'
+import { GOOGLE_CLIENT_ID, requestToken, revokeToken, validToken } from '../data/googleAuth'
+import {
+  CALENDAR_SCOPE,
+  GoogleCalendarError,
+  createCalendar,
+  eventId,
+  toGoogleEvent,
+  upsertEvent,
+} from '../data/googleCalendar'
+import {
+  googleCalendarOf,
+  isTaskDone,
+  markSynced,
+  setGoogleCalendar,
+  toggleTask,
+} from '../data/partnerState'
 import { activity, demoNow, partnerOrFirst, serviceName } from '../data/source'
 
 const props = defineProps<{ code?: string }>()
@@ -73,6 +91,75 @@ function event(task: AgendaTask): CalendarEvent {
   }
 }
 
+// --- Google Agenda sync ----------------------------------------------------
+
+const googleLink = computed(() => (shop.value ? googleCalendarOf(shop.value.code) : null))
+/** `pending`: changes made while the Google permission had expired. */
+const syncStatus = ref<'idle' | 'syncing' | 'pending' | 'error'>('idle')
+const syncedCount = ref(0)
+
+function googleBody(task: AgendaTask): Record<string, unknown> {
+  return toGoogleEvent(event(task), isTaskDone(task.id), tz)
+}
+
+/** Writes every task of the week; recreates the calendar if it was deleted. */
+async function syncAll(token: string, retry = true): Promise<void> {
+  const code = shop.value?.code
+  if (!code) return
+  let link = googleCalendarOf(code)
+  if (!link) {
+    setGoogleCalendar(code, await createCalendar(token, `CityPal · ${shop.value?.name}`, tz))
+    link = googleCalendarOf(code)
+  }
+  if (!link) return
+  try {
+    for (const task of tasks.value)
+      await upsertEvent(token, link.calendarId, eventId(code, task.id), googleBody(task))
+  } catch (error) {
+    // 404 / 403: the calendar was deleted in Google Agenda, or is not ours any more.
+    if (retry && error instanceof GoogleCalendarError && [403, 404].includes(error.status)) {
+      setGoogleCalendar(code, null)
+      return syncAll(token, false)
+    }
+    throw error
+  }
+  syncedCount.value = tasks.value.length
+  markSynced(code)
+}
+
+/** Connects or re-synchronises (from a click: Google may show its consent screen). */
+async function syncGoogle(): Promise<void> {
+  syncStatus.value = 'syncing'
+  try {
+    await syncAll(validToken() ?? (await requestToken(CALENDAR_SCOPE)))
+    syncStatus.value = 'idle'
+  } catch {
+    syncStatus.value = 'error'
+  }
+}
+
+function disconnectGoogle(): void {
+  revokeToken()
+  if (shop.value) setGoogleCalendar(shop.value.code, null)
+  syncStatus.value = 'idle'
+}
+
+/** Marks a task done and, when connected, updates its Google Agenda event at once. */
+function toggle(task: AgendaTask): void {
+  toggleTask(task.id, task.kind === 'handover' ? task.orders.map((o) => o.id) : [])
+  const link = googleLink.value
+  const code = shop.value?.code
+  if (!link || !code) return
+  const token = validToken()
+  if (!token) {
+    syncStatus.value = 'pending'
+    return
+  }
+  upsertEvent(token, link.calendarId, eventId(code, task.id), googleBody(task)).catch(() => {
+    syncStatus.value = 'error'
+  })
+}
+
 function exportWeek(): void {
   const blob = new Blob([toIcs(tasks.value.map(event))], { type: 'text/calendar;charset=utf-8' })
   const url = URL.createObjectURL(blob)
@@ -92,6 +179,47 @@ function exportWeek(): void {
         📅 {{ t('merchant.agenda.export') }}
       </button>
     </div>
+
+    <section class="card gsync" :class="{ on: googleLink }">
+      <div class="gsync-text">
+        <h2>{{ t('merchant.agenda.gsync.title') }}</h2>
+        <p v-if="!GOOGLE_CLIENT_ID" class="note">{{ t('merchant.agenda.gsync.notConfigured') }}</p>
+        <p v-else-if="!googleLink">{{ t('merchant.agenda.gsync.pitch') }}</p>
+        <p v-else>
+          {{
+            googleLink.lastSyncAt
+              ? t('merchant.agenda.gsync.synced', {
+                  time: clock(googleLink.lastSyncAt),
+                  count: syncedCount || tasks.length,
+                })
+              : t('merchant.agenda.gsync.connected')
+          }}
+        </p>
+        <p v-if="syncStatus === 'pending'" class="warn">{{ t('merchant.agenda.gsync.pending') }}</p>
+        <p v-if="syncStatus === 'error'" class="warn" role="alert">
+          {{ t('merchant.agenda.gsync.error') }}
+        </p>
+      </div>
+      <div class="gsync-actions">
+        <button
+          type="button"
+          class="export"
+          :disabled="!GOOGLE_CLIENT_ID || syncStatus === 'syncing'"
+          @click="syncGoogle"
+        >
+          {{
+            syncStatus === 'syncing'
+              ? t('merchant.agenda.gsync.syncing')
+              : googleLink
+                ? t('merchant.agenda.gsync.syncNow')
+                : t('merchant.agenda.gsync.connect')
+          }}
+        </button>
+        <button v-if="googleLink" type="button" class="link" @click="disconnectGoogle">
+          {{ t('merchant.agenda.gsync.disconnect') }}
+        </button>
+      </div>
+    </section>
 
     <div class="week" role="tablist" :aria-label="t('merchant.agenda.week')">
       <button
@@ -165,9 +293,7 @@ function exportWeek(): void {
               type="button"
               class="done-btn"
               :aria-pressed="isTaskDone(task.id)"
-              @click="
-                toggleTask(task.id, task.kind === 'handover' ? task.orders.map((o) => o.id) : [])
-              "
+              @click="toggle(task)"
             >
               {{
                 isTaskDone(task.id)
@@ -177,10 +303,12 @@ function exportWeek(): void {
             </button>
             <span class="gcal">
               {{ t('merchant.agenda.addTo') }}
-              <a :href="googleCalendarUrl(event(task))" target="_blank" rel="noopener">{{
-                t('merchant.agenda.google')
-              }}</a>
-              ·
+              <template v-if="!googleLink">
+                <a :href="googleCalendarUrl(event(task))" target="_blank" rel="noopener">{{
+                  t('merchant.agenda.google')
+                }}</a>
+                ·
+              </template>
               <a :href="outlookCalendarUrl(event(task))" target="_blank" rel="noopener">{{
                 t('merchant.agenda.outlook')
               }}</a>
@@ -362,6 +490,47 @@ button {
   font-size: 12px;
   font-weight: 700;
   color: var(--cg-ink-soft);
+}
+.gsync {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gsync.on {
+  border: 2px solid var(--cg-leaf-soft);
+}
+.gsync h2,
+.gsync p {
+  margin: 0;
+}
+.gsync-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.gsync-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.export:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.warn {
+  color: #9a5b00;
+  font-weight: 700;
+}
+.link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--cg-ink-soft);
+  font-weight: 700;
+  text-decoration: underline;
 }
 .gcal a {
   color: var(--cg-leaf);

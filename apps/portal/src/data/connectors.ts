@@ -2,8 +2,9 @@
  * @file Connectors between the merchant planning and external tools
  * (calendars, planners, to-do lists, automation platforms).
  *
- * Three ways to connect, from the most universal to the most specific
- * (ADR-0009, proposed):
+ * Google Agenda is synchronised natively (`native`, googleCalendar.ts), as
+ * the project owner asked on 2026-10-25. For the other tools, three ways to
+ * connect, from the most universal to the most specific (ADR-0009):
  * - `file` / `link`: work today, without a server — .ics export of the week
  *   and "add to calendar" links for one task (`calendarExport.ts`);
  * - `feed`: a private iCal subscription address, read by any calendar that
@@ -19,9 +20,12 @@
 import type { AgendaTask } from './agenda'
 
 /** How a tool is connected. */
-export type ConnectorMethod = 'file' | 'link' | 'feed' | 'automation'
+export type ConnectorMethod = 'native' | 'file' | 'link' | 'feed' | 'automation'
 
-/** `ready`: works in the demo; `simulated`: shown, nothing is sent; `planned`: PROD. */
+/**
+ * `ready`: works in the demo (the Google sync needs the Google client ID to
+ * be configured); `simulated`: shown, nothing is sent; `planned`: PROD.
+ */
 export type ConnectorStatus = 'ready' | 'simulated' | 'planned'
 
 /** A way to bring the planning into one external tool. */
@@ -40,7 +44,7 @@ export interface Connector {
  * CityPal integration per tool.
  */
 export const CONNECTORS: Connector[] = [
-  { id: 'googleLink', group: 'calendar', method: 'link', status: 'ready' },
+  { id: 'googleSync', group: 'calendar', method: 'native', status: 'ready' },
   { id: 'outlookLink', group: 'calendar', method: 'link', status: 'ready' },
   { id: 'icsFile', group: 'calendar', method: 'file', status: 'ready' },
   { id: 'icalFeed', group: 'calendar', method: 'feed', status: 'simulated' },

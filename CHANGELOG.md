@@ -9,6 +9,11 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Merchant planning: Google Agenda synchronisation (Google Calendar API,
+  scope `calendar.app.created`): "CityPal" calendar created in the
+  merchant's agenda, every task written with a stable ID and updated when
+  marked done; enabled by `VITE_GOOGLE_CLIENT_ID` (ADR-0009 update).
+
 - Sign in with Google (ADR-0010): `POST /api/v1/auth/google/` verifies the
   Google ID token with Google's library and returns a token;
   `GET /api/v1/auth/me/`, `POST /api/v1/auth/sign-out/`. Customer app:
