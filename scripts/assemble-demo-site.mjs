@@ -5,7 +5,10 @@
  * - `/client/`: customer app (`apps/customer/dist-demo-site`);
  * - `/pro/`: partner portal, whose home page is the demo home
  *   (`apps/portal/dist-demo-site`);
- * - `/`: redirects to the demo home.
+ * - `/`: redirects to the customer app (owner, 2026-10-25: visitors land on
+ *   CityPal itself, with the Google sign-in at hand);
+ * - `pro.citypal.fr`: redirects to `/pro/` on the main domain, so partners
+ *   get a short address (the domain must be added to the Netlify site).
  *
  * Output: `dist-demo-site/` at the repository root, published by Netlify
  * (`netlify.toml`). Run through `npm run build:demo-site`.
@@ -30,9 +33,15 @@ for (const { from, to } of parts) {
 }
 
 // Netlify redirect rules (https://docs.netlify.com/routing/redirects/):
-// both apps use path-based routing, so unknown paths serve their index.html.
-writeFileSync(
-  join(out, '_redirects'),
-  ['/ /pro/ 302', '/client/* /client/index.html 200', '/pro/* /pro/index.html 200', ''].join('\n'),
-)
+// the partner subdomain first (domain-level rules, one per scheme), then
+// the home page; both apps use path-based routing, so unknown paths serve
+// their index.html.
+const rules = [
+  'http://pro.citypal.fr/* https://citypal.fr/pro/:splat 301!',
+  'https://pro.citypal.fr/* https://citypal.fr/pro/:splat 301!',
+  '/ /client/ 302',
+  '/client/* /client/index.html 200',
+  '/pro/* /pro/index.html 200',
+]
+writeFileSync(join(out, '_redirects'), [...rules, ''].join('\n'))
 console.log(`Demo site assembled in ${out}`)
