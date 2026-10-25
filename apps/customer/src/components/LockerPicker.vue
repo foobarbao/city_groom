@@ -12,6 +12,8 @@
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+import { usePosition } from '../composables/usePosition'
+import { distanceMeters, formatDistance } from '../domain/geo'
 import { normalize } from '../domain/shops'
 import { type LockerSummary, lockers } from '../services/catalogue'
 
@@ -24,6 +26,16 @@ const { t } = useI18n()
 
 const query = ref('')
 const category = ref<string | null>(null)
+/** Sort by distance from the customer ("Près de moi"); asks for the position. */
+const nearMe = ref(false)
+const position = usePosition()
+const distance = (l: LockerSummary): number =>
+  distanceMeters(position.origin.value, [l.longitude, l.latitude])
+
+function toggleNearMe(): void {
+  nearMe.value = !nearMe.value
+  if (nearMe.value && position.status.value !== 'located') position.locate()
+}
 
 /** Kinds of place present in the network, most frequent first. */
 const categories = computed(() => {
@@ -47,7 +59,11 @@ const shown = computed(() => {
       const text = normalize(`${l.name} ${t(`sites.${l.siteCategory}`)}`)
       return words.every((w) => text.includes(w))
     })
-    .sort((a, b) => Number(free(b) > 0) - Number(free(a) > 0) || a.name.localeCompare(b.name, 'fr'))
+    .sort(
+      (a, b) =>
+        Number(free(b) > 0) - Number(free(a) > 0) ||
+        (nearMe.value ? distance(a) - distance(b) : a.name.localeCompare(b.name, 'fr')),
+    )
 })
 </script>
 
@@ -61,6 +77,15 @@ const shown = computed(() => {
       :aria-label="t('common.search')"
     />
     <div class="chips" role="group">
+      <button
+        class="chip near"
+        :class="{ active: nearMe }"
+        type="button"
+        :aria-pressed="nearMe"
+        @click="toggleNearMe"
+      >
+        📍 {{ t('nearby.nearMe') }}
+      </button>
       <button
         class="chip"
         :class="{ active: category === null }"
@@ -92,7 +117,10 @@ const shown = computed(() => {
           @click="selected = locker.code"
         >
           <span class="name">{{ locker.name }}</span>
-          <span class="meta">{{ t(`sites.${locker.siteCategory}`) }}</span>
+          <span class="meta">
+            {{ t(`sites.${locker.siteCategory}`) }}
+            <template v-if="nearMe"> · {{ formatDistance(distance(locker)) }}</template>
+          </span>
           <span class="free">{{ t('consigne.freeCount', free(locker)) }}</span>
         </button>
       </li>

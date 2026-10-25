@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Customer app: "Casiers autour de moi" view (nearest lockers, walking
+  distance, free consigne compartments, drop now / book a slot), entry points
+  on the home page and the Consigne tab, "Près de moi" sort in locker lists;
+  location used on the device only.
 - Coding and documentation standards (`docs/CODING_STANDARDS.md`), including
   the "never invent, ask when in doubt" rule.
 - Product document: vision, actors, main flow, business model, red lines and

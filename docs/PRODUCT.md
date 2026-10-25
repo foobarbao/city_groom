@@ -223,7 +223,12 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
   category, service, street);
 - see each shop's **rating out of 5** and reviews;
 - **chat with a merchant**, send photos, and follow **quotes** (quote space);
-- follow orders and consigne bookings, manage the account and subscription.
+- follow orders and consigne bookings, manage the account and subscription;
+- see the **lockers around me** (requested 2026-10-25), especially to drop a
+  consigne quickly: nearest lockers with walking distance and free
+  compartments, one tap to drop off now or book a slot. The position is
+  asked only when the customer opens this view (or "Près de moi" in a locker
+  list), used on the device only, never stored nor sent.
 
 ### Ratings and reviews
 

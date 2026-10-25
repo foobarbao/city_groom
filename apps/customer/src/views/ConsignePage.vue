@@ -36,6 +36,9 @@ const past = computed(() =>
         >
           {{ t('consigne.book') }}
         </ion-button>
+        <ion-button expand="block" shape="round" fill="outline" router-link="/autour">
+          📍 {{ t('nearby.shortcut') }}
+        </ion-button>
 
         <section v-if="account.activeBookings.length" class="group">
           <h2 class="section-title">{{ t('consigne.active') }}</h2>

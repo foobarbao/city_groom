@@ -18,6 +18,7 @@ import {
 } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
@@ -129,6 +130,16 @@ function pay(): void {
     pickupEnd: pickup.value?.end.toISOString() ?? null,
   })
   router.replace(`/consigne/${id}`)
+}
+
+// Coming from "Casiers autour de moi": the locker is already chosen, and
+// "maintenant" also chooses an immediate drop-off.
+const route = useRoute()
+const presetLocker = route.query.casier
+if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLocker)) {
+  lockerCode.value = presetLocker
+  step.value = 1
+  if (route.query.maintenant === '1' && canDropNow.value) chooseNow()
 }
 </script>
 

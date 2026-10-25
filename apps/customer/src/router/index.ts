@@ -19,6 +19,7 @@ const routes: RouteRecordRaw[] = [
       { path: '', redirect: '/accueil' },
       { path: 'accueil', name: 'home', component: HomePage },
       { path: 'carte', name: 'map', component: () => import('../views/MapPage.vue') },
+      { path: 'autour', name: 'nearby', component: () => import('../views/NearbyPage.vue') },
       {
         path: 'casiers/:code',
         name: 'locker',

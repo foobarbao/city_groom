@@ -67,6 +67,15 @@ const CATEGORY_ICONS: Record<string, string> = {
           </router-link>
         </nav>
 
+        <router-link class="nearby" to="/autour">
+          <span class="nearby-icon" aria-hidden="true">📍</span>
+          <span class="nearby-text">
+            <strong>{{ t('nearby.shortcut') }}</strong>
+            <span>{{ t('nearby.shortcutText') }}</span>
+          </span>
+          <span aria-hidden="true">›</span>
+        </router-link>
+
         <section v-if="hasCurrent" class="current">
           <h2 class="section-title">{{ t('home.current') }}</h2>
           <ul class="list">
@@ -192,6 +201,37 @@ const CATEGORY_ICONS: Record<string, string> = {
   color: var(--cg-ink);
 }
 .mode-text {
+  font-size: 13px;
+  color: var(--cg-ink-soft);
+}
+.nearby {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--cg-radius-l);
+  background: var(--cg-glass-strong);
+  backdrop-filter: var(--cg-glass-filter);
+  box-shadow: var(--cg-shadow);
+  color: var(--cg-ink);
+  font-size: 22px;
+  text-decoration: none;
+}
+.nearby-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--cg-sun);
+}
+.nearby-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+.nearby-text span {
   font-size: 13px;
   color: var(--cg-ink-soft);
 }
