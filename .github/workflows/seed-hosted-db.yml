@@ -17,6 +17,10 @@ on:
         description: 'Add the fictitious "Démo ·" shops'
         type: boolean
         default: true
+      reset_lockers:
+        description: "Rebuild every simulated locker (needed when placement rules change)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -53,14 +57,20 @@ jobs:
       - run: uv sync --frozen --no-dev
       - name: Apply migrations
         run: uv run python manage.py migrate --noinput
-      # Same counts as the demo site: 25 service lockers at tram stops and 45
-      # consigne lockers at strategic places.
+      # Same network as the demo site: 25 service lockers at tram stops, 45
+      # consigne lockers at strategic places, the required business parks,
+      # every lycée and higher-education site, the validated companies; large
+      # units in the town of Grenoble.
       - name: Simulated lockers
         run: >-
           uv run python manage.py seed_simulated_lockers
+          ${{ inputs.reset_lockers && '--reset' || '' }}
           --sites-file ../data/osm/tram_stops.json
           --strategic-file ../data/osm/strategic_sites.json
           --count 25 --strategic-count 45
+          --education-file ../data/osm/education.json
+          --boundary-file ../data/osm/grenoble_boundary.json
+          --company-file ../data/osm/company_sites.json
       - name: Real merchants (OpenStreetMap)
         run: uv run python manage.py import_osm_merchants --from-file ../data/osm/merchants.json
       - name: Fictitious demo merchants

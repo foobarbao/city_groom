@@ -264,6 +264,26 @@ working in the parks. Montbonnot is about 7.4 km from the centre of
 Grenoble, beyond the 7 km assumed for the cargo-bike rounds: the round
 area must include it (open question).
 
+**Locker sizes by place** (owner's decisions of 2026-10-26):
+
+- **Lycées and higher education** (lycées, faculties, engineering and
+  business schools, IUT; collèges and primary schools excluded): a **small
+  mixed locker** (services and consigne) in front of every site; on a
+  campus, sites closer than 200 m share one (ASSUMPTION).
+- **Town of Grenoble** (the whole commune, from its OpenStreetMap
+  boundary): **large lockers** for service, consigne and company sites;
+  school lockers stay small (the more specific rule wins, ASSUMPTION).
+- **Large companies**: a **mixed locker** (services and consigne, normal
+  size, large inside Grenoble) near the sites the owner validated: the
+  Presqu'île scientifique (CEA-Leti, STMicroelectronics, Schneider
+  Electric, Institut Laue-Langevin, Institut Néel), the south of the
+  agglomeration (Hewlett Packard and Schneider Electric in Eybens,
+  Caterpillar in Échirolles, Becton Dickinson in Le Pont-de-Claix, GE
+  Renewable Hydro) and the east (Inria and Thales in Montbonnot, Siemens EDA
+  and Schneider Electric in Meylan). The Grésivaudan (Crolles, Bernin) is
+  left out for now. Locker names say "Près de …": the company is only a
+  landmark, no partnership is claimed (ASSUMPTION: naming to confirm).
+
 ### Locker visualisation
 
 The locker view must be **very user-friendly**: the customer sees a drawing of

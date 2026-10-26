@@ -123,6 +123,49 @@ COMPANY_SITES_QUERY = (
     ");\nout center tags;\n"
 )
 
+# Large companies validated by the project owner on 2026-10-26 (zones
+# "Presqu'île scientifique", "Sud agglo", "Est"), as OpenStreetMap
+# (type, id) → locker name. Names say "Près de …": the company is only a
+# landmark to find the locker, no partnership is claimed. ASSUMPTION: naming
+# to confirm with the owner.
+COMPANY_SITES: dict[tuple[str, int], str] = {
+    ("way", 135788328): "Près de CEA-Leti",
+    ("way", 41832636): "Près de STMicroelectronics (Presqu'île)",
+    ("node", 7982692311): "Près de Schneider Electric (Presqu'île)",
+    ("node", 487712413): "Près de l'Institut Laue-Langevin",
+    ("way", 135788628): "Près de l'Institut Néel (CNRS)",
+    ("way", 40629368): "Près de Hewlett Packard (Eybens)",
+    ("way", 38968477): "Près de Schneider Electric (Eybens)",
+    ("way", 95560291): "Près de Caterpillar (Échirolles)",
+    ("way", 1551529859): "Près de Becton Dickinson (Le Pont-de-Claix)",
+    ("node", 11758650441): "Près de GE Renewable Hydro (Grenoble)",
+    ("relation", 6037451): "Près d'Inria (Montbonnot)",
+    ("node", 14104886930): "Près de Thales (Montbonnot)",
+    ("node", 11518577268): "Près de Siemens EDA (Meylan)",
+    ("node", 5888623719): "Près de Schneider Electric (Meylan)",
+}
+
+
+def parse_company_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
+    """Return the validated company sites of ``COMPANY_SITES`` found in the payload."""
+    found: dict[tuple[str, int], tuple[str, SimulatedSite]] = {}
+    for element in payload.get("elements", []):
+        key = (element.get("type", ""), element.get("id", 0))
+        position = element.get("center") or element
+        if key not in COMPANY_SITES or "lon" not in position:
+            continue
+        found[key] = (
+            "business",
+            SimulatedSite(
+                name=COMPANY_SITES[key],
+                longitude=position["lon"],
+                latitude=position["lat"],
+                source=f"OpenStreetMap, {key[0]} {key[1]} (company, validated)",
+            ),
+        )
+    return [found[key] for key in COMPANY_SITES if key in found]
+
+
 # Minimum distance between two education lockers, in metres: a campus has
 # many university buildings close together. ASSUMPTION, to review.
 EDUCATION_MIN_SPACING_M = 200
@@ -149,6 +192,9 @@ def parse_education_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedS
         name = tags.get("name", "").strip()
         position = element.get("center") or element
         if not name or "lon" not in position or name in seen_names:
+            continue
+        # Laboratories and one-letter building names are not schools.
+        if len(name) < 4 or name.startswith(("Laboratoire", "Laboratory")):
             continue
         if _is_lycee(tags):
             category = "school"

@@ -61,6 +61,10 @@ LOCKER_MODELS: dict[str, tuple[str, ...]] = {
     # In front of lycées and higher-education sites: small mixed units for
     # services and consigne (same decision), smaller than the town ones.
     "school": ("control", "garment"),
+    # In front of large companies: services and consigne together (same
+    # decision), normal size, larger inside the town of Grenoble.
+    "business_mixed": ("storage", "control", "mixed", "garment"),
+    "business_mixed_large": ("storage", "control", "mixed", "large", "garment", "garment"),
 }
 
 # Demo fill rates are kept modest on purpose: the service is new, and the

@@ -6,8 +6,9 @@ campuses…, see ``apps.lockers.osm``), and service lockers at the places the
 project owner required (``REQUIRED_SITES``: Inovallée business parks in
 Meylan and Montbonnot), on top of the counts. With ``--education-file``, a
 small mixed locker stands in front of every lycée and higher-education site;
-with ``--boundary-file``, lockers in the town of Grenoble get larger models
-(owner's decisions of 2026-10-26).
+with ``--boundary-file``, lockers in the town of Grenoble get larger models;
+with ``--company-file``, a mixed locker stands near each large company the
+owner validated (``COMPANY_SITES``) (owner's decisions of 2026-10-26).
 
 Examples::
 
@@ -27,7 +28,8 @@ Examples::
         --sites-file ../data/osm/tram_stops.json \
         --strategic-file ../data/osm/strategic_sites.json --strategic-count 45 \
         --education-file ../data/osm/education.json \
-        --boundary-file ../data/osm/grenoble_boundary.json
+        --boundary-file ../data/osm/grenoble_boundary.json \
+        --company-file ../data/osm/company_sites.json
 """
 
 import json
@@ -44,6 +46,7 @@ from apps.lockers.models import Locker, SiteCategory
 from apps.lockers.osm import (
     TRAM_STOPS_QUERY,
     fetch_overpass,
+    parse_company_sites,
     parse_education_sites,
     parse_required_sites,
     parse_strategic_sites,
@@ -115,6 +118,11 @@ class Command(BaseCommand):
             help="Limite de Grenoble (Overpass, out geom) : gros casiers à l'intérieur.",
         )
         parser.add_argument(
+            "--company-file",
+            type=Path,
+            help="Sites d'entreprises (Overpass) : un casier mixte près de chaque site validé.",
+        )
+        parser.add_argument(
             "--reset", action="store_true", help="Supprime d'abord les casiers simulés existants."
         )
 
@@ -169,6 +177,13 @@ class Command(BaseCommand):
             created += sum(
                 self._create(category, site, rng, kind="school") for category, site in education
             )
+        if options["company_file"]:
+            companies = parse_company_sites(
+                json.loads(options["company_file"].read_text(encoding="utf-8"))
+            )
+            created += sum(
+                self._create(category, site, rng, kind="business") for category, site in companies
+            )
         self.stdout.write(self.style.SUCCESS(f"{created} casiers simulés créés."))
 
     def _create(
@@ -176,10 +191,11 @@ class Command(BaseCommand):
     ) -> bool:
         """Create one simulated locker at a site; return False if it already exists.
 
-        ``kind``: "school" (small mixed unit), "service" (laundry models), or
-        empty (by category: service at tram stops, consigne elsewhere). Inside
-        the town of Grenoble, service and consigne lockers get the large
-        models; school lockers stay small (the more specific rule wins).
+        ``kind``: "school" (small mixed unit), "business" (mixed unit near a
+        company), "service" (laundry models), or empty (by category: service
+        at tram stops, consigne elsewhere). Inside the town of Grenoble,
+        service, consigne and company lockers get the large models; school
+        lockers stay small (the more specific rule wins).
         """
         code = slugify(site.name)[:40]
         if Locker.objects.filter(code=code).exists():
@@ -191,6 +207,8 @@ class Command(BaseCommand):
         )
         if kind == "school":
             model = "school"
+        elif kind == "business":
+            model = "business_mixed_large" if in_town else "business_mixed"
         elif in_town:
             model = "large" if service else "consigne_large"
         else:
