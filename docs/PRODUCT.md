@@ -1,6 +1,6 @@
 # Product — City Groom
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-26
 >
 > This document records the product vision and the requirements as stated by
 > the project owner. Anything not yet decided is listed under
@@ -108,6 +108,16 @@ In the demo, the merchant's data (orders, forecasts) is **simulated**.
 - Prepare a structure able to host the production version, including
   **connecting real lockers** later (see ADR-0003, integration boundaries).
 
+## 8. Customer mailing
+
+- Goal stated by the project owner: **simplify customer mailing** — customer
+  profiles and segments (e.g. by order recurrence), reusable email templates
+  and campaigns.
+- Decision: **Brevo** (free plan) for the demo; the backend stays the source
+  of truth for customers, orders and statistics. Alternatives considered
+  (Odoo, Twenty, Mautic, in-house): see
+  [ADR-0005](adr/0005-customer-mailing-provider.md).
+
 ## Glossary
 
 | Term (code, English) | Meaning | UI label (French) |
@@ -142,3 +152,12 @@ Questions to the project owner. Answers are moved into the sections above.
    (tailoring, small appliance repair, bicycle repair…)?
 10. **Product name and wording**: is "City Groom" the final name? Preferred
     French term for the lockers in the UI?
+11. **Marketing consent**: how is consent to marketing emails collected
+    (unchecked box at sign-up, preference screen in the app)? Only consenting
+    customers are synced to Brevo (ADR-0005).
+12. **Mailing sender**: does only City Groom send campaigns, or may merchants
+    also email their own customers through the platform?
+13. **Segments and statistics**: which customer statistics and segments are
+    needed first (recurrence per customer, per merchant, per locker area…)?
+14. **Transactional emails** (order confirmation, item ready for pickup): also
+    sent through Brevo, or only push notifications in the app?

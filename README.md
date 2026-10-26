@@ -30,10 +30,12 @@ production version.
 | Map | MapLibre GL JS, OpenStreetMap-based vector tiles |
 | Backend & admin | Django, Django REST Framework, GeoDjango |
 | Database | PostgreSQL + PostGIS |
+| Customer mailing | Brevo (free plan) |
 
 Details and rejected alternatives: [ADR-0002](docs/adr/0002-technical-stack.md),
 repository layout: [ADR-0003](docs/adr/0003-monorepo-and-applications.md),
-hosting: [ADR-0004](docs/adr/0004-hosting.md).
+hosting: [ADR-0004](docs/adr/0004-hosting.md),
+customer mailing: [ADR-0005](docs/adr/0005-customer-mailing-provider.md).
 
 Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.
 
