@@ -18,7 +18,7 @@ import { useRoute } from 'vue-router'
 import { operatorAlerts } from '../data/operator'
 import { awaitsAnswer, threadsOf } from '../data/partnerState'
 import { activity, lockers, partnerOrFirst } from '../data/source'
-import { NavTree } from '@city-groom/ui'
+import { BrandMark, NavTree } from '@city-groom/ui'
 
 import { NAVIGATION, trail } from '../navigation'
 
@@ -65,7 +65,7 @@ function navigated(): void {
   <ion-content class="portal-nav">
     <nav class="nav" :aria-label="t('nav.label')">
       <router-link class="brand" to="/" @click="navigated">
-        <span class="logo" aria-hidden="true">C</span>
+        <brand-mark :size="34" />
         <span>
           <strong>{{ t('app.name') }}</strong>
           <span class="tag">{{ t('nav.demo') }}</span>
@@ -119,16 +119,6 @@ function navigated(): void {
 .tag {
   font-size: 12px;
   color: var(--cg-ink-soft);
-}
-.logo {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--cg-leaf), var(--cg-teal));
-  color: #ffffff;
-  font-weight: 700;
 }
 .external {
   display: flex;
