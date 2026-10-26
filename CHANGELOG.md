@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- CityPal logo cut out on a transparent background and filling its space
+  (no margin, no tile): 44 px in the side menu of both apps, transparent
+  favicon and 192 / 512 px icons; the iOS and maskable icons keep a white
+  background.
 - Locker choice redesigned: a map beside a list panel built like the side
   menu (folding by kind of place, icons, free compartments), search and a
   "Près de moi" button instead of the row of place chips; tapping a locker
