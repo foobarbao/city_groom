@@ -197,7 +197,8 @@ Addresses (owner's decision, 2026-10-25):
    - `api` **CNAME** → the target Render shows (expected
      `citypal.onrender.com.`);
    - keep NS, MX and SPF (e-mail).
-3. Once verified (HTTPS issued by both services): point
+3. Done on 2026-10-26 (Render variables updated by the owner, checked:
+   health 200, CORS from `https://citypal.fr` allowed). Once verified (HTTPS issued by both services): point
    `VITE_API_BASE_URL` to `https://api.citypal.fr/api/v1`, add
    `api.citypal.fr` to `DJANGO_ALLOWED_HOSTS` and
    `https://api.citypal.fr` to `DJANGO_CSRF_TRUSTED_ORIGINS`, add

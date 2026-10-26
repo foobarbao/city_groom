@@ -125,24 +125,26 @@ COMPANY_SITES_QUERY = (
 
 # Large companies validated by the project owner on 2026-10-26 (zones
 # "Presqu'île scientifique", "Sud agglo", "Est"), as OpenStreetMap
-# (type, id) → locker name. Names say "Près de …": the company is only a
-# landmark to find the locker, no partnership is claimed. ASSUMPTION: naming
-# to confirm with the owner.
+# (type, id) → locker name. Lockers are named after the place, never after
+# the company (owner's decision of the same day: no company name, so no
+# partnership is implied); street names come from the OSM address tags or
+# from Nominatim reverse geocoding of the site. The company stays in the
+# comment for traceability.
 COMPANY_SITES: dict[tuple[str, int], str] = {
-    ("way", 135788328): "Près de CEA-Leti",
-    ("way", 41832636): "Près de STMicroelectronics (Presqu'île)",
-    ("node", 7982692311): "Près de Schneider Electric (Presqu'île)",
-    ("node", 487712413): "Près de l'Institut Laue-Langevin",
-    ("way", 135788628): "Près de l'Institut Néel (CNRS)",
-    ("way", 40629368): "Près de Hewlett Packard (Eybens)",
-    ("way", 38968477): "Près de Schneider Electric (Eybens)",
-    ("way", 95560291): "Près de Caterpillar (Échirolles)",
-    ("way", 1551529859): "Près de Becton Dickinson (Le Pont-de-Claix)",
-    ("node", 11758650441): "Près de GE Renewable Hydro (Grenoble)",
-    ("relation", 6037451): "Près d'Inria (Montbonnot)",
-    ("node", 14104886930): "Près de Thales (Montbonnot)",
-    ("node", 11518577268): "Près de Siemens EDA (Meylan)",
-    ("node", 5888623719): "Près de Schneider Electric (Meylan)",
+    ("way", 135788328): "Polygone scientifique · Rue Félix Esclangon",  # CEA-Leti
+    ("way", 41832636): "Polygone scientifique · Rue Jules Horowitz",  # STMicroelectronics
+    ("node", 7982692311): "Polygone scientifique · 160 avenue des Martyrs",  # Schneider Electric
+    ("node", 487712413): "Polygone scientifique · 71 avenue des Martyrs",  # ILL
+    ("way", 135788628): "Polygone scientifique · Place de la Résistance",  # Institut Néel
+    ("way", 40629368): "Eybens · Nouvelle rue Jean Mermoz",  # Hewlett Packard
+    ("way", 38968477): "Eybens · Rue François Quesnay",  # Schneider Electric
+    ("way", 95560291): "Échirolles · Rue Pierre Semard",  # Caterpillar
+    ("way", 1551529859): "Le Pont-de-Claix · Rue Aristide Bergès",  # Becton Dickinson
+    ("node", 11758650441): "Grenoble · Avenue Léon Blum",  # GE Renewable Hydro
+    ("relation", 6037451): "Montbonnot · Rue René Thom",  # Inria
+    ("node", 14104886930): "Montbonnot · Avenue de l'Europe",  # Thales
+    ("node", 11518577268): "Meylan · 22 chemin du Vieux Chêne",  # Siemens EDA
+    ("node", 5888623719): "Meylan · 14 chemin du Vieux Chêne",  # Schneider Electric
 }
 
 

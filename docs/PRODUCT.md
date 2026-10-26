@@ -272,7 +272,8 @@ area must include it (open question).
   campus, sites closer than 200 m share one (ASSUMPTION).
 - **Town of Grenoble** (the whole commune, from its OpenStreetMap
   boundary): **large lockers** for service, consigne and company sites;
-  school lockers stay small (the more specific rule wins, ASSUMPTION).
+  school lockers stay small (the more specific rule wins; confirmed by the
+  owner on 2026-10-26).
 - **Large companies**: a **mixed locker** (services and consigne, normal
   size, large inside Grenoble) near the sites the owner validated: the
   Presqu'île scientifique (CEA-Leti, STMicroelectronics, Schneider
@@ -281,8 +282,9 @@ area must include it (open question).
   Caterpillar in Échirolles, Becton Dickinson in Le Pont-de-Claix, GE
   Renewable Hydro) and the east (Inria and Thales in Montbonnot, Siemens EDA
   and Schneider Electric in Meylan). The Grésivaudan (Crolles, Bernin) is
-  left out for now. Locker names say "Près de …": the company is only a
-  landmark, no partnership is claimed (ASSUMPTION: naming to confirm).
+  left out for now. Lockers are named after the **place** (area or town and
+  street, e.g. "Échirolles · Rue Pierre Semard"), never after the company:
+  no partnership is implied (decided 2026-10-26).
 
 ### Locker visualisation
 
