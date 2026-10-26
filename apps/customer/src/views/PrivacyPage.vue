@@ -42,6 +42,8 @@ const email = PRIVACY_CONTACT
           <p>{{ t('privacy.collected.google') }}</p>
           <h3>{{ t('privacy.collected.announcementsTitle') }}</h3>
           <p>{{ t('privacy.collected.announcements') }}</p>
+          <h3>{{ t('privacy.collected.interestsTitle') }}</h3>
+          <p>{{ t('privacy.collected.interests') }}</p>
           <h3>{{ t('privacy.collected.demoTitle') }}</h3>
           <p>{{ t('privacy.collected.demo') }}</p>
           <h3>{{ t('privacy.collected.locationTitle') }}</h3>
@@ -73,6 +75,7 @@ const email = PRIVACY_CONTACT
           <ul>
             <li>{{ t('privacy.retention.account') }}</li>
             <li>{{ t('privacy.retention.announcements') }}</li>
+            <li>{{ t('privacy.retention.interests') }}</li>
           </ul>
         </section>
 

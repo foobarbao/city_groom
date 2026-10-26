@@ -34,6 +34,14 @@ export interface ItemIcon {
   path?: string
 }
 
+/**
+ * Line pictogram (24×24 SVG path) of an electric scooter, for the scooter
+ * lockers (Ionicons has none): two wheels, the deck, the stem and the
+ * handlebar.
+ */
+export const SCOOTER_PATH =
+  'M3 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M17 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M5 16l1-1h9l4 1M19 16L16 4M14 4h4'
+
 /** Icon of the consigne bookings. */
 export const CONSIGNE_ICON: ItemIcon = { icon: lockClosedOutline }
 /** Icon of the quotes waiting for the customer. */

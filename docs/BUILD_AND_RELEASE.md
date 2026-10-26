@@ -1,6 +1,6 @@
 # Build and release
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-26
 >
 > How the customer app becomes an Android app. Written for web developers new
 > to mobile: each step is compared with its web equivalent.
@@ -71,8 +71,30 @@ HTTPS backend avoids the issue.
 
 ## 4. Signing and publication (later)
 
-Not done yet; nothing is published on the Play Store for now. Meanwhile,
-customers install the web app on their home screen from `https://citypal.fr`
+Not done yet; nothing is published on the Play Store for now. **On hold**
+since 2026-10-26: the project owner keeps CityPal as a web app for the time
+being (docs/PRODUCT.md). Still missing before a release, as reviewed that
+day:
+
+- **Google sign-in inside the app**: Google refuses its web sign-in in an
+  app's web view, so the code turns it off on Android
+  (`apps/customer/src/services/googleIdentity.ts`); a native Capacitor
+  plugin and an "Android" OAuth client (declared with the SHA-1 of the
+  signing key) are needed. The plugin choice deserves an ADR.
+- **Launcher icons and splash screen**: still Capacitor's defaults; the
+  CityPal logo exists (docs/DESIGN.md "Brand").
+- **API address** of the Android build: `https://api.citypal.fr/api/v1`.
+- **Release signing** and an **AAB build**, e.g. in a GitHub Actions
+  workflow with the keystore kept as a repository secret.
+- On the owner's side: a Google Play developer account (one-off fee,
+  identity check), the store listing (texts, screenshots, 512 px icon,
+  1024 × 500 banner), the data safety, content rating and target audience
+  forms, the privacy policy URL (`https://citypal.fr/confidentialite`).
+  ASSUMPTION (not verified against Google's current rules): new personal
+  accounts must run a closed test with at least 12 testers for 14 days
+  before production access; check in the Play Console.
+
+Meanwhile, customers install the web app on their home screen from `https://citypal.fr`
 with the "Installer l'application" button (`apps/customer/README.md`,
 "Install on the home screen"). Checked on 2026-10-26 with Chromium on the
 `demo-site` build: the manifest is found at `/client/manifest.webmanifest`
@@ -81,9 +103,8 @@ HTTPS (served by Netlify) and, for Chrome, some engagement with the page
 before its install dialog is available
 ([criteria](https://web.dev/articles/install-criteria)).
 
-No company exists yet (owner, 2026-10-26): the Play Store account would be a
-personal one, which reportedly requires a closed test with 12 testers for 14
-days before production (`docs/PRODUCT.md` open question 15).
+No company exists yet (owner, 2026-10-26), so the developer account would be
+a personal one (`docs/PRODUCT.md` open question 16).
 
 - A **release keystore** must be created once and **backed up outside the
   repository**: losing it makes updates of the published app impossible.
