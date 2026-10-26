@@ -41,7 +41,10 @@ The service starts in **Grenoble**.
 The app is called **CityPal** (decided by the project owner on 2026-10-24,
 replacing the working names "City Groom" and "Reliance"; the repository
 keeps the technical name `city_groom`). The provisional Android application
-id is `fr.citypal.app` (see open questions). Whatever the name, the brand
+id is `fr.citypal.app` (see open questions). **Store release on hold** (owner,
+2026-10-26): customers use the web app (citypal.fr) for now; the Play Store
+publication will be reconsidered later (steps in docs/BUILD_AND_RELEASE.md
+§4). Whatever the name, the brand
 must convey a strong **eco-social** message centred on the idea of
 **reconnecting** people with their city and its local businesses.
 
@@ -599,10 +602,10 @@ Topics the project owner asked to be reminded of:
   2026-10-24.)_
 - **Ecology and digital axis** ("Notre engagement"): on hold, draft page
   ready at `/engagement` (not linked). _(Stated on 2026-10-25.)_
-- **Making Google sign-in and the Google Agenda sync work for real** needs
-  two things from the project owner: the Google OAuth client ID
-  (docs/GOOGLE_SIGN_IN.md), and the Render + Neon backend
-  (docs/BUILD_AND_RELEASE.md §6) for the customer sign-in. _(Asked on
+- **Google Agenda sync for real**: Google sign-in works on citypal.fr
+  (confirmed by the project owner on 2026-10-26); the Agenda sync has not
+  been tried with a real account yet, and opening sign-in to every user
+  needs the consent screen published (docs/GOOGLE_SIGN_IN.md). _(Asked on
   2026-10-25 to be reminded later.)_
 - **Scooter lockers** (§4d): the owner will study the locker vendors'
   options (dimensions, doors, charging); then replace the concept sizes.

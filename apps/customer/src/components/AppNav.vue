@@ -8,7 +8,7 @@
  * (Ionic split pane, `App.vue`). The groups leading to the current screen
  * unfold on their own.
  */
-import { NavTree } from '@city-groom/ui'
+import { BrandMark, NavTree } from '@city-groom/ui'
 import { IonContent, menuController } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -53,7 +53,7 @@ function navigated(): void {
   <ion-content class="app-nav">
     <nav class="nav" :aria-label="t('nav.label')">
       <router-link class="brand" to="/accueil" @click="navigated">
-        <span class="logo" aria-hidden="true">C</span>
+        <brand-mark :size="32" />
         <span>
           <strong>{{ t('app.name') }}</strong>
           <span class="who">{{
@@ -103,15 +103,5 @@ function navigated(): void {
 .who {
   font-size: 13px;
   color: var(--cg-ink-soft);
-}
-.logo {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--cg-radius-s);
-  background: linear-gradient(135deg, var(--cg-leaf), var(--cg-teal));
-  color: #ffffff;
-  font-weight: 700;
 }
 </style>
