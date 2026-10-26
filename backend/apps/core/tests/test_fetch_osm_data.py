@@ -15,8 +15,16 @@ def test_fetch_osm_data_saves_every_dataset(tmp_path: Any) -> None:
     ) as fetch:
         call_command("fetch_osm_data", "--output-dir", str(tmp_path))
 
-    assert fetch.call_count == 3
-    for name in ("tram_stops", "strategic_sites", "merchants"):
+    names = (
+        "tram_stops",
+        "strategic_sites",
+        "merchants",
+        "education",
+        "grenoble_boundary",
+        "company_sites",
+    )
+    assert fetch.call_count == len(names)
+    for name in names:
         assert json.loads((tmp_path / f"{name}.json").read_text()) == payload
 
 

@@ -46,6 +46,7 @@ class SiteCategory(models.TextChoices):
     TOURISM = "tourism", "Site touristique"
     TRANSPORT = "transport", "Gare"
     CAMPUS = "campus", "Campus"
+    SCHOOL = "school", "Lycée"
     SHOPPING = "shopping", "Centre commercial ou marché"
     HEALTH = "health", "Hôpital"
     BUSINESS = "business", "Pôle d'activité"

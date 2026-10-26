@@ -148,3 +148,88 @@ def test_required_sites_skip_the_selection_rules() -> None:
     assert [(category, site.name) for category, site in pairs] == [
         ("business", "Inovallée Montbonnot")
     ]
+
+
+def test_education_sites_keep_lycees_and_higher_education_apart() -> None:
+    from apps.lockers.osm import parse_education_sites
+
+    payload = {
+        "elements": [
+            {
+                "type": "node",
+                "id": 1,
+                "lat": 45.19,
+                "lon": 5.72,
+                "tags": {"amenity": "school", "name": "Lycée Fictif", "school:FR": "lycée"},
+            },
+            {
+                "type": "node",
+                "id": 2,
+                "lat": 45.20,
+                "lon": 5.76,
+                "tags": {"amenity": "university", "name": "UFR A"},
+            },
+            # Same campus, 50 m away: skipped.
+            {
+                "type": "node",
+                "id": 3,
+                "lat": 45.2004,
+                "lon": 5.76,
+                "tags": {"amenity": "university", "name": "UFR B"},
+            },
+            # Collège: not a lycée, skipped.
+            {
+                "type": "node",
+                "id": 4,
+                "lat": 45.18,
+                "lon": 5.70,
+                "tags": {"amenity": "school", "name": "Collège X", "school:FR": "collège"},
+            },
+        ]
+    }
+
+    pairs = parse_education_sites(payload)
+
+    assert [(category, site.name) for category, site in pairs] == [
+        ("school", "Lycée Fictif"),
+        ("campus", "UFR A"),
+    ]
+
+
+def test_town_boundary_rings_are_joined_and_used_for_point_tests() -> None:
+    from apps.lockers.osm import parse_town_boundary, point_in_rings
+
+    # A square split into two ways, the second one reversed.
+    payload = {
+        "elements": [
+            {
+                "type": "relation",
+                "members": [
+                    {
+                        "type": "way",
+                        "role": "outer",
+                        "geometry": [
+                            {"lon": 0, "lat": 0},
+                            {"lon": 1, "lat": 0},
+                            {"lon": 1, "lat": 1},
+                        ],
+                    },
+                    {
+                        "type": "way",
+                        "role": "outer",
+                        "geometry": [
+                            {"lon": 0, "lat": 0},
+                            {"lon": 0, "lat": 1},
+                            {"lon": 1, "lat": 1},
+                        ],
+                    },
+                ],
+            }
+        ]
+    }
+
+    rings = parse_town_boundary(payload)
+
+    assert len(rings) == 1
+    assert point_in_rings(0.5, 0.5, rings)
+    assert not point_in_rings(1.5, 0.5, rings)

@@ -119,6 +119,7 @@ export default {
     tourism: 'Site touristique',
     transport: 'Gare',
     campus: 'Campus',
+    school: 'Lycée',
     shopping: 'Marché, centre commercial',
     health: 'Hôpital',
     business: 'Pôle d’activité',

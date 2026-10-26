@@ -18,7 +18,7 @@ import math
 from typing import Any
 
 from apps.core.osm import METRO_BBOX, fetch_overpass
-from apps.lockers.simulation import SimulatedSite
+from apps.lockers.simulation import SimulatedSite, distance_m
 
 __all__ = [
     "STRATEGIC_CATEGORIES",
@@ -122,6 +122,115 @@ COMPANY_SITES_QUERY = (
     f'  nwr["landuse"="industrial"]["name"]({METRO_BBOX});\n'
     ");\nout center tags;\n"
 )
+
+# Minimum distance between two education lockers, in metres: a campus has
+# many university buildings close together. ASSUMPTION, to review.
+EDUCATION_MIN_SPACING_M = 200
+
+
+def _is_lycee(tags: dict[str, str]) -> bool:
+    return tags.get("amenity") == "school" and (
+        "lycée" in tags.get("school:FR", "") or tags.get("name", "").startswith("Lycée")
+    )
+
+
+def parse_education_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
+    """Return every lycée and higher-education site, one locker each.
+
+    Lycées get the "school" category, universities and colleges "campus".
+    Sites closer than ``EDUCATION_MIN_SPACING_M`` to an already kept one are
+    skipped (central sites first), so a campus gets a few lockers rather than
+    one per building. Deterministic.
+    """
+    candidates: list[tuple[str, SimulatedSite]] = []
+    seen_names: set[str] = set()
+    for element in payload.get("elements", []):
+        tags = element.get("tags", {})
+        name = tags.get("name", "").strip()
+        position = element.get("center") or element
+        if not name or "lon" not in position or name in seen_names:
+            continue
+        if _is_lycee(tags):
+            category = "school"
+        elif tags.get("amenity") in ("university", "college"):
+            category = "campus"
+        else:
+            continue
+        seen_names.add(name)
+        candidates.append(
+            (
+                category,
+                SimulatedSite(
+                    name=name,
+                    longitude=position["lon"],
+                    latitude=position["lat"],
+                    source=f"OpenStreetMap, {element['type']} {element['id']} ({category})",
+                ),
+            )
+        )
+    candidates.sort(
+        key=lambda pair: (_distance_km(pair[1].latitude, pair[1].longitude), pair[1].name)
+    )
+    kept: list[tuple[str, SimulatedSite]] = []
+    for category, site in candidates:
+        if all(distance_m(site, other) >= EDUCATION_MIN_SPACING_M for _, other in kept):
+            kept.append((category, site))
+    return kept
+
+
+def parse_town_boundary(payload: dict[str, Any]) -> list[list[tuple[float, float]]]:
+    """Return the outer rings (lon, lat) of a town boundary relation (``out geom``).
+
+    OpenStreetMap stores the boundary as ways in any order and direction;
+    they are joined end to end into closed rings.
+    """
+    segments: list[list[tuple[float, float]]] = []
+    for element in payload.get("elements", []):
+        for member in element.get("members", []):
+            if member.get("type") == "way" and member.get("role") in ("outer", ""):
+                points = [(p["lon"], p["lat"]) for p in member.get("geometry", [])]
+                if len(points) >= 2:
+                    segments.append(points)
+    rings: list[list[tuple[float, float]]] = []
+    while segments:
+        ring = segments.pop(0)
+        progress = True
+        while ring[0] != ring[-1] and progress:
+            progress = False
+            for i, segment in enumerate(segments):
+                if segment[0] == ring[-1]:
+                    ring += segment[1:]
+                elif segment[-1] == ring[-1]:
+                    ring += segment[-2::-1]
+                elif segment[-1] == ring[0]:
+                    ring = segment[:-1] + ring
+                elif segment[0] == ring[0]:
+                    ring = segment[:0:-1] + ring
+                else:
+                    continue
+                segments.pop(i)
+                progress = True
+                break
+        if ring[0] == ring[-1] and len(ring) >= 4:
+            rings.append(ring)
+    return rings
+
+
+def point_in_rings(
+    longitude: float, latitude: float, rings: list[list[tuple[float, float]]]
+) -> bool:
+    """Whether a point lies inside one of the rings (ray casting)."""
+    for ring in rings:
+        inside = False
+        for (x1, y1), (x2, y2) in zip(ring, ring[1:], strict=False):
+            if (y1 > latitude) != (y2 > latitude):
+                x_cross = x1 + (latitude - y1) * (x2 - x1) / (y2 - y1)
+                if longitude < x_cross:
+                    inside = not inside
+        if inside:
+            return True
+    return False
+
 
 # OSM tag values that identify each category in a response.
 _CATEGORY_MATCHERS: tuple[tuple[str, str, frozenset[str]], ...] = (
