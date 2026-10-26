@@ -112,6 +112,24 @@ npm run build:demo                     # -> dist-demo/index.html
 
 Without the extract, the demo shows the list of lockers instead of the map.
 
+## Install on the home screen (PWA)
+
+Until the app is on the Play Store, customers install the web app on their
+home screen with the **"Installer l'application"** button (home screen and
+side menu, hidden once installed and in the Android app). No install pop-up
+is shown when the app opens: the browser's own banner is suppressed
+(`src/services/installApp.ts`, owner's decision of 2026-10-26).
+
+- `public/manifest.webmanifest`: name, colours, `display: standalone`; paths
+  are relative, so it works under `/` and under `/client/` (hosted site).
+- `public/icons/`: **provisional** icons (192, 512, maskable 512 and the
+  180 px `apple-touch-icon` for iOS), the menu's white "C" on the leaf → teal
+  gradient rendered with Playwright. PROD: replace with the real logo.
+- Chrome, Edge and Samsung Internet open their install dialog from the
+  button; Safari (iOS) and Firefox have none, so the button explains how to
+  install from the browser's menu.
+
 ## Not done yet
 
-- PWA manifest and offline support.
+- Offline support (service worker): not needed to install the app; an offline
+  strategy is a structural decision for a future ADR.

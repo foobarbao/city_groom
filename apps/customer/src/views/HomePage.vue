@@ -17,6 +17,7 @@ import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
+import InstallAppButton from '../components/InstallAppButton.vue'
 import ListRow from '../components/ListRow.vue'
 import {
   CATEGORY_ORDER,
@@ -181,6 +182,8 @@ const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(cat
           <strong>{{ t('home.map') }}</strong>
           <span class="muted small">{{ t('home.rounds', { times: roundTimes }) }}</span>
         </router-link>
+
+        <install-app-button />
 
         <demo-notice />
         <router-link class="privacy-link small muted" to="/confidentialite">{{

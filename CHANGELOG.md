@@ -9,6 +9,11 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Customer app installable on the home screen (PWA): web app manifest,
+  provisional icons, "Installer l'application" button on the home screen and
+  in the side menu (browser install dialog, or instructions on Safari and
+  Firefox), hidden once installed; the browser's own install banner is
+  suppressed at opening.
 - ADR-0011: customer announcements sent with Brevo (free plan), first by
   importing the admin's CSV export, later through an API sync; alternatives
   (Odoo, Twenty, Mautic, in-house) recorded. Owner's mailing answers in

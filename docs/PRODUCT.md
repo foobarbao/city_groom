@@ -354,6 +354,10 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
   compartments, one tap to drop off now or book a slot. The position is
   asked only when the customer opens this view (or "Près de moi" in a locker
   list), used on the device only, never stored nor sent.
+- **install the app on the home screen** (decided 2026-10-26), until it is on
+  the Play Store: an "Installer l'application" button on the home screen and
+  in the side menu, hidden once installed; **no install pop-up** when the app
+  opens.
 
 ### Ratings and reviews
 
@@ -661,7 +665,7 @@ Questions to the project owner. Answers are moved into the sections above.
     be checked on Google's pages: new personal accounts must run a closed
     test with 12 testers for 14 consecutive days before production;
     organisation accounts, which need a D-U-N-S number (hence a registered
-    company), are exempt. On 2026-10-26 the owner called CityPal "the
-    company": has the legal entity been created since question 7 (which
-    records none on 2026-10-25)? It also changes the data controller in the
-    privacy policy.
+    company), are exempt. **Partly answered 2026-10-26**: no company exists
+    yet, so an organisation account is not possible for now; meanwhile the
+    web app is installable on the home screen (section 4c). Remaining: open
+    a personal account now, or wait for the company?

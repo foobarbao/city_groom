@@ -71,7 +71,19 @@ HTTPS backend avoids the issue.
 
 ## 4. Signing and publication (later)
 
-Not done yet; nothing is published on the Play Store for now.
+Not done yet; nothing is published on the Play Store for now. Meanwhile,
+customers install the web app on their home screen from `https://citypal.fr`
+with the "Installer l'application" button (`apps/customer/README.md`,
+"Install on the home screen"). Checked on 2026-10-26 with Chromium on the
+`demo-site` build: the manifest is found at `/client/manifest.webmanifest`
+and Chrome reports no installability error. Installability also requires
+HTTPS (served by Netlify) and, for Chrome, some engagement with the page
+before its install dialog is available
+([criteria](https://web.dev/articles/install-criteria)).
+
+No company exists yet (owner, 2026-10-26): the Play Store account would be a
+personal one, which reportedly requires a closed test with 12 testers for 14
+days before production (`docs/PRODUCT.md` open question 15).
 
 - A **release keystore** must be created once and **backed up outside the
   repository**: losing it makes updates of the published app impossible.
