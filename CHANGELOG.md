@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- The hosted customer app talks to `https://api.citypal.fr` (Render
+  variables updated for citypal.fr); company lockers named after their
+  place (area or town and street), no company name.
 - Locker network by place (owner's decisions of 2026-10-26): a small mixed
   locker (services + consigne) at every lycée and higher-education site,
   large lockers in the town of Grenoble, mixed lockers near 14 validated
