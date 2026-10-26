@@ -8,6 +8,8 @@
  * `src/assets/mission/` are resized copies (1600 px wide); copies of CC BY-SA
  * photos stay under CC BY-SA. Sources and licences checked on 2026-10-24.
  */
+import type { StoryPhoto } from '@city-groom/ui'
+
 import caserneDeBonneAllee from '../assets/mission/caserne-de-bonne-allee.jpg'
 import caserneDeBonneCanal from '../assets/mission/caserne-de-bonne-canal.jpg'
 import caserneDeBonneJardin from '../assets/mission/caserne-de-bonne-jardin.jpg'
@@ -17,22 +19,8 @@ import jardinDeVilleHotelDeVille from '../assets/mission/jardin-de-ville-hotel-d
 import jardinDeVilleMassifs from '../assets/mission/jardin-de-ville-massifs.jpg'
 import jardinDeVillePalmiers from '../assets/mission/jardin-de-ville-palmiers.jpg'
 
-/** One background photo and the credit its licence requires. */
-export interface MissionPhoto {
-  /** File name in `src/assets/mission/`, unique. */
-  file: string
-  /** URL of the bundled file (resolved by Vite). */
-  src: string
-  /** CSS `background-position` keeping the subject in frame on narrow screens. */
-  focus: string
-  /** Title of the original on Wikimedia Commons. */
-  title: string
-  author: string
-  license: string
-  licenseUrl: string
-  /** Page of the original on Wikimedia Commons. */
-  sourceUrl: string
-}
+/** One background photo and the credit its licence requires (see `StoryPhoto`). */
+export type MissionPhoto = StoryPhoto
 
 const CC_BY_2 = { license: 'CC BY 2.0', licenseUrl: 'https://creativecommons.org/licenses/by/2.0/' }
 const VELLUT = 'Guilhem Vellut'

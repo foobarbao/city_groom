@@ -22,6 +22,8 @@ export interface NavItem {
   also?: string[];
   /** Key of the counter shown next to the item, if any. */
   badge?: string;
+  /** Label key of a short status shown next to the item (e.g. "Bientôt"). */
+  tag?: string;
 }
 
 /** A folding group of entries. */
@@ -72,10 +74,11 @@ export function navTrail(nodes: NavNode[], route: string): NavNode[] {
   return [];
 }
 
-/** Every label key of a tree (to check them against the app's messages). */
+/** Every label key of a tree, tags included (to check them against the app's messages). */
 export function navLabels(nodes: NavNode[]): string[] {
   return nodes.flatMap((n) => [
     n.label,
+    ...(n.kind === "item" && n.tag ? [n.tag] : []),
     ...(n.kind === "group" ? navLabels(n.children) : []),
   ]);
 }

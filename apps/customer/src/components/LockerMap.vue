@@ -15,6 +15,8 @@
  * - `me`: the customer's position, drawn as a blue dot (optional).
  * - `compact`: embedded in a page rather than full screen (credit in the
  *   bottom corner instead of under the welcome card).
+ * - `selected`: code of the chosen locker, drawn with a ring; the map
+ *   glides to it when it changes (optional).
  *
  * Emits:
  * - `select(code)`: when the user taps a locker.
@@ -26,6 +28,7 @@ import type { FeatureCollection, Point } from 'geojson'
 import {
   AttributionControl,
   GeolocateControl,
+  type FilterSpecification,
   type GeoJSONSource,
   Map as MapLibreMap,
   type MapLayerMouseEvent,
@@ -52,6 +55,8 @@ const props = withDefaults(
     me?: [number, number] | null
     /** Embedded in a page instead of full screen. */
     compact?: boolean
+    /** Code of the chosen locker. */
+    selected?: string | null
   }>(),
   {
     merchants: undefined,
@@ -59,6 +64,7 @@ const props = withDefaults(
     zoom: DEFAULT_MAP_ZOOM,
     me: null,
     compact: false,
+    selected: null,
   },
 )
 
@@ -84,6 +90,11 @@ function mePoint(me: [number, number] | null): FeatureCollection {
     type: 'FeatureCollection',
     features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: me }, properties: {} }],
   }
+}
+
+/** Layer filter keeping only the chosen locker (none when nothing is chosen). */
+function selectedFilter(code: string | null): FilterSpecification {
+  return ['==', ['get', 'code'], code ?? '']
 }
 
 function withTotals(collection: LockerFeatureCollection): FeatureCollection {
@@ -187,6 +198,19 @@ onMounted(async () => {
         'circle-blur': 0.05,
       },
     })
+    // The chosen locker: a wide emerald ring around its marker.
+    map.addLayer({
+      id: 'lockers-selected',
+      type: 'circle',
+      source: SOURCE_ID,
+      filter: selectedFilter(props.selected),
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 11, 12, 16, 22],
+        'circle-color': 'rgba(0, 0, 0, 0)',
+        'circle-stroke-color': '#0e7a5c',
+        'circle-stroke-width': 4,
+      },
+    })
     map.addLayer({
       id: 'lockers-label',
       type: 'symbol',
@@ -251,6 +275,20 @@ watch(
   (me) => {
     const source = map?.getSource(ME_SOURCE_ID) as GeoJSONSource | undefined
     source?.setData(mePoint(me))
+  },
+)
+
+watch(
+  () => props.selected,
+  (code) => {
+    map?.setFilter('lockers-selected', selectedFilter(code))
+    const feature = props.lockers.features?.find((f) => f.properties?.code === code)
+    const coordinates = feature?.geometry?.coordinates
+    if (map && coordinates)
+      map.easeTo({
+        center: [coordinates[0] as number, coordinates[1] as number],
+        zoom: Math.max(map.getZoom(), 14),
+      })
   },
 )
 

@@ -1,11 +1,11 @@
 /**
  * @file Scooter lockers, an offer announced as "Bientôt disponible"
- * (docs/PRODUCT.md §4d, docs/LOCKERS.md §7): lockers of 2 to 5 places,
- * each holding one electric scooter, used like the consigne (24 hours at
- * most).
+ * (docs/PRODUCT.md §4d, docs/LOCKERS.md §7): **one closed locker per
+ * scooter**, some larger lockers taking two (owner, 2026-10-26), grouped side
+ * by side in a station and used like the consigne (24 hours at most).
  *
- * Concept only (owner's decision of 2026-10-26): the scooter rolls in
- * front first, perpendicular to the locker front, so each place is as
+ * Concept only (owner's decisions of 2026-10-26): the scooter rolls in
+ * front first, perpendicular to the station front, so a single locker is as
  * narrow as a handlebar. The dimensions below are sized for the largest
  * common non-folding scooters and are to be checked with locker vendors.
  */
@@ -57,16 +57,37 @@ export const REFERENCE_SCOOTERS: readonly ReferenceScooter[] = [
 ]
 
 /**
- * Inner size of one place. ASSUMPTION: the largest reference scooter plus
- * a few centimetres to roll it in without touching the walls (width 70 →
- * 75, length 149 → 155, height 136 → 140). To check with vendors.
+ * Inner size of a single locker. ASSUMPTION: the largest reference scooter
+ * plus a few centimetres to roll it in without touching the walls (width
+ * 70 → 75, length 149 → 155, height 136 → 140). To check with vendors.
  */
 export const SCOOTER_PLACE: Dimensions = { lengthCm: 155, widthCm: 75, heightCm: 140 }
 
-/** Number of places per locker (owner's example, 2026-10-26). */
-export const SCOOTER_PLACES = { min: 2, max: 5 } as const
+/** Kinds of scooter locker: one scooter, or two side by side. */
+export type ScooterLockerKind = 'single' | 'double'
 
-/** ASSUMPTION: thickness of a partition or side wall between two places. */
+/** Scooters held and inner size of each kind of locker. */
+export const SCOOTER_LOCKERS: Record<ScooterLockerKind, { scooters: number; size: Dimensions }> = {
+  single: { scooters: 1, size: SCOOTER_PLACE },
+  // ASSUMPTION: two single widths, without the partition between them.
+  double: {
+    scooters: 2,
+    size: { ...SCOOTER_PLACE, widthCm: 2 * SCOOTER_PLACE.widthCm },
+  },
+}
+
+/**
+ * Example station drawn on the page. ASSUMPTION: a layout for illustration
+ * (three single lockers and one double); real stations depend on the place.
+ */
+export const EXAMPLE_STATION: readonly ScooterLockerKind[] = [
+  'single',
+  'single',
+  'double',
+  'single',
+]
+
+/** ASSUMPTION: thickness of a partition or side wall between two lockers. */
 export const PARTITION_CM = 5
 
 /** Whether a scooter of this size fits in a place, unfolded. */
@@ -79,9 +100,14 @@ export function fitsScooterPlace(size: Dimensions, place: Dimensions = SCOOTER_P
 }
 
 /**
- * Width of the locker front for a number of places side by side: the
- * places plus one partition between each and the two side walls.
+ * Width of a station front: its lockers side by side, one partition between
+ * each and the two side walls.
  */
-export function lockerFrontCm(places: number, place: Dimensions = SCOOTER_PLACE): number {
-  return places * place.widthCm + (places + 1) * PARTITION_CM
+export function stationFrontCm(kinds: readonly ScooterLockerKind[]): number {
+  const inner = kinds.reduce((sum, kind) => sum + SCOOTER_LOCKERS[kind].size.widthCm, 0)
+  return inner + (kinds.length + 1) * PARTITION_CM
 }
+
+/** Number of scooters a station holds. */
+export const stationScooters = (kinds: readonly ScooterLockerKind[]): number =>
+  kinds.reduce((sum, kind) => sum + SCOOTER_LOCKERS[kind].scooters, 0)

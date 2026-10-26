@@ -9,6 +9,20 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Locker choice redesigned: a map beside a list panel built like the side
+  menu (folding by kind of place, icons, free compartments), search and a
+  "Près de moi" button instead of the row of place chips; tapping a locker
+  on the map or in the list chooses it, and the consigne booking moves on
+  to the next step; the chosen locker is ringed on the map.
+- Scooter lockers made visible: "Casiers à trottinettes · Bientôt" in the
+  Consigne menu (menu entries can carry a tag) and a card under the locker
+  choice of a consigne booking.
+- Scooter lockers page rebuilt as a photo story like the mission page
+  (free-licensed photos, credited), with the owner's concept of one locker
+  per scooter and some double lockers for two; station sketch with single
+  and double lockers.
+- Shared photo-story components in `@city-groom/ui` (`StoryBackdrop`,
+  `StoryCredits`, `useStory`), now also used by the mission page.
 - CityPal logo: a "C" sprouting a honey leaf on an emerald-to-teal tile
   (`packages/ui/brand/citypal-mark.svg`, `BrandMark` component) in the
   side menu of both apps, plus favicon, home-screen icons and web

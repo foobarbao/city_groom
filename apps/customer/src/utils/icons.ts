@@ -1,13 +1,25 @@
 /**
  * @file Pictograms of the customer app (docs/DESIGN.md "Icons, not emoji"):
  * line drawings for the service categories, and the icon of each list item
- * (order, consigne, quote), so every row of a list starts with an icon.
+ * (order, consigne, quote), so every row of a list starts with an icon;
+ * the kinds of place of the lockers.
  */
 import {
   barbellOutline,
+  businessOutline,
+  cameraOutline,
+  cartOutline,
   documentTextOutline,
+  footballOutline,
+  libraryOutline,
+  locationOutline,
   lockClosedOutline,
+  medkitOutline,
+  restaurantOutline,
+  schoolOutline,
   shirtOutline,
+  subwayOutline,
+  trainOutline,
 } from 'ionicons/icons'
 
 import type { CustomerOrder } from '../stores/account'
@@ -41,6 +53,32 @@ export interface ItemIcon {
  */
 export const SCOOTER_PATH =
   'M3 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M17 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0M5 16l1-1h9l4 1M19 16L16 4M14 4h4'
+
+/**
+ * The scooter pictogram as an SVG data URL, for places that take an Ionicons
+ * icon (the side menu), written like Ionicons' own (unencoded, single
+ * quotes). Strokes are set on the path itself, since Ionicons paints its
+ * own icons by fill.
+ */
+export const SCOOTER_ICON = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='${SCOOTER_PATH}' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/></svg>`
+
+/** Ionicons icon of each kind of place hosting lockers (`sites.*` labels). */
+export const SITE_ICONS: Record<string, string> = {
+  tram_stop: subwayOutline,
+  tourism: cameraOutline,
+  transport: trainOutline,
+  campus: libraryOutline,
+  school: schoolOutline,
+  shopping: cartOutline,
+  health: medkitOutline,
+  business: businessOutline,
+  square: restaurantOutline,
+  leisure: footballOutline,
+  other: locationOutline,
+}
+
+/** Icon of a kind of place, a pin for unknown kinds. */
+export const siteIcon = (category: string): string => SITE_ICONS[category] ?? locationOutline
 
 /** Icon of the consigne bookings. */
 export const CONSIGNE_ICON: ItemIcon = { icon: lockClosedOutline }

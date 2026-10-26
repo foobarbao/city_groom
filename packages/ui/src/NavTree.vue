@@ -83,6 +83,7 @@ const toneOf = (index: number): string => TONES[index % TONES.length] as string;
         <span v-if="node.badge && badges[node.badge]" class="badge">{{
           badges[node.badge]
         }}</span>
+        <span v-else-if="node.tag" class="tag">{{ t(node.tag) }}</span>
       </router-link>
       <template v-else>
         <button
@@ -200,6 +201,16 @@ const toneOf = (index: number): string => TONES[index % TONES.length] as string;
   font-size: 12px;
   font-weight: 600;
   text-align: center;
+}
+/* A quiet status ("Bientôt"): outlined honey, lighter than a counter. */
+.tag {
+  padding: 1px 7px;
+  border: 1px solid color-mix(in srgb, var(--cg-sun) 70%, transparent);
+  border-radius: var(--cg-radius-pill);
+  color: var(--cg-sun-strong);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 @media (prefers-reduced-motion: reduce) {
   .chevron {
