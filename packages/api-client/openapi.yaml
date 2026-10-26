@@ -89,6 +89,67 @@ paths:
               schema:
                 $ref: '#/components/schemas/Me'
           description: ''
+  /api/v1/auth/me/interests/:
+    post:
+      operationId: auth_me_interests_create
+      description: 'Records that the signed-in user is interested in an offer announced
+        as coming soon, so the team can measure demand before opening it. Idempotent:
+        registering twice keeps one record. Returns the profile, whose `interests`
+        lists the offers the user is interested in.'
+      summary: Register interest in an upcoming offer
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferInterestRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OfferInterestRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OfferInterestRequestRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+          description: ''
+  /api/v1/auth/me/interests/{offer}/:
+    delete:
+      operationId: auth_me_interests_destroy
+      description: 'Deletes the record of the user''s interest in the offer. Idempotent:
+        withdrawing an interest that does not exist succeeds. `404` for an unknown
+        offer code.'
+      summary: Withdraw interest in an upcoming offer
+      parameters:
+      - in: path
+        name: offer
+        schema:
+          type: string
+        required: true
+      tags:
+      - accounts
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - ApiKeyAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Me'
+          description: ''
+        '404':
+          description: Unknown offer code.
   /api/v1/auth/sign-out/:
     post:
       operationId: auth_sign_out_create
@@ -606,6 +667,7 @@ components:
               - tourism
               - transport
               - campus
+              - school
               - shopping
               - health
               - business
@@ -621,6 +683,7 @@ components:
                 * `tourism` - Site touristique
                 * `transport` - Gare
                 * `campus` - Campus
+                * `school` - Lycée
                 * `shopping` - Centre commercial ou marché
                 * `health` - Hôpital
                 * `business` - Pôle d'activité
@@ -703,6 +766,7 @@ components:
             * `tourism` - Site touristique
             * `transport` - Gare
             * `campus` - Campus
+            * `school` - Lycée
             * `shopping` - Centre commercial ou marché
             * `health` - Hôpital
             * `business` - Pôle d'activité
@@ -823,12 +887,18 @@ components:
           title: Accepte les annonces
           description: A coché la case pour recevoir les annonces de CityPal (lancement,
             offres).
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpcomingOfferEnum'
+          readOnly: true
       required:
       - announcements
       - date_joined
       - email
       - first_name
       - id
+      - interests
       - last_name
       - picture_url
       - signed_in_with_google
@@ -959,6 +1029,19 @@ components:
       - in_service
       - in_use
       - lockers
+    OfferInterestRequestRequest:
+      type: object
+      description: Upcoming offer the signed-in user is interested in.
+      properties:
+        offer:
+          allOf:
+          - $ref: '#/components/schemas/UpcomingOfferEnum'
+          description: |-
+            Code of an offer announced as coming soon (e.g. `scooter_lockers`).
+
+            * `scooter_lockers` - Casiers à trottinettes
+      required:
+      - offer
     OperatorCompartment:
       type: object
       description: Compartment with its current status.
@@ -1077,6 +1160,7 @@ components:
               - tourism
               - transport
               - campus
+              - school
               - shopping
               - health
               - business
@@ -1092,6 +1176,7 @@ components:
                 * `tourism` - Site touristique
                 * `transport` - Gare
                 * `campus` - Campus
+                * `school` - Lycée
                 * `shopping` - Centre commercial ou marché
                 * `health` - Hôpital
                 * `business` - Pôle d'activité
@@ -1187,6 +1272,7 @@ components:
             * `tourism` - Site touristique
             * `transport` - Gare
             * `campus` - Campus
+            * `school` - Lycée
             * `shopping` - Centre commercial ou marché
             * `health` - Hôpital
             * `business` - Pôle d'activité
@@ -1351,6 +1437,7 @@ components:
       - tourism
       - transport
       - campus
+      - school
       - shopping
       - health
       - business
@@ -1363,6 +1450,7 @@ components:
         * `tourism` - Site touristique
         * `transport` - Gare
         * `campus` - Campus
+        * `school` - Lycée
         * `shopping` - Centre commercial ou marché
         * `health` - Hôpital
         * `business` - Pôle d'activité
@@ -1410,6 +1498,11 @@ components:
       - height_cm
       - name
       - width_cm
+    UpcomingOfferEnum:
+      enum:
+      - scooter_lockers
+      type: string
+      description: '* `scooter_lockers` - Casiers à trottinettes'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
@@ -1427,7 +1520,7 @@ components:
       description: Token-based authentication with required prefix "Token"
 tags:
 - name: accounts
-  description: Customer sign-in (Google) and profile.
+  description: Customer sign-in (Google), profile and interest in upcoming offers.
 - name: lockers
   description: Public locker data (map, locker fronts, sizes).
 - name: merchants

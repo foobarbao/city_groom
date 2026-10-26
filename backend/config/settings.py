@@ -194,9 +194,13 @@ SPECTACULAR_SETTINGS = {
         "LockerStatusEnum": "apps.lockers.models.Locker.Status",
         "CompartmentStatusEnum": "apps.lockers.models.Compartment.Status",
         "AccessMethodEnum": "apps.lockers.models.AccessMethod",
+        "UpcomingOfferEnum": "apps.accounts.models.UpcomingOffer",
     },
     "TAGS": [
-        {"name": "accounts", "description": "Customer sign-in (Google) and profile."},
+        {
+            "name": "accounts",
+            "description": "Customer sign-in (Google), profile and interest in upcoming offers.",
+        },
         {"name": "lockers", "description": "Public locker data (map, locker fronts, sizes)."},
         {"name": "merchants", "description": "Local businesses (public data)."},
         {"name": "operations", "description": "Operator data: occupancy, statistics, events."},

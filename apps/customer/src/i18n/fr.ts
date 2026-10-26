@@ -570,9 +570,50 @@ export default {
       'Déposez votre article à {locker} : un casier au format {size} vous est attribué à votre arrivée devant la machine.',
     donePickup: 'Retrait : {locker}, {day} entre {from} et {to}.',
   },
+  scooters: {
+    title: 'Casiers à trottinettes',
+    soon: 'Bientôt disponible',
+    wip: 'En cours de conception',
+    teaser: 'Garez votre trottinette électrique à l’abri, même une grosse.',
+    intro:
+      'Garez votre trottinette électrique à l’abri, dans un casier fermé que vous ouvrez avec l’application. Rien n’est encore réservable : nous préparons l’offre.',
+    concept: {
+      title: 'Le concept',
+      places: 'Des casiers de {min} à {max} places, une trottinette par place.',
+      slim: 'Un format fin : la trottinette entre de face, chaque place n’est pas plus large qu’un guidon.',
+      consigne:
+        'Comme la consigne : vous déposez, vous récupérez au plus tard 24 h après le dépôt, depuis l’application.',
+    },
+    front: {
+      title: 'À quoi ressemblerait un casier',
+      places: 'Nombre de places',
+      placesCount: '{n} places',
+      alt: 'Façade d’un casier de {n} places, environ {width} m de large',
+      size: 'Environ {width} m de large, {depth} cm de profondeur et {height} cm de haut.',
+    },
+    fit: {
+      title: 'Quelles trottinettes ?',
+      place:
+        'Chaque place mesure {length} cm de long, {width} cm de large et {height} cm de haut : assez pour les grosses trottinettes, même celles dont le guidon ne se replie pas.',
+      size: '{length} × {width} × {height} cm',
+      note: 'Trottinettes dépliées, longueur × largeur × hauteur, d’après les fabricants et revendeurs. Les mesures définitives dépendront du fabricant des casiers.',
+    },
+    interest: {
+      title: 'Ça vous intéresse ?',
+      text: 'Dites-le-nous : nous comptons les personnes intéressées pour choisir où installer les premiers casiers.',
+      cta: 'Ça m’intéresse',
+      withdraw: 'Je ne suis plus intéressé·e',
+      recorded: 'Votre intérêt est enregistré. Merci !',
+      saved: 'C’est noté, merci !',
+      removed: 'C’est retiré.',
+      error: 'Impossible d’enregistrer votre choix pour le moment, réessayez.',
+      signInHint: 'Connectez-vous pour nous le dire.',
+      signIn: 'Se connecter',
+    },
+  },
   privacy: {
     title: 'Politique de confidentialité',
-    updated: 'Mise à jour le 25 octobre 2026.',
+    updated: 'Mise à jour le 26 octobre 2026.',
     intro:
       'Cette page explique quelles données personnelles CityPal traite, pourquoi, combien de temps, et comment exercer vos droits.',
     who: {
@@ -588,6 +629,9 @@ export default {
       announcementsTitle: 'Annonces par e-mail',
       announcements:
         'Seulement si vous cochez la case prévue (elle n’est jamais cochée d’avance), nous enregistrons votre accord et sa date, et utilisons votre adresse e-mail pour vous envoyer les annonces de CityPal (lancement, offres). Base légale : votre consentement. Vous pouvez le retirer à tout moment depuis la page Compte, par le lien présent dans chaque annonce ou en nous écrivant.',
+      interestsTitle: 'Offres à venir',
+      interests:
+        'Si vous touchez « Ça m’intéresse » sur une offre bientôt disponible (par exemple les casiers à trottinettes), nous enregistrons ce choix et sa date avec votre compte, pour mesurer l’intérêt et décider où ouvrir l’offre. Cela ne vous inscrit pas aux annonces par e-mail. Base légale : votre demande. Vous pouvez retirer votre intérêt à tout moment depuis la page de l’offre.',
       demoTitle: 'Commandes, consignes, messages et avis',
       demo: 'Dans la version actuelle (démonstration), ils restent sur votre appareil et ne sont pas envoyés à nos serveurs.',
       locationTitle: 'Position',
@@ -612,6 +656,8 @@ export default {
       title: 'Combien de temps ?',
       account: 'Compte : tant qu’il existe ; il est supprimé sur simple demande.',
       announcements: 'Accord aux annonces : jusqu’à son retrait.',
+      interests:
+        'Intérêt pour une offre à venir : jusqu’à son retrait ou la suppression du compte.',
     },
     rights: {
       title: 'Vos droits',

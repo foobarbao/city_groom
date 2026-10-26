@@ -1,6 +1,6 @@
 # Product — CityPal
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-26
 >
 > This document records the product vision and the requirements as stated by
 > the project owner. Anything not yet decided is listed under
@@ -368,6 +368,34 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
 - Real businesses that are not partners show **no rating**: no review is ever
   invented for a real business.
 
+## 4d. Scooter lockers (coming soon)
+
+Requested by the project owner on 2026-10-26: an offer announced as
+**"Bientôt disponible"**, work in progress, nothing can be booked yet.
+
+- **Concept**: lockers with **2 to 5 places**, one **electric scooter** per
+  place, in a **slim format** sized for **large non-folding scooters**.
+- **Perpendicular storage** (owner's choice, 2026-10-26): the scooter rolls
+  in front first; each place is about as wide as a handlebar. Parallel
+  storage was judged too complex. The vendor options will be studied later
+  by the owner; until then the sizes are a concept (docs/LOCKERS.md §6):
+  places of 155 × 75 × 140 cm, a front of about 1.65 m (2 places) to
+  4.05 m (5 places).
+- **Use**: like the consigne (§4b), **24 hours at most** after drop-off.
+- **Charging**: not decided; the app does not mention it.
+- **In the customer app**: a card on the Consigne screen leads to an
+  explanatory page (`/consigne/trottinettes`) marked "Bientôt disponible"
+  and "En cours de conception": concept, drawing of the locker front for 2
+  to 5 places, size of a place and the reference scooters it fits.
+- **"Ça m'intéresse"**: a signed-in customer can say they are interested;
+  the choice is **recorded on the server** with its date (owner's choice,
+  2026-10-26) so the team can measure demand; operators see the list and
+  the count in the administration. It does not subscribe to the
+  announcement e-mails (§8 / open question 14). ASSUMPTIONS: signing in is
+  required (guests are invited to sign in), so each person counts once;
+  the button is worded "Ça m'intéresse" rather than "Me prévenir", since no
+  notification is sent at launch for now.
+
 ## 5. Merchant experience
 
 The merchant space of the partner portal must be **attractive** and give merchants a clear view of
@@ -544,24 +572,26 @@ with the project owner.
 
 ## Glossary
 
-| Term (code, English) | Meaning                                                                         | UI label (French)                     |
-| -------------------- | ------------------------------------------------------------------------------- | ------------------------------------- |
-| Locker               | A connected locker unit at one location                                         | Casier / consigne _(to confirm)_      |
-| Compartment          | One lockable box inside a locker                                                | Compartiment / casier _(to confirm)_  |
-| Merchant             | Business performing a service                                                   | Commerçant                            |
-| Service offer        | A standard service sold by a merchant at a fixed price                          | Prestation                            |
-| Pack                 | A bundle of service offers sold at a pack price                                 | Pack / formule _(to confirm)_         |
-| Quote                | A merchant's price proposal for a special service                               | Devis                                 |
-| Conversation         | Chat between a customer and a merchant about a special service                  | Discussion                            |
-| Pickup slot          | Time window during which the customer collects the item                         | Créneau de retrait                    |
-| Order                | A customer's request for a service offer                                        | Commande                              |
-| Round                | A courier trip collecting and returning items                                   | Tournée                               |
-| Slot                 | Period between two rounds (morning, afternoon, evening)                         | Créneau (matinée, après-midi, soirée) |
-| Transfer             | Moving stored items to another locker at a round                                | Transfert / déplacement               |
-| Storage booking      | A customer's booking of a compartment to store personal belongings (up to 24 h) | Consigne                              |
-| Subscription         | Customer plan lowering consigne prices                                          | Abonnement                            |
-| Review               | A customer's rating (out of 5) and comment on a shop after an order             | Avis                                  |
-| Commission           | Platform fee charged to the merchant                                            | Commission                            |
+| Term (code, English) | Meaning                                                                           | UI label (French)                     |
+| -------------------- | --------------------------------------------------------------------------------- | ------------------------------------- |
+| Locker               | A connected locker unit at one location                                           | Casier / consigne _(to confirm)_      |
+| Compartment          | One lockable box inside a locker                                                  | Compartiment / casier _(to confirm)_  |
+| Merchant             | Business performing a service                                                     | Commerçant                            |
+| Service offer        | A standard service sold by a merchant at a fixed price                            | Prestation                            |
+| Pack                 | A bundle of service offers sold at a pack price                                   | Pack / formule _(to confirm)_         |
+| Quote                | A merchant's price proposal for a special service                                 | Devis                                 |
+| Conversation         | Chat between a customer and a merchant about a special service                    | Discussion                            |
+| Pickup slot          | Time window during which the customer collects the item                           | Créneau de retrait                    |
+| Order                | A customer's request for a service offer                                          | Commande                              |
+| Round                | A courier trip collecting and returning items                                     | Tournée                               |
+| Slot                 | Period between two rounds (morning, afternoon, evening)                           | Créneau (matinée, après-midi, soirée) |
+| Transfer             | Moving stored items to another locker at a round                                  | Transfert / déplacement               |
+| Storage booking      | A customer's booking of a compartment to store personal belongings (up to 24 h)   | Consigne                              |
+| Subscription         | Customer plan lowering consigne prices                                            | Abonnement                            |
+| Review               | A customer's rating (out of 5) and comment on a shop after an order               | Avis                                  |
+| Commission           | Platform fee charged to the merchant                                              | Commission                            |
+| Scooter locker       | Locker with 2 to 5 places, one electric scooter per place (coming soon)           | Casier à trottinettes                 |
+| Upcoming offer       | Offer announced in the app before it opens; customers can say they are interested | Bientôt disponible / Ça m'intéresse   |
 
 ## Reminders
 
@@ -577,6 +607,9 @@ Topics the project owner asked to be reminded of:
   been tried with a real account yet, and opening sign-in to every user
   needs the consent screen published (docs/GOOGLE_SIGN_IN.md). _(Asked on
   2026-10-25 to be reminded later.)_
+- **Scooter lockers** (§4d): the owner will study the locker vendors'
+  options (dimensions, doors, charging); then replace the concept sizes.
+  _(Stated on 2026-10-26.)_
 - **Other interfaces** (merchant, courier, operator) will be reworked after
   the customer app, including the consigne and three rounds.
   _(Stated on 2026-10-24.)_
@@ -643,3 +676,7 @@ Questions to the project owner. Answers are moved into the sections above.
     Steinmann, personally (no company yet); contact `contact@citypal.fr`.
     Privacy page published at `/confidentialite`. ASSUMPTION to validate
     with a legal adviser: wording of the box and of the page.
+15. **Scooter lockers** (§4d): charging in each place or not? Price per use
+    and for subscribers? Where to place the first lockers (stations,
+    companies, campuses)? Should interested customers be told by e-mail when
+    the offer opens (would need their agreement)?

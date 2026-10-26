@@ -15,11 +15,12 @@ from apps.accounts.google import (
     sign_in,
     verify_credential,
 )
-from apps.accounts.models import User
+from apps.accounts.models import OfferInterest, UpcomingOffer, User
 from apps.accounts.serializers import (
     GoogleSignInRequestSerializer,
     MeSerializer,
     MeUpdateSerializer,
+    OfferInterestRequestSerializer,
     SignInResponseSerializer,
 )
 
@@ -111,6 +112,58 @@ class MeView(APIView):
         payload.is_valid(raise_exception=True)
         user.set_announcements(payload.validated_data["announcements"])
         user.save(update_fields=["announcements", "announcements_changed_at"])
+        return Response(MeSerializer(user).data)
+
+
+class MyInterestsView(APIView):
+    """Say "Ça m'intéresse" for an upcoming offer (docs/PRODUCT.md §4d)."""
+
+    permission_classes = [IsAuthenticated]
+
+    @extend_schema(
+        summary="Register interest in an upcoming offer",
+        description=(
+            "Records that the signed-in user is interested in an offer announced as "
+            "coming soon, so the team can measure demand before opening it. Idempotent: "
+            "registering twice keeps one record. Returns the profile, whose `interests` "
+            "lists the offers the user is interested in."
+        ),
+        tags=["accounts"],
+        request=OfferInterestRequestSerializer,
+        responses={200: MeSerializer},
+    )
+    def post(self, request: Request) -> Response:
+        """Record the interest and return the profile."""
+        user = request.user
+        assert isinstance(user, User)  # noqa: S101 - guaranteed by IsAuthenticated
+        payload = OfferInterestRequestSerializer(data=request.data)
+        payload.is_valid(raise_exception=True)
+        OfferInterest.objects.get_or_create(user=user, offer=payload.validated_data["offer"])
+        return Response(MeSerializer(user).data)
+
+
+class MyInterestView(APIView):
+    """Withdraw the interest in an upcoming offer."""
+
+    permission_classes = [IsAuthenticated]
+
+    @extend_schema(
+        summary="Withdraw interest in an upcoming offer",
+        description=(
+            "Deletes the record of the user's interest in the offer. Idempotent: "
+            "withdrawing an interest that does not exist succeeds. `404` for an unknown "
+            "offer code."
+        ),
+        tags=["accounts"],
+        responses={200: MeSerializer, 404: OpenApiResponse(description="Unknown offer code.")},
+    )
+    def delete(self, request: Request, offer: str) -> Response:
+        """Delete the interest and return the profile."""
+        user = request.user
+        assert isinstance(user, User)  # noqa: S101 - guaranteed by IsAuthenticated
+        if offer not in UpcomingOffer.values:
+            return Response({"detail": "Offre inconnue."}, status=status.HTTP_404_NOT_FOUND)
+        OfferInterest.objects.filter(user=user, offer=offer).delete()
         return Response(MeSerializer(user).data)
 
 
