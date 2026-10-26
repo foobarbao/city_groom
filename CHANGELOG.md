@@ -9,6 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- 5àsec shops (real, from OpenStreetMap: Grenoble and Saint-Égrève) shown
+  as non-partners with the web offers 5àsec publishes (18 prices read on
+  2026-10-26, source linked, not orderable through CityPal); merchants
+  gain a `brand` field (API, admin); demo data regenerated.
 - Announcements opt-in: box unticked by default at the Google sign-in,
   switch on the account screen; stored on the account with its date
   (`announcements`, `PATCH /api/v1/auth/me/`); admin column, filter,

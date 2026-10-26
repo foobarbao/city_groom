@@ -28,6 +28,7 @@ from apps.demo.catalogue import (
     SUBSCRIPTION_PLANS,
     DemoMerchant,
 )
+from apps.merchants.public_prices import PUBLIC_PRICE_LISTS
 
 # French first names used as review authors (initial only is shown).
 AUTHORS = ("Camille", "Léo", "Inès", "Hugo", "Manon", "Yanis", "Chloé", "Nora", "Théo", "Lucie")
@@ -147,6 +148,25 @@ def build_customer_catalogue(now: datetime, seed: int = 42) -> dict[str, Any]:
                 "theme": p.theme,
             }
             for p in PROMOTIONS
+        ],
+        # Real public prices of non-partner chain shops (not fictitious).
+        "public_prices": [
+            {
+                "brand": price_list.brand,
+                "title": price_list.title,
+                "source_url": price_list.source_url,
+                "checked_on": price_list.checked_on.isoformat(),
+                "prices": [
+                    {
+                        "name": p.name,
+                        "section": p.section,
+                        "price": str(p.price),
+                        "regular_price": str(p.regular_price),
+                    }
+                    for p in price_list.prices
+                ],
+            }
+            for price_list in PUBLIC_PRICE_LISTS
         ],
         "consigne": {
             "max_hours": CONSIGNE_MAX_HOURS,

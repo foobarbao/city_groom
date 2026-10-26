@@ -477,6 +477,10 @@ with the project owner.
 - **Selection**: every business offering a service on items that fit in a
   locker, **excluding food businesses, large chains and self-service
   laundromats** (no merchant handles the items there; decided 2026-10-24).
+  Exception (decided 2026-10-26): **5àsec** shops are shown, as non-partner
+  shops with public data only (no logo) and the web offers 5àsec publishes,
+  with their source and the date they were read; they cannot be ordered
+  through CityPal.
 - **Simulated**: lockers, orders, courier rounds, merchant activity, consigne
   bookings, reviews and conversations (fictitious "Démo · …" partner shops
   only).

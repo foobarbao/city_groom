@@ -38,6 +38,7 @@ def import_candidates(candidates: Iterable[MerchantCandidate]) -> tuple[int, int
                 "address": candidate.address,
                 "opening_hours": candidate.opening_hours,
                 "website": candidate.website,
+                "brand": candidate.brand,
                 "imported_at": now,
             },
         )

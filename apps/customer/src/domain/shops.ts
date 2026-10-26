@@ -19,6 +19,8 @@ export interface Shop {
   address: string
   openingHours: string
   website: string
+  /** Chain brand (OpenStreetMap `brand`), e.g. "5àsec"; empty otherwise. */
+  brand: string
   /** Service codes offered through CityPal (partners only). */
   services: string[]
   /** Average rating and number of ratings (partners only). */

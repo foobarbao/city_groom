@@ -35,6 +35,12 @@ class Merchant(models.Model):
         help_text="Horaires au format OpenStreetMap (opening_hours), si connus.",
     )
     website = models.URLField("site web", blank=True, help_text="Site web public, si connu.")
+    brand = models.CharField(
+        "enseigne",
+        max_length=100,
+        blank=True,
+        help_text="Enseigne d'une chaîne (OpenStreetMap « brand »), ex. 5àsec ; vide sinon.",
+    )
     is_partner = models.BooleanField(
         "partenaire",
         default=False,

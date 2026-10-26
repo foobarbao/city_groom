@@ -14,7 +14,7 @@ import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import RatingStars from '../components/RatingStars.vue'
 import { withRatings } from '../domain/reviews'
-import { partnerByCode, shopByCode, shopOffers } from '../services/catalogue'
+import { partnerByCode, publicPricesOf, shopByCode, shopOffers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { euros } from '../utils/format'
 
@@ -23,6 +23,18 @@ const { t } = useI18n()
 const account = useAccountStore()
 
 const shop = computed(() => shopByCode(props.code))
+/** Prices published by the brand of a non-partner chain shop (e.g. 5àsec). */
+const publicPrices = computed(() =>
+  shop.value && !shop.value.partner ? publicPricesOf(shop.value) : undefined,
+)
+/** Those prices grouped by the section of the brand's page. */
+const priceSections = computed(() => {
+  const groups = new Map<string, NonNullable<typeof publicPrices.value>['prices']>()
+  for (const p of publicPrices.value?.prices ?? []) {
+    groups.set(p.section, [...(groups.get(p.section) ?? []), p])
+  }
+  return [...groups].map(([name, prices]) => ({ name, prices }))
+})
 const partner = computed(() => partnerByCode(props.code))
 /** The merchant's visible offers. */
 const offers = computed(() => (shop.value ? shopOffers(shop.value.code) : []))
@@ -152,6 +164,40 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
               {{ t('shop.website') }} ↗
             </a>
           </section>
+          <!-- Real prices published by the brand, for information only: no
+               partnership, so nothing here can be ordered through CityPal. -->
+          <section v-if="publicPrices" class="soft-card public-prices">
+            <h2 class="section-title">{{ publicPrices.title }}</h2>
+            <template v-for="section in priceSections" :key="section.name">
+              <h3 class="price-section">{{ section.name }}</h3>
+              <ul class="price-list">
+                <li v-for="p in section.prices" :key="p.name">
+                  <span>{{ p.name }}</span>
+                  <span class="price">
+                    <s v-if="p.regular_price !== p.price" class="muted small">{{
+                      euros(Math.round(Number(p.regular_price) * 100))
+                    }}</s>
+                    <strong>{{ euros(Math.round(Number(p.price) * 100)) }}</strong>
+                  </span>
+                </li>
+              </ul>
+            </template>
+            <p class="muted small">
+              {{
+                t('shop.publicPricesNote', {
+                  brand: publicPrices.brand,
+                  date: new Date(publicPrices.checked_on).toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  }),
+                })
+              }}
+              <a :href="publicPrices.source_url" target="_blank" rel="noopener">{{
+                t('shop.publicPricesSource')
+              }}</a>
+            </p>
+          </section>
           <p class="muted small">{{ t('shops.source') }}</p>
         </template>
       </main>
@@ -256,5 +302,35 @@ const days = (rounds: number): number => Math.max(1, Math.round(rounds / 3))
 }
 p {
   margin: 0;
+}
+.price-section {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cg-ink-soft);
+}
+.price-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.price-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--cg-surface-soft);
+}
+.price-list li:first-child {
+  border-top: none;
+}
+.price {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 8px;
 }
 </style>

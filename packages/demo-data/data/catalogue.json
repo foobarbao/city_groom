@@ -1063,6 +1063,124 @@
    "theme": "leaf"
   }
  ],
+ "public_prices": [
+  {
+   "brand": "5àsec",
+   "title": "Offres web 5àsec",
+   "source_url": "https://www.5asec.fr/fr/nos-offres-web/",
+   "checked_on": "2026-10-26",
+   "prices": [
+    {
+     "name": "Pack 5 chemises",
+     "section": "Vêtements",
+     "price": "20.90",
+     "regular_price": "24.00"
+    },
+    {
+     "name": "Forfait 10 chemises",
+     "section": "Vêtements",
+     "price": "39.90",
+     "regular_price": "48.00"
+    },
+    {
+     "name": "Forfait 20 chemises",
+     "section": "Vêtements",
+     "price": "66.00",
+     "regular_price": "94.00"
+    },
+    {
+     "name": "Forfait 60 chemises",
+     "section": "Vêtements",
+     "price": "177.00",
+     "regular_price": "282.00"
+    },
+    {
+     "name": "Pack 2 blazers",
+     "section": "Vêtements",
+     "price": "14.50",
+     "regular_price": "18.30"
+    },
+    {
+     "name": "Pack business",
+     "section": "Vêtements",
+     "price": "20.50",
+     "regular_price": "25.94"
+    },
+    {
+     "name": "Pack 3 pour 2 : costumes",
+     "section": "Vêtements",
+     "price": "31.90",
+     "regular_price": "48.30"
+    },
+    {
+     "name": "Pack 3 pour 2 : manteaux, imperméables et trenchs",
+     "section": "Vêtements",
+     "price": "29.90",
+     "regular_price": "46.20"
+    },
+    {
+     "name": "Pack 3 pour 2 : doudounes, anoraks, parkas",
+     "section": "Vêtements",
+     "price": "39.90",
+     "regular_price": "57.00"
+    },
+    {
+     "name": "Pack rentrée 10 pièces",
+     "section": "Vêtements",
+     "price": "34.95",
+     "regular_price": "39.00"
+    },
+    {
+     "name": "Forfait Essentiel +",
+     "section": "Vêtements",
+     "price": "117.00",
+     "regular_price": "117.00"
+    },
+    {
+     "name": "Nettoyage sneakers",
+     "section": "Vêtements",
+     "price": "52.95",
+     "regular_price": "58.00"
+    },
+    {
+     "name": "Parure de lit double lavée et pliée",
+     "section": "Linge de maison",
+     "price": "9.90",
+     "regular_price": "12.90"
+    },
+    {
+     "name": "Forfait 4 draps",
+     "section": "Linge de maison",
+     "price": "15.60",
+     "regular_price": "19.60"
+    },
+    {
+     "name": "Forfait 4 housses de couette",
+     "section": "Linge de maison",
+     "price": "30.00",
+     "regular_price": "39.50"
+    },
+    {
+     "name": "Offre couette + soin textile offert",
+     "section": "Linge de maison",
+     "price": "25.50",
+     "regular_price": "30.95"
+    },
+    {
+     "name": "Pack literie : Couette + parure de lit",
+     "section": "Linge de maison",
+     "price": "29.90",
+     "regular_price": "38.40"
+    },
+    {
+     "name": "Pack literie : couette et 2 oreillers",
+     "section": "Linge de maison",
+     "price": "44.90",
+     "regular_price": "60.00"
+    }
+   ]
+  }
+ ],
  "consigne": {
   "max_hours": 24,
   "min_notice_hours": 4,
