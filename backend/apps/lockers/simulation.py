@@ -55,6 +55,16 @@ LOCKER_MODELS: dict[str, tuple[str, ...]] = {
     # compartment (docs/PRODUCT.md §4).
     "consigne_compact": ("storage", "control"),
     "consigne": ("storage", "control", "large"),
+    # In the town of Grenoble, larger units (owner's decision of 2026-10-26:
+    # "gros casiers dans le centre", the centre being the whole town).
+    "consigne_large": ("storage", "storage", "control", "large", "large"),
+    # In front of lycées and higher-education sites: small mixed units for
+    # services and consigne (same decision), smaller than the town ones.
+    "school": ("control", "garment"),
+    # In front of large companies: services and consigne together (same
+    # decision), normal size, larger inside the town of Grenoble.
+    "business_mixed": ("storage", "control", "mixed", "garment"),
+    "business_mixed_large": ("storage", "control", "mixed", "large", "garment", "garment"),
 }
 
 # Demo fill rates are kept modest on purpose: the service is new, and the
@@ -201,7 +211,7 @@ def simulate_occupancy(
     Compartment.objects.bulk_update(compartments, ["status"])
 
 
-def _distance_m(a: SimulatedSite, b: SimulatedSite) -> float:
+def distance_m(a: SimulatedSite, b: SimulatedSite) -> float:
     """Approximate ground distance in metres (equirectangular, fine at city scale)."""
     mean_lat = math.radians((a.latitude + b.latitude) / 2)
     dx = math.radians(b.longitude - a.longitude) * math.cos(mean_lat)
@@ -231,10 +241,10 @@ def spread_sites(sites: Sequence[SimulatedSite], count: int) -> list[SimulatedSi
         latitude=sum(s.latitude for s in sites) / len(sites),
         source="",
     )
-    chosen = [min(sites, key=lambda s: _distance_m(s, centroid))]
+    chosen = [min(sites, key=lambda s: distance_m(s, centroid))]
     remaining = [s for s in sites if s is not chosen[0]]
     while remaining and len(chosen) < count:
-        farthest = max(remaining, key=lambda s: min(_distance_m(s, c) for c in chosen))
+        farthest = max(remaining, key=lambda s: min(distance_m(s, c) for c in chosen))
         chosen.append(farthest)
         remaining.remove(farthest)
     return chosen
@@ -270,7 +280,7 @@ def spread_by_category(
     for category, site in candidates:
         by_category.setdefault(category, []).append(site)
     for sites in by_category.values():
-        sites.sort(key=lambda s: _distance_m(s, origin))
+        sites.sort(key=lambda s: distance_m(s, origin))
     chosen: list[SimulatedSite] = list(taken)
     result: list[tuple[str, SimulatedSite]] = []
     progress = True
@@ -281,7 +291,7 @@ def spread_by_category(
                 break
             remaining = by_category[category]
             pick = next(
-                (s for s in remaining if all(_distance_m(s, c) >= min_spacing_m for c in chosen)),
+                (s for s in remaining if all(distance_m(s, c) >= min_spacing_m for c in chosen)),
                 None,
             )
             if pick is None:

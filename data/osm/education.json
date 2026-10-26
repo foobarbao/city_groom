@@ -1,0 +1,2387 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.11 87bfad18",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-26T07:57:31Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 1737999624,
+   "lat": 45.2047094,
+   "lon": 5.737427,
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée des métiers du médico-social",
+    "operator:type": "private",
+    "ref:UAI": "0381899H",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1788450144,
+   "lat": 45.0630393,
+   "lon": 5.5553706,
+   "tags": {
+    "amenity": "school",
+    "fax": "+33 4 76 95 19 98",
+    "name": "Lycée climatique Jean Prévost",
+    "operator:type": "public",
+    "phone": "+33 4 76 95 14 41",
+    "ref:UAI": "0380097Z",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://jean-prevost.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2010237025,
+   "lat": 45.1473086,
+   "lon": 5.7294418,
+   "tags": {
+    "amenity": "college",
+    "education": "college",
+    "name": "Institut de formation de manipulateurs d'électroradiologie médicale",
+    "operator:type": "public",
+    "ref:UAI": "0382669V",
+    "short_name": "IFMEM",
+    "source": "Etablissements d'enseignement supérieur - 09/2017"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2010237026,
+   "lat": 45.1488685,
+   "lon": 5.7263557,
+   "tags": {
+    "amenity": "college",
+    "name": "Institut de recherche et d'action commerciale",
+    "operator:type": "private",
+    "short_name": "IDRAC",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2056149390,
+   "lat": 45.1710358,
+   "lon": 5.7086438,
+   "tags": {
+    "amenity": "school",
+    "check_date": "2025-02-21",
+    "email": "ce.0380033E@ac-grenoble.fr",
+    "fax": "+33 4 76 70 09 42",
+    "name": "Lycée polyvalent Vaucanson",
+    "operator:type": "public",
+    "phone": "+33 4 76 96 55 18",
+    "ref:UAI": "0380033E",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://www.education.gouv.fr/annuaire/38-isere/grenoble/lycee/lycee-polyvalent-vaucanson.html"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2056186774,
+   "lat": 45.168768,
+   "lon": 5.7067911,
+   "tags": {
+    "amenity": "school",
+    "email": "ce.0380034F@ac-grenoble.fr",
+    "fax": "+33 4 38 12 36 36",
+    "name": "Lycée des métiers du tertiaire de la santé et du social - LPO Louise Michel",
+    "operator:type": "public",
+    "phone": "+33 4 38 12 36 00",
+    "ref:UAI": "0380034F",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://www.education.gouv.fr/annuaire/38-isere/grenoble/lycee/lycee-polyvalent-louise-michel.html"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2056186775,
+   "lat": 45.168975,
+   "lon": 5.7062969,
+   "tags": {
+    "amenity": "school",
+    "email": "ce.0380099B@ac-grenoble.fr",
+    "fax": "+33 4 38 12 36 36",
+    "name": "Section d'enseignement professionnel du Lycée polyvalent Louise Michel",
+    "operator:type": "public",
+    "phone": "+33 4 38 12 36 00",
+    "ref:UAI": "0380099B",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2162413224,
+   "lat": 45.3204069,
+   "lon": 5.5864919,
+   "tags": {
+    "amenity": "school",
+    "email": "ce.0383119J@ac-grenoble.fr",
+    "fax": "+33 4 76 35 75 10",
+    "name": "Lycée général et technologique Pierre Béghin",
+    "operator:type": "public",
+    "phone": "+33 4 76 35 75 00",
+    "ref:UAI": "0383119J",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://pierre-beghin.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2344376500,
+   "lat": 45.1907263,
+   "lon": 5.7213189,
+   "tags": {
+    "amenity": "college",
+    "name": "Université inter-âges du Dauphiné",
+    "short_name": "UIAD",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2344376502,
+   "lat": 45.1910287,
+   "lon": 5.7211018,
+   "tags": {
+    "amenity": "college",
+    "name": "Wesford",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2360290329,
+   "lat": 45.1923077,
+   "lon": 5.7232072,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "2",
+    "addr:postcode": "38000",
+    "addr:street": "Square de Belmont",
+    "amenity": "college",
+    "name": "Université inter-âges du Dauphiné",
+    "ref:FR:SIRET": "31285672700036",
+    "short_name": "UIAD",
+    "source": "survey"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3175015758,
+   "lat": 45.2016091,
+   "lon": 5.6775406,
+   "tags": {
+    "amenity": "school",
+    "name": "École technique privée Alternance Rhône Alpes",
+    "operator:type": "private",
+    "phone": "+33 4 76 53 10 69",
+    "ref:UAI": "0383350K",
+    "school:FR": "lycée",
+    "source": "ata.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4701113379,
+   "lat": 45.195566,
+   "lon": 5.7092766,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38000",
+    "addr:street": "Parvis Louis Néel",
+    "amenity": "university",
+    "contact:website": "http://www.cime.inpg.fr",
+    "name": "Centre interuniversitaire de microélectronique et de nanotechnologie",
+    "short_name": "CIME Nanotech"
+   }
+  },
+  {
+   "type": "node",
+   "id": 4761998044,
+   "lat": 45.1923212,
+   "lon": 5.7117252,
+   "tags": {
+    "amenity": "college",
+    "contact:housename": "Le Cornaline",
+    "contact:housenumber": "10",
+    "contact:street": "Rue d'Arménie",
+    "name": "WebForce3",
+    "official_name": "WebForce3 - Grenoble",
+    "opening_hours:signed": "no",
+    "phone": "08 05 62 23 45",
+    "ref:FR:SIRET": "81786764100208",
+    "website": "https://www.wf3.fr/centre/webforce3-grenoble/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5115866345,
+   "lat": 45.161978,
+   "lon": 5.7236907,
+   "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Rue Aimé Pupin",
+    "amenity": "college",
+    "brand": "École de la deuxième chance",
+    "contact:email": "info@e2c38.fr",
+    "contact:phone": "+33 4 76 29 03 03",
+    "contact:website": "https://e2c38.fr/",
+    "name": "E2C Isère - Grenoble",
+    "operator": "École de la Deuxième Chance - France"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5907108437,
+   "lat": 45.1383832,
+   "lon": 5.7067439,
+   "tags": {
+    "addr:city": "Le Pont-de-Claix",
+    "addr:housenumber": "4",
+    "addr:postcode": "38800",
+    "addr:street": "Rue de la Paix",
+    "amenity": "college",
+    "name": "École nationale des industries du lait et des viandes",
+    "website": "http://www.enilv74.org/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6380256023,
+   "lat": 45.1997542,
+   "lon": 5.7436832,
+   "tags": {
+    "amenity": "university",
+    "name": "IRMaGe - TMS"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6380256024,
+   "lat": 45.1984614,
+   "lon": 5.7445898,
+   "tags": {
+    "amenity": "university",
+    "name": "IRMaGe - IPA"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6577072822,
+   "lat": 45.1934852,
+   "lon": 5.7641855,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "80",
+    "addr:postcode": "38400",
+    "addr:street": "Allée Ampère",
+    "amenity": "university",
+    "name": "Service universitaire des activités physiques et sportives",
+    "short_name": "SUAPS",
+    "website": "https://suaps.univ-grenoble-alpes.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6622511661,
+   "lat": 45.1949733,
+   "lon": 5.7717473,
+   "tags": {
+    "addr:city": "Gières",
+    "addr:housenumber": "570",
+    "addr:postcode": "38610",
+    "addr:street": "Rue de la Chimie",
+    "amenity": "university",
+    "check_date": "2024-08-20",
+    "email": "admin.icmg@univ-grenoble-alpes.fr",
+    "name": "Laboratoire département de chimie moléculaire",
+    "phone": "+33 4 56 52 08 61",
+    "website": "https://icmg.univ-grenoble-alpes.fr/",
+    "wikidata": "Q51782413"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6626959170,
+   "lat": 45.1934728,
+   "lon": 5.770757,
+   "tags": {
+    "amenity": "university",
+    "check_date": "2025-12-01",
+    "name": "Direction générale déléguée Système d’information",
+    "short_name": "DGDSI"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6626959171,
+   "lat": 45.1939006,
+   "lon": 5.770688,
+   "tags": {
+    "amenity": "university",
+    "name": "DGD AIS"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7049709062,
+   "lat": 45.1599187,
+   "lon": 5.7325372,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "34",
+    "addr:postcode": "38100",
+    "addr:street": "Avenue de l'Europe",
+    "amenity": "college",
+    "check_date": "2025-06-03",
+    "internet_access": "yes",
+    "name": "Simplon.co",
+    "source": "survey",
+    "website": "https://auvergnerhonealpes.simplon.co/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7057624317,
+   "lat": 45.1902924,
+   "lon": 5.7195509,
+   "tags": {
+    "amenity": "school",
+    "check_date": "2026-03-10",
+    "name": "École technologique privée Academy",
+    "operator:type": "private",
+    "ref:UAI": "0383053M",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Éducation Nationale - 03/2018"
+   }
+  },
+  {
+   "type": "node",
+   "id": 7912180992,
+   "lat": 45.2025003,
+   "lon": 5.7033134,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "21",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue des Martyrs",
+    "amenity": "college",
+    "check_date": "2024-06-12",
+    "education": "college",
+    "name": "École nationale supérieure de l'énergie, l'eau et l'environnement - Grenoble INP",
+    "phone": "+33 4 76 82 62 00",
+    "ref:UAI": "0383396K",
+    "short_name": "Ense3",
+    "source": "Etablissements d'enseignement supérieur - 09/2017",
+    "website": "https://ense3.grenoble-inp.fr/",
+    "wikidata": "Q3578228",
+    "wikipedia": "en:École nationale supérieure de l'énergie, l'eau et l'environnement"
+   }
+  },
+  {
+   "type": "node",
+   "id": 8478233635,
+   "lat": 45.1911392,
+   "lon": 5.7700458,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "1030",
+    "addr:postcode": "38400",
+    "addr:street": "Rue des Universités",
+    "alt_name": "Sciences Po Grenoble",
+    "amenity": "college",
+    "contact:fax": "+33 4 76 82 60 70",
+    "education": "college",
+    "email": "contact@sciencespo-grenoble.fr",
+    "name": "Institut d'études politiques de Grenoble",
+    "phone": "+33 4 76 82 60 00",
+    "short_name": "IEP Grenoble",
+    "survey:date": "2025-12-05",
+    "toilets:menstrual_products": "limited",
+    "website": "https://www.sciencespo-grenoble.fr/",
+    "wikidata": "Q3151959",
+    "wikipedia": "fr:Institut d'études politiques de Grenoble"
+   }
+  },
+  {
+   "type": "node",
+   "id": 10093119779,
+   "lat": 45.2039697,
+   "lon": 5.7028446,
+   "tags": {
+    "amenity": "university",
+    "check_date": "2024-05-27",
+    "name": "École de management"
+   }
+  },
+  {
+   "type": "node",
+   "id": 11387456270,
+   "lat": 45.1920545,
+   "lon": 5.7118814,
+   "tags": {
+    "amenity": "college",
+    "contact:city": "Grenoble",
+    "contact:housenumber": "10",
+    "contact:phone": "+33 4 58 47 92 00",
+    "contact:postcode": "38000",
+    "contact:street": "Rue D'arménie",
+    "name": "Digital College - Grenoble",
+    "opening_hours": "Mo-Fr 09:00-18:00",
+    "ref:FR:SIRET": "79754666000011",
+    "website": "https://digital-college.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12863376149,
+   "lat": 45.1733338,
+   "lon": 5.7600124,
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée polyvalent Schneider Electric",
+    "operator:type": "private",
+    "ref:UAI": "0382170C",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 2025-03",
+    "website": "https://www.se.com/fr/fr/about-us/ecole-schneider-electric/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12863376152,
+   "lat": 45.1760707,
+   "lon": 5.7280312,
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée professionnel privé Les Charmilles",
+    "operator:type": "private",
+    "ref:UAI": "0381758E",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 2025-03",
+    "website": "https://les-charmilles.fr"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12863376153,
+   "lat": 45.1760053,
+   "lon": 5.72796,
+   "tags": {
+    "amenity": "school",
+    "name": "Section d'enseignement général et professionnel adapté Les Charmilles",
+    "operator:type": "private",
+    "ref:UAI": "0383479A",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 2025-03"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12863376171,
+   "lat": 45.1947443,
+   "lon": 5.7116926,
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée général international Europole",
+    "operator:type": "public",
+    "ref:UAI": "0383242T",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 2025-03",
+    "website": "https://cite-scolaire-internationale-europole.web.ac-grenoble.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12863376174,
+   "lat": 45.2058594,
+   "lon": 5.7485959,
+   "tags": {
+    "amenity": "school",
+    "name": "Unités soins-étude du lycée Champolion",
+    "operator:type": "public",
+    "ref:UAI": "0381630R",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 2025-03"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13081757038,
+   "lat": 45.1931884,
+   "lon": 5.7651901,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "80",
+    "addr:postcode": "38400",
+    "addr:street": "Allée Ampère",
+    "amenity": "university",
+    "description": "Le Crous est un établissement public qui a pour mission d’améliorer les conditions de vie et de travail des étudiantes et des étudiants (bourses sur critères sociaux, accompagnement social, logement étudiant, restauration, jobs étudiants).",
+    "name": "Crous Grenoble Alpes",
+    "website": "https://www.crous-grenoble.fr/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13236567201,
+   "lat": 45.1922704,
+   "lon": 5.7116776,
+   "tags": {
+    "amenity": "college",
+    "contact:city": "Grenoble",
+    "contact:housenumber": "10",
+    "contact:phone": "+33 4 87 00 07 02",
+    "contact:postcode": "38000",
+    "contact:street": "Rue d'Arménie",
+    "name": "ECEMA Grenoble",
+    "opening_hours": "Mo-Fr 08:30-17:30",
+    "ref:FR:SIRET": "91819092700056",
+    "website": "https://www.ecema.fr/ecole-commerce-management/grenoble/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13468183984,
+   "lat": 45.1848071,
+   "lon": 5.7049905,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "12",
+    "addr:postcode": "38000",
+    "addr:street": "12 rue Ampère",
+    "amenity": "university",
+    "education": "university",
+    "email": "grenoble@mbway.com",
+    "internet_access": "yes",
+    "internet_access:fee": "customers",
+    "name": "MBway Grenoble",
+    "opening_hours": "Mo-Fr 08:00-18:00",
+    "operator": "Eduservices SAS",
+    "operator:type": "private",
+    "phone": "+33 4 85 19 01 18",
+    "website": "https://www.mbway.com/mba-grenoble",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13508805109,
+   "lat": 45.1868426,
+   "lon": 5.7749931,
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "16",
+    "addr:postcode": "38400",
+    "addr:street": "Rue du Tour de l'Eau",
+    "amenity": "university",
+    "education": "university",
+    "email": "grenoble@pigier.com",
+    "internet_access": "yes",
+    "internet_access:fee": "customers",
+    "name": "Pigier Grenoble",
+    "opening_hours": "Mo-Fr 08:00-18:00",
+    "operator": "Eduservices SAS",
+    "operator:type": "private",
+    "phone": "+33 4 57 08 26 02",
+    "website": "https://www.pigier.com/ecole-commerce-grenoble",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 13545965041,
+   "lat": 45.1848396,
+   "lon": 5.7048714,
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "12",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Ampère",
+    "amenity": "university",
+    "education": "university",
+    "internet_access": "yes",
+    "internet_access:fee": "customers",
+    "name": "Studio Mercier Grenoble",
+    "opening_hours": "Mo-Fr 08:00-18:00",
+    "website": "https://www.studiomercier.com/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 4540446,
+   "center": {
+    "lat": 45.1938446,
+    "lon": 5.7684568
+   },
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "60",
+    "addr:postcode": "38400",
+    "addr:street": "Rue de la Chimie",
+    "amenity": "college",
+    "building": "university",
+    "building:colour": "#53a0b8",
+    "building:levels": "4",
+    "check_date": "2025-01-31",
+    "diff:ref:FR:RNB": "multiple",
+    "height": "16",
+    "name": "UFR IM²AG - Bâtiment F",
+    "official_name": "UFR IM²AG",
+    "operator": "Université Grenoble Alpes",
+    "phone": "+33 4 76 63 57 26",
+    "ref:FR:RNB": "M63DZ3TJXN1F;PCB8JSJQYFCS",
+    "roof:colour": "#a3a4a0",
+    "roof:shape": "flat",
+    "website": "https://im2ag.univ-grenoble-alpes.fr",
+    "wikimedia_commons": "File:UFR IMAG - Saint-Martin-d'Hères.JPG"
+   }
+  },
+  {
+   "type": "way",
+   "id": 10595126,
+   "center": {
+    "lat": 45.1911376,
+    "lon": 5.7172937
+   },
+   "tags": {
+    "amenity": "college",
+    "check_date": "2025-06-16",
+    "name": "École nationale supérieure de Génie industriel - Grenoble INP",
+    "ref:UAI": "0383398M",
+    "short_name": "INP",
+    "source": "Etablissements d'enseignement supérieur - 09/2017",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "limited"
+   }
+  },
+  {
+   "type": "way",
+   "id": 10595269,
+   "center": {
+    "lat": 45.1795433,
+    "lon": 5.7304024
+   },
+   "tags": {
+    "amenity": "school",
+    "check_date": "2025-01-12",
+    "fax": "+33 4 76 87 70 64",
+    "name": "Lycée général et technologique Emmanuel Mounier",
+    "operator:type": "public",
+    "phone": "+33 4 76 86 64 32",
+    "ref:UAI": "0380032D",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "http://emmanuel-mounier.ent.auvergnerhonealpes.fr",
+    "wikidata": "Q3268660"
+   }
+  },
+  {
+   "type": "way",
+   "id": 30634849,
+   "center": {
+    "lat": 45.1865163,
+    "lon": 5.726674
+   },
+   "tags": {
+    "addr:housenumber": "25",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Lesdiguières",
+    "alt_name": "ESAD-GV",
+    "amenity": "college",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "École supérieure d'art et design Grenoble-Valence (site Grenoble)",
+    "old_name": "École supérieure d'art de Grenoble",
+    "ref:FR:RNB": "5XQ5SHWNCXH7",
+    "ref:UAI": "0380144A",
+    "roof:colour": "#be8988",
+    "roof:levels": "1",
+    "roof:shape": "mansard",
+    "short_name": "ESAD GRENOBLE",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+    "wheelchair": "yes",
+    "wikidata": "Q3578383"
+   }
+  },
+  {
+   "type": "way",
+   "id": 32230979,
+   "center": {
+    "lat": 45.1870589,
+    "lon": 5.7255712
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "1",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Lafontaine",
+    "amenity": "school",
+    "check_date": "2025-01-18",
+    "email": "ce.0380027y@ac-grenoble.fr",
+    "fax": "+33 4 76 85 34 59",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "internet_access:ssid": "WIFI_MOBILE_CHAMPO",
+    "name": "Lycée Champollion",
+    "name:etymology:wikidata": "Q260",
+    "operator": "Région Auvergne-Rhône-Alpes",
+    "operator:type": "public",
+    "phone": "+33 4 76 85 59 59",
+    "ref:UAI": "0380027Y",
+    "school:FR": "lycée",
+    "start_date": "1887-10",
+    "website": "https://www.lycee-champollion.fr/",
+    "wheelchair": "limited",
+    "wikidata": "Q3268618",
+    "wikipedia": "fr:Lycée Champollion"
+   }
+  },
+  {
+   "type": "way",
+   "id": 32302948,
+   "center": {
+    "lat": 45.1888775,
+    "lon": 5.7202124
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "5",
+    "addr:postcode": "38000",
+    "addr:street": "Rue de l'Ancien Champ de Mars",
+    "amenity": "school",
+    "building": "school",
+    "building:levels": "7",
+    "diff:ref:FR:RNB": "multiple",
+    "name": "Lycée professionnel Jean Jaurès",
+    "name:etymology:wikidata": "Q12688",
+    "ref:FR:RNB": "V6BTAMJTTYPY;11S2GWM98MTS",
+    "ref:UAI": "0380037J",
+    "roof:colour": "#be8988",
+    "roof:orientation": "along",
+    "roof:shape": "many",
+    "school:FR": "lycée",
+    "source": "v2;cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009"
+   }
+  },
+  {
+   "type": "way",
+   "id": 32573317,
+   "center": {
+    "lat": 45.1893542,
+    "lon": 5.7311275
+   },
+   "tags": {
+    "addr:housename": "Palais de l'Université",
+    "addr:housenumber": "1",
+    "addr:street": "Place de Verdun",
+    "amenity": "university",
+    "building": "yes",
+    "building:colour": "lightyellow",
+    "name": "IUT2 - GEA",
+    "ref:FR:RNB": "WVCA76MYSBMN",
+    "roof:colour": "#aeb5c2",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 32602714,
+   "center": {
+    "lat": 45.1925777,
+    "lon": 5.7178499
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "7",
+    "addr:postcode": "38000",
+    "addr:street": "Rue d'Arsonval",
+    "amenity": "university",
+    "building": "university",
+    "building:levels": "6",
+    "description": "Mesures Physiques (MPh) Métiers du Multimédia et de l'Internet (MMI)",
+    "name": "Institut universitaire de technologie 1",
+    "operator": "Université Joseph Fourier",
+    "phone": "+33 4 76 57 50 00",
+    "ref:FR:RNB": "1MJJ52B2YPB5",
+    "roof:shape": "flat",
+    "school:FR": "IUT",
+    "short_name": "IUT 1",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
+   }
+  },
+  {
+   "type": "way",
+   "id": 35020787,
+   "center": {
+    "lat": 45.1966739,
+    "lon": 5.7414767
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "8",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Joseph-François Girot",
+    "amenity": "college",
+    "building": "college",
+    "building:levels": "4",
+    "contact:email": "grenoble@centremediplus.fr",
+    "contact:phone": "+33 4 76 58 18 41",
+    "contact:website": "https://grenoble.centremediplus.fr/",
+    "fixme": "ancien bâtiment à priori disparu",
+    "name": "MédiPlus",
+    "ref:FR:RNB": "22GTBEY6NA8A",
+    "roof:colour": "#be8988",
+    "roof:shape": "flat",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009"
+   }
+  },
+  {
+   "type": "way",
+   "id": 37626506,
+   "center": {
+    "lat": 45.1948826,
+    "lon": 5.7757473
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "601",
+    "addr:postcode": "38041",
+    "addr:street": "Rue de la Chimie",
+    "amenity": "university",
+    "building": "yes",
+    "email": "borsali@cermav.cnrs.fr",
+    "name": "Centre de recherches sur les macromolécules végétales",
+    "operator": "CNRS",
+    "operator:type": "public",
+    "phone": "+33 4 76 03 76 03",
+    "short_name": "CERMAV",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+    "website": "https://www.cermav.cnrs.fr/",
+    "wikidata": "Q17623895",
+    "wikipedia": "fr:Centre de recherches sur les macromolécules végétales"
+   }
+  },
+  {
+   "type": "way",
+   "id": 41827839,
+   "center": {
+    "lat": 45.1707361,
+    "lon": 5.7303879
+   },
+   "tags": {
+    "alt_name": "Lycée Guynemer",
+    "amenity": "school",
+    "email": "ce.0380036H@ac-grenoble.fr",
+    "fax": "+33 4 76 09 81 99",
+    "name": "Lycée des métiers de l'automobile de la maintenance des engins et des équipements - LP Guynemer",
+    "operator:type": "public",
+    "phone": "+33 4 76 09 74 18",
+    "ref:UAI": "0380036H",
+    "school:FR": "lycée professionnel",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://georges-guynemer.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 42765555,
+   "center": {
+    "lat": 45.1914333,
+    "lon": 5.7743452
+   },
+   "tags": {
+    "addr:city": "Gières",
+    "addr:housenumber": "1330",
+    "addr:street": "Rue des universités",
+    "amenity": "college",
+    "building": "university",
+    "building:levels": "1",
+    "name": "E",
+    "operator": "Université Grenoble Alpes",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009"
+   }
+  },
+  {
+   "type": "way",
+   "id": 43337200,
+   "center": {
+    "lat": 45.1736705,
+    "lon": 5.7326054
+   },
+   "tags": {
+    "access": "private",
+    "addr:housenumber": "43",
+    "addr:street": "Avenue Marcelin Berthelot",
+    "amenity": "school",
+    "building": "school",
+    "building:levels": "4",
+    "check_date": "2025-02-15",
+    "contact:website": "http://www.externatnotredame.fr",
+    "name": "Lycée général privé Externat Notre-Dame",
+    "operator:type": "private",
+    "ref:UAI": "0381803D",
+    "roof:shape": "flat",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
+   }
+  },
+  {
+   "type": "way",
+   "id": 45582451,
+   "center": {
+    "lat": 45.204245,
+    "lon": 5.70079
+   },
+   "tags": {
+    "amenity": "university",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "W",
+    "name:etymology:wikidata": "Q134085",
+    "ref:FR:RNB": "STJ2T92Q1ZQT"
+   }
+  },
+  {
+   "type": "way",
+   "id": 48701714,
+   "center": {
+    "lat": 45.2950584,
+    "lon": 5.7656237
+   },
+   "tags": {
+    "alt_name": "Site expérimental du Col de Porte (CNRM/CEN Grenoble)",
+    "amenity": "university",
+    "barrier": "fence",
+    "fence_type": "chain_link",
+    "name": "Centre d'études de la neige",
+    "operator": "Météo-France",
+    "website": "https://www.cnrm.meteo.fr/spip.php?rubrique218"
+   }
+  },
+  {
+   "type": "way",
+   "id": 49643189,
+   "center": {
+    "lat": 45.1717682,
+    "lon": 5.7373988
+   },
+   "tags": {
+    "amenity": "university",
+    "building": "university",
+    "building:levels": "3",
+    "name": "ÉSAD • Grenoble - Ateliers Tous Publics",
+    "opening_hours": "Mo, We, Fr 14:00-20:00; Tu, Th 13:30-20:00; Sa 09:00-13:00",
+    "roof:shape": "flat",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010"
+   }
+  },
+  {
+   "type": "way",
+   "id": 50177719,
+   "center": {
+    "lat": 45.1949616,
+    "lon": 5.7099046
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "3",
+    "addr:postcode": "38000",
+    "addr:street": "Parvis Louis Néel",
+    "amenity": "college",
+    "building": "university",
+    "internet_access": "wlan",
+    "name": "Phelma - Minatec Sud",
+    "operator": "Grenoble INP",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+    "website": "https://phelma.grenoble-inp.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 50589765,
+   "center": {
+    "lat": 45.1921212,
+    "lon": 5.7722066
+   },
+   "tags": {
+    "addr:city": "Gières",
+    "addr:housenumber": "1141",
+    "addr:street": "Rue des Universités",
+    "amenity": "college",
+    "automatic_door": "yes",
+    "building": "university",
+    "building:levels": "2",
+    "elevator": "yes",
+    "name": "Maison des Langues et des Cultures",
+    "operator": "Université Grenoble Alpes",
+    "roof:shape": "flat",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 50589766,
+   "center": {
+    "lat": 45.1921091,
+    "lon": 5.7728681
+   },
+   "tags": {
+    "addr:city": "Gières",
+    "addr:housenumber": "1221",
+    "addr:street": "Rue des Universités",
+    "amenity": "college",
+    "building": "university",
+    "description": "Maison des Sciences de l'Homme",
+    "name": "Maison des Sciences Humaines",
+    "operator": "Université Grenoble Alpes",
+    "short_name": "MSH-Alpes",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010",
+    "website": "https://www.msh-alpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 61390195,
+   "center": {
+    "lat": 45.186383,
+    "lon": 5.7730825
+   },
+   "tags": {
+    "amenity": "school",
+    "building": "school",
+    "building:levels": "4",
+    "name": "École technique privée Charmilles",
+    "operator:type": "private",
+    "ref:FR:RNB": "MY4X2JKJ7WKF",
+    "ref:UAI": "0383349J",
+    "roof:levels": "0",
+    "roof:shape": "flat",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
+   }
+  },
+  {
+   "type": "way",
+   "id": 61407195,
+   "center": {
+    "lat": 45.1888092,
+    "lon": 5.7758028
+   },
+   "tags": {
+    "amenity": "college",
+    "building": "yes",
+    "check_date": "2026-09-14",
+    "name": "Cours Galien",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "website": "https://cours-galien.fr/centre/grenoble/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 66187540,
+   "center": {
+    "lat": 45.1704523,
+    "lon": 5.6892683
+   },
+   "tags": {
+    "addr:housenumber": "15",
+    "alt_name": "Institut Supérieur de Formation de l'Enseignement Catholique des Alpes",
+    "amenity": "college",
+    "building": "yes",
+    "name": "Institut Supérieur de Formation de l'Enseignement Catholique",
+    "operator:type": "private",
+    "phone": "+33 4 76 42 22 31",
+    "ref:UAI": "0383040Y",
+    "short_name": "ISFEC",
+    "source": "data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"
+   }
+  },
+  {
+   "type": "way",
+   "id": 77999616,
+   "center": {
+    "lat": 45.1738464,
+    "lon": 5.7265283
+   },
+   "tags": {
+    "amenity": "school",
+    "check_date": "2024-03-24",
+    "name": "Lycée des métiers du commerce, du social et des services à la personne - LT PR Iser-Bordier Grenoble",
+    "operator:type": "private",
+    "ref:UAI": "0380018N;0381806G",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "website": "https://www.creefi.fr/grenoble-iser-bordier/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 80993253,
+   "center": {
+    "lat": 45.1549352,
+    "lon": 5.7131582
+   },
+   "tags": {
+    "amenity": "college",
+    "building": "yes",
+    "check_date": "2022-11-10",
+    "name": "Institut de formation en travail social",
+    "old_name": "Institut de Formation des Travailleurs Sociaux",
+    "operator:type": "private",
+    "ref:UAI": "0383186G",
+    "short_name": "IFTS",
+    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2014",
+    "website": "https://ifts-asso.com/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 81063947,
+   "center": {
+    "lat": 45.1487084,
+    "lon": 5.718578
+   },
+   "tags": {
+    "addr:housenumber": "11",
+    "addr:postcode": "38130",
+    "addr:street": "Avenue du 8 Mai 1945",
+    "amenity": "college",
+    "building": "university",
+    "building:levels": "3",
+    "check_date": "2026-06-16",
+    "name": "Institut de la communication et des médias - UFR LLASIC",
+    "ref:UAI": "0382952C",
+    "roof:levels": "0",
+    "short_name": "ICM",
+    "source": "data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011",
+    "wikipedia": "fr:Institut de la communication et des médias"
+   }
+  },
+  {
+   "type": "way",
+   "id": 89698712,
+   "center": {
+    "lat": 45.1736282,
+    "lon": 5.7616615
+   },
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housename": "Lycée Pablo Neruda",
+    "addr:housenumber": "35",
+    "addr:postcode": "38400",
+    "addr:street": "Rue Henri Wallon",
+    "amenity": "school",
+    "barrier": "fence",
+    "fax": "+33 4 76 25 19 10",
+    "name": "Lycée polyvalent Pablo Néruda",
+    "operator:type": "public",
+    "phone": "+33 4 76 25 07 22",
+    "ref:UAI": "0382203N",
+    "school:FR": "lycée",
+    "short_name": "Lycée Pablo Neruda",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010;data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://pablo-neruda.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 98175814,
+   "center": {
+    "lat": 45.1854587,
+    "lon": 5.7258206
+   },
+   "tags": {
+    "addr:housenumber": "39 - 41",
+    "addr:street": "Boulevard Gambetta",
+    "amenity": "college",
+    "description": "Fait partie de l'IUT 1 (site Grenoble - Gambetta) département Chimie - aussi appelé MT2E",
+    "name": "Métiers de la Transition et de l'Efficacité Énergétiques",
+    "ref:UAI": "0381516S",
+    "short_name": "MT2E",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011",
+    "website": "https://iut1.univ-grenoble-alpes.fr/departements-d-enseignement/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 98718557,
+   "center": {
+    "lat": 45.1896379,
+    "lon": 5.7304775
+   },
+   "tags": {
+    "addr:housenumber": "1 bis",
+    "addr:postcode": "38014",
+    "addr:street": "Place Jean Achard",
+    "amenity": "school",
+    "email": "ce.0382114s@ac-grenoble.fr",
+    "name": "Lycée général Stendhal",
+    "operator:type": "public",
+    "phone": "+33 4 76 54 83 83",
+    "ref:UAI": "0380028Z",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011;data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://stendhal.ent.auvergnerhonealpes.fr",
+    "wikidata": "Q3268947",
+    "wikipedia": "fr:Lycée Stendhal"
+   }
+  },
+  {
+   "type": "way",
+   "id": 102436899,
+   "center": {
+    "lat": 45.1505608,
+    "lon": 5.721773
+   },
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée professionnel Thomas Edison",
+    "operator:type": "public",
+    "phone": "+33 4 76 09 31 35",
+    "ref:UAI": "0382031B",
+    "school:FR": "lycée professionnel",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://thomas-edison.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 102436901,
+   "center": {
+    "lat": 45.1459823,
+    "lon": 5.7183013
+   },
+   "tags": {
+    "addr:housenumber": "5",
+    "addr:street": "Avenue du 8 Mai 1945",
+    "alt_name": "Lycée Marie Curie",
+    "amenity": "school",
+    "email": "ce.0382920T@ac-grenoble.fr",
+    "fax": "+33 4 76 40 33 43",
+    "isced:level": "3",
+    "name": "Lycée général et technologique Marie Curie",
+    "name:etymology:wikidata": "Q7186",
+    "operator:type": "public",
+    "phone": "+33 4 76 33 70 00",
+    "ref:UAI": "0382920T",
+    "school:FR": "lycée",
+    "website": "https://lyc-marie-curie-echirolles.ent.auvergnerhonealpes.fr"
+   }
+  },
+  {
+   "type": "way",
+   "id": 102546039,
+   "center": {
+    "lat": 45.2414678,
+    "lon": 5.825622
+   },
+   "tags": {
+    "addr:city": "Saint-Ismier",
+    "addr:housenumber": "1",
+    "addr:postcode": "38330",
+    "addr:street": "Chemin de Charvinières",
+    "alt_name": "Lycée technologique agricole",
+    "amenity": "school",
+    "contact:facebook": "https://www.facebook.com/LEGTASTI/",
+    "contact:instagram": "https://www.instagram.com/lycee_horticole_st_ismier/",
+    "contact:linkedin": "https://www.linkedin.com/company/cfppa-de-grenoble-st-ismier",
+    "contact:phone": "+33 4 76 52 03 63",
+    "fixme": "Define exact area",
+    "name": "Cfppa Saint-Ismier Lycée Horticole",
+    "operator:type": "public",
+    "ref:UAI": "0381817U",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://lycee-horticole-grenoble-st-ismier.educagri.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 105590682,
+   "center": {
+    "lat": 45.1765692,
+    "lon": 5.7453011
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "61",
+    "addr:street": "Rue Léon Jouhaux",
+    "amenity": "school",
+    "name": "Lycée général et technologique André Argouges",
+    "operator:type": "public",
+    "ref:UAI": "0381603L",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2011;data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://argouges.ent.auvergnerhonealpes.fr",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 107120126,
+   "center": {
+    "lat": 45.1688977,
+    "lon": 5.7068168
+   },
+   "tags": {
+    "amenity": "school",
+    "barrier": "fence",
+    "name": "Lycée Louise Michel",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2011"
+   }
+  },
+  {
+   "type": "way",
+   "id": 107241362,
+   "center": {
+    "lat": 45.1709562,
+    "lon": 5.7086751
+   },
+   "tags": {
+    "amenity": "school",
+    "check_date": "2025-02-21",
+    "name": "Lycée Vaucanson",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2011",
+    "wikidata": "Q28155598"
+   }
+  },
+  {
+   "type": "way",
+   "id": 120478500,
+   "center": {
+    "lat": 45.1782818,
+    "lon": 5.7114299
+   },
+   "tags": {
+    "addr:housenumber": "7",
+    "addr:street": "Rue de Dunkerque",
+    "amenity": "school",
+    "name": "Lycée des Eaux Claires",
+    "operator:type": "public",
+    "ref:UAI": "0380029A",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2011",
+    "website": "https://eaux-claires.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 127551320,
+   "center": {
+    "lat": 45.1983485,
+    "lon": 5.6673124
+   },
+   "tags": {
+    "amenity": "school",
+    "name": "Lycée des métiers de la construction du BTP et de l'énergétique - LPO Roger Deschaux",
+    "operator:type": "public",
+    "ref:UAI": "0382099A",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://roger-deschaux.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 129663996,
+   "center": {
+    "lat": 45.0680091,
+    "lon": 5.7681389
+   },
+   "tags": {
+    "alt_name": "Lycée de Vizille",
+    "amenity": "school",
+    "description": "Lycée général technologique et professionnel",
+    "fax": "+33 4 76 68 11 54",
+    "name": "Lycée polyvalent Portes de l'Oisans",
+    "operator:type": "public",
+    "phone": "+33 4 76 68 09 22",
+    "ref:UAI": "0380089R;0380101D",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://porte-oisans.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 133530787,
+   "center": {
+    "lat": 45.187123,
+    "lon": 5.7738822
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "UFR de Mécanique",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2011"
+   }
+  },
+  {
+   "type": "way",
+   "id": 135914456,
+   "center": {
+    "lat": 45.2034572,
+    "lon": 5.7018976
+   },
+   "tags": {
+    "amenity": "college",
+    "barrier": "fence",
+    "fence_type": "wire",
+    "name": "Polygone",
+    "old_name": "ENSERG",
+    "operator": "Grenoble INP",
+    "operator_1": "Grenoble École de Management"
+   }
+  },
+  {
+   "type": "way",
+   "id": 150133816,
+   "center": {
+    "lat": 45.2026886,
+    "lon": 5.7454904
+   },
+   "tags": {
+    "addr:city": "La Tronche",
+    "addr:housenumber": "1",
+    "addr:postcode": "38700",
+    "addr:street": "Chemin Duhamel",
+    "amenity": "college",
+    "building": "college",
+    "building:levels": "3",
+    "contact:email": "grenoble@centremediplus.fr",
+    "contact:phone": "+33 4 76 58 18 41",
+    "contact:website": "https://grenoble.centremediplus.fr/",
+    "name": "MédiPlus",
+    "roof:shape": "hipped",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2011"
+   }
+  },
+  {
+   "type": "way",
+   "id": 151042748,
+   "center": {
+    "lat": 45.2515978,
+    "lon": 5.8990851
+   },
+   "tags": {
+    "amenity": "school",
+    "email": "ce.0383263R@ac-grenoble.fr",
+    "fax": "+33 4 38 92 18 27",
+    "name": "Lycée général et technologique Marie Reynoard",
+    "old_name": "Lycée du Moyen Grésivaudan",
+    "operator:type": "public",
+    "phone": "+33 4 38 92 18 28",
+    "ref:UAI": "0383263R",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://marie-reynoard.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 151354883,
+   "center": {
+    "lat": 45.1605912,
+    "lon": 5.7335537
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "60",
+    "addr:postcode": "38100",
+    "addr:street": "Avenue de Constantine",
+    "amenity": "college",
+    "architect": "Roland Simounet;Michel Charmont;Antoine Félix-Faure;Philippe Macary",
+    "building": "yes",
+    "check_date": "2024-08-24",
+    "name": "École nationale supérieure d'architecture de Grenoble",
+    "note": "édifice labellisé Architecture contemporaine remarquable ACR0000071",
+    "ref:FR:SIRET": "19380141200019",
+    "ref:UAI": "0380141X",
+    "short_name": "ENSAG",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2012",
+    "start_date": "1978",
+    "wikidata": "Q3578178"
+   }
+  },
+  {
+   "type": "way",
+   "id": 169339231,
+   "center": {
+    "lat": 45.2057338,
+    "lon": 5.6976814
+   },
+   "tags": {
+    "amenity": "university",
+    "barrier": "fence",
+    "fence_type": "chain_link",
+    "name": "LPSC",
+    "name:etymology:wikidata": "Q280413"
+   }
+  },
+  {
+   "type": "way",
+   "id": 169549270,
+   "center": {
+    "lat": 45.1907192,
+    "lon": 5.7742054
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "Bâtiment Stendhal",
+    "operator": "Université Grenoble Alpes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 177500740,
+   "center": {
+    "lat": 45.1610249,
+    "lon": 5.7223068
+   },
+   "tags": {
+    "amenity": "college",
+    "barrier": "fence",
+    "name": "Institut des métiers et des techniques",
+    "operator": "Chambre de Commerce et d'Industrie de l'Isère",
+    "short_name": "IMT",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012"
+   }
+  },
+  {
+   "type": "way",
+   "id": 188464779,
+   "center": {
+    "lat": 45.1960245,
+    "lon": 5.6656409
+   },
+   "tags": {
+    "addr:city": "Fontaine",
+    "addr:housenumber": "9",
+    "addr:postcode": "38600",
+    "addr:street": "Rue de la République",
+    "amenity": "school",
+    "contact:email": "ce.0380023U@ac-grenoble.fr",
+    "contact:phone": "+33 4 76 27 25 44",
+    "contact:website": "https://jacques-prevert.ent.auvergnerhonealpes.fr",
+    "name": "Lycée professionnel Jacques Prévert",
+    "operator:type": "public",
+    "ref:UAI": "0380023U",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "start_date": "01/05/1965"
+   }
+  },
+  {
+   "type": "way",
+   "id": 192975217,
+   "center": {
+    "lat": 45.2934139,
+    "lon": 5.6334227
+   },
+   "tags": {
+    "amenity": "school",
+    "denomination": "roman_catholic",
+    "email": "contact@portesdechartreuse.org",
+    "fax": "+33 4 76 50 16 41",
+    "name": "Lycée professionnel privé Les portes de Chartreuse",
+    "operator:type": "private",
+    "phone": "+33 4 76 50 25 73",
+    "ref:UAI": "0381805F",
+    "religion": "christian",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://www.portesdechartreuse.org/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 195126156,
+   "center": {
+    "lat": 45.167405,
+    "lon": 5.7100104
+   },
+   "tags": {
+    "alt_name": "École hôtelière Lesdiguières",
+    "amenity": "school",
+    "email": "ce.0380035G@ac-grenoble.fr",
+    "fax": "+33 4 76 70 06 13",
+    "name": "Lycée des métiers de l'hôtellerie et du tourisme",
+    "operator:type": "public",
+    "phone": "+33 4 76 21 38 54",
+    "ref:UAI": "0380035G",
+    "school:FR": "lycée",
+    "short_name": "LPO Lesdiguières",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://lesdiguieres.fr"
+   }
+  },
+  {
+   "type": "way",
+   "id": 203265506,
+   "center": {
+    "lat": 45.2152356,
+    "lon": 5.7837273
+   },
+   "tags": {
+    "addr:city": "Meylan",
+    "addr:housenumber": "1",
+    "addr:postcode": "38240",
+    "addr:street": "Avenue du Taillefer",
+    "amenity": "school",
+    "email": "ce.0382863F@ac-grenoble.fr",
+    "fax": "+33 4 76 90 79 21",
+    "grades": "10-12",
+    "name": "Lycée du Grésivaudan",
+    "operator": "Région Auvergne Rhône-Alpes",
+    "operator:type": "public/government",
+    "phone": "+33 4 76 90 30 53",
+    "ref:UAI": "0382863F;0383194R",
+    "religion": "none",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://gresivaudan.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 221473783,
+   "center": {
+    "lat": 45.2207353,
+    "lon": 5.8034812
+   },
+   "tags": {
+    "alt_name": "École des pupilles de l'air Grenoble-Montbonnot",
+    "amenity": "school",
+    "barrier": "fence",
+    "check_date": "2024-06-02",
+    "email": "Ce.0381513N@ac-grenoble.fr",
+    "fax": "+33 4 76 90 50 10",
+    "image": "https://commons.wikimedia.org/wiki/File:Ecole_pupilles_de_l%27air_-_Montbonnot.JPG",
+    "name": "Lycée militaire national Pupilles de L'Air",
+    "operator:type": "public",
+    "phone": "+33 4 76 00 53 60",
+    "ref:FR:SIRET": "15600011700453",
+    "ref:UAI": "0381513N",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://www.defense.gouv.fr/epae",
+    "wikidata": "Q3577915",
+    "wikimedia_commons": "File:Ecole pupilles de l'air - Montbonnot.JPG",
+    "wikipedia": "fr:École des pupilles de l'air 749 Grenoble-Montbonnot"
+   }
+  },
+  {
+   "type": "way",
+   "id": 270397454,
+   "center": {
+    "lat": 45.1934965,
+    "lon": 5.7664003
+   },
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "681",
+    "addr:postcode": "38402",
+    "addr:street": "Rue de la Passerelle",
+    "amenity": "university",
+    "check_date": "2025-01-31",
+    "education": "university",
+    "fax": "+33 4 76 82 72 99",
+    "name": "Ensimag",
+    "phone": "+33 4 76 82 72 00",
+    "website": "https://ensimag.grenoble-inp.fr/",
+    "wikidata": "Q273591",
+    "wikimedia_commons": "File:ENSIMAG - Saint-Martin-d'Hères.JPG",
+    "wikipedia": "fr:École nationale supérieure d'informatique et de mathématiques appliquées"
+   }
+  },
+  {
+   "type": "way",
+   "id": 270442781,
+   "center": {
+    "lat": 45.1929071,
+    "lon": 5.7613505
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2025-03-07",
+    "name": "UFR PhITEM",
+    "official_name": "Physique, Ingenierie, Terre, Environnement, Mecanique"
+   }
+  },
+  {
+   "type": "way",
+   "id": 271563834,
+   "center": {
+    "lat": 45.1896469,
+    "lon": 5.7714936
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "Bâtiment Pierre Mendès France",
+    "operator": "Université Grenoble Alpes",
+    "short_name": "UPMF",
+    "website": "http://www.upmf-grenoble.fr/",
+    "wikidata": "Q2000147"
+   }
+  },
+  {
+   "type": "way",
+   "id": 272446630,
+   "center": {
+    "lat": 45.1908708,
+    "lon": 5.7653484
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2025-03-11",
+    "faculty": "engineering",
+    "name": "Département licence sciences et technologies",
+    "short_name": "DLST"
+   }
+  },
+  {
+   "type": "way",
+   "id": 272663082,
+   "center": {
+    "lat": 45.1949267,
+    "lon": 5.7725959
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2024-08-20",
+    "name": "UFR de Chimie"
+   }
+  },
+  {
+   "type": "way",
+   "id": 272663083,
+   "center": {
+    "lat": 45.1963533,
+    "lon": 5.7715513
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "Phelma Campus"
+   }
+  },
+  {
+   "type": "way",
+   "id": 272663088,
+   "center": {
+    "lat": 45.1965347,
+    "lon": 5.7698877
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "Ense³ Berges"
+   }
+  },
+  {
+   "type": "way",
+   "id": 275551770,
+   "center": {
+    "lat": 45.1935589,
+    "lon": 5.7760426
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2025-03-08",
+    "name": "UFR de Biologie"
+   }
+  },
+  {
+   "type": "way",
+   "id": 277598218,
+   "center": {
+    "lat": 45.1909529,
+    "lon": 5.771926
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2025-05-13",
+    "name": "Bibliothèque Droit-Lettres"
+   }
+  },
+  {
+   "type": "way",
+   "id": 277598222,
+   "center": {
+    "lat": 45.1931363,
+    "lon": 5.7718879
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "Institut Fourier"
+   }
+  },
+  {
+   "type": "way",
+   "id": 280090357,
+   "center": {
+    "lat": 45.1990962,
+    "lon": 5.7760513
+   },
+   "tags": {
+    "amenity": "university",
+    "name": "IUT 1 Grenoble"
+   }
+  },
+  {
+   "type": "way",
+   "id": 280952630,
+   "center": {
+    "lat": 45.1921111,
+    "lon": 5.7722573
+   },
+   "tags": {
+    "amenity": "university",
+    "check_date": "2026-09-15",
+    "name": "Maison des langues"
+   }
+  },
+  {
+   "type": "way",
+   "id": 299413320,
+   "center": {
+    "lat": 45.1890795,
+    "lon": 5.7354329
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "5 bis",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Joseph Fourier",
+    "amenity": "school",
+    "check_date": "2024-03-28",
+    "denomination": "catholic",
+    "email": "secretariat@lycee-pierretermier.org",
+    "fax": "+33 4 76 42 55 95",
+    "name": "Lycée Pierre Termier, enseignement général",
+    "operator": "Lycée polyvalent de l'enseignement catholique Pierre Termier",
+    "operator:type": "private",
+    "phone": "+33 4 76 54 57 81",
+    "ref:UAI": "0381666E",
+    "religion": "christian",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Education nationale, de la Jeunesse et de la Vie associative",
+    "website": "https://www.lycee-pierretermier.org"
+   }
+  },
+  {
+   "type": "way",
+   "id": 310823066,
+   "center": {
+    "lat": 45.1724095,
+    "lon": 5.7478585
+   },
+   "tags": {
+    "amenity": "school",
+    "name": "École professionnelle privée Grenoble Foot 38",
+    "operator:type": "private",
+    "ref:FR:SIRET": "41288092400029",
+    "ref:UAI": "0382818G",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012"
+   }
+  },
+  {
+   "type": "way",
+   "id": 358505998,
+   "center": {
+    "lat": 45.2025587,
+    "lon": 5.7031818
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "21",
+    "addr:postcode": "38000",
+    "addr:street": "Avenue des Martyrs",
+    "amenity": "college",
+    "automatic_door": "motion",
+    "building": "university",
+    "building:levels": "7",
+    "education": "college",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "name": "GreEn-ER",
+    "operator": "Université Grenoble Alpes",
+    "operator:type": "public",
+    "roof:levels": "0",
+    "roof:shape": "many",
+    "source": "local survey",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes",
+    "wikipedia": "fr:GreEn-ER"
+   }
+  },
+  {
+   "type": "way",
+   "id": 358505999,
+   "center": {
+    "lat": 45.196088,
+    "lon": 5.7101061
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:postcode": "38000",
+    "addr:street": "Parvis Louis Néel",
+    "amenity": "college",
+    "building": "yes",
+    "check_date": "2024-08-27",
+    "name": "Auditorium Grenoble INP",
+    "operator": "Grenoble-INP",
+    "operator:type": "public",
+    "ref:UAI": "0383395J",
+    "short_name": "Phelma",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2010",
+    "website": "https://www.grenoble-inp.fr/fr/acces-itineraires/auditorium-grenoble-inp"
+   }
+  },
+  {
+   "type": "way",
+   "id": 367970528,
+   "center": {
+    "lat": 45.2335214,
+    "lon": 5.6727283
+   },
+   "tags": {
+    "alt_name": "IFSI de Saint-Égrève",
+    "amenity": "college",
+    "name": "Institut formation en soins infirmiers et d'aides-soignants - CH Alpes Isère",
+    "ref:UAI": "0383190L",
+    "short_name": "IFSI-IFAS",
+    "source": "data.gouv.fr:Office national d'information sur les enseignements et les professions - 11/2011"
+   }
+  },
+  {
+   "type": "way",
+   "id": 376722757,
+   "center": {
+    "lat": 45.2516094,
+    "lon": 5.6652827
+   },
+   "tags": {
+    "amenity": "school",
+    "check_date": "2024-08-06",
+    "name": "Lycée des métiers de la santé et du social Françoise Dolto",
+    "operator:type": "public",
+    "ref:UAI": "0382274R",
+    "school:FR": "lycée",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010;data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://francoise-dolto.ent.auvergnerhonealpes.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 380848268,
+   "center": {
+    "lat": 45.1652419,
+    "lon": 5.727934
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "14",
+    "addr:postcode": "38100",
+    "addr:street": "Avenue Marie Reynoard",
+    "amenity": "university",
+    "check_date": "2025-11-06",
+    "contact:facebook": "iuga.grenoble",
+    "contact:instagram": "iuga_grenoble",
+    "contact:linkedin": "Institut d’Urbanisme et de Geographie Alpine",
+    "email": "iuga-accueil@univ-grenoble-alpes.fr",
+    "internet_access": "wlan",
+    "isced:level": "6;7;8",
+    "name": "Institut d'urbanisme et de géographie alpine",
+    "operator": "Université Grenoble Alpes",
+    "phone": "+33 4 57 42 25 48",
+    "short_name": "IUGA",
+    "website": "https://iuga.univ-grenoble-alpes.fr",
+    "wheelchair": "yes",
+    "wikidata": "Q3152007"
+   }
+  },
+  {
+   "type": "way",
+   "id": 441253474,
+   "center": {
+    "lat": 45.1932137,
+    "lon": 5.7661597
+   },
+   "tags": {
+    "amenity": "university",
+    "campus": "Grenoble",
+    "landuse": "education",
+    "loc_name": "Campus de Grenoble",
+    "name": "Domaine universitaire de Grenoble",
+    "place": "suburb",
+    "source": "Établissements d'enseignement supérieur - 09/2017",
+    "wikidata": "Q24933221"
+   }
+  },
+  {
+   "type": "way",
+   "id": 445218398,
+   "center": {
+    "lat": 45.178985,
+    "lon": 5.7379992
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "31",
+    "addr:postcode": "38100",
+    "addr:street": "Rue de la Bajatière",
+    "amenity": "school",
+    "check_date": "2026-10-21",
+    "name": "ELAG - École de production",
+    "operator:type": "private",
+    "ref:UAI": "0381725U",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Éducation Nationale - 05/2016",
+    "website": "http://www.ecole-elag.com"
+   }
+  },
+  {
+   "type": "way",
+   "id": 445218981,
+   "center": {
+    "lat": 45.1783441,
+    "lon": 5.7379292
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "30",
+    "addr:postcode": "38100",
+    "addr:street": "Rue Maurice Barrès",
+    "amenity": "school",
+    "check_date": "2026-10-21",
+    "denomination": "catholic",
+    "name": "Lycée Pierre Termier site Barrès, enseignement technologique",
+    "operator": "Lycée polyvalent de l'enseignement catholique Pierre Termier",
+    "operator:type": "private",
+    "ref:UAI": "0381725U",
+    "religion": "christian",
+    "school:FR": "lycée",
+    "source": "data.gouv.fr:Éducation Nationale - 05/2016",
+    "website": "https://www.lycee-pierretermier.org/informations-pratiques/plan-dacces/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 477832384,
+   "center": {
+    "lat": 45.1844637,
+    "lon": 5.7530604
+   },
+   "tags": {
+    "amenity": "college",
+    "building": "yes",
+    "check_date": "2024-09-18",
+    "diff:ref:FR:RNB": "multiple",
+    "name": "École polytechnique universitaire Grenoble INP-UGA",
+    "ref:FR:RNB": "DE1XZAX57955;D2V3KSREQAJE;TWNQSF6TD41E",
+    "ref:UAI": "0382881A",
+    "short_name": "Polytech GA",
+    "source": "cadastre-dgi-fr source : Direction Générale des Finances Publiques - Cadastre. Mise à jour : 2017",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes",
+    "wikidata": "Q3578305",
+    "wikimedia_commons": "File:Polytech'Grenoble - Saint-Martin-d'Hères.JPG",
+    "wikipedia": "fr:École polytechnique de l'université Grenoble-Alpes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 528140296,
+   "center": {
+    "lat": 45.1827532,
+    "lon": 5.7160559
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "6",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Irvoy",
+    "amenity": "college",
+    "check_date": "2025-07-04",
+    "name": "Campus Eductive Grenoble",
+    "operator:type": "private",
+    "phone": "+33 4 76 46 00 47",
+    "ref:UAI": "0382974B",
+    "source": "data.gouv.fr:Ministère de l'Éducation nationale, de la Jeunesse et de la Vie associative - 05/2012",
+    "website": "https://grenoble.eductive.fr/",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "way",
+   "id": 530043613,
+   "center": {
+    "lat": 45.1949692,
+    "lon": 5.7094407
+   },
+   "tags": {
+    "amenity": "college",
+    "building": "yes",
+    "check_date": "2024-09-02",
+    "internet_access": "wlan",
+    "name": "Phelma 2",
+    "operator": "Grenoble INP"
+   }
+  },
+  {
+   "type": "way",
+   "id": 622833420,
+   "center": {
+    "lat": 45.1352919,
+    "lon": 5.698675
+   },
+   "tags": {
+    "amenity": "college",
+    "check_date": "2024-05-27",
+    "name": "AFPA",
+    "website": "https://www.afpa.fr/centre/centre-de-grenoble-pt-de-claix"
+   }
+  },
+  {
+   "type": "way",
+   "id": 625239917,
+   "center": {
+    "lat": 45.1900456,
+    "lon": 5.7137173
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "12",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Pierre Semard",
+    "alt_name": "ESC",
+    "alt_name:fr": "École Supérieure de Commerce",
+    "amenity": "college",
+    "building": "college",
+    "building:levels": "9",
+    "check_date": "2024-06-30",
+    "name": "Grenoble École de Management",
+    "name:en": "Grenoble Graduate School of Business",
+    "phone": "+33 4 76 70 60 60",
+    "ref:FR:SIRET": "81738914100018",
+    "ref:UAI": "0382778N",
+    "roof:colour": "#aeb5c2",
+    "short_name:en": "GGSB",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+    "website": "https://www.grenoble-em.com/",
+    "wheelchair": "limited",
+    "wikidata": "Q839224",
+    "wikipedia": "fr:Grenoble École de management"
+   }
+  },
+  {
+   "type": "way",
+   "id": 698474125,
+   "center": {
+    "lat": 45.2017944,
+    "lon": 5.7452848
+   },
+   "tags": {
+    "amenity": "college",
+    "name": "CHU de Grenoble - Facultés de Médecine et Pharmacie",
+    "operator": "Université Grenoble Alpes",
+    "ref:UAI": "0382673Z;0381971L",
+    "source": "Etablissements d'enseignement supérieur - 09/2017"
+   }
+  },
+  {
+   "type": "way",
+   "id": 886013316,
+   "center": {
+    "lat": 45.2128654,
+    "lon": 5.7584516
+   },
+   "tags": {
+    "addr:city": "Corenc",
+    "addr:housenumber": "118",
+    "addr:postcode": "38700",
+    "addr:street": "Avenue de l'Eygala",
+    "amenity": "school",
+    "email": "contact@philippine-duchesne.fr",
+    "name": "ITEC Boisfleury - Lycée Philippine Duschesne",
+    "operator:type": "private",
+    "phone": "+33 4 76 90 12 16",
+    "ref:UAI": "0383208F",
+    "school:FR": "lycée",
+    "source": "Ministère de l'Éducation nationale et de la Jeunesse - 09/2020",
+    "website": "https://philippine-duchesne.fr/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1019466495,
+   "center": {
+    "lat": 45.1850382,
+    "lon": 5.6931562
+   },
+   "tags": {
+    "addr:city": "Seyssinet-Pariset",
+    "addr:housenumber": "30",
+    "addr:postcode": "38170",
+    "addr:street": "Rue Aimé Bouchayer",
+    "amenity": "school",
+    "check_date": "2024-09-15",
+    "education": "school",
+    "name": "Lycée Aristide Bergès",
+    "official_name": "Lycée général et technologique Aristide Bergès",
+    "operator:type": "public",
+    "ref:UAI": "0382780R",
+    "school:FR": "lycée",
+    "website": "https://aristide-berges.ent.auvergnerhonealpes.fr"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1465602326,
+   "center": {
+    "lat": 45.1848003,
+    "lon": 5.7049525
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "12",
+    "addr:postcode": "38000",
+    "addr:street": "Rue Ampère",
+    "amenity": "university",
+    "building:levels": "3",
+    "education": "university",
+    "email": "contact-grenoble@studio-m.fr",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "name": "Studio M Grenoble",
+    "opening_hours": "Mo-Fr 09:00-17:00",
+    "operator": "Eduservices",
+    "operator:type": "private",
+    "phone": "+33 4 76 87 74 75",
+    "website": "https://www.studio-m.fr/ecole-digital-grenoble",
+    "wheelchair": "yes",
+    "wikidata": "Q135975184"
+   }
+  },
+  {
+   "type": "relation",
+   "id": 81957,
+   "center": {
+    "lat": 45.1952809,
+    "lon": 5.764743
+   },
+   "tags": {
+    "addr:city": "Saint Martin d'Hères",
+    "addr:housename": "Pluriel",
+    "addr:housenumber": "701",
+    "addr:postcode": "38400",
+    "addr:street": "Rue de la Piscine",
+    "alt_name": "Bâtiment Pluriel",
+    "amenity": "college",
+    "building": "university",
+    "building:levels": "3",
+    "contact:website": "http://cpp-prepa.grenoble-inp.fr/",
+    "diff:ref:FR:RNB": "multiple",
+    "name": "CPP - La prépa des INP - DHEP",
+    "operator": "Grenoble INP",
+    "operator:type": "university",
+    "ref:FR:RNB": "M8NJTQ4N78N6;HPMMQNE2HCGC;D33JD2CWGN2N",
+    "roof:shape": "flat",
+    "type": "multipolygon",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "relation",
+   "id": 82461,
+   "center": {
+    "lat": 45.1961664,
+    "lon": 5.7758494
+   },
+   "tags": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:housenumber": "461",
+    "addr:postcode": "38402",
+    "addr:street": "Rue de la Papeterie",
+    "alt_name": "Papet'",
+    "amenity": "university",
+    "building": "yes",
+    "contact:phone": "+33 4 76 82 69 00",
+    "name": "Pagora",
+    "old_name": "EFPG",
+    "type": "multipolygon",
+    "website": "https://pagora.grenoble-inp.fr/",
+    "wikidata": "Q3578028",
+    "wikipedia": "fr:École internationale du papier, de la communication imprimée et des biomatériaux"
+   }
+  },
+  {
+   "type": "relation",
+   "id": 105290,
+   "center": {
+    "lat": 45.1921035,
+    "lon": 5.7172916
+   },
+   "tags": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "2",
+    "addr:postcode": "38000",
+    "addr:street": "Place Doyen Gosse",
+    "amenity": "university",
+    "building": "university",
+    "building:levels": "4",
+    "contact:fax": "+33 4 76 28 45 95",
+    "contact:phone": "+33 4 76 28 45 09",
+    "contact:website": "https://iut2.univ-grenoble-alpes.fr",
+    "name": "IUT 2 de Grenoble",
+    "ref:FR:RNB": "JGA5ZPADGM9V",
+    "ref:UAI": "0381775Y",
+    "roof:levels": "0",
+    "roof:shape": "flat",
+    "short_name": "IUT 2",
+    "source": "Etablissements d'enseignement supérieur - 09/2017",
+    "type": "multipolygon",
+    "wikidata": "Q3152693"
+   }
+  },
+  {
+   "type": "relation",
+   "id": 171949,
+   "center": {
+    "lat": 45.1974822,
+    "lon": 5.7769863
+   },
+   "tags": {
+    "addr:city": "Gières",
+    "addr:housenumber": "1741",
+    "addr:street": "Rue de la Piscine",
+    "amenity": "university",
+    "building": "university",
+    "name": "UFR STAPS",
+    "operator": "Université Grenoble Alpes",
+    "type": "multipolygon",
+    "website": "https://staps.univ-grenoble-alpes.fr/"
+   }
+  }
+ ]
+}

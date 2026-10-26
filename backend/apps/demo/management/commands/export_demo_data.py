@@ -14,11 +14,13 @@ from argparse import ArgumentParser
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from unittest import mock
 
 from django.core.management.base import BaseCommand, CommandError
 from django.test import override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient
+from rest_framework.throttling import SimpleRateThrottle
 
 from apps.accounts.models import User
 from apps.demo.activity import LockerSite, generate_activity
@@ -54,8 +56,13 @@ class Command(BaseCommand):
 
         # The API is read in-process, never over the network: the host and HTTPS
         # settings of the environment (ALLOWED_HOSTS, SECURE_SSL_REDIRECT) must
-        # not reject these requests, whatever the local `.env` contains.
-        with override_settings(ALLOWED_HOSTS=[EXPORT_HOST], SECURE_SSL_REDIRECT=False):
+        # not reject these requests, whatever the local `.env` contains, and
+        # the rate limits (meant for real clients) must not stop a network of
+        # more than a hundred lockers half-way.
+        with (
+            override_settings(ALLOWED_HOSTS=[EXPORT_HOST], SECURE_SSL_REDIRECT=False),
+            mock.patch.object(SimpleRateThrottle, "allow_request", return_value=True),
+        ):
             public_data, operator_data = self._snapshot_api(lockers)
 
         now = options["now"] or timezone.now()

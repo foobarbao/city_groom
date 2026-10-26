@@ -150,8 +150,10 @@ pre-deploy step, hence this script.
 
 The workflow **Seed hosted database** (`.github/workflows/seed-hosted-db.yml`,
 Actions tab → Run workflow) applies the migrations, then loads the
-`data/osm/` files: 72 simulated lockers (25 at tram stops, 45 at strategic
-places and the 2 required Inovallée parks, as on the demo site), the real OpenStreetMap merchants and, unless
+`data/osm/` files: the simulated network of the demo site (155 lockers:
+tram stops, strategic places, Inovallée, lycées and higher education,
+validated companies; large units in Grenoble; tick "Rebuild every simulated
+locker" when the placement rules change), the real OpenStreetMap merchants and, unless
 unticked, the fictitious "Démo ·" shops. Safe to run again.
 
 One-time setup: add the repository secret **`HOSTED_DATABASE_URL`**

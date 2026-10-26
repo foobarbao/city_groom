@@ -18,7 +18,7 @@ import math
 from typing import Any
 
 from apps.core.osm import METRO_BBOX, fetch_overpass
-from apps.lockers.simulation import SimulatedSite
+from apps.lockers.simulation import SimulatedSite, distance_m
 
 __all__ = [
     "STRATEGIC_CATEGORIES",
@@ -92,6 +92,191 @@ STRATEGIC_SITES_QUERY = (
     + "".join(f"  nwr{tags}({METRO_BBOX});\n" for _, tags in STRATEGIC_CATEGORIES)
     + ");\nout center tags;\n"
 )
+
+# Education sites for small lockers (project owner's decision of 2026-10-26:
+# small mixed lockers, services and consigne, in front of every lycée and
+# higher-education site; collèges and primary schools excluded).
+EDUCATION_QUERY = (
+    "[out:json][timeout:90];\n(\n"
+    f'  nwr["amenity"="school"]["school:FR"~"lycée"]({METRO_BBOX});\n'
+    f'  nwr["amenity"="school"]["name"~"^Lycée"]({METRO_BBOX});\n'
+    f'  nwr["amenity"~"^(university|college)$"]["name"]({METRO_BBOX});\n'
+    ");\nout center tags;\n"
+)
+
+# Boundary of the town of Grenoble: every locker inside gets a large model
+# (project owner's decision of 2026-10-26: "gros casiers dans le centre",
+# the centre being the whole town).
+GRENOBLE_BOUNDARY_QUERY = (
+    "[out:json][timeout:90];\n"
+    'relation["boundary"="administrative"]["admin_level"="8"]["name"="Grenoble"]'
+    f"({METRO_BBOX});\nout geom;\n"
+)
+
+# Candidate sites of large companies, to be validated one by one by the
+# project owner before any locker is placed there.
+COMPANY_SITES_QUERY = (
+    "[out:json][timeout:90];\n(\n"
+    f'  nwr["office"~"^(company|research|it)$"]["name"]({METRO_BBOX});\n'
+    f'  nwr["amenity"="research_institute"]["name"]({METRO_BBOX});\n'
+    f'  nwr["landuse"="industrial"]["name"]({METRO_BBOX});\n'
+    ");\nout center tags;\n"
+)
+
+# Large companies validated by the project owner on 2026-10-26 (zones
+# "Presqu'île scientifique", "Sud agglo", "Est"), as OpenStreetMap
+# (type, id) → locker name. Names say "Près de …": the company is only a
+# landmark to find the locker, no partnership is claimed. ASSUMPTION: naming
+# to confirm with the owner.
+COMPANY_SITES: dict[tuple[str, int], str] = {
+    ("way", 135788328): "Près de CEA-Leti",
+    ("way", 41832636): "Près de STMicroelectronics (Presqu'île)",
+    ("node", 7982692311): "Près de Schneider Electric (Presqu'île)",
+    ("node", 487712413): "Près de l'Institut Laue-Langevin",
+    ("way", 135788628): "Près de l'Institut Néel (CNRS)",
+    ("way", 40629368): "Près de Hewlett Packard (Eybens)",
+    ("way", 38968477): "Près de Schneider Electric (Eybens)",
+    ("way", 95560291): "Près de Caterpillar (Échirolles)",
+    ("way", 1551529859): "Près de Becton Dickinson (Le Pont-de-Claix)",
+    ("node", 11758650441): "Près de GE Renewable Hydro (Grenoble)",
+    ("relation", 6037451): "Près d'Inria (Montbonnot)",
+    ("node", 14104886930): "Près de Thales (Montbonnot)",
+    ("node", 11518577268): "Près de Siemens EDA (Meylan)",
+    ("node", 5888623719): "Près de Schneider Electric (Meylan)",
+}
+
+
+def parse_company_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
+    """Return the validated company sites of ``COMPANY_SITES`` found in the payload."""
+    found: dict[tuple[str, int], tuple[str, SimulatedSite]] = {}
+    for element in payload.get("elements", []):
+        key = (element.get("type", ""), element.get("id", 0))
+        position = element.get("center") or element
+        if key not in COMPANY_SITES or "lon" not in position:
+            continue
+        found[key] = (
+            "business",
+            SimulatedSite(
+                name=COMPANY_SITES[key],
+                longitude=position["lon"],
+                latitude=position["lat"],
+                source=f"OpenStreetMap, {key[0]} {key[1]} (company, validated)",
+            ),
+        )
+    return [found[key] for key in COMPANY_SITES if key in found]
+
+
+# Minimum distance between two education lockers, in metres: a campus has
+# many university buildings close together. ASSUMPTION, to review.
+EDUCATION_MIN_SPACING_M = 200
+
+
+def _is_lycee(tags: dict[str, str]) -> bool:
+    return tags.get("amenity") == "school" and (
+        "lycée" in tags.get("school:FR", "") or tags.get("name", "").startswith("Lycée")
+    )
+
+
+def parse_education_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
+    """Return every lycée and higher-education site, one locker each.
+
+    Lycées get the "school" category, universities and colleges "campus".
+    Sites closer than ``EDUCATION_MIN_SPACING_M`` to an already kept one are
+    skipped (central sites first), so a campus gets a few lockers rather than
+    one per building. Deterministic.
+    """
+    candidates: list[tuple[str, SimulatedSite]] = []
+    seen_names: set[str] = set()
+    for element in payload.get("elements", []):
+        tags = element.get("tags", {})
+        name = tags.get("name", "").strip()
+        position = element.get("center") or element
+        if not name or "lon" not in position or name in seen_names:
+            continue
+        # Laboratories and one-letter building names are not schools.
+        if len(name) < 4 or name.startswith(("Laboratoire", "Laboratory")):
+            continue
+        if _is_lycee(tags):
+            category = "school"
+        elif tags.get("amenity") in ("university", "college"):
+            category = "campus"
+        else:
+            continue
+        seen_names.add(name)
+        candidates.append(
+            (
+                category,
+                SimulatedSite(
+                    name=name,
+                    longitude=position["lon"],
+                    latitude=position["lat"],
+                    source=f"OpenStreetMap, {element['type']} {element['id']} ({category})",
+                ),
+            )
+        )
+    candidates.sort(
+        key=lambda pair: (_distance_km(pair[1].latitude, pair[1].longitude), pair[1].name)
+    )
+    kept: list[tuple[str, SimulatedSite]] = []
+    for category, site in candidates:
+        if all(distance_m(site, other) >= EDUCATION_MIN_SPACING_M for _, other in kept):
+            kept.append((category, site))
+    return kept
+
+
+def parse_town_boundary(payload: dict[str, Any]) -> list[list[tuple[float, float]]]:
+    """Return the outer rings (lon, lat) of a town boundary relation (``out geom``).
+
+    OpenStreetMap stores the boundary as ways in any order and direction;
+    they are joined end to end into closed rings.
+    """
+    segments: list[list[tuple[float, float]]] = []
+    for element in payload.get("elements", []):
+        for member in element.get("members", []):
+            if member.get("type") == "way" and member.get("role") in ("outer", ""):
+                points = [(p["lon"], p["lat"]) for p in member.get("geometry", [])]
+                if len(points) >= 2:
+                    segments.append(points)
+    rings: list[list[tuple[float, float]]] = []
+    while segments:
+        ring = segments.pop(0)
+        progress = True
+        while ring[0] != ring[-1] and progress:
+            progress = False
+            for i, segment in enumerate(segments):
+                if segment[0] == ring[-1]:
+                    ring += segment[1:]
+                elif segment[-1] == ring[-1]:
+                    ring += segment[-2::-1]
+                elif segment[-1] == ring[0]:
+                    ring = segment[:-1] + ring
+                elif segment[0] == ring[0]:
+                    ring = segment[:0:-1] + ring
+                else:
+                    continue
+                segments.pop(i)
+                progress = True
+                break
+        if ring[0] == ring[-1] and len(ring) >= 4:
+            rings.append(ring)
+    return rings
+
+
+def point_in_rings(
+    longitude: float, latitude: float, rings: list[list[tuple[float, float]]]
+) -> bool:
+    """Whether a point lies inside one of the rings (ray casting)."""
+    for ring in rings:
+        inside = False
+        for (x1, y1), (x2, y2) in zip(ring, ring[1:], strict=False):
+            if (y1 > latitude) != (y2 > latitude):
+                x_cross = x1 + (latitude - y1) * (x2 - x1) / (y2 - y1)
+                if longitude < x_cross:
+                    inside = not inside
+        if inside:
+            return True
+    return False
+
 
 # OSM tag values that identify each category in a response.
 _CATEGORY_MATCHERS: tuple[tuple[str, str, frozenset[str]], ...] = (
