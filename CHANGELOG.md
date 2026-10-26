@@ -9,6 +9,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Locker network by place (owner's decisions of 2026-10-26): a small mixed
+  locker (services + consigne) at every lycée and higher-education site,
+  large lockers in the town of Grenoble, mixed lockers near 14 validated
+  large companies; new site category "Lycée", new locker models; OSM
+  workflow fetches education sites, the Grenoble boundary and company
+  sites; hosted seed workflow gains a "rebuild lockers" option; demo
+  network now 155 lockers.
 - Lockers at the Inovallée business parks of Meylan and Montbonnot,
   required by the project owner whatever the automatic selection rules
   (`REQUIRED_SITES`); demo network now 72 lockers; demo data regenerated.
@@ -298,6 +305,8 @@ Versioning: [SemVer](https://semver.org/).
   merchants.
 
 ### Fixed
+
+- Demo export no longer stops on the API rate limit with a large network.
 
 - Accounts admin: an action answering with a file (CSV export) no longer
   fails on the list's summary.
