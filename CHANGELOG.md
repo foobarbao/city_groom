@@ -9,6 +9,15 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Announcements opt-in: box unticked by default at the Google sign-in,
+  switch on the account screen; stored on the account with its date
+  (`announcements`, `PATCH /api/v1/auth/me/`); admin column, filter,
+  counter and CSV export of the agreeing e-mail addresses.
+- Privacy policy page (`/confidentialite`, short address
+  `citypal.fr/confidentialite`), linked from the sign-in and the home
+  screen.
+- Mobile side menu opaque when it opens over the page; merchant chat
+  bubbles and quote cards readable in dark mode.
 - `citypal.fr` addresses: the site root opens the customer app (was the
   portal demo home); `pro.citypal.fr` redirects to the portal; DNS steps
   for OVH documented.
@@ -279,6 +288,9 @@ Versioning: [SemVer](https://semver.org/).
   merchants.
 
 ### Fixed
+
+- Accounts admin: an action answering with a file (CSV export) no longer
+  fails on the list's summary.
 
 - .ics export: semicolons are now escaped as RFC 5545 requires.
 - Consigne "how it works": step 3 showed a raw key (`consigne.how.step2b`).

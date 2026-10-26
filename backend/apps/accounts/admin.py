@@ -2,18 +2,20 @@
 
 The list answers the operator's usual questions at a glance: who signed up,
 when, how (Google or password), whether they are customers or team members,
-and when they last came. A summary above the list counts customers, recent
-sign-ups and Google accounts.
+and when they last came, and whether they agreed to receive announcements.
+A summary above the list counts customers, recent sign-ups, Google accounts
+and announcement agreements; the "Exporter" action downloads the e-mail
+addresses of the selected accounts that agreed (CSV), for the launch mailing.
 """
 
+import csv
 from datetime import timedelta
 from typing import Any
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.db.models import QuerySet
-from django.http import HttpRequest
-from django.template.response import TemplateResponse
+from django.http import HttpRequest, HttpResponse
 from django.utils import timezone
 from django.utils.html import format_html
 from rest_framework.authtoken.models import TokenProxy
@@ -86,12 +88,14 @@ class UserAdmin(DjangoUserAdmin[User]):
         "account_type",
         "date_joined",
         "last_login",
+        "announcements",
         "is_active",
     ]
     list_display_links = ["photo", "display_name"]
     list_filter = [
         AccountTypeFilter,
         SignInMethodFilter,
+        "announcements",
         "is_active",
         "date_joined",
         "last_login",
@@ -101,10 +105,11 @@ class UserAdmin(DjangoUserAdmin[User]):
     date_hierarchy = "date_joined"
     list_per_page = 50
     inlines = [GoogleAccountInline]
-    readonly_fields = ["photo_large", "date_joined", "last_login"]
+    readonly_fields = ["photo_large", "date_joined", "last_login", "announcements_changed_at"]
     fieldsets = [
         (None, {"fields": ["photo_large", "first_name", "last_name", "email", "picture_url"]}),
         ("Activité", {"fields": ["date_joined", "last_login", "is_active"]}),
+        ("Annonces", {"fields": ["announcements", "announcements_changed_at"]}),
         (
             "Accès à l'administration",
             {
@@ -120,7 +125,7 @@ class UserAdmin(DjangoUserAdmin[User]):
             },
         ),
     ]
-    actions = ["deactivate"]
+    actions = ["export_announcement_emails", "deactivate"]
 
     def get_queryset(self, request: HttpRequest) -> QuerySet[User]:
         """Fetch the Google identity with each account (sign-in column)."""
@@ -178,9 +183,30 @@ class UserAdmin(DjangoUserAdmin[User]):
         count = others.update(is_active=False)
         self.message_user(request, f"{count} compte(s) désactivé(s).")
 
+    @admin.action(description="Exporter les e-mails (accords aux annonces) en CSV")
+    def export_announcement_emails(
+        self, request: HttpRequest, queryset: QuerySet[User]
+    ) -> HttpResponse:
+        """CSV of the selected active accounts that agreed to announcements."""
+        response = HttpResponse(content_type="text/csv; charset=utf-8")
+        response["Content-Disposition"] = 'attachment; filename="citypal-annonces.csv"'
+        writer = csv.writer(response)
+        writer.writerow(["email", "prenom", "nom", "accord_le"])
+        for user in queryset.filter(announcements=True, is_active=True).order_by("email"):
+            changed = user.announcements_changed_at
+            writer.writerow(
+                [
+                    user.email,
+                    user.first_name,
+                    user.last_name,
+                    changed.isoformat() if changed else "",
+                ]
+            )
+        return response
+
     def changelist_view(
         self, request: HttpRequest, extra_context: dict[str, Any] | None = None
-    ) -> TemplateResponse:
+    ) -> HttpResponse:
         """Add the summary shown above the list."""
         customers = User.objects.filter(is_staff=False)
         week_ago = timezone.now() - timedelta(days=7)
@@ -189,9 +215,9 @@ class UserAdmin(DjangoUserAdmin[User]):
             ("Inscrits ces 7 derniers jours", customers.filter(date_joined__gte=week_ago).count()),
             ("Actifs ces 7 derniers jours", customers.filter(last_login__gte=week_ago).count()),
             ("Connexion Google", customers.filter(google_account__isnull=False).count()),
+            ("Accord aux annonces", customers.filter(announcements=True).count()),
             ("Équipe CityPal", User.objects.filter(is_staff=True).count()),
         ]
         context = {**(extra_context or {}), "accounts_summary": summary}
-        response = super().changelist_view(request, extra_context=context)
-        assert isinstance(response, TemplateResponse)  # noqa: S101 - admin list view
-        return response
+        # An action (e.g. the CSV export) answers with its own response.
+        return super().changelist_view(request, extra_context=context)

@@ -183,6 +183,9 @@ const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(cat
         </router-link>
 
         <demo-notice />
+        <router-link class="privacy-link small muted" to="/confidentialite">{{
+          t('account.google.privacyLink')
+        }}</router-link>
       </main>
     </ion-content>
   </ion-page>
@@ -383,5 +386,8 @@ const roundTimes = new Intl.ListFormat('fr', { type: 'conjunction' }).format(cat
 }
 .map-link {
   gap: 4px;
+}
+.privacy-link {
+  align-self: center;
 }
 </style>

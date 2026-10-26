@@ -60,18 +60,24 @@ export async function getJson<T>(path: string, params?: Record<string, string>):
  * @param path - Path relative to the API base URL, starting with `/`.
  * @param body - Request body, sent as JSON; omitted when undefined.
  * @param token - Token of the signed-in user, sent as `Authorization: Token …`.
+ * @param method - HTTP method (POST by default, PATCH to change a resource).
  * @returns The decoded JSON body, or `undefined` for an empty response (204).
  * @throws {ApiError} If the API responds with a status >= 400.
  * @throws {NetworkError} If the request cannot be sent or the connection fails.
  */
-export async function sendJson<T>(path: string, body?: unknown, token?: string): Promise<T> {
+export async function sendJson<T>(
+  path: string,
+  body?: unknown,
+  token?: string,
+  method: 'POST' | 'PATCH' = 'POST',
+): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json' }
   if (body !== undefined) headers['Content-Type'] = 'application/json'
   if (token) headers.Authorization = `Token ${token}`
   let response: Response
   try {
     response = await fetch(`${API_BASE_URL}${path}`, {
-      method: 'POST',
+      method,
       headers,
       body: body === undefined ? undefined : JSON.stringify(body),
     })

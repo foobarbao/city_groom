@@ -32,11 +32,11 @@ curl https://<host>/api/v1/lockers/
 curl -H "Authorization: Api-Key <your-key>" https://<host>/api/v1/operator/lockers/stats/
 ```
 
-| Resource | URL |
-|---|---|
-| OpenAPI schema (YAML; add `?format=json` for JSON) | `/api/v1/schema/` |
-| Interactive documentation (Swagger UI, "Try it out") | `/api/v1/docs/` |
-| Reference documentation (ReDoc) | `/api/v1/redoc/` |
+| Resource                                             | URL               |
+| ---------------------------------------------------- | ----------------- |
+| OpenAPI schema (YAML; add `?format=json` for JSON)   | `/api/v1/schema/` |
+| Interactive documentation (Swagger UI, "Try it out") | `/api/v1/docs/`   |
+| Reference documentation (ReDoc)                      | `/api/v1/redoc/`  |
 
 Client code can be generated from the schema with any OpenAPI generator; the
 City Groom frontends do so with `openapi-typescript`
@@ -55,12 +55,12 @@ City Groom frontends do so with `openapi-typescript`
 
 Three kinds of callers exist:
 
-| Caller | How | Access |
-|---|---|---|
-| Anyone (apps, guests, integrations) | No credentials | Public endpoints only |
-| Integration (tool, partner, script) | `Authorization: Api-Key <key>` header | Public endpoints + endpoints allowed by the key's **scopes** |
-| City Groom operator | Django admin session (browser) | Everything, including operator endpoints |
-| Signed-in customer (CityPal apps) | `Authorization: Token <token>` header, token from `POST /api/v1/auth/google/` | Public endpoints + their own account (`/auth/me/`) |
+| Caller                              | How                                                                           | Access                                                       |
+| ----------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Anyone (apps, guests, integrations) | No credentials                                                                | Public endpoints only                                        |
+| Integration (tool, partner, script) | `Authorization: Api-Key <key>` header                                         | Public endpoints + endpoints allowed by the key's **scopes** |
+| City Groom operator                 | Django admin session (browser)                                                | Everything, including operator endpoints                     |
+| Signed-in customer (CityPal apps)   | `Authorization: Token <token>` header, token from `POST /api/v1/auth/google/` | Public endpoints + their own account (`/auth/me/`)           |
 
 ### Customer sign-in (Google)
 
@@ -73,6 +73,13 @@ deactivated account, e-mail used by a team or password account), `503`
 (Google unreachable), `429` beyond the sign-in rate limit. The token does not
 expire; `POST /api/v1/auth/sign-out/` deletes it (every device of the user is
 signed out).
+
+Announcements (owner's decision, 2026-10-25): the sign-in body may carry
+`"announcements": true` when the person ticked the opt-in box (unticked by
+default); `false` or absent never withdraws an earlier agreement.
+`PATCH /api/v1/auth/me/` with `{"announcements": true|false}` changes the
+choice from the account screen. The date of the last change is stored; the
+profile returns `announcements`.
 
 ### Integration API keys
 
@@ -87,8 +94,8 @@ signed out).
 
 ### Scopes
 
-| Scope | Grants |
-|---|---|
+| Scope             | Grants                                                                           |
+| ----------------- | -------------------------------------------------------------------------------- |
 | `operations:read` | Operator data: per-door occupancy, fill rates, network statistics, locker events |
 
 Public endpoints need no scope. A key without the required scope gets
@@ -101,39 +108,40 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 
 ### Public (`lockers` tag)
 
-| Method & path | Description |
-|---|---|
-| `GET /api/v1/lockers/` | In-service lockers as GeoJSON, with free compartments per size. Filter around a point with `lng`, `lat`, `radius_km` (default 2, max 20), nearest first. |
-| `GET /api/v1/lockers/{code}/` | Locker front: columns, doors (label, size, position), control panel, free compartments per size. **No per-door status.** |
-| `GET /api/v1/lockers/sizes/` | Compartment size catalogue: dimensions (cm), layout height, examples of items. |
+| Method & path                 | Description                                                                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /api/v1/lockers/`        | In-service lockers as GeoJSON, with free compartments per size. Filter around a point with `lng`, `lat`, `radius_km` (default 2, max 20), nearest first. |
+| `GET /api/v1/lockers/{code}/` | Locker front: columns, doors (label, size, position), control panel, free compartments per size. **No per-door status.**                                 |
+| `GET /api/v1/lockers/sizes/`  | Compartment size catalogue: dimensions (cm), layout height, examples of items.                                                                           |
 
 ### Merchants (`merchants` tag, public)
 
-| Method & path | Description |
-|---|---|
+| Method & path            | Description                                                                                                                                                                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `GET /api/v1/merchants/` | Local businesses offering locker-compatible services, as GeoJSON. Public data from OpenStreetMap (attribution required); `is_partner` is false until a partnership is signed. Filters: `category`, and `lng`, `lat`, `radius_km`. |
 
 ### Operations (`operations` tag, scope `operations:read`)
 
-| Method & path | Description |
-|---|---|
-| `GET /api/v1/operator/lockers/` | All lockers (any status) as GeoJSON, with fill rate, compartments in service and in use. Same distance filter as above. |
-| `GET /api/v1/operator/lockers/{code}/` | Locker front with the **status of every door** and the fill rate. |
-| `GET /api/v1/operator/lockers/stats/` | Network totals: lockers, compartments, in service, in use, fill rate, free and capacity per size. |
-| `GET /api/v1/operator/locker-events/` | Events reported by lockers, newest first (see §9). Filters: `locker`, `kind`, `since`. |
+| Method & path                          | Description                                                                                                             |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `GET /api/v1/operator/lockers/`        | All lockers (any status) as GeoJSON, with fill rate, compartments in service and in use. Same distance filter as above. |
+| `GET /api/v1/operator/lockers/{code}/` | Locker front with the **status of every door** and the fill rate.                                                       |
+| `GET /api/v1/operator/lockers/stats/`  | Network totals: lockers, compartments, in service, in use, fill rate, free and capacity per size.                       |
+| `GET /api/v1/operator/locker-events/`  | Events reported by lockers, newest first (see §9). Filters: `locker`, `kind`, `since`.                                  |
 
 ### Accounts (`accounts` tag)
 
-| Method & path | Description |
-|---|---|
-| `POST /api/v1/auth/google/` | Sign in with Google: exchanges a Google ID token for a CityPal token and the profile. No authentication. |
-| `GET /api/v1/auth/me/` | Profile of the signed-in user (token). |
-| `POST /api/v1/auth/sign-out/` | Deletes the user's token (`204`). |
+| Method & path                 | Description                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `POST /api/v1/auth/google/`   | Sign in with Google: exchanges a Google ID token for a CityPal token and the profile. No authentication. |
+| `GET /api/v1/auth/me/`        | Profile of the signed-in user (token).                                                                   |
+| `PATCH /api/v1/auth/me/`      | Changes the user's settings: agreement to receive CityPal announcements (`announcements`).               |
+| `POST /api/v1/auth/sign-out/` | Deletes the user's token (`204`).                                                                        |
 
 ### System (`system` tag)
 
-| Method & path | Description |
-|---|---|
+| Method & path         | Description                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
 | `GET /api/v1/health/` | `{"status": "ok"}`, or HTTP 503 if the database is unreachable. No authentication, for uptime monitors. |
 
 ## 5. Data conventions
@@ -149,15 +157,15 @@ Summary; parameters and response schemas are in the OpenAPI reference.
   top, e.g. `B3`).
 - **Enumerations** (values are stable, labels are French display texts):
 
-| Field | Values |
-|---|---|
-| Compartment `size` | `S`, `M`, `L`, `XL` |
-| Compartment `status` | `free`, `reserved`, `occupied`, `out_of_service` |
-| Locker `status` | `active`, `maintenance`, `offline` |
-| Locker `site_category` | `tram_stop`, `tourism`, `transport`, `campus`, `shopping`, `health`, `business`, `square`, `leisure`, `other` |
-| `access_methods` / `access_method` | `bluetooth`, `nfc`, `qr_code` |
-| Merchant `category` | `laundry`, `dry_cleaning`, `shoe_repair`, `tailoring`, `watch_repair`, `jewellery_repair`, `electronics_repair`, `key_cutting` |
-| Event `kind` | `door_opened`, `door_closed`, `door_left_open`, `fault`, `connection_lost`, `connection_restored` |
+| Field                              | Values                                                                                                                         |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Compartment `size`                 | `S`, `M`, `L`, `XL`                                                                                                            |
+| Compartment `status`               | `free`, `reserved`, `occupied`, `out_of_service`                                                                               |
+| Locker `status`                    | `active`, `maintenance`, `offline`                                                                                             |
+| Locker `site_category`             | `tram_stop`, `tourism`, `transport`, `campus`, `shopping`, `health`, `business`, `square`, `leisure`, `other`                  |
+| `access_methods` / `access_method` | `bluetooth`, `nfc`, `qr_code`                                                                                                  |
+| Merchant `category`                | `laundry`, `dry_cleaning`, `shoe_repair`, `tailoring`, `watch_repair`, `jewellery_repair`, `electronics_repair`, `key_cutting` |
+| Event `kind`                       | `door_opened`, `door_closed`, `door_left_open`, `fault`, `connection_lost`, `connection_restored`                              |
 
 - **Fill rate**: share of in-service compartments that are reserved or
   occupied, between 0 and 1.
@@ -177,22 +185,22 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 Errors use standard HTTP status codes with a JSON body. Messages are in French
 (they may be shown to end users); rely on the status code, not on the text.
 
-| Status | Meaning | Body example |
-|---|---|---|
-| 400 | Invalid parameter | `["lng, lat et radius_km doivent être des nombres."]` |
-| 401 / 403 | Missing, invalid, revoked or expired key, or missing scope | `{"detail": "..."}` |
-| 404 | Unknown resource (e.g. locker code) | `{"detail": "..."}` |
-| 429 | Rate limit exceeded; see the `Retry-After` header (seconds) | `{"detail": "..."}` |
-| 503 | Service unavailable (health check) | `{"status": "unavailable"}` |
+| Status    | Meaning                                                     | Body example                                          |
+| --------- | ----------------------------------------------------------- | ----------------------------------------------------- |
+| 400       | Invalid parameter                                           | `["lng, lat et radius_km doivent être des nombres."]` |
+| 401 / 403 | Missing, invalid, revoked or expired key, or missing scope  | `{"detail": "..."}`                                   |
+| 404       | Unknown resource (e.g. locker code)                         | `{"detail": "..."}`                                   |
+| 429       | Rate limit exceeded; see the `Retry-After` header (seconds) | `{"detail": "..."}`                                   |
+| 503       | Service unavailable (health check)                          | `{"status": "unavailable"}`                           |
 
 ## 8. Rate limits
 
-| Caller | Default limit | Counted per |
-|---|---|---|
-| Anonymous | 120 requests / minute | IP address |
-| Signed-in user | 600 requests / minute | User account |
-| Integration API key | 600 requests / minute | API key |
-| Google sign-in (`POST /auth/google/`) | 20 requests / minute | IP address |
+| Caller                                | Default limit         | Counted per  |
+| ------------------------------------- | --------------------- | ------------ |
+| Anonymous                             | 120 requests / minute | IP address   |
+| Signed-in user                        | 600 requests / minute | User account |
+| Integration API key                   | 600 requests / minute | API key      |
+| Google sign-in (`POST /auth/google/`) | 20 requests / minute  | IP address   |
 
 Limits are configurable per environment. When exceeded, the API answers `429`
 with a `Retry-After` header; wait that long before retrying, and use
@@ -241,7 +249,7 @@ Not available yet; listed so integrators can plan:
 
 ## 12. Changelog
 
-| Date | Change |
-|---|---|
-| 2026-10-24 | Added `GET /api/v1/merchants/`. |
+| Date       | Change                                                                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2026-10-24 | Added `GET /api/v1/merchants/`.                                                                                                            |
 | 2026-10-24 | `v1` published: lockers (public), operations (occupancy, statistics, events), health check; integration API keys with scopes; rate limits. |

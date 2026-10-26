@@ -88,6 +88,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/ReviewPage.vue'),
     props: true,
   },
+  {
+    path: '/confidentialite',
+    name: 'privacy',
+    component: () => import('../views/PrivacyPage.vue'),
+  },
   { path: '/:pathMatch(.*)*', redirect: '/accueil' },
 ]
 

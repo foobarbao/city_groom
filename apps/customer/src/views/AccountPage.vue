@@ -40,6 +40,12 @@ const googleUnavailable = Capacitor.isNativePlatform()
 const googleButton = ref<HTMLElement | null>(null)
 const googleBusy = ref(false)
 const googleError = ref('')
+/**
+ * Opt-in to announcement e-mails, unticked by default (owner's decision of
+ * 2026-10-25, docs/PRODUCT.md question 14): sent with the Google sign-in.
+ */
+const announcementsOptIn = ref(false)
+const announcementsStatus = ref('')
 
 async function onCredential(credential: string): Promise<void> {
   googleBusy.value = true
@@ -49,10 +55,10 @@ async function onCredential(credential: string): Promise<void> {
       // DEMO: no backend online yet; show the Google profile read on the device.
       const profile = readGoogleProfileUnverified(credential)
       if (!profile) throw new Error('unreadable token')
-      account.signInWithGoogleDemo(profile)
+      account.signInWithGoogleDemo(profile, announcementsOptIn.value)
       return
     }
-    account.signInWithGoogle(await signInWithGoogle(credential))
+    account.signInWithGoogle(await signInWithGoogle(credential, announcementsOptIn.value))
   } catch (error) {
     googleError.value =
       error instanceof ApiError && error.status === 400
@@ -60,6 +66,18 @@ async function onCredential(credential: string): Promise<void> {
         : t('account.google.unreachable')
   } finally {
     googleBusy.value = false
+  }
+}
+
+/** Change the announcement choice from the profile card. */
+async function toggleAnnouncements(event: Event): Promise<void> {
+  const box = event.target as HTMLInputElement
+  try {
+    await account.setAnnouncements(box.checked)
+    announcementsStatus.value = t('account.google.announcementsSaved')
+  } catch {
+    box.checked = !box.checked
+    announcementsStatus.value = t('account.google.announcementsError')
   }
 }
 
@@ -89,6 +107,10 @@ const toReview = computed(
           <p class="muted">{{ t('account.guest') }}</p>
           <p>{{ t('account.signInPitch') }}</p>
           <template v-if="withGoogle">
+            <label class="consent">
+              <input v-model="announcementsOptIn" type="checkbox" />
+              <span>{{ t('account.google.announcements') }}</span>
+            </label>
             <div ref="googleButton" class="google-button" :aria-busy="googleBusy" />
             <p v-if="googleBusy" class="muted small">{{ t('account.google.busy') }}</p>
             <p v-if="googleError" class="error small" role="alert">{{ googleError }}</p>
@@ -100,7 +122,10 @@ const toReview = computed(
             </button>
             <p class="muted small">{{ t(googleUnavailable) }}</p>
           </template>
-          <p class="muted small">{{ t('account.google.privacy') }}</p>
+          <p class="muted small">
+            {{ t('account.google.privacy') }}
+            <router-link to="/confidentialite">{{ t('account.google.privacyLink') }}</router-link>
+          </p>
           <p class="or">{{ t('account.google.or') }}</p>
           <form class="sign-in" @submit.prevent="account.signIn(name)">
             <label class="field">
@@ -131,6 +156,17 @@ const toReview = computed(
           <ion-button fill="clear" size="small" @click="account.signOut()">{{
             t('account.signOut')
           }}</ion-button>
+          <label v-if="account.state.google" class="consent full">
+            <input
+              type="checkbox"
+              :checked="account.state.google.announcements === true"
+              @change="toggleAnnouncements"
+            />
+            <span>{{ t('account.google.announcements') }}</span>
+          </label>
+          <p v-if="announcementsStatus" class="muted small full" role="status">
+            {{ announcementsStatus }}
+          </p>
         </section>
 
         <nav class="list menu">
@@ -182,6 +218,7 @@ const toReview = computed(
 }
 .profile {
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
@@ -235,5 +272,25 @@ const toReview = computed(
 .item > span:first-child {
   display: flex;
   flex-direction: column;
+}
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--cg-ink);
+  cursor: pointer;
+}
+.consent input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--cg-leaf);
+}
+/* In the profile card (a flex row), take a line of their own. */
+.full {
+  flex-basis: 100%;
 }
 </style>

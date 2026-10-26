@@ -57,10 +57,10 @@ grouped rounds, same price as in the shop, commission from 10 % to 1 %, public
 funding). ASSUMPTION: the wording is a draft for the project owner to review.
 Two points are worded with care until the open questions below are answered:
 
-- "Public interest": the page says *intérêt général* and "presque un service
-  public de proximité", never *reconnue d'utilité publique*, which in France
+- "Public interest": the page says _intérêt général_ and "presque un service
+  public de proximité", never _reconnue d'utilité publique_, which in France
   is a legal status granted by decree to associations and foundations.
-- "Organic" (*bio*): the page does not claim organic or eco-labelled
+- "Organic" (_bio_): the page does not claim organic or eco-labelled
   products, since partner merchants' products are not known.
 
 Background photos: real photos of Grenoble under free licences (Wikimedia
@@ -180,13 +180,13 @@ reference-price rules first).
 
 ## 3. Actors
 
-| Actor | Description | Interface |
-|---|---|---|
-| Customer | Resident who orders a service and uses the lockers. | Customer app (Android + PWA), French UI |
-| Merchant | Local business performing the service. | Partner portal, merchant space: web + Android "pro" app (ADR-0006), French UI |
-| Courier partner | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | Partner portal, courier space (web), French UI |
-| Operator (administrator) | The CityPal team: manages lockers, merchants, courier partners, offers, orders, commission settings. | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
-| Locker | Connected locker with compartments, placed around the city. | Simulated in the demo, real hardware later |
+| Actor                    | Description                                                                                                                                                                                 | Interface                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Customer                 | Resident who orders a service and uses the lockers.                                                                                                                                         | Customer app (Android + PWA), French UI                                                           |
+| Merchant                 | Local business performing the service.                                                                                                                                                      | Partner portal, merchant space: web + Android "pro" app (ADR-0006), French UI                     |
+| Courier partner          | Local cargo-bike delivery company collecting and returning items. Companies mentioned by the project owner as potential partners: Cargo Loco, City Sherpa (no partnership established yet). | Partner portal, courier space (web), French UI                                                    |
+| Operator (administrator) | The CityPal team: manages lockers, merchants, courier partners, offers, orders, commission settings.                                                                                        | Django admin (data management) + partner portal, operator space (dashboards); both web, French UI |
+| Locker                   | Connected locker with compartments, placed around the city.                                                                                                                                 | Simulated in the demo, real hardware later                                                        |
 
 **Platforms**: customers use the **mobile app**; merchants, courier partners
 and operators use **web interfaces** (ADR-0005). Merchants also get a
@@ -499,42 +499,42 @@ with the project owner.
 
 ## Glossary
 
-| Term (code, English) | Meaning | UI label (French) |
-|---|---|---|
-| Locker | A connected locker unit at one location | Casier / consigne *(to confirm)* |
-| Compartment | One lockable box inside a locker | Compartiment / casier *(to confirm)* |
-| Merchant | Business performing a service | Commerçant |
-| Service offer | A standard service sold by a merchant at a fixed price | Prestation |
-| Pack | A bundle of service offers sold at a pack price | Pack / formule *(to confirm)* |
-| Quote | A merchant's price proposal for a special service | Devis |
-| Conversation | Chat between a customer and a merchant about a special service | Discussion |
-| Pickup slot | Time window during which the customer collects the item | Créneau de retrait |
-| Order | A customer's request for a service offer | Commande |
-| Round | A courier trip collecting and returning items | Tournée |
-| Slot | Period between two rounds (morning, afternoon, evening) | Créneau (matinée, après-midi, soirée) |
-| Transfer | Moving stored items to another locker at a round | Transfert / déplacement |
-| Storage booking | A customer's booking of a compartment to store personal belongings (up to 24 h) | Consigne |
-| Subscription | Customer plan lowering consigne prices | Abonnement |
-| Review | A customer's rating (out of 5) and comment on a shop after an order | Avis |
-| Commission | Platform fee charged to the merchant | Commission |
+| Term (code, English) | Meaning                                                                         | UI label (French)                     |
+| -------------------- | ------------------------------------------------------------------------------- | ------------------------------------- |
+| Locker               | A connected locker unit at one location                                         | Casier / consigne _(to confirm)_      |
+| Compartment          | One lockable box inside a locker                                                | Compartiment / casier _(to confirm)_  |
+| Merchant             | Business performing a service                                                   | Commerçant                            |
+| Service offer        | A standard service sold by a merchant at a fixed price                          | Prestation                            |
+| Pack                 | A bundle of service offers sold at a pack price                                 | Pack / formule _(to confirm)_         |
+| Quote                | A merchant's price proposal for a special service                               | Devis                                 |
+| Conversation         | Chat between a customer and a merchant about a special service                  | Discussion                            |
+| Pickup slot          | Time window during which the customer collects the item                         | Créneau de retrait                    |
+| Order                | A customer's request for a service offer                                        | Commande                              |
+| Round                | A courier trip collecting and returning items                                   | Tournée                               |
+| Slot                 | Period between two rounds (morning, afternoon, evening)                         | Créneau (matinée, après-midi, soirée) |
+| Transfer             | Moving stored items to another locker at a round                                | Transfert / déplacement               |
+| Storage booking      | A customer's booking of a compartment to store personal belongings (up to 24 h) | Consigne                              |
+| Subscription         | Customer plan lowering consigne prices                                          | Abonnement                            |
+| Review               | A customer's rating (out of 5) and comment on a shop after an order             | Avis                                  |
+| Commission           | Platform fee charged to the merchant                                            | Commission                            |
 
 ## Reminders
 
 Topics the project owner asked to be reminded of:
 
 - **Packs with partners**: the first one, the weekly pack, is specified
-  (§2 "Weekly pack"); other packs and partnerships to come. *(Requested on
-  2026-10-24.)*
+  (§2 "Weekly pack"); other packs and partnerships to come. _(Requested on
+  2026-10-24.)_
 - **Ecology and digital axis** ("Notre engagement"): on hold, draft page
-  ready at `/engagement` (not linked). *(Stated on 2026-10-25.)*
+  ready at `/engagement` (not linked). _(Stated on 2026-10-25.)_
 - **Making Google sign-in and the Google Agenda sync work for real** needs
   two things from the project owner: the Google OAuth client ID
   (docs/GOOGLE_SIGN_IN.md), and the Render + Neon backend
-  (docs/BUILD_AND_RELEASE.md §6) for the customer sign-in. *(Asked on
-  2026-10-25 to be reminded later.)*
+  (docs/BUILD_AND_RELEASE.md §6) for the customer sign-in. _(Asked on
+  2026-10-25 to be reminded later.)_
 - **Other interfaces** (merchant, courier, operator) will be reworked after
   the customer app, including the consigne and three rounds.
-  *(Stated on 2026-10-24.)*
+  _(Stated on 2026-10-24.)_
 
 ## Open questions
 
@@ -590,9 +590,11 @@ Questions to the project owner. Answers are moved into the sections above.
     merchants and couriers also sign in with Google on the portal? How long
     are inactive customer accounts kept (GDPR retention)?
 
-14. **E-mails collected through Google sign-in** (2026-10-25): may CityPal
-    write to these addresses about the launch? ASSUMPTION to validate with a
-    legal adviser: service messages are fine, but marketing e-mails need an
-    explicit, unticked opt-in at sign-in (CNIL rules on electronic
-    prospecting), plus the privacy policy published on the domain. Wording
-    and storage of the opt-in to decide.
+14. **E-mails collected through Google sign-in**: answered 2026-10-25. The
+    project owner wants to send announcements (launch, offers): opt-in box,
+    unticked by default, at the Google sign-in, changeable from the account
+    screen; the agreement and its date are stored (`User.announcements`);
+    the admin exports the agreeing addresses (CSV). Controller: Alexis
+    Steinmann, personally (no company yet); contact `contact@citypal.fr`.
+    Privacy page published at `/confidentialite`. ASSUMPTION to validate
+    with a legal adviser: wording of the box and of the page.

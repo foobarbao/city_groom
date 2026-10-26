@@ -8,6 +8,7 @@ import { useAccountStore } from './account'
 
 vi.mock('../api/auth', () => ({
   signOutFromApi: vi.fn(() => Promise.resolve()),
+  updateAnnouncements: vi.fn(() => Promise.resolve()),
 }))
 
 beforeEach(() => {
@@ -30,9 +31,11 @@ describe('account store', () => {
         picture_url: 'https://lh3.googleusercontent.com/a/x',
         date_joined: '2026-10-25T10:00:00Z',
         signed_in_with_google: true,
+        announcements: true,
       },
     })
     expect(store.state.signedIn).toBe(true)
+    expect(store.state.google?.announcements).toBe(true)
     expect(store.state.name).toBe('Camille')
     expect(store.state.google?.email).toBe('camille@example.com')
 
@@ -40,6 +43,23 @@ describe('account store', () => {
     expect(signOutFromApi).toHaveBeenCalledWith('tok')
     expect(store.state.signedIn).toBe(false)
     expect(store.state.google).toBeNull()
+  })
+
+  it('records the announcement choice on the server when signed in with Google', async () => {
+    const { updateAnnouncements } = await import('../api/auth')
+    const store = useAccountStore()
+    store.signInWithGoogleDemo({ email: 'a@example.com', firstName: 'Ana', pictureUrl: '' })
+    expect(store.state.google?.announcements).toBe(false)
+
+    await store.setAnnouncements(true)
+    // Demo session without a token: kept on the device only.
+    expect(updateAnnouncements).not.toHaveBeenCalled()
+    expect(store.state.google?.announcements).toBe(true)
+
+    store.state.google = { ...store.state.google!, token: 'tok' }
+    await store.setAnnouncements(false)
+    expect(updateAnnouncements).toHaveBeenCalledWith('tok', false)
+    expect(store.state.google?.announcements).toBe(false)
   })
 
   it('starts from the demo seed with orders to review and a pending quote', () => {

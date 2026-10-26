@@ -75,8 +75,11 @@ def verify_credential(credential: str) -> GoogleProfile:
 
 
 @transaction.atomic
-def sign_in(profile: GoogleProfile) -> tuple[User, bool]:
+def sign_in(profile: GoogleProfile, *, announcements: bool = False) -> tuple[User, bool]:
     """Find or create the account of a Google profile.
+
+    ``announcements`` records an agreement to receive announcements; False
+    never withdraws an earlier one (that is done from the account screen).
 
     Returns:
         The user and whether the account was just created.
@@ -112,6 +115,8 @@ def sign_in(profile: GoogleProfile) -> tuple[User, bool]:
     user.last_name = profile.last_name or user.last_name
     user.picture_url = profile.picture_url
     user.last_login = now
+    if announcements:
+        user.set_announcements(True)
     user.save()
     link.user = user
     link.email = profile.email

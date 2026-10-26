@@ -19,6 +19,7 @@ from apps.accounts.models import User
 from apps.accounts.serializers import (
     GoogleSignInRequestSerializer,
     MeSerializer,
+    MeUpdateSerializer,
     SignInResponseSerializer,
 )
 
@@ -42,7 +43,9 @@ class GoogleSignInView(APIView):
             "The app sends the ID token it received from Google. The API verifies it "
             "(signature, expiry, issuer, audience), finds or creates the account from "
             "the basic Google profile, and returns a token for the next requests. "
-            "Accounts of team members or with a password are never reached this way."
+            "Accounts of team members or with a password are never reached this way. "
+            "`announcements: true` records the person's agreement to receive CityPal "
+            "announcements (box unticked by default in the app)."
         ),
         tags=["accounts"],
         auth=[],
@@ -58,7 +61,10 @@ class GoogleSignInView(APIView):
         payload = GoogleSignInRequestSerializer(data=request.data)
         payload.is_valid(raise_exception=True)
         try:
-            user, created = sign_in(verify_credential(payload.validated_data["credential"]))
+            user, created = sign_in(
+                verify_credential(payload.validated_data["credential"]),
+                announcements=payload.validated_data["announcements"],
+            )
         except GoogleSignInError as error:
             return Response({"detail": str(error)}, status=status.HTTP_400_BAD_REQUEST)
         except GoogleUnavailableError:
@@ -85,6 +91,26 @@ class MeView(APIView):
         """Return the profile."""
         user = request.user
         assert isinstance(user, User)  # noqa: S101 - guaranteed by IsAuthenticated
+        return Response(MeSerializer(user).data)
+
+    @extend_schema(
+        summary="Update current user settings",
+        description=(
+            "Changes the settings of the signed-in user: agreement to receive CityPal "
+            "announcements. The date of the change is recorded."
+        ),
+        tags=["accounts"],
+        request=MeUpdateSerializer,
+        responses={200: MeSerializer},
+    )
+    def patch(self, request: Request) -> Response:
+        """Record the new announcement choice and return the profile."""
+        user = request.user
+        assert isinstance(user, User)  # noqa: S101 - guaranteed by IsAuthenticated
+        payload = MeUpdateSerializer(data=request.data)
+        payload.is_valid(raise_exception=True)
+        user.set_announcements(payload.validated_data["announcements"])
+        user.save(update_fields=["announcements", "announcements_changed_at"])
         return Response(MeSerializer(user).data)
 
 

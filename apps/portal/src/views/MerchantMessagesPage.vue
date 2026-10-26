@@ -224,9 +224,12 @@ function send(): void {
   background: var(--cg-surface-soft);
 }
 .bubble.merchant {
+  /* Light emerald tint with ink text: readable in both themes (a solid
+     mint with white text was unreadable in dark mode, 2026-10-26). */
   align-self: flex-end;
-  background: var(--cg-leaf);
-  color: #ffffff;
+  background: color-mix(in srgb, var(--cg-leaf) 20%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cg-leaf) 30%, transparent);
+  color: var(--cg-ink);
 }
 .meta,
 .small {
@@ -239,12 +242,13 @@ function send(): void {
   gap: 2px;
   padding: 10px 12px;
   border-radius: var(--cg-radius-s);
-  background: rgb(255 255 255 / 92%);
+  background: var(--cg-surface);
+  box-shadow: inset 0 0 0 1px var(--cg-surface-soft);
   color: var(--cg-ink);
 }
 .amount {
   font-size: 20px;
-  color: var(--cg-pine);
+  color: var(--cg-leaf);
 }
 .status {
   align-self: flex-start;
@@ -255,9 +259,13 @@ function send(): void {
   font-size: 12px;
   font-weight: 600;
 }
+.status {
+  background: color-mix(in srgb, var(--cg-sun-strong) 14%, transparent);
+  color: var(--cg-sun-strong);
+}
 .status.accepted {
-  background: var(--cg-leaf-soft);
-  color: var(--cg-pine);
+  background: color-mix(in srgb, var(--cg-leaf) 16%, transparent);
+  color: var(--cg-leaf);
 }
 .composer {
   display: flex;

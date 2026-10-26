@@ -140,3 +140,47 @@ def test_sign_in_is_disabled_without_client_id(settings: Settings) -> None:
 
     assert response.status_code == 400
     verify.assert_not_called()
+
+
+def post_with(data: dict[str, Any]) -> Any:
+    with mock.patch("apps.accounts.google.id_token.verify_oauth2_token", return_value=claims()):
+        return APIClient().post(reverse("auth-google"), data, format="json")
+
+
+@pytest.mark.django_db
+def test_announcements_are_off_unless_the_box_was_ticked() -> None:
+    body = post_with({"credential": "token"}).json()
+
+    assert body["user"]["announcements"] is False
+    user = User.objects.get()
+    assert user.announcements is False
+
+
+@pytest.mark.django_db
+def test_ticked_box_records_the_agreement_and_its_date() -> None:
+    body = post_with({"credential": "token", "announcements": True}).json()
+
+    assert body["user"]["announcements"] is True
+    assert User.objects.get().announcements_changed_at is not None
+
+
+@pytest.mark.django_db
+def test_signing_in_without_the_box_keeps_an_earlier_agreement() -> None:
+    post_with({"credential": "token", "announcements": True})
+    post_with({"credential": "token", "announcements": False})
+
+    assert User.objects.get().announcements is True
+
+
+@pytest.mark.django_db
+def test_user_can_withdraw_and_give_the_agreement_from_the_account() -> None:
+    token = post_with({"credential": "token", "announcements": True}).json()["token"]
+    client = APIClient()
+    client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
+
+    response = client.patch(reverse("auth-me"), {"announcements": False}, format="json")
+
+    assert response.status_code == 200
+    assert response.json()["announcements"] is False
+    assert User.objects.get().announcements is False
+    assert client.patch(reverse("auth-me"), {}, format="json").status_code == 400
