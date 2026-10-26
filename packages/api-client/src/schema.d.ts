@@ -48,6 +48,46 @@ export interface paths {
         patch: operations["auth_me_partial_update"];
         trace?: never;
     };
+    "/api/v1/auth/me/interests/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Register interest in an upcoming offer
+         * @description Records that the signed-in user is interested in an offer announced as coming soon, so the team can measure demand before opening it. Idempotent: registering twice keeps one record. Returns the profile, whose `interests` lists the offers the user is interested in.
+         */
+        post: operations["auth_me_interests_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/me/interests/{offer}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Withdraw interest in an upcoming offer
+         * @description Deletes the record of the user's interest in the offer. Idempotent: withdrawing an interest that does not exist succeeds. `404` for an unknown offer code.
+         */
+        delete: operations["auth_me_interests_destroy"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/sign-out/": {
         parameters: {
             query?: never;
@@ -397,6 +437,7 @@ export interface components {
                  *     * `tourism` - Site touristique
                  *     * `transport` - Gare
                  *     * `campus` - Campus
+                 *     * `school` - Lycée
                  *     * `shopping` - Centre commercial ou marché
                  *     * `health` - Hôpital
                  *     * `business` - Pôle d'activité
@@ -405,7 +446,7 @@ export interface components {
                  *     * `other` - Autre
                  * @enum {string}
                  */
-                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
+                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "school" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
                 /**
                  * Modes d'ouverture
                  * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
@@ -453,6 +494,7 @@ export interface components {
              *     * `tourism` - Site touristique
              *     * `transport` - Gare
              *     * `campus` - Campus
+             *     * `school` - Lycée
              *     * `shopping` - Centre commercial ou marché
              *     * `health` - Hôpital
              *     * `business` - Pôle d'activité
@@ -532,6 +574,7 @@ export interface components {
              * @description A coché la case pour recevoir les annonces de CityPal (lancement, offres).
              */
             readonly announcements: boolean;
+            readonly interests: components["schemas"]["UpcomingOfferEnum"][];
         };
         /** @description Merchant as a GeoJSON feature for the map and the list of businesses. */
         MerchantFeature: {
@@ -618,6 +661,15 @@ export interface components {
                 [key: string]: number;
             };
         };
+        /** @description Upcoming offer the signed-in user is interested in. */
+        OfferInterestRequestRequest: {
+            /**
+             * @description Code of an offer announced as coming soon (e.g. `scooter_lockers`).
+             *
+             *     * `scooter_lockers` - Casiers à trottinettes
+             */
+            offer: components["schemas"]["UpcomingOfferEnum"];
+        };
         /** @description Compartment with its current status. */
         OperatorCompartment: {
             readonly id: number;
@@ -700,6 +752,7 @@ export interface components {
                  *     * `tourism` - Site touristique
                  *     * `transport` - Gare
                  *     * `campus` - Campus
+                 *     * `school` - Lycée
                  *     * `shopping` - Centre commercial ou marché
                  *     * `health` - Hôpital
                  *     * `business` - Pôle d'activité
@@ -708,7 +761,7 @@ export interface components {
                  *     * `other` - Autre
                  * @enum {string}
                  */
-                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
+                site_category?: "tram_stop" | "tourism" | "transport" | "campus" | "school" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
                 /**
                  * Modes d'ouverture
                  * @description Modes d'ouverture proposés par ce casier (selon le fabricant).
@@ -765,6 +818,7 @@ export interface components {
              *     * `tourism` - Site touristique
              *     * `transport` - Gare
              *     * `campus` - Campus
+             *     * `school` - Lycée
              *     * `shopping` - Centre commercial ou marché
              *     * `health` - Hôpital
              *     * `business` - Pôle d'activité
@@ -870,6 +924,7 @@ export interface components {
          *     * `tourism` - Site touristique
          *     * `transport` - Gare
          *     * `campus` - Campus
+         *     * `school` - Lycée
          *     * `shopping` - Centre commercial ou marché
          *     * `health` - Hôpital
          *     * `business` - Pôle d'activité
@@ -878,7 +933,7 @@ export interface components {
          *     * `other` - Autre
          * @enum {string}
          */
-        SiteCategoryEnum: "tram_stop" | "tourism" | "transport" | "campus" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
+        SiteCategoryEnum: "tram_stop" | "tourism" | "transport" | "campus" | "school" | "shopping" | "health" | "business" | "square" | "leisure" | "other";
         /**
          * @description * `S` - Petit
          *     * `M` - Moyen
@@ -898,6 +953,11 @@ export interface components {
             grid_units: number;
             examples: string[];
         };
+        /**
+         * @description * `scooter_lockers` - Casiers à trottinettes
+         * @enum {string}
+         */
+        UpcomingOfferEnum: "scooter_lockers";
     };
     responses: never;
     parameters: never;
@@ -987,6 +1047,59 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["Me"];
                 };
+            };
+        };
+    };
+    auth_me_interests_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OfferInterestRequestRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["OfferInterestRequestRequest"];
+                "multipart/form-data": components["schemas"]["OfferInterestRequestRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+        };
+    };
+    auth_me_interests_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                offer: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+            /** @description Unknown offer code. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

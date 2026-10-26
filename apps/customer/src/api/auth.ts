@@ -4,7 +4,7 @@
  * Unlike the rest of the demo, these calls always reach the real backend: the
  * sign-in with Google is real as soon as it is configured.
  */
-import type { Me, SignInResponse } from '@city-groom/api-client'
+import type { Me, SignInResponse, UpcomingOffer } from '@city-groom/api-client'
 
 import { sendJson } from './http'
 
@@ -31,6 +31,25 @@ export function signInWithGoogle(
  */
 export function updateAnnouncements(token: string, announcements: boolean): Promise<Me> {
   return sendJson<Me>('/auth/me/', { announcements }, token, 'PATCH')
+}
+
+/**
+ * Records that the user is interested in an offer announced as coming soon
+ * ("Ça m'intéresse"); registering twice keeps one record.
+ *
+ * @throws {ApiError | NetworkError} See {@link sendJson}.
+ */
+export function registerInterest(token: string, offer: UpcomingOffer): Promise<Me> {
+  return sendJson<Me>('/auth/me/interests/', { offer }, token)
+}
+
+/**
+ * Withdraws the user's interest in an upcoming offer.
+ *
+ * @throws {ApiError | NetworkError} See {@link sendJson}.
+ */
+export function withdrawInterest(token: string, offer: UpcomingOffer): Promise<Me> {
+  return sendJson<Me>(`/auth/me/interests/${offer}/`, undefined, token, 'DELETE')
 }
 
 /**

@@ -1,8 +1,9 @@
 """Serializers of the accounts API."""
 
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
 
-from apps.accounts.models import User
+from apps.accounts.models import UpcomingOffer, User
 
 
 class GoogleSignInRequestSerializer(serializers.Serializer[None]):
@@ -25,6 +26,7 @@ class MeSerializer(serializers.ModelSerializer[User]):
     """Profile of the signed-in user."""
 
     signed_in_with_google = serializers.SerializerMethodField()
+    interests = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -37,6 +39,7 @@ class MeSerializer(serializers.ModelSerializer[User]):
             "date_joined",
             "signed_in_with_google",
             "announcements",
+            "interests",
         ]
         read_only_fields = fields
 
@@ -44,12 +47,28 @@ class MeSerializer(serializers.ModelSerializer[User]):
         """Whether the account is linked to a Google identity."""
         return hasattr(user, "google_account")
 
+    @extend_schema_field(
+        serializers.ListField(child=serializers.ChoiceField(choices=UpcomingOffer.choices))
+    )
+    def get_interests(self, user: User) -> list[str]:
+        """Codes of the upcoming offers the user said they are interested in."""
+        return sorted(user.offer_interests.values_list("offer", flat=True))
+
 
 class MeUpdateSerializer(serializers.Serializer[None]):
     """Settings the signed-in user can change."""
 
     announcements = serializers.BooleanField(
         help_text="Agree to (true) or stop (false) receiving CityPal announcements."
+    )
+
+
+class OfferInterestRequestSerializer(serializers.Serializer[None]):
+    """Upcoming offer the signed-in user is interested in."""
+
+    offer = serializers.ChoiceField(
+        choices=UpcomingOffer.choices,
+        help_text="Code of an offer announced as coming soon (e.g. `scooter_lockers`).",
     )
 
 

@@ -9,6 +9,15 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Scooter lockers announced as "Bientôt disponible" (concept, owner's
+  request of 2026-10-26): card on the Consigne screen and explanatory page
+  `/consigne/trottinettes` (2 to 5 places per locker, perpendicular
+  storage, drawing of the front, places of 155 × 75 × 140 cm sized for
+  large non-folding scooters, reference models with sourced dimensions);
+  "Ça m'intéresse" for signed-in customers, recorded by the API
+  (`POST /api/v1/auth/me/interests/`, `DELETE …/{offer}/`, `interests` in
+  the profile) and listed and counted in the administration; privacy page
+  and draft updated; scooter size research in `docs/LOCKERS.md` §6.
 - The hosted customer app talks to `https://api.citypal.fr` (Render
   variables updated for citypal.fr); company lockers named after their
   place (area or town and street), no company name.

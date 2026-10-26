@@ -1,6 +1,6 @@
 # Lockers — research and simulation model
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-26
 >
 > Real locker hardware has not been chosen yet. This document records what was
 > learned about existing lockers and how the demo simulates them. Everything
@@ -170,7 +170,56 @@ Simulated lockers get one of these profiles, reflecting §1:
   stored.
 - Per-door status is available to operators only.
 
-## 6. Open points
+## 6. Scooter lockers (concept)
+
+Offer announced as "Bientôt disponible" (docs/PRODUCT.md §4d). Concept only:
+nothing is simulated, the vendor options will be studied later by the
+project owner. Code: `apps/customer/src/domain/scooterLockers.ts`.
+
+### Scooter sizes
+
+Unfolded dimensions of common city scooters and of large ones, read on
+2026-10-26 from manufacturers' manuals and retailer or review pages
+(L × W × H, cm; W is the handlebar width):
+
+| Model | L × W × H | Weight | Handlebar folds | Source |
+|---|---|---|---|---|
+| Xiaomi Electric Scooter 4 Pro (2nd Gen) | 115 × 57 × 122 | 19 kg | not checked | [LDLC](https://ldlc.com/en/product/PB00623042.html), weight from [mi.com](https://www.mi.com/global/xiaomi-electric-scooter-4-pro-2nd-gen/specs) |
+| Segway Ninebot Max G2 | 121 × 57 × 126 | — | not checked | [Notebookcheck](https://www.notebookcheck.net/Segway-Ninebot-KickScooter-Max-G2-E-Scooter-review-Great-handling-thanks-to-full-hydraulic-suspension.767517.0.html) (manufacturer table) |
+| Dualtron Thunder 3 | 127 × 70 × 136 (folded 127 × 32 × 59) | 51 kg | yes | [Dualtron manual](https://wheelyshop.se/cdn/shop/files/DUALTRON_THUNDER_3_MANUAL.pdf) |
+| Segway GT2 | 149 × 66 × 131 (folded 149 × 66 × 86) | — | no (width unchanged when folded) | [Joey's wiki](https://joeybabcock.me/wiki/Ninebot_GT2), reseller listings |
+
+Sources disagree by a few centimetres for some models (e.g. Max G2 height
+120 or 126 cm); the larger figure is kept. Large scooters reach about
+**150 cm long, 70 cm wide and 136 cm high**; folding barely helps the
+largest ones (the Segway GT2 handlebar does not fold), so places are sized for
+**unfolded** scooters.
+
+### Place and locker size
+
+- **Perpendicular storage** (owner's choice, 2026-10-26; parallel storage,
+  narrower but harder to use, was set aside): the scooter rolls in front
+  first, so the locker front only needs the handlebar width per place.
+- **One place**: 155 × 75 × 140 cm (depth × width × height), *assumption*:
+  the largest reference scooter plus a few centimetres to roll it in.
+- **2 to 5 places** per locker (owner's example). With 5 cm partitions and
+  side walls (*assumption*), the front is 1.65 m wide for 2 places and
+  4.05 m for 5, for about 1.6 m of depth.
+- For comparison, an open 4-place scooter station sold to French public
+  buyers (TROT-E-PARK, [UGAP sheet](https://www.ugap.fr/images/media-wp/2025/03/rfart_4216456_4216384_ft-support-trottinettes-trot-e-park.pdf.avif))
+  measures 187 × 51 × 68 cm with 4 waterproof sockets.
+
+### Open points
+
+- Vendor, real dimensions, door type (side-hinged doors 75 cm wide need
+  clearance in front; roller shutters do not).
+- Charging (a socket per place): not decided (docs/PRODUCT.md §4d); if
+  chosen, the fire-safety rules for charging batteries in a closed box are
+  to be checked.
+- Height of the deck above the ground and ramp, weight of large scooters
+  (up to about 50 kg) when rolling them in.
+
+## 7. Open points
 
 - Locker vendor, real dimensions and access methods (Bluetooth, NFC, QR code
   depending on the partner), and its integration API (webhooks, reservation,

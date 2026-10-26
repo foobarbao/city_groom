@@ -47,6 +47,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../views/ConsigneBookPage.vue'),
   },
   {
+    // Coming soon (docs/PRODUCT.md §4d); before /consigne/:id on purpose.
+    path: '/consigne/trottinettes',
+    name: 'scooter-lockers',
+    component: () => import('../views/ScooterLockersPage.vue'),
+  },
+  {
     path: '/consigne/:id/transfert',
     name: 'transfer',
     component: () => import('../views/TransferPage.vue'),
