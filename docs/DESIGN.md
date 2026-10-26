@@ -114,10 +114,24 @@ component renders both menus (`packages/ui/src/NavTree.vue`, tree types in
 - **Pills are for filtering, not for navigating**: chips stay for filters
   and choices inside a page (order status, day of the planning), never as a
   section menu.
+- **Choosing a locker** (owner, 2026-10-26: the row of place chips was
+  neither pretty nor practical): a map beside a list panel built like the
+  side menu, folding by kind of place with an icon per kind and the free
+  compartments of each locker; search and "Près de moi" (icon button) give
+  a flat list. Tapping a locker on the map or in the list chooses it, and
+  the consigne booking moves straight on to the next step. Side by side
+  when the chooser is at least 760 px wide (the booking page widens for
+  it), the map above the list otherwise (`LockerPicker.vue`).
 - **Roles**: the demo lists every space so it can be toured. PROD: each
   person sees only the spaces of their role.
-- **Exception**: the portal's mission page is a full-screen story without
-  menu.
+- **Photo stories** (exception to the page layout): full-screen chapters
+  over photos that cross-fade as each chapter scrolls into view, frosted
+  green cards, white text on a dark veil whatever the theme, photo credits
+  at the bottom. Shared by the portal's mission page (without menu) and the
+  customer app's scooter lockers page (`@city-groom/ui`: `StoryBackdrop`,
+  `StoryCredits`, `useStory`; `story-*` classes).
+- **Menu tags**: an entry can carry a short status ("Bientôt", outlined
+  honey pill), quieter than a counter.
 - **Trade-off accepted** (customer app): a bottom tab bar is the usual
   mobile pattern (one tap, reachable with the thumb); the side menu costs one
   more tap on phones but gives one consistent, structured navigation across

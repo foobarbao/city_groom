@@ -5,17 +5,18 @@
  * coming soon (§4d).
  */
 import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/vue'
-import { chevronForwardOutline, navigateOutline } from 'ionicons/icons'
+import { navigateOutline } from 'ionicons/icons'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import ListRow from '../components/ListRow.vue'
+import ScooterTeaser from '../components/ScooterTeaser.vue'
 import { lockers } from '../services/catalogue'
 import { useAccountStore } from '../stores/account'
 import { dateTime, euros } from '../utils/format'
-import { CONSIGNE_ICON, SCOOTER_PATH } from '../utils/icons'
+import { CONSIGNE_ICON } from '../utils/icons'
 import { statusTone } from '../utils/tones'
 
 const { t } = useI18n()
@@ -41,17 +42,7 @@ const past = computed(() =>
           <ion-icon :icon="navigateOutline" aria-hidden="true" /> {{ t('nearby.shortcut') }}
         </ion-button>
 
-        <router-link class="soon" to="/consigne/trottinettes">
-          <span class="soon-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="24" height="24"><path :d="SCOOTER_PATH" /></svg>
-          </span>
-          <span class="soon-text">
-            <span class="pill warn">{{ t('scooters.soon') }}</span>
-            <strong>{{ t('scooters.title') }}</strong>
-            <span>{{ t('scooters.teaser') }}</span>
-          </span>
-          <ion-icon class="chevron" :icon="chevronForwardOutline" aria-hidden="true" />
-        </router-link>
+        <scooter-teaser />
 
         <section v-if="account.activeBookings.length" class="group">
           <h2 class="section-title">{{ t('consigne.active') }}</h2>
@@ -106,48 +97,6 @@ const past = computed(() =>
 </template>
 
 <style scoped>
-/* "Coming soon" card: same shape as the home shortcuts, honey tint. */
-.soon {
-  display: grid;
-  grid-template-columns: 40px 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: var(--cg-radius-l);
-  background: linear-gradient(160deg, var(--cg-sun-soft) 0%, var(--cg-glass) 75%);
-  box-shadow: var(--cg-shadow);
-  color: var(--cg-ink);
-  text-decoration: none;
-}
-.soon-icon {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--cg-radius-m);
-  background: var(--cg-sun-soft);
-}
-.soon-icon svg {
-  fill: none;
-  stroke: var(--cg-sun-strong);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.soon-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 15px;
-}
-.soon-text > span:last-child {
-  font-size: 13px;
-  color: var(--cg-ink-soft);
-}
-.chevron {
-  font-size: 18px;
-  color: var(--cg-ink-soft);
-}
 .group {
   display: flex;
   flex-direction: column;

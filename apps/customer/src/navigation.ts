@@ -25,6 +25,8 @@ import {
 
 import { type NavNode, navGroup, navItem, navLabels, navTrail } from '@city-groom/ui'
 
+import { SCOOTER_ICON } from './utils/icons'
+
 /** The whole menu, in display order. Badge keys: `quotes`, `bookings`. */
 export const NAVIGATION: NavNode[] = [
   navItem('home', 'nav.home', homeOutline, 'home'),
@@ -45,6 +47,8 @@ export const NAVIGATION: NavNode[] = [
       also: ['booking', 'transfer'],
       badge: 'bookings',
     }),
+    // Announced offer, in the menu so it is seen (owner, 2026-10-26).
+    navItem('scooters', 'nav.scooters', SCOOTER_ICON, 'scooter-lockers', { tag: 'nav.soon' }),
   ]),
   navItem('map', 'nav.map', mapOutline, 'map', { also: ['locker'] }),
   navGroup('account', 'nav.account', personCircleOutline, [

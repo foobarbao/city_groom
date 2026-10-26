@@ -88,6 +88,8 @@ export default {
     nearby: 'Casiers autour de moi',
     book: 'Réserver une consigne',
     myBookings: 'Mes consignes',
+    scooters: 'Casiers à trottinettes',
+    soon: 'Bientôt',
     map: 'Carte des casiers',
     account: 'Compte',
     profile: 'Mon compte',
@@ -126,6 +128,12 @@ export default {
     square: 'Place, restaurants',
     leisure: 'Parc, stade',
     other: 'Autre',
+  },
+  picker: {
+    search: 'Rechercher un casier, un lieu',
+    list: 'Casiers',
+    map: 'Carte des casiers',
+    none: 'Aucun casier ne correspond à la recherche.',
   },
   nearby: {
     title: 'Casiers autour de moi',
@@ -574,29 +582,45 @@ export default {
     title: 'Casiers à trottinettes',
     soon: 'Bientôt disponible',
     wip: 'En cours de conception',
-    teaser: 'Garez votre trottinette électrique à l’abri, même une grosse.',
-    intro:
-      'Garez votre trottinette électrique à l’abri, dans un casier fermé que vous ouvrez avec l’application. Rien n’est encore réservable : nous préparons l’offre.',
-    concept: {
-      title: 'Le concept',
-      places: 'Des casiers de {min} à {max} places, une trottinette par place.',
-      slim: 'Un format fin : la trottinette entre de face, chaque place n’est pas plus large qu’un guidon.',
-      consigne:
-        'Comme la consigne : vous déposez, vous récupérez au plus tard 24 h après le dépôt, depuis l’application.',
+    teaser: 'Un casier fermé pour votre trottinette électrique, même une grosse.',
+    hero: {
+      eyebrow: 'Bientôt disponible · En cours de conception',
+      title: 'Votre trottinette, à l’abri',
+      text: 'Un casier fermé rien que pour elle, que vous ouvrez avec l’application. Rien n’est encore réservable : nous préparons l’offre.',
+      cta: 'Ça m’intéresse',
+      scroll: 'Découvrir',
     },
-    front: {
-      title: 'À quoi ressemblerait un casier',
-      places: 'Nombre de places',
-      placesCount: '{n} places',
-      alt: 'Façade d’un casier de {n} places, environ {width} m de large',
-      size: 'Environ {width} m de large, {depth} cm de profondeur et {height} cm de haut.',
+    one: {
+      eyebrow: 'Le principe',
+      title: 'Un casier, une trottinette',
+      text: 'Chaque trottinette a son propre casier, fermé à clé, à l’abri de la pluie et des regards.',
+      points: [
+        'Un casier par trottinette, ouvert avec l’application',
+        'Des casiers doubles pour garer deux trottinettes côte à côte',
+        'Elle entre de face : un casier n’est pas plus large qu’un guidon',
+      ],
+    },
+    use: {
+      eyebrow: 'Comme la consigne',
+      title: 'Déposez, filez, récupérez',
+      text: 'Vous déposez votre trottinette, vous continuez à pied ou en tram, et vous la récupérez au plus tard 24 h après le dépôt, depuis l’application.',
     },
     fit: {
-      title: 'Quelles trottinettes ?',
+      eyebrow: 'Grand format',
+      title: 'Même les grosses trottinettes',
       place:
-        'Chaque place mesure {length} cm de long, {width} cm de large et {height} cm de haut : assez pour les grosses trottinettes, même celles dont le guidon ne se replie pas.',
+        'Un casier mesure {length} cm de long, {width} cm de large et {height} cm de haut : assez pour les grosses trottinettes, même celles dont le guidon ne se replie pas.',
       size: '{length} × {width} × {height} cm',
       note: 'Trottinettes dépliées, longueur × largeur × hauteur, d’après les fabricants et revendeurs. Les mesures définitives dépendront du fabricant des casiers.',
+    },
+    station: {
+      eyebrow: 'Esquisse',
+      title: 'À quoi ressemblerait une station',
+      text: 'Des casiers côte à côte, simples ou doubles, selon la place disponible.',
+      single: 'Casier simple : 1 trottinette',
+      double: 'Casier double : 2 trottinettes',
+      alt: 'Façade d’une station de {lockers} casiers pour {scooters} trottinettes, environ {width} m de large',
+      size: 'Cette station : {scooters} trottinettes, environ {width} m de large, {depth} cm de profondeur et {height} cm de haut.',
     },
     interest: {
       title: 'Ça vous intéresse ?',
@@ -609,6 +633,11 @@ export default {
       error: 'Impossible d’enregistrer votre choix pour le moment, réessayez.',
       signInHint: 'Connectez-vous pour nous le dire.',
       signIn: 'Se connecter',
+    },
+    credits: {
+      title: 'Crédits photos',
+      intro:
+        'Photos d’illustration sous licence libre, sur Wikimedia Commons : elles montrent l’idée, pas encore nos casiers.',
     },
   },
   privacy: {
