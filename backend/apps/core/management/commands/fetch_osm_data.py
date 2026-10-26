@@ -18,7 +18,13 @@ from typing import Any
 from django.core.management.base import BaseCommand, CommandError
 
 from apps.core.osm import fetch_overpass_with_retries
-from apps.lockers.osm import STRATEGIC_SITES_QUERY, TRAM_STOPS_QUERY
+from apps.lockers.osm import (
+    COMPANY_SITES_QUERY,
+    EDUCATION_QUERY,
+    GRENOBLE_BOUNDARY_QUERY,
+    STRATEGIC_SITES_QUERY,
+    TRAM_STOPS_QUERY,
+)
 from apps.merchants.osm import build_query
 
 
@@ -26,7 +32,8 @@ class Command(BaseCommand):
     """Management command saving Overpass responses for locker sites and merchants."""
 
     help = (
-        "Télécharge les arrêts de tram, les lieux stratégiques et les commerces "
+        "Télécharge les arrêts de tram, les lieux stratégiques, les commerces, les "
+        "lycées et le supérieur, la limite de Grenoble et les sites d'entreprises "
         "depuis OpenStreetMap (JSON)."
     )
 
@@ -42,6 +49,9 @@ class Command(BaseCommand):
             ("tram_stops", TRAM_STOPS_QUERY),
             ("strategic_sites", STRATEGIC_SITES_QUERY),
             ("merchants", build_query()),
+            ("education", EDUCATION_QUERY),
+            ("grenoble_boundary", GRENOBLE_BOUNDARY_QUERY),
+            ("company_sites", COMPANY_SITES_QUERY),
         )
         for name, query in datasets:
             payload = fetch_overpass_with_retries(query)

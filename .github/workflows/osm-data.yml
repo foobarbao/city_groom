@@ -41,7 +41,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/osm/tram_stops.json data/osm/strategic_sites.json data/osm/merchants.json
+          git add data/osm/tram_stops.json data/osm/strategic_sites.json data/osm/merchants.json \
+            data/osm/education.json data/osm/grenoble_boundary.json data/osm/company_sites.json
           if git diff --cached --quiet; then
             echo "No change in OpenStreetMap data."
           else

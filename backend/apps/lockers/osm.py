@@ -93,6 +93,36 @@ STRATEGIC_SITES_QUERY = (
     + ");\nout center tags;\n"
 )
 
+# Education sites for small lockers (project owner's decision of 2026-10-26:
+# small mixed lockers, services and consigne, in front of every lycée and
+# higher-education site; collèges and primary schools excluded).
+EDUCATION_QUERY = (
+    "[out:json][timeout:90];\n(\n"
+    f'  nwr["amenity"="school"]["school:FR"~"lycée"]({METRO_BBOX});\n'
+    f'  nwr["amenity"="school"]["name"~"^Lycée"]({METRO_BBOX});\n'
+    f'  nwr["amenity"~"^(university|college)$"]["name"]({METRO_BBOX});\n'
+    ");\nout center tags;\n"
+)
+
+# Boundary of the town of Grenoble: every locker inside gets a large model
+# (project owner's decision of 2026-10-26: "gros casiers dans le centre",
+# the centre being the whole town).
+GRENOBLE_BOUNDARY_QUERY = (
+    "[out:json][timeout:90];\n"
+    'relation["boundary"="administrative"]["admin_level"="8"]["name"="Grenoble"]'
+    f"({METRO_BBOX});\nout geom;\n"
+)
+
+# Candidate sites of large companies, to be validated one by one by the
+# project owner before any locker is placed there.
+COMPANY_SITES_QUERY = (
+    "[out:json][timeout:90];\n(\n"
+    f'  nwr["office"~"^(company|research|it)$"]["name"]({METRO_BBOX});\n'
+    f'  nwr["amenity"="research_institute"]["name"]({METRO_BBOX});\n'
+    f'  nwr["landuse"="industrial"]["name"]({METRO_BBOX});\n'
+    ");\nout center tags;\n"
+)
+
 # OSM tag values that identify each category in a response.
 _CATEGORY_MATCHERS: tuple[tuple[str, str, frozenset[str]], ...] = (
     ("tourism", "tourism", frozenset({"attraction", "museum", "viewpoint", "zoo", "theme_park"})),
