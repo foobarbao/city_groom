@@ -12,6 +12,9 @@
   Steinmann personally, contact@citypal.fr, announcements by opt-in). This
   file keeps the full list of points to complete and to validate.
 
+  2026-10-26: interest in upcoming offers ("Ça m'intéresse", §2.1 bis),
+  added to the draft and to the published page.
+
   Status: draft written on 2026-10-25 from what the code actually collects
   (accounts app, customer app, portal). NOT legal advice. Every
   "[À COMPLÉTER]" is information only the project owner has; every
@@ -63,6 +66,17 @@ vos contacts ni à vos fichiers. Votre nom et votre photo sont mis à jour à
 chaque connexion, à partir de votre profil Google.
 
 Base légale : exécution du contrat (vous fournir le service) [À VALIDER].
+
+### 2.1 bis Offres à venir (« Ça m'intéresse »)
+
+Si vous êtes connecté et touchez « Ça m'intéresse » sur une offre annoncée
+comme bientôt disponible (par exemple les casiers à trottinettes), nous
+enregistrons ce choix et sa date avec votre compte. But : mesurer l'intérêt
+pour l'offre et décider où l'ouvrir. Cela ne vous inscrit pas aux annonces
+par e-mail. Vous pouvez retirer votre intérêt à tout moment depuis la page de
+l'offre.
+
+Base légale : votre demande [À VALIDER].
 
 ### 2.2 Vos commandes, consignes et échanges
 
@@ -180,6 +194,7 @@ chaque prestataire].
 | Messages et photos | [À COMPLÉTER] |
 | Avis | [À COMPLÉTER] |
 | Journaux techniques | [À COMPLÉTER : par exemple quelques mois] |
+| Intérêt pour une offre à venir | Jusqu'à son retrait ou la suppression du compte [À VALIDER] |
 | Position | Non conservée (utilisée sur l'appareil seulement) |
 
 ## 7. Vos droits

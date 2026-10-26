@@ -6,6 +6,9 @@ and when they last came, and whether they agreed to receive announcements.
 A summary above the list counts customers, recent sign-ups, Google accounts
 and announcement agreements; the "Exporter" action downloads the e-mail
 addresses of the selected accounts that agreed (CSV), for the launch mailing.
+
+Interest in upcoming offers ("Ça m'intéresse", e.g. scooter lockers) has its
+own list, filterable by offer; the accounts summary counts it per offer.
 """
 
 import csv
@@ -20,7 +23,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from rest_framework.authtoken.models import TokenProxy
 
-from apps.accounts.models import GoogleAccount, User
+from apps.accounts.models import GoogleAccount, OfferInterest, UpcomingOffer, User
 
 # Token keys are secrets: they are not listed in the administration. Signing
 # a customer out is done by deactivating the account.
@@ -217,7 +220,31 @@ class UserAdmin(DjangoUserAdmin[User]):
             ("Connexion Google", customers.filter(google_account__isnull=False).count()),
             ("Accord aux annonces", customers.filter(announcements=True).count()),
             ("Équipe CityPal", User.objects.filter(is_staff=True).count()),
+            *(
+                (
+                    f"Intéressés : {offer.label}",
+                    OfferInterest.objects.filter(offer=offer.value).count(),
+                )
+                for offer in UpcomingOffer
+            ),
         ]
         context = {**(extra_context or {}), "accounts_summary": summary}
         # An action (e.g. the CSV export) answers with its own response.
         return super().changelist_view(request, extra_context=context)
+
+
+@admin.register(OfferInterest)
+class OfferInterestAdmin(admin.ModelAdmin[OfferInterest]):
+    """Who said "Ça m'intéresse" for an upcoming offer, and when (read-only)."""
+
+    list_display = ["user", "offer", "created_at"]
+    list_filter = ["offer", "created_at"]
+    search_fields = ["user__email", "user__first_name", "user__last_name"]
+    date_hierarchy = "created_at"
+    ordering = ["-created_at"]
+    list_select_related = ["user"]
+    readonly_fields = ["user", "offer", "created_at"]
+
+    def has_add_permission(self, request: HttpRequest) -> bool:
+        """Interest comes from the customers, never typed by an operator."""
+        return False

@@ -81,6 +81,13 @@ default); `false` or absent never withdraws an earlier agreement.
 choice from the account screen. The date of the last change is stored; the
 profile returns `announcements`.
 
+Upcoming offers (owner's request, 2026-10-26): offers announced as "Bientôt
+disponible" in the app can be followed with "Ça m'intéresse".
+`POST /api/v1/auth/me/interests/` with `{"offer": "<code>"}` records it,
+`DELETE /api/v1/auth/me/interests/<code>/` withdraws it; the profile returns
+`interests`, the list of codes. Codes: `scooter_lockers` (scooter lockers).
+Operators see who is interested in the administration.
+
 ### Integration API keys
 
 - Keys are created by a City Groom operator in the administration
@@ -131,12 +138,14 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 
 ### Accounts (`accounts` tag)
 
-| Method & path                 | Description                                                                                              |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `POST /api/v1/auth/google/`   | Sign in with Google: exchanges a Google ID token for a CityPal token and the profile. No authentication. |
-| `GET /api/v1/auth/me/`        | Profile of the signed-in user (token).                                                                   |
-| `PATCH /api/v1/auth/me/`      | Changes the user's settings: agreement to receive CityPal announcements (`announcements`).               |
-| `POST /api/v1/auth/sign-out/` | Deletes the user's token (`204`).                                                                        |
+| Method & path                               | Description                                                                                                         |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `POST /api/v1/auth/google/`                 | Sign in with Google: exchanges a Google ID token for a CityPal token and the profile. No authentication.            |
+| `GET /api/v1/auth/me/`                      | Profile of the signed-in user (token).                                                                              |
+| `PATCH /api/v1/auth/me/`                    | Changes the user's settings: agreement to receive CityPal announcements (`announcements`).                          |
+| `POST /api/v1/auth/me/interests/`           | Records the user's interest in an upcoming offer (`{"offer": "scooter_lockers"}`); idempotent; returns the profile. |
+| `DELETE /api/v1/auth/me/interests/{offer}/` | Withdraws that interest; idempotent; `404` for an unknown offer code; returns the profile.                          |
+| `POST /api/v1/auth/sign-out/`               | Deletes the user's token (`204`).                                                                                   |
 
 ### System (`system` tag)
 
@@ -253,4 +262,5 @@ Not available yet; listed so integrators can plan:
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | 2026-10-24 | Added `GET /api/v1/merchants/`.                                                                                                            |
 | 2026-10-26 | Added `brand` to merchants (non-breaking).                                                                                                 |
+| 2026-10-26 | Added `POST /api/v1/auth/me/interests/`, `DELETE /api/v1/auth/me/interests/{offer}/` and `interests` in the profile (non-breaking).        |
 | 2026-10-24 | `v1` published: lockers (public), operations (occupancy, statistics, events), health check; integration API keys with scopes; rate limits. |

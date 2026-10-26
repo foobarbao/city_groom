@@ -12,9 +12,14 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
 
-import type { SignInResponse } from '@city-groom/api-client'
+import type { SignInResponse, UpcomingOffer } from '@city-groom/api-client'
 
-import { signOutFromApi, updateAnnouncements } from '../api/auth'
+import {
+  registerInterest,
+  signOutFromApi,
+  updateAnnouncements,
+  withdrawInterest,
+} from '../api/auth'
 import { addHours, serviceDay } from '../domain/time'
 import { forgetGoogleSession } from '../services/googleIdentity'
 
@@ -174,6 +179,12 @@ interface AccountState {
   reviews: MyReview[]
   /** Weekly packs bought (absent in states saved before packs existed). */
   packs?: PackPurchase[]
+  /**
+   * Upcoming offers the signed-in customer said "Ça m'intéresse" for
+   * (absent in older states). Recorded by the API when signed in with
+   * Google; on the device only for the demo sign-in.
+   */
+  interests?: UpcomingOffer[]
 }
 
 const STORAGE_KEY = 'citypal-demo-v1'
@@ -317,6 +328,7 @@ export const useAccountStore = defineStore('account', () => {
       token: result.token,
       announcements: result.user.announcements,
     }
+    state.value.interests = [...result.user.interests]
   }
 
   /**
@@ -351,6 +363,34 @@ export const useAccountStore = defineStore('account', () => {
     state.value.google = { ...google, announcements: accepted }
   }
 
+  /** Whether the customer said "Ça m'intéresse" for this upcoming offer. */
+  function hasInterest(offer: UpcomingOffer): boolean {
+    return state.value.interests?.includes(offer) ?? false
+  }
+
+  /**
+   * Says (or withdraws) "Ça m'intéresse" for an upcoming offer. Requires
+   * being signed in. Recorded by the API when signed in with Google, which
+   * returns the up-to-date list; DEMO: on the device only for the demo
+   * sign-in. PROD: always through the API.
+   *
+   * @throws {ApiError | NetworkError} If the API refuses or cannot be reached;
+   *   the previous choice is kept.
+   */
+  async function setInterest(offer: UpcomingOffer, interested: boolean): Promise<void> {
+    if (!state.value.signedIn) return
+    const token = state.value.google?.token
+    if (token) {
+      const me = interested
+        ? await registerInterest(token, offer)
+        : await withdrawInterest(token, offer)
+      state.value.interests = [...me.interests]
+      return
+    }
+    const others = (state.value.interests ?? []).filter((o) => o !== offer)
+    state.value.interests = interested ? [...others, offer] : others
+  }
+
   function signOut(): void {
     const token = state.value.google?.token
     if (token) {
@@ -361,6 +401,8 @@ export const useAccountStore = defineStore('account', () => {
     state.value.signedIn = false
     state.value.google = null
     state.value.plan = 'free'
+    // Interests belong to the account, not to the device.
+    state.value.interests = []
   }
 
   /** Demo subscription: no payment. Requires being signed in. */
@@ -605,6 +647,8 @@ export const useAccountStore = defineStore('account', () => {
     signInWithGoogle,
     signInWithGoogleDemo,
     setAnnouncements,
+    hasInterest,
+    setInterest,
     signOut,
     choosePlan,
     addBooking,

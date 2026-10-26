@@ -9,6 +9,8 @@ import { useAccountStore } from './account'
 vi.mock('../api/auth', () => ({
   signOutFromApi: vi.fn(() => Promise.resolve()),
   updateAnnouncements: vi.fn(() => Promise.resolve()),
+  registerInterest: vi.fn(() => Promise.resolve({ interests: ['scooter_lockers'] })),
+  withdrawInterest: vi.fn(() => Promise.resolve({ interests: [] })),
 }))
 
 beforeEach(() => {
@@ -32,10 +34,12 @@ describe('account store', () => {
         date_joined: '2026-10-25T10:00:00Z',
         signed_in_with_google: true,
         announcements: true,
+        interests: ['scooter_lockers'],
       },
     })
     expect(store.state.signedIn).toBe(true)
     expect(store.state.google?.announcements).toBe(true)
+    expect(store.hasInterest('scooter_lockers')).toBe(true)
     expect(store.state.name).toBe('Camille')
     expect(store.state.google?.email).toBe('camille@example.com')
 
@@ -60,6 +64,31 @@ describe('account store', () => {
     await store.setAnnouncements(false)
     expect(updateAnnouncements).toHaveBeenCalledWith('tok', false)
     expect(store.state.google?.announcements).toBe(false)
+  })
+
+  it('records "Ça m\'intéresse" on the server when signed in with Google, else on the device', async () => {
+    const { registerInterest, withdrawInterest } = await import('../api/auth')
+    const store = useAccountStore()
+    await store.setInterest('scooter_lockers', true)
+    // Guests cannot register an interest.
+    expect(store.hasInterest('scooter_lockers')).toBe(false)
+
+    store.signIn('Ana')
+    await store.setInterest('scooter_lockers', true)
+    expect(registerInterest).not.toHaveBeenCalled()
+    expect(store.hasInterest('scooter_lockers')).toBe(true)
+
+    store.signInWithGoogleDemo({ email: 'a@example.com', firstName: 'Ana', pictureUrl: '' })
+    store.state.google = { ...store.state.google!, token: 'tok' }
+    await store.setInterest('scooter_lockers', true)
+    expect(registerInterest).toHaveBeenCalledWith('tok', 'scooter_lockers')
+    await store.setInterest('scooter_lockers', false)
+    expect(withdrawInterest).toHaveBeenCalledWith('tok', 'scooter_lockers')
+    expect(store.hasInterest('scooter_lockers')).toBe(false)
+
+    await store.setInterest('scooter_lockers', true)
+    store.signOut()
+    expect(store.hasInterest('scooter_lockers')).toBe(false)
   })
 
   it('starts from the demo seed with orders to review and a pending quote', () => {

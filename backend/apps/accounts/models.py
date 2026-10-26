@@ -11,6 +11,9 @@ Announcement e-mails (launch, offers) are sent only to users who ticked the
 opt-in box, unticked by default (owner's decision of 2026-10-25,
 docs/PRODUCT.md open question 14); the date of the last change is kept as a
 record of the choice.
+
+``OfferInterest`` records the customers interested in an offer announced as
+"Bientôt disponible" (first one: scooter lockers, 2026-10-26).
 """
 
 from django.contrib.auth.models import AbstractUser
@@ -77,3 +80,39 @@ class GoogleAccount(models.Model):
     def __str__(self) -> str:
         """The Google e-mail address."""
         return self.email
+
+
+class UpcomingOffer(models.TextChoices):
+    """Offers announced as "Bientôt disponible" in the customer app.
+
+    Interest is recorded per offer to decide where and when to open it
+    (docs/PRODUCT.md §4d). Codes are stable: they are part of the API.
+    """
+
+    SCOOTER_LOCKERS = "scooter_lockers", "Casiers à trottinettes"
+
+
+class OfferInterest(models.Model):
+    """A customer said "Ça m'intéresse" for an upcoming offer.
+
+    One row per account and offer; withdrawing the interest deletes the row.
+    Requested by the project owner on 2026-10-26: interest is recorded on the
+    server so the team can measure demand before the offer opens.
+    """
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="offer_interests", verbose_name="compte"
+    )
+    offer = models.CharField("offre", max_length=40, choices=UpcomingOffer.choices)
+    created_at = models.DateTimeField("intéressé depuis le", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "intérêt pour une offre à venir"
+        verbose_name_plural = "intérêts pour les offres à venir"
+        constraints = [
+            models.UniqueConstraint(fields=["user", "offer"], name="unique_offer_interest"),
+        ]
+
+    def __str__(self) -> str:
+        """Offer label and account."""
+        return f"{self.get_offer_display()} — {self.user}"

@@ -40,5 +40,7 @@ export type ServiceCategory = NonNullable<
 export type SignInResponse = Schemas["SignInResponse"];
 /** Profile of the signed-in user, from `GET /api/v1/auth/me/`. */
 export type Me = Schemas["Me"];
+/** Codes of the offers announced as coming soon (`interests` of the profile). */
+export type UpcomingOffer = Schemas["UpcomingOfferEnum"];
 
 export type { components, paths } from "./schema";
