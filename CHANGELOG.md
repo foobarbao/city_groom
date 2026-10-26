@@ -20,5 +20,6 @@ Versioning: [SemVer](https://semver.org/).
   Django admin, integration boundaries), ADR-0004 (hosting, proposed).
 - ADR-0005 (customer mailing provider: Brevo free plan, alternatives Odoo,
   Twenty, Mautic and in-house recorded) and the related product section and
-  open questions in `docs/PRODUCT.md`.
+  open questions in `docs/PRODUCT.md`; mailing answers recorded (CityPal as
+  sole sender, push notifications for transactional messages).
 - Pull request template, `.editorconfig`, `.gitignore`.

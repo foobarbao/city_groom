@@ -9,6 +9,10 @@
 
 ## 1. Vision
 
+The company behind the project is **CityPal**. ("City Groom" is the working
+product name; see open question 10.)
+
+
 City centres are losing visitors, and many local businesses suffer from it,
 under pressure from high rents. City Groom **reconnects residents with
 city-centre businesses, craftspeople and local know-how**, without requiring
@@ -117,6 +121,14 @@ In the demo, the merchant's data (orders, forecasts) is **simulated**.
   of truth for customers, orders and statistics. Alternatives considered
   (Odoo, Twenty, Mautic, in-house): see
   [ADR-0005](adr/0005-customer-mailing-provider.md).
+- **Sender**: only the company, **CityPal**, sends campaigns. Merchants do not
+  email customers through the platform.
+- **Consent**: only customers who ticked the marketing consent checkbox are
+  synced to Brevo (see open question 11 on where the checkbox lives).
+- **First statistics**: aggregate counts — number of users, number of orders
+  (further metrics to be specified).
+- **Transactional notifications** (order confirmation, item ready for pickup)
+  are sent as **push notifications** in the app, not through Brevo.
 
 ## Glossary
 
@@ -152,12 +164,12 @@ Questions to the project owner. Answers are moved into the sections above.
    (tailoring, small appliance repair, bicycle repair…)?
 10. **Product name and wording**: is "City Groom" the final name? Preferred
     French term for the lockers in the UI?
-11. **Marketing consent**: how is consent to marketing emails collected
-    (unchecked box at sign-up, preference screen in the app)? Only consenting
-    customers are synced to Brevo (ADR-0005).
-12. **Mailing sender**: does only City Groom send campaigns, or may merchants
-    also email their own customers through the platform?
-13. **Segments and statistics**: which customer statistics and segments are
-    needed first (recurrence per customer, per merchant, per locker area…)?
-14. **Transactional emails** (order confirmation, item ready for pickup): also
-    sent through Brevo, or only push notifications in the app?
+11. **Marketing consent checkbox**: the project owner states that a consent
+    checkbox already exists "at login". It is not in this repository yet:
+    where is it (mock-up, other repository)? Is it at sign-up or at each
+    sign-in, and is it unchecked by default?
+12. **Play Store publisher account**: will the app be published under a
+    personal Google Play developer account or an organisation account for
+    CityPal? (Reported, to be checked on Google's pages: new personal accounts
+    must run a closed test with 12 testers for 14 days before production;
+    organisation accounts, which need a D-U-N-S number, are exempt.)
