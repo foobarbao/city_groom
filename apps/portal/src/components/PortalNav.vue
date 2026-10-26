@@ -65,7 +65,7 @@ function navigated(): void {
   <ion-content class="portal-nav">
     <nav class="nav" :aria-label="t('nav.label')">
       <router-link class="brand" to="/" @click="navigated">
-        <brand-mark :size="34" />
+        <brand-mark :size="44" />
         <span>
           <strong>{{ t('app.name') }}</strong>
           <span class="tag">{{ t('nav.demo') }}</span>
