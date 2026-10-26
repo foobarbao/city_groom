@@ -9,6 +9,12 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- ADR-0011: customer announcements sent with Brevo (free plan), first by
+  importing the admin's CSV export, later through an API sync; alternatives
+  (Odoo, Twenty, Mautic, in-house) recorded. Owner's mailing answers in
+  `docs/PRODUCT.md` (CityPal sole sender, push notifications for transactional
+  messages, first statistics), Brevo domain authentication steps in
+  `docs/BUILD_AND_RELEASE.md`, Play Store account question.
 - The hosted customer app talks to `https://api.citypal.fr` (Render
   variables updated for citypal.fr); company lockers named after their
   place (area or town and street), no company name.

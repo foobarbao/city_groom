@@ -206,5 +206,24 @@ Addresses (owner's decision, 2026-10-25):
    `https://citypal.fr` to the OAuth client's JavaScript origins
    (`docs/GOOGLE_SIGN_IN.md`).
 
+### E-mail sending domain (Brevo)
+
+Announcements are sent with Brevo (ADR-0011); the account was created by the
+project owner on 2026-10-26. To send from an address on `citypal.fr` without
+landing in spam, the domain is authenticated in Brevo:
+
+1. Brevo → **Senders, domains & dedicated IPs** → **Domains** → add
+   `citypal.fr`. Brevo then lists the DNS records to create (verification
+   code, DKIM, DMARC); copy their exact values from Brevo, they are specific
+   to the account.
+2. OVH DNS zone: create those records as Brevo shows them. Keep the existing
+   NS, MX and SPF records. A domain may publish only **one** SPF record: if
+   Brevo asks for an SPF change, merge it into the existing record instead of
+   adding a second one.
+3. Back in Brevo, run the verification (DNS changes can take a few hours to
+   propagate), then create the sender (e.g. an address on `citypal.fr`).
+
+Not done yet; to be recorded here with the date once verified.
+
 PROD: database backups (limited on free plans), a custom domain, HSTS, and
 moving to an always-on plan before showing the demo to partners (ADR-0004).

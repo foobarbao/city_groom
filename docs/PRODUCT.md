@@ -1,6 +1,6 @@
 # Product — CityPal
 
-> **Status**: living document · **Last updated**: 2026-10-24
+> **Status**: living document · **Last updated**: 2026-10-26
 >
 > This document records the product vision and the requirements as stated by
 > the project owner. Anything not yet decided is listed under
@@ -483,6 +483,21 @@ with the project owner.
   `docs/legal/privacy-policy.fr.md`, to complete and have validated); Google sign-in in the Android
   app (native plugin).
 
+### Customer mailing
+
+Owner's answers of 2026-10-26 (ADR-0011):
+
+- Announcements are sent with **Brevo** (free plan; account created). The
+  backend stays the source of truth for customers and consent.
+- **Only CityPal** sends campaigns; merchants do not e-mail customers through
+  the platform.
+- Only customers who ticked the opt-in box (`User.announcements`) receive
+  them.
+- **Transactional messages** (order confirmation, item ready for pickup) are
+  **push notifications** in the app, not e-mails.
+- First statistics wanted: **number of users, number of orders** (other
+  metrics to be specified).
+
 ## 9. Business model
 
 - The **customer pays the same price** as they would pay in the shop.
@@ -640,3 +655,13 @@ Questions to the project owner. Answers are moved into the sections above.
     Steinmann, personally (no company yet); contact `contact@citypal.fr`.
     Privacy page published at `/confidentialite`. ASSUMPTION to validate
     with a legal adviser: wording of the box and of the page.
+
+15. **Play Store publisher account**: personal Google Play developer account
+    or organisation account for CityPal? Reported by third-party sources, to
+    be checked on Google's pages: new personal accounts must run a closed
+    test with 12 testers for 14 consecutive days before production;
+    organisation accounts, which need a D-U-N-S number (hence a registered
+    company), are exempt. On 2026-10-26 the owner called CityPal "the
+    company": has the legal entity been created since question 7 (which
+    records none on 2026-10-25)? It also changes the data controller in the
+    privacy policy.
