@@ -15,7 +15,7 @@ export interface paths {
         put?: never;
         /**
          * Sign in with Google
-         * @description The app sends the ID token it received from Google. The API verifies it (signature, expiry, issuer, audience), finds or creates the account from the basic Google profile, and returns a token for the next requests. Accounts of team members or with a password are never reached this way.
+         * @description The app sends the ID token it received from Google. The API verifies it (signature, expiry, issuer, audience), finds or creates the account from the basic Google profile, and returns a token for the next requests. Accounts of team members or with a password are never reached this way. `announcements: true` records the person's agreement to receive CityPal announcements (box unticked by default in the app).
          */
         post: operations["auth_google_create"];
         delete?: never;
@@ -41,7 +41,11 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        /**
+         * Update current user settings
+         * @description Changes the settings of the signed-in user: agreement to receive CityPal announcements. The date of the change is recorded.
+         */
+        patch: operations["auth_me_partial_update"];
         trace?: never;
     };
     "/api/v1/auth/sign-out/": {
@@ -271,6 +275,11 @@ export interface components {
         GoogleSignInRequestRequest: {
             /** @description Google ID token (JWT) obtained by the app from Google Identity Services. */
             credential: string;
+            /**
+             * @description True when the person ticked the box to receive CityPal announcements. False or absent never withdraws an earlier agreement (use PATCH /auth/me/).
+             * @default false
+             */
+            announcements: boolean;
         };
         Health: {
             status: string;
@@ -518,6 +527,11 @@ export interface components {
             readonly date_joined: string;
             /** @description Whether the account is linked to a Google identity. */
             readonly signed_in_with_google: boolean;
+            /**
+             * Accepte les annonces
+             * @description A coché la case pour recevoir les annonces de CityPal (lancement, offres).
+             */
+            readonly announcements: boolean;
         };
         /** @description Merchant as a GeoJSON feature for the map and the list of businesses. */
         MerchantFeature: {
@@ -807,6 +821,11 @@ export interface components {
             previous?: string | null;
             results: components["schemas"]["LockerEvent"][];
         };
+        /** @description Settings the signed-in user can change. */
+        PatchedMeUpdateRequest: {
+            /** @description Agree to (true) or stop (false) receiving CityPal announcements. */
+            announcements?: boolean;
+        };
         /** @description Compartment position and size, without its status. */
         PublicCompartment: {
             readonly id: number;
@@ -913,6 +932,13 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Google could not be reached; retry later. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
     };
     auth_me_retrieve: {
@@ -923,6 +949,31 @@ export interface operations {
             cookie?: never;
         };
         requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+        };
+    };
+    auth_me_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedMeUpdateRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedMeUpdateRequest"];
+                "multipart/form-data": components["schemas"]["PatchedMeUpdateRequest"];
+            };
+        };
         responses: {
             200: {
                 headers: {

@@ -27,7 +27,7 @@ copy it anywhere.
 ## 2. Configure the consent screen (Google Auth Platform)
 
 1. Menu → **APIs & Services** → **OAuth consent screen** (shown as **Google
-   Auth Platform** → *Branding*, *Audience*, *Clients* in recent consoles).
+   Auth Platform** → _Branding_, _Audience_, _Clients_ in recent consoles).
 2. App information: name **CityPal**, user support e-mail (yours), developer
    contact e-mail.
 3. Audience: **External**.
@@ -36,21 +36,22 @@ copy it anywhere.
    sync: CityPal may create its own calendar and manage only that one). The
    customer sign-in asks only for the basic profile (`openid`, `email`,
    `profile`), as decided on 2026-10-25.
-5. **Enable the Google Calendar API**: menu → *APIs & Services* → *Library*
-   → "Google Calendar API" → *Enable*.
+5. **Enable the Google Calendar API**: menu → _APIs & Services_ → _Library_
+   → "Google Calendar API" → _Enable_.
 6. While the app is in **Testing**, only the **test users** you add (your
    Google address and the testers') can sign in. To open it to everyone,
-   **publish** the app (*Audience* → *Publish app*). ASSUMPTION, to confirm
+   **publish** the app (_Audience_ → _Publish app_). ASSUMPTION, to confirm
    in the console: the basic scopes need no Google verification; if the
-   console marks the calendar scope as *sensitive*, Google must verify the
+   console marks the calendar scope as _sensitive_, Google must verify the
    app before merchants other than test users can sync (a logo, if added,
    may also require a brand verification). Publishing requires a domain you
    own (verified in Google Search Console) with a public home page and a
-   privacy policy on it (draft: `docs/legal/privacy-policy.fr.md`).
+   privacy policy on it: `https://citypal.fr/confidentialite` (published
+   2026-10-25; draft and open points: `docs/legal/privacy-policy.fr.md`).
 
 ## 3. Create the OAuth client ID
 
-1. **Credentials** (or *Clients*) → **Create credentials** → **OAuth client
+1. **Credentials** (or _Clients_) → **Create credentials** → **OAuth client
    ID**.
 2. Application type: **Web application**, name `CityPal web`.
 3. **Authorized JavaScript origins** (exact addresses, no trailing slash):
@@ -66,13 +67,13 @@ origins: the button does not work there unless they are added too.
 
 The same value goes to two places:
 
-| Where | Variable | Value |
-|---|---|---|
-| Backend (Render → service → *Environment*) | `GOOGLE_OAUTH_CLIENT_IDS` | the client ID |
-| Customer app and portal (Netlify → *Site configuration* → *Environment variables*) | `VITE_GOOGLE_CLIENT_ID` | the client ID |
-| Customer app (Netlify, same place) | `VITE_API_BASE_URL` | `https://<render-service>.onrender.com/api/v1` |
+| Where                                                                              | Variable                  | Value                                          |
+| ---------------------------------------------------------------------------------- | ------------------------- | ---------------------------------------------- |
+| Backend (Render → service → _Environment_)                                         | `GOOGLE_OAUTH_CLIENT_IDS` | the client ID                                  |
+| Customer app and portal (Netlify → _Site configuration_ → _Environment variables_) | `VITE_GOOGLE_CLIENT_ID`   | the client ID                                  |
+| Customer app (Netlify, same place)                                                 | `VITE_API_BASE_URL`       | `https://<render-service>.onrender.com/api/v1` |
 
-Then redeploy both (on Netlify: *Deploys* → *Trigger deploy*).
+Then redeploy both (on Netlify: _Deploys_ → _Trigger deploy_).
 
 Shortcut: the client ID and the API address are public values, so they can
 also be committed in `apps/customer/.env.demo-site` and

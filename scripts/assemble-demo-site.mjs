@@ -40,6 +40,8 @@ const rules = [
   'http://pro.citypal.fr/* https://citypal.fr/pro/:splat 301!',
   'https://pro.citypal.fr/* https://citypal.fr/pro/:splat 301!',
   '/ /client/ 302',
+  // Short address of the privacy policy, given to Google's consent screen.
+  '/confidentialite /client/confidentialite 301',
   '/client/* /client/index.html 200',
   '/pro/* /pro/index.html 200',
 ]

@@ -6,6 +6,12 @@
   docs/GOOGLE_SIGN_IN.md) and linked from the apps. Repository rules keep
   every other document in English (CLAUDE.md §4).
 
+  Published version (2026-10-25): the customer app page /confidentialite
+  (apps/customer/src/views/PrivacyPage.vue, texts in i18n `privacy`),
+  written from this draft with the owner's answers (controller Alexis
+  Steinmann personally, contact@citypal.fr, announcements by opt-in). This
+  file keeps the full list of points to complete and to validate.
+
   Status: draft written on 2026-10-25 from what the code actually collects
   (accounts app, customer app, portal). NOT legal advice. Every
   "[À COMPLÉTER]" is information only the project owner has; every

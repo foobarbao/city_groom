@@ -14,7 +14,7 @@ import { computed, ref, watch } from 'vue'
 
 import type { SignInResponse } from '@city-groom/api-client'
 
-import { signOutFromApi } from '../api/auth'
+import { signOutFromApi, updateAnnouncements } from '../api/auth'
 import { addHours, serviceDay } from '../domain/time'
 import { forgetGoogleSession } from '../services/googleIdentity'
 
@@ -158,6 +158,8 @@ export interface GoogleSession {
    * backend yet). PROD: keep it in secure storage on Android.
    */
   token: string
+  /** Agreed to receive CityPal announcements (box unticked by default). */
+  announcements?: boolean
 }
 
 interface AccountState {
@@ -313,6 +315,7 @@ export const useAccountStore = defineStore('account', () => {
       email: result.user.email,
       pictureUrl: result.user.picture_url,
       token: result.token,
+      announcements: result.user.announcements,
     }
   }
 
@@ -320,14 +323,32 @@ export const useAccountStore = defineStore('account', () => {
    * DEMO: Google sign-in without backend (hosted demo): the profile read on
    * the device is shown, no API token. PROD: removed, `signInWithGoogle`.
    */
-  function signInWithGoogleDemo(profile: {
-    email: string
-    firstName: string
-    pictureUrl: string
-  }): void {
+  function signInWithGoogleDemo(
+    profile: { email: string; firstName: string; pictureUrl: string },
+    announcements = false,
+  ): void {
     state.value.signedIn = true
     state.value.name = profile.firstName || profile.email
-    state.value.google = { email: profile.email, pictureUrl: profile.pictureUrl, token: '' }
+    state.value.google = {
+      email: profile.email,
+      pictureUrl: profile.pictureUrl,
+      token: '',
+      announcements,
+    }
+  }
+
+  /**
+   * Agree to or stop receiving announcements: recorded by the API when
+   * signed in with Google (on the device only in the demo without backend).
+   *
+   * @throws {ApiError | NetworkError} If the API refuses or cannot be reached;
+   *   the previous choice is kept.
+   */
+  async function setAnnouncements(accepted: boolean): Promise<void> {
+    const google = state.value.google
+    if (!google) return
+    if (google.token) await updateAnnouncements(google.token, accepted)
+    state.value.google = { ...google, announcements: accepted }
   }
 
   function signOut(): void {
@@ -583,6 +604,7 @@ export const useAccountStore = defineStore('account', () => {
     signIn,
     signInWithGoogle,
     signInWithGoogleDemo,
+    setAnnouncements,
     signOut,
     choosePlan,
     addBooking,

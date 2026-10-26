@@ -178,6 +178,12 @@ ion-split-pane {
 ion-menu {
   --background: transparent;
 }
+/* As a drawer over the page (phones), the menu must hide what is behind it:
+   near-opaque surface (owner, 2026-10-26: the see-through drawer mixed with
+   the page). The fixed column on wide screens stays glass. */
+ion-menu:not(.menu-pane-visible) {
+  --background: var(--cg-surface);
+}
 ion-menu::part(container) {
   backdrop-filter: var(--cg-glass-filter);
   -webkit-backdrop-filter: var(--cg-glass-filter);

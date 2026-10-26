@@ -346,6 +346,11 @@ export default {
       unavailable: 'La connexion Google est indisponible pour le moment (hors ligne ?).',
       privacy:
         'CityPal reçoit seulement votre nom, votre adresse e-mail et votre photo de profil Google.',
+      privacyLink: 'Politique de confidentialité',
+      announcements:
+        'Je souhaite recevoir les annonces de CityPal (lancement, offres) par e-mail. Désinscription possible à tout moment.',
+      announcementsSaved: 'Préférence enregistrée.',
+      announcementsError: 'Préférence non enregistrée : le serveur ne répond pas. Réessayez.',
       linked: 'compte Google',
       demoNote: 'Démonstration : profil lu sur cet appareil, pas encore enregistré chez CityPal.',
     },
@@ -560,5 +565,61 @@ export default {
     doneText:
       'Déposez votre article à {locker} : un casier au format {size} vous est attribué à votre arrivée devant la machine.',
     donePickup: 'Retrait : {locker}, {day} entre {from} et {to}.',
+  },
+  privacy: {
+    title: 'Politique de confidentialité',
+    updated: 'Mise à jour le 25 octobre 2026.',
+    intro:
+      'Cette page explique quelles données personnelles CityPal traite, pourquoi, combien de temps, et comment exercer vos droits.',
+    who: {
+      title: 'Qui est responsable de vos données ?',
+      body: 'Alexis Steinmann, porteur du projet CityPal, à titre personnel (aucune société n’est encore créée).',
+      contact: 'Contact pour toute question sur vos données :',
+    },
+    collected: {
+      title: 'Quelles données, et pourquoi ?',
+      googleTitle: 'Connexion avec Google',
+      google:
+        'Si vous choisissez « Continuer avec Google », nous recevons uniquement votre profil de base : identifiant Google, adresse e-mail (et le fait que Google l’a vérifiée), prénom, nom et photo de profil. Nous gardons aussi la date de création du compte et de dernière connexion. Nous n’avons jamais accès à votre mot de passe, à vos e-mails, à vos contacts ni à vos fichiers. But : créer et retrouver votre compte. Base légale : le service que vous demandez.',
+      announcementsTitle: 'Annonces par e-mail',
+      announcements:
+        'Seulement si vous cochez la case prévue (elle n’est jamais cochée d’avance), nous enregistrons votre accord et sa date, et utilisons votre adresse e-mail pour vous envoyer les annonces de CityPal (lancement, offres). Base légale : votre consentement. Vous pouvez le retirer à tout moment depuis la page Compte, par le lien présent dans chaque annonce ou en nous écrivant.',
+      demoTitle: 'Commandes, consignes, messages et avis',
+      demo: 'Dans la version actuelle (démonstration), ils restent sur votre appareil et ne sont pas envoyés à nos serveurs.',
+      locationTitle: 'Position',
+      location:
+        'L’écran « Casiers autour de moi » utilise la position de votre appareil uniquement si vous l’autorisez, pour classer les casiers du plus proche au plus éloigné. Elle reste sur votre appareil.',
+      technicalTitle: 'Données techniques',
+      technical:
+        'Comme tout service en ligne, nos hébergeurs reçoivent des données techniques (adresse IP, type de navigateur, date des requêtes) pour faire fonctionner et protéger le service.',
+    },
+    recipients: {
+      title: 'Qui reçoit vos données ?',
+      body: 'Nous ne vendons pas vos données et ne les utilisons pas pour de la publicité. Elles sont traitées pour notre compte par nos prestataires techniques :',
+      google: 'Google : la connexion avec Google ;',
+      render: 'Render : le serveur CityPal ;',
+      neon: 'Neon : la base de données, hébergée dans l’Union européenne (Francfort) ;',
+      netlify: 'Netlify : les pages de l’application ;',
+      maps: 'OpenFreeMap : les fonds de carte (votre appareil les télécharge directement).',
+      googleRules:
+        'Le bouton « Continuer avec Google » est fourni par Google, qui applique ses propres règles de confidentialité.',
+    },
+    retention: {
+      title: 'Combien de temps ?',
+      account: 'Compte : tant qu’il existe ; il est supprimé sur simple demande.',
+      announcements: 'Accord aux annonces : jusqu’à son retrait.',
+    },
+    rights: {
+      title: 'Vos droits',
+      body: 'Vous pouvez demander l’accès à vos données, leur rectification, leur effacement, la limitation de leur traitement, vous y opposer, les récupérer (portabilité) et retirer votre consentement. Écrivez à {email} ; nous répondons dans un délai d’un mois. Vous pouvez aussi saisir la CNIL (cnil.fr).',
+    },
+    storage: {
+      title: 'Stockage sur votre appareil',
+      body: 'L’application enregistre dans votre navigateur ce qui lui permet de fonctionner (session de connexion, réglages, données de démonstration). Aucun traceur publicitaire n’est utilisé.',
+    },
+    changes: {
+      title: 'Modifications',
+      body: 'Cette politique peut évoluer ; la date de mise à jour figure en haut de la page.',
+    },
   },
 }
