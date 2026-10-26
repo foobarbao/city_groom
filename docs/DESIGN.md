@@ -169,3 +169,13 @@ The portal dashboards follow one set of rules (`apps/portal/src/components/BarCh
 
 The product name is not final (see `docs/PRODUCT.md`); colours and wording are
 placeholders until it is chosen.
+
+**Logo** (chosen by the project owner on 2026-10-26):
+[`docs/brand/citypal-logo.jpg`](brand/citypal-logo.jpg), a heart-shaped
+padlock made of locker compartments around a green city skyline, with a cargo
+bike and a connection signal. It is used for the installable web app's icons
+(`apps/customer/scripts/make_icons.py`). Its small details (cargo bike,
+windows) disappear below about 64 px; the heart and the grid remain readable.
+The only source is a 2048 px JPEG: PROD: get a vector version (SVG) for print,
+store listings and large sizes. Not yet used in the apps' menus (the
+gradient "C" badge remains) nor as the Android launcher icon.

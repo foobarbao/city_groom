@@ -9,8 +9,10 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- CityPal logo (`docs/brand/`) and the customer app's home-screen icons
+  generated from it (`apps/customer/scripts/make_icons.py`).
 - Customer app installable on the home screen (PWA): web app manifest,
-  provisional icons, "Installer l'application" button on the home screen and
+  icons, "Installer l'application" button on the home screen and
   in the side menu (browser install dialog, or instructions on Safari and
   Firefox), hidden once installed; the browser's own install banner is
   suppressed at opening.

@@ -122,9 +122,10 @@ is shown when the app opens: the browser's own banner is suppressed
 
 - `public/manifest.webmanifest`: name, colours, `display: standalone`; paths
   are relative, so it works under `/` and under `/client/` (hosted site).
-- `public/icons/`: **provisional** icons (192, 512, maskable 512 and the
-  180 px `apple-touch-icon` for iOS), the menu's white "C" on the leaf → teal
-  gradient rendered with Playwright. PROD: replace with the real logo.
+- `public/icons/`: icons generated from the CityPal logo
+  (`docs/brand/citypal-logo.jpg`) by `scripts/make_icons.py`: 192 and 512 px,
+  maskable 512 px for Android launchers, and the 180 px `apple-touch-icon` for
+  iOS. Re-run the script after changing the logo.
 - Chrome, Edge and Samsung Internet open their install dialog from the
   button; Safari (iOS) and Firefox have none, so the button explains how to
   install from the browser's menu.
