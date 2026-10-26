@@ -255,6 +255,15 @@ restaurants and cafés, parks and sports venues**. Consigne lockers are
 location: the red lines (no meal delivery) still apply. In the demo, places
 come from OpenStreetMap (`docs/DATA_SOURCES.md`).
 
+**Required places** (owner's request of 2026-10-26, "il me faut absolument
+des casiers jusqu'à Meylan / Inovallée", large business parks): the
+**Inovallée** business parks in **Meylan** and **Montbonnot** always get a
+locker, whatever the automatic selection rules (distance from the centre,
+naming). ASSUMPTION: service (laundry) lockers there, for the people
+working in the parks. Montbonnot is about 7.4 km from the centre of
+Grenoble, beyond the 7 km assumed for the cargo-bike rounds: the round
+area must include it (open question).
+
 ### Locker visualisation
 
 The locker view must be **very user-friendly**: the customer sees a drawing of

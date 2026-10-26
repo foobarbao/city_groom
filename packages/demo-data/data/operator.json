@@ -735,6 +735,67 @@
     }
    },
    {
+    "id": 71,
+    "type": "Feature",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      5.7901292,
+      45.208277
+     ]
+    },
+    "properties": {
+     "code": "inovallee-meylan",
+     "name": "Inovallée Meylan",
+     "address": "",
+     "status": "active",
+     "site_category": "business",
+     "access_methods": [
+      "qr_code",
+      "nfc"
+     ],
+     "free_by_size": {
+      "S": 6,
+      "M": 3,
+      "L": 5,
+      "XL": 2
+     },
+     "fill_rate": 0.36,
+     "in_service": 25,
+     "in_use": 9
+    }
+   },
+   {
+    "id": 72,
+    "type": "Feature",
+    "geometry": {
+     "type": "Point",
+     "coordinates": [
+      5.8086355,
+      45.2163341
+     ]
+    },
+    "properties": {
+     "code": "inovallee-montbonnot",
+     "name": "Inovallée Montbonnot",
+     "address": "",
+     "status": "active",
+     "site_category": "business",
+     "access_methods": [
+      "qr_code"
+     ],
+     "free_by_size": {
+      "S": 5,
+      "M": 3,
+      "L": 4,
+      "XL": 0
+     },
+     "fill_rate": 0.5,
+     "in_service": 24,
+     "in_use": 12
+    }
+   },
+   {
     "id": 57,
     "type": "Feature",
     "geometry": {
@@ -7211,6 +7272,459 @@
     }
    ],
    "fill_rate": 0.316
+  },
+  "inovallee-meylan": {
+   "id": 71,
+   "code": "inovallee-meylan",
+   "name": "Inovallée Meylan",
+   "address": "",
+   "status": "active",
+   "site_category": "business",
+   "access_methods": [
+    "qr_code",
+    "nfc"
+   ],
+   "is_simulated": true,
+   "longitude": 5.7901292,
+   "latitude": 45.208277,
+   "control_panel_column": 2,
+   "column_grid_units": 20,
+   "control_panel_grid_units": 6,
+   "free_by_size": {
+    "S": 6,
+    "M": 3,
+    "L": 5,
+    "XL": 2
+   },
+   "compartments": [
+    {
+     "id": 1472,
+     "label": "A1",
+     "size": "XL",
+     "column": 0,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 1473,
+     "label": "B1",
+     "size": "S",
+     "column": 1,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 1474,
+     "label": "B2",
+     "size": "S",
+     "column": 1,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 1475,
+     "label": "B3",
+     "size": "S",
+     "column": 1,
+     "position": 2,
+     "status": "occupied"
+    },
+    {
+     "id": 1476,
+     "label": "B4",
+     "size": "S",
+     "column": 1,
+     "position": 3,
+     "status": "occupied"
+    },
+    {
+     "id": 1477,
+     "label": "B5",
+     "size": "M",
+     "column": 1,
+     "position": 4,
+     "status": "occupied"
+    },
+    {
+     "id": 1478,
+     "label": "B6",
+     "size": "M",
+     "column": 1,
+     "position": 5,
+     "status": "occupied"
+    },
+    {
+     "id": 1479,
+     "label": "B7",
+     "size": "M",
+     "column": 1,
+     "position": 6,
+     "status": "free"
+    },
+    {
+     "id": 1480,
+     "label": "B8",
+     "size": "M",
+     "column": 1,
+     "position": 7,
+     "status": "free"
+    },
+    {
+     "id": 1481,
+     "label": "B9",
+     "size": "L",
+     "column": 1,
+     "position": 8,
+     "status": "reserved"
+    },
+    {
+     "id": 1482,
+     "label": "B10",
+     "size": "L",
+     "column": 1,
+     "position": 9,
+     "status": "free"
+    },
+    {
+     "id": 1483,
+     "label": "C1",
+     "size": "S",
+     "column": 2,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 1484,
+     "label": "C2",
+     "size": "S",
+     "column": 2,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 1485,
+     "label": "C3",
+     "size": "S",
+     "column": 2,
+     "position": 2,
+     "status": "free"
+    },
+    {
+     "id": 1486,
+     "label": "C4",
+     "size": "S",
+     "column": 2,
+     "position": 3,
+     "status": "free"
+    },
+    {
+     "id": 1487,
+     "label": "C5",
+     "size": "M",
+     "column": 2,
+     "position": 4,
+     "status": "free"
+    },
+    {
+     "id": 1488,
+     "label": "C6",
+     "size": "M",
+     "column": 2,
+     "position": 5,
+     "status": "reserved"
+    },
+    {
+     "id": 1489,
+     "label": "C7",
+     "size": "M",
+     "column": 2,
+     "position": 6,
+     "status": "reserved"
+    },
+    {
+     "id": 1490,
+     "label": "C8",
+     "size": "L",
+     "column": 2,
+     "position": 7,
+     "status": "free"
+    },
+    {
+     "id": 1491,
+     "label": "D1",
+     "size": "L",
+     "column": 3,
+     "position": 0,
+     "status": "free"
+    },
+    {
+     "id": 1492,
+     "label": "D2",
+     "size": "L",
+     "column": 3,
+     "position": 1,
+     "status": "reserved"
+    },
+    {
+     "id": 1493,
+     "label": "D3",
+     "size": "L",
+     "column": 3,
+     "position": 2,
+     "status": "free"
+    },
+    {
+     "id": 1494,
+     "label": "D4",
+     "size": "L",
+     "column": 3,
+     "position": 3,
+     "status": "occupied"
+    },
+    {
+     "id": 1495,
+     "label": "D5",
+     "size": "L",
+     "column": 3,
+     "position": 4,
+     "status": "free"
+    },
+    {
+     "id": 1496,
+     "label": "E1",
+     "size": "XL",
+     "column": 4,
+     "position": 0,
+     "status": "free"
+    }
+   ],
+   "fill_rate": 0.36
+  },
+  "inovallee-montbonnot": {
+   "id": 72,
+   "code": "inovallee-montbonnot",
+   "name": "Inovallée Montbonnot",
+   "address": "",
+   "status": "active",
+   "site_category": "business",
+   "access_methods": [
+    "qr_code"
+   ],
+   "is_simulated": true,
+   "longitude": 5.8086355,
+   "latitude": 45.2163341,
+   "control_panel_column": 2,
+   "column_grid_units": 20,
+   "control_panel_grid_units": 6,
+   "free_by_size": {
+    "S": 5,
+    "M": 3,
+    "L": 4,
+    "XL": 0
+   },
+   "compartments": [
+    {
+     "id": 1497,
+     "label": "A1",
+     "size": "XL",
+     "column": 0,
+     "position": 0,
+     "status": "reserved"
+    },
+    {
+     "id": 1498,
+     "label": "B1",
+     "size": "S",
+     "column": 1,
+     "position": 0,
+     "status": "reserved"
+    },
+    {
+     "id": 1499,
+     "label": "B2",
+     "size": "S",
+     "column": 1,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 1500,
+     "label": "B3",
+     "size": "S",
+     "column": 1,
+     "position": 2,
+     "status": "free"
+    },
+    {
+     "id": 1501,
+     "label": "B4",
+     "size": "S",
+     "column": 1,
+     "position": 3,
+     "status": "free"
+    },
+    {
+     "id": 1502,
+     "label": "B5",
+     "size": "M",
+     "column": 1,
+     "position": 4,
+     "status": "reserved"
+    },
+    {
+     "id": 1503,
+     "label": "B6",
+     "size": "M",
+     "column": 1,
+     "position": 5,
+     "status": "occupied"
+    },
+    {
+     "id": 1504,
+     "label": "B7",
+     "size": "M",
+     "column": 1,
+     "position": 6,
+     "status": "reserved"
+    },
+    {
+     "id": 1505,
+     "label": "B8",
+     "size": "M",
+     "column": 1,
+     "position": 7,
+     "status": "free"
+    },
+    {
+     "id": 1506,
+     "label": "B9",
+     "size": "L",
+     "column": 1,
+     "position": 8,
+     "status": "reserved"
+    },
+    {
+     "id": 1507,
+     "label": "B10",
+     "size": "L",
+     "column": 1,
+     "position": 9,
+     "status": "free"
+    },
+    {
+     "id": 1508,
+     "label": "C1",
+     "size": "S",
+     "column": 2,
+     "position": 0,
+     "status": "occupied"
+    },
+    {
+     "id": 1509,
+     "label": "C2",
+     "size": "S",
+     "column": 2,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 1510,
+     "label": "C3",
+     "size": "S",
+     "column": 2,
+     "position": 2,
+     "status": "free"
+    },
+    {
+     "id": 1511,
+     "label": "C4",
+     "size": "S",
+     "column": 2,
+     "position": 3,
+     "status": "out_of_service"
+    },
+    {
+     "id": 1512,
+     "label": "C5",
+     "size": "M",
+     "column": 2,
+     "position": 4,
+     "status": "free"
+    },
+    {
+     "id": 1513,
+     "label": "C6",
+     "size": "M",
+     "column": 2,
+     "position": 5,
+     "status": "occupied"
+    },
+    {
+     "id": 1514,
+     "label": "C7",
+     "size": "M",
+     "column": 2,
+     "position": 6,
+     "status": "free"
+    },
+    {
+     "id": 1515,
+     "label": "C8",
+     "size": "L",
+     "column": 2,
+     "position": 7,
+     "status": "free"
+    },
+    {
+     "id": 1516,
+     "label": "D1",
+     "size": "L",
+     "column": 3,
+     "position": 0,
+     "status": "occupied"
+    },
+    {
+     "id": 1517,
+     "label": "D2",
+     "size": "L",
+     "column": 3,
+     "position": 1,
+     "status": "free"
+    },
+    {
+     "id": 1518,
+     "label": "D3",
+     "size": "L",
+     "column": 3,
+     "position": 2,
+     "status": "occupied"
+    },
+    {
+     "id": 1519,
+     "label": "D4",
+     "size": "L",
+     "column": 3,
+     "position": 3,
+     "status": "occupied"
+    },
+    {
+     "id": 1520,
+     "label": "D5",
+     "size": "L",
+     "column": 3,
+     "position": 4,
+     "status": "free"
+    },
+    {
+     "id": 1521,
+     "label": "E1",
+     "size": "XL",
+     "column": 4,
+     "position": 0,
+     "status": "occupied"
+    }
+   ],
+   "fill_rate": 0.5
   },
   "institut-durbanisme-et-de-geographie-alp": {
    "id": 57,
@@ -15763,22 +16277,22 @@
   }
  },
  "stats": {
-  "lockers": 70,
-  "compartments": 1471,
-  "in_service": 1445,
-  "in_use": 433,
-  "fill_rate": 0.3,
+  "lockers": 72,
+  "compartments": 1521,
+  "in_service": 1494,
+  "in_use": 454,
+  "fill_rate": 0.304,
   "free_by_size": {
-   "S": 322,
-   "M": 356,
-   "L": 305,
-   "XL": 29
+   "S": 333,
+   "M": 362,
+   "L": 314,
+   "XL": 31
   },
   "capacity_by_size": {
-   "S": 470,
-   "M": 499,
-   "L": 458,
-   "XL": 44
+   "S": 486,
+   "M": 513,
+   "L": 474,
+   "XL": 48
   }
  }
 }

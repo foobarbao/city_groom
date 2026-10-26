@@ -9,6 +9,9 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Lockers at the Inovallée business parks of Meylan and Montbonnot,
+  required by the project owner whatever the automatic selection rules
+  (`REQUIRED_SITES`); demo network now 72 lockers; demo data regenerated.
 - Demo prices aligned on 5àsec's published unit prices: shirt ironing
   4.18 € (was 3.50 €), suit cleaning 10.63 € (was 16.00 €), duvet cleaning
   25.50 € (was 22.00 €); demo activity regenerated.
