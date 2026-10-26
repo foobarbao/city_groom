@@ -6,7 +6,8 @@
  *
  * A fixed column on wide screens, a drawer behind the menu button on phones
  * (Ionic split pane, `App.vue`). The groups leading to the current screen
- * unfold on their own.
+ * unfold on their own. Below the screens, the "Installer l'application"
+ * button while the app runs in a browser tab.
  */
 import { BrandMark, NavTree } from '@city-groom/ui'
 import { IonContent, menuController } from '@ionic/vue'
@@ -15,6 +16,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 import { NAVIGATION, trail } from '../navigation'
+import InstallAppButton from './InstallAppButton.vue'
 import { useAccountStore } from '../stores/account'
 
 const { t } = useI18n()
@@ -72,6 +74,7 @@ function navigated(): void {
         @toggle="toggle"
         @navigate="navigated"
       />
+      <install-app-button variant="compact" />
     </nav>
   </ion-content>
 </template>

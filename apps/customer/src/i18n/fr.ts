@@ -95,6 +95,19 @@ export default {
     profile: 'Mon compte',
     plans: 'Abonnement',
   },
+  install: {
+    button: 'Installer l’application',
+    text: 'Ouvrez CityPal depuis votre écran d’accueil, comme une application.',
+    howTitle: 'Installer CityPal',
+    how: {
+      ios: 'Dans Safari, touchez le bouton Partager, puis « Sur l’écran d’accueil ».',
+      android:
+        'Ouvrez le menu du navigateur (⋮), puis « Installer l’application » ou « Ajouter à l’écran d’accueil ».',
+      desktop:
+        'Dans la barre d’adresse ou le menu du navigateur, choisissez « Installer CityPal » ou « Ajouter au Dock ».',
+    },
+    ok: 'Compris',
+  },
   common: {
     back: 'Retour',
     continue: 'Continuer',

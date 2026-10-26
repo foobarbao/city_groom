@@ -357,6 +357,10 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
   compartments, one tap to drop off now or book a slot. The position is
   asked only when the customer opens this view (or "Près de moi" in a locker
   list), used on the device only, never stored nor sent.
+- **install the app on the home screen** (decided 2026-10-26), until it is on
+  the Play Store: an "Installer l'application" button on the home screen and
+  in the side menu, hidden once installed; **no install pop-up** when the app
+  opens.
 
 ### Ratings and reviews
 
@@ -524,6 +528,21 @@ with the project owner.
   `docs/legal/privacy-policy.fr.md`, to complete and have validated); Google sign-in in the Android
   app (native plugin).
 
+### Customer mailing
+
+Owner's answers of 2026-10-26 (ADR-0011):
+
+- Announcements are sent with **Brevo** (free plan; account created). The
+  backend stays the source of truth for customers and consent.
+- **Only CityPal** sends campaigns; merchants do not e-mail customers through
+  the platform.
+- Only customers who ticked the opt-in box (`User.announcements`) receive
+  them.
+- **Transactional messages** (order confirmation, item ready for pickup) are
+  **push notifications** in the app, not e-mails.
+- First statistics wanted: **number of users, number of orders** (other
+  metrics to be specified).
+
 ## 9. Business model
 
 - The **customer pays the same price** as they would pay in the shop.
@@ -690,3 +709,12 @@ Questions to the project owner. Answers are moved into the sections above.
     and for subscribers? Where to place the first lockers (stations,
     companies, campuses)? Should interested customers be told by e-mail when
     the offer opens (would need their agreement)?
+16. **Play Store publisher account**: personal Google Play developer account
+    or organisation account for CityPal? Reported by third-party sources, to
+    be checked on Google's pages: new personal accounts must run a closed
+    test with 12 testers for 14 consecutive days before production;
+    organisation accounts, which need a D-U-N-S number (hence a registered
+    company), are exempt. **Partly answered 2026-10-26**: no company exists
+    yet, so an organisation account is not possible for now; meanwhile the
+    web app is installable on the home screen (section 4c). Remaining: open
+    a personal account now, or wait for the company?

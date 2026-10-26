@@ -82,7 +82,7 @@ day:
   plugin and an "Android" OAuth client (declared with the SHA-1 of the
   signing key) are needed. The plugin choice deserves an ADR.
 - **Launcher icons and splash screen**: still Capacitor's defaults; the
-  CityPal mark exists (docs/DESIGN.md "Brand").
+  CityPal logo exists (docs/DESIGN.md "Brand").
 - **API address** of the Android build: `https://api.citypal.fr/api/v1`.
 - **Release signing** and an **AAB build**, e.g. in a GitHub Actions
   workflow with the keystore kept as a repository secret.
@@ -93,6 +93,18 @@ day:
   ASSUMPTION (not verified against Google's current rules): new personal
   accounts must run a closed test with at least 12 testers for 14 days
   before production access; check in the Play Console.
+
+Meanwhile, customers install the web app on their home screen from `https://citypal.fr`
+with the "Installer l'application" button (`apps/customer/README.md`,
+"Install on the home screen"). Checked on 2026-10-26 with Chromium on the
+`demo-site` build: the manifest is found at `/client/manifest.webmanifest`
+and Chrome reports no installability error. Installability also requires
+HTTPS (served by Netlify) and, for Chrome, some engagement with the page
+before its install dialog is available
+([criteria](https://web.dev/articles/install-criteria)).
+
+No company exists yet (owner, 2026-10-26), so the developer account would be
+a personal one (`docs/PRODUCT.md` open question 16).
 
 - A **release keystore** must be created once and **backed up outside the
   repository**: losing it makes updates of the published app impossible.
@@ -226,6 +238,25 @@ Addresses (owner's decision, 2026-10-25):
    `https://citypal.fr` to `CORS_ALLOWED_ORIGINS` (Render), and
    `https://citypal.fr` to the OAuth client's JavaScript origins
    (`docs/GOOGLE_SIGN_IN.md`).
+
+### E-mail sending domain (Brevo)
+
+Announcements are sent with Brevo (ADR-0011); the account was created by the
+project owner on 2026-10-26. To send from an address on `citypal.fr` without
+landing in spam, the domain is authenticated in Brevo:
+
+1. Brevo → **Senders, domains & dedicated IPs** → **Domains** → add
+   `citypal.fr`. Brevo then lists the DNS records to create (verification
+   code, DKIM, DMARC); copy their exact values from Brevo, they are specific
+   to the account.
+2. OVH DNS zone: create those records as Brevo shows them. Keep the existing
+   NS, MX and SPF records. A domain may publish only **one** SPF record: if
+   Brevo asks for an SPF change, merge it into the existing record instead of
+   adding a second one.
+3. Back in Brevo, run the verification (DNS changes can take a few hours to
+   propagate), then create the sender (e.g. an address on `citypal.fr`).
+
+Not done yet; to be recorded here with the date once verified.
 
 PROD: database backups (limited on free plans), a custom domain, HSTS, and
 moving to an always-on plan before showing the demo to partners (ADR-0004).

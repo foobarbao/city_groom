@@ -19,6 +19,10 @@ import './styles.css'
 import App from './App.vue'
 import { i18n } from './i18n'
 import { router } from './router'
+import { listenForInstall } from './services/installApp'
+
+// Before the first screen: the browser may offer installation early.
+listenForInstall()
 
 const app = createApp(App).use(IonicVue).use(createPinia()).use(i18n).use(router)
 
