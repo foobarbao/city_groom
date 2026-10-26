@@ -4,7 +4,7 @@
 >
 > Real locker hardware has not been chosen yet. This document records what was
 > learned about existing lockers and how the demo simulates them. Everything
-> marked *assumption* is a City Groom choice, not a vendor specification.
+> marked _assumption_ is a City Groom choice, not a vendor specification.
 
 ## 1. What exists
 
@@ -77,12 +77,12 @@ as such.
 
 Defined in `backend/apps/lockers/sizes.py`.
 
-| Code | French label | Inner size (H × W × D, cm) | Source | Typical items |
-|---|---|---|---|---|
-| S | Petit | 8 × 38 × 64 | Mondial Relay S / InPost A | Watch, jewellery, phone, glasses |
-| M | Moyen | 19 × 38 × 64 | Mondial Relay M / InPost B | Pair of shoes, folded shirts, handbag |
-| L | Grand | 38 × 39 × 64 | Mondial Relay L | Laundry bag, folded duvet, small appliance |
-| XL | Penderie | 183 × 38 × 64 | Hanging clearance for a gown (Kioskforce); depth above the 55–60 cm needed for hangers | Shirts on hangers, suit, dress, coat |
+| Code | French label | Inner size (H × W × D, cm) | Source                                                                                 | Typical items                              |
+| ---- | ------------ | -------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------ |
+| S    | Petit        | 8 × 38 × 64                | Mondial Relay S / InPost A                                                             | Watch, jewellery, phone, glasses           |
+| M    | Moyen        | 19 × 38 × 64               | Mondial Relay M / InPost B                                                             | Pair of shoes, folded shirts, handbag      |
+| L    | Grand        | 38 × 39 × 64               | Mondial Relay L                                                                        | Laundry bag, folded duvet, small appliance |
+| XL   | Penderie     | 183 × 38 × 64              | Hanging clearance for a gown (Kioskforce); depth above the 55–60 cm needed for hangers | Shirts on hangers, suit, dress, coat       |
 
 The XS size (4 × 23 × 40 cm) is not simulated: no City Groom service needs it
 so far.
@@ -97,25 +97,25 @@ so far.
   scanner).
 - Column templates (top to bottom):
 
-| Template | Content |
-|---|---|
-| control | panel + 4 × S + 3 × M + 1 × L |
-| mixed | 4 × S + 4 × M + 2 × L |
-| large | 2 × M + 4 × L |
-| laundry | 5 × L |
-| garment | 1 × XL |
-| storage | 2 × S + 3 × M + 3 × L (consigne: phone and keys, small bags, helmets and jackets) |
+| Template | Content                                                                           |
+| -------- | --------------------------------------------------------------------------------- |
+| control  | panel + 4 × S + 3 × M + 1 × L                                                     |
+| mixed    | 4 × S + 4 × M + 2 × L                                                             |
+| large    | 2 × M + 4 × L                                                                     |
+| laundry  | 5 × L                                                                             |
+| garment  | 1 × XL                                                                            |
+| storage  | 2 × S + 3 × M + 3 × L (consigne: phone and keys, small bags, helmets and jackets) |
 
 - Locker models (columns left to right). City Groom favours large and hanging
   compartments, since laundry and ironed shirts are the first services:
 
-| Model | Columns | Compartments |
-|---|---|---|
-| compact | mixed, control, garment | 19 |
-| standard | garment, mixed, control, laundry, garment | 25 |
-| large | garment, mixed, large, control, laundry, large, garment | 37 |
-| consigne_compact | storage, control | 16 |
-| consigne | storage, control, large | 22 |
+| Model            | Columns                                                 | Compartments |
+| ---------------- | ------------------------------------------------------- | ------------ |
+| compact          | mixed, control, garment                                 | 19           |
+| standard         | garment, mixed, control, laundry, garment               | 25           |
+| large            | garment, mixed, large, control, laundry, large, garment | 37           |
+| consigne_compact | storage, control                                        | 16           |
+| consigne         | storage, control, large                                 | 22           |
 
 - Consigne lockers, at strategic places, are smaller and have no hanging
   compartment (docs/PRODUCT.md §4).
@@ -127,11 +127,11 @@ so far.
 
 Simulated lockers get one of these profiles, reflecting §1:
 
-| Profile | Access methods | Connectivity | Share |
-|---|---|---|---|
-| connected_qr_nfc | QR code, NFC | 4G | 50 % |
-| connected_qr | QR code | Ethernet | 20 % |
-| offline_bluetooth | Bluetooth | offline, synced through the phone | 30 % |
+| Profile           | Access methods | Connectivity                      | Share |
+| ----------------- | -------------- | --------------------------------- | ----- |
+| connected_qr_nfc  | QR code, NFC   | 4G                                | 50 %  |
+| connected_qr      | QR code        | Ethernet                          | 20 %  |
+| offline_bluetooth | Bluetooth      | offline, synced through the phone | 30 %  |
 
 ### Events and drivers
 
@@ -159,8 +159,8 @@ Simulated lockers get one of these profiles, reflecting §1:
   `Locker.placement_source`.
 - **Occupancy**: each simulated locker gets a random target fill rate between
   **15 % and 45 %** (kept modest on purpose); about 30 % of used compartments
-  are *reserved* (order placed, item not yet dropped) and the rest *occupied*;
-  about 2 % of compartments are *out of service*.
+  are _reserved_ (order placed, item not yet dropped) and the rest _occupied_;
+  about 2 % of compartments are _out of service_.
 - Simulation code refuses to modify a locker flagged as real.
 
 ## 5. Privacy and security choices
@@ -182,12 +182,12 @@ Unfolded dimensions of common city scooters and of large ones, read on
 2026-10-26 from manufacturers' manuals and retailer or review pages
 (L × W × H, cm; W is the handlebar width):
 
-| Model | L × W × H | Weight | Handlebar folds | Source |
-|---|---|---|---|---|
-| Xiaomi Electric Scooter 4 Pro (2nd Gen) | 115 × 57 × 122 | 19 kg | not checked | [LDLC](https://ldlc.com/en/product/PB00623042.html), weight from [mi.com](https://www.mi.com/global/xiaomi-electric-scooter-4-pro-2nd-gen/specs) |
-| Segway Ninebot Max G2 | 121 × 57 × 126 | — | not checked | [Notebookcheck](https://www.notebookcheck.net/Segway-Ninebot-KickScooter-Max-G2-E-Scooter-review-Great-handling-thanks-to-full-hydraulic-suspension.767517.0.html) (manufacturer table) |
-| Dualtron Thunder 3 | 127 × 70 × 136 (folded 127 × 32 × 59) | 51 kg | yes | [Dualtron manual](https://wheelyshop.se/cdn/shop/files/DUALTRON_THUNDER_3_MANUAL.pdf) |
-| Segway GT2 | 149 × 66 × 131 (folded 149 × 66 × 86) | — | no (width unchanged when folded) | [Joey's wiki](https://joeybabcock.me/wiki/Ninebot_GT2), reseller listings |
+| Model                                   | L × W × H                             | Weight | Handlebar folds                  | Source                                                                                                                                                                                  |
+| --------------------------------------- | ------------------------------------- | ------ | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Xiaomi Electric Scooter 4 Pro (2nd Gen) | 115 × 57 × 122                        | 19 kg  | not checked                      | [LDLC](https://ldlc.com/en/product/PB00623042.html), weight from [mi.com](https://www.mi.com/global/xiaomi-electric-scooter-4-pro-2nd-gen/specs)                                        |
+| Segway Ninebot Max G2                   | 121 × 57 × 126                        | —      | not checked                      | [Notebookcheck](https://www.notebookcheck.net/Segway-Ninebot-KickScooter-Max-G2-E-Scooter-review-Great-handling-thanks-to-full-hydraulic-suspension.767517.0.html) (manufacturer table) |
+| Dualtron Thunder 3                      | 127 × 70 × 136 (folded 127 × 32 × 59) | 51 kg  | yes                              | [Dualtron manual](https://wheelyshop.se/cdn/shop/files/DUALTRON_THUNDER_3_MANUAL.pdf)                                                                                                   |
+| Segway GT2                              | 149 × 66 × 131 (folded 149 × 66 × 86) | —      | no (width unchanged when folded) | [Joey's wiki](https://joeybabcock.me/wiki/Ninebot_GT2), reseller listings                                                                                                               |
 
 Sources disagree by a few centimetres for some models (e.g. Max G2 height
 120 or 126 cm); the larger figure is kept. Large scooters reach about
@@ -197,14 +197,21 @@ largest ones (the Segway GT2 handlebar does not fold), so places are sized for
 
 ### Place and locker size
 
+- **One locker per scooter** (owner, 2026-10-26, replacing the first idea
+  of open lockers of 2 to 5 places): each scooter has its own closed
+  locker; **some double lockers take two** scooters side by side. Lockers
+  are grouped side by side in a station.
 - **Perpendicular storage** (owner's choice, 2026-10-26; parallel storage,
   narrower but harder to use, was set aside): the scooter rolls in front
-  first, so the locker front only needs the handlebar width per place.
-- **One place**: 155 × 75 × 140 cm (depth × width × height), *assumption*:
-  the largest reference scooter plus a few centimetres to roll it in.
-- **2 to 5 places** per locker (owner's example). With 5 cm partitions and
-  side walls (*assumption*), the front is 1.65 m wide for 2 places and
-  4.05 m for 5, for about 1.6 m of depth.
+  first, so a single locker is only as wide as a handlebar.
+- **Single locker**: 155 × 75 × 140 cm (depth × width × height),
+  _assumption_: the largest reference scooter plus a few centimetres to
+  roll it in. **Double locker**: 150 cm wide (_assumption_: two single
+  widths without the partition).
+- **Station front**: with 5 cm partitions and side walls (_assumption_),
+  85 cm for one single locker; the example drawn in the app (three single
+  lockers and one double, _assumption_) is 4 m wide for 5 scooters, about
+  1.6 m deep.
 - For comparison, an open 4-place scooter station sold to French public
   buyers (TROT-E-PARK, [UGAP sheet](https://www.ugap.fr/images/media-wp/2025/03/rfart_4216456_4216384_ft-support-trottinettes-trot-e-park.pdf.avif))
   measures 187 × 51 × 68 cm with 4 waterproof sockets.
@@ -213,7 +220,7 @@ largest ones (the Segway GT2 handlebar does not fold), so places are sized for
 
 - Vendor, real dimensions, door type (side-hinged doors 75 cm wide need
   clearance in front; roller shutters do not).
-- Charging (a socket per place): not decided (docs/PRODUCT.md §4d); if
+- Charging (a socket per locker): not decided (docs/PRODUCT.md §4d); if
   chosen, the fire-safety rules for charging batteries in a closed box are
   to be checked.
 - Height of the deck above the ground and ramp, weight of large scooters

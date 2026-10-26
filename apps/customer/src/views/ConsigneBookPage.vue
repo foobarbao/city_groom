@@ -1,8 +1,9 @@
 <script setup lang="ts">
 /**
- * Consigne booking in four steps: locker, when (now, or a slot booked at
- * least 4 hours ahead), size, summary and simulated payment
- * (docs/PRODUCT.md §4b).
+ * Consigne booking in five steps: locker, when (now, or a slot booked at
+ * least 4 hours ahead), pickup, size, summary and simulated payment
+ * (docs/PRODUCT.md §4b). Tapping a locker (map or list) moves on to the
+ * next step; the scooter lockers, coming soon, are announced under it.
  */
 import { IonButton, IonContent, IonPage, useIonRouter } from '@ionic/vue'
 import { computed, ref, watch } from 'vue'
@@ -12,6 +13,7 @@ import { useRoute } from 'vue-router'
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
 import LockerPicker from '../components/LockerPicker.vue'
+import ScooterTeaser from '../components/ScooterTeaser.vue'
 import { consignePrice } from '../domain/pricing'
 import {
   type SlotWindow,
@@ -130,7 +132,7 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
   <ion-page>
     <app-header back-href="/consigne" />
     <ion-content>
-      <main class="page">
+      <main class="page" :class="{ wide: step === 0 }">
         <ol class="stepper" :aria-label="t('consigne.book')">
           <li
             v-for="(s, i) in STEPS"
@@ -147,7 +149,8 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
 
         <section v-if="step === 0" class="group">
           <h1 class="page-title">{{ t('consigne.chooseLocker') }}</h1>
-          <locker-picker v-model="lockerCode" :exclude="['XL']" />
+          <locker-picker v-model="lockerCode" :exclude="['XL']" @pick="step = 1" />
+          <scooter-teaser />
         </section>
 
         <section v-else-if="step === 1" class="group">
@@ -316,6 +319,10 @@ if (typeof presetLocker === 'string' && lockers.some((l) => l.code === presetLoc
 </template>
 
 <style scoped>
+/* The locker step needs room for the map beside the list. */
+.page.wide {
+  max-width: 1080px;
+}
 .group {
   display: flex;
   flex-direction: column;

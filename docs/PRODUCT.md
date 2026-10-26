@@ -377,20 +377,30 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
 Requested by the project owner on 2026-10-26: an offer announced as
 **"Bientôt disponible"**, work in progress, nothing can be booked yet.
 
-- **Concept**: lockers with **2 to 5 places**, one **electric scooter** per
-  place, in a **slim format** sized for **large non-folding scooters**.
+- **Concept** (owner, 2026-10-26): **one closed locker per electric
+  scooter**; **some double lockers take two** scooters side by side.
+  Lockers are grouped in stations, in a **slim format** sized for **large
+  non-folding scooters**. (First idea of the same day, replaced: open
+  lockers of 2 to 5 places.)
 - **Perpendicular storage** (owner's choice, 2026-10-26): the scooter rolls
   in front first; each place is about as wide as a handlebar. Parallel
   storage was judged too complex. The vendor options will be studied later
   by the owner; until then the sizes are a concept (docs/LOCKERS.md §6):
-  places of 155 × 75 × 140 cm, a front of about 1.65 m (2 places) to
-  4.05 m (5 places).
+  single lockers of 155 × 75 × 140 cm, double lockers 150 cm wide.
 - **Use**: like the consigne (§4b), **24 hours at most** after drop-off.
 - **Charging**: not decided; the app does not mention it.
-- **In the customer app**: a card on the Consigne screen leads to an
-  explanatory page (`/consigne/trottinettes`) marked "Bientôt disponible"
-  and "En cours de conception": concept, drawing of the locker front for 2
-  to 5 places, size of a place and the reference scooters it fits.
+- **In the customer app** (made visible on 2026-10-26: the owner had not
+  found the page): an entry "Casiers à trottinettes · Bientôt" in the
+  Consigne menu, and a card on the Consigne screen and under the locker
+  choice of a consigne booking. They lead to `/consigne/trottinettes`, a
+  **visual advertisement told as a photo story** like the portal's mission
+  page (owner's request): full-screen chapters over photos (one locker per
+  scooter, use like the consigne, the size of a locker and the reference
+  scooters it fits, a sketch of a station with single and double lockers,
+  "Ça m'intéresse"). The photos are free-licensed illustrations from
+  Wikimedia Commons, credited on the page; they show the idea (a parked
+  scooter, bicycle lockers in Frankfurt, Grenoble tram), not CityPal
+  equipment.
 - **"Ça m'intéresse"**: a signed-in customer can say they are interested;
   the choice is **recorded on the server** with its date (owner's choice,
   2026-10-26) so the team can measure demand; operators see the list and
