@@ -738,7 +738,7 @@
    "code": "shirt_ironing",
    "name": "Repassage chemise",
    "category": "dry_cleaning",
-   "price": "3.50",
+   "price": "4.18",
    "size": "XL",
    "turnaround_rounds": 3,
    "keywords": [
@@ -764,7 +764,7 @@
    "code": "suit_cleaning",
    "name": "Nettoyage costume",
    "category": "dry_cleaning",
-   "price": "16.00",
+   "price": "10.63",
    "size": "XL",
    "turnaround_rounds": 6,
    "keywords": [
@@ -791,7 +791,7 @@
    "code": "duvet_cleaning",
    "name": "Nettoyage couette",
    "category": "laundry",
-   "price": "22.00",
+   "price": "25.50",
    "size": "L",
    "turnaround_rounds": 6,
    "keywords": [

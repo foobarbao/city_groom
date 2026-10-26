@@ -481,6 +481,13 @@ with the project owner.
   shops with public data only (no logo) and the web offers 5àsec publishes,
   with their source and the date they were read; they cannot be ordered
   through CityPal.
+- **Prices against 5àsec** (decided 2026-10-26): the demo prices of the
+  services 5àsec also offers are **aligned on 5àsec's unit price** (5àsec
+  being the cheapest): shirt 4.18 € (reference: "Pack 5 chemises" 20.90 €),
+  suit 10.63 € ("3 pour 2 : costumes" 31.90 €), duvet 25.50 € ("Offre
+  couette"). Services without a comparable 5àsec offer keep their
+  placeholder price; the weekly pack (5 shirts + 2 trousers, 10 € welcome,
+  then 15 € / 20 €) stays as decided.
 - **Simulated**: lockers, orders, courier rounds, merchant activity, consigne
   bookings, reviews and conversations (fictitious "Démo · …" partner shops
   only).
