@@ -19,6 +19,7 @@ function shop(overrides: Partial<Shop>): Shop {
     address: '',
     openingHours: '',
     website: '',
+    brand: '',
     services: [],
     rating: null,
     ...overrides,

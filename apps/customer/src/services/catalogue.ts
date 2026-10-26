@@ -9,7 +9,13 @@
 import { type Offer, catalogueData, loadOffers, offersOf, publicData } from '@city-groom/demo-data'
 import { computeLockerDrawing, exampleDoorLabel } from '@city-groom/ui'
 import type { CompartmentSize } from '@city-groom/api-client'
-import type { DemoPack, DemoPartner, DemoService, SubscriptionPlan } from '@city-groom/demo-data'
+import type {
+  DemoPack,
+  DemoPartner,
+  DemoService,
+  PublicPriceList,
+  SubscriptionPlan,
+} from '@city-groom/demo-data'
 
 import type { Shop } from '../domain/shops'
 
@@ -51,6 +57,7 @@ const partners: Shop[] = catalogueData.partners.map((p: DemoPartner) => ({
   address: '',
   openingHours: '',
   website: '',
+  brand: '',
   // Service types of the shop's visible offers, for the search.
   services: [...new Set(shopOffers(p.code).map((o) => o.service))],
   rating: { average: p.reviews.average, count: p.reviews.count },
@@ -71,11 +78,16 @@ const businesses: Shop[] = (publicData.merchants.features ?? []).flatMap((f, i) 
       address: props.address ?? '',
       openingHours: props.opening_hours ?? '',
       website: props.website ?? '',
+      brand: props.brand ?? '',
       services: [],
       rating: null,
     },
   ]
 })
+
+/** Public prices published by the brand of a non-partner chain shop, if any. */
+export const publicPricesOf = (shop: Shop): PublicPriceList | undefined =>
+  shop.brand ? catalogueData.public_prices.find((p) => p.brand === shop.brand) : undefined
 
 /** Every shop: partners and other local businesses. */
 export const shops: Shop[] = [...partners, ...businesses]

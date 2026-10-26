@@ -116,9 +116,9 @@ Summary; parameters and response schemas are in the OpenAPI reference.
 
 ### Merchants (`merchants` tag, public)
 
-| Method & path            | Description                                                                                                                                                                                                                       |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GET /api/v1/merchants/` | Local businesses offering locker-compatible services, as GeoJSON. Public data from OpenStreetMap (attribution required); `is_partner` is false until a partnership is signed. Filters: `category`, and `lng`, `lat`, `radius_km`. |
+| Method & path            | Description                                                                                                                                                                                                                                                                                                            |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /api/v1/merchants/` | Local businesses offering locker-compatible services, as GeoJSON. Public data from OpenStreetMap (attribution required); `is_partner` is false until a partnership is signed; `brand` names the chain for the allowed chain shops (e.g. `5àsec`), empty otherwise. Filters: `category`, and `lng`, `lat`, `radius_km`. |
 
 ### Operations (`operations` tag, scope `operations:read`)
 
@@ -252,4 +252,5 @@ Not available yet; listed so integrators can plan:
 | Date       | Change                                                                                                                                     |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | 2026-10-24 | Added `GET /api/v1/merchants/`.                                                                                                            |
+| 2026-10-26 | Added `brand` to merchants (non-breaking).                                                                                                 |
 | 2026-10-24 | `v1` published: lockers (public), operations (occupancy, statistics, events), health check; integration API keys with scopes; rate limits. |

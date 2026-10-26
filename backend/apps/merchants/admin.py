@@ -10,7 +10,7 @@ from apps.merchants.models import Merchant
 class MerchantAdmin(GISModelAdmin):
     """Merchant administration with a map widget for the location."""
 
-    list_display = ["name", "category", "address", "is_partner", "imported_at"]
+    list_display = ["name", "category", "brand", "address", "is_partner", "imported_at"]
     list_filter = ["category", "is_partner"]
     search_fields = ["name", "address"]
     readonly_fields = ["osm_type", "osm_id", "imported_at"]

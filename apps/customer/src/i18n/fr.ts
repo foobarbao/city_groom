@@ -204,6 +204,9 @@ export default {
     turnaround: 'Prêt en {days}',
     days: '1 jour | {count} jours',
     perItem: '{price} / article',
+    publicPricesNote:
+      'Prix publiés par {brand}, relevés le {date} ; ils peuvent avoir changé. Aucun partenariat avec CityPal : ces offres s’achètent auprès de {brand}, pas dans CityPal.',
+    publicPricesSource: 'Voir la source',
     notPartnerText:
       'Ce commerce n’est pas encore partenaire de CityPal : impossible de commander via l’application pour le moment.',
     hours: 'Horaires',

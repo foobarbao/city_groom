@@ -49,9 +49,14 @@ class DemoService:
     keywords: tuple[str, ...] = ()
 
 
+# Prices are placeholders, except three aligned on 5àsec's published web
+# offers (owner's decision of 2026-10-26: same unit price as 5àsec, the
+# cheapest; apps.merchants.public_prices): shirt 4.18 (pack 5 chemises,
+# 20.90 / 5), suit 10.63 (3 pour 2 costumes, 31.90 / 3), duvet 25.50 (offre
+# couette). Other services have no comparable 5àsec offer.
 SERVICES: tuple[DemoService, ...] = (
     DemoService(
-        "shirt_ironing", "Repassage chemise", ServiceCategory.DRY_CLEANING, Decimal("3.50"), XL, 3
+        "shirt_ironing", "Repassage chemise", ServiceCategory.DRY_CLEANING, Decimal("4.18"), XL, 3
     ),
     DemoService(
         "trouser_ironing",
@@ -62,13 +67,13 @@ SERVICES: tuple[DemoService, ...] = (
         3,
     ),
     DemoService(
-        "suit_cleaning", "Nettoyage costume", ServiceCategory.DRY_CLEANING, Decimal("16.00"), XL, 6
+        "suit_cleaning", "Nettoyage costume", ServiceCategory.DRY_CLEANING, Decimal("10.63"), XL, 6
     ),
     DemoService(
         "laundry_bag", "Sac de linge lavé-plié", ServiceCategory.LAUNDRY, Decimal("18.00"), L, 3
     ),
     DemoService(
-        "duvet_cleaning", "Nettoyage couette", ServiceCategory.LAUNDRY, Decimal("22.00"), L, 6
+        "duvet_cleaning", "Nettoyage couette", ServiceCategory.LAUNDRY, Decimal("25.50"), L, 6
     ),
     DemoService(
         "shoe_cleaning", "Nettoyage chaussures", ServiceCategory.SHOE_REPAIR, Decimal("12.00"), M, 3

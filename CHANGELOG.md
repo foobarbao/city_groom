@@ -9,6 +9,13 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- Demo prices aligned on 5àsec's published unit prices: shirt ironing
+  4.18 € (was 3.50 €), suit cleaning 10.63 € (was 16.00 €), duvet cleaning
+  25.50 € (was 22.00 €); demo activity regenerated.
+- 5àsec shops (real, from OpenStreetMap: Grenoble and Saint-Égrève) shown
+  as non-partners with the web offers 5àsec publishes (18 prices read on
+  2026-10-26, source linked, not orderable through CityPal); merchants
+  gain a `brand` field (API, admin); demo data regenerated.
 - Announcements opt-in: box unticked by default at the Google sign-in,
   switch on the account screen; stored on the account with its date
   (`announcements`, `PATCH /api/v1/auth/me/`); admin column, filter,

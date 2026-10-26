@@ -6,7 +6,9 @@ Selection rules (docs/PRODUCT.md, "Demo goals and data"):
   ``categories.OSM_TAG_CATEGORIES``;
 - no food businesses: none of those tags is a food tag;
 - no large chains: objects carrying a ``brand`` or ``brand:wikidata`` tag are
-  excluded, as OpenStreetMap uses these tags for chain stores;
+  excluded, as OpenStreetMap uses these tags for chain stores, except the
+  brands of ``ALLOWED_CHAIN_BRANDS`` (5àsec, project owner's decision of
+  2026-10-26: shown as non-partner shops with their public prices);
 - no self-service laundromats (``shop=laundry`` with ``self_service=yes``):
   no merchant handles the items there (project owner's decision, 2026-10-24);
 - named businesses only.
@@ -22,6 +24,10 @@ from apps.merchants.categories import OSM_TAG_CATEGORIES, ServiceCategory
 
 # Tags whose presence marks a chain store.
 CHAIN_TAGS = ("brand", "brand:wikidata")
+
+# Chain brands shown anyway (OpenStreetMap ``brand`` value), as non-partner
+# shops with public data only: no logo, no partnership claimed.
+ALLOWED_CHAIN_BRANDS = frozenset({"5àsec"})
 
 
 def build_query() -> str:
@@ -49,6 +55,14 @@ class MerchantCandidate:
     address: str
     opening_hours: str
     website: str
+    brand: str = ""
+
+
+def _is_excluded_chain(tags: dict[str, str]) -> bool:
+    """Return whether the object is a chain store that is not allowed."""
+    if not any(tag in tags for tag in CHAIN_TAGS):
+        return False
+    return tags.get("brand", "") not in ALLOWED_CHAIN_BRANDS
 
 
 def _category(tags: dict[str, str]) -> ServiceCategory | None:
@@ -85,7 +99,7 @@ def parse_merchants(payload: dict[str, Any]) -> list[MerchantCandidate]:
         tags: dict[str, str] = element.get("tags", {})
         name = tags.get("name", "").strip()
         category = _category(tags)
-        if not name or category is None or any(tag in tags for tag in CHAIN_TAGS):
+        if not name or category is None or _is_excluded_chain(tags):
             continue
         if _is_self_service_laundromat(tags):
             continue
@@ -103,6 +117,7 @@ def parse_merchants(payload: dict[str, Any]) -> list[MerchantCandidate]:
                 address=_address(tags),
                 opening_hours=tags.get("opening_hours", ""),
                 website=tags.get("website", tags.get("contact:website", "")),
+                brand=tags.get("brand", ""),
             )
         )
     return sorted(candidates, key=lambda c: c.name)

@@ -586,6 +586,11 @@ export interface components {
                  */
                 readonly website?: string;
                 /**
+                 * Enseigne
+                 * @description Enseigne d'une chaîne (OpenStreetMap « brand »), ex. 5àsec ; vide sinon.
+                 */
+                readonly brand?: string;
+                /**
                  * Partenaire
                  * @description Vrai seulement si un partenariat a été signé avec ce commerce.
                  */

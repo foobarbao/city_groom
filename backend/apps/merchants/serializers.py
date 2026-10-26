@@ -12,5 +12,14 @@ class MerchantFeatureSerializer(GeoFeatureModelSerializer):  # type: ignore[misc
     class Meta:
         model = Merchant
         geo_field = "location"
-        fields = ["id", "name", "category", "address", "opening_hours", "website", "is_partner"]
+        fields = [
+            "id",
+            "name",
+            "category",
+            "address",
+            "opening_hours",
+            "website",
+            "brand",
+            "is_partner",
+        ]
         read_only_fields = fields

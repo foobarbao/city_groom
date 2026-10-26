@@ -906,6 +906,12 @@ components:
               readOnly: true
               title: Site web
               description: Site web public, si connu.
+            brand:
+              type: string
+              readOnly: true
+              title: Enseigne
+              description: Enseigne d'une chaîne (OpenStreetMap « brand »), ex. 5àsec
+                ; vide sinon.
             is_partner:
               type: boolean
               readOnly: true

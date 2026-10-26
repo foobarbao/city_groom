@@ -123,3 +123,38 @@ def test_public_api_lists_and_filters_merchants() -> None:
 
     shoes = client.get("/api/v1/merchants/", {"category": "shoe_repair"}).json()
     assert [f["properties"]["name"] for f in shoes["features"]] == ["Fake Cordonnerie"]
+
+
+def test_allowed_chain_brand_is_kept_with_its_brand() -> None:
+    payload = {
+        "elements": [
+            {
+                "type": "node",
+                "id": 7,
+                "lat": 45.19,
+                "lon": 5.72,
+                "tags": {"shop": "dry_cleaning", "name": "5àsec", "brand": "5àsec"},
+            },
+            {
+                "type": "node",
+                "id": 8,
+                "lat": 45.19,
+                "lon": 5.72,
+                "tags": {"shop": "dry_cleaning", "name": "Other", "brand:wikidata": "Q1"},
+            },
+        ]
+    }
+
+    candidates = parse_merchants(payload)
+
+    assert [(c.name, c.brand) for c in candidates] == [("5àsec", "5àsec")]
+
+
+def test_public_prices_are_consistent() -> None:
+    from apps.merchants.public_prices import PUBLIC_PRICE_LISTS
+
+    for price_list in PUBLIC_PRICE_LISTS:
+        assert price_list.source_url.startswith("https://")
+        names = [p.name for p in price_list.prices]
+        assert len(names) == len(set(names))
+        assert all(0 < p.price <= p.regular_price for p in price_list.prices)

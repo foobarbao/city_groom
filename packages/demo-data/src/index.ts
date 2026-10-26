@@ -215,6 +215,32 @@ export interface Slot {
   ends: string;
 }
 
+/** One offer as published by a chain brand (real public price). */
+export interface PublicPrice {
+  name: string;
+  /** Section of the brand's page it was read in. */
+  section: string;
+  /** Euros, as a decimal string. */
+  price: string;
+  /** Price before the brand's own discount (equal to `price` without one). */
+  regular_price: string;
+}
+
+/**
+ * Public prices of a chain brand shown as a non-partner (real data, owner's
+ * decision of 2026-10-26): for information only, never ordered through
+ * CityPal.
+ */
+export interface PublicPriceList {
+  /** OpenStreetMap `brand` value of the shops it applies to. */
+  brand: string;
+  title: string;
+  source_url: string;
+  /** ISO date the prices were read on the brand's page. */
+  checked_on: string;
+  prices: PublicPrice[];
+}
+
 /** Customer catalogue of the demo (fictitious partners, placeholder plans, rules). */
 export interface CatalogueData {
   fictitious: true;
@@ -223,6 +249,8 @@ export interface CatalogueData {
   plans: SubscriptionPlan[];
   packs: DemoPack[];
   promotions: DemoPromotion[];
+  /** Real public prices of non-partner chain shops. */
+  public_prices: PublicPriceList[];
   consigne: {
     max_hours: number;
     min_notice_hours: number;
