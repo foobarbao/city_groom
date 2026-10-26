@@ -1,59 +1,61 @@
 <script setup lang="ts">
 /**
- * "Casiers autour de moi": the lockers closest to the customer, with walking
- * distance and free compartments, and one-tap actions to drop belongings
- * now or book a slot (consigne), or open the locker.
+ * "Casiers autour de moi": the lockers closest to the customer, with the
+ * same chooser as the consigne booking (owner, 2026-10-26): map, search and
+ * a list built like the side menu, opened sorted by distance ("Près de
+ * moi"). The chosen locker, the nearest one with room for a consigne at
+ * first, shows its walking distance, free compartments and one-tap actions:
+ * drop belongings now, book a slot, or open the locker.
  *
  * Without a position (permission refused, no GPS), distances are measured
  * from the centre of Grenoble, and the screen says so.
  */
-import { IonButton, IonContent, IonIcon, IonPage, IonSpinner, useIonRouter } from '@ionic/vue'
+import { IonButton, IonIcon, IonContent, IonPage, IonSpinner } from '@ionic/vue'
 import { navigateOutline } from 'ionicons/icons'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import AppHeader from '../components/AppHeader.vue'
 import DemoNotice from '../components/DemoNotice.vue'
-import LockerMap from '../components/LockerMap.vue'
-import { HAS_MAP } from '../config'
+import LockerPicker from '../components/LockerPicker.vue'
 import { usePosition } from '../composables/usePosition'
-import { byDistance, formatDistance, walkingMinutes } from '../domain/geo'
-import { catalogue, lockerFeatures, lockers } from '../services/catalogue'
+import { byDistance, distanceMeters, formatDistance, walkingMinutes } from '../domain/geo'
+import { catalogue, lockers } from '../services/catalogue'
 
 const { t } = useI18n()
-const { status, origin, position, locate } = usePosition()
-const router = useIonRouter()
-/** Hidden when no base map is configured or it failed to load. */
-const mapShown = ref(HAS_MAP)
-/** Close-up zoom: lockers within walking distance. */
-const NEARBY_ZOOM = 14.5
-
-/** Lockers listed at first; "Voir plus" adds as many. */
-const STEP = 8
-const shown = ref(STEP)
-const consigneOnly = ref(true)
+const { status, origin, locate } = usePosition()
 
 /** Sizes offered for the consigne (no hanging compartment). */
 const CONSIGNE_SIZES = Object.keys(catalogue.consigne.prices)
 const freeConsigne = (free: Record<string, number>): number =>
   CONSIGNE_SIZES.reduce((sum, size) => sum + (free[size] ?? 0), 0)
 
-const nearby = computed(() =>
-  byDistance(lockers, origin.value).filter(
-    (l) => !consigneOnly.value || freeConsigne(l.freeBySize) > 0,
-  ),
+const selectedCode = ref<string | null>(null)
+const selected = computed(() => lockers.find((l) => l.code === selectedCode.value) ?? null)
+const distance = computed(() =>
+  selected.value
+    ? distanceMeters(origin.value, [selected.value.longitude, selected.value.latitude])
+    : 0,
 )
 
-onMounted(() => {
-  if (status.value !== 'located') locate()
-})
+// Once the position is settled (found, refused or unavailable), preselect
+// the nearest locker with room for a consigne, unless one was chosen.
+watch(
+  status,
+  (value) => {
+    if (selectedCode.value || value === 'idle' || value === 'locating') return
+    selectedCode.value =
+      byDistance(lockers, origin.value).find((l) => freeConsigne(l.freeBySize) > 0)?.code ?? null
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <ion-page>
     <app-header back-href="/accueil" />
     <ion-content>
-      <main class="page">
+      <main class="page wide">
         <h1 class="page-title">{{ t('nearby.title') }}</h1>
 
         <p v-if="status === 'locating'" class="banner">
@@ -69,101 +71,66 @@ onMounted(() => {
           </ion-button>
         </div>
 
-        <div v-if="mapShown" class="map-box">
-          <locker-map
-            :lockers="lockerFeatures"
-            :center="origin"
-            :zoom="NEARBY_ZOOM"
-            :me="position"
-            compact
-            @select="(code) => router.push(`/casiers/${code}`)"
-            @unavailable="mapShown = false"
-          />
-        </div>
+        <locker-picker v-model="selectedCode" :exclude="['XL']" start-near-me allow-full />
 
-        <div class="chips" role="group">
-          <button
-            class="chip"
-            :class="{ active: consigneOnly }"
-            type="button"
-            @click="consigneOnly = true"
-          >
-            {{ t('nearby.forConsigne') }}
-          </button>
-          <button
-            class="chip"
-            :class="{ active: !consigneOnly }"
-            type="button"
-            @click="consigneOnly = false"
-          >
-            {{ t('nearby.all') }}
-          </button>
-        </div>
+        <section v-if="selected" class="soft-card locker" aria-live="polite">
+          <div class="head">
+            <span class="name-block">
+              <strong class="name">{{ selected.name }}</strong>
+              <span class="muted small">{{ t(`sites.${selected.siteCategory}`) }}</span>
+            </span>
+            <span class="distance">
+              <strong>{{ formatDistance(distance) }}</strong>
+              <span class="muted small">{{
+                t('nearby.walk', { minutes: walkingMinutes(distance) })
+              }}</span>
+            </span>
+          </div>
+          <div class="sizes">
+            <span
+              v-for="size in CONSIGNE_SIZES"
+              :key="size"
+              class="size"
+              :class="{ none: !(selected.freeBySize[size] ?? 0) }"
+            >
+              {{ t(`locker.sizes.${size}`) }} · {{ selected.freeBySize[size] ?? 0 }}
+            </span>
+          </div>
+          <p v-if="!freeConsigne(selected.freeBySize)" class="muted small">
+            {{ t('nearby.full') }}
+          </p>
+          <div class="actions">
+            <ion-button
+              v-if="freeConsigne(selected.freeBySize) > 0"
+              size="small"
+              shape="round"
+              :router-link="{
+                path: '/consigne/reserver',
+                query: { casier: selected.code, maintenant: '1' },
+              }"
+            >
+              {{ t('nearby.dropNow') }}
+            </ion-button>
+            <ion-button
+              size="small"
+              shape="round"
+              fill="outline"
+              :router-link="{ path: '/consigne/reserver', query: { casier: selected.code } }"
+            >
+              {{ t('nearby.book') }}
+            </ion-button>
+            <ion-button
+              size="small"
+              shape="round"
+              fill="clear"
+              :router-link="`/casiers/${selected.code}`"
+            >
+              {{ t('nearby.see') }}
+            </ion-button>
+          </div>
+        </section>
+        <p v-else class="muted">{{ t('nearby.choose') }}</p>
 
-        <ul class="list">
-          <li
-            v-for="(l, i) in nearby.slice(0, shown)"
-            :key="l.code"
-            class="soft-card locker"
-            :class="{ first: i === 0 }"
-          >
-            <div class="head">
-              <span class="name-block">
-                <strong class="name">{{ l.name }}</strong>
-                <span class="muted small">{{ t(`sites.${l.siteCategory}`) }}</span>
-              </span>
-              <span class="distance">
-                <strong>{{ formatDistance(l.distance) }}</strong>
-                <span class="muted small">{{
-                  t('nearby.walk', { minutes: walkingMinutes(l.distance) })
-                }}</span>
-              </span>
-            </div>
-            <div class="sizes">
-              <span
-                v-for="size in CONSIGNE_SIZES"
-                :key="size"
-                class="size"
-                :class="{ none: !(l.freeBySize[size] ?? 0) }"
-              >
-                {{ t(`locker.sizes.${size}`) }} · {{ l.freeBySize[size] ?? 0 }}
-              </span>
-            </div>
-            <div class="actions">
-              <ion-button
-                v-if="freeConsigne(l.freeBySize) > 0"
-                size="small"
-                shape="round"
-                :router-link="{
-                  path: '/consigne/reserver',
-                  query: { casier: l.code, maintenant: '1' },
-                }"
-              >
-                {{ t('nearby.dropNow') }}
-              </ion-button>
-              <ion-button
-                size="small"
-                shape="round"
-                fill="outline"
-                :router-link="{ path: '/consigne/reserver', query: { casier: l.code } }"
-              >
-                {{ t('nearby.book') }}
-              </ion-button>
-              <ion-button
-                size="small"
-                shape="round"
-                fill="clear"
-                :router-link="`/casiers/${l.code}`"
-              >
-                {{ t('nearby.see') }}
-              </ion-button>
-            </div>
-          </li>
-        </ul>
-        <ion-button v-if="nearby.length > shown" fill="clear" @click="shown += STEP">{{
-          t('nearby.more')
-        }}</ion-button>
-        <router-link class="small" to="/carte">{{ t('home.map') }} →</router-link>
         <p class="muted small">{{ t('nearby.privacy') }}</p>
         <demo-notice :text="t('app.simulatedNotice')" />
       </main>
@@ -172,12 +139,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.map-box {
-  position: relative;
-  height: 280px;
-  border-radius: var(--cg-radius-l);
-  overflow: hidden;
-  box-shadow: var(--cg-shadow);
+/* Room for the map beside the list, as on the consigne booking. */
+.page.wide {
+  max-width: 1080px;
 }
 .banner {
   display: flex;
@@ -202,8 +166,6 @@ onMounted(() => {
 }
 .locker {
   gap: 12px;
-}
-.locker.first {
   border: 2px solid var(--cg-leaf);
 }
 .head {

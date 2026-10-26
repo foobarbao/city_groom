@@ -357,6 +357,10 @@ Requested on 2026-10-24: a **complete customer UX**, with menus to:
   compartments, one tap to drop off now or book a slot. The position is
   asked only when the customer opens this view (or "Près de moi" in a locker
   list), used on the device only, never stored nor sent.
+  Since 2026-10-26 this screen uses **the same locker chooser as the
+  consigne booking** (map, search, list folded like the side menu), opened
+  sorted by distance; the chosen locker (the nearest with room at first)
+  shows its distance, free compartments and actions.
 - **install the app on the home screen** (decided 2026-10-26), until it is on
   the Play Store: an "Installer l'application" button on the home screen and
   in the side menu, hidden once installed; **no install pop-up** when the app

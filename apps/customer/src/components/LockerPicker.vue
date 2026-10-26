@@ -17,10 +17,18 @@
  * - `exclude`: sizes that cannot be used (e.g. hanging compartments for the consigne).
  * - `excludeLockers`: lockers not offered (e.g. the drop-off locker when
  *   choosing "another locker" for the pickup).
+ * - `startNearMe`: open sorted by distance ("Près de moi" on), as on the
+ *   "Casiers autour de moi" screen; the position is asked at once.
+ * - `allowFull`: full lockers can be chosen too (shown faded), e.g. to open
+ *   their page; by default they cannot.
  * - `modelValue`: selected locker code (v-model).
  *
  * Emits:
- * - `pick(code)`: a locker with free compartments was tapped (map or list).
+ * - `pick(code)`: a locker with free compartments was tapped (map or list),
+ *   or any locker with `allowFull`.
+ *
+ * With "Près de moi" on and the position known, the map flies to the
+ * customer, close enough to see the lockers within walking distance.
  */
 import type { LockerFeatureCollection } from '@city-groom/api-client'
 import { IonIcon } from '@ionic/vue'
@@ -28,7 +36,7 @@ import { chevronDownOutline, navigateOutline, searchOutline } from 'ionicons/ico
 import { computed, nextTick, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { HAS_MAP } from '../config'
+import { DEFAULT_MAP_ZOOM, HAS_MAP } from '../config'
 import { usePosition } from '../composables/usePosition'
 import { distanceMeters, formatDistance } from '../domain/geo'
 import { normalize } from '../domain/shops'
@@ -37,8 +45,14 @@ import { siteIcon } from '../utils/icons'
 import LockerMap from './LockerMap.vue'
 
 const props = withDefaults(
-  defineProps<{ size?: string | null; exclude?: string[]; excludeLockers?: string[] }>(),
-  { size: null, exclude: () => [], excludeLockers: () => [] },
+  defineProps<{
+    size?: string | null
+    exclude?: string[]
+    excludeLockers?: string[]
+    startNearMe?: boolean
+    allowFull?: boolean
+  }>(),
+  { size: null, exclude: () => [], excludeLockers: () => [], startNearMe: false, allowFull: false },
 )
 const selected = defineModel<string | null>({ default: null })
 const emit = defineEmits<{ pick: [code: string] }>()
@@ -49,8 +63,9 @@ const mapShown = ref(HAS_MAP)
 
 const query = ref('')
 /** Sort by distance from the customer ("Près de moi"); asks for the position. */
-const nearMe = ref(false)
+const nearMe = ref(props.startNearMe)
 const position = usePosition()
+if (nearMe.value && position.status.value !== 'located') position.locate()
 const distance = (l: LockerSummary): number =>
   distanceMeters(position.origin.value, [l.longitude, l.latitude])
 
@@ -123,8 +138,15 @@ const mapLockers = computed<LockerFeatureCollection>(() => ({
     })),
 }))
 
+/** Close-up zoom around the customer: lockers within walking distance. */
+const NEAR_ZOOM = 14.5
+const located = computed(() => nearMe.value && position.status.value === 'located')
+
+/** Whether a locker can be chosen. */
+const choosable = (locker: LockerSummary): boolean => props.allowFull || free(locker) > 0
+
 function choose(locker: LockerSummary): void {
-  if (free(locker) === 0) return
+  if (!choosable(locker)) return
   selected.value = locker.code
   emit('pick', locker.code)
 }
@@ -195,7 +217,7 @@ watch(
               class="row"
               :class="{ selected: selected === locker.code, full: free(locker) === 0 }"
               :aria-selected="selected === locker.code"
-              :disabled="free(locker) === 0"
+              :disabled="!choosable(locker)"
               @click="choose(locker)"
             >
               <ion-icon :icon="siteIcon(locker.siteCategory)" aria-hidden="true" />
@@ -238,7 +260,7 @@ watch(
                   class="row child"
                   :class="{ selected: selected === locker.code, full: free(locker) === 0 }"
                   :aria-selected="selected === locker.code"
-                  :disabled="free(locker) === 0"
+                  :disabled="!choosable(locker)"
                   @click="choose(locker)"
                 >
                   <span class="text">
@@ -256,6 +278,8 @@ watch(
         <locker-map
           :lockers="mapLockers"
           :me="position.status.value === 'located' ? position.origin.value : null"
+          :center="located ? position.origin.value : undefined"
+          :zoom="located ? NEAR_ZOOM : DEFAULT_MAP_ZOOM"
           :selected="selected"
           compact
           @select="chooseOnMap"
@@ -453,6 +477,8 @@ watch(
 }
 .row.full {
   opacity: 0.5;
+}
+.row:disabled {
   cursor: not-allowed;
 }
 @media (prefers-reduced-motion: reduce) {

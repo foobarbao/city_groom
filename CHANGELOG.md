@@ -9,6 +9,12 @@ Versioning: [SemVer](https://semver.org/).
 
 ### Added
 
+- "Casiers autour de moi" uses the consigne booking's locker chooser (map,
+  search, list folded like the side menu), opened sorted by distance; the
+  chosen locker, the nearest with room at first, keeps its distance, free
+  compartments and actions. `LockerPicker` gains `startNearMe` and
+  `allowFull`, and its map now flies to the customer when "Près de moi" is
+  on.
 - CityPal logo cut out on a transparent background and filling its space
   (no margin, no tile): 44 px in the side menu of both apps, transparent
   favicon and 192 / 512 px icons; the iOS and maskable icons keep a white
