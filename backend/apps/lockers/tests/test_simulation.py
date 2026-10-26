@@ -3,7 +3,12 @@ import random
 import pytest
 
 from apps.lockers.models import Compartment, Locker
-from apps.lockers.osm import fetch_overpass, parse_strategic_sites, parse_tram_stops
+from apps.lockers.osm import (
+    fetch_overpass,
+    parse_required_sites,
+    parse_strategic_sites,
+    parse_tram_stops,
+)
 from apps.lockers.simulation import (
     COLUMN_TEMPLATES,
     LOCKER_MODELS,
@@ -115,3 +120,31 @@ def test_spread_by_category_keeps_lockers_apart() -> None:
 
     assert len(names) == 4
     assert not {"Fake Centre", "Fake Centre Bis"} <= names
+
+
+def test_required_sites_skip_the_selection_rules() -> None:
+    # Far from the centre and not named "Zone ...": refused by the rules,
+    # kept because the project owner required it.
+    payload = {
+        "elements": [
+            {
+                "type": "way",
+                "id": 1,
+                "center": {"lat": 45.2163, "lon": 5.8086},
+                "tags": {"landuse": "commercial", "name": "Innovallée Montbonnot"},
+            },
+            {
+                "type": "way",
+                "id": 2,
+                "center": {"lat": 45.21, "lon": 5.79},
+                "tags": {"landuse": "commercial", "name": "Some Park"},
+            },
+        ]
+    }
+
+    assert parse_strategic_sites(payload) == []
+    pairs = parse_required_sites(payload)
+
+    assert [(category, site.name) for category, site in pairs] == [
+        ("business", "Inovallée Montbonnot")
+    ]

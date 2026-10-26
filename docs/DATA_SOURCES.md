@@ -50,7 +50,7 @@ never named after a real restaurant or business.
 Placement: categories are taken in turn so that every kind of place is
 represented; within a category, the place closest to the city centre is
 chosen, at least 250 m from every other locker. ASSUMPTION: thresholds
-chosen for the demo (70 lockers: 25 at tram stops, 45 at strategic places),
+chosen for the demo (72 lockers: 25 at tram stops, 45 at strategic places, and the 2 Inovallée business parks required by the project owner),
 to review when real locations are decided.
 
 ## Merchant selection rules

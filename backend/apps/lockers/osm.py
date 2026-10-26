@@ -160,6 +160,40 @@ def is_strategic_candidate(category: str, tags: dict[str, str], lat: float, lon:
     return True
 
 
+# Places that must have a locker whatever the rules above (project owner's
+# request of 2026-10-26: "il me faut absolument des casiers jusqu'à
+# Meylan / Inovallée", large business parks). OpenStreetMap name → name shown
+# to customers (OSM spells the Montbonnot part "Innovallée").
+REQUIRED_SITES = {
+    "Inovallée Meylan": "Inovallée Meylan",
+    "Innovallée Montbonnot": "Inovallée Montbonnot",
+}
+
+
+def parse_required_sites(payload: dict[str, Any]) -> list[tuple[str, SimulatedSite]]:
+    """Return the owner-requested places of ``REQUIRED_SITES`` found in the payload.
+
+    They skip the selection rules (distance, naming): the project owner asked
+    for them explicitly. Category: business area.
+    """
+    found: dict[str, tuple[str, SimulatedSite]] = {}
+    for element in payload.get("elements", []):
+        name = element.get("tags", {}).get("name")
+        position = element.get("center") or element
+        if name not in REQUIRED_SITES or "lon" not in position or name in found:
+            continue
+        found[name] = (
+            "business",
+            SimulatedSite(
+                name=REQUIRED_SITES[name],
+                longitude=position["lon"],
+                latitude=position["lat"],
+                source=f"OpenStreetMap, {element['type']} {element['id']} (business, requested)",
+            ),
+        )
+    return [found[name] for name in REQUIRED_SITES if name in found]
+
+
 def _display_name(category: str, name: str) -> str:
     """Name shown to customers; stations get "Gare" when OSM names the town only."""
     if category == "transport" and not name.lower().startswith(("gare", "pôle", "station")):

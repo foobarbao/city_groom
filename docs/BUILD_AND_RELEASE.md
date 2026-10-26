@@ -12,12 +12,12 @@ built web files (`apps/customer/dist/`) in a native Android project
 (`apps/customer/android/`), which shows them in a full-screen web view and
 gives access to native features (GPS, Bluetooth, NFC…) through plugins.
 
-| Web | Android with Capacitor |
-|---|---|
-| `vite build` produces `dist/` | Same, then `cap sync` copies `dist/` into the Android project |
-| The site is identified by its domain | The app is identified by its **application id** (`appId`) |
-| Deploy to a server | Build an **APK** (installable file) or an **AAB** (Play Store format) |
-| HTTPS certificate | **Signing key** (keystore) proving the app comes from you |
+| Web                                  | Android with Capacitor                                                |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| `vite build` produces `dist/`        | Same, then `cap sync` copies `dist/` into the Android project         |
+| The site is identified by its domain | The app is identified by its **application id** (`appId`)             |
+| Deploy to a server                   | Build an **APK** (installable file) or an **AAB** (Play Store format) |
+| HTTPS certificate                    | **Signing key** (keystore) proving the app comes from you             |
 
 The Android project in `android/` is committed: it is the native source code
 of the app, edited with Android Studio when needed (icons, permissions…).
@@ -39,7 +39,7 @@ Prerequisites, on your computer (not needed for web development):
 
 - [Android Studio](https://developer.android.com/studio), which installs the
   Android SDK and a Java runtime;
-- an Android phone with *developer options* and *USB debugging* enabled, or an
+- an Android phone with _developer options_ and _USB debugging_ enabled, or an
   emulator created in Android Studio (Device Manager).
 
 Steps, from the repository root:
@@ -128,15 +128,15 @@ minute to wake up; Neon's free plan stores about 1 GB.
 4. Health check path: `/api/v1/health/`.
 5. Environment variables:
 
-| Variable | Value |
-|---|---|
-| `DJANGO_SECRET_KEY` | long random value: `python -c "import secrets; print(secrets.token_urlsafe(50))"` |
-| `DJANGO_ALLOWED_HOSTS` | `<service>.onrender.com` |
-| `DJANGO_CSRF_TRUSTED_ORIGINS` | `https://<service>.onrender.com` (admin sign-in form) |
-| `DATABASE_URL` | Neon connection string |
-| `CORS_ALLOWED_ORIGINS` | `https://citygroom.netlify.app` |
-| `GOOGLE_OAUTH_CLIENT_IDS` | Google client ID (`docs/GOOGLE_SIGN_IN.md`) |
-| `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL`, `DJANGO_SUPERUSER_PASSWORD` | first administrator; remove them after the first deploy |
+| Variable                                                                           | Value                                                                             |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `DJANGO_SECRET_KEY`                                                                | long random value: `python -c "import secrets; print(secrets.token_urlsafe(50))"` |
+| `DJANGO_ALLOWED_HOSTS`                                                             | `<service>.onrender.com`                                                          |
+| `DJANGO_CSRF_TRUSTED_ORIGINS`                                                      | `https://<service>.onrender.com` (admin sign-in form)                             |
+| `DATABASE_URL`                                                                     | Neon connection string                                                            |
+| `CORS_ALLOWED_ORIGINS`                                                             | `https://citygroom.netlify.app`                                                   |
+| `GOOGLE_OAUTH_CLIENT_IDS`                                                          | Google client ID (`docs/GOOGLE_SIGN_IN.md`)                                       |
+| `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL`, `DJANGO_SUPERUSER_PASSWORD` | first administrator; remove them after the first deploy                           |
 
 The image's start command (`backend/scripts/start.sh`) applies migrations,
 creates the first administrator from the variables above if missing, then
@@ -150,8 +150,8 @@ pre-deploy step, hence this script.
 
 The workflow **Seed hosted database** (`.github/workflows/seed-hosted-db.yml`,
 Actions tab → Run workflow) applies the migrations, then loads the
-`data/osm/` files: 70 simulated lockers (25 at tram stops, 45 at strategic
-places, as on the demo site), the real OpenStreetMap merchants and, unless
+`data/osm/` files: 72 simulated lockers (25 at tram stops, 45 at strategic
+places and the 2 required Inovallée parks, as on the demo site), the real OpenStreetMap merchants and, unless
 unticked, the fictitious "Démo ·" shops. Safe to run again.
 
 One-time setup: add the repository secret **`HOSTED_DATABASE_URL`**
@@ -176,11 +176,11 @@ its bundled fictitious data.
 Bought by the project owner on 2026-10-25 at OVHcloud (DNS zone at OVH).
 Addresses (owner's decision, 2026-10-25):
 
-| Address | Serves |
-|---|---|
-| `https://citypal.fr` (and `www`) | customer app (`/` redirects to `/client/`) |
-| `https://pro.citypal.fr` | redirects to `https://citypal.fr/pro/` (portal) |
-| `https://api.citypal.fr` | backend and admin (Render) |
+| Address                          | Serves                                          |
+| -------------------------------- | ----------------------------------------------- |
+| `https://citypal.fr` (and `www`) | customer app (`/` redirects to `/client/`)      |
+| `https://pro.citypal.fr`         | redirects to `https://citypal.fr/pro/` (portal) |
+| `https://api.citypal.fr`         | backend and admin (Render)                      |
 
 1. Add the domains to the services first: Netlify → Domain management →
    `citypal.fr` (with `www`) and `pro.citypal.fr`; Render → Custom Domains →

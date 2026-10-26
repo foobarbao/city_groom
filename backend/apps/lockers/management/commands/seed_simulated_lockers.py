@@ -2,7 +2,9 @@
 
 Service lockers go to tram stops; with ``--strategic-file``, smaller consigne
 lockers are also placed at strategic places (tourist sites, stations,
-campuses…, see ``apps.lockers.osm``).
+campuses…, see ``apps.lockers.osm``), and service lockers at the places the
+project owner required (``REQUIRED_SITES``: Inovallée business parks in
+Meylan and Montbonnot), on top of the counts.
 
 Examples::
 
@@ -35,6 +37,7 @@ from apps.lockers.models import Locker, SiteCategory
 from apps.lockers.osm import (
     TRAM_STOPS_QUERY,
     fetch_overpass,
+    parse_required_sites,
     parse_strategic_sites,
     parse_tram_stops,
 )
@@ -108,24 +111,35 @@ class Command(BaseCommand):
         rng = random.Random(options["seed"])  # noqa: S311 - demo data, not security-related
         tram_sites = spread_sites(sites, options["count"])
         placements = [(SiteCategory.TRAM_STOP.value, site) for site in tram_sites]
+        required: list[tuple[str, SimulatedSite]] = []
         if options["strategic_file"]:
-            strategic = parse_strategic_sites(
-                json.loads(options["strategic_file"].read_text(encoding="utf-8"))
-            )
+            strategic_payload = json.loads(options["strategic_file"].read_text(encoding="utf-8"))
+            strategic = parse_strategic_sites(strategic_payload)
             placements += spread_by_category(
                 strategic, options["strategic_count"], taken=tram_sites
             )
+            required = parse_required_sites(strategic_payload)
         created = sum(self._create(category, site, rng) for category, site in placements)
+        # Owner-required business parks last, so the lockers above keep the
+        # same random draws; service models, for the people working there.
+        # ASSUMPTION: service (laundry) lockers rather than consigne ones.
+        created += sum(
+            self._create(category, site, rng, service=True) for category, site in required
+        )
         self.stdout.write(self.style.SUCCESS(f"{created} casiers simulés créés."))
 
-    def _create(self, category: str, site: SimulatedSite, rng: random.Random) -> bool:
+    def _create(
+        self, category: str, site: SimulatedSite, rng: random.Random, *, service: bool = False
+    ) -> bool:
         """Create one simulated locker at a site; return False if it already exists."""
         code = slugify(site.name)[:40]
         if Locker.objects.filter(code=code).exists():
             self.stdout.write(f"Ignoré (existe déjà) : {site.name}")
             return False
         weights_by_model = (
-            MODEL_WEIGHTS if category == SiteCategory.TRAM_STOP else CONSIGNE_MODEL_WEIGHTS
+            MODEL_WEIGHTS
+            if service or category == SiteCategory.TRAM_STOP
+            else CONSIGNE_MODEL_WEIGHTS
         )
         models = list(weights_by_model)
         model = rng.choices(models, [weights_by_model[m] for m in models])[0]
